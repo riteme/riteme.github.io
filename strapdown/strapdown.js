@@ -339,7 +339,7 @@ var PR=win['PR']={'createSimpleLexer':createSimpleLexer,'registerLangHandler':re
   //
 
   var markdownEl = document.getElementsByTagName('xmp')[0] || document.getElementsByTagName('textarea')[0],
-      titleEl = document.getElementsByTagName('title')[0],
+      titleEl = document.getElementsByTagName('stitle')[0],
       scriptEls = document.getElementsByTagName('script'),
       navbarEl = document.getElementsByClassName('navbar')[0];
 
