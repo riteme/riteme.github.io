@@ -1355,9 +1355,9 @@ marked.options=marked.setOptions=function(opt){
         linkEl.rel = 'stylesheet';
         document.head.appendChild(linkEl);
 
-        var linkEl = document.createElement('link');
-        linkEl.href = originBase + '/themes/bootstrap-responsive.min.css';
-        linkEl.rel = 'stylesheet';
+        // var linkEl = document.createElement('link');
+        // linkEl.href = originBase + '/themes/bootstrap-responsive.min.css';
+        // linkEl.rel = 'stylesheet';
         document.head.appendChild(linkEl);
 
         //////////////////////////////////////////////////////////////////////
