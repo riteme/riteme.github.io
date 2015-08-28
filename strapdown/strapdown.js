@@ -1346,7 +1346,7 @@ marked.options=marked.setOptions=function(opt){
 
         // Stylesheets
         var linkEl = document.createElement('link');
-        linkEl.href = originBase + '/themes/' + theme + '.css';
+        linkEl.href = originBase + '/themes/' + theme + '.min.css';
         linkEl.rel = 'stylesheet';
         document.head.appendChild(linkEl);
 
