@@ -1294,7 +1294,9 @@ marked.options=marked.setOptions=function(opt){
         // Shims for IE < 9
         //
 
-        document.head = document.getElementsByTagName('head')[0];
+        document.
+
+            head = document.getElementsByTagName('head')[0];
 
         if (!('getElementsByClassName' in document)) {
             document.getElementsByClassName = function(name) {
@@ -1375,13 +1377,14 @@ marked.options=marked.setOptions=function(opt){
         // Insert navbar if there's none
         var newNode = document.createElement('div');
         newNode.className = 'navbar navbar-fixed-top';
-        if (!navbarEl && titleEl) {
-            newNode.innerHTML = '<div class="navbar-inner"> <div class="container"> <div id="headline" class="brand"> </div> </div> </div>';
-            document.body.insertBefore(newNode, document.body.firstChild);
-            var title = titleEl.innerHTML;
-            var headlineEl = document.getElementById('headline');
-            if (headlineEl) headlineEl.innerHTML = title;
-        }
+        // if (!navbarEl && titleEl) {
+        //     newNode.innerHTML = '<div class="navbar-inner"> <div class="container"> <div id="headline" class="brand"> </div> </div>
+        //     </div>';
+        //     document.body.insertBefore(newNode, document.body.firstChild);
+        //     var title = titleEl.innerHTML;
+        //     var headlineEl = document.getElementById('headline');
+        //     if (headlineEl) headlineEl.innerHTML = title;
+        // }
 
         //////////////////////////////////////////////////////////////////////
         //
