@@ -1375,8 +1375,8 @@ marked.options=marked.setOptions=function(opt){
         document.body.replaceChild(newNode, markdownEl);
 
         // Insert navbar if there's none
-        var newNode = document.createElement('div');
-        newNode.className = 'navbar navbar-fixed-top';
+        // var newNode = document.createElement('div');
+        // newNode.className = 'navbar navbar-fixed-top';
         // if (!navbarEl && titleEl) {
         //     newNode.innerHTML = '<div class="navbar-inner"> <div class="container"> <div id="headline" class="brand"> </div> </div>
         //     </div>';
