@@ -24,21 +24,19 @@ def handle(key, path):
     global handle_map
     assert isinstance(path, str), "Path must be a string!"
 
-    handle_map[key] = path
+    handle_map[key] = os.path.abspath(path)
 
 
 def get_in(folder):
-    global handle_map
+    global home_folder
 
-    for key in handle_map.keys():
-        handle_map[key] = os.path.join(handle_map[key], folder)
+    home_folder = os.path.join(home_folder, folder)
 
 
 def go_up():
-    global handle_map
+    global home_folder
 
-    for key in handle_map.keys():
-        handle_map[key] = os.path.basename(handle_map[key])
+    home_folder = os.path.basename(home_folder)
 
 
 def get_path(key):

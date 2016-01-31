@@ -26,4 +26,10 @@ class TagGroup(object):
     def __str__(self):
         code = [str(tag) for tag in self.tags]
 
-        return "".join(code)
+        return " ".join(code)
+
+    def append(self, text):
+        if text.strip() == "":
+            return
+
+        self.tags.append(Tag(text))

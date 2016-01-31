@@ -1,18 +1,35 @@
 <!DOCTYPE html>
+
+<!-- 
+格式化的参数：
+title: 文章标题，格式：" - <realtitle>"
+create: 创建时间
+modified: 最后修改时间
+tags: 标签代码
+content: 文章内容
+breadcrumb: 导航栏代码
+favicon: 图标位置
+mathjax: mathjax位置
+strapdown: strapdown位置
+home: 主页位置
+-->
+
 <html>
 <head>
-    <title>Riteme.site</title>
-    <meta charset="UTF-8">
-    <link rel="shortcut icon" href="./favicon.png" type="image/png">
-    <script type="text/x-mathjax-config">
+  <title>riteme.site -  Home Page</title>
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" href="favicon.png" type="image/png">
+  <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
       tex2jax: {inlineMath: [['$','$']]}
     });
     </script>
-    <script type="text/javascript" async src="path-to-mathjax/MathJax.js?config=TeX-AMS_CHTML"></script>
+    <script type="text/javascript" async
+      src="path-to-mathjax/MathJax.js?config=TeX-AMS_CHTML"></script>
     <script type="text/javascript" async
       src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
     </script>
+    
 </head>
 
 <body>
@@ -20,94 +37,30 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Riteme.site</a>
+      <a class="navbar-brand" href="index.html">riteme.site</a>
     </div>
   </div>
 </nav>
 
-<ul class="breadcrumb">
-    <li><a href="#">HOME</a></li>
-  <li class="active">DETAILS</li>
-</ul>
+<ul class="breadcrumb"><li><a href="index.html">HOME</a></li><li class="active">DETAILS</li></ul>
 
 <xmp theme="flatly" style="display:none;">
-# Riteme's site
-Welcome!中文测试
+### 欢迎来到riteme's blog！
+偶尔写点东西吧，刚把`pagegen`写完呢。
+目前没有文章- -，不要介意...
 
-#### Info
-It's riteme's personal site.  
+#### Posts
+##### 2016-1-31
+* [pagegen.py的试炼](./blog/2016-1-31/test.html): 测试`pagegen.py`
 
-My Github: <https://github.com/riteme>  
-My Zhihu: <http://www.zhihu.com/people/riteme>  
-
-#### Sub sites
-Riteme.blog: [here](./blog/index.html)
-
-### 测试：
-
-<div class="panel panel-info">
-  <div class="panel-heading">
-    <h3 class="panel-title">信息</h3>
-  </div>
-  <div class="panel-body">
-    Hello, world!<br />
-    Line 2<br />
-    Line 3<br />
-    `code test`233<br />
-    **MARKDOWN**<br />
-    &nbsp;&nbsp;&nbsp;&nbsp;4 spaces
-  </div>
-</div>
-
-列表测试：
-
-|列1    |列2     |列3    |
-|:-----:|--------|:-----:|
-|233333333333333   |23333333|233    |
-
-引用测试：
-> First line  
-> Second line  
-> END  
-
-代码测试：
-```cpp
-#include <iostream>
-using namespace std;
-
-int main(int argc, char *argv[]) {
-    cout << "Hello, world!" << endl;
-    cout <<  "My number is " << 36 << endl;
-
-    return 0;
-}
-```
-```python
-import sys
-
-if __name__ == "__main__":
-    print sys.argv[0]
-```
-
-数学公式测试：  
-$$ \sum_1^{\infty} = - {1 \over 12} \tag{1.1} $$  
-
-inline$ 233 \neq 244 $
-
-<hr />
-标签： <span class="label label-default">主页</span><br />
-创建时间：2015.01.12<br />
-上次修改：2015.03.23
-<hr />
-<div>
-    <font size="1" color="silver">
-        Powered by <a href="https://pages.github.com">Github pages</a> and <a href="http://strapdownjs.com/">strapdown.js</a>.</br>
-        Copyright 2015 riteme. All rights reserved.
-    </font>
+<hr/>标签: <span class="label label-default">Home</span>
+创建时间:  2016.1.31
+上次修改:  2016.1.31
+<hr /><div><font size="1" color="silver">Powered by <a href="https://pages.github.com">Github pages</a> and <a href="http://strapdownjs.com/">strapdown.js</a>.</br>Copyright 2015 riteme. All rights reserved.</font>
 </div>
 </xmp>
 
-<script src="./strapdown/strapdown.js"></script>
+<script src="strapdown/strapdown.js"></script>
 
 </body>
 </html>

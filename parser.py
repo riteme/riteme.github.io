@@ -32,15 +32,15 @@ class PanelBeginSyntax(Syntax):
     """表示Panel语法的声明部分: [[[Title]]]"""
 
     def __init__(self):
-        super(PanelBeginSyntax, self, "\[\[\[[a-zA-Z]+\]\]\]").__init__()
-        self._catcher = re.compile("\[\[\[([a-zA-Z]+)\]\]\]")
-        self._template = """
-        <div class="panel panel-info">
-          <div class="panel-heading">
-            <h3 class="panel-title">{text}</h3>
-          </div>
-          <div class="panel-body">
-        """
+        super(PanelBeginSyntax, self).__init__("\[\[\[[\w\s]+\]\]\]")
+        self._catcher = re.compile("\[\[\[([\w\s]+)\]\]\]")
+        template_code = ['<div class="panel panel-info">',
+                         '<div class="panel-heading">',
+                         '<h3 class="panel-title">{text}</h3>',
+                         '</div><div class="panel-body">'
+                         ]
+
+        self._template = "".join(template_code)
 
     def parse(self, source):
         # 获取标题
@@ -54,11 +54,8 @@ class PanelEndSyntax(Syntax):
     """表示Panel语法的结束部分: [[[#]]]"""
 
     def __init__(self):
-        super(PanelEndSyntax, self, "\[\[\[#\]\]\]").__init__()
-        self._template = """
-          </div>
-        </div>
-        """
+        super(PanelEndSyntax, self).__init__("\[\[\[#\]\]\]")
+        self._template = "</div></div>"
 
     def parse(self, source):
         return self._template
@@ -75,17 +72,11 @@ class Parser(object):
         super(Parser, self).__init__()
         self._matcher = []
 
-    def load_all_syntax(self):
-        """将本模块内的所有解析器载入"""
-        for obj in dir():
-            if isinstance(obj, Syntax) and obj is not Syntax:
-                self._matcher.append(obj())
-
     def load_syntax(self, syntax):
         """载入指定的解析器
         @param syntax (derived Syntax) 解析器
         """
-        assert isinstance(syntax, Syntax), "Must be a derived class of Syntax."
+        assert issubclass(syntax, Syntax), "Must be a derived class of Syntax."
 
         self._matcher.append(syntax())
 
@@ -103,20 +94,37 @@ class Parser(object):
             ```
         """
         flag = False
+        panel_started = False
         info_matcher = re.compile("([a-zA-Z]+):(.*)")
         info = {}
         content = []
 
         for line in fp:
+            line = line[:-1]  # 忽略结尾换行
+
             if line.startswith("---"):
                 flag = not flag
-            if flag:
+            elif flag:
                 match = info_matcher.match(line)
                 info[match.group(1)] = match.group(2)
             else:
+                is_parsed = False
+
                 for matcher in self._matcher:
                     if matcher.is_match(line):
+                        is_parsed = True
                         content.append(matcher.parse(line))
+
+                        if isinstance(matcher, PanelBeginSyntax):
+                            panel_started = True
+                        elif isinstance(matcher, PanelEndSyntax):
+                            panel_started = False
                         break
+                if not is_parsed:
+                    if panel_started:
+                        content[-1] += line
+                        panel_started = False
+                    else:
+                        content.append(line)
 
         return (info, content)
