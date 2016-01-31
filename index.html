@@ -7,6 +7,12 @@
     <script type="text/javascript" async
       src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
     </script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {inlineMath: [['$','$']]}
+    });
+    </script>
+    <script type="text/javascript" async src="path-to-mathjax/MathJax.js?config=TeX-AMS_CHTML"></script>
 </head>
 
 <body>
@@ -83,7 +89,7 @@ if __name__ == "__main__":
     print sys.argv[0]
 ```
 
-数学公式测试：
+数学公式测试：  
 $$ \sum_1^{\infty} = - {1 \over 12} \tag{1.1} $$  
 inline$ 233 \neq 244 $
 
