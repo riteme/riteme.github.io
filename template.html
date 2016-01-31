@@ -1,35 +1,56 @@
 <!DOCTYPE html>
+
+<!-- 
+格式化的参数：
+title: 文章标题，格式：" - <realtitle>"
+create: 创建时间
+modified: 最后修改时间
+tags: 标签代码
+content: 文章内容
+breadcrumb: 导航栏代码
+favicon: 图标位置
+mathjax: mathjax位置
+strapdown: strapdown位置
+home: 主页位置
+-->
+
 <html>
 <head>
-    <title>TODO</title>
-    <link rel="shortcut icon" href="./favicon.png" type="image/png">
+  <title>riteme.site{title}</title>
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" href="{favicon}" type="image/png">
+  {mathjax}
 </head>
+
 <body>
 
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="{home}">riteme.site</a>
+    </div>
+  </div>
+</nav>
+
+{breadcrumb}
+
+<xmp theme="flatly" style="display:none;">
+{content}
+
+<hr />
+标签: {tags}
+创建时间: {create}
+上次修改: {modified}
+<hr />
 <div>
-<span style="visibility:hidden">
-<stitle>TODO</stitle>
-</span>
-</div>
-
-
-<xmp theme="cerulean" style="display:none;">
-<ul class="breadcrumb">
-  <li class="active">Home</li>
-</ul>
-
-# Title
-
-<div><font size=2 color="grey">Tags:</font> <span class="label label-default">Home</span></div>
-
----
-
-<div>
-<font size="1" color="silver">
-Powered by <a href="https://pages.github.com">Github pages</a> and <a href="http://strapdownjs.com/">strapdown.js</a>.</br>
-Copyright 2015 riteme. All rights reserved.
-</font>
+  <font size="1" color="silver">
+    Powered by <a href="https://pages.github.com">Github pages</a> and <a href="http://strapdownjs.com/">strapdown.js</a>.</br>
+    Copyright 2015 riteme. All rights reserved.
+  </font>
 </div>
 </xmp>
-<script src="./strapdown/strapdown.js"></script>
+
+<script src="{strapdown}"></script>
+
+</body>
 </html>
