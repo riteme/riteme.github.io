@@ -1,11 +1,11 @@
 ---
 title: Home Page
 create: 2016.1.31
-modified: 2016.1.31
+modified: 2016.2.1
 tags: Home
 ---
 ### 欢迎来到riteme's blog！
-偶尔写点东西吧，刚把`pagegen`写完呢。
+偶尔写点东西吧，刚把`pagegen`写完呢。  
 目前没有文章- -，不要介意...
 
 #### Posts
