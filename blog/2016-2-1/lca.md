@@ -57,10 +57,12 @@ $$ distance(u,v) = dist[u] + dist[v] - 2 \times dist[LCA(u, v)] \tag{1.2} $$
 因为LCA的算法中会用到并查集，但我们还没学，因此并查集的实现不会过多纠结，我们只需知道并查集提供的几个函数即可。
 
 并查集提供查询和连接操作：
+
 ```python
 def find(u) -> int
 def union(u, v) -> void
 ```
+
 * `find`函数会返回节点`u`所在的集合编号，如果`find(a) == find(b) `则表示`a`和`b`处在一个集合中。
 
 * `union`函数会将`u`和`v`所在的集合并起来，即使`u`和`v`处在一个集合中。
@@ -81,6 +83,7 @@ def union(u, v) -> void
 > 2. 将两个结点同时上调，直到这两个结点到达同一位置时，此时即为LCA
 
 伪代码如下：
+
 ```python
 def Plain_LCA(u, v):
     if d(u) < d(v):
@@ -109,6 +112,7 @@ def Plain_LCA(u, v):
 
 Tarjan-LCA算法比较难理解，最好的理解方法是手动模拟一下。
 先放出伪代码：
+
 ```python
 def Tarjan_LCA(u):
     # ancestor数组表示一个集合的公共祖先
@@ -129,6 +133,7 @@ def Tarjan_LCA(u):
         if y == u and marked[x] == True:
             LCA(x, y) = LCA(y, x) = anscestor[x]
 ```
+
 这个算法的进行类似于DFS，是个递归调用的过程。
 因为DFS总是先将小的子树遍历完，因此`anscestor`数组中的祖先都是尽可能小的。
 
@@ -213,22 +218,26 @@ $$ f[i,j] = f[f[i, j - 1], j - 1] \tag{2.2} $$
 我么设$ u = f[i,j],\,v=f[i, j-1] $，
 
 那么，根据$ (2.1) $式可得：
+
+<div>
 $$
 \begin{align}
-distance(i, v) & = 2^{j-1} \\
-distance(i, u) & = 2^j \\
-distance(v, u) & = distance(i, u) - distance(i, v) \\
-&                = 2^j-2^{j-1} \\
-&                = 2^{j-1} \times 2 - 2^{j-1} \times 1 \\
-&                = 2^{j-1} \\
-&                \Rightarrow u = f[v, j - 1] \\
+distance(i, v) & = 2^{j-1} \\\\
+distance(i, u) & = 2^j \\\\
+distance(v, u) & = distance(i, u) - distance(i, v) \\\\
+&                = 2^j-2^{j-1} \\\\
+&                = 2^{j-1} \times 2 - 2^{j-1} \times 1 \\\\
+&                = 2^{j-1} \\\\
+&                \Rightarrow u = f[v, j - 1] \\\\
 &                \Rightarrow u = f[f[i, j-1],j-1]
 \end{align}
 $$
+</div>
 
 即证明$ (2.2) $式。
 
 利用得到的状态转移方程，我们可以在$ \Theta (n \log n) $的时间内推出`f`数组。
+
 ```python
 # 初始化f[i, 0]
 for i in [1, n]:
@@ -249,6 +258,7 @@ for i in [1, n]:
 思路已经很清晰了，然而难在如何运用`f`数组。
 
 下面的伪代码展示了倍增法求LCA的过程：
+
 ```python
 def Double_LCA(u, v):
     if d(u) < d(v):
@@ -272,6 +282,7 @@ def Double_LCA(u, v):
     # 最后会使u和v成为LCA的子节点
     return f[u, 0]
 ```
+
 在代码中有两处比较奇特的地方，被注释打上了`KEY`。
 
 先看`KEY #1`，这里的代码是尝试将$ u $与$ v $调制统一高度，而这里出现的位运算令人十分费解。

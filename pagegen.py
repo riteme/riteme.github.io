@@ -9,6 +9,10 @@ import parser
 import breadcrumb
 import navigater
 
+import markdown2
+
+MARKDOWN_EXT = ["code-friendly", "fenced-code-blocks", "footnotes", "tables"]
+
 
 def generate(filepath):
     if not os.path.exists(filepath):
@@ -35,6 +39,7 @@ def generate(filepath):
         tags.append(x)
 
     content = "\n".join(mdtext)
+    content = markdown2.markdown(content, extras=MARKDOWN_EXT)
 
     navigater.handle("favicon", "favicon.png")
     navigater.handle("home", "index.html")

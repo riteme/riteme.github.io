@@ -19,6 +19,7 @@ tags: test index
 > 这是一段引用  
 
 很好，`inline-code`和`Hello, world`：
+
 ```cpp
 #include <iostream>
 
@@ -31,6 +32,7 @@ int main(int argc, char *argv[]) {
 }
 ```
 别忘了Python：
+
 ```python
 #!/usr/bin/env python3
 
@@ -65,6 +67,11 @@ __下划线是什么鬼__
 
 脚注[^footnote]？  
 [^footnote]: 真的行吗......
+
+GFM breaks!
+应该不在一行!
+应该不在一行!!
+应该不在一行!!!!!
 
 #### Mathjax测试
 这个**应该**不得出问题......

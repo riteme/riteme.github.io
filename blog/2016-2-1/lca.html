@@ -45,63 +45,70 @@ home: 主页位置
 <ul class="breadcrumb"><li><a href="../../index.html">HOME</a></li><li><a href="#">BLOG</a></li><li><a href="#">2016-2-1</a></li><li class="active">DETAILS</li></ul>
 
 <xmp theme="flatly" style="display:none;">
+<p>前言：这是1个月前写的，只是当时博客没搭好，才没有放上来...</p>
 
-前言：这是1个月前写的，只是当时博客没搭好，才没有放上来...
+<h1>最近公共祖先(LCA)</h1>
 
-# 最近公共祖先(LCA)
-## 1 概述
-### 1.1 什么是LCA？
-下面是一棵有根树，注意不一定是二叉树。
+<h2>1 概述</h2>
 
-![Sample Tree](http://7xq4ng.com1.z0.glb.clouddn.com/sample-tree.png)
+<h3>1.1 什么是LCA？</h3>
 
-我们先定义深度函数$ d(u): u \text{到根的最短距离} $。
+<p>下面是一棵有根树，注意不一定是二叉树。</p>
 
-例如，在上图中$ d(1)=0,\,d(3)=1,\,d(9)=3$
+<p><img src="http://7xq4ng.com1.z0.glb.clouddn.com/sample-tree.png" alt="Sample Tree" /></p>
 
-我们再定义一个函数$ LCA(u, v) $表示节点$ u $和$ v $的最小公共祖先。
+<p>我们先定义深度函数$ d(u): u \text{到根的最短距离} $。</p>
 
-其定义为：
-$$ LCA(u,v):u和v的所有祖先p中,d(p)最大 $$
+<p>例如，在上图中$ d(1)=0,\,d(3)=1,\,d(9)=3$</p>
 
-举个例子：$ LCA(5,6)=3,\,LCA(7,6)=3,\,LCA(1,8)=1 $
+<p>我们再定义一个函数$ LCA(u, v) $表示节点$ u $和$ v $的最小公共祖先。</p>
 
-应该很简单吧。
+<p>其定义为：
+$$ LCA(u,v):u和v的所有祖先p中,d(p)最大 $$</p>
 
-### 1.2 有什么卵用？
-一个简单的例子，计算完LCA后，可以在$ \Theta (1) $的时间内算出任意两点的距离。
+<p>举个例子：$ LCA(5,6)=3,\,LCA(7,6)=3,\,LCA(1,8)=1 $</p>
 
-还是下面这个图解释：
+<p>应该很简单吧。</p>
 
-![Sample Tree With Weight](http://7xq4ng.com1.z0.glb.clouddn.com/sample-tree-weighted.png)
+<h3>1.2 有什么卵用？</h3>
 
-上面的树边上带了权重，两点之间的距离就是两点间的简单路径上的边权之和。
+<p>一个简单的例子，计算完LCA后，可以在$ \Theta (1) $的时间内算出任意两点的距离。</p>
 
-例如$ distance(1,1)=0,\,distance(2,3)=3,\,distance(7,6)=6$
+<p>还是下面这个图解释：</p>
 
-如果用DFS或BFS来计算的话，需要$ O(n) $的时间复杂度。
+<p><img src="http://7xq4ng.com1.z0.glb.clouddn.com/sample-tree-weighted.png" alt="Sample Tree With Weight" /></p>
 
-如果先预处理LCA，就只需$ \Theta (1) $的时间。
+<p>上面的树边上带了权重，两点之间的距离就是两点间的简单路径上的边权之和。</p>
 
-先不考虑是如何算出LCA的，先讲下如何快速求距离。
+<p>例如$ distance(1,1)=0,\,distance(2,3)=3,\,distance(7,6)=6$</p>
 
-上图中，`dist`数组表示节点到树根的距离，在图中已经计算出来。
+<p>如果用DFS或BFS来计算的话，需要$ O(n) $的时间复杂度。</p>
+
+<p>如果先预处理LCA，就只需$ \Theta (1) $的时间。</p>
+
+<p>先不考虑是如何算出LCA的，先讲下如何快速求距离。</p>
+
+<p>上图中，<code>dist</code>数组表示节点到树根的距离，在图中已经计算出来。
 这个数组很好计算，根据下面的公式直接将树BFS一遍即可，其中$ u $是$ v $的父节点，$w[u, v]$表示$ u $到$ v $的边权。
-$$ dist[v] = dist[u] + w[u,v] \tag{1.1}$$
+$$ dist[v] = dist[u] + w[u,v] \tag{1.1}$$</p>
 
-那么两点之间的距离$ distance(u,v) $的计算非常简单：
-$$ distance(u,v) = dist[u] + dist[v] - 2 \times dist[LCA(u, v)] \tag{1.2} $$
+<p>那么两点之间的距离$ distance(u,v) $的计算非常简单：
+$$ distance(u,v) = dist[u] + dist[v] - 2 \times dist[LCA(u, v)] \tag{1.2} $$</p>
 
-可以想象成是Link这个人从$ u $先走到根节点，再从根节点走到$ v $。由于从根节点到$ LCA(u,v) $走了两遍，因此Link走的总路程，减去这一段来回走的即可。
+<p>可以想象成是Link这个人从$ u $先走到根节点，再从根节点走到$ v $。由于从根节点到$ LCA(u,v) $走了两遍，因此Link走的总路程，减去这一段来回走的即可。</p>
 
-### 1.3 预备知识
-因为LCA的算法中会用到并查集，但我们还没学，因此并查集的实现不会过多纠结，我们只需知道并查集提供的几个函数即可。
+<h3>1.3 预备知识</h3>
 
-并查集提供查询和连接操作：
-```python
-def find(u) -> int
-def union(u, v) -> void
-```
+<p>因为LCA的算法中会用到并查集，但我们还没学，因此并查集的实现不会过多纠结，我们只需知道并查集提供的几个函数即可。</p>
+
+<p>并查集提供查询和连接操作：</p>
+
+<div class="codehilite"><pre><code><span class="k">def</span> <span class="nf">find</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span>
+<span class="k">def</span> <span class="nf">union</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">void</span>
+</code></pre></div>
+
+
+
 * `find`函数会返回节点`u`所在的集合编号，如果`find(a) == find(b) `则表示`a`和`b`处在一个集合中。
 
 * `union`函数会将`u`和`v`所在的集合并起来，即使`u`和`v`处在一个集合中。
@@ -122,22 +129,24 @@ def union(u, v) -> void
 > 2. 将两个结点同时上调，直到这两个结点到达同一位置时，此时即为LCA
 
 伪代码如下：
-```python
-def Plain_LCA(u, v):
-    if d(u) < d(v):
-        swap(u, v)  # 始终保持u所处的深度较深
 
-    while d(u) != d(v):
-        u = father(u)  # 将u上调
+<div class="codehilite"><pre><code><span class="k">def</span> <span class="nf">Plain_LCA</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">d</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">d</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+        <span class="n">swap</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>  <span class="c1"># 始终保持u所处的深度较深</span>
 
-    # 将u和v同时上调
-    while u != v:
-        u = father(u)
-        v = father(v)
+    <span class="k">while</span> <span class="n">d</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="o">!=</span> <span class="n">d</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+        <span class="n">u</span> <span class="o">=</span> <span class="n">father</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>  <span class="c1"># 将u上调</span>
 
-    # 最后会使u == v，即他们到达了LCA
-    return u
-```
+    <span class="c1"># 将u和v同时上调</span>
+    <span class="k">while</span> <span class="n">u</span> <span class="o">!=</span> <span class="n">v</span><span class="p">:</span>
+        <span class="n">u</span> <span class="o">=</span> <span class="n">father</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">father</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+
+    <span class="c1"># 最后会使u == v，即他们到达了LCA</span>
+    <span class="k">return</span> <span class="n">u</span>
+</code></pre></div>
+
+
 
 ### 2.2 离线算法：Tarjan-LCA
 朴素算法很简单，大多数情况下能很快算出LCA。
@@ -150,26 +159,29 @@ def Plain_LCA(u, v):
 
 Tarjan-LCA算法比较难理解，最好的理解方法是手动模拟一下。
 先放出伪代码：
-```python
-def Tarjan_LCA(u):
-    # ancestor数组表示一个集合的公共祖先
-    # 如anscestor[i]表示标号为i的集合中所有结点的公共祖先。
-    # marked数组表示结点是否被处理过
 
-    anscestor[find(u)] = u
+<div class="codehilite"><pre><code><span class="k">def</span> <span class="nf">Tarjan_LCA</span><span class="p">(</span><span class="n">u</span><span class="p">):</span>
+    <span class="c1"># ancestor数组表示一个集合的公共祖先</span>
+    <span class="c1"># 如anscestor[i]表示标号为i的集合中所有结点的公共祖先。</span>
+    <span class="c1"># marked数组表示结点是否被处理过</span>
 
-    for v in u.children:  # 遍历u的儿子节点
-        Tarjan_LCA(v)
-        union(u, v)
-        anscestor[find(u)] = u
+    <span class="n">anscestor</span><span class="p">[</span><span class="n">find</span><span class="p">(</span><span class="n">u</span><span class="p">)]</span> <span class="o">=</span> <span class="n">u</span>
 
-    marked[u] = true
+    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">u</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>  <span class="c1"># 遍历u的儿子节点</span>
+        <span class="n">Tarjan_LCA</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+        <span class="n">union</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+        <span class="n">anscestor</span><span class="p">[</span><span class="n">find</span><span class="p">(</span><span class="n">u</span><span class="p">)]</span> <span class="o">=</span> <span class="n">u</span>
 
-    # query数组表示查询操作，保存的是(x, y)，表示要计算LCA(x, y)
-    for (x, y) in query:
-        if y == u and marked[x] == True:
-            LCA(x, y) = LCA(y, x) = anscestor[x]
-```
+    <span class="n">marked</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="n">true</span>
+
+    <span class="c1"># query数组表示查询操作，保存的是(x, y)，表示要计算LCA(x, y)</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="ow">in</span> <span class="n">query</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">y</span> <span class="o">==</span> <span class="n">u</span> <span class="ow">and</span> <span class="n">marked</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="n">LCA</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="o">=</span> <span class="n">LCA</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="n">anscestor</span><span class="p">[</span><span class="n">x</span><span class="p">]</span>
+</code></pre></div>
+
+
+
 这个算法的进行类似于DFS，是个递归调用的过程。
 因为DFS总是先将小的子树遍历完，因此`anscestor`数组中的祖先都是尽可能小的。
 
@@ -254,102 +266,108 @@ $$ f[i,j] = f[f[i, j - 1], j - 1] \tag{2.2} $$
 我么设$ u = f[i,j],\,v=f[i, j-1] $，
 
 那么，根据$ (2.1) $式可得：
+
+<div>
 $$
 \begin{align}
-distance(i, v) & = 2^{j-1} \\
-distance(i, u) & = 2^j \\
-distance(v, u) & = distance(i, u) - distance(i, v) \\
-&                = 2^j-2^{j-1} \\
-&                = 2^{j-1} \times 2 - 2^{j-1} \times 1 \\
-&                = 2^{j-1} \\
-&                \Rightarrow u = f[v, j - 1] \\
+distance(i, v) & = 2^{j-1} \\\\
+distance(i, u) & = 2^j \\\\
+distance(v, u) & = distance(i, u) - distance(i, v) \\\\
+&                = 2^j-2^{j-1} \\\\
+&                = 2^{j-1} \times 2 - 2^{j-1} \times 1 \\\\
+&                = 2^{j-1} \\\\
+&                \Rightarrow u = f[v, j - 1] \\\\
 &                \Rightarrow u = f[f[i, j-1],j-1]
 \end{align}
 $$
+</div>
 
-即证明$ (2.2) $式。
+<p>即证明$ (2.2) $式。</p>
 
-利用得到的状态转移方程，我们可以在$ \Theta (n \log n) $的时间内推出`f`数组。
-```python
-# 初始化f[i, 0]
-for i in [1, n]:
-    f[i, 0] = father(i)
+<p>利用得到的状态转移方程，我们可以在$ \Theta (n \log n) $的时间内推出<code>f</code>数组。</p>
 
-# 计算整个f数组
-for i in [1, n]:
-    for j in [1, log(n)]:
-        f[i, j] = f[f[i, j - 1], j - 1]
-```
+<div class="codehilite"><pre><code><span class="c1"># 初始化f[i, 0]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">]:</span>
+    <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">father</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 
-#### 2.3.2 在线算法
-得到了`f`数组后，倍增法也就完成了50%了，剩下的任务就是计算LCA。
+<span class="c1"># 计算整个f数组</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">]:</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">log</span><span class="p">(</span><span class="n">n</span><span class="p">)]:</span>
+        <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+</code></pre></div>
 
-事实上，倍增法计算LCA的过程与朴素算法一样，也是要先调制同一深度，再同时上调。
-而巧妙的是倍增法利用算出的`f`数组来加速提升的过程，使得节点的上升的距离可以达到$ 2^j $，而不是一格一格往上调。
+<h4>2.3.2 在线算法</h4>
 
-思路已经很清晰了，然而难在如何运用`f`数组。
+<p>得到了<code>f</code>数组后，倍增法也就完成了50%了，剩下的任务就是计算LCA。</p>
 
-下面的伪代码展示了倍增法求LCA的过程：
-```python
-def Double_LCA(u, v):
-    if d(u) < d(v):
-        swap(u, v)  # 始终保持u所处的深度较深
+<p>事实上，倍增法计算LCA的过程与朴素算法一样，也是要先调制同一深度，再同时上调。
+而巧妙的是倍增法利用算出的<code>f</code>数组来加速提升的过程，使得节点的上升的距离可以达到$ 2^j $，而不是一格一格往上调。</p>
 
-    # 将u上调dist个距离
-    dist = d(u) - d(v)
-    for i in [0, log(n)]:
-        if (1 << i) & dist  # KEY #1
-            u = f[u, i]
+<p>思路已经很清晰了，然而难在如何运用<code>f</code>数组。</p>
 
-    if u == v:
-        return u  # 特判此时u, v是否在同一位置，如果是，u和v都站在LCA上
+<p>下面的伪代码展示了倍增法求LCA的过程：</p>
 
-    # 将u和v同时上调
-    for i from log(n) to 0:
-        if f[u, i] != f[v, i]:  # KEY #2
-            u = f[u, i]
-            v = f[v, i]
+<div class="codehilite"><pre><code><span class="k">def</span> <span class="nf">Double_LCA</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">d</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">d</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+        <span class="n">swap</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>  <span class="c1"># 始终保持u所处的深度较深</span>
 
-    # 最后会使u和v成为LCA的子节点
-    return f[u, 0]
-```
-在代码中有两处比较奇特的地方，被注释打上了`KEY`。
+    <span class="c1"># 将u上调dist个距离</span>
+    <span class="n">dist</span> <span class="o">=</span> <span class="n">d</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="o">-</span> <span class="n">d</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">log</span><span class="p">(</span><span class="n">n</span><span class="p">)]:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">i</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">dist</span>  <span class="c1"># KEY #1</span>
+            <span class="n">u</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="n">u</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span>
 
-先看`KEY #1`，这里的代码是尝试将$ u $与$ v $调制统一高度，而这里出现的位运算令人十分费解。
+    <span class="k">if</span> <span class="n">u</span> <span class="o">==</span> <span class="n">v</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">u</span>  <span class="c1"># 特判此时u, v是否在同一位置，如果是，u和v都站在LCA上</span>
 
-首先我们思考一下二进制：
-对于一个二进制数$ k $，设其从右往左数的第$ i $位为$ k_i $，则当$ k_i = 1 $时，$ k - 2^i $的第$ i $位为$ 0 $。
+    <span class="c1"># 将u和v同时上调</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="kn">from</span> <span class="nn">log</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="n">to</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">f</span><span class="p">[</span><span class="n">u</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">f</span><span class="p">[</span><span class="n">v</span><span class="p">,</span> <span class="n">i</span><span class="p">]:</span>  <span class="c1"># KEY #2</span>
+            <span class="n">u</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="n">u</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span>
+            <span class="n">v</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="n">v</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span>
 
-例如，对于二进制数$ 110010_{(2)} $，第$ 2 $位为$ 1 $，$ 2^2 = 10_{(2)} $，$ 110010_{(2)} - 10_{(2)} = 110000_{(2)} $，我们发现这个二进制数的第$ 2 $位变成了$ 1 $。
+    <span class="c1"># 最后会使u和v成为LCA的子节点</span>
+    <span class="k">return</span> <span class="n">f</span><span class="p">[</span><span class="n">u</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+</code></pre></div>
 
-利用这个特性，我们可以逐位将一个二进制数减成$ 0 $。
+<p>在代码中有两处比较奇特的地方，被注释打上了<code>KEY</code>。</p>
 
-在上面的代码中，就这样逐步上调节点$ u $，并使最后的深度差`dist`变为$ 0 $。
-下面有一张样例：
+<p>先看<code>KEY #1</code>，这里的代码是尝试将$ u $与$ v $调制统一高度，而这里出现的位运算令人十分费解。</p>
 
-![Sample #1](http://7xq4ng.com1.z0.glb.clouddn.com/double-1.png)
+<p>首先我们思考一下二进制：
+对于一个二进制数$ k $，设其从右往左数的第$ i $位为$ k_i $，则当$ k_i = 1 $时，$ k - 2^i $的第$ i $位为$ 0 $。</p>
 
-再来看`KEY #2`，此时$ u $和$ v $处在同一深度上，$ j $从大到小逐一测试。
+<p>例如，对于二进制数$ 110010_{(2)} $，第$ 2 $位为$ 1 $，$ 2^2 = 10_{(2)} $，$ 110010_{(2)} - 10_{(2)} = 110000_{(2)} $，我们发现这个二进制数的第$ 2 $位变成了$ 1 $。</p>
 
-我们试图使$ u $和$ v $尽可能靠近LCA，但又不直接到达LCA。
+<p>利用这个特性，我们可以逐位将一个二进制数减成$ 0 $。</p>
 
-如果说$ 2^j $的距离上，$ u $和$ v $的父节点相同，则这个父节点是它们的公共祖先，如果跳上去就有可能超过LCA了，因此忽略。
+<p>在上面的代码中，就这样逐步上调节点$ u $，并使最后的深度差<code>dist</code>变为$ 0 $。
+下面有一张样例：</p>
 
-如果说$ 2^j $的距离上，$ u $和$ v $的父节点不同，则$ f[u, j] $和$ f[v, j] $的LCA也是$ u $和$ v $的LCA，因此可以将$ u $和$ v $上移至该位置，不影响结果。
+<p><img src="http://7xq4ng.com1.z0.glb.clouddn.com/double-1.png" alt="Sample #1" /></p>
 
-因为这两个节点到LCA的深度差可以被分解成多个$ 2 $的幂之和，因此我们有办法逐步将它们上移至LCA的位置。
+<p>再来看<code>KEY #2</code>，此时$ u $和$ v $处在同一深度上，$ j $从大到小逐一测试。</p>
 
-但是为了方便判断是否跳的太远，我们不让它们最后跳到LCA的位置，而是跳到LCA的儿子节点处。
+<p>我们试图使$ u $和$ v $尽可能靠近LCA，但又不直接到达LCA。</p>
 
-此时其父节点就是LCA。
+<p>如果说$ 2^j $的距离上，$ u $和$ v $的父节点相同，则这个父节点是它们的公共祖先，如果跳上去就有可能超过LCA了，因此忽略。</p>
 
-下面有一张样例：
+<p>如果说$ 2^j $的距离上，$ u $和$ v $的父节点不同，则$ f[u, j] $和$ f[v, j] $的LCA也是$ u $和$ v $的LCA，因此可以将$ u $和$ v $上移至该位置，不影响结果。</p>
 
-![Sample #2](http://7xq4ng.com1.z0.glb.clouddn.com/double-2.png)
+<p>因为这两个节点到LCA的深度差可以被分解成多个$ 2 $的幂之和，因此我们有办法逐步将它们上移至LCA的位置。</p>
 
-至此，倍增法就结束了。
+<p>但是为了方便判断是否跳的太远，我们不让它们最后跳到LCA的位置，而是跳到LCA的儿子节点处。</p>
 
-以上三种算法是比较常见的求LCA的算法。似乎二叉树还有一种分治的LCA算法，我没有做过多了解了。
+<p>此时其父节点就是LCA。</p>
+
+<p>下面有一张样例：</p>
+
+<p><img src="http://7xq4ng.com1.z0.glb.clouddn.com/double-2.png" alt="Sample #2" /></p>
+
+<p>至此，倍增法就结束了。</p>
+
+<p>以上三种算法是比较常见的求LCA的算法。似乎二叉树还有一种分治的LCA算法，我没有做过多了解了。</p>
+
 
 <hr/>标签: <span class="label label-default">算法</span> <span class="label label-default">LCA</span><br/>
 创建时间:  2016.2.1<br/>

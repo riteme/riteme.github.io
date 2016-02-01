@@ -30,6 +30,7 @@ tags: NOIP DFS 图论
 4. 递归优化。  
    这个DFS由于不需要回溯之类的操作，并且**题目中**给出每个人只会将信息传给**一个人**，
    那么说明每个点的出度为1，因此我们可以将DFS改成递归的形式：
+   
 ```python
 def dfs(s):
     while next(s) is not marked:
