@@ -1,14 +1,10 @@
 ---
-title: Home Page
+title: All Posts
 create: 2016.1.31
 modified: 2016.2.1
-tags: Home
+tags: Posts
 ---
-### 欢迎来到riteme's blog！
-偶尔写点东西吧，刚把`pagegen.py`写完呢。  
-博客里大多关于编程与OI，大家随意翻阅~~
-
-#### Recently Posts
+#### 所有文章
 ##### 2016-2-1
 * [[POJ2135] Farm Tour](./blog/2016-2-1/farm-tour.html): POJ2135 题解
 * [[NOIP2014] 寻找道路](./blog/2016-2-1/find-path.html): NOIP2014 Day2 T2 题解
@@ -17,10 +13,3 @@ tags: Home
 
 ##### 2016-1-31
 * [pagegen.py的试炼](./blog/2016-1-31/test.html): 测试`pagegen.py`
-
-[**查看全部**](./posts.html)
-
-### 友情链接
-Link的狗窝： [Dog's House](http://riteme.github.io/)  
-Ruan xingzhi的博客： [Ruan xingzhi](http://ruanxingzhi.github.io/)  
-Python大法好： [2333](http://img5.imgtn.bdimg.com/it/u=1563169678,89511931&fm=21&gp=0.jpg)
