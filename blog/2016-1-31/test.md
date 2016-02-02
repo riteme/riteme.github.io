@@ -4,6 +4,8 @@ create: 2016.1.31
 modified: 2016.2.1
 tags: test index
 ---
+[TOC]
+
 ### pagegen.py的试炼
 希望`pagegen.py`能正确工作。  
 

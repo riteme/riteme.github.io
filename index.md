@@ -6,6 +6,7 @@ tags: Home
 ---
 ### 欢迎来到riteme's blog！
 偶尔写点东西吧，刚把`pagegen.py`写完呢。  
+刚刚把网页做了较大的改动，总算抛弃了慢吞吞的`strapdown.js`！  
 博客里大多关于编程与OI，大家随意翻阅~~
 
 #### Recently Posts

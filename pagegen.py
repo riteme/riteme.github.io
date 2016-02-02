@@ -9,9 +9,15 @@ import parser
 import breadcrumb
 import navigater
 
-import markdown2
+import markdown
 
-MARKDOWN_EXT = ["code-friendly", "fenced-code-blocks", "footnotes", "tables"]
+MARKDOWN_EXT = [
+    "markdown.extensions.fenced_code",
+    "markdown.extensions.footnotes",
+    "markdown.extensions.tables",
+    "markdown.extensions.codehilite",
+    "markdown.extensions.toc"
+]
 
 
 def generate(filepath):
@@ -43,16 +49,16 @@ def generate(filepath):
         tags.append(x)
 
     content = "\n".join(mdtext)
-    content = markdown2.markdown(content, extras=MARKDOWN_EXT)
+    content = markdown.markdown(content, extensions=MARKDOWN_EXT)
 
     navigater.handle("favicon", "favicon.png")
     navigater.handle("home", "index.html")
-    navigater.handle("strapdown", "strapdown/strapdown.js")
+    navigater.handle("css", "css/site.css")
     navigater.home_folder = os.path.dirname(filepath)
 
     mathjax = navigater.get_mathjax()
     favicon = navigater.get_path("favicon")
-    strapdown = navigater.get_path("strapdown")
+    css = navigater.get_path("css")
     home = navigater.get_path("home")
 
     bread = breadcrumb.Breadcrumb()
@@ -66,7 +72,7 @@ def generate(filepath):
     for x in nodes:
         bread.append(x, "#")
 
-    bread.append("DETAILS", "#", is_alive=True)
+    bread.append(title.upper(), "#", is_alive=True)
 
     with open("template.html") as ftemplate:
         template = ftemplate.read()
@@ -82,7 +88,7 @@ def generate(filepath):
             breadcrumb=str(bread),
             favicon=favicon,
             mathjax=mathjax,
-            strapdown=strapdown,
+            css=css,
             home=home
         ))
 
