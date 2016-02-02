@@ -1,19 +1,4 @@
 <!DOCTYPE html>
-
-<!-- 
-格式化的参数：
-title: 文章标题，格式：" - <realtitle>"
-create: 创建时间
-modified: 最后修改时间
-tags: 标签代码
-content: 文章内容
-breadcrumb: 导航栏代码
-favicon: 图标位置
-mathjax: mathjax位置
-strapdown: strapdown位置
-home: 主页位置
--->
-
 <html>
 <head>
   <title>riteme.site -  NOIP2014 寻找道路题解</title>
@@ -31,9 +16,7 @@ home: 主页位置
     </script>
     
 </head>
-
 <body>
-
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -41,9 +24,7 @@ home: 主页位置
     </div>
   </div>
 </nav>
-
 <ul class="breadcrumb"><li><a href="../../index.html">HOME</a></li><li><a href="#">BLOG</a></li><li><a href="#">2016-2-1</a></li><li class="active">DETAILS</li></ul>
-
 <xmp theme="flatly" style="display:none;">
 <h2>[NOIP2014] 寻找道路</h2>
 
@@ -59,15 +40,13 @@ home: 主页位置
 我们使用一个<code>valid</code>数组来存储某个点是否直接或间接地到终点的布尔值，故最暴力的方法就是每个点DFS。其实只需要一次DFS即可，因为只要任意一个与某个点的出边相连接的点能够到达终点，那么这个点也可以到达终点，否则不行。这样在写的过程中，比较麻烦，因此我们在读入图的时候同时构造一张反向图，即每条边与原图方向相反，然后从终点BFS，将每个可以便利到的点打上标记。 <br />
 做完这个处理后，只需要从起点BFS就能求出答案。</p>
 
-
+<br/>
 <hr/>标签: <span class="label label-default">NOIP</span> <span class="label label-default">BFS</span> <span class="label label-default">图论</span><br/>
 创建时间:  2016.2.1<br/>
 上次修改:  2016.2.1
 <hr /><div><font size="1" color="silver">Powered by <a href="https://pages.github.com">GitHub Pages</a> and <a href="http://strapdownjs.com/">strapdown.js</a>.</br>Copyright 2015-2016 riteme. All rights reserved.</font>
 </div>
 </xmp>
-
 <script src="../../strapdown/strapdown.js"></script>
-
 </body>
 </html>
