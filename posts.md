@@ -5,6 +5,9 @@ modified: 2016.2.1
 tags: Posts
 ---
 #### 所有文章
+#### 2016-2-2
+* [最小费用最大流](./blog/2016-2-2/mincost-maxflow.html): 增广路算法
+
 ##### 2016-2-1
 * [[POJ2135] Farm Tour](./blog/2016-2-1/farm-tour.html): POJ2135 题解
 * [[NOIP2014] 寻找道路](./blog/2016-2-1/find-path.html): NOIP2014 Day2 T2 题解

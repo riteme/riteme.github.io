@@ -22,7 +22,11 @@ def generate(filepath):
     reader.load_syntax(parser.PanelBeginSyntax)
     reader.load_syntax(parser.PanelEndSyntax)
     with open(filepath) as md:
-        mdinfo, mdtext = reader.process(md)
+        mdinfo, mdtext, temp = reader.process(md)
+
+    if temp:
+        print("(warn) This is a temporary post. Stopped.")
+        exit(0)
 
     title = info.generate_title(mdinfo["title"])
 
