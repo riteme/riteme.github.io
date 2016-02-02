@@ -35,7 +35,7 @@ class MathJaxExtension(markdown.Extension):
         md.inlinePatterns.add('mathjax', MathJaxPattern(), '<escape')
 
 
-def makeExtension(configs=[]):
+def latex_friendly(configs=[]):
     return MathJaxExtension(configs)
 
 
@@ -46,7 +46,7 @@ MARKDOWN_EXT = [
     "markdown.extensions.codehilite",
     "markdown.extensions.toc",
     "markdown.extensions.smart_strong",
-    makeExtension()
+    latex_friendly()
 ]
 
 
@@ -102,7 +102,7 @@ def generate(filepath):
     for x in nodes:
         bread.append(x, "#")
 
-    bread.append(title.upper(), "#", is_alive=True)
+    bread.append(mdinfo["title"].upper(), "#", is_alive=True)
 
     with open("template.html") as ftemplate:
         template = ftemplate.read()
