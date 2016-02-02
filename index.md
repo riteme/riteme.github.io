@@ -9,7 +9,7 @@ tags: Home
 博客里大多关于编程与OI，大家随意翻阅~~
 
 #### Recently Posts
-#### 2016-2-2
+##### 2016-2-2
 * [最小费用最大流](./blog/2016-2-2/mincost-maxflow.html): 增广路算法
 
 ##### 2016-2-1
@@ -20,6 +20,7 @@ tags: Home
 
 ##### 2016-1-31
 * [pagegen.py的试炼](./blog/2016-1-31/test.html): 测试`pagegen.py`
+
 
 
 [**查看全部**](./posts.html)
