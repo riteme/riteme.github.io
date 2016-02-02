@@ -1,10 +1,11 @@
 ---
 title: Home Page
 create: 2016.1.31
-modified: 2016.2.1
+modified: 2016.2.2
 tags: Home
 ---
-### 欢迎来到riteme's blog！
+### 欢迎来到riteme's site！
+这是riteme的个人主页。  
 偶尔写点东西吧，刚把`pagegen.py`写完呢。  
 刚刚把网页做了较大的改动，总算抛弃了慢吞吞的`strapdown.js`！  
 博客里大多关于编程与OI，大家随意翻阅~~
@@ -22,10 +23,10 @@ tags: Home
 ##### 2016-1-31
 * [pagegen.py的试炼](./blog/2016-1-31/test.html): 测试`pagegen.py`
 
-
-
 [**查看全部**](./posts.html)
 
 #### 友情链接
-Link的狗窝： [Dog's House](http://link-arthur.github.io/Index.html)  
+Link的狗窝[^dog]： [Dog's House](http://link-arthur.github.io/)  
 Ruan xingzhi的博客： [Ruan xingzhi](http://ruanxingzhi.github.io/)
+
+[^dog]: 绝对不骗你

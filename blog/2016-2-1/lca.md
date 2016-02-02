@@ -220,20 +220,18 @@ $$ f[i,j] = f[f[i, j - 1], j - 1] \tag{2.2} $$
 
 那么，根据$ (2.1) $式可得：
 
-<div>
 $$
 \begin{align}
-distance(i, v) & = 2^{j-1} \\\\
-distance(i, u) & = 2^j \\\\
-distance(v, u) & = distance(i, u) - distance(i, v) \\\\
-&                = 2^j-2^{j-1} \\\\
-&                = 2^{j-1} \times 2 - 2^{j-1} \times 1 \\\\
-&                = 2^{j-1} \\\\
-&                \Rightarrow u = f[v, j - 1] \\\\
+distance(i, v) & = 2^{j-1} \\
+distance(i, u) & = 2^j \\
+distance(v, u) & = distance(i, u) - distance(i, v) \\
+&                = 2^j-2^{j-1} \\
+&                = 2^{j-1} \times 2 - 2^{j-1} \times 1 \\
+&                = 2^{j-1} \\
+&                \Rightarrow u = f[v, j - 1] \\
 &                \Rightarrow u = f[f[i, j-1],j-1]
 \end{align}
 $$
-</div>
 
 即证明$ (2.2) $式。
 

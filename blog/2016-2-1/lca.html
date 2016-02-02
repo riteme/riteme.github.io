@@ -51,28 +51,28 @@
 <h3 id="11-lca">1.1 什么是LCA？</h3>
 <p>下面是一棵有根树，注意不一定是二叉树。</p>
 <p><img alt="Sample Tree" src="http://7xq4ng.com1.z0.glb.clouddn.com/sample-tree.png" /></p>
-<p>我们先定义深度函数$ d(u): u \text{到根的最短距离} $。</p>
-<p>例如，在上图中$ d(1)=0,\,d(3)=1,\,d(9)=3$</p>
-<p>我们再定义一个函数$ LCA(u, v) $表示节点$ u $和$ v $的最小公共祖先。</p>
+<p>我们先定义深度函数<mathjax>$ d(u): u \text{到根的最短距离} $</mathjax>。</p>
+<p>例如，在上图中<mathjax>$ d(1)=0,\,d(3)=1,\,d(9)=3$</mathjax></p>
+<p>我们再定义一个函数<mathjax>$ LCA(u, v) $</mathjax>表示节点<mathjax>$ u $</mathjax>和<mathjax>$ v $</mathjax>的最小公共祖先。</p>
 <p>其定义为：
-$$ LCA(u,v):u和v的所有祖先p中,d(p)最大 $$</p>
-<p>举个例子：$ LCA(5,6)=3,\,LCA(7,6)=3,\,LCA(1,8)=1 $</p>
+<mathjax>$$ LCA(u,v):u和v的所有祖先p中,d(p)最大 $$</mathjax></p>
+<p>举个例子：<mathjax>$ LCA(5,6)=3,\,LCA(7,6)=3,\,LCA(1,8)=1 $</mathjax></p>
 <p>应该很简单吧。</p>
 <h3 id="12">1.2 有什么卵用？</h3>
-<p>一个简单的例子，计算完LCA后，可以在$ \Theta (1) $的时间内算出任意两点的距离。</p>
+<p>一个简单的例子，计算完LCA后，可以在<mathjax>$ \Theta (1) $</mathjax>的时间内算出任意两点的距离。</p>
 <p>还是下面这个图解释：</p>
 <p><img alt="Sample Tree With Weight" src="http://7xq4ng.com1.z0.glb.clouddn.com/sample-tree-weighted.png" /></p>
 <p>上面的树边上带了权重，两点之间的距离就是两点间的简单路径上的边权之和。</p>
-<p>例如$ distance(1,1)=0,\,distance(2,3)=3,\,distance(7,6)=6$</p>
-<p>如果用DFS或BFS来计算的话，需要$ O(n) $的时间复杂度。</p>
-<p>如果先预处理LCA，就只需$ \Theta (1) $的时间。</p>
+<p>例如<mathjax>$ distance(1,1)=0,\,distance(2,3)=3,\,distance(7,6)=6$</mathjax></p>
+<p>如果用DFS或BFS来计算的话，需要<mathjax>$ O(n) $</mathjax>的时间复杂度。</p>
+<p>如果先预处理LCA，就只需<mathjax>$ \Theta (1) $</mathjax>的时间。</p>
 <p>先不考虑是如何算出LCA的，先讲下如何快速求距离。</p>
 <p>上图中，<code>dist</code>数组表示节点到树根的距离，在图中已经计算出来。
-这个数组很好计算，根据下面的公式直接将树BFS一遍即可，其中$ u $是$ v $的父节点，$w[u, v]$表示$ u $到$ v $的边权。
-$$ dist[v] = dist[u] + w[u,v] \tag{1.1}$$</p>
-<p>那么两点之间的距离$ distance(u,v) $的计算非常简单：
-$$ distance(u,v) = dist[u] + dist[v] - 2 \times dist[LCA(u, v)] \tag{1.2} $$</p>
-<p>可以想象成是Link这个人从$ u $先走到根节点，再从根节点走到$ v $。由于从根节点到$ LCA(u,v) $走了两遍，因此Link走的总路程，减去这一段来回走的即可。</p>
+这个数组很好计算，根据下面的公式直接将树BFS一遍即可，其中<mathjax>$ u $</mathjax>是<mathjax>$ v $</mathjax>的父节点，<mathjax>$w[u, v]$</mathjax>表示<mathjax>$ u $</mathjax>到<mathjax>$ v $</mathjax>的边权。
+<mathjax>$$ dist[v] = dist[u] + w[u,v] \tag{1.1}$$</mathjax></p>
+<p>那么两点之间的距离<mathjax>$ distance(u,v) $</mathjax>的计算非常简单：
+<mathjax>$$ distance(u,v) = dist[u] + dist[v] - 2 \times dist[LCA(u, v)] \tag{1.2} $$</mathjax></p>
+<p>可以想象成是Link这个人从<mathjax>$ u $</mathjax>先走到根节点，再从根节点走到<mathjax>$ v $</mathjax>。由于从根节点到<mathjax>$ LCA(u,v) $</mathjax>走了两遍，因此Link走的总路程，减去这一段来回走的即可。</p>
 <h3 id="13">1.3 预备知识</h3>
 <p>因为LCA的算法中会用到并查集，但我们还没学，因此并查集的实现不会过多纠结，我们只需知道并查集提供的几个函数即可。</p>
 <p>并查集提供查询和连接操作：</p>
@@ -122,8 +122,8 @@ $$ distance(u,v) = dist[u] + dist[v] - 2 \times dist[LCA(u, v)] \tag{1.2} $$</p>
 
 <h3 id="22-tarjan-lca">2.2 离线算法：Tarjan-LCA</h3>
 <p>朴素算法很简单，大多数情况下能很快算出LCA。</p>
-<p>然而在计算$ LCA(4,6) $时，需要从树的底部走到根节点。</p>
-<p>因此朴素算法的时间复杂度为$ O(n) $，很容易TLE。</p>
+<p>然而在计算<mathjax>$ LCA(4,6) $</mathjax>时，需要从树的底部走到根节点。</p>
+<p>因此朴素算法的时间复杂度为<mathjax>$ O(n) $</mathjax>，很容易TLE。</p>
 <p>因此我们的前人想出了机智的Tarjan-LCA算法！</p>
 <p>Tarjan-LCA算法比较难理解，最好的理解方法是手动模拟一下。
 先放出伪代码：</p>
@@ -160,9 +160,9 @@ $$ distance(u,v) = dist[u] + dist[v] - 2 \times dist[LCA(u, v)] \tag{1.2} $$</p>
 <p><img alt="Step 3" src="http://7xq4ng.com1.z0.glb.clouddn.com/tarjan-3.png" /></p>
 <p>现在DFS到<code>9</code>。</p>
 <p><img alt="Step 4" src="http://7xq4ng.com1.z0.glb.clouddn.com/tarjan-4.png" /></p>
-<p>假设我们询问了$ LCA(7,9) $，那么在处理<code>9</code>时，会发现<code>7</code>被处理过了，<strong><code>7</code>所在的集合的公共祖先为<code>5</code></strong>。
+<p>假设我们询问了<mathjax>$ LCA(7,9) $</mathjax>，那么在处理<code>9</code>时，会发现<code>7</code>被处理过了，<strong><code>7</code>所在的集合的公共祖先为<code>5</code></strong>。
 而<code>9</code>是从<code>5</code>递归下来的，因此<strong><code>9</code>与<code>7</code>的公共祖先中有<code>5</code></strong>。
-又因为DFS会尽可能的处理较小的子树，因此<strong><code>5</code>将会是$ LCA(7, 9) $</strong>。</p>
+又因为DFS会尽可能的处理较小的子树，因此<strong><code>5</code>将会是<mathjax>$ LCA(7, 9) $</mathjax></strong>。</p>
 <p>剩下的步骤都是一样的，大家可以自己手推一下。</p>
 <p>为了方便理解，大家可以将Tarjan-LCA算法换个说法：</p>
 <blockquote>
@@ -172,51 +172,48 @@ $$ distance(u,v) = dist[u] + dist[v] - 2 \times dist[LCA(u, v)] \tag{1.2} $$</p>
 <p>岩浆只有在迫不得已的情况下才会向上升高，找到一个新的子树继续注入。</p>
 <p>机(yu)智(chun)的Link发现了找LCA的好方法，即如果两个结点都被岩浆烧掉时，他们的LCA即为那棵子树上岩浆最高的位置。</p>
 </blockquote>
-<p>Tarjan-LCA算法能在$ \Theta (n + q) $时间内计算出所有询问的LCA，其中$ q $为询问总数。
+<p>Tarjan-LCA算法能在<mathjax>$ \Theta (n + q) $</mathjax>时间内计算出所有询问的LCA，其中<mathjax>$ q $</mathjax>为询问总数。
 这得益于并查集的高效。
 同样我们也能以此算出所有点对的LCA。</p>
 <h3 id="23">2.3 在线算法：倍增法</h3>
 <p>Tarjan-LCA算法速度很快，效果也很好，但有一个致命的问题...</p>
 <p>就是内存占用。</p>
 <p>首先它需要离线操作，如果空间比较紧且操作较多时，显然不合适。</p>
-<p>另外，如果要处理任意结点对的LCA，就需要一个巨大的二维数组来存储，这意味着如果$ n &gt; 10000 $此算法将报废。</p>
+<p>另外，如果要处理任意结点对的LCA，就需要一个巨大的二维数组来存储，这意味着如果<mathjax>$ n &gt; 10000 $</mathjax>此算法将报废。</p>
 <p>但如果用朴素算法，就又太慢了...</p>
 <p>这时，倍增法就来拯救世界了。</p>
-<p>倍增法能以$ \Theta (\log n) $的时间复杂度和$ \Theta (n \log n) $的空间复杂度内完成LCA的计算。</p>
-<p>相比与Tarjan-LCA的$ \Theta (n^2) $的空间复杂度，能节省更多的空间。
+<p>倍增法能以<mathjax>$ \Theta (\log n) $</mathjax>的时间复杂度和<mathjax>$ \Theta (n \log n) $</mathjax>的空间复杂度内完成LCA的计算。</p>
+<p>相比与Tarjan-LCA的<mathjax>$ \Theta (n^2) $</mathjax>的空间复杂度，能节省更多的空间。
 并且它是在线算法，弥补了LCA算法的不足。</p>
-<p>倍增法运用了动态规划的思想，并利用二进制达到了$ \Theta (\log n) $的时间复杂度。</p>
+<p>倍增法运用了动态规划的思想，并利用二进制达到了<mathjax>$ \Theta (\log n) $</mathjax>的时间复杂度。</p>
 <h4 id="231">2.3.1 预处理</h4>
 <p>倍增法首先需要计算一个<code>f</code>数组，其含义为：
-$$ f[i, j] : 离节点i相距2^j的父节点 $$</p>
+<mathjax>$$ f[i, j] : 离节点i相距2^j的父节点 $$</mathjax></p>
 <p>换言之
-$$ distance(i, f[i, j]) = 2^j \tag{2.1} $$</p>
+<mathjax>$$ distance(i, f[i, j]) = 2^j \tag{2.1} $$</mathjax></p>
 <p><img alt="Sample Tree" src="http://7xq4ng.com1.z0.glb.clouddn.com/sample-tree.png" /></p>
-<p>又是这个图。我们将树上的每一条边的长度都视为1，那么$ f[7, 0] = 5,\,f[7, 1] = 3 ... $，
-因此节点$ 5 $到$ 7 $的距离为$ 1 = 2^0 $，节点$ 3 $到$ 7 $的距离为$ 2 = 2^1 $。
-由此我们可以观察到<code>f</code>数组的一个特点：$ f[i, 0] $就是$ i $的父节点。</p>
+<p>又是这个图。我们将树上的每一条边的长度都视为1，那么<mathjax>$ f[7, 0] = 5,\,f[7, 1] = 3 ... $</mathjax>，
+因此节点<mathjax>$ 5 $</mathjax>到<mathjax>$ 7 $</mathjax>的距离为<mathjax>$ 1 = 2^0 $</mathjax>，节点<mathjax>$ 3 $</mathjax>到<mathjax>$ 7 $</mathjax>的距离为<mathjax>$ 2 = 2^1 $</mathjax>。
+由此我们可以观察到<code>f</code>数组的一个特点：<mathjax>$ f[i, 0] $</mathjax>就是<mathjax>$ i $</mathjax>的父节点。</p>
 <p>为了算出<code>f</code>数组，我们有如下的状态转移方程：
-$$ f[i,j] = f[f[i, j - 1], j - 1] \tag{2.2} $$</p>
+<mathjax>$$ f[i,j] = f[f[i, j - 1], j - 1] \tag{2.2} $$</mathjax></p>
 <p>如何理解这个转移方程呢？</p>
-<p>我么设$ u = f[i,j],\,v=f[i, j-1] $，</p>
-<p>那么，根据$ (2.1) $式可得：</p>
-<div>
-$$
+<p>我么设<mathjax>$ u = f[i,j],\,v=f[i, j-1] $</mathjax>，</p>
+<p>那么，根据<mathjax>$ (2.1) $</mathjax>式可得：</p>
+<p><mathjax>$$
 \begin{align}
-distance(i, v) & = 2^{j-1} \\\\
-distance(i, u) & = 2^j \\\\
-distance(v, u) & = distance(i, u) - distance(i, v) \\\\
-&                = 2^j-2^{j-1} \\\\
-&                = 2^{j-1} \times 2 - 2^{j-1} \times 1 \\\\
-&                = 2^{j-1} \\\\
-&                \Rightarrow u = f[v, j - 1] \\\\
-&                \Rightarrow u = f[f[i, j-1],j-1]
+distance(i, v) &amp; = 2^{j-1} \\
+distance(i, u) &amp; = 2^j \\
+distance(v, u) &amp; = distance(i, u) - distance(i, v) \\
+&amp;                = 2^j-2^{j-1} \\
+&amp;                = 2^{j-1} \times 2 - 2^{j-1} \times 1 \\
+&amp;                = 2^{j-1} \\
+&amp;                \Rightarrow u = f[v, j - 1] \\
+&amp;                \Rightarrow u = f[f[i, j-1],j-1]
 \end{align}
-$$
-</div>
-
-<p>即证明$ (2.2) $式。</p>
-<p>利用得到的状态转移方程，我们可以在$ \Theta (n \log n) $的时间内推出<code>f</code>数组。</p>
+$$</mathjax></p>
+<p>即证明<mathjax>$ (2.2) $</mathjax>式。</p>
+<p>利用得到的状态转移方程，我们可以在<mathjax>$ \Theta (n \log n) $</mathjax>的时间内推出<code>f</code>数组。</p>
 <div class="codehilite"><pre><span class="c1"># 初始化f[i, 0]</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">]:</span>
     <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">father</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
@@ -231,7 +228,7 @@ $$
 <h4 id="232">2.3.2 在线算法</h4>
 <p>得到了<code>f</code>数组后，倍增法也就完成了50%了，剩下的任务就是计算LCA。</p>
 <p>事实上，倍增法计算LCA的过程与朴素算法一样，也是要先调制同一深度，再同时上调。
-而巧妙的是倍增法利用算出的<code>f</code>数组来加速提升的过程，使得节点的上升的距离可以达到$ 2^j $，而不是一格一格往上调。</p>
+而巧妙的是倍增法利用算出的<code>f</code>数组来加速提升的过程，使得节点的上升的距离可以达到<mathjax>$ 2^j $</mathjax>，而不是一格一格往上调。</p>
 <p>思路已经很清晰了，然而难在如何运用<code>f</code>数组。</p>
 <p>下面的伪代码展示了倍增法求LCA的过程：</p>
 <div class="codehilite"><pre><span class="k">def</span> <span class="nf">Double_LCA</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
@@ -259,19 +256,19 @@ $$
 
 
 <p>在代码中有两处比较奇特的地方，被注释打上了<code>KEY</code>。</p>
-<p>先看<code>KEY #1</code>，这里的代码是尝试将$ u $与$ v $调制统一高度，而这里出现的位运算令人十分费解。</p>
+<p>先看<code>KEY #1</code>，这里的代码是尝试将<mathjax>$ u $</mathjax>与<mathjax>$ v $</mathjax>调制统一高度，而这里出现的位运算令人十分费解。</p>
 <p>首先我们思考一下二进制：
-对于一个二进制数$ k $，设其从右往左数的第$ i $位为$ k_i $，则当$ k_i = 1 $时，$ k - 2^i $的第$ i $位为$ 0 $。</p>
-<p>例如，对于二进制数$ 110010_{(2)} $，第$ 2 $位为$ 1 $，$ 2^2 = 10_{(2)} $，$ 110010_{(2)} - 10_{(2)} = 110000_{(2)} $，我们发现这个二进制数的第$ 2 $位变成了$ 1 $。</p>
-<p>利用这个特性，我们可以逐位将一个二进制数减成$ 0 $。</p>
-<p>在上面的代码中，就这样逐步上调节点$ u $，并使最后的深度差<code>dist</code>变为$ 0 $。
+对于一个二进制数<mathjax>$ k $</mathjax>，设其从右往左数的第<mathjax>$ i $</mathjax>位为<mathjax>$ k_i $</mathjax>，则当<mathjax>$ k_i = 1 $</mathjax>时，<mathjax>$ k - 2^i $</mathjax>的第<mathjax>$ i $</mathjax>位为<mathjax>$ 0 $</mathjax>。</p>
+<p>例如，对于二进制数<mathjax>$ 110010_{(2)} $</mathjax>，第<mathjax>$ 2 $</mathjax>位为<mathjax>$ 1 $</mathjax>，<mathjax>$ 2^2 = 10_{(2)} $</mathjax>，<mathjax>$ 110010_{(2)} - 10_{(2)} = 110000_{(2)} $</mathjax>，我们发现这个二进制数的第<mathjax>$ 2 $</mathjax>位变成了<mathjax>$ 1 $</mathjax>。</p>
+<p>利用这个特性，我们可以逐位将一个二进制数减成<mathjax>$ 0 $</mathjax>。</p>
+<p>在上面的代码中，就这样逐步上调节点<mathjax>$ u $</mathjax>，并使最后的深度差<code>dist</code>变为<mathjax>$ 0 $</mathjax>。
 下面有一张样例：</p>
 <p><img alt="Sample #1" src="http://7xq4ng.com1.z0.glb.clouddn.com/double-1.png" /></p>
-<p>再来看<code>KEY #2</code>，此时$ u $和$ v $处在同一深度上，$ j $从大到小逐一测试。</p>
-<p>我们试图使$ u $和$ v $尽可能靠近LCA，但又不直接到达LCA。</p>
-<p>如果说$ 2^j $的距离上，$ u $和$ v $的父节点相同，则这个父节点是它们的公共祖先，如果跳上去就有可能超过LCA了，因此忽略。</p>
-<p>如果说$ 2^j $的距离上，$ u $和$ v $的父节点不同，则$ f[u, j] $和$ f[v, j] $的LCA也是$ u $和$ v $的LCA，因此可以将$ u $和$ v $上移至该位置，不影响结果。</p>
-<p>因为这两个节点到LCA的深度差可以被分解成多个$ 2 $的幂之和，因此我们有办法逐步将它们上移至LCA的位置。</p>
+<p>再来看<code>KEY #2</code>，此时<mathjax>$ u $</mathjax>和<mathjax>$ v $</mathjax>处在同一深度上，<mathjax>$ j $</mathjax>从大到小逐一测试。</p>
+<p>我们试图使<mathjax>$ u $</mathjax>和<mathjax>$ v $</mathjax>尽可能靠近LCA，但又不直接到达LCA。</p>
+<p>如果说<mathjax>$ 2^j $</mathjax>的距离上，<mathjax>$ u $</mathjax>和<mathjax>$ v $</mathjax>的父节点相同，则这个父节点是它们的公共祖先，如果跳上去就有可能超过LCA了，因此忽略。</p>
+<p>如果说<mathjax>$ 2^j $</mathjax>的距离上，<mathjax>$ u $</mathjax>和<mathjax>$ v $</mathjax>的父节点不同，则<mathjax>$ f[u, j] $</mathjax>和<mathjax>$ f[v, j] $</mathjax>的LCA也是<mathjax>$ u $</mathjax>和<mathjax>$ v $</mathjax>的LCA，因此可以将<mathjax>$ u $</mathjax>和<mathjax>$ v $</mathjax>上移至该位置，不影响结果。</p>
+<p>因为这两个节点到LCA的深度差可以被分解成多个<mathjax>$ 2 $</mathjax>的幂之和，因此我们有办法逐步将它们上移至LCA的位置。</p>
 <p>但是为了方便判断是否跳的太远，我们不让它们最后跳到LCA的位置，而是跳到LCA的儿子节点处。</p>
 <p>此时其父节点就是LCA。</p>
 <p>下面有一张样例：</p>
