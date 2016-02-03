@@ -12,6 +12,7 @@
 
 <div id="view">
 <div id="container">
+<h1 id="poj2135-farm-tour">[POJ2135] Farm Tour</h1>
 <div class="toc">
 <ul>
 <li><a href="#poj2135-farm-tour">[POJ2135] Farm Tour</a><ul>
@@ -21,10 +22,9 @@
 </li>
 </ul>
 </div>
-<h2 id="poj2135-farm-tour">[POJ2135] Farm Tour</h2>
-<h3 id="_1">原题题意</h3>
+<h2 id="_1">原题题意</h2>
 <p>FJ老爷爷带着他的朋友到他的开心农场装B。FJ的农场是一张有<mathjax>$n(n\le1000)$</mathjax>个点，<mathjax>$m(m\le10000)$</mathjax>条边的<strong>无向图</strong>，每个点从<mathjax>$1$</mathjax>开始编号，每条边有一个边权。现在他想从<mathjax>$1$</mathjax>走到<mathjax>$n$</mathjax>，然后又从<mathjax>$n$</mathjax>走到<mathjax>$1$</mathjax>，他希望走的路<strong>最短</strong>且<strong>每条路不走两遍</strong>。</p>
-<h3 id="_2">做法</h3>
+<h2 id="_2">做法</h2>
 <p>看到要使走的路最短，就肯定要动用最短路了。然而他还需要两条，且这两条路径的每一条边都不同，用单纯的最短路难以办到。<br />
 不妨运用最大流的思想，将每条边拆成两个有向管道，且容量为1。那么，在增广时，只要是走过的边就会没有流量了，保证只有一条路径经过。<br />
 将最短路和最大流结合起来，就是最小费用最大流，这里我们将流网络的每条弧增加一个属性<code>cost</code>表示费用（注意不是单位费用），对应的就是原图中的边权。每次增广时选取费用最小的来进行增广，就能确保找到的增广路是原图中的最短路。<br />
