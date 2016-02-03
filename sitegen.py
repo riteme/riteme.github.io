@@ -37,24 +37,35 @@ else:
 if update_all:
     print("(info) Template changed.")
 
-for root, dirs, files in os.walk(os.path.abspath(".")):
+
+def generate(root, name):
+    global update_map
+    global update_all
+
+    path = os.path.join(root, name)
+
+    path_token = hash(path)
+    time_token = hash(int(os.path.getmtime(path)))
+
+    if not update_all:
+        if path_token in update_map:
+            if update_map[path_token] == time_token:
+                return
+        else:
+            update_map[path_token] = time_token
+
+    print("(info) Generating {}...".format(path))
+    pagegen.generate(path)
+    update_map[path_token] = time_token
+
+
+generate(os.path.abspath("."), "index.md")
+generate(os.path.abspath("."), "posts.md")
+
+for root, dirs, files in os.walk(os.path.abspath("./blog/")):
     for name in files:
         if name.endswith(".md") or name.endswith(".markdown"):
-            path = os.path.join(root, name)
-
-            path_token = hash(path)
-            time_token = hash(int(os.path.getmtime(path)))
-
-            if not update_all:
-                if path_token in update_map:
-                    if update_map[path_token] == time_token:
-                        continue
-                else:
-                    update_map[path_token] = time_token
-
-            print("(info) Generating {}...".format(path))
-            pagegen.generate(path)
-            update_map[path_token] = time_token
+            generate(root, name)
 
 with open(UPDATE_MAP_FILE, "w") as fp:
     json.dump(update_map, fp, indent=4, sort_keys=True)

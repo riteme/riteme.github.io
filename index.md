@@ -10,6 +10,9 @@ tags: Home
 刚刚把网页做了较大的改动，总算抛弃了慢吞吞的`strapdown.js`！  
 博客里大多关于编程与OI，大家随意翻阅~~
 
+我的GitHub: <https://github.com/riteme>  
+我的知乎: <https://www.zhihu.com/people/riteme>
+
 #### Recently Posts
 ##### 2016-2-2
 * [最小费用最大流](./blog/2016-2-2/mincost-maxflow.html): 增广路算法
