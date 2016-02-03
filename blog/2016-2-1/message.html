@@ -45,7 +45,7 @@
    当发现有向环时，可以利用此数组算出来。</li>
 <li>递归优化。<br />
    这个DFS由于不需要回溯之类的操作，并且<strong>题目中</strong>给出每个人只会将信息传给<strong>一个人</strong>，
-   那么说明每个点的出度为1，因此我们可以将DFS改成递归的形式：</li>
+   那么说明每个点的出度为1，因此我们可以将DFS改成递推的形式：</li>
 </ol>
 <div class="codehilite"><pre><span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
     <span class="k">while</span> <span class="nb">next</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">marked</span><span class="p">:</span>
