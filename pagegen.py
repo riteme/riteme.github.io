@@ -84,9 +84,10 @@ def generate(filepath):
     navigater.handle("favicon", "favicon.png")
     navigater.handle("home", "index.html")
     navigater.handle("css", "css/site.css")
+    navigater.handle("mathjax","mathjax/MathJax.js")
     navigater.home_folder = os.path.dirname(filepath)
 
-    mathjax = navigater.get_mathjax()
+    mathjax = navigater.get_path("mathjax")
     favicon = navigater.get_path("favicon")
     css = navigater.get_path("css")
     home = navigater.get_path("home")
