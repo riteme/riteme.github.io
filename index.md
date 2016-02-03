@@ -26,7 +26,5 @@ tags: Home
 [**查看全部**](./posts.html)
 
 #### 友情链接
-Link的狗窝[^dog]： [Dog's House](http://link-arthur.github.io/)  
+Link的狗窝： [Dog's House](http://link-arthur.github.io/)  
 Ruan xingzhi的博客： [Ruan xingzhi](http://ruanxingzhi.github.io/)
-
-[^dog]: 绝对不骗你
