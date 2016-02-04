@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>riteme.site - 正式开始编写ne2d</title>
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" href="../../favicon.png" type="image/png">
+  <link rel="stylesheet" type="text/css" href="../../css/site.css">
+  <link href="http://fonts.useso.com/css?family=Ubuntu:300,300italic,400,400italic,500,500italic,700,700italic&amp;subset=latin,greek,cyrillic" rel="stylesheet" type="text/css">
+  <script type="text/javascript" async src="../../mathjax/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</head>
+<body>
+<div id="topbar"><div id="topcell"><font class="toptitle">riteme.site</font></div></div>
+<ul class="breadcrumb"><li><a href="../../index.html">HOME</a></li><li><a href="#">BLOG</a></li><li><a href="#">2016-2-4</a></li><li class="active">正式开始编写NE2D</li></ul>
+
+<div id="view">
+<div id="container">
+<h1 id="ne2d">正式开始编写ne2d</h1>
+<p><img alt="ne2d v0.2.2" src="http://7xq4ng.com1.z0.glb.clouddn.com/ne2d-start-1.png" /></p>
+<p>一直想有个好点的2D渲染引擎，但看了很多似乎都不合胃口，也许有点挑剔。之前看到的bgfx似乎也有点操蛋，操作上毕竟还是麻烦了点。
+因此，趁着时间还多，多造点轮子，学点东西。索性开始自己做个适配的2D渲染引擎。</p>
+<p>之前这个渲染引擎<a href="https://github.com/riteme/ne2d">ne2d</a>一直处于及其不稳定状态，动辄几千行代码的改动。
+今天总算有个大致框架了。目前位置计划做成一个纯的渲染引擎，不打算托管平台相关的代码。
+只要能够提供OpenGL上下文就能使其工作。</p>
+<p>目前这个工程才刚刚起步，暂时还没法使用。</p>
+<p>这里记录下目前的想法：</p>
+<p>基本功能：  </p>
+<ul>
+<li>OpenGL 3.3 core profile  </li>
+<li>Alpha支持</li>
+<li>Layer抽象，支持图层深度</li>
+<li>RenderObject，所有渲染对象实例化</li>
+<li>Sprite绘制材质</li>
+<li>矩阵变换（使用<a href="https://github.com/g-truc/glm">glm</a>）</li>
+<li>TrueType字体（SDL_ttf or raw Freetype?）</li>
+</ul>
+<p>高级功能：  </p>
+<ul>
+<li>动画</li>
+<li><code>*.layout</code>文件载入图层（JSON or XML?）</li>
+<li>自定Shader</li>
+<li>粒子系统</li>
+</ul>
+<p>至于不处理平台相关的代码，因为我觉得现在SDL2做得起码比我好，我个人也是很喜欢SDL的接口风格的（只是SDL在渲染方面似乎并不怎么样...），
+所以所有的窗口创建、OpenGL上下文创建、事件管理......这些东西都交给SDL吧！</p>
+<p>最后把GitHub repo放一下吧：<br />
+<a href="https://github.com/riteme/ne2d">ne2d</a>: 理论上是稳定版<br />
+<a href="https://github.com/riteme/ne2d/tree/develop">ne2d/develop</a>: 理论上是最新版<br />
+<a href="https://github.com/riteme/ne2d/tree/unstable">ne2d/unstable</a>: 激进版</p>
+<hr/>标签: <span class="label label-default">C++</span> <span class="label label-default">ne2d</span> <span class="label label-default">图形</span><br/>
+创建时间: 2016.2.4<br/>
+上次修改: 2016.2.4
+<div class="ds-thread" data-thread-key="ca2bac55ceb5812c8e2486912d1f85ca" data-title="正式开始编写ne2d" data-url="http://riteme.github.io/blog/2016-2-4/ne2d-1.html"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"riteme"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+<div><font size="1" color="silver">Powered by <a href="https://pages.github.com">GitHub Pages</a> and <a href="http://www.pythonhosted.org/Markdown/">Python-Markdown</a>.</br>
+Copyright 2015-2016 riteme. All rights reserved.</font></div>
+</div>
+</div>
+</body>
+</html>
