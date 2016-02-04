@@ -96,7 +96,7 @@ class Parser(object):
         flag = False
         is_temporary = False
         panel_started = False
-        info_matcher = re.compile("([a-zA-Z]+):([\w\s\d\.]*)")
+        info_matcher = re.compile("([a-zA-Z]+):([\w\s\d+\.]*)")
         info = {}
         content = []
 
