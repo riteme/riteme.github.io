@@ -1,10 +1,10 @@
 ---
-title: 学习使用bgfx (1)
+title: 编译并使用bgfx
 create: 2016.2.3
 modified: 2016.2.4
 tags: C++ 图形 引擎 bgfx
 ---
-# 学习使用bgfx (1)
+# 编译并使用bgfx
 
 [TOC]
 

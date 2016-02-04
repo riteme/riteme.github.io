@@ -15,7 +15,7 @@ tags: Home
 
 #### Recently Posts
 ##### 2016-2-4
-* [学习使用bgfx (1)](./blog/2016-2-3/learn-bgfx-1.html): bgfx初体验
+* [编译并使用bgfx](./blog/2016-2-3/learn-bgfx-1.html): bgfx在Ubuntu上编译
 * [测试多说](./blog/2016-2-4/comments.html): 测试多说评论系统
 
 ##### 2016-2-2
