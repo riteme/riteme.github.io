@@ -14,6 +14,9 @@ tags: Home
 我的知乎: <https://www.zhihu.com/people/riteme>
 
 #### Recently Posts
+##### 2016-2-4
+* [测试多说](./blog/2016-2-4/comments.html): 测试多说评论系统
+
 ##### 2016-2-2
 * [最小费用最大流](./blog/2016-2-2/mincost-maxflow.html): 增广路算法
 
@@ -25,6 +28,7 @@ tags: Home
 
 ##### 2016-1-31
 * [pagegen.py的试炼](./blog/2016-1-31/test.html): 测试`pagegen.py`
+
 
 [**查看全部**](./posts.html)
 

@@ -2,6 +2,7 @@
 # 重新生成整个网站
 
 import os
+import sys
 import json
 import hashlib
 import pagegen
@@ -20,6 +21,10 @@ TEMPLATE_FILE = "./template.html"
 update_map = {}
 update_all = False
 
+if len(sys.argv) > 1 and sys.argv[1] == "--force":
+    print("(info) Force to update all pages.")
+    update_all = True
+
 template_token = hash(TEMPLATE_FILE)
 template_time = hash(int(os.path.getmtime(TEMPLATE_FILE)))
 
@@ -33,9 +38,7 @@ else:
     if update_map[template_token] != template_time:
         update_map[template_token] = template_time
         update_all = True
-
-if update_all:
-    print("(info) Template changed.")
+        print("(info) Template changed.")
 
 
 def generate(root, name):
