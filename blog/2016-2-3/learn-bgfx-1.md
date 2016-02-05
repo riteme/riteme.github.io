@@ -2,7 +2,7 @@
 title: 编译并使用bgfx
 create: 2016.2.3
 modified: 2016.2.4
-tags: C++ 图形 引擎 bgfx
+tags: C/C++ 图形 引擎 bgfx
 ---
 # 编译并使用bgfx
 

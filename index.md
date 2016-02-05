@@ -14,6 +14,9 @@ tags: Home
 我的知乎: <https://www.zhihu.com/people/riteme>
 
 #### Recently Posts
+##### 2016-2-5
+* [DevIL快速入门](./blog/2016-2-5/devil-usage.html): 了解图片库DevIL
+
 ##### 2016-2-4
 * [正式开始编写ne2d](./blog/2016-2-4/ne2d-1.html): 启动ne2d
 * [编译并使用bgfx](./blog/2016-2-3/learn-bgfx-1.html): bgfx在Ubuntu上编译
