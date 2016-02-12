@@ -16,7 +16,7 @@
 <div id="container">
 <h1 id="_1">测试多说</h1>
 <p>欢迎大家在下面<strong>按照基本法</strong>放肆评论，我看看我<code>pagegen.py</code>写对没有。<br />
-打个广告吧： <a href="http://duoshuo.com/">多说</a></p>
+打个广告吧： <a href="http://duoshuo.com/" target="_blank">多说</a></p>
 <hr/>标签: <span class="label label-default">test</span><br/>
 创建时间: 2016.2.4<br/>
 上次修改: 2016.2.4
@@ -26,9 +26,11 @@ var duoshuoQuery = {short_name:"riteme"};
 (function() {
     var ds = document.createElement('script');
     ds.type = 'text/javascript';ds.async = true;
-    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.src = (
+        document.location.protocol == 'https:' ? 'https:' : 'http:'
+    ) + '//static.duoshuo.com/embed.js';
     ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0] 
+    (document.getElementsByTagName('head')[0]
      || document.getElementsByTagName('body')[0]).appendChild(ds);
 })();
 </script>

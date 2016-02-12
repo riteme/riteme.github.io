@@ -55,7 +55,15 @@
 这是一段引用  </p>
 </blockquote>
 <p>很好，<code>inline-code</code>和<code>Hello, world</code>：</p>
-<div class="codehilite"><pre><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="codehilite"><pre><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 
 <span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 
@@ -65,20 +73,24 @@
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
-
+</td></tr></table>
 
 <p>别忘了Python：</p>
-<div class="codehilite"><pre><span class="ch">#!/usr/bin/env python3</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span class="ch">#!/usr/bin/env python3</span>
 
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Hello, world!&quot;</span><span class="p">)</span>
 </pre></div>
+</td></tr></table>
 
-
-<div class="codehilite"><pre>Tab也可以直接代码
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre>Tab也可以直接代码
 Yeah!!!
 </pre></div>
-
+</td></tr></table>
 
 <p><em>重要的话说三遍</em><br />
 <strong>重要的话说三遍</strong><br />
@@ -137,9 +149,9 @@ Yeah!!!
 </tr>
 </tbody>
 </table>
-<p>我的GitHub: <a href="https://github.com/riteme">https://github.com/riteme</a><br />
-<a href="https://github.com/riteme">GitHub</a><br />
-我的E-mail: <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#114;&#105;&#116;&#101;&#109;&#101;&#64;&#113;&#113;&#46;&#99;&#111;&#109;">&#114;&#105;&#116;&#101;&#109;&#101;&#64;&#113;&#113;&#46;&#99;&#111;&#109;</a></p>
+<p>我的GitHub: <a href="https://github.com/riteme" target="_blank">https://github.com/riteme</a><br />
+<a href="https://github.com/riteme" target="_blank">GitHub</a><br />
+我的E-mail: <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#114;&#105;&#116;&#101;&#109;&#101;&#64;&#113;&#113;&#46;&#99;&#111;&#109;" target="_blank">&#114;&#105;&#116;&#101;&#109;&#101;&#64;&#113;&#113;&#46;&#99;&#111;&#109;</a></p>
 <p>脚注<sup id="fnref:footnote"><a class="footnote-ref" href="#fn:footnote" rel="footnote">1</a></sup>？  </p>
 <p>GFM breaks!
 应该不在一行!
@@ -176,9 +188,11 @@ var duoshuoQuery = {short_name:"riteme"};
 (function() {
     var ds = document.createElement('script');
     ds.type = 'text/javascript';ds.async = true;
-    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.src = (
+        document.location.protocol == 'https:' ? 'https:' : 'http:'
+    ) + '//static.duoshuo.com/embed.js';
     ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0] 
+    (document.getElementsByTagName('head')[0]
      || document.getElementsByTagName('body')[0]).appendChild(ds);
 })();
 </script>

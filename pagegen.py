@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 # 用于生成单个页面
 
+from __future__ import absolute_import
+from __future__ import unicode_literals
+
 import os
 import hashlib
 
@@ -11,8 +14,21 @@ import breadcrumb
 import navigater
 
 import markdown
+import markdown.extensions.codehilite
+
+from markdown import Extension
+from markdown.inlinepatterns import \
+    LinkPattern, ReferencePattern, AutolinkPattern, AutomailPattern, \
+    LINK_RE, REFERENCE_RE, SHORT_REF_RE, AUTOLINK_RE, AUTOMAIL_RE
+
+import re
+
+# from markdown.extensions import Extension
+# from markdown.preprocessors import Preprocessor
+from markdown.postprocessors import Postprocessor
 
 
+# Mathjax Extension
 class MathJaxPattern(markdown.inlinepatterns.Pattern):
 
     def __init__(self):
@@ -39,6 +55,90 @@ class MathJaxExtension(markdown.Extension):
 def latex_friendly(configs=[]):
     return MathJaxExtension(configs)
 
+# New Tab Extension
+# pylint: disable=invalid-name, too-few-public-methods
+
+
+class NewTabMixin(object):
+
+    def handleMatch(self, match):
+        elem = super(NewTabMixin, self).handleMatch(match)
+        if elem is not None and not elem.get('href').startswith('#'):
+            elem.set('target', '_blank')
+        return elem
+
+
+class NewTabLinkPattern(NewTabMixin, LinkPattern):
+    pass
+
+
+class NewTabReferencePattern(NewTabMixin, ReferencePattern):
+    pass
+
+
+class NewTabAutolinkPattern(NewTabMixin, AutolinkPattern):
+    pass
+
+
+class NewTabAutomailPattern(NewTabMixin, AutomailPattern):
+    pass
+
+
+class NewTabExtension(Extension):
+
+    def extendMarkdown(self, md, md_globals):
+        md.inlinePatterns['link'] = \
+            NewTabLinkPattern(LINK_RE, md)
+        md.inlinePatterns['reference'] = \
+            NewTabReferencePattern(REFERENCE_RE, md)
+        md.inlinePatterns['short_reference'] = \
+            NewTabReferencePattern(SHORT_REF_RE, md)
+        md.inlinePatterns['autolink'] = \
+            NewTabAutolinkPattern(AUTOLINK_RE, md)
+        md.inlinePatterns['automail'] = \
+            NewTabAutomailPattern(AUTOMAIL_RE, md)
+
+
+def new_tab_on_links(configs=None):
+    if configs is None:
+        configs = {}
+    return NewTabExtension(configs=configs)
+
+
+# Tasklist Extension
+def tasklist(configs=None):
+    if configs is None:
+        return ChecklistExtension()
+    else:
+        return ChecklistExtension(configs=configs)
+
+
+class ChecklistExtension(Extension):
+
+    def extendMarkdown(self, md, md_globals):
+        md.postprocessors.add('checklist', ChecklistPostprocessor(md),
+                              '>raw_html')
+
+
+class ChecklistPostprocessor(Postprocessor):
+
+    """
+    adds checklist class to list element
+    """
+
+    pattern = re.compile(r'<li>\[([ Xx])\]')
+
+    def run(self, html):
+        html = re.sub(self.pattern, self._convert_checkbox, html)
+        before = '<ul>\n<li><input type="checkbox"'
+        after = before.replace('<ul>', '<ul class="checklist">')
+        return html.replace(before, after)
+
+    def _convert_checkbox(self, match):
+        state = match.group(1)
+        checked = ' checked' if state != ' ' else ''
+        return '<li><input type="checkbox" disabled%s>' % checked
+
 
 MARKDOWN_EXT = [
     "markdown.extensions.fenced_code",
@@ -47,8 +147,17 @@ MARKDOWN_EXT = [
     "markdown.extensions.codehilite",
     "markdown.extensions.toc",
     "markdown.extensions.smart_strong",
-    latex_friendly()
+    latex_friendly(),
+    new_tab_on_links(),
+    tasklist()
 ]
+
+MARKDOWN_CONFIG = {
+    "markdown.extensions.codehilite": {
+        "linenums": True,
+        "guess_lang": True
+    }
+}
 
 
 def generate(filepath):
@@ -80,12 +189,16 @@ def generate(filepath):
         tags.append(x)
 
     content = "\n".join(mdtext)
-    content = markdown.markdown(content, extensions=MARKDOWN_EXT)
+    content = markdown.markdown(
+        content,
+        extensions=MARKDOWN_EXT,
+        extension_configs=MARKDOWN_CONFIG
+    )
 
     navigater.handle("favicon", "favicon.png")
     navigater.handle("home", "index.html")
     navigater.handle("css", "css/site.css")
-    navigater.handle("mathjax","mathjax/MathJax.js")
+    navigater.handle("mathjax", "mathjax/MathJax.js")
     navigater.home_folder = os.path.dirname(filepath)
 
     mathjax = navigater.get_path("mathjax")
@@ -95,15 +208,19 @@ def generate(filepath):
 
     pagetitle = mdinfo["title"].strip()
     pagekey = hashlib.md5(pagetitle.encode("utf8")).hexdigest()
-    pageurl = "http://riteme.github.io/" + os.path.relpath(os.path.abspath(filepath), start=os.path.abspath("."))[:-3] + ".html"
+    pageurl = "http://riteme.github.io/" + \
+        os.path.relpath(os.path.abspath(filepath), start=os.path.abspath("."))[
+            :-3] + ".html"
     duoshuo = """<script type="text/javascript">
 var duoshuoQuery = {short_name:"riteme"};
 (function() {
     var ds = document.createElement('script');
     ds.type = 'text/javascript';ds.async = true;
-    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.src = (
+        document.location.protocol == 'https:' ? 'https:' : 'http:'
+    ) + '//static.duoshuo.com/embed.js';
     ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0] 
+    (document.getElementsByTagName('head')[0]
      || document.getElementsByTagName('body')[0]).appendChild(ds);
 })();
 </script>"""
