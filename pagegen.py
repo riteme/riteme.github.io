@@ -246,6 +246,8 @@ var duoshuoQuery = {short_name:"riteme"};
 
     new_file = os.path.splitext(filepath)[0] + ".html"
     new_printable = os.path.splitext(filepath)[0] + "-printable.html"
+    printable_path = os.path.basename(new_printable)
+
     with open(new_file, "w") as writer:
         writer.write(template.format(
             title=title,
@@ -262,7 +264,7 @@ var duoshuoQuery = {short_name:"riteme"};
             page_title=pagetitle,
             page_url=pageurl,
             duoshuo_code=duoshuo,
-            printable=new_printable
+            printable=printable_path
         ))
 
     with open(new_printable, "w") as writer:
