@@ -5,6 +5,7 @@ import os
 import sys
 import json
 import hashlib
+
 import pagegen
 
 
@@ -20,6 +21,7 @@ TEMPLATE_FILE = "./template.html"
 
 update_map = {}
 update_all = False
+
 
 if len(sys.argv) > 1 and sys.argv[1] == "--force":
     print("(info) Force to update all pages.")
@@ -41,9 +43,22 @@ else:
         print("(info) Template changed.")
 
 
+def real_generate(filepath):
+    try:
+        print("(info) Generating {}...".format(filepath))
+        pagegen.generate(filepath)
+        # print("(info) Finished {}".format(filepath))
+    except Exception as e:
+        print("(error) Failed to generate {}.\n{}".format(
+            filepath, str(e)
+        ))
+
+
 def generate(root, name):
     global update_map
     global update_all
+
+    global pool
 
     path = os.path.join(root, name)
 
@@ -57,18 +72,18 @@ def generate(root, name):
         else:
             update_map[path_token] = time_token
 
-    print("(info) Generating {}...".format(path))
-    pagegen.generate(path)
+    real_generate(path)
     update_map[path_token] = time_token
 
 
-generate(os.path.abspath("."), "index.md")
-generate(os.path.abspath("."), "posts.md")
+if __name__ == "__main__":
+    generate(os.path.abspath("."), "index.md")
+    generate(os.path.abspath("."), "posts.md")
 
-for root, dirs, files in os.walk(os.path.abspath("./blog/")):
-    for name in files:
-        if name.endswith(".md") or name.endswith(".markdown"):
-            generate(root, name)
+    for root, dirs, files in os.walk(os.path.abspath("./blog/")):
+        for name in files:
+            if name.endswith(".md") or name.endswith(".markdown"):
+                generate(root, name)
 
-with open(UPDATE_MAP_FILE, "w") as fp:
-    json.dump(update_map, fp, indent=4, sort_keys=True)
+    with open(UPDATE_MAP_FILE, "w") as fp:
+        json.dump(update_map, fp, indent=4, sort_keys=True)

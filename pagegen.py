@@ -208,9 +208,9 @@ def generate(filepath):
 
     pagetitle = mdinfo["title"].strip()
     pagekey = hashlib.md5(pagetitle.encode("utf8")).hexdigest()
-    pageurl = "http://riteme.github.io/" + \
-        os.path.relpath(os.path.abspath(filepath), start=os.path.abspath("."))[
-            :-3] + ".html"
+    pageurl = "http://riteme.github.io/" + os.path.relpath(
+        os.path.abspath(filepath), start=os.path.abspath("."))[
+        :-3] + ".html"
     duoshuo = """<script type="text/javascript">
 var duoshuoQuery = {short_name:"riteme"};
 (function() {
@@ -230,8 +230,11 @@ var duoshuoQuery = {short_name:"riteme"};
         os.path.dirname(os.path.abspath(filepath)),
         start=os.path.abspath(".")
     )
-    nodes = [x.upper()
-             for x in os.path.split(relative) if x.strip() not in ["", "."]]
+    nodes = [
+        x.upper() for x in os.path.split(relative) if x.strip() not in [
+            "", "."
+        ]
+    ]
     bread.append("HOME", home)
     for x in nodes:
         bread.append(x, "#")
