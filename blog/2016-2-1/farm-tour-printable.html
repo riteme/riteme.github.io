@@ -3,17 +3,10 @@
 <head>
   <title>riteme.site - POJ2135 Farm Tour</title>
   <meta charset="UTF-8">
-  <link rel="shortcut icon" href="../../favicon.png" type="image/png">
   <link rel="stylesheet" type="text/css" href="../../css/site.css">
-  <link href="http://fonts.useso.com/css?family=Ubuntu:300,300italic,400,400italic,500,500italic,700,700italic&amp;subset=latin,greek,cyrillic" rel="stylesheet" type="text/css">
   <script type="text/javascript" async src="../../mathjax/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </head>
 <body>
-<div id="topbar"><div id="topcell"><font class="toptitle">riteme.site</font></div></div>
-<ul class="breadcrumb"><li><a href="../../index.html">HOME</a></li><li><a href="#">BLOG</a></li><li><a href="#">2016-2-1</a></li><li class="active">POJ2135 FARM TOUR</li></ul>
-
-<div id="view">
-<div id="container">
 <h1 id="poj2135-farm-tour">[POJ2135] Farm Tour</h1>
 <div class="toc">
 <ul>
@@ -32,28 +25,5 @@
 将最短路和最大流结合起来，就是最小费用最大流，这里我们将流网络的每条弧增加一个属性<code>cost</code>表示费用（注意不是单位费用），对应的就是原图中的边权。每次增广时选取费用最小的来进行增广，就能确保找到的增广路是原图中的最短路。<br />
 最后一个问题就是要找两条，这个其实很好办。我们利用源点和汇点来控制。首先建立一个源点，与<mathjax>$1$</mathjax>相连，容量为2,当然费用为0，这样不会最短路的结果。同样的方法，将汇点与<mathjax>$n$</mathjax>连接。这样，每次只能增广1的流，就能确保最多只有2条增广路。<br />
 需注意的是，在残留网络中，方向边的边权要为<code>-cost</code>，这样才能让增广正常进行。因此，Dijkstra算法并不适合。</p>
-<hr/>
-<a href="/home/riteme/Code/riteme.github.io/blog/2016-2-1/farm-tour-printable.html">查看打印版本</a><br/>
-标签: <span class="label label-default">POJ</span> <span class="label label-default">网络流</span> <span class="label label-default">最小费用流</span> <span class="label label-default">图论</span><br/>
-创建时间: 2016.2.1<br/>
-上次修改: 2016.2.1
-<div class="ds-thread" data-thread-key="fd048915b1581a7f4a936ed4a83f5c9d" data-title="POJ2135 Farm Tour" data-url="http://riteme.github.io/blog/2016-2-1/farm-tour.html"></div>
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"riteme"};
-(function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = (
-        document.location.protocol == 'https:' ? 'https:' : 'http:'
-    ) + '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0]
-     || document.getElementsByTagName('body')[0]).appendChild(ds);
-})();
-</script>
-<div><font size="1" color="silver">Powered by <a href="https://pages.github.com">GitHub Pages</a> and <a href="http://www.pythonhosted.org/Markdown/">Python-Markdown</a>.</br>
-Copyright 2015-2016 riteme. All rights reserved.</font></div>
-</div>
-</div>
 </body>
 </html>

@@ -241,7 +241,11 @@ var duoshuoQuery = {short_name:"riteme"};
     with open("template.html") as ftemplate:
         template = ftemplate.read()
 
+    with open("printable-template.html") as fprintable:
+        printable = fprintable.read()
+
     new_file = os.path.splitext(filepath)[0] + ".html"
+    new_printable = os.path.splitext(filepath)[0] + "-printable.html"
     with open(new_file, "w") as writer:
         writer.write(template.format(
             title=title,
@@ -257,7 +261,16 @@ var duoshuoQuery = {short_name:"riteme"};
             page_key=pagekey,
             page_title=pagetitle,
             page_url=pageurl,
-            duoshuo_code=duoshuo
+            duoshuo_code=duoshuo,
+            printable=new_printable
+        ))
+
+    with open(new_printable, "w") as writer:
+        writer.write(printable.format(
+            title=title,
+            content=content,
+            mathjax=mathjax,
+            css=css
         ))
 
 if __name__ == "__main__":
