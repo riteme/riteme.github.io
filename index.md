@@ -14,6 +14,9 @@ tags: Home
 我的知乎: <https://www.zhihu.com/people/riteme>
 
 #### Recently Posts
+##### 2016-3-12
+* [2-3树与红黑树](./blog/2016-3-12/2-3-tree-and-red-black-tree.html): 2-3树与红黑树
+
 ##### 2016-2-5
 * [DevIL快速入门](./blog/2016-2-5/devil-usage.html): 了解图片库DevIL
 

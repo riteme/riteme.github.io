@@ -96,7 +96,7 @@ class Parser(object):
         flag = False
         is_temporary = False
         panel_started = False
-        info_matcher = re.compile("([a-zA-Z]+):\s*([\w\s\d+/\\\.]*)")
+        info_matcher = re.compile("([a-zA-Z]+):\s*([\w\s\d+-/\\\.]*)")
         info = {}
         content = []
 
@@ -109,7 +109,9 @@ class Parser(object):
                 is_temporary = True
             elif flag:
                 match = info_matcher.match(line)
-                info[match.group(1)] = match.group(2)
+
+                if match is not None:
+                    info[match.group(1)] = match.group(2)
             else:
                 is_parsed = False
 
