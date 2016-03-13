@@ -13,7 +13,7 @@ tags: Home
 我的GitHub: <https://github.com/riteme>  
 我的知乎: <https://www.zhihu.com/people/riteme>
 
-#### Recently Posts
+#### Recent Posts
 ##### 2016-3-12
 * [2-3树与红黑树](./blog/2016-3-12/2-3-tree-and-red-black-tree.html): 2-3树与红黑树
 
