@@ -14,6 +14,9 @@ tags: Home
 我的知乎: <https://www.zhihu.com/people/riteme>
 
 #### Recent Posts
+##### 2016-3-21
+* [x^n-1问题](./blog/2016-3-21/x-2-1.html): 对x^n-1进行因式分解
+
 ##### 2016-3-12
 * [2-3树与红黑树](./blog/2016-3-12/2-3-tree-and-red-black-tree.html): 2-3树与红黑树
 
@@ -27,15 +30,6 @@ tags: Home
 
 ##### 2016-2-2
 * [最小费用最大流](./blog/2016-2-2/mincost-maxflow.html): 增广路算法
-
-##### 2016-2-1
-* [[POJ2135] Farm Tour](./blog/2016-2-1/farm-tour.html): POJ2135 题解
-* [[NOIP2014] 寻找道路](./blog/2016-2-1/find-path.html): NOIP2014 Day2 T2 题解
-* [[NOIP2015] 信息传递](./blog/2016-2-1/message.html): NOIP2015 Day1 T2 题解
-* [最近公共祖先(LCA)](./blog/2016-2-1/lca.html): 朴素LCA算法，Tarjan-LCA算法，倍增法
-
-##### 2016-1-31
-* [pagegen.py的试炼](./blog/2016-1-31/test.html): 测试`pagegen.py`
 
 [**查看全部**](./posts.html)
 

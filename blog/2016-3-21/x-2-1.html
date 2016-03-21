@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>riteme.site - x</title>
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" href="../../favicon.png" type="image/png">
+  <link rel="stylesheet" type="text/css" href="../../css/site.css">
+  <link href="http://fonts.useso.com/css?family=Ubuntu:300,300italic,400,400italic,500,500italic,700,700italic&amp;subset=latin,greek,cyrillic" rel="stylesheet" type="text/css">
+  <script type="text/javascript" async src="../../mathjax/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</head>
+<body>
+<div id="topbar"><div id="topcell"><font class="toptitle">riteme.site</font></div></div>
+<ul class="breadcrumb"><li><a href="../../index.html">HOME</a></li><li><a href="#">BLOG</a></li><li><a href="#">2016-3-21</a></li><li class="active">X</li></ul>
+
+<div id="view">
+<div id="container">
+<h1 id="xn-1">x^n-1问题</h1>
+<div class="toc">
+<ul>
+<li><a href="#xn-1">x^n-1问题</a><ul>
+<li><a href="#_1">问题描述</a></li>
+<li><a href="#_2">分析</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="_1">问题描述</h2>
+<p>请对下面的多项式<mathjax>$ A_n(x) $</mathjax>进行因式分解：</p>
+<p><mathjax>$$ A_n(x) = x^n - 1 \tag{1}$$</mathjax></p>
+<p>其中，<mathjax>$ n \in \text{N}^* $</mathjax>。</p>
+<h2 id="_2">分析</h2>
+<p>对于<mathjax>$ n = 1$</mathjax>的情况，我们无需分解。对于<mathjax>$n = 2 $</mathjax>的情况，我们可以分解为<mathjax>$ (x - 1)(x + 1) $</mathjax>。<br />
+如果次数更高，这个问题就比较棘手。</p>
+<p>对于这个问题，我们有如下的定理：</p>
+<p><mathjax>$$ m \mid n \Longrightarrow (x^m - 1) \mid (x^n - 1) \tag{2}$$</mathjax></p>
+<p>这个定理可以用多项式除法来验证。</p>
+<p>因此，我们为了分解<mathjax>$(1)$</mathjax>式，首先用<mathjax>$\Theta(\sqrt{n})$</mathjax>的时间对<mathjax>$n$</mathjax>进行分解质因数，从而能找到<mathjax>$(1)$</mathjax>的几个因式，然后原始就可以表示成几个形如<mathjax>$(x^a - 1)(x^b - 1) \cdots (x^z - 1)$</mathjax>的形式，从而能够递归的继续分解。</p>
+<p>然而我们需要注意一点：以<mathjax>$n=6$</mathjax>为例，<mathjax>$6$</mathjax>的因子有<mathjax>$1$</mathjax>、<mathjax>$2$</mathjax>、<mathjax>$3$</mathjax>和<mathjax>$6$</mathjax>。我们发现选择了<mathjax>$(x^6 - 1)$</mathjax>作为因式跟没选一样。然而选择其它的因子时发现更严重的问题：</p>
+<p><mathjax>$$ (x - 1) \mid (x^3 - 1) \Longrightarrow (x - 1) \nmid {x^6 - 1 \over x^3 - 1} $$</mathjax></p>
+<p>这样导致几个因子间会有冲突，因此我们无法直接选择因式。</p>
+<p>为了解决这个问题，我们定义一系列的多项式<mathjax>$ p_n(x) $</mathjax>：</p>
+<p><mathjax>$$ p_n(x) = { x^n - 1 \over \prod_{i \mid n}p_i(x)} \; (i \neq n) \tag{3}$$</mathjax></p>
+<p>实际上，这些多项式只是将原本<mathjax>$ x^n - 1 $</mathjax>中的非本身因式去掉了，这样使得：</p>
+<p><mathjax>$$ (x - 1) \mid {x^6 - 1 \over p_3(x) } $$</mathjax></p>
+<p>因为</p>
+<p><mathjax>$$
+{x^6 - 1 \over p_3(x) } = {x^6 - 1 \over {(x^3 - 1) / (x - 1)}} = (x - 1) \cdot {x^6 - 1 \over x^3 - 1}
+$$</mathjax></p>
+<p>这样，我们可以将任意的<mathjax>$ A_n(x) $</mathjax>表示为如下形式：</p>
+<p><mathjax>$$ A_n(x) = \prod_{i \mid n} p_i(x) \tag{4}$$</mathjax></p>
+<p>根据<mathjax>$(3)$</mathjax>式和<mathjax>$(4)$</mathjax>式，递推完<mathjax>$ p_n(x) $</mathjax>后，我们就可以将<mathjax>$ A_n(x) $</mathjax>中的每一项都求解出来。如果多项式除法的时间复杂度为<mathjax>$ \Theta(g(n)) $</mathjax>，那么我们可以在<mathjax>$ \Theta(n\sqrt{n} \cdot g(n)) + \Theta(\sqrt{n}) = \Theta(n\sqrt{n} \cdot g(n))$</mathjax>的时间内对<mathjax>$ A_n(x) $</mathjax>进行因式分解。</p>
+<hr/>
+<a href="x-2-1-printable.html">查看打印版本</a><br/>
+标签: <span class="label label-default">数学</span> <span class="label label-default">多项式</span><br/>
+创建时间: 2016.3.21<br/>
+上次修改: 2016.3.21
+<div class="ds-thread" data-thread-key="9dd4e461268c8034f5c8564e155c67a6" data-title="x" data-url="http://riteme.github.io/blog/2016-3-21/x-2-1.html"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"riteme"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (
+        document.location.protocol == 'https:' ? 'https:' : 'http:'
+    ) + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+<div><font size="1" color="silver">Powered by <a href="https://pages.github.com">GitHub Pages</a> and <a href="http://www.pythonhosted.org/Markdown/">Python-Markdown</a>.</br>
+Copyright 2015-2016 riteme. All rights reserved.</font></div>
+</div>
+</div>
+</body>
+</html>
