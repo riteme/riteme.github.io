@@ -96,7 +96,7 @@ class Parser(object):
         flag = False
         is_temporary = False
         panel_started = False
-        info_matcher = re.compile("([a-zA-Z]+):\s*([\w\s\d+-/\\\.]*)")
+        # info_matcher = re.compile("([a-zA-Z]+):\s*([\w\s\d+-/\\\.]*)")
         info = {}
         content = []
 
@@ -108,10 +108,13 @@ class Parser(object):
             elif line.startswith("[temporary]"):
                 is_temporary = True
             elif flag:
-                match = info_matcher.match(line)
+                # match = info_matcher.match(line)
 
-                if match is not None:
-                    info[match.group(1)] = match.group(2)
+                # if match is not None:
+                #     info[match.group(1)] = match.group(2)
+                key, value = [s.strip() for s in line.split(":")]
+                info[key] = value
+
             else:
                 is_parsed = False
 
