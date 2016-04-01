@@ -35,4 +35,4 @@ tags: Home
 
 #### 友情链接
 Link的狗窝： [Dog's House](http://link-arthur.github.io/)  
-Ruan xingzhi的博客： [Ruan xingzhi](http://ruanxz.ml)
+Ruan xingzhi的博客： [Ruan xingzhi](http://ruanxingzhi.github.io/)
