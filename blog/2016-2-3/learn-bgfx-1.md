@@ -261,7 +261,7 @@ g++ -std=c++11 main.cpp -o exec -L. -lbgfxRelease -lexample-commonRelease -lpthr
 注意编译器要打开C++11支持，如果你的编译器不支持C++11，那我很好奇你是怎么把bgfx编译成功的。  
 `-lpthread`、`-lGL`和`-lX11`是bgfx依赖的库，分别是POSIX线程库、OpenGL库和X11库。
 
-如果没有错误报出，运行`a.out`就能看到以下窗口：
+如果没有错误报出，运行`exec`就能看到以下窗口：
 
 ```shell
 ./exec
