@@ -101,7 +101,7 @@ class Parser(object):
         content = []
 
         for line in fp:
-            line = line[:-1]  # 忽略结尾换行
+            line = line.strip()  # 忽略结尾换行
 
             if line.startswith("---"):
                 flag = not flag
