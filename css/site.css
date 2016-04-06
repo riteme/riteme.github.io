@@ -120,3 +120,22 @@ pre{
     border:1px solid #cccccc;
     /*border-radius:4px*/
 }
+
+table {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+td, th {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+th {
+    background-color: #cccccc;
+}
+
+td.linenos, td.code {
+    padding-left: 0px;
+    padding-right: 0px;
+}

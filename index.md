@@ -14,6 +14,9 @@ tags: Home
 我的知乎: <https://www.zhihu.com/people/riteme>
 
 #### Recent Posts
+##### 2016-4-6
+* [替罪羊树(Scapegoat Tree)](./blog/2016-4-6/scapegoat.html): 二叉平衡树替罪羊树
+
 ##### 2016-3-21
 * [x^n-1问题](./blog/2016-3-21/x-2-1.html): 对x^n-1进行因式分解
 
