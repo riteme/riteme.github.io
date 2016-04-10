@@ -14,6 +14,9 @@ tags: Home
 我的知乎: <https://www.zhihu.com/people/riteme>
 
 #### Recent Posts
+##### 2016-4-10
+* [秩平衡树(Rank Balanced Tree)](./blog/2016-4-10/rank-tree.html): 利用秩进行平衡的二叉搜索树
+
 ##### 2016-4-6
 * [替罪羊树(Scapegoat Tree)](./blog/2016-4-6/scapegoat.html): 二叉平衡树替罪羊树
 
