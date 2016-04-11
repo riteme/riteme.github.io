@@ -139,3 +139,14 @@ td.linenos, td.code {
     padding-left: 0px;
     padding-right: 0px;
 }
+
+blockquote {
+    background: #eeeeee;
+    color: #666666;
+    border-left: 5px solid #cccccc;
+}
+
+hr {
+    height: 1px;
+    background-color: #e5e5e5;
+}

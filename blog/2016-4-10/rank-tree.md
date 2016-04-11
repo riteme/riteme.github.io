@@ -6,7 +6,7 @@ tags: 数据结构 平衡二叉树 Rank-Tree
 ---
 # 秩平衡树(Rank Balanced Tree)
 > riteme: “这是并查集和Treap的杂交品种。”  
-> tplink: “贼式二叉树！”
+> tplink: “贼式二叉树！”  
 > ruanxz: “ZY！”
 
 [TOC]
@@ -22,7 +22,7 @@ $$ x.\text{rank} = \max\{x.\text{left}.\text{rank}, x.\text{right}.\text{rank}\}
 
 树的秩我们使用`UPDATE`函数来维护：
 
-```js
+```
 function UPDATE(h):
     h.rank = max(h.left.rank, h.right.rank) + 1
 ```
@@ -39,9 +39,9 @@ function UPDATE(h):
 ## 2 旋转
 众所周知，二叉搜索树的旋转操作可以保持树的有序性，同时可以通过旋转的组合来实现许多操作。因此我们先实现左旋(`LEFT-ROATE`)和右旋(`RIGHT-ROTATE`)。  
 左旋是将左子树旋转上来顶替自己的位置，右旋类似。  
-旋转时要确保左右子树不是$nil$。
+旋转时要确保左子树或右子树不是$nil$。
 
-```js
+```
 function LEFT-ROTATE(h):
     ASSERT h.left != nil
     
@@ -69,12 +69,12 @@ function RIGHT-ROTATE(h):
 
 例如，要对节点`x`进行左旋转时，我们这样调用：
 
-```js
+```
 x = LEFT-ROTATE(x)
 ```
 
 ## 3 普通秩平衡树
-> P: 并查集 x Treap
+> P: 并查集 x Treap  
 > -> F1: “贼式二叉树”
 
 秩平衡树的样子与二叉搜索树并没有什么区别。  
@@ -84,7 +84,7 @@ x = LEFT-ROTATE(x)
 查询中没有对树的形状的修改，因此什么特殊的操作都不要。  
 故查询操作和普通的二叉搜索树是一样的。
 
-```js
+```
 function QUERY(h, key):
     if h = nil:
         return nil  // 没有查找到
@@ -98,21 +98,21 @@ function QUERY(h, key):
 ```
 
 ### 3.2 平衡
-准确的说，这个操作并**不能保持平衡**，而只是能使树向平衡的方向发展。  
+准确的说，这个操作并**不能维护平衡**，而只是能使树向平衡的方向发展。  
 进行平衡的依据就是**树的秩**。当左右子树的秩差距太大，我们就要采取行动来使其减小差距。
 
 首先我们设定一个秩的差距的最大容忍值$t$。这个值是一个正整数，并且值选取的愈小树就会变得愈平衡。当$t=1$时，秩平衡树大多数情况下就是完全平衡的二叉树。  
 在普通的秩平衡树中，我们一般选定为$1$：
 
-```js
+```
 TOLERANCE = 1
 ```
 
-设定这个值的意义在于定义了平衡的出发标准。如果左右子树的秩的差距大于$t$，那么就要减小差距。  
+设定这个值的意义在于定义了平衡的触发标准。如果左右子树的秩的差距大于$t$，那么就要减小差距。  
 减小差距的方法就是将树根通过旋转的方式进入秩较小的子树中，这样使得秩较小的子树的秩增加，秩较大的子树的秩减小。  
 于是我们得到了一个大致的平衡代码：
 
-```js
+```
 function BALANCE(h):
     if h.left.rank > h.right.rank and
        h.left.rank - h.right.rank > TOLERANCE:   // 左子树的秩较大
@@ -156,7 +156,7 @@ function BALANCE(h):
 
 完整的平衡代码如下：
 
-```js
+```
 function BALANCE(h):
     if h.left.rank > h.right.rank and
        h.left.rank - h.right.rank > TOLERANCE:   // 左子树的秩较大
@@ -182,7 +182,7 @@ function BALANCE(h):
 插入与普通的二叉搜索树差不多，只是在最后回溯的时候维护树的平衡。  
 因此我们可以很快的写出插入操作：
 
-```js
+```
 function INSERT(h, key):
     if h = nil:
         return new Node with key
@@ -199,7 +199,7 @@ function INSERT(h, key):
 与插入类似，删除的代码和二叉搜索树的保持一致，只要最后记得进行平衡即可。  
 这里我们采用将被删除节点下沉的方法来进行删除：
 
-```js
+```
 function REAL-REMOVE(h):  // 删除指定的节点
     if h.left != nil and h.right != nil:
         // 如果有两个非空子树就继续下沉
@@ -249,7 +249,7 @@ function REMOVE(h, key):
 在实际效率上，秩平衡树比Treap略快，与伸展树相比常数稍大一些。在查询操作很多的时候，秩平衡树比较占优势。
 
 ## 4 可合并秩平衡树
-> F1: “贼式二叉树” x 可持久化Treap
+> F1: “贼式二叉树” x 可持久化Treap  
 > -> F2: “可合并秩平衡树”
 
 如果只是一棵单纯BST，未免太过无聊......  
@@ -283,7 +283,7 @@ $$ x.\text{size} = x.\text{left}.\text{size} + x.\text{right}.\text{size} + 1 \t
 
 此时我们将在`UPDATE`函数中维护树的大小：
 
-```js
+```
 function UPDATE(h):
     h.size = h.left.size + h.right.size + 1
     h.rank = max(h.left.rank, h.right.rank) + 1
@@ -296,7 +296,7 @@ function UPDATE(h):
 
 这个过程非常简单，代码实现也是如此：
 
-```js
+```
 function SPLIT(h, k):
     if h = nil:
         return (nil, nil)  // 如果是空树，那么不需要拆分
@@ -330,7 +330,7 @@ function SPLIT(h, k):
 
 合并的伪代码如下：
 
-```js
+```
 function MERGE(a, b):
     if a = nil:
         return b
@@ -365,7 +365,7 @@ function MERGE(a, b):
 
 根据上面的理论，我们可以写出查询排名的操作：
 
-```js
+```
 function RANK(h, key):
     if h = nil:
         return 1
@@ -380,7 +380,7 @@ function RANK(h, key):
 
 当然，我们希望这个操作越快越好。现代绝大部分的语言的编译器/解释器...都能够对尾递归进行优化。上面的`RANK`操作可以被我们改为尾递归，从而充分利用优化的优势：
 
-```js
+```
 function RANK(h, key, offest = 0):  // 利用offest进行尾递归优化
     if h = nil:
         return 1 + offest
@@ -395,7 +395,7 @@ function RANK(h, key, offest = 0):  // 利用offest进行尾递归优化
 
 如果没有优化，也没有关系，因为能尾递归的函数，基本上都可以写成迭代的形式：
 
-```js
+```
 function RANK(h, key):
     offest = 0
     
@@ -429,7 +429,7 @@ function RANK(h, key):
 #### 4.5.2 插入
 设要插入的节点的排名为$k$，那么先将树拆分为$[1, k-1]$和$[k, n]$两部分，然后依次合并。
 
-```js
+```
 function INSERT(h, key):
     x = new Node with key
     
@@ -442,7 +442,7 @@ function INSERT(h, key):
 #### 4.5.3 删除
 设要删除的节点的排名为$k$，那么将树拆分为$[1,k-1]$、$[k+1,n]$和被删除的节点三部分，然后只将左右合并即可。
 
-```js
+```
 function REMOVE(h, key):
     k = RANK(h, key)
     a1, a2 = SPLIT(h, k - 1)
@@ -456,7 +456,7 @@ function REMOVE(h, key):
 #### 4.5.4 第k小
 直接拆就好了。
 
-```js
+```
 function KTH(h, k):
     a1, a2 = SPLIT(h, k - 1)
     b1, b2 = SPLIT(a2, 1)
@@ -468,9 +468,9 @@ function KTH(h, k):
 #### 4.5.5 截取区间
 这才是区间操作的关键吧...  
 但是我们只要拆拆合合就搞定了...  
-最后要即得合并就好了。
+最后要记得合并就好了。
 
-```js
+```
 function SLICE(h, left, right):
     a1, a2 = SPLIT(h, left - 1)
     b1, b2 = SPLIT(a2, right - left + 1)
@@ -481,4 +481,4 @@ function SLICE(h, left, right):
 ### 4.6 总结
 在实际的测试中，秩平衡树的表现非常不错，比可持久化Treap快了很多，并且在区间操作上能和伸展树不相上下。
 
-现在我们重新来考虑$t$这个容忍值的选取。在之前普通的秩平衡树中，我们认为$1$是最小值。而现在就未必。如果数据完全随即，我们其实并不要平衡。但这样在极端数据的情况下，不平衡会退化为一条链。但是过多的平衡会影响常数。因此，$t$可以稍微区大一点，但不能过度。一般情况下，最好选择$2$到$6$中的值。
+最后我们重新来考虑$t$这个容忍值的选取。在之前普通的秩平衡树中，我们认为$1$是最小值。而现在就未必。如果数据完全随机，我们其实并不要平衡。但这样在极端数据的情况下，不平衡会退化为一条链。但是过多的平衡会影响常数。因此，$t$可以稍微区大一点，但不能过度。一般情况下，最好选择$2$到$6$中的值。
