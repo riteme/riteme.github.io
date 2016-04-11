@@ -27,6 +27,7 @@ import re
 # from markdown.preprocessors import Preprocessor
 from markdown.postprocessors import Postprocessor
 
+from css_html_js_minify import process_single_html_file
 
 # Mathjax Extension
 class MathJaxPattern(markdown.inlinepatterns.Pattern):
@@ -197,7 +198,7 @@ def generate(filepath):
 
     navigater.handle("favicon", "favicon.png")
     navigater.handle("home", "index.html")
-    navigater.handle("css", "css/site.css")
+    navigater.handle("css", "css/site.min.css")
     navigater.handle("mathjax", "mathjax/MathJax.js")
     navigater.home_folder = os.path.dirname(filepath)
 
@@ -277,6 +278,10 @@ var duoshuoQuery = {short_name:"riteme"};
             mathjax=mathjax,
             css=css
         ))
+
+    # Minify
+    process_single_html_file(new_file, overwrite=True)
+    process_single_html_file(new_printable, overwrite=True)
 
 if __name__ == "__main__":
     import sys
