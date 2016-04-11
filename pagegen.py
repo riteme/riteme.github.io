@@ -27,8 +27,6 @@ import re
 # from markdown.preprocessors import Preprocessor
 from markdown.postprocessors import Postprocessor
 
-from css_html_js_minify import process_single_html_file
-
 # Mathjax Extension
 class MathJaxPattern(markdown.inlinepatterns.Pattern):
 
@@ -278,10 +276,6 @@ var duoshuoQuery = {short_name:"riteme"};
             mathjax=mathjax,
             css=css
         ))
-
-    # Minify
-    process_single_html_file(new_file, overwrite=True)
-    process_single_html_file(new_printable, overwrite=True)
 
 if __name__ == "__main__":
     import sys
