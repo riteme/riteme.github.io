@@ -14,6 +14,9 @@ tags: Home
 我的知乎: <https://www.zhihu.com/people/riteme>
 
 #### Recent Posts
+##### 2016-4-12
+*[平面计算几何](./blog/2016-4-12/geometry.html): 计算几何的基础知识和算法
+
 ##### 2016-4-10
 * [秩平衡树(Rank Balanced Tree)](./blog/2016-4-10/rank-tree.html): 利用秩进行平衡的二叉搜索树
 
@@ -28,14 +31,6 @@ tags: Home
 
 ##### 2016-2-5
 * [DevIL快速入门](./blog/2016-2-5/devil-usage.html): 了解图片库DevIL
-
-##### 2016-2-4
-* [正式开始编写ne2d](./blog/2016-2-4/ne2d-1.html): 启动ne2d
-* [编译并使用bgfx](./blog/2016-2-3/learn-bgfx-1.html): bgfx在Ubuntu上编译
-* [测试多说](./blog/2016-2-4/comments.html): 测试多说评论系统
-
-##### 2016-2-2
-* [最小费用最大流](./blog/2016-2-2/mincost-maxflow.html): 增广路算法
 
 [**查看全部**](./posts.html)
 

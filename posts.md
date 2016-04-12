@@ -5,6 +5,9 @@ modified: 2016.2.1
 tags: Posts
 ---
 #### 所有文章
+##### 2016-4-12
+*[平面计算几何](./blog/2016-4-12/geometry.html): 计算几何的基础知识和算法
+
 ##### 2016-4-10
 * [秩平衡树(Rank Balanced Tree)](./blog/2016-4-10/rank-tree.html): 利用秩进行平衡的二叉搜索树
 
