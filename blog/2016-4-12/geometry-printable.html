@@ -12,7 +12,12 @@
 <ul>
 <li><a href="#_1">平面计算几何</a><ul>
 <li><a href="#1">1 线段</a></li>
-<li><a href="#2">2 叉积</a></li>
+<li><a href="#2">2 叉积</a><ul>
+<li><a href="#21">2.1 定义</a></li>
+<li><a href="#22">2.2 几何解释</a></li>
+<li><a href="#23">2.3 计算面积</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -23,12 +28,9 @@
 <p>一般来说，我们所见的线段都是不定方向的。但在计算几何中，我们会借助<strong>向量</strong>这一强大的工具，因此我们需要将线段表示成<strong>有向线段(Directed Segment)</strong>的形式。如下图所示：</p>
 <p><img alt="segment-2" src="http://git.oschina.net/riteme/blogimg/raw/master/geometry/segment-2.svg" /></p>
 <p>事实上，有向线段就是一个向量。在上面，线段<mathjax>$AB$</mathjax>被向量<mathjax>$\vec{AB}$</mathjax>所替代。<br />
-同样，我们也可以用<mathjax>$\vec{BA}$</mathjax>来表示。</p>
-<p>接下来，我们将研究非常基础的问题：<strong>判定线段是否相交</strong>。<br />
-这件工作对于人类来说是非常简单的，然而我们要能设计出一个算法来实现。<br />
-首先我们会有一个<mathjax>$\Theta(1)$</mathjax>的时间内判定两条线段是否相交的算法，于是我们就可以在<mathjax>$\Theta(n^2)$</mathjax>的时间内来判定<mathjax>$n$</mathjax>条直线内是否有线段相交。<br />
-之后，我们将改进这一算法，使得在<mathjax>$\Theta(n\log n)$</mathjax>的时间内来完成这一任务。</p>
+同样，我们也可以用相反的向量<mathjax>$\vec{BA}$</mathjax>来表示<mathjax>$AB$</mathjax>。</p>
 <h2 id="2">2 叉积</h2>
+<h3 id="21">2.1 定义</h3>
 <p>对于两个向量<mathjax>$p_1$</mathjax>和<mathjax>$p_2$</mathjax>，它们的<strong>叉积(Cross Product)</strong><mathjax>$p_1 \times p_2$</mathjax>的定义如下：
 <mathjax>$$
 p_1 \times p_2 = 
@@ -40,6 +42,7 @@ x_1y_2 - x_2y_1
 \tag{2.1}
 $$</mathjax></p>
 <p>上面的定义使用了行列式，初学者可能感到迷糊。好在叉积有着很好的几何解释。</p>
+<h3 id="22">2.2 几何解释</h3>
 <p>下图中，向量<mathjax>$p_1$</mathjax>和向量<mathjax>$p_2$</mathjax>的叉积<mathjax>$p_1 \times p_2$</mathjax>就是它们和与<mathjax>$p_1$</mathjax>平行的向量<mathjax>$p_3$</mathjax>和与<mathjax>$p_2$</mathjax>平行的向量<mathjax>$p_4$</mathjax>所围成的平行四边形<mathjax>$ABCD$</mathjax>的<strong>有向面积</strong>。</p>
 <p><img alt="cross-product-1" src="http://git.oschina.net/riteme/blogimg/raw/master/geometry/cross-product-1.svg" /></p>
 <p>为什么会是有向面积呢？你可以自己造个数据来算一下，你会发现<mathjax>$p_1 \times p_2 = -p_2 \times p_1$</mathjax>。</p>
@@ -58,10 +61,53 @@ $$</mathjax></p>
 <mathjax>$$ |BE| = |p_1| \sin \alpha $$</mathjax></p>
 <p>因此：
 <mathjax>$$ p_1 \times p_2 = |p_1|\cdot|p_2|\sin \alpha \tag{2.2} $$</mathjax></p>
-<p>但是显然这样的公式对于计算机而言需要大量的浮点数运算，所以用这个公式计算叉积精度可能不高。但是这个公式可以改为下面的形式：
+<p>但是显然这样的公式对于计算机而言需要大量的浮点数运算，所以用这个公式计算叉积精度可能不高。<br />
+但是这个公式可以改为下面的形式：
 <mathjax>$$ \alpha = \sin^{-1}\left({p_1 \times p_2 \over |p_1| \cdot |p_2|}\right) \tag{2.3}$$</mathjax></p>
 <p>这样我们可以利用这个公式来计算两个向量间的夹角。</p>
 <p>如果两个向量的起点都不在原点时，该怎么计算这个有向面积呢？<br />
 这其实相当简单，我们将两个向量的公共起点作为原点，然后运用<strong>向量减法</strong>来计算相对向量，然后就可以计算了。</p>
+<h3 id="23">2.3 计算面积</h3>
+<p>下面我们将利用叉积来计算<strong>简单多边形</strong>的面积。<br />
+首先，简单多边形时多边形中没有边相交的多边形。注意包括<strong>凸多边形</strong>以及令人讨厌的<strong>凹多边形</strong>。</p>
+<p>首先从平行四边形入手。</p>
+<p><img alt="area" src="http://git.oschina.net/riteme/blogimg/raw/master/geometry/cross-product-1.svg" /></p>
+<p>这是之前的图。虽然向量的叉积算出来时有向面积，但是我们只用取绝对值，就是平行四边形的面积了。<br />
+对于三角形，通过对称的方法可以构造出平行四边形。因此三角形就是叉积的绝对值的一半。</p>
+<p>先来看一下正方形：</p>
+<p><img alt="area" src="http://git.oschina.net/riteme/blogimg/raw/master/geometry/area-1.svg" /></p>
+<p>显然，它的面积是<mathjax>$1$</mathjax>。<br />
+但现在要你用向量的方法来计算，该怎么办?</p>
+<p>我们的正方形是用一组向量来表示的(<mathjax>$\vec{AB}$</mathjax>、<mathjax>$\vec{BC}$</mathjax>、<mathjax>$\vec{CD}$</mathjax>和<mathjax>$\vec{DA}$</mathjax>)，并且按照逆时针排列，这样就指定了顶点的顺序。<br />
+然后我们按照下面的流程来计算面积：</p>
+<ol>
+<li>在平面内任选一点作为原点。  </li>
+<li>按照有向边的顺序依次计算叉积并累积求和，最后的结果除以<mathjax>$2$</mathjax>就是多边形的面积。</li>
+</ol>
+<p>现在我们来演示一次：</p>
+<p><img alt="area" src="http://git.oschina.net/riteme/blogimg/raw/master/geometry/area-2.svg" /></p>
+<p><strong>选定原点</strong>，平面内任意一个点都可以。这里选择的是<mathjax>$O$</mathjax>点。</p>
+<p><img alt="area" src="http://git.oschina.net/riteme/blogimg/raw/master/geometry/area-3.svg" /></p>
+<p><strong>计算叉积</strong>，首先是<mathjax>$\vec{AB}$</mathjax>，我们计算的是<mathjax>$\vec{OA} \times \vec{OB} = -1 $</mathjax>。</p>
+<p><img alt="area" src="http://git.oschina.net/riteme/blogimg/raw/master/geometry/area-4.svg" /></p>
+<p>然后是<mathjax>$\vec{BC}$</mathjax>，<mathjax>$\vec{OB} \times \vec{OC} = 2$</mathjax>。</p>
+<p><img alt="area" src="http://git.oschina.net/riteme/blogimg/raw/master/geometry/area-5.svg" /></p>
+<p>之后是<mathjax>$\vec{CD}$</mathjax>，<mathjax>$\vec{OC} \times \vec{OD} = 2$</mathjax>。</p>
+<p><img alt="area-4" src="http://git.oschina.net/riteme/blogimg/raw/master/geometry/area-6.svg" /></p>
+<p>最后是<mathjax>$\vec{DA}$</mathjax>，<mathjax>$\vec{OD} \times \vec{OA} = -1$</mathjax>。<br />
+将叉积结果累加起来并除以<mathjax>$2$</mathjax>，得到<mathjax>$ S_{ABCD} = 1$</mathjax>。<br />
+算法得到了正确结果。</p>
+<p>事实上，这个算法就是简单多边形的面积算法。那么，为什么这样计算是正确的呢？</p>
+<p>我们首先来考虑<mathjax>$\vec{AB}$</mathjax>和<mathjax>$\vec{BC}$</mathjax>。</p>
+<p><img alt="area" src="http://git.oschina.net/riteme/blogimg/raw/master/geometry/area-7.svg" /></p>
+<p>这两个向量从<mathjax>$O$</mathjax>的角度来看，它们是相反的方向，并且它们叉积出来的结果是异号的。<br />
+我们可以发现，<mathjax>${\vec{OA} \times \vec{OB} \over 2}$</mathjax>就是<mathjax>$-S_{\triangle OBA}$</mathjax>，<mathjax>${\vec{OB} \times \vec{OC} \over 2}$</mathjax>就是<mathjax>$S_{\triangle OBC}$</mathjax>，<mathjax>$S_{\triangle OBC}-S_{\triangle OBA} = S_{\triangle ABC}$</mathjax>。因此这一对边就可以计算出这个正方形一半的面积。对于另一半，也是如此。<br />
+因此，我们发现，这个算法时先计算这个多边形与选定的原点构成的更大的多边形的面积：</p>
+<p><img alt="area" src="http://git.oschina.net/riteme/blogimg/raw/master/geometry/area-8.svg" /></p>
+<p>上图就是线计算了<mathjax>$S_{OCDEFG}$</mathjax>。这几条边的叉积之和为正数。</p>
+<p>然后计算不属于多边形的部分：</p>
+<p><img alt="area" src="http://git.oschina.net/riteme/blogimg/raw/master/geometry/area-9.svg" /></p>
+<p>上图中就是计算<mathjax>$S_{OCBAG}$</mathjax>，而这几条边的叉积之和是负数。因此相加后就只剩下多边形的面积了。<br />
+又因为叉积计算的是平行四边形的面积，所以最后要除以<mathjax>$2$</mathjax>。</p>
 </body>
 </html>

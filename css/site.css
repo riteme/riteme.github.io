@@ -135,3 +135,7 @@ hr {
     height: 1px;
     background-color: #e5e5e5;
 }
+
+img {
+    max-width: 100%;
+}
