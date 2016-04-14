@@ -5,12 +5,12 @@
 def generate_title(title):
     assert isinstance(title, str), "Title must be strings!"
 
-    return " - {}".format(title)
+    return title
 
 
 def generate_time(year, month, day):
-    return "{YYYY}.{MM}.{DD}".format(
-        YYYY=year,
-        MM=month,
-        DD=day
+    return "{}.{:0>2}.{:0>2}".format(
+        year,
+        month,
+        day
     )
