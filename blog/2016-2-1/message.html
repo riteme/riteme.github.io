@@ -36,17 +36,17 @@
    为了说明这个问题，我放一张图解释一下。<br />
    下面是一张有向图：<br />
 <img alt="digraph" src="http://7xq4ng.com1.z0.glb.clouddn.com/message-digraph-1.png" /><br />
-   假如我们第一次从<code>2</code>出发，DFS完后将<code>2</code>之后的点都打上了标记。
+   假如我们第一次从<code>2</code>出发，DFS完后将<code>2</code>之后的点都打上了标记。<br />
    然后从<code>1</code>出发继续寻找，发现<code>2</code>被打上了标记，会误认为是一个环，导致错误的结果。<br />
-   解决方法很简单，我们给每次DFS一个不同的编号，通常从1开始。
-   我们默认如果点的标记为0表示还没有访问过。
-   如果还没有访问，做的标记就是本次DFS的编号。因此，只要发现被标记的点是自己打上的，才说明发现了环。
+   解决方法很简单，我们给每次DFS一个不同的编号，通常从1开始。<br />
+   我们默认如果点的标记为0表示还没有访问过。<br />
+   如果还没有访问，做的标记就是本次DFS的编号。因此，只要发现被标记的点是自己打上的，才说明发现了环。<br />
    如果发现了别的DFS打上的标记，就不必继续搜索了。</li>
 <li>有向环的长度计算。<br />
-   这个很好办，DFS中我们维护一个<mathjax>$dist$</mathjax>数组，表示到本次搜索起点的距离。
+   这个很好办，DFS中我们维护一个<mathjax>$dist$</mathjax>数组，表示到本次搜索起点的距离。<br />
    当发现有向环时，可以利用此数组算出来。</li>
 <li>递归优化。<br />
-   这个DFS由于不需要回溯之类的操作，并且<strong>题目中</strong>给出每个人只会将信息传给<strong>一个人</strong>，
+   这个DFS由于不需要回溯之类的操作，并且<strong>题目中</strong>给出每个人只会将信息传给<strong>一个人</strong>，<br />
    那么说明每个点的出度为1，因此我们可以将DFS改成递推的形式：</li>
 </ol>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1

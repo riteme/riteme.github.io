@@ -25,12 +25,12 @@
 </li>
 </ul>
 </div>
-<p>最近发现了一个似乎很好的图形引擎<a href="https://github.com/bkaradzic/bgfx" target="_blank">bgfx</a>。
-它是使用C++进行编写的，也有C99的接口，功能还比较丰富，支持DirectX 9/11和OpenGL 2.1+。
-这是一个跨平台的库，我在Ubuntu 14.04上编译了成功了。
+<p>最近发现了一个似乎很好的图形引擎<a href="https://github.com/bkaradzic/bgfx">bgfx</a>。<br />
+它是使用C++进行编写的，也有C99的接口，功能还比较丰富，支持DirectX 9/11和OpenGL 2.1+。<br />
+这是一个跨平台的库，我在Ubuntu 14.04上编译了成功了。<br />
 编译过程十分简单。本文就介绍<strong>Linux下</strong>的编译过程。</p>
 <h2 id="_1">编译</h2>
-<p>这里我只写了Linux的编译过程，其他平台我还没试过，具体参见<a href="https://bkaradzic.github.io/bgfx/build.html" target="_blank">bgfx's document</a>。<br />
+<p>这里我只写了Linux的编译过程，其他平台我还没试过，具体参见<a href="https://bkaradzic.github.io/bgfx/build.html">bgfx's document</a>。<br />
 首先需要编译器支持，确保你的编译器满足下列要求：</p>
 <ul>
 <li>Clang 3.3及以上  </li>
@@ -62,20 +62,22 @@ git clone git://github.com/bkaradzic/bgfx.git
 </pre></div>
 </td></tr></table>
 
-<div class="panel panel-info"><div class="panel-heading"><h3 class="panel-title">提示</h3></div><div class="panel-body">使用<code>make</code>还可以生成其他版本的，其格式是：<br/>
-<pre>
-make [平台]-[release/debug][32/64]
-</pre>
-例如，如果要生成32位的bgfx，使用以下命令：<br/>
-<pre>
-make linux-release32
-</pre>
-</div></div>
+<div class="panel panel-info"><div class="panel-heading"><h3 class="panel-title">提示</h3></div><div class="panel-body">
+使用<code>make</code>还可以生成其他版本的，其格式是：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>make <span class="o">[</span>平台<span class="o">]</span>-<span class="o">[</span>release/debug<span class="o">][</span>32/64<span class="o">]</span>
+</pre></div>
+</td></tr></table>
 
+<p>例如，如果要生成32位的bgfx，使用以下命令：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>make linux-release32
+</pre></div>
+</td></tr></table>
+
+</div></div>
 <p>如果编译过程中没有报错，那么在<code>.build/</code>文件夹下会有对应的编译后的文件。</p>
 <h2 id="_2">运行样例</h2>
-<p>bgfx提供了很多样例，编译后的样例在<code>.build/</code>对应的文件夹下(我的就在<code>.build/linux64_gcc/bin/</code>下），在目前bgfx没有什么教程的情况下是很好的学习资料。
-由于样例需要很多资源文件（如着色器、材质之类的），而它们都在<code>exmaples/runtime</code>目录下，
+<p>bgfx提供了很多样例，编译后的样例在<code>.build/</code>对应的文件夹下(我的就在<code>.build/linux64_gcc/bin/</code>下），在目前bgfx没有什么教程的情况下是很好的学习资料。<br />
+由于样例需要很多资源文件（如着色器、材质之类的），而它们都在<code>exmaples/runtime</code>目录下，<br />
 因此需要在<code>exmaples/runtime</code>目录下用相对路径来运行。</p>
 <p>首先我们切换到样例的目录。对我而言，使用以下命令：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nb">cd</span> .build/linux64_gcc/bin/
@@ -134,7 +136,7 @@ example-16-shadowmapsRelease         texturecRelease
 
 <p>如果不出意外，能看到以下窗口（图片来自<code>bgfx document</code>）：</p>
 <p><img alt="bgfx helloworld" src="https://github.com/bkaradzic/bgfx/raw/master/examples/00-helloworld/screenshot.png" /></p>
-<p><a href="https://bkaradzic.github.io/bgfx/examples.html" target="_blank">bgfx的文档</a>也给出了样例的列表。</p>
+<p><a href="https://bkaradzic.github.io/bgfx/examples.html">bgfx的文档</a>也给出了样例的列表。</p>
 <h2 id="bgfx_1">编译我们自己的bgfx程序</h2>
 <p>为了通用性，这里使用最基础的终端编译的方法，我们直接用<code>g++</code>进行编译。</p>
 <p>首先，我们创建一个目录来存放我们的程序：</p>
@@ -150,10 +152,11 @@ example-16-shadowmapsRelease         texturecRelease
 </td></tr></table>
 
 <p>这时目录下会多出两个<code>.a</code>文件： <code>libbgfxRelease.a</code>和<code>libexample-commonRelease.a</code><br />
-<div class="panel panel-info"><div class="panel-heading"><h3 class="panel-title">静态库 vs 动态库</h3></div><div class="panel-body">我们在这里选用了静态库，而不是动态库，是考虑了用户的原因。<br />
+<div class="panel panel-info"><div class="panel-heading"><h3 class="panel-title">静态库 vs 动态库</h3></div><div class="panel-body">
+我们在这里选用了静态库，而不是动态库，是考虑了用户的原因。<br />
 因为bgfx没有什么很方便的安装方法，使用静态库就可以避免安装的过程，尽可能少的对用户的系统进行修改。<br />
-当然，使用静态库会增大程序体积。静态链接后，我们的bgfx程序会有3MB多...
-</div></div></p>
+当然，使用静态库会增大程序体积。静态链接后，我们的bgfx程序会有3MB多...<br />
+</div></div>
 <p>然后需要将bgfx及其依赖库的bx的头文件给复制进来。为了方便，我们还将bgfx用于样例的common库也复制进来：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -182,7 +185,7 @@ cp -rf <span class="o">[</span>bx的目录<span class="o">]</span>/include/* .  
 </pre></div>
 </td></tr></table>
 
-<p>然后添加<code>_main_</code>函数。注意之所以是<code>_main_</code>而不是<code>main</code>，是因为bgfx的common库为了更好的处理以已经将<code>main</code>实现了，
+<p>然后添加<code>_main_</code>函数。注意之所以是<code>_main_</code>而不是<code>main</code>，是因为bgfx的common库为了更好的处理以已经将<code>main</code>实现了，<br />
 于是设置<code>_main_</code>作为程序入口。</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -203,10 +206,10 @@ cp -rf <span class="o">[</span>bx的目录<span class="o">]</span>/include/* .  
 </pre></div>
 </td></tr></table>
 
-<div class="panel panel-info"><div class="panel-heading"><h3 class="panel-title">注意</h3></div><div class="panel-body">似乎<code>width</code>和<code>height</code>的设置是没有用的，似乎无论设为多少，打开后都会变成<code>1280x720</code>，我也不知道是为什么...</br>
-如果你也出现了这种情况，不要惊慌，不要害怕...
+<div class="panel panel-info"><div class="panel-heading"><h3 class="panel-title">注意</h3></div><div class="panel-body">
+似乎<code>width</code>和<code>height</code>的设置是没有用的，似乎无论设为多少，打开后都会变成<code>1280x720</code>，我也不知道是为什么...</br><br />
+如果你也出现了这种情况，不要惊慌，不要害怕...<br />
 </div></div>
-
 <p>下面是加载bgfx：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -263,27 +266,17 @@ cp -rf <span class="o">[</span>bx的目录<span class="o">]</span>/include/* .  
 </pre></div>
 </td></tr></table>
 
-<div class="panel panel-info"><div class="panel-heading"><h3 class="panel-title">注意</h3></div><div class="panel-body">在函数<code>bgfx::dbgTextPrintf</code>中，第三个参数是设置文字的前景色和背景色。<br/>
-其中，bgfx用<code>0-F</code>作为颜色的标记。在上面两位的十六进制数中，第一个指定背景色，第二个制定前景色。<br/>
-这里将这些颜色标记列出来：<br/>
-0: 无色<br/>
-1: <font style="color: #CC0000">暗红色</font>  
-2: <font style="color: #4E9A06">暗绿色</font>  
-3: <font style="color: #C4A000">黄色<font style="color: #FFFFFF">，</font></font><br/>
-4: <font style="color: #3465A4">蓝色<font style="color: #FFFFFF">，</font></font>  
-5: <font style="color: #75507B">紫色<font style="color: #FFFFFF">，</font></font>  
-6: <font style="color: #06989A">深蓝色</font><br/>
-7: <font style="color: #D3D7CF; background: #000000;">灰色</font><font style="color: #FFFFFF">，</font>  
-8: <font style="color: #555753">深灰色</font>  
-9: <font style="color: #EF2929">红色<font style="color: #FFFFFF">，</font></font><br/>
-A: <font style="color: #8AE234">嫩绿色</font>  
-B: <font style="color: #FCE94F">米黄色</font>  
-C: <font style="color: #729FCF">浅蓝色</font><br/>
-D: <font style="color: #AD7FA8">浅紫色</font>  
-E: <font style="color: #34E2E2">天蓝色</font>  
-F: <font style="color: #FFFFFF; background: #000000;">白色</font><br/>
+<div class="panel panel-info"><div class="panel-heading"><h3 class="panel-title">注意</h3></div><div class="panel-body">
+在函数<code>bgfx::dbgTextPrintf</code>中，第三个参数是设置文字的前景色和背景色。<br />
+其中，bgfx用<code>0-F</code>作为颜色的标记。在上面两位的十六进制数中，第一个指定背景色，第二个制定前景色。<br />
+这里将这些颜色标记列出来：<br />
+0: 无色<br />
+1: <font style="color: #CC0000">暗红色</font>  2: <font style="color: #4E9A06">暗绿色</font>  3: <font style="color: #C4A000">黄色<font style="color: #FFFFFF">，</font></font><br />
+4: <font style="color: #3465A4">蓝色<font style="color: #FFFFFF">，</font></font>  5: <font style="color: #75507B">紫色<font style="color: #FFFFFF">，</font></font>  6: <font style="color: #06989A">深蓝色</font><br />
+7: <font style="color: #D3D7CF; background: #000000;">灰色</font><font style="color: #FFFFFF">，</font>  8: <font style="color: #555753">深灰色</font>  9: <font style="color: #EF2929">红色<font style="color: #FFFFFF">，</font></font><br />
+A: <font style="color: #8AE234">嫩绿色</font>  B: <font style="color: #FCE94F">米黄色</font>  C: <font style="color: #729FCF">浅蓝色</font><br />
+D: <font style="color: #AD7FA8">浅紫色</font>  E: <font style="color: #34E2E2">天蓝色</font>  F: <font style="color: #FFFFFF; background: #000000;">白色</font><br />
 </div></div>
-
 <p>最后，当窗口关闭时，<code>entry::processEvents</code>就会返回<code>true</code>，于是退出循环，最后要退出bgfx：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">bgfx</span><span class="o">::</span><span class="n">shutdown</span><span class="p">();</span>
 </pre></div>

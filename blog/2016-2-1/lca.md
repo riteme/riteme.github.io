@@ -2,7 +2,8 @@
 title: 最近公共祖先(LCA)
 create: 2016.2.1
 modified: 2016.2.1
-tags: 算法 LCA
+tags: 算法
+      LCA
 ---
 前言：这是1个月前写的，只是当时博客没搭好，才没有放上来...
 

@@ -2,7 +2,9 @@
 title: DevIL快速入门
 create: 2016.2.5
 modified: 2016.2.5
-tags: C/C++ DevIL OpenGL
+tags: C/C++
+      DevIL
+      OpenGL
 ---
 # DevIL快速入门
 [DevIL](http://openil.sourceforge.net/)全名是“Developer's Image Library”，它是一个多功能的图像库，能过很方便地载入、修改和保存图片。

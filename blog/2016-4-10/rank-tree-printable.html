@@ -53,9 +53,9 @@ ruanxz: “ZY！”</p>
 <h2 id="1">1 秩</h2>
 <h3 id="11">1.1 树的秩高</h3>
 <p>这里先介绍<strong>”秩“</strong>的概念。我们定义一棵<strong>二叉树</strong>的秩为从为<strong>从根节点开始</strong>到<strong>其叶节点</strong>中<strong>最长的一条树链</strong>上结点的个数。<br />
-对于空结点<mathjax>$nil$</mathjax>，它的秩为<mathjax>$0$</mathjax>。
+对于空结点<mathjax>$nil$</mathjax>，它的秩为<mathjax>$0$</mathjax>。<br />
 <mathjax>$$ nil.\text{rank} = 0 \tag{1.1} $$</mathjax></p>
-<p>那么对于任意非空节点<mathjax>$x$</mathjax>，它的秩可以如下定义：
+<p>那么对于任意非空节点<mathjax>$x$</mathjax>，它的秩可以如下定义：<br />
 <mathjax>$$ x.\text{rank} = \max\{x.\text{left}.\text{rank}, x.\text{right}.\text{rank}\} + 1 \tag{1.2}$$</mathjax></p>
 <p>树的秩我们使用<code>UPDATE</code>函数来维护：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
@@ -395,9 +395,9 @@ function REMOVE(h, key):
 <p>接下来我们会继续用到秩平衡树的<code>BALANCE</code>操作，同时将增加两个基本操作：<code>SPLIT</code>和<code>MERGE</code>，表示拆分和合并。以及一个辅助操作<code>RANK</code><sup id="fnref:rank"><a class="footnote-ref" href="#fn:rank" rel="footnote">1</a></sup>来查找第<mathjax>$k$</mathjax>小的节点，这样我们就可以利用这些操作来实现各种各样的操作。</p>
 <h3 id="41">4.1 拆分</h3>
 <p>拆分操作是将树从第<mathjax>$k$</mathjax>小的节点处拆成<mathjax>$[1, k]$</mathjax>和<mathjax>$[k+1, n]$</mathjax>的两棵子树。<br />
-因为需要计算排名，所以每个节点都要记录一个<mathjax>$\text{size}$</mathjax>，表示子树中节点的个数，即子树的大小。同样，空节点的大小为<mathjax>$0$</mathjax>：
+因为需要计算排名，所以每个节点都要记录一个<mathjax>$\text{size}$</mathjax>，表示子树中节点的个数，即子树的大小。同样，空节点的大小为<mathjax>$0$</mathjax>：<br />
 <mathjax>$$ nil.\text{size} = 0 \tag{4.1} $$</mathjax></p>
-<p>对于每个节点<mathjax>$x$</mathjax>，它的大小定义如下：
+<p>对于每个节点<mathjax>$x$</mathjax>，它的大小定义如下：<br />
 <mathjax>$$ x.\text{size} = x.\text{left}.\text{size} + x.\text{right}.\text{size} + 1 \tag{4.2} $$</mathjax></p>
 <p>此时我们将在<code>UPDATE</code>函数中维护树的大小：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1

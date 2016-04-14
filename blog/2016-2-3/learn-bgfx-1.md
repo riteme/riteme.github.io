@@ -2,7 +2,10 @@
 title: 编译并使用bgfx
 create: 2016.2.3
 modified: 2016.2.4
-tags: C/C++ 图形 引擎 bgfx
+tags: C/C++
+      图形
+      引擎
+      bgfx
 ---
 # 编译并使用bgfx
 
@@ -48,14 +51,14 @@ make linux-release64
 ```
 
 [[[提示]]]
-使用<code>make</code>还可以生成其他版本的，其格式是：<br/>
-<pre>
+使用<code>make</code>还可以生成其他版本的，其格式是：
+```shell
 make [平台]-[release/debug][32/64]
-</pre>
-例如，如果要生成32位的bgfx，使用以下命令：<br/>
-<pre>
+```
+例如，如果要生成32位的bgfx，使用以下命令：
+```shell
 make linux-release32
-</pre>
+```
 [[[#]]]
 
 如果编译过程中没有报错，那么在`.build/`文件夹下会有对应的编译后的文件。
@@ -225,25 +228,15 @@ while (not entry::processEvents(width, height, debug, reset)) {
 ```
 
 [[[注意]]]
-在函数<code>bgfx::dbgTextPrintf</code>中，第三个参数是设置文字的前景色和背景色。<br/>
-其中，bgfx用<code>0-F</code>作为颜色的标记。在上面两位的十六进制数中，第一个指定背景色，第二个制定前景色。<br/>
-这里将这些颜色标记列出来：<br/>
-0: 无色<br/>
-1: <font style="color: #CC0000">暗红色</font>  
-2: <font style="color: #4E9A06">暗绿色</font>  
-3: <font style="color: #C4A000">黄色<font style="color: #FFFFFF">，</font></font><br/>
-4: <font style="color: #3465A4">蓝色<font style="color: #FFFFFF">，</font></font>  
-5: <font style="color: #75507B">紫色<font style="color: #FFFFFF">，</font></font>  
-6: <font style="color: #06989A">深蓝色</font><br/>
-7: <font style="color: #D3D7CF; background: #000000;">灰色</font><font style="color: #FFFFFF">，</font>  
-8: <font style="color: #555753">深灰色</font>  
-9: <font style="color: #EF2929">红色<font style="color: #FFFFFF">，</font></font><br/>
-A: <font style="color: #8AE234">嫩绿色</font>  
-B: <font style="color: #FCE94F">米黄色</font>  
-C: <font style="color: #729FCF">浅蓝色</font><br/>
-D: <font style="color: #AD7FA8">浅紫色</font>  
-E: <font style="color: #34E2E2">天蓝色</font>  
-F: <font style="color: #FFFFFF; background: #000000;">白色</font><br/>
+在函数<code>bgfx::dbgTextPrintf</code>中，第三个参数是设置文字的前景色和背景色。
+其中，bgfx用<code>0-F</code>作为颜色的标记。在上面两位的十六进制数中，第一个指定背景色，第二个制定前景色。
+这里将这些颜色标记列出来：
+0: 无色
+1: <font style="color: #CC0000">暗红色</font>  2: <font style="color: #4E9A06">暗绿色</font>  3: <font style="color: #C4A000">黄色<font style="color: #FFFFFF">，</font></font>
+4: <font style="color: #3465A4">蓝色<font style="color: #FFFFFF">，</font></font>  5: <font style="color: #75507B">紫色<font style="color: #FFFFFF">，</font></font>  6: <font style="color: #06989A">深蓝色</font>
+7: <font style="color: #D3D7CF; background: #000000;">灰色</font><font style="color: #FFFFFF">，</font>  8: <font style="color: #555753">深灰色</font>  9: <font style="color: #EF2929">红色<font style="color: #FFFFFF">，</font></font>
+A: <font style="color: #8AE234">嫩绿色</font>  B: <font style="color: #FCE94F">米黄色</font>  C: <font style="color: #729FCF">浅蓝色</font>
+D: <font style="color: #AD7FA8">浅紫色</font>  E: <font style="color: #34E2E2">天蓝色</font>  F: <font style="color: #FFFFFF; background: #000000;">白色</font>
 [[[#]]]
 
 最后，当窗口关闭时，`entry::processEvents`就会返回`true`，于是退出循环，最后要退出bgfx：

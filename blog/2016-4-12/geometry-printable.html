@@ -31,7 +31,7 @@
 同样，我们也可以用相反的向量<mathjax>$\vec{BA}$</mathjax>来表示<mathjax>$AB$</mathjax>。</p>
 <h2 id="2">2 叉积</h2>
 <h3 id="21">2.1 定义</h3>
-<p>对于两个向量<mathjax>$p_1$</mathjax>和<mathjax>$p_2$</mathjax>，它们的<strong>叉积(Cross Product)</strong><mathjax>$p_1 \times p_2$</mathjax>的定义如下：
+<p>对于两个向量<mathjax>$p_1$</mathjax>和<mathjax>$p_2$</mathjax>，它们的<strong>叉积(Cross Product)</strong><mathjax>$p_1 \times p_2$</mathjax>的定义如下：<br />
 <mathjax>$$
 p_1 \times p_2 = 
 \begin{vmatrix}
@@ -55,14 +55,14 @@ $$</mathjax></p>
 <p>利用这些性质，我们可以完成许多有趣的事情。</p>
 <p>同时，利用上面的图像，我们可以探究出叉积公式的另外一种形式：</p>
 <p><img alt="cross-product-2" src="http://git.oschina.net/riteme/blogimg/raw/master/geometry/cross-product-2.svg" /></p>
-<p>在前面的基础上，我们作<mathjax>$ BE \bot p_2 $</mathjax>，那么平行四边形<mathjax>$ABCD$</mathjax>的面积又可以表示为：
+<p>在前面的基础上，我们作<mathjax>$ BE \bot p_2 $</mathjax>，那么平行四边形<mathjax>$ABCD$</mathjax>的面积又可以表示为：<br />
 <mathjax>$$ S_{ABCD} = |p_2| \cdot |BE| $$</mathjax></p>
-<p>又因为：
+<p>又因为：<br />
 <mathjax>$$ |BE| = |p_1| \sin \alpha $$</mathjax></p>
-<p>因此：
+<p>因此：<br />
 <mathjax>$$ p_1 \times p_2 = |p_1|\cdot|p_2|\sin \alpha \tag{2.2} $$</mathjax></p>
 <p>但是显然这样的公式对于计算机而言需要大量的浮点数运算，所以用这个公式计算叉积精度可能不高。<br />
-但是这个公式可以改为下面的形式：
+但是这个公式可以改为下面的形式：<br />
 <mathjax>$$ \alpha = \sin^{-1}\left({p_1 \times p_2 \over |p_1| \cdot |p_2|}\right) \tag{2.3}$$</mathjax></p>
 <p>这样我们可以利用这个公式来计算两个向量间的夹角。</p>
 <p>如果两个向量的起点都不在原点时，该怎么计算这个有向面积呢？<br />

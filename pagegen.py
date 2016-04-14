@@ -146,8 +146,10 @@ MARKDOWN_EXT = [
     "markdown.extensions.codehilite",
     "markdown.extensions.toc",
     "markdown.extensions.smart_strong",
+    "markdown.extensions.nl2br",
+    "markdown.extensions.meta",
     latex_friendly(),
-    new_tab_on_links(),
+    # new_tab_on_links(),
     tasklist()
 ]
 
@@ -163,36 +165,36 @@ def generate(filepath):
     if not os.path.exists(filepath):
         raise ValueError("File not found")
 
+    converter = markdown.Markdown(
+        extensions=MARKDOWN_EXT,
+        extension_configs=MARKDOWN_CONFIG
+    )
+    with open(filepath) as md:
+        content = converter.convert(md.read())
+    mdinfo = converter.Meta
+
     reader = parser.Parser()
     reader.load_syntax(parser.PanelBeginSyntax)
     reader.load_syntax(parser.PanelEndSyntax)
-    with open(filepath) as md:
-        mdinfo, mdtext, temp = reader.process(md)
+    content, temp = reader.process(content)
 
     if temp:
         print("(warn) This is a temporary post. Stopped.")
         return
 
-    title = info.generate_title(mdinfo["title"])
+    title = info.generate_title(mdinfo["title"][0])
 
     create_time = info.generate_time(
-        *mdinfo["create"].split(".")
+        *mdinfo["create"][0].split(".")
     )
 
     modified_time = info.generate_time(
-        *mdinfo["modified"].split(".")
+        *mdinfo["modified"][0].split(".")
     )
 
     tags = tag.TagGroup()
-    for x in mdinfo["tags"].split(" "):
+    for x in mdinfo["tags"]:
         tags.append(x)
-
-    content = "\n".join(mdtext)
-    content = markdown.markdown(
-        content,
-        extensions=MARKDOWN_EXT,
-        extension_configs=MARKDOWN_CONFIG
-    )
 
     navigater.handle("favicon", "favicon.png")
     navigater.handle("home", "index.html")
@@ -205,7 +207,7 @@ def generate(filepath):
     css = navigater.get_path("css")
     home = navigater.get_path("home")
 
-    pagetitle = mdinfo["title"].strip()
+    pagetitle = mdinfo["title"][0].strip()
     pagekey = hashlib.md5(pagetitle.encode("utf8")).hexdigest()
     pageurl = "http://riteme.github.io/" + os.path.relpath(
         os.path.abspath(filepath), start=os.path.abspath("."))[
@@ -238,7 +240,7 @@ var duoshuoQuery = {short_name:"riteme"};
     for x in nodes:
         bread.append(x, "#")
 
-    bread.append(mdinfo["title"].upper(), "#", is_alive=True)
+    bread.append(mdinfo["title"][0].upper(), "#", is_alive=True)
 
     with open("template.html") as ftemplate:
         template = ftemplate.read()

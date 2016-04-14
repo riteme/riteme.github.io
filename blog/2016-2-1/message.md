@@ -2,7 +2,9 @@
 title: NOIP2015 信息传递题解
 create: 2016.2.1
 modified: 2016.2.1
-tags: NOIP DFS 图论
+tags: NOIP
+      DFS
+      图论
 ---
 # [NOIP2015] 信息传递
 [TOC]

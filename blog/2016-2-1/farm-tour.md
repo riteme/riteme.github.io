@@ -2,7 +2,10 @@
 title: POJ2135 Farm Tour
 create: 2016.2.1
 modified: 2016.2.1
-tags: POJ 网络流 最小费用流 图论
+tags: POJ
+      网络流
+      最小费用流
+      图论
 ---
 # [POJ2135] Farm Tour
 [TOC]

@@ -2,7 +2,9 @@
 title: NOIP2014 寻找道路题解
 create: 2016.2.1
 modified: 2016.2.1
-tags: NOIP BFS 图论
+tags: NOIP
+      BFS
+      图论
 ---
 # [NOIP2014] 寻找道路
 [TOC]

@@ -32,13 +32,14 @@ class PanelBeginSyntax(Syntax):
     """表示Panel语法的声明部分: [[[Title]]]"""
 
     def __init__(self):
-        super(PanelBeginSyntax, self).__init__("\[\[\[[\w\s]+\]\]\]")
-        self._catcher = re.compile("\[\[\[([\w\s]+)\]\]\]")
-        template_code = ['<div class="panel panel-info">',
-                         '<div class="panel-heading">',
-                         '<h3 class="panel-title">{text}</h3>',
-                         '</div><div class="panel-body">'
-                         ]
+        super(PanelBeginSyntax, self).__init__(".*\[\[\[[^#]*\]\]\].*")
+        self._catcher = re.compile(".*\[\[\[(.*)\]\]\].*")
+        template_code = [
+            '<div class="panel panel-info">',
+             '<div class="panel-heading">',
+             '<h3 class="panel-title">{text}</h3>',
+             '</div><div class="panel-body">'
+         ]
 
         self._template = "".join(template_code)
 
@@ -54,7 +55,7 @@ class PanelEndSyntax(Syntax):
     """表示Panel语法的结束部分: [[[#]]]"""
 
     def __init__(self):
-        super(PanelEndSyntax, self).__init__("\[\[\[#\]\]\]")
+        super(PanelEndSyntax, self).__init__(".*\[\[\[#\]\]\].*")
         self._template = "</div></div>"
 
     def parse(self, source):
@@ -80,41 +81,14 @@ class Parser(object):
 
         self._matcher.append(syntax())
 
-    def process(self, fp):
-        """处理Markdown
-        @param fp (file-like) Markdown文件
-        @return (dict(str, str), list(str)) 返回处理后的文件信息和内容
-        @remark:
-            此函数不会关闭文件，推荐使用`with`:
-            ```python
-            parser = Parser()
-            parser.load_all_syntax()
-            with open("test.md") as fp:
-                parser.process(fp)
-            ```
-        """
+    def process(self, data):
         flag = False
         is_temporary = False
-        panel_started = False
-        # info_matcher = re.compile("([a-zA-Z]+):\s*([\w\s\d+-/\\\.]*)")
-        info = {}
         content = []
 
-        for line in fp:
-            line = line.rstrip("\n")  # 忽略结尾换行
-
-            if line.startswith("---"):
-                flag = not flag
-            elif line.startswith("[temporary]"):
+        for line in data.split("\n"):
+            if "[temporary]" in line:
                 is_temporary = True
-            elif flag:
-                # match = info_matcher.match(line)
-
-                # if match is not None:
-                #     info[match.group(1)] = match.group(2)
-                key, value = [s.strip() for s in line.split(":")]
-                info[key] = value
-
             else:
                 is_parsed = False
 
@@ -123,16 +97,9 @@ class Parser(object):
                         is_parsed = True
                         content.append(matcher.parse(line))
 
-                        if isinstance(matcher, PanelBeginSyntax):
-                            panel_started = True
-                        elif isinstance(matcher, PanelEndSyntax):
-                            panel_started = False
                         break
-                if not is_parsed:
-                    if panel_started:
-                        content[-1] += line
-                        panel_started = False
-                    else:
-                        content.append(line)
 
-        return (info, content, is_temporary)
+                if not is_parsed:
+                    content.append(line)
+
+        return ("\n".join(content), is_temporary)

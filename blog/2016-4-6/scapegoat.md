@@ -2,7 +2,9 @@
 title: 替罪羊树(Scapegoat Tree)
 create: 2016.4.6
 modified: 2016.4.6
-tags: 算法 数据结构 替罪羊树
+tags: 算法
+      数据结构
+      替罪羊树
 ---
 
 # 替罪羊树(Scapegoat Tree)

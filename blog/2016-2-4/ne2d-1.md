@@ -2,7 +2,9 @@
 title: 正式开始编写ne2d
 create: 2016.2.4
 modified: 2016.2.12
-tags: C/C++ ne2d 图形
+tags: C/C++
+      ne2d
+      图形
 ---
 # 正式开始编写ne2d
 ![ne2d v0.2.2](http://7xq4ng.com1.z0.glb.clouddn.com/ne2d-start-1.png)

@@ -338,17 +338,17 @@ $$</mathjax></p>
 </tbody>
 </table>
 <p>对于<strong>查询</strong>操作，因为替罪羊树是保持了<mathjax>$\alpha$</mathjax>平衡的.只要<mathjax>$\alpha$</mathjax>值是合理的，那么这棵树就能保持比较平衡的状态，故插入是<mathjax>$O(\log n)$</mathjax>的。</p>
-<p>对于<strong>插入</strong>操作，我们假设一个刚好重构过的子树的大小为<mathjax>$x$</mathjax>。在最坏情况下，我们可以向它的一侧不停的插入节点。假设当向一侧插入了<mathjax>$k$</mathjax>个节点时恰好破坏了平衡，那么此时<mathjax>$k$</mathjax>将满足：
+<p>对于<strong>插入</strong>操作，我们假设一个刚好重构过的子树的大小为<mathjax>$x$</mathjax>。在最坏情况下，我们可以向它的一侧不停的插入节点。假设当向一侧插入了<mathjax>$k$</mathjax>个节点时恰好破坏了平衡，那么此时<mathjax>$k$</mathjax>将满足：<br />
 <mathjax>$$ \left\lfloor\frac{x}{2}\right\rfloor + k \gt \alpha \cdot (x + k) $$</mathjax></p>
-<p>即
+<p>即<br />
 <mathjax>$$ k &gt; {\alpha - \frac{1}{2} \over 1 - \alpha}x $$</mathjax></p>
-<p>因此每<mathjax>${\alpha - \frac{1}{2} \over 1 - \alpha}x $</mathjax>次就会进行一次重构。重构的时间复杂度为<mathjax>$\Theta(x)$</mathjax>。我们均摊它的时间复杂度：
+<p>因此每<mathjax>${\alpha - \frac{1}{2} \over 1 - \alpha}x $</mathjax>次就会进行一次重构。重构的时间复杂度为<mathjax>$\Theta(x)$</mathjax>。我们均摊它的时间复杂度：<br />
 <mathjax>$$ {\Theta(x) \over (\alpha - \frac{1}{2}) / (1 - \alpha) \cdot x} = \Omega(1) \; (\alpha = 0.75) $$</mathjax></p>
 <p>因此最好情况下我们可以均摊到<mathjax>$\Omega(1)$</mathjax>。由于树能保持<mathjax>$\alpha$</mathjax>平衡，因此插入操作的时间复杂度为<mathjax>$O(\log n)$</mathjax>。<br />
 同时我们可见，<mathjax>$\alpha$</mathjax>越大，均摊的常数就会越低。</p>
-<p>对于<strong>删除</strong>操作，我们假设我们进行了<mathjax>$\frac{n}{2}$</mathjax>次删除，并且为此触发了重构。由于每次删除的时间复杂度为<mathjax>$O(\log n)$</mathjax>的，因此总的时间复杂度为：
+<p>对于<strong>删除</strong>操作，我们假设我们进行了<mathjax>$\frac{n}{2}$</mathjax>次删除，并且为此触发了重构。由于每次删除的时间复杂度为<mathjax>$O(\log n)$</mathjax>的，因此总的时间复杂度为：<br />
 <mathjax>$$ \sum_1^{\frac{n}{2}} O(\log n) + \Theta(n) = \frac{n}{2}O(\log n) + \Theta(n) $$</mathjax></p>
-<p>我们将其均摊到<mathjax>$\frac{n}{2}$</mathjax>次操作上：
+<p>我们将其均摊到<mathjax>$\frac{n}{2}$</mathjax>次操作上：<br />
 <mathjax>$$ {\frac{n}{2}O(\log n) + \Theta(n) \over \frac{n}{2}} = O(\log n) + \Theta(1) = O(\log n) $$</mathjax></p>
 <p>最终的时间复杂度为<mathjax>$ O(\log n) $</mathjax>。</p>
 <h2 id="_15">更多操作</h2>

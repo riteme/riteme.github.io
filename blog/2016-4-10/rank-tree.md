@@ -2,7 +2,13 @@
 title: 秩平衡树(Rank Balanced Tree)
 create: 2016.4.10
 modified: 2016.4.11
-tags: 数据结构 平衡二叉树 Rank-Tree Treap Splay 并查集 贼爷我真的错了
+tags: 数据结构
+      平衡二叉树
+      Rank-Tree
+      Treap
+      Splay
+      并查集
+      贼爷我真的错了
 ---
 # 秩平衡树(Rank Balanced Tree)
 > riteme: “这是并查集和Treap的杂交品种。”  
