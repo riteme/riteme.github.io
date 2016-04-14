@@ -159,6 +159,8 @@ hr {
 
 img {
     max-width: 100%;
+    display: block;
+    margin: auto;
 }
 
 h1:before, h2:before, h3:before, h4:before, h5:before, h6:before, .h1:before, .h2:before, .h3:before, .h4:before, .h5:before, .h6:before {
