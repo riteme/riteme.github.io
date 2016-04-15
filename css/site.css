@@ -41,32 +41,28 @@
     font-family: "Ubuntu",
     font-style: normal;
     font-weight: 400;
-    /*src: local("Ubuntu"), url("http://git.oschina.net/riteme/blogimg/raw/master/fonts/ubuntu.ttf") format("truetype");*/
-    src: url("http://git.oschina.net/riteme/blogimg/raw/master/fonts/ubuntu.ttf") format("truetype");
+    src: local("Ubuntu"), url("http://git.oschina.net/riteme/blogimg/raw/master/fonts/ubuntu.ttf") format("truetype");
 }
 
 @font-face {
     font-family: "Ubuntu Bold",
     font-style: normal;
     font-weight: 700;
-    /*src: local("Ubuntu Bold"), url("http://git.oschina.net/riteme/blogimg/raw/master/fonts/ubuntu-bold.ttf") format("truetype");*/
-    src: url("http://git.oschina.net/riteme/blogimg/raw/master/fonts/ubuntu-bold.ttf") format("truetype");
+    src: local("Ubuntu Bold"), url("http://git.oschina.net/riteme/blogimg/raw/master/fonts/ubuntu-bold.ttf") format("truetype");
 }
 
 @font-face {
     font-family: "Ubuntu Italic",
     font-style: italic;
     font-weight: 400;
-    /*src: local("Ubuntu Italic"), url("http://git.oschina.net/riteme/blogimg/raw/master/fonts/ubuntu-italic.ttf") format("truetype");*/
-    src: url("http://git.oschina.net/riteme/blogimg/raw/master/fonts/ubuntu-italic.ttf") format("truetype");
+    src: local("Ubuntu Italic"), url("http://git.oschina.net/riteme/blogimg/raw/master/fonts/ubuntu-italic.ttf") format("truetype");
 }
 
 @font-face {
     font-family: "Ubuntu Mono",
     font-style: normal;
     font-weight: 400;
-    /*src: local("Ubuntu Mono"), url("http://git.oschina.net/riteme/blogimg/raw/master/fonts/ubuntu-mono.ttf") format("truetype");*/
-    src: url("http://git.oschina.net/riteme/blogimg/raw/master/fonts/ubuntu-mono.ttf") format("truetype");
+    src: local("Ubuntu Mono"), url("http://git.oschina.net/riteme/blogimg/raw/master/fonts/ubuntu-mono.ttf") format("truetype");
 }
 
 #topbar{
