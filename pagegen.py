@@ -138,6 +138,23 @@ class ChecklistPostprocessor(Postprocessor):
         checked = ' checked' if state != ' ' else ''
         return '<li><input type="checkbox" disabled%s>' % checked
 
+# DelIns Extension
+from markdown.inlinepatterns import SimpleTagPattern
+
+DEL_RE = r"(\~\~)(.+?)(\~\~)"
+INS_RE = r"(\+\+)(.+?)(\+\+)"
+
+class DelInsExtension(markdown.extensions.Extension):
+    """Adds del_ins extension to Markdown class."""
+
+    def extendMarkdown(self, md, md_globals):
+        """Modifies inline patterns."""
+        md.inlinePatterns.add('del', SimpleTagPattern(DEL_RE, 'del'), '<not_strong')
+        md.inlinePatterns.add('ins', SimpleTagPattern(INS_RE, 'ins'), '<not_strong')
+
+
+def del_ins(configs={}):
+    return DelInsExtension(configs=dict(configs))
 
 MARKDOWN_EXT = [
     "markdown.extensions.fenced_code",
@@ -148,9 +165,11 @@ MARKDOWN_EXT = [
     "markdown.extensions.smart_strong",
     "markdown.extensions.nl2br",
     "markdown.extensions.meta",
+    "markdown.extensions.smarty",
     latex_friendly(),
     # new_tab_on_links(),
-    tasklist()
+    tasklist(),
+    del_ins()
 ]
 
 MARKDOWN_CONFIG = {

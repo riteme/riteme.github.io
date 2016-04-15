@@ -59,7 +59,7 @@ ruanxz: “ZY！”</p>
 </div>
 <h2 id="1">1 秩</h2>
 <h3 id="11">1.1 树的秩高</h3>
-<p>这里先介绍<strong>”秩“</strong>的概念。我们定义一棵<strong>二叉树</strong>的秩为从为<strong>从根节点开始</strong>到<strong>其叶节点</strong>中<strong>最长的一条树链</strong>上结点的个数。<br />
+<p>这里先介绍<strong>&ldquo;秩&rdquo;</strong>的概念。我们定义一棵<strong>二叉树</strong>的秩为从为<strong>从根节点开始</strong>到<strong>其叶节点</strong>中<strong>最长的一条树链</strong>上结点的个数。<br />
 对于空结点<mathjax>$nil$</mathjax>，它的秩为<mathjax>$0$</mathjax>。<br />
 <mathjax>$$ nil.\text{rank} = 0 \tag{1.1} $$</mathjax></p>
 <p>那么对于任意非空节点<mathjax>$x$</mathjax>，它的秩可以如下定义：<br />
@@ -204,7 +204,7 @@ function RIGHT-ROTATE(h):
 <p><img alt="balance-situation-1" src="http://git.oschina.net/riteme/blogimg/raw/master/rank-tree/rank-tree-balance-1.png" /></p>
 <p>现在我们要平衡<code>b</code>节点。左子树的秩比右子树大。倘若按照上面的方法进行调整，将会得到下面的结果：</p>
 <p><img alt="balance-situation-2" src="http://git.oschina.net/riteme/blogimg/raw/master/rank-tree/rank-tree-balance-2.png" /></p>
-<p>呃...你会发现并没有什么变化。<br />
+<p>呃&hellip;你会发现并没有什么变化。<br />
 其原因在于左子树的右儿子的秩太大，导致旋转过去之后没有太大效果。<br />
 这样导致中间的子树的<strong>深度下移一位</strong>。加之它本来就秩比较大，如此一来这个平衡就毫无作用。<br />
 然而，如果左子树的连个儿子如果秩是一样的，就不会有太大的影响，因为这样就只会导致秩的差距为<mathjax>$1$</mathjax>。倘若右儿子的秩更小，就不会有这样的问题。</p>
@@ -395,7 +395,7 @@ function REMOVE(h, key):
 <li>如果有<strong>懒惰标记</strong>之类的东西，难以正确处理。  </li>
 <li><strong>常数</strong>变大，尽管理论上时间复杂度都是<mathjax>$O(\log n)$</mathjax>。</li>
 </ul>
-<p>但是...又不是不能写，毕竟我是写过的，所以我才会知道这些。<br />
+<p>但是&hellip;又不是不能写，毕竟我是写过的，所以我才会知道这些。<br />
 这样写出来的秩平衡树能比可持久化Treap快，但与伸展树相比差距较大。</p>
 <p>另一种思路就是类似于可持久化Treap的做法：将树从第<mathjax>$k$</mathjax>小的位置拆开，然后又合并......<br />
 可合并秩平衡树就是这种做法。</p>
@@ -539,7 +539,7 @@ function REMOVE(h, key):
 </pre></div>
 </td></tr></table>
 
-<p>当然，我们希望这个操作越快越好。现代绝大部分的语言的编译器/解释器...都能够对尾递归进行优化。上面的<code>RANK</code>操作可以被我们改为尾递归，从而充分利用优化的优势：</p>
+<p>当然，我们希望这个操作越快越好。现代绝大部分的语言的编译器/解释器&hellip;都能够对尾递归进行优化。上面的<code>RANK</code>操作可以被我们改为尾递归，从而充分利用优化的优势：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -675,8 +675,8 @@ function REMOVE(h, key):
 </td></tr></table>
 
 <h4 id="455">4.5.5 截取区间</h4>
-<p>这才是区间操作的关键吧...<br />
-但是我们只要拆拆合合就搞定了...<br />
+<p>这才是区间操作的关键吧&hellip;<br />
+但是我们只要拆拆合合就搞定了&hellip;<br />
 最后要记得合并就好了。</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2

@@ -108,7 +108,7 @@
 <li>在一个<strong>3-节点</strong>的<strong>中间</strong>  </li>
 <li>在一个<strong>3-节点</strong>的<strong>右边</strong></li>
 </ul>
-<p>嗯...这些情况很无聊，下面是它们的转换情况：</p>
+<p>嗯&hellip;这些情况很无聊，下面是它们的转换情况：</p>
 <p><img alt="2-3-tree-5-cases" src="http://7xq4ng.com1.z0.glb.clouddn.com/23-tree-insert-5-cases.png" /></p>
 <p>合并的过程是很直观的，就是将2-节点放到了一个合适的地方。<br />
 由于2-3树中不存在4-节点，因此不需要考虑与4-节点的合并。</p>
@@ -144,7 +144,7 @@
 <p>为了更清楚的说明上面这坨东西在讲什么，我放几张图解释一下：<br />
 首先是可以从旁边“抢”节点的情况：</p>
 <p><img alt="2-3-tree-delete-1" src="http://7xq4ng.com1.z0.glb.clouddn.com/23-tree-delete-1-2.png" /></p>
-<p>上图是准备向右递归之前的调整过程。首先取出<code>e</code>与它的儿子3-节点<code>c-d</code>和2-节点<code>f</code>结合生成了一个5-节点<code>c-d-e-f</code>，然后我们取出<code>e</code>和<code>f</code>在右边创建出一个3-节点，然后<code>d</code>代替原来3-节点<code>b-e</code>中<code>e</code>从而还原，然后被抢掉一个键的<code>c</code>就默默的留在原地...<br />
+<p>上图是准备向右递归之前的调整过程。首先取出<code>e</code>与它的儿子3-节点<code>c-d</code>和2-节点<code>f</code>结合生成了一个5-节点<code>c-d-e-f</code>，然后我们取出<code>e</code>和<code>f</code>在右边创建出一个3-节点，然后<code>d</code>代替原来3-节点<code>b-e</code>中<code>e</code>从而还原，然后被抢掉一个键的<code>c</code>就默默的留在原地&hellip;<br />
 对于向左边和中间调整都是类似的做法。只是向中间递归的调整需要先判定是左边有3-节点还是右边有3-节点，从而确定被取出的键是谁。</p>
 <p>如果这个键的儿子都是2-节点，我们从这个节点中取出一个键向下合并，却只能创造出一个临时的4-节点，无法从中提取出3-节点。因此我们将其留在那里当作是3-节点。这个4-节点等到我们删除完之后再来处理。如果要删除的键就在这个节点中，我们就不需要管了。如果这个4-节点依然保留着，只需分解它即可。下面是合并的过程：</p>
 <p><img alt="2-3-tree-delete-2" src="http://7xq4ng.com1.z0.glb.clouddn.com/23-tree-delete-2.png" /></p>
@@ -175,14 +175,14 @@
 <p>对于所有的删除操作，2-3树需要<mathjax>$ \Theta(\text{log}N) $</mathjax>的时间查找节点，并且以<mathjax>$ \Theta(1) $</mathjax>的时间在每个回溯的节点处来作出适当的调整。故2-3树的删除操作是<mathjax>$ \Theta(\text{log}N) $</mathjax>的。</p>
 <h2 id="2-3_3">2-3树到红黑树</h2>
 <p>上面讲了那么多关于2-3树的操作，却从不提及其具体实现，是因为2-3树在实际中很少使用。<br />
-由于其需要大量的节点变换（从2-节点到3-节点到4-节点甚至到5-节点...），这些变换在实际代码中是很复杂的。所以现在几乎没有2-3树的具体实现。<br />
+由于其需要大量的节点变换（从2-节点到3-节点到4-节点甚至到5-节点&hellip;），这些变换在实际代码中是很复杂的。所以现在几乎没有2-3树的具体实现。<br />
 但是由于2-3树的变化十分直观，因此前人在2-3树的理论基础上发明了红黑树。</p>
 <h3 id="_13">变化到红黑树</h3>
 <p>红黑树是一种平衡二叉树，只有一种节点。这种节点有两个儿子，和2-3树中的2-节点对应。</p>
 <p><img alt="rbtree-normal-node" src="http://7xq4ng.com1.z0.glb.clouddn.com/rbtree-normal-node.png" /></p>
 <p>如何表示3-节点呢？我们尝试一种特殊的边：默认情况下节点的颜色均为黑色。我们将某个节点染为红色，表示它和父亲的的链接是红色的，就像下图：</p>
 <p><img alt="rbtree-red-node-1" src="http://7xq4ng.com1.z0.glb.clouddn.com/rbtree-red-node-normal.png" /></p>
-<p>当我们将红链接画平时...</p>
+<p>当我们将红链接画平时&hellip;</p>
 <p><img alt="rbtree-red-node-2" src="http://7xq4ng.com1.z0.glb.clouddn.com/rbtree-red-node-flat.png" /></p>
 <p>我们发现它和2-3树中的3-节点极为类似！<br />
 事实上，我们完全可以用这样的方式来表示2-3树中的3-节点。</p>

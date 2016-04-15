@@ -23,7 +23,7 @@
 这是一个跨平台的库，我在Ubuntu 14.04上编译了成功了。<br />
 编译过程十分简单。本文就介绍<strong>Linux下</strong>的编译过程。</p>
 <h2 id="_1">编译</h2>
-<p>这里我只写了Linux的编译过程，其他平台我还没试过，具体参见<a href="https://bkaradzic.github.io/bgfx/build.html">bgfx's document</a>。<br />
+<p>这里我只写了Linux的编译过程，其他平台我还没试过，具体参见<a href="https://bkaradzic.github.io/bgfx/build.html">bgfx&rsquo;s document</a>。<br />
 首先需要编译器支持，确保你的编译器满足下列要求：</p>
 <ul>
 <li>Clang 3.3及以上  </li>
@@ -148,7 +148,7 @@ example-16-shadowmapsRelease         texturecRelease
 <div class="panel panel-info"><div class="panel-heading"><h3 class="panel-title">静态库 vs 动态库</h3></div><div class="panel-body">
 我们在这里选用了静态库，而不是动态库，是考虑了用户的原因。<br />
 因为bgfx没有什么很方便的安装方法，使用静态库就可以避免安装的过程，尽可能少的对用户的系统进行修改。<br />
-当然，使用静态库会增大程序体积。静态链接后，我们的bgfx程序会有3MB多...<br />
+当然，使用静态库会增大程序体积。静态链接后，我们的bgfx程序会有3MB多&hellip;<br />
 </div></div>
 <p>然后需要将bgfx及其依赖库的bx的头文件给复制进来。为了方便，我们还将bgfx用于样例的common库也复制进来：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
@@ -200,8 +200,8 @@ cp -rf <span class="o">[</span>bx的目录<span class="o">]</span>/include/* .  
 </td></tr></table>
 
 <div class="panel panel-info"><div class="panel-heading"><h3 class="panel-title">注意</h3></div><div class="panel-body">
-似乎<code>width</code>和<code>height</code>的设置是没有用的，似乎无论设为多少，打开后都会变成<code>1280x720</code>，我也不知道是为什么...</br><br />
-如果你也出现了这种情况，不要惊慌，不要害怕...<br />
+似乎<code>width</code>和<code>height</code>的设置是没有用的，似乎无论设为多少，打开后都会变成<code>1280x720</code>，我也不知道是为什么&hellip;</br><br />
+如果你也出现了这种情况，不要惊慌，不要害怕&hellip;<br />
 </div></div>
 <p>下面是加载bgfx：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
@@ -280,7 +280,7 @@ D: <font style="color: #AD7FA8">浅紫色</font>  E: <font style="color: #34E2E2
 </pre></div>
 </td></tr></table>
 
-<p>注意编译器要打开C++11支持，如果你的编译器不支持C++11，那我很好奇你是怎么把bgfx编译成功的。<br />
+<p>注意编译器要打开C<ins>11支持，如果你的编译器不支持C</ins>11，那我很好奇你是怎么把bgfx编译成功的。<br />
 <code>-lpthread</code>、<code>-lGL</code>和<code>-lX11</code>是bgfx依赖的库，分别是POSIX线程库、OpenGL库和X11库。</p>
 <p>如果没有错误报出，运行<code>exec</code>就能看到以下窗口：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>./exec

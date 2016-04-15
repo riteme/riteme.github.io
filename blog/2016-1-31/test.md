@@ -3,7 +3,6 @@ title: 测试
 create: 2016.1.31
 modified: 2016.2.1
 tags: test
-      index
 ---
 # pagegen.py的试炼
 [TOC]
@@ -49,7 +48,7 @@ if __name__ == "__main__":
 *重要的话说三遍*  
 **重要的话说三遍**  
 ***重要的话说三遍***  
-__下划线是什么鬼__
+++下划线是什么鬼++
 
 打表A题：
 
@@ -75,6 +74,10 @@ GFM breaks!
 应该不在一行!
 应该不在一行!!
 应该不在一行!!!!!
+~~deleted~~
+++inserted++
+--smartpants---
+"a"'b'"c"'d'"e""'
 
 ## Mathjax测试
 这个**应该**不得出问题......
@@ -98,4 +101,4 @@ Not Supported...
 [[[#]]]
 233
 [[[#]]]
-<del>Goodbye!</del>
+Goodbye!
