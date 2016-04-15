@@ -1,0 +1,13 @@
+<svg width="200" height="48" xmlns="http://www.w3.org/2000/svg">
+ <g>
+  <title>background</title>
+  <g display="none" overflow="visible" y="0" x="0" height="100%" width="100%" id="canvasGrid">
+   <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%" width="100%"/>
+  </g>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <text font-weight="normal" font-style="italic" xml:space="preserve" text-anchor="start" font-family="Ubuntu" font-size="20" id="svg_2" y="33.5" x="14" stroke-width="0" stroke="#000" fill="#666666">riteme.site</text>
+  <text font-weight="normal" font-style="italic" xml:space="preserve" text-anchor="start" font-family="Ubuntu" font-size="20" id="svg_2" y="31.5" x="12" stroke-width="0" stroke="#000" fill="#ffffff">riteme.site</text>
+ </g>
+</svg>
