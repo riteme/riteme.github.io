@@ -10,12 +10,11 @@ tags: 数据结构
       并查集
       贼爷我真的错了
 ---
+[TOC]
 # 秩平衡树(Rank Balanced Tree)
 > riteme: “这是并查集和Treap的杂交品种。”  
 > tplink: “贼式二叉树！”  
 > ruanxz: “ZY！”
-
-[TOC]
 
 ## 1 秩
 ### 1.1 树的秩高

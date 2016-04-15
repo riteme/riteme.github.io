@@ -7,10 +7,8 @@ tags: C/C++
       引擎
       bgfx
 ---
-# 编译并使用bgfx
-
 [TOC]
-
+# 编译并使用bgfx
 最近发现了一个似乎很好的图形引擎[bgfx](https://github.com/bkaradzic/bgfx)。
 它是使用C++进行编写的，也有C99的接口，功能还比较丰富，支持DirectX 9/11和OpenGL 2.1+。
 这是一个跨平台的库，我在Ubuntu 14.04上编译了成功了。

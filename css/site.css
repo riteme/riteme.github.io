@@ -35,8 +35,35 @@
     color: #000000
 }
 
-@import url(http://fonts.useso.com/css?family=Ubuntu:400,700);
-@import url(http://fonts.useso.com/css?family=Ubuntu+Mono:400,700);
+/*@import url(http://fonts.useso.com/css?family=Ubuntu:400,700);*/
+/*@import url(http://fonts.useso.com/css?family=Ubuntu+Mono:400,700);*/
+@font-face {
+    font-family: "Ubuntu",
+    font-style: normal;
+    font-weight: 400;
+    src: local("Ubuntu"), url("http://git.oschina.net/riteme/blogimg/raw/master/fonts/ubuntu.ttf");
+}
+
+@font-face {
+    font-family: "Ubuntu Bold",
+    font-style: normal;
+    font-weight: 700;
+    src: local("Ubuntu Bold"), url("http://git.oschina.net/riteme/blogimg/raw/master/fonts/ubuntu-bold.ttf");
+}
+
+@font-face {
+    font-family: "Ubuntu Italic",
+    font-style: italic;
+    font-weight: 400;
+    src: local("Ubuntu Italic"), url("http://git.oschina.net/riteme/blogimg/raw/master/fonts/ubuntu-italic.ttf");
+}
+
+@font-face {
+    font-family: "Ubuntu Mono",
+    font-style: normal;
+    font-weight: 400;
+    src: local("Ubuntu Mono"), url("http://git.oschina.net/riteme/blogimg/raw/master/fonts/ubuntu-mono.ttf");
+}
 
 #topbar{
     padding-left: 10px;
@@ -88,7 +115,7 @@
 
 /*Framework*/
 html {
-    font-family:"Ubuntu", "Lucida Grande","Lucida","Lucida Sans Unicode","Lucida Sans","Tahoma","Segoe UI","Verdana","微软雅黑","Microsoft YaHei","宋体";
+    font-family:"Ubuntu", "Lucida Grande","Lucida","Lucida Sans Unicode","Lucida Sans","Tahoma","Segoe UI","Verdana","微软雅黑","Microsoft YaHei","宋体" !important;
     -ms-text-size-adjust:100%;
     -webkit-text-size-adjust:100%
 }
@@ -182,4 +209,23 @@ pre {
 
 b, strong {
     font-family: "Ubuntu Bold";
+}
+
+div.toc:before {
+    content: "TABLE OF CONTENT";
+    padding-left: 10px;
+    font-weight: bold;
+    font-size: 120%;
+    font-family: "Ubuntu Bold";
+    color: #447BAB;
+}
+
+div.toc {
+    float: right;
+    border: 1px solid #AAAAAA;
+    background: #E9EDEF;
+    margin: 0 10px 0 10px;    
+    font-size: 75%;
+    padding: 5px 10px 0 0;
+    text-align: left;
 }

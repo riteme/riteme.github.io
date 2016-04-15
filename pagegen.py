@@ -9,6 +9,7 @@ import hashlib
 
 import info
 import tag
+import tocer
 import parser
 import breadcrumb
 import navigater
@@ -196,6 +197,7 @@ def generate(filepath):
     reader.load_syntax(parser.PanelBeginSyntax)
     reader.load_syntax(parser.PanelEndSyntax)
     content, temp = reader.process(content)
+    toc, content = tocer.cut(content)
 
     if temp:
         print("(warn) This is a temporary post. Stopped.")
@@ -277,6 +279,7 @@ var duoshuoQuery = {short_name:"riteme"};
             create=create_time,
             modified=modified_time,
             tags=str(tags),
+            toc=toc,
             content=content,
             breadcrumb=str(bread),
             favicon=favicon,

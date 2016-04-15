@@ -6,6 +6,7 @@ tags: C/C++
       DevIL
       OpenGL
 ---
+[TOC]
 # DevIL快速入门
 [DevIL](http://openil.sourceforge.net/)全名是“Developer's Image Library”，它是一个多功能的图像库，能过很方便地载入、修改和保存图片。
 其原名是OpenIL，后来是因为SGI的要求才改名为DevIL[^devil-rename]。
@@ -14,8 +15,6 @@ tags: C/C++
 
 本文主要介绍DevIL载入和保存图片的功能。DevIL虽然有处理图片的功能，但并不够强，不如使用[Boost.GIL](http://www.boost.org/doc/libs/develop/libs/gil/doc/index.html)，
 因此不介绍DevIL处理图片的功能。
-
-[TOC]
 
 ## 特点
 DevIL具有几个非常好的特性：

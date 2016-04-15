@@ -7,33 +7,8 @@
   <script type="text/javascript" async src="../../mathjax/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </head>
 <body>
+
 <h1 id="scapegoat-tree">替罪羊树(Scapegoat Tree)</h1>
-<div class="toc">
-<ul>
-<li><a href="#scapegoat-tree">替罪羊树(Scapegoat Tree)</a><ul>
-<li><a href="#_1">热身：线性时间建树</a></li>
-<li><a href="#_2">α权重平衡</a></li>
-<li><a href="#_3">替罪羊树</a><ul>
-<li><a href="#_4">暴力重构</a></li>
-<li><a href="#_5">查询</a></li>
-<li><a href="#_6">插入</a></li>
-<li><a href="#_7">删除</a></li>
-<li><a href="#_8">实现细节及其时间复杂度</a><ul>
-<li><a href="#_9">节点定义</a></li>
-<li><a href="#_10">选定α</a></li>
-<li><a href="#_11">重构</a></li>
-<li><a href="#_12">插入</a></li>
-<li><a href="#_13">删除</a></li>
-<li><a href="#_14">时间复杂度</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#_15">更多操作</a></li>
-</ul>
-</li>
-</ul>
-</div>
 <h2 id="_1">热身：线性时间建树</h2>
 <p><strong>问题</strong> 给定有序排好的元素序列，现在要你在<mathjax>$ \Theta(n) $</mathjax>的时间内建立一棵平衡的二叉搜索树。</p>
 <p>最朴素的做法就是将元素逐一插入，由于许多平衡树的插入是<mathjax>$O(\log n)$</mathjax>的，因此总时间复杂度为<mathjax>$O(n\log n)$</mathjax>的。<br />
