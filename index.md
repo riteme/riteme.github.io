@@ -14,6 +14,9 @@ tags: Home
 我的知乎: <https://www.zhihu.com/people/riteme>
 
 #### Recent Posts
+##### 2016-4-16
+* [Graphviz: 可视化调试利器](./blog/2016-4-16/graphviz.html): 介绍可视化工具Graphviz的基本使用
+
 ##### 2016-4-12
 * [平面计算几何](./blog/2016-4-12/geometry.html): 计算几何的基础知识和算法
 
