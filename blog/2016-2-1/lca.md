@@ -241,8 +241,8 @@ for i in [1, n]:
     f[i, 0] = father(i)
 
 # 计算整个f数组
-for i in [1, n]:
-    for j in [1, log(n)]:
+for j in [1, log(n)]:
+    for i in [1, n]:
         f[i, j] = f[f[i, j - 1], j - 1]
 ```
 
