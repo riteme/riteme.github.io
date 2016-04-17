@@ -13,29 +13,14 @@ tags: Home
 我的GitHub: <https://github.com/riteme>  
 我的知乎: <https://www.zhihu.com/people/riteme>
 
-#### Recent Posts
-##### 2016-4-16
-* [Graphviz: 可视化调试利器](./blog/2016-4-16/graphviz.html): 介绍可视化工具Graphviz的基本使用
-
-##### 2016-4-12
-* [平面计算几何](./blog/2016-4-12/geometry.html): 计算几何的基础知识和算法
-
-##### 2016-4-10
-* [秩平衡树(Rank Balanced Tree)](./blog/2016-4-10/rank-tree.html): 利用秩进行平衡的二叉搜索树
-
-##### 2016-4-6
-* [替罪羊树(Scapegoat Tree)](./blog/2016-4-6/scapegoat.html): 二叉平衡树替罪羊树
-
-##### 2016-3-21
-* [x^n-1问题](./blog/2016-3-21/x-2-1.html): 对x^n-1进行因式分解
-
-##### 2016-3-12
-* [2-3树与红黑树](./blog/2016-3-12/2-3-tree-and-red-black-tree.html): 2-3树与红黑树
-
-##### 2016-2-5
-* [DevIL快速入门](./blog/2016-2-5/devil-usage.html): 了解图片库DevIL
-
-[**查看全部**](./posts.html)
+### Recent Posts
+<div class="card"><div class="card-content"><span class="card-title">Graphviz: 可视化调试利器</span><p>介绍可视化工具Graphviz的基本使用</p></div><div class="card-action"><a href="./blog/2016-4-16/graphviz.html">READ MORE...</a></div></div>
+<div class="card"><div class="card-content"><span class="card-title">平面计算几何</span><p>计算几何的基础知识和算法</p></div><div class="card-action"><a href="./blog/2016-4-12/geometry.html">READ MORE...</a></div></div>
+<div class="card"><div class="card-content"><span class="card-title">秩平衡树(Rank Balanced Tree)</span><p>利用秩进行平衡的二叉搜索树</p></div><div class="card-action"><a href="./blog/2016-4-10/rank-tree.html">READ MORE...</a></div></div>
+<div class="card"><div class="card-content"><span class="card-title">替罪羊树(Scapegoat Tree)</span><p>二叉平衡树替罪羊树</p></div><div class="card-action"><a href="./blog/2016-4-6/scapegoat.html">READ MORE...</a></div></div>
+<div class="card"><div class="card-content"><span class="card-title">x^n-1问题</span><p>对x^n-1进行因式分解</p></div><div class="card-action"><a href="./blog/2016-3-21/x-2-1.html">READ MORE...</a></div></div>
+<div class="card"><div class="card-content"><span class="card-title">2-3树与红黑树</span><p>2-3树与红黑树</p></div><div class="card-action"><a href="./blog/2016-3-12/2-3-tree-and-red-black-tree.html">READ MORE...</a></div></div>
+<div class="card"><div class="card-content"><span class="card-title">DevIL快速入门</span><p>了解图片库DevIL</p></div><div class="card-action"><a href="./blog/2016-2-5/devil-usage.html">READ MORE...</a></div></div><strong><a href="./posts.html" class="waves-effect waves-light btn">查看全部</a></strong>
 
 #### 友情链接
 Link的狗窝： [Dog's House](http://link-arthur.github.io/)  
