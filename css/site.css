@@ -152,9 +152,9 @@ th {
 }
 
 td.linenos, td.code {
-    padding-left: 0px;
-    padding-right: 0px;
     border: none;
+    padding: 0;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
 }
 
 td.lineos {
@@ -177,10 +177,15 @@ hr {
     background-color: #e5e5e5;
 }
 
+.label {
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
 img {
     max-width: 100%;
     display: block;
     margin: auto;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
 }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
@@ -210,12 +215,13 @@ div.toc:before {
 
 div.toc {
     float: right;
-    border: 1px solid #AAAAAA;
-    background: #E9EDEF;
+    border: 1px solid #DDDDDD;
+    background: #EEEEEE;
     margin: 0 10px 0 10px;    
     font-size: 75%;
     padding: 5px 10px 0 0;
     text-align: left;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
 }
 
 .card {
