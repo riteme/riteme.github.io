@@ -69,7 +69,7 @@
     /*padding-left: 10px;*/
     height: 48px;
     background-color: #3498DB;
-    background-image: url("../logo.png");
+    background-image: url("../logo.svg");
     background-repeat: no-repeat;
     background-size: 200px 48px;
 }
