@@ -20,8 +20,7 @@ tags: Home
 <div class="card"><div class="card-content"><span class="card-title">替罪羊树(Scapegoat Tree)</span><p>二叉平衡树替罪羊树</p></div><div class="card-action"><a href="./blog/2016-4-6/scapegoat.html">READ MORE...</a></div></div>
 <div class="card"><div class="card-content"><span class="card-title">x^n-1问题</span><p>对x^n-1进行因式分解</p></div><div class="card-action"><a href="./blog/2016-3-21/x-2-1.html">READ MORE...</a></div></div>
 <div class="card"><div class="card-content"><span class="card-title">2-3树与红黑树</span><p>2-3树与红黑树</p></div><div class="card-action"><a href="./blog/2016-3-12/2-3-tree-and-red-black-tree.html">READ MORE...</a></div></div>
-<div class="card"><div class="card-content"><span class="card-title">DevIL快速入门</span><p>了解图片库DevIL</p></div><div class="card-action"><a href="./blog/2016-2-5/devil-usage.html">READ MORE...</a></div></div><strong><a href="./posts.html" class="waves-effect waves-light btn">查看全部</a></strong>
-
+<div class="card"><div class="card-content"><span class="card-title">DevIL快速入门</span><p>了解图片库DevIL</p></div><div class="card-action"><a href="./blog/2016-2-5/devil-usage.html">READ MORE...</a></div></div><a href="./posts.html" class="waves-effect waves-light btn" style="width: 100%"><strong>查看全部...</strong></a><hr/>
 #### 友情链接
 Link的狗窝： [Dog's House](http://link-arthur.github.io/)  
 Ruan xingzhi的博客： [Ruan xingzhi](http://ruanxingzhi.github.io/)
