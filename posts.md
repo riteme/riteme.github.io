@@ -6,6 +6,9 @@ tags: Posts
 ---
 [TOC]
 #### 所有文章
+##### 2016-4-20
+* [树链剖分](./blog/2016-4-20/tree-split.html): 介绍了树链剖分算法及其小扩展
+
 ##### 2016-4-16
 * [Graphviz: 可视化调试利器](./blog/2016-4-16/graphviz.html): 介绍可视化工具Graphviz的基本使用
 
