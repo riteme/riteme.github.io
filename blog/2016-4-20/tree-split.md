@@ -170,7 +170,7 @@ function QUERY-SUM(u, v):
     
     // 如果不在同一条树链
     while u.top != v.top:
-        if u.depth < v.depth:
+        if u.top.depth < v.top.depth:
             SWAP(u, v)  // 交换u和v
         
         sum += QUERY(u.top.id, u.id)  // 利用线段树等数据结构来求和
