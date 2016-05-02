@@ -67,11 +67,11 @@
 
 #topbar{
     /*padding-left: 10px;*/
-    height: 48px;
+    height: 44px;
     background-color: #3498DB;
     background-image: url("../logo.svg");
     background-repeat: no-repeat;
-    background-size: 200px 48px;
+    background-size: auto 100%;
 }
 
 #view{
