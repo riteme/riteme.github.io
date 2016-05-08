@@ -221,12 +221,14 @@ def generate(filepath):
     navigater.handle("home", "index.html")
     navigater.handle("css", "css/site.min.css")
     navigater.handle("mathjax", "mathjax/MathJax.js")
+    navigater.handle("posts", "posts.html")
     navigater.home_folder = os.path.dirname(filepath)
 
     mathjax = navigater.get_path("mathjax")
     favicon = navigater.get_path("favicon")
     css = navigater.get_path("css")
     home = navigater.get_path("home")
+    posts = navigater.get_path("posts")
 
     pagetitle = mdinfo["title"][0].strip()
     pagekey = hashlib.md5(pagetitle.encode("utf8")).hexdigest()
@@ -258,8 +260,9 @@ var duoshuoQuery = {short_name:"riteme"};
         ]
     ]
     bread.append("HOME", home)
-    for x in nodes:
-        bread.append(x, "#")
+    if len(nodes) > 1:
+        bread.append("POSTS", posts)
+        bread.append(nodes[-1], "{}#{}".format(posts, nodes[-1]))
 
     bread.append(mdinfo["title"][0].upper(), "#", is_alive=True)
 

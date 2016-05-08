@@ -35,8 +35,10 @@ tags: Posts
 
 ##### 2016-2-4
 * [正式开始编写ne2d](./blog/2016-2-4/ne2d-1.html): 启动ne2d
-* [编译并使用bgfx](./blog/2016-2-3/learn-bgfx-1.html): bgfx在Ubuntu上编译
 * [测试多说](./blog/2016-2-4/comments.html): 测试多说评论系统
+
+##### 2016-2-3
+* [编译并使用bgfx](./blog/2016-2-3/learn-bgfx-1.html): bgfx在Ubuntu上编译
 
 ##### 2016-2-2
 * [最小费用最大流](./blog/2016-2-2/mincost-maxflow.html): 增广路算法
