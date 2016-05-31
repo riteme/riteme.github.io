@@ -7,6 +7,7 @@ tags: Posts
 [TOC]
 #### 所有文章
 ##### 2016-5-31
+* [HNSDFZ2016 #2](./blog/2016-5-31/hnsdfz2016-2.html): HNSDFZ2016第二次欢乐互测
 * [HNSDFZ2016 #1](./blog/2016-5-31/hnsdfz2016-1.html): HNSDFZ2016第一次欢乐互测
 
 ##### 2016-5-7
