@@ -6,6 +6,9 @@ tags: Posts
 ---
 [TOC]
 #### 所有文章
+##### 2016-5-31
+* [HNSDFZ2016 #1](./blog/2016-5-31/hnsdfz2016-1.html): HNSDFZ2016第一次欢乐互测
+
 ##### 2016-5-7
 * [排列与组合](./blog/2016-5-7/permutation-and-combination.html): 介绍了排列与组合的基础知识
 
