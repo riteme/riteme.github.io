@@ -6,6 +6,9 @@ tags: Posts
 ---
 [TOC]
 #### 所有文章
+##### 2016-6-3
+* [树状数组](./blog/2016-6-3/fenwick.html): 总结一下树状数组的用法
+
 ##### 2016-6-2
 * [点分四叉树 (Point Quadtree)](./blog/2016-6-2/quadtree.html): 二维平面上的一种划分树
 
