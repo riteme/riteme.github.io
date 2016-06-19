@@ -29,6 +29,8 @@ import re
 from markdown.postprocessors import Postprocessor
 
 # Mathjax Extension
+
+
 class MathJaxPattern(markdown.inlinepatterns.Pattern):
 
     def __init__(self):
@@ -145,13 +147,17 @@ from markdown.inlinepatterns import SimpleTagPattern
 DEL_RE = r"(\~\~)(.+?)(\~\~)"
 INS_RE = r"(\+\+)(.+?)(\+\+)"
 
+
 class DelInsExtension(markdown.extensions.Extension):
+
     """Adds del_ins extension to Markdown class."""
 
     def extendMarkdown(self, md, md_globals):
         """Modifies inline patterns."""
-        md.inlinePatterns.add('del', SimpleTagPattern(DEL_RE, 'del'), '<not_strong')
-        md.inlinePatterns.add('ins', SimpleTagPattern(INS_RE, 'ins'), '<not_strong')
+        md.inlinePatterns.add(
+            'del', SimpleTagPattern(DEL_RE, 'del'), '<not_strong')
+        md.inlinePatterns.add(
+            'ins', SimpleTagPattern(INS_RE, 'ins'), '<not_strong')
 
 
 def del_ins(configs={}):
