@@ -254,6 +254,15 @@ var duoshuoQuery = {short_name:"riteme"};
      || document.getElementsByTagName('body')[0]).appendChild(ds);
 })();
 </script>"""
+    baidu_tonji = """<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?72d0c4a099cd676176e657b871326707";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>"""
 
     bread = breadcrumb.Breadcrumb()
     relative = os.path.relpath(
@@ -299,6 +308,7 @@ var duoshuoQuery = {short_name:"riteme"};
             page_title=pagetitle,
             page_url=pageurl,
             duoshuo_code=duoshuo,
+            baidu_tonji=baidu_tonji,
             printable=printable_path
         ))
 
