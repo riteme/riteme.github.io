@@ -478,6 +478,7 @@ SA-IS的实现还可以参考一篇很好的博文: [A walk through the SA-IS Su
 |$10^6$|$0.365\text{s}$|$0.270\text{s}$|
 |$2\times 10^6$|$0.997\text{s}$|$0.593\text{s}$|
 |$5\times 10^6$|$2.803\text{s}$|$2.085\text{s}$|
+|$10^7$|$4.012\text{s}$|$3.326\text{s}$|
 
 编译命令: `g++ SAIS.cpp/DC3.cpp -o sais/dc3 -O3`
 运行环境: Ubuntu 14.04 LTS x64 / CPU: 2.0GHz 奔腾某CPU / 4GB内存 / 未启动X window
