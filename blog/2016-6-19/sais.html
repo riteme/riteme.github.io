@@ -49,8 +49,8 @@ var _hmt = _hmt || [];
 <p>对于一个字符串我们可以访问其中的任意字符，用<mathjax>$S[x]$</mathjax>表示<mathjax>$S$</mathjax>中下标为<mathjax>$x$</mathjax>的字符。下标从<mathjax>$0$</mathjax>开始。我们用<mathjax>$S[a, b]$</mathjax>表示<mathjax>$S$</mathjax>的一个子串，即下标为<mathjax>$a$</mathjax>的字符开始一直到下标为<mathjax>$b$</mathjax>的字符依次连接而成的字符串，其中必须满足<mathjax>$0 \le a \le b \lt |S|$</mathjax>。定义一个字符串<mathjax>$S$</mathjax>的前缀为<mathjax>$\text{prefix}(S, i) = S[0, i]$</mathjax>，其后缀为<mathjax>$\text{suffix}(S, i) = S[i, |S| - 1]$</mathjax>。</p>
 <p>两个字符串<mathjax>$A$</mathjax>和<mathjax>$B$</mathjax>之间存在比较关系。当<mathjax>$A$</mathjax>与<mathjax>$B$</mathjax>的长度相同，且其中对应下标的字符也相同时，则为<mathjax>$A = B$</mathjax>。当从左至右出现第一对不相同的字符时，则以这两个字符的大小关系作为<mathjax>$A$</mathjax>和<mathjax>$B$</mathjax>间的大小关系，这称为字典序。为了简化一些操作，定义<mathjax>$\#$</mathjax>是字典序最小的字符，并且将其默认作为每个字符串的最后一个字符<sup id="fnref:dollar"><a class="footnote-ref" href="#fn:dollar" rel="footnote">2</a></sup>，即作为<mathjax>$S[|S|]$</mathjax>。<br />
 另外，定义函数<mathjax>$\text{lcp}(A, B)$</mathjax>表示<mathjax>$A$</mathjax>和<mathjax>$B$</mathjax>的最长公共前缀的长度，即两者所有相同的前缀中，最长的一个的长度。由此我们可以得知字典序的一个性质：</p>
-<p><strong>定理 1.1</strong> <mathjax>$A &lt; B$</mathjax>当且仅当<mathjax>$A[\text{lcp}(A, B) + 1] &lt; B[\text{lcp}(A, B) + 1]$</mathjax>。<br />
-<strong>证明</strong> 这个结论显然成立，因为<mathjax>$\text{prefix}(A, \text{lcp}(A, B)) = \text{prefix}(B, \text{lcp}(A, B))$</mathjax>。</p>
+<p><strong>定理 1.1</strong> <mathjax>$A &lt; B$</mathjax>当且仅当<mathjax>$A[\text{lcp}(A, B)] &lt; B[\text{lcp}(A, B)]$</mathjax>。<br />
+<strong>证明</strong> 这个结论显然成立，因为<mathjax>$\text{prefix}(A, \text{lcp}(A, B) - 1) = \text{prefix}(B, \text{lcp}(A, B) - 1)$</mathjax>。</p>
 <h2 id="2-sa-is">2. SA-IS算法</h2>
 <p>SA-IS算法是基于诱导排序这种思想。基本想法就是将问题的规模缩小，通过解决更小的问题，获取足够信息，就可以快速的解决原始问题。从这里也可以看出，这一过程需要递归处理子问题。</p>
 <p>在介绍SA-IS算法前，我们先来看一下该算法的基本框架：</p>
