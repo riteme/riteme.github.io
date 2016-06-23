@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>极限与导数 - riteme.site</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="../../css/site.min.css">
+  <script type="text/javascript" async src="../../mathjax/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</head>
+<body>
+
+<h1 id="_1">极限与导数</h1>
+<p>最近学了一些基础微积分，这里稍微记录一下。</p>
+<h2 id="_2">极限</h2>
+<p>极限可以当做是一个函数<mathjax>$f(x)$</mathjax>的<mathjax>$x$</mathjax>无限趋近于某一个常数或无穷远处时，函数数值所逼近的一个值。<br />
+例如，对于函数<mathjax>$f(x) = {2x \over x + 1}$</mathjax>，当<mathjax>$x$</mathjax>趋近于无穷大时，<mathjax>$f(x)$</mathjax>无限趋近于<mathjax>$2$</mathjax>。我们将此记成这样子：<br />
+<mathjax>$$
+\lim_{x \rightarrow \infty} f(x) = 
+\lim_{x \rightarrow \infty} {2x \over x + 1} = 
+2
+$$</mathjax></p>
+<p>求极限需要会一点代数技巧，我反正是老是求不出......</p>
+<p>极限有一些方便的性质：<br />
+当然，这些等式的左边都是存在极限的。<br />
+<mathjax>$$ \lim_{x \rightarrow c} a \cdot f(x) = a \cdot \lim_{x \rightarrow c} f(x) $$</mathjax></p>
+<p>对于两个函数<mathjax>$f(x)$</mathjax>和<mathjax>$g(x)$</mathjax>之间极限的关系：（当然<mathjax>$f(x)$</mathjax>和<mathjax>$g(x)$</mathjax>都要存在极限）<br />
+<mathjax>$$ \lim_{x \rightarrow c} [f(x) + g(x)] = \lim_{x \rightarrow c} f(x) + \lim_{x \rightarrow c} g(x) $$</mathjax></p>
+<p><mathjax>$$ \lim_{x \rightarrow c} [f(x) - g(x)] = \lim_{x \rightarrow c} f(x) - \lim_{x \rightarrow c} g(x) $$</mathjax></p>
+<p><mathjax>$$ \lim_{x \rightarrow c} f(x) \cdot g(x) = \lim_{x \rightarrow c} f(x) \cdot \lim_{x \rightarrow c} g(x) $$</mathjax></p>
+<p><mathjax>$$ \lim_{x \rightarrow c} {f(x) \over g(x)} = {\lim_{x \rightarrow c} f(x) \over \lim_{x \rightarrow c} g(x)} \; (\lim_{x \rightarrow c} g(x) \neq 0)$$</mathjax></p>
+<p>简而言之，极限这东西可以加减乘除。</p>
+<h2 id="_3">导数</h2>
+<p>对于函数<mathjax>$f(x)$</mathjax>而言，它在<mathjax>$x_0$</mathjax>处的导数是这么定义的：<br />
+<mathjax>$$ \lim_{\Delta x \rightarrow 0} {f(x_0 + \Delta x) - f(x_0) \over \Delta x} $$</mathjax></p>
+<p>从几何意义上讲，这个值可以视为是<mathjax>$f(x)$</mathjax>的图像在<mathjax>$x_0$</mathjax>处的切线的斜率。<br />
+当然不是所有的函数都是可以求导数的，只有在那一段上是连续的函数时，才会有导数。<br />
+连续的函数<mathjax>$f(x)$</mathjax>在其定义域内的每一点上都可以计算导数，意味着每一个<mathjax>$x$</mathjax>都会对应一个导数，这样就形成了一个函数关系。我们将这个函数叫作导函数，记作<mathjax>$f^\prime(x)$</mathjax>。</p>
+<p>如何求导函数呢？根据导数的定义，我们将<mathjax>$x_0$</mathjax>换为<mathjax>$x$</mathjax>，然后求极限就好了。然而说的轻巧，实际上很多都比较难以求出，因此早有先人为我们把各种导函数算好了。</p>
+<p>举一个典型的例子<mathjax>$f(x) = x^2$</mathjax>。按照求导数的方法：<br />
+<mathjax>$$
+\begin{align}
+f^\prime(x) &amp;= \lim_{\Delta x \rightarrow 0} {f(x - \Delta x) - f(x) \over \Delta x} \\
+&amp;= \lim_{\Delta x \rightarrow 0} {(x + \Delta x)^2 - x^2 \over \Delta x} \\
+&amp;= \lim_{\Delta x \rightarrow 0} {\Delta x^2 + 2x\Delta x \over \Delta x} \\
+&amp;= \lim_{\Delta x \rightarrow 0} (\Delta x + 2x) \\
+&amp;= 2x
+\end{align}
+$$</mathjax></p>
+<p>事实上，对于幂函数<mathjax>$f(x) = x^\alpha$</mathjax>，其导函数为<mathjax>$f^\prime(x) = \alpha x^{\alpha - 1}$</mathjax>。</p>
+<p>导数与导数之间存在运算关系，有了这些运算关系，我们就可以方便地进行求导。<br />
+类似于线性的性质：<br />
+<mathjax>$$ [a \cdot f(x) + b \cdot g(x)]^\prime = a \cdot f^\prime(x) + b \cdot g^\prime(x) $$</mathjax></p>
+<p>两个导数相乘：<br />
+<mathjax>$$ [f(x)g(x)]^\prime = f^\prime(x)g(x) + f(x)g^\prime(x) $$</mathjax></p>
+<p>两个导数相除：<br />
+<mathjax>$$ \left[{f(x) \over g(x)} \right]^\prime = {f^\prime(x)g(x) + f(x)g^\prime(x) \over g^2(x)} \; (g(x) \neq 0) $$</mathjax></p>
+<p>复合函数：<br />
+<mathjax>$$ [f(g(x))]^\prime = f^\prime(g(x)) \cdot g^\prime(x) $$</mathjax></p>
+<p>一些基本函数的导函数就放这里了，当我们要求一个特定函数的导函数时，可以利用上面的规则，然后根据导函数表来计算。下面只有<mathjax>$x$</mathjax>是变量。<br />
+<mathjax>$$ c^\prime = 0 $$</mathjax></p>
+<p><mathjax>$$ x^\prime = 1 $$</mathjax></p>
+<p><mathjax>$$ (x^\alpha)^\prime = \alpha x^{\alpha - 1} $$</mathjax></p>
+<p><mathjax>$$ (\text{e}^x)^\prime = e^x $$</mathjax></p>
+<p><mathjax>$$ (a^x)^\prime = a^x\ln a $$</mathjax></p>
+<p><mathjax>$$ (\ln x)^\prime = \frac1x $$</mathjax></p>
+<p><mathjax>$$ (\log_a x) = \frac1{x\ln a} $$</mathjax></p>
+<p><mathjax>$$ \sin^\prime x = \cos x $$</mathjax></p>
+<p><mathjax>$$ \cos^\prime x = -\sin x $$</mathjax></p>
+<p><mathjax>$$ \tan^\prime x = \frac1{\cos^2 x} $$</mathjax></p>
+<p><mathjax>$$ \cot^\prime x = -\frac1{\sin^2 x} $$</mathjax></p>
+<p>大致就这么多了~</p>
+</body>
+</html>
