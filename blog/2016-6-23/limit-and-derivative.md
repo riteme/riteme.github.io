@@ -1,7 +1,7 @@
 ---
 title: 极限与导数
 create: 2016.6.23
-modified: 2016.6.23
+modified: 2016.6.24
 tags: 数学
       极限
       导数
@@ -68,7 +68,7 @@ $$ [a \cdot f(x) + b \cdot g(x)]^\prime = a \cdot f^\prime(x) + b \cdot g^\prime
 $$ [f(x)g(x)]^\prime = f^\prime(x)g(x) + f(x)g^\prime(x) $$
 
 两个导数相除：
-$$ \left[{f(x) \over g(x)} \right]^\prime = {f^\prime(x)g(x) + f(x)g^\prime(x) \over g^2(x)} \; (g(x) \neq 0) $$
+$$ \left[{f(x) \over g(x)} \right]^\prime = {f^\prime(x)g(x) - f(x)g^\prime(x) \over g^2(x)} \; (g(x) \neq 0) $$
 
 复合函数：
 $$ [f(g(x))]^\prime = f^\prime(g(x)) \cdot g^\prime(x) $$
@@ -86,7 +86,7 @@ $$ (a^x)^\prime = a^x\ln a $$
 
 $$ (\ln x)^\prime = \frac1x $$
 
-$$ (\log_a x) = \frac1{x\ln a} $$
+$$ (\log_a x)^\prime = \frac1{x\ln a} $$
 
 $$ \sin^\prime x = \cos x $$
 
@@ -96,4 +96,50 @@ $$ \tan^\prime x = \frac1{\cos^2 x} $$
 
 $$ \cot^\prime x = -\frac1{\sin^2 x} $$
 
-大致就这么多了~
+## 对数求导法
+上面的求导公式已经能够应对大部分基本函数的求导了，但是对于下面的函数：
+$$ f(x) = x^{1/x} $$
+
+该如何求导呢？
+这就要用到对数来进行求导。
+
+我们知道，对于一个函数$f(x)$：
+$$ [\ln f(x)]^\prime = \ln^\prime f(x) \cdot f^\prime(x) $$
+
+换言之：
+$$ f^\prime(x) = {[\ln f(x)]^\prime \over \ln^\prime f(x)} \tag{1}$$
+
+利用这一点，我们就可以对$f(x) = x^{1/x}$求导。
+首先，为了方便我们设：
+$$ y = x^{1/x} $$
+
+由于两者相等，所以两者的对数也应相等：
+$$ \ln y = \ln x^{1/x} = \frac1x\ln x $$
+
+将两边对$x$求导。注意按照$(1)$式，左式需要乘上$y^\prime$两者才能相等。
+$$ {y^\prime \over y} = {\ln x - 1 \over x^2} $$
+
+于是我们可以得到：
+$$ y^\prime = {\ln x - 1 \over x^2}y = {\ln x - 1 \over x^2}x^x = f^\prime(x) $$
+
+这样我们就完成了求导。
+既然都对这个函数求过导了，我们来验证一下它的一个性质。
+将$\text{e}$代入导函数：
+$$
+\begin{align}
+f^\prime(\text{e}) & = {\ln \text{e} - 1 \over \text{e}^2}\text{e}^{1/\text{e}} \\
+& = {1 - 1 \over \text{e}^2} \\
+& = 0
+\end{align}
+$$
+
+因此我们发现$x = \text{e}$是这个函数的极值点。
+但究竟是极大值还是极小值呢。设$h > \text{e}$，则：
+$$
+f^\prime(\text{e} + h) = {\ln (\text{e} + h) - 1 \over (\text{e} + h)^2}(\text{e} + h)^{1/(\text{e} + h)}
+$$
+
+因为$(\text{e} + h)^2$和$(\text{e} + h)^{1/(\text{e} + h)}$都大于$0$，因此只要看分子的符号。
+由于自然对数函数是单调递增的，易知分子是大于$0$的。故$f^\prime(\text{e} + h) > 0$。同理，当$0 < h < \text{e}$时，$f^\prime(\text{e} - h) < 0$。
+这样我们就证明了这是一个极大值点。
+事实上，我们可以证明这个导函数的单调性，从而得知这是最大值。
