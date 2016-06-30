@@ -70,3 +70,6 @@ tags: Posts
 
 ##### 2016-1-31
 * [pagegen.py的试炼](./blog/2016-1-31/test.html): 测试`pagegen.py`
+
+#### 临时链接
+* [密码锁](./blog/2016-6-30/expression.html)
