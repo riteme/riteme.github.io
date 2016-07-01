@@ -46,7 +46,7 @@ var _hmt = _hmt || [];
 <tr>
 <th align="center"><mathjax>$a$</mathjax></th>
 <th align="center"><mathjax>$b$</mathjax></th>
-<th align="center"><mathjax>$a$</mathjax> &amp; <mathjax>$b$</mathjax> (<mathjax>$a \land b$</mathjax>)</th>
+<th align="center"><mathjax>$a$</mathjax> <code>&amp;</code> <mathjax>$b$</mathjax> (<mathjax>$a \land b$</mathjax>)</th>
 </tr>
 </thead>
 <tbody>
@@ -77,7 +77,7 @@ var _hmt = _hmt || [];
 <tr>
 <th align="center"><mathjax>$a$</mathjax></th>
 <th align="center"><mathjax>$b$</mathjax></th>
-<th align="center"><mathjax>$a$</mathjax> \</th>
+<th align="center"><mathjax>$a$</mathjax> <code>|</code> <mathjax>$b$</mathjax> (<mathjax>$a \lor b$</mathjax>)</th>
 </tr>
 </thead>
 <tbody>
@@ -108,7 +108,7 @@ var _hmt = _hmt || [];
 <tr>
 <th align="center"><mathjax>$a$</mathjax></th>
 <th align="center"><mathjax>$b$</mathjax></th>
-<th align="center"><mathjax>$a$</mathjax> ^ <mathjax>$b$</mathjax> (<mathjax>$a \oplus b$</mathjax>)</th>
+<th align="center"><mathjax>$a$</mathjax> <code>^</code> <mathjax>$b$</mathjax> (<mathjax>$a \oplus b$</mathjax>)</th>
 </tr>
 </thead>
 <tbody>
@@ -134,11 +134,25 @@ var _hmt = _hmt || [];
 </tr>
 </tbody>
 </table>
-<p>对于<code>!</code>运算，它后面会有一个变量或子表达式。其运算规则如下：<br />
-|<mathjax>$a$</mathjax>|!<mathjax>$a$</mathjax> (<mathjax>$\lnot a$</mathjax>)|<br />
-|:-:|:-:|:-:|<br />
-|<mathjax>$\text{true}$</mathjax>|<mathjax>$\text{false}$</mathjax>|<br />
-|<mathjax>$\text{false}$</mathjax>|<mathjax>$\text{true}$</mathjax>|</p>
+<p>对于<code>!</code>运算，它后面会有一个变量或子表达式。其运算规则如下：</p>
+<table>
+<thead>
+<tr>
+<th align="center"><mathjax>$a$</mathjax></th>
+<th align="center">!<mathjax>$a$</mathjax> (<mathjax>$\lnot a$</mathjax>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><mathjax>$\text{true}$</mathjax></td>
+<td align="center"><mathjax>$\text{false}$</mathjax></td>
+</tr>
+<tr>
+<td align="center"><mathjax>$\text{false}$</mathjax></td>
+<td align="center"><mathjax>$\text{true}$</mathjax></td>
+</tr>
+</tbody>
+</table>
 <p>输入保证表达式是有效的，且表达式中不存在缺少参数的运算符和空的括号。<br />
 为了防止此题变成不可做的NP-hard问题，输入保证表达式中每一个变量名只出现一次。</p>
 <h2 id="_3">输出格式</h2>

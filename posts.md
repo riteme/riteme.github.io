@@ -72,4 +72,4 @@ tags: Posts
 * [pagegen.py的试炼](./blog/2016-1-31/test.html): 测试`pagegen.py`
 
 #### 临时链接
-* [密码锁](./blog/2016-6-30/expression.html)
+* [HNSDFZ #3](./blog/2016-7-1/hnsdfz-3.html)
