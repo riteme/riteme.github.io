@@ -1,0 +1,142 @@
+digraph {
+    node[shape = rectangle];
+
+    start[label = "我是一个弱菜" color = red];
+    primer [label="初级" color = red];
+    junior [label="中级" color = red];
+    senior [label="高级" color = red];
+    unknown [label="莫名奇妙" color = red];
+    zy [label="您果ZY" color = red];
+    start -> primer [style=bold color=red];
+    primer -> junior [style=bold color=red];
+    junior -> senior [style=bold color=red];
+    senior -> unknown [style=bold color=red];
+    unknown -> zy [style=bold color=red];
+    cpp[label = "C++"];
+    mock[label = "模拟"];
+    brute[label = "暴力"];
+    sorting[label = "排序"];
+    hp[label = "高精度"];
+    greedy[label = "贪心"];
+    dp[label = "动态规划"];
+    divide [label="分治"];
+    graph_thoery [label="图论"];
+    ds [label="数据结构"];
+
+    primer -> cpp;
+    primer -> mock;
+
+    primer -> brute;
+    dfs[label = "DFS"];
+    bfs[label = "BFS"];
+    meetinthemiddle[label = "Meet in the middle"];
+    brute -> dfs;
+    brute -> bfs;
+    brute -> meetinthemiddle;
+
+    primer -> sorting;
+    pop_sort[label = "冒泡排序"];
+    insert_sort[label = "插入排序"];
+    shell_sort[label = "希尔排序"];
+    merge_sort[label = "归并排序"];
+    quick_sort[label = "快速排序"];
+    bucket_sort[label = "桶排序"];
+    radix_sort[label = "基数排序"];
+    suffix_sort[label = "后缀排序"];
+    sorting -> pop_sort;
+    sorting -> insert_sort;
+    sorting -> shell_sort;
+    sorting -> merge_sort;
+    sorting -> quick_sort;
+    sorting -> bucket_sort;
+    sorting -> radix_sort;
+    // sorting -> suffix_sort;
+
+    primer -> hp;
+    
+    primer -> greedy;
+    haffman [label="哈夫曼树"];
+    greedy -> haffman;
+    
+    primer -> dp;
+    linedp [label="线性DP"];
+    treedp [label="树形DP"];
+    pack [label="背包问题"];
+    rollingarray [label="滚动数组"];
+    slopeopti [label="斜率优化"];
+    dp -> linedp;
+    dp -> treedp;
+    dp -> pack;
+    dp -> rollingarray;
+    dp -> slopeopti;
+
+    junior -> divide;
+    // divide -> merge_sort;
+    binary_search [label="二分搜索"];
+    binary_detect [label="二分答案"];
+    intervalsum [label="最长子段和"];
+    global_binary [label="整体二分"];
+    cdq [label="CDQ分治"];
+    treedivide [label="树分治"];
+    divide -> binary_search;
+    divide -> binary_detect;
+    divide -> intervalsum;
+    divide -> global_binary;
+    divide -> cdq;
+    divide -> treedivide;
+    td_point[label="点分治"];
+    td_edge[label="边分治"];
+    td_chain[label="链分治"];
+    td_dynamic[label="动态树分治"];
+    treedivide -> td_point;
+    treedivide -> td_edge;
+    treedivide -> td_chain;
+    treedivide -> td_dynamic;
+
+    junior -> graph_thoery;
+    graph_thoery -> dfs;
+    graph_thoery -> bfs;
+
+    senior -> ds;
+    easy_ds [label="简单数据结构"];
+    array [label="数组"];
+    list [label="链表"];
+    stack [label="栈"];
+    queue [label="队列"];
+    heap [label="堆"];
+    disjoint [label="并查集"];
+    fenwick [label="树状数组"];
+    ds -> easy_ds;
+    easy_ds -> array;
+    easy_ds -> list;
+    easy_ds -> stack;
+    easy_ds -> queue;
+    easy_ds -> heap;
+    easy_ds -> disjoint;
+    easy_ds -> fenwick;
+
+    harder_ds [label="高级数据结构"];
+    segment [label="线段树"];
+    bst [label="平衡树"];
+    persistent [label="可持久化"];
+    treedecompose [label="树链剖分"];
+    lct [label="LCT"];
+    kdtree [label="K-d tree"];
+    toptree [label="Toptree"];
+    modui [label="莫队算法"];
+    blocks [label="分块"];
+    ds -> harder_ds;
+    line_ds [label="线性数据结构"];
+    tree_ds [label="树形数据结构"];
+    space_ds [label="空间数据结构"];
+    sqrt_n [label="根号大法"];
+    harder_ds -> segment;
+    harder_ds -> bst;
+    harder_ds -> persistent;
+    harder_ds -> treedecompose;
+    harder_ds -> lct;
+    harder_ds -> treedivide;
+    harder_ds -> kdtree;
+    harder_ds -> toptree;
+    harder_ds -> modui;
+}
