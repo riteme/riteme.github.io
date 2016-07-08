@@ -1,5 +1,9 @@
 html {
-    font-family: "Times New Roman", "宋体"
+    font-family: "Times New Roman", "宋体";
+}
+
+p {
+    font-family: "Times New Roman", "宋体";
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -12,10 +16,12 @@ table {
 
 th {
     border-color: #000;
+    font-family: "Times New Roman", "宋体";
 }
 
 td {
     border-color: #000;
+    font-family: "Times New Roman", "宋体";
 }
 
 b, strong {
