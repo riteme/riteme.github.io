@@ -7,6 +7,9 @@ tags: Posts
 
 [TOC]
 #### 所有文章
+##### 2016-7-9
+* [HNSDFZ2016 #3](./blog/2016-7-9/hnsdfz-3.html): HNSDFZ2016第三次欢乐互测
+
 ##### 2016-6-23
 * [极限与导数](./blog/2016-6-23/limit-and-derivative.html): 最近学了一些基础微积分，这里稍微记录一下
 
