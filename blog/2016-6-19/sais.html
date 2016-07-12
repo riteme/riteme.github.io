@@ -220,7 +220,7 @@ baaaab#
 <ol>
 <li>对于第二步，由于放入的LMS前缀都只有一个字符，因为桶的排列是按照字典序的，所以保证放置后一定有序。</li>
 <li>对于第三步，当放入第一个<mathjax>$L$</mathjax>型LMS前缀时，<mathjax>$SA$</mathjax>数组必定是有序的(根据引理2.2)。假设我们已经放置了<mathjax>$k$</mathjax>个<mathjax>$L$</mathjax>型LMS前缀，且它们在<mathjax>$SA$</mathjax>数组中保持有序，现在考虑放入的第<mathjax>$k + 1$</mathjax>个LMS前缀是否会保证有序。我们设这个LMS前缀为<mathjax>$\text{pre}(S, i)$</mathjax>，因为首字母不同的LMS前缀一定是保持有序的，因此我们只需要考虑它与其首字母相同的LMS前缀之间的关系。因为我们是从左至右扫描来使<mathjax>$L$</mathjax>型LMS前缀从小至大放置，那么对于所有之前放置的且首字母与其相同的LMS前缀<mathjax>$\text{pre}(S, j)$</mathjax>，应该都有<mathjax>$\text{pre}(S, j) &lt; \text{pre}(S, i)$</mathjax>。假设我们存在一个这样的LMS前缀，使得<mathjax>$\text{pre}(S, j) &gt; \text{pre}(S, i)$</mathjax>，由于<mathjax>$\text{pre}(S, j)[0] = \text{pre}(S, i)[0]$</mathjax>，所以我们得知<mathjax>$\text{pre}(S, j + 1) &gt; \text{pre}(S, i + 1)$</mathjax>。而<mathjax>$\text{pre}(S, j + 1)$</mathjax>与<mathjax>$\text{pre}(S, i + 1)$</mathjax>都是之前所加入过的，因此它们之间应当保持有序。而<mathjax>$\text{pre}(S, j) &gt; \text{pre}(S, i)$</mathjax>告诉我们之前的<mathjax>$SA$</mathjax>数组不是有序的，与假设相反，故不存在这样的<mathjax>$\text{pre}(S, j)$</mathjax>。因此，当<mathjax>$\text{pre}(S, i)$</mathjax>放置后，<mathjax>$SA$</mathjax>数组保持有序。直到所有的<mathjax>$L$</mathjax>型LMS前缀加入完毕。</li>
-<li>对于第四步的正确性的证明，与第三步的证明是类似的。读者可以自行推理一下。、</li>
+<li>对于第四步的正确性的证明，与第三步的证明是类似的。读者可以自行推理一下。</li>
 </ol>
 <p>这样，我们就完成了对这个诱导排序的正确性的证明。但我们需要注意的是，这只是对LMS前缀的排序，我们期望是对LMS子串进行排序。我们注意到每一个LMS子串都可以视为是一个LMS字符与一个LMS前缀连接而成的，因此我们只需要判断两个LMS字符和其后一位对应的LMS前缀的大小关系，就可以判断LMS子串之间的大小关系。<br />
 然而，我们其实可以做得更简单。下面的引理说明了上面的算法结束后的<mathjax>$SA$</mathjax>数组就是排好序的LMS子串的数组。</p>
