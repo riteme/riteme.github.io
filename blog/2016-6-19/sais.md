@@ -42,7 +42,7 @@ function SA-IS(S):
     P = int[]
     bucket = int[]
     扫描倒序字符串确定每一个后缀的类型 -> t
-    扫描t数组确定所有的LMS字串 -> P
+    扫描t数组确定所有的LMS子串 -> P
     对所有的LMS子串进行诱导排序
     对每一个LMS子串重新命名，生成新的串S1
     
