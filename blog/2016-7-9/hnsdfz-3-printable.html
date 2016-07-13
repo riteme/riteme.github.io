@@ -370,13 +370,19 @@ Zerg和Protoss的进攻已经很近了，你需要尽快采更多的资源......
 <p>任选一种方法建立AST，标程使用的是递归下降式解析器。<br />
 然后在AST上DP即可得到答案。</p>
 <h3 id="b">B</h3>
-<p>模糊字符串匹配，使用AC自动机，好像有论文什么的......<br />
-原来的B题被出题人弃了，于是出题人十分不负责地放裸题，数据还一大堆问题......</p>
+<p><del>模糊字符串匹配，使用AC自动机，好像有论文什么的......</del><br />
+原来的B题被出题人弃了，于是出题人十分不负责地放裸题，数据还一大堆问题......<br />
+AC自动机搞法纯属暴力！<br />
+此题正解是<strong>FFT</strong>，不知道HJWJBSR究竟是怎么搞的。<br />
+正则表达式的时间复杂度未知......<br />
+此外还可以用<code>bitset</code>水过去，时间复杂度是<mathjax>$O({nm \over T})$</mathjax>，<mathjax>$T$</mathjax>是机器的整型长度。具体做法是用所有字符到原串中匹配，匹配上就填<mathjax>$1$</mathjax>否则填<mathjax>$0$</mathjax>，得到不同的布尔数组。对于问号，就全部填<mathjax>$1$</mathjax>。目标就是按照模式串的每个字符顺序排放，找到一个斜列全是<mathjax>$1$</mathjax>即可。因此可以使用<code>bitset</code>，每次先左移一定的位置然后按位与。如果最后得到的<code>bitset</code>中有<mathjax>$1$</mathjax>则表示匹配成功。<br />
+最后，<code>bitset</code>跑得比标解FFT快很多......</p>
 <h3 id="c">C</h3>
 <p>每个点用矩阵快速计算点权，然后DFS找加权直径。</p>
 <h3 id="d">D</h3>
 <p>可以将每一个叶节点视为一个有代价有价值的物品，然后做01背包。<br />
 对于能够删除一些物品后再计算好像没有什么好办法，标程就是每次询问暴力......<br />
-坐等HJWJBSR给出牛逼搞法。</p>
+<del>坐等HJWJBSR给出牛逼搞法。</del><br />
+HJWJBSR说可以用前缀和就可以做到<mathjax>$O(nt)$</mathjax>。</p>
 </body>
 </html>
