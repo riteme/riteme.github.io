@@ -78,11 +78,25 @@ GFM breaks!
 --smartpants---
 "a"'b'"c"'d'"e""'
 
-## Mathjax测试
+## Mathjax测试: $e^{ix} = \cos x + i\sin x$
 这个**应该**不得出问题......
 $$ \sum_{i = 1}^{\infty} i = - {1 \over 12} \tag{1.1} $$
 
 $$ a^2 + b^2 = c^2 \Rightarrow \triangle ABC\text{是直角三角形} \tag{1.2} $$
+
+$$
+\begin{align}
+X_k & = \sum^{n - 1}_{j = 0} x_ke^{-2\pi ijk/n} \\
+    & = \sum^{n - 1}_{j = 0} x_kw_n^{-jk}
+\end{align}
+$$
+
+$$
+\begin{align}
+x_k & = \frac1n\sum^{n - 1}_{j = 0} X_ke^{2\pi ijk/n} \\
+    & = \frac1n\sum^{n - 1}_{j = 0} X_kw_n^{jk}
+\end{align}
+$$
 
 行内公式`inline-math`在此$ 233 \neq 244 $233333
 

@@ -48,7 +48,7 @@ tags: Posts
 * [替罪羊树(Scapegoat Tree)](./blog/2016-4-6/scapegoat.html): 二叉平衡树替罪羊树
 
 ##### 2016-3-21
-* [x^n-1问题](./blog/2016-3-21/x-2-1.html): 对x^n-1进行因式分解
+* [$x^n-1$问题](./blog/2016-3-21/x-2-1.html): 对$x^n-1$进行因式分解
 
 ##### 2016-3-12
 * [2-3树与红黑树](./blog/2016-3-12/2-3-tree-and-red-black-tree.html): 2-3树与红黑树

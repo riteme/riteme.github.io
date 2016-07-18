@@ -41,7 +41,7 @@ var _hmt = _hmt || [];
 </li>
 </ul>
 </li>
-<li><a href="#mathjax">Mathjax测试</a></li>
+<li><a href="#mathjax-eix-cos-x-isin-x">Mathjax测试: $e^{ix} = \cos x + i\sin x$</a></li>
 <li><a href="#_1">特殊语法测试</a></li>
 </ul>
 </li>
@@ -170,10 +170,22 @@ Yeah!!!
 <ins>inserted</ins><br />
 &ndash;smartpants&mdash;<br />
 &ldquo;a&ldquo;&lsquo;b&lsquo;&ldquo;c&ldquo;&lsquo;d&lsquo;&ldquo;e&rdquo;&ldquo;&rsquo;</p>
-<h2 id="mathjax">Mathjax测试</h2>
+<h2 id="mathjax-eix-cos-x-isin-x">Mathjax测试: <mathjax>$e^{ix} = \cos x + i\sin x$</mathjax></h2>
 <p>这个<strong>应该</strong>不得出问题......<br />
 <mathjax>$$ \sum_{i = 1}^{\infty} i = - {1 \over 12} \tag{1.1} $$</mathjax></p>
 <p><mathjax>$$ a^2 + b^2 = c^2 \Rightarrow \triangle ABC\text{是直角三角形} \tag{1.2} $$</mathjax></p>
+<p><mathjax>$$
+\begin{align}
+X_k &amp; = \sum^{n - 1}_{j = 0} x_ke^{-2\pi ijk/n} \\
+    &amp; = \sum^{n - 1}_{j = 0} x_kw_n^{-jk}
+\end{align}
+$$</mathjax></p>
+<p><mathjax>$$
+\begin{align}
+x_k &amp; = \frac1n\sum^{n - 1}_{j = 0} X_ke^{2\pi ijk/n} \\
+    &amp; = \frac1n\sum^{n - 1}_{j = 0} X_kw_n^{jk}
+\end{align}
+$$</mathjax></p>
 <p>行内公式<code>inline-math</code>在此<mathjax>$ 233 \neq 244 $</mathjax>233333</p>
 <h2 id="_1">特殊语法测试</h2>
 <div class="panel panel-info"><div class="panel-heading"><h3 class="panel-title">FBI Warning</h3></div><div class="panel-body">
