@@ -246,19 +246,25 @@ function REAL-TREE-SPLIT(x):  // DFS过程
 如果树链剖分的时间复杂度高到爆，我们写的时候估计得虚死。<br />
 但是可以证明，树链剖分后的树，从根节点到任意一个叶节点的路径只会与<mathjax>$O(\log n)$</mathjax>条树链相交。这意味着将两个节点逼近到同一条链上时，只需经过<mathjax>$O(\log n)$</mathjax>次跳转。<br />
 即基于树剖的其它操作的时间复杂度为<mathjax>$\Omega(\log n)$</mathjax>(注意是下界，具体的上界取决于操作本身的附加的复杂度)。</p>
-<p>为什么会只有<mathjax>$O(\log n)$</mathjax>条呢？<br />
-我们来考虑树链剖分时最坏的情况：<br />
+<p><del>为什么会只有<mathjax>$O(\log n)$</mathjax>条呢？</del><br />
+<del>我们来考虑树链剖分时最坏的情况：</del><br />
 <img alt="tree-worst" src="http://git.oschina.net/riteme/blogimg/raw/master/tree-split/tree-worst.png" /><br />
-想象这是树剖是最坏的情况(因为实际上并不会这样)。因为树剖总是尝试将最长的剖分出来，因此树链都是向右的。如果最左链再加一个节点，树链就会向左剖分了。<br />
-为了达到这样的效果，这棵有根树是接近<strong>平衡</strong>的，即树高为<mathjax>$\Theta(\log n)$</mathjax>。<br />
-因此最坏的情况下，当查询最左边的节点时，只需要使用<mathjax>$O(\log n)$</mathjax>次跳转就可完成。</p>
-<p>当然上面并不是严格的证明，只是一个形象的说明罢了。我们只需要知道树链剖分能保证很好的时间复杂度即可。</p>
-<h2 id="lca">扩展：树链剖分计算LCA</h2>
+<del>想象这是树剖是最坏的情况(因为实际上并不会这样)。因为树剖总是尝试将最长的剖分出来，因此树链都是向右的。如果最左链再加一个节点，树链就会向左剖分了。</del><br />
+<del>为了达到这样的效果，这棵有根树是接近<strong>平衡</strong>的，即树高为<mathjax>$\Theta(\log n)$</mathjax>。</del><br />
+<del>因此最坏的情况下，当查询最左边的节点时，只需要使用<mathjax>$O(\log n)$</mathjax>次跳转就可完成。</del></p>
+<p><del>当然上面并不是严格的证明，只是一个形象的说明罢了。我们只需要知道树链剖分能保证很好的时间复杂度即可。</del></p>
+<p>可以考虑一棵树中轻边的数量。由于从某一个节点开始，每走一条轻边，子树的大小都会增加一倍。因此任意一条树链上只有<mathjax>$O(\log n)$</mathjax>条轻边，即意味着只有<mathjax>$O(\log n)$</mathjax>。</p>
+<h2 id="lca">树链剖分计算LCA</h2>
 <p>LCA即最近公共祖先。计算LCA的算法可以说是各种各样，有暴力的爬山法，炸空间的Tarjan算法，开挂的倍增法，莫名高大上的ST跳表的搞法，还有不知所云的转成RMQ问题......在与树相关的操作中，经常需要一些求LCA的操作。其中最常用的就是倍增法，它能在<mathjax>$O(\log n)$</mathjax>的时间内求出LCA，并且其空间复杂度为<mathjax>$\Theta(n \log n)$</mathjax>。</p>
 <p>当我们树剖后的操作需要借助到LCA时，是不是就要写个LCA的算法呢？<br />
 其实并不需要，我们可以直接利用树剖的结果来计算LCA。</p>
 <p>然而，求LCA的过程和之前查询也是差不多的：在同一条链上的时候，<strong>深度值较小的就是LCA</strong>。如果不在同一条链上，就不断往上跳即可。这样可以在<mathjax>$O(\log n)$</mathjax>时间内求出LCA。并且仅使用了<mathjax>$\Theta(n)$</mathjax>的空间复杂度，优势十分显著。</p>
 <p>当然，单纯拿树链剖分来求LCA也煞是浪费。既然树剖有能求LCA的能力，因此在面对需要LCA的时候就不必求助于其它的算法了。</p>
+<h2 id="dfs">树链剖分与DFS序</h2>
+<p><a href="http://uoj.ac/problem/128">【NOI2015】软件包管理器</a></p>
+<p>当我们既需要维护链上信息，又需要维护子树信息时，就有点棘手了。<br />
+维护子树信息的通常做法是DFS序。为了能够将树链剖分与DFS序结合起来，目标就是将树链剖分的编号与DFS序统一起来。<br />
+考虑到DFS序实际上不是唯一的，因此在树链剖分的过程中可以先对重儿子进行DFS，这样就可以保证一条重链上的DFS序也是递增的了。于是，我们可以继续按照DFS序维护子树的方法，同时树链剖分的信息也会被同时更新。</p>
 <div class="footnote">
 <hr />
 <ol>
