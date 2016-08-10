@@ -98,6 +98,8 @@ x_k & = \frac1n\sum^{n - 1}_{j = 0} X_ke^{2\pi ijk/n} \\
 \end{align}
 $$
 
+`$$` `$$$$` `$` `$`
+
 行内公式`inline-math`在此$ 233 \neq 244 $233333
 
 ## 特殊语法测试
