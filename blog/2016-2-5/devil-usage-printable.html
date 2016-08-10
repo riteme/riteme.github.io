@@ -89,11 +89,13 @@
 </td></tr></table>
 
 <div class="panel panel-info"><div class="panel-heading"><h3 class="panel-title">注意</h3></div><div class="panel-body">
-当你不需要再使用图片对象时，应及时使用<code>ilDeleteImage</code>删除：<br />
-<pre><br />
-ilDeleteImage(image);       // 删除单个图片对象<br />
-ilDeleteImages(1, &amp;image);  // 当然也可以批量删除<br />
-</pre><br />
+当你不需要再使用图片对象时，应及时使用<code>ilDeleteImage</code>删除：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre>ilDeleteImage(image);       // 删除单个图片对象
+ilDeleteImages(1, &amp;image);  // 当然也可以批量删除
+</pre></div>
+</td></tr></table>
+
 </div></div>
 <h2 id="_5">创建材质</h2>
 <p>加载完图片后，还只是将数据托管在DevIL内部。为了能够将数据提供给OpenGL或DirectX来创建材质，我们使用<code>ilGetData()</code>。</p>

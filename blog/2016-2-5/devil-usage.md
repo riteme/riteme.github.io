@@ -98,11 +98,12 @@ assert(ilGetError() == IL_NO_ERROR);
 ```
 
 [[[注意]]]
-当你不需要再使用图片对象时，应及时使用<code>ilDeleteImage</code>删除：
-<pre>
+当你不需要再使用图片对象时，应及时使用`ilDeleteImage`删除：
+
+```
 ilDeleteImage(image);       // 删除单个图片对象
 ilDeleteImages(1, &image);  // 当然也可以批量删除
-</pre>
+```
 [[[#]]]
 
 ## 创建材质

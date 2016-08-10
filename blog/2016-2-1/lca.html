@@ -50,7 +50,7 @@ var _hmt = _hmt || [];
 <h2 id="1">1 概述</h2>
 <h3 id="11-lca">1.1 什么是LCA？</h3>
 <p>下面是一棵有根树，注意不一定是二叉树。</p>
-<p><img alt="Sample Tree" src="http://7xq4ng.com1.z0.glb.clouddn.com/sample-tree.png" /></p>
+<p><img alt="Sample Tree" src="http://git.oschina.net/riteme/blogimg/raw/master/lca/sample-tree.png" /></p>
 <p>我们先定义深度函数<mathjax>$ d(u): u \text{到根的最短距离} $</mathjax>。</p>
 <p>例如，在上图中<mathjax>$ d(1)=0,\,d(3)=1,\,d(9)=3$</mathjax></p>
 <p>我们再定义一个函数<mathjax>$ LCA(u, v) $</mathjax>表示节点<mathjax>$ u $</mathjax>和<mathjax>$ v $</mathjax>的最小公共祖先。</p>
@@ -61,7 +61,7 @@ var _hmt = _hmt || [];
 <h3 id="12">1.2 有什么卵用？</h3>
 <p>一个简单的例子，计算完LCA后，可以在<mathjax>$ \Theta (1) $</mathjax>的时间内算出任意两点的距离。</p>
 <p>还是下面这个图解释：</p>
-<p><img alt="Sample Tree With Weight" src="http://7xq4ng.com1.z0.glb.clouddn.com/sample-tree-weighted.png" /></p>
+<p><img alt="Sample Tree With Weight" src="http://git.oschina.net/riteme/blogimg/raw/master/lca/sample-tree-weighted.png" /></p>
 <p>上面的树边上带了权重，两点之间的距离就是两点间的简单路径上的边权之和。</p>
 <p>例如<mathjax>$ distance(1,1)=0,\,distance(2,3)=3,\,distance(7,6)=6$</mathjax></p>
 <p>如果用DFS或BFS来计算的话，需要<mathjax>$ O(n) $</mathjax>的时间复杂度。</p>
@@ -95,7 +95,7 @@ var _hmt = _hmt || [];
 <p>计算LCA的算法有很多，这里介绍三个。</p>
 <h3 id="21">2.1 朴素算法</h3>
 <p>朴素算法是最简单的了，按照国际惯例，先放图：</p>
-<p><img alt="Sample Tree" src="http://7xq4ng.com1.z0.glb.clouddn.com/sample-tree.png" /></p>
+<p><img alt="Sample Tree" src="http://git.oschina.net/riteme/blogimg/raw/master/lca/sample-tree.png" /></p>
 <p>朴素算法的做法如下：</p>
 <blockquote>
 <ol>
@@ -182,15 +182,15 @@ var _hmt = _hmt || [];
 <p>这个算法的进行类似于DFS，是个递归调用的过程。<br />
 因为DFS总是先将小的子树遍历完，因此<code>anscestor</code>数组中的祖先都是尽可能小的。</p>
 <p>拿一棵较小的子树作为示例：</p>
-<p><img alt="Sample Subtree" src="http://7xq4ng.com1.z0.glb.clouddn.com/sample-tree-2.png" /></p>
+<p><img alt="Sample Subtree" src="http://git.oschina.net/riteme/blogimg/raw/master/lca/sample-tree-2.png" /></p>
 <p>一开始先DFS到<code>7</code>处。</p>
-<p><img alt="Step 1" src="http://7xq4ng.com1.z0.glb.clouddn.com/tarjan-1.png" /></p>
+<p><img alt="Step 1" src="http://git.oschina.net/riteme/blogimg/raw/master/lca/tarjan-1.png" /></p>
 <p>处理到<code>7</code>时还并没有什么结点被处理过，只好默默的回到5。</p>
-<p><img alt="Step 2" src="http://7xq4ng.com1.z0.glb.clouddn.com/tarjan-2.png" /></p>
+<p><img alt="Step 2" src="http://git.oschina.net/riteme/blogimg/raw/master/lca/tarjan-2.png" /></p>
 <p><code>5</code>处将<code>7</code>和自己相连，形成集合<code>{5, 7}</code>，<code>5</code>是这个集合的公共祖先。</p>
-<p><img alt="Step 3" src="http://7xq4ng.com1.z0.glb.clouddn.com/tarjan-3.png" /></p>
+<p><img alt="Step 3" src="http://git.oschina.net/riteme/blogimg/raw/master/lca/tarjan-3.png" /></p>
 <p>现在DFS到<code>9</code>。</p>
-<p><img alt="Step 4" src="http://7xq4ng.com1.z0.glb.clouddn.com/tarjan-4.png" /></p>
+<p><img alt="Step 4" src="http://git.oschina.net/riteme/blogimg/raw/master/lca/tarjan-4.png" /></p>
 <p>假设我们询问了<mathjax>$ LCA(7,9) $</mathjax>，那么在处理<code>9</code>时，会发现<code>7</code>被处理过了，<strong><code>7</code>所在的集合的公共祖先为<code>5</code></strong>。<br />
 而<code>9</code>是从<code>5</code>递归下来的，因此<strong><code>9</code>与<code>7</code>的公共祖先中有<code>5</code></strong>。<br />
 又因为DFS会尽可能的处理较小的子树，因此<strong><code>5</code>将会是<mathjax>$ LCA(7, 9) $</mathjax></strong>。</p>
@@ -222,7 +222,7 @@ var _hmt = _hmt || [];
 <mathjax>$$ f[i, j] : 离节点i相距2^j的父节点 $$</mathjax></p>
 <p>换言之<br />
 <mathjax>$$ distance(i, f[i, j]) = 2^j \tag{2.1} $$</mathjax></p>
-<p><img alt="Sample Tree" src="http://7xq4ng.com1.z0.glb.clouddn.com/sample-tree.png" /></p>
+<p><img alt="Sample Tree" src="http://git.oschina.net/riteme/blogimg/raw/master/lca/sample-tree.png" /></p>
 <p>又是这个图。我们将树上的每一条边的长度都视为1，那么<mathjax>$ f[7, 0] = 5,\,f[7, 1] = 3 ... $</mathjax>，<br />
 因此节点<mathjax>$ 5 $</mathjax>到<mathjax>$ 7 $</mathjax>的距离为<mathjax>$ 1 = 2^0 $</mathjax>，节点<mathjax>$ 3 $</mathjax>到<mathjax>$ 7 $</mathjax>的距离为<mathjax>$ 2 = 2^1 $</mathjax>。<br />
 由此我们可以观察到<code>f</code>数组的一个特点：<mathjax>$ f[i, 0] $</mathjax>就是<mathjax>$ i $</mathjax>的父节点。</p>
@@ -321,7 +321,7 @@ $$</mathjax></p>
 <p>利用这个特性，我们可以逐位将一个二进制数减成<mathjax>$ 0 $</mathjax>。</p>
 <p>在上面的代码中，就这样逐步上调节点<mathjax>$ u $</mathjax>，并使最后的深度差<code>dist</code>变为<mathjax>$ 0 $</mathjax>。<br />
 下面有一张样例：</p>
-<p><img alt="Sample #1" src="http://7xq4ng.com1.z0.glb.clouddn.com/double-1.png" /></p>
+<p><img alt="Sample #1" src="http://git.oschina.net/riteme/blogimg/raw/master/lca/double-1.png" /></p>
 <p>再来看<code>KEY #2</code>，此时<mathjax>$ u $</mathjax>和<mathjax>$ v $</mathjax>处在同一深度上，<mathjax>$ j $</mathjax>从大到小逐一测试。</p>
 <p>我们试图使<mathjax>$ u $</mathjax>和<mathjax>$ v $</mathjax>尽可能靠近LCA，但又不直接到达LCA。</p>
 <p>如果说<mathjax>$ 2^j $</mathjax>的距离上，<mathjax>$ u $</mathjax>和<mathjax>$ v $</mathjax>的父节点相同，则这个父节点是它们的公共祖先，如果跳上去就有可能超过LCA了，因此忽略。</p>
@@ -330,7 +330,7 @@ $$</mathjax></p>
 <p>但是为了方便判断是否跳的太远，我们不让它们最后跳到LCA的位置，而是跳到LCA的儿子节点处。</p>
 <p>此时其父节点就是LCA。</p>
 <p>下面有一张样例：</p>
-<p><img alt="Sample #2" src="http://7xq4ng.com1.z0.glb.clouddn.com/double-2.png" /></p>
+<p><img alt="Sample #2" src="http://git.oschina.net/riteme/blogimg/raw/master/lca/double-2.png" /></p>
 <p>至此，倍增法就结束了。</p>
 <p>以上三种算法是比较常见的求LCA的算法。似乎二叉树还有一种分治的LCA算法，我没有做过多了解了。</p>
 <hr/>

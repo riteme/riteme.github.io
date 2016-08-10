@@ -7,7 +7,7 @@ tags: C/C++
       图形
 ---
 # 正式开始编写ne2d
-![ne2d v0.2.2](http://7xq4ng.com1.z0.glb.clouddn.com/ne2d-start-1.png)
+![ne2d v0.2.2](http://git.oschina.net/riteme/blogimg/raw/master/ne2d/ne2d-start-1.png)
 
 一直想找个好点的2D渲染引擎，但看了很多似乎都不合胃口，也许有点挑剔。之前看到的bgfx似乎也有点操蛋，毕竟操作上还是麻烦了点。
 因此，**趁着时间还多，多造点轮子，学点东西**。索性开始自己做个适合的2D渲染引擎。

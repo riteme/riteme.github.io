@@ -11,7 +11,7 @@ tags: 算法
 ### 1.1 什么是LCA？
 下面是一棵有根树，注意不一定是二叉树。
 
-![Sample Tree](http://7xq4ng.com1.z0.glb.clouddn.com/sample-tree.png)
+![Sample Tree](http://git.oschina.net/riteme/blogimg/raw/master/lca/sample-tree.png)
 
 我们先定义深度函数$ d(u): u \text{到根的最短距离} $。
 
@@ -31,7 +31,7 @@ $$ LCA(u,v):u和v的所有祖先p中,d(p)最大 $$
 
 还是下面这个图解释：
 
-![Sample Tree With Weight](http://7xq4ng.com1.z0.glb.clouddn.com/sample-tree-weighted.png)
+![Sample Tree With Weight](http://git.oschina.net/riteme/blogimg/raw/master/lca/sample-tree-weighted.png)
 
 上面的树边上带了权重，两点之间的距离就是两点间的简单路径上的边权之和。
 
@@ -74,7 +74,7 @@ def union(u, v) -> void
 ### 2.1 朴素算法
 朴素算法是最简单的了，按照国际惯例，先放图：
 
-![Sample Tree](http://7xq4ng.com1.z0.glb.clouddn.com/sample-tree.png)
+![Sample Tree](http://git.oschina.net/riteme/blogimg/raw/master/lca/sample-tree.png)
 
 朴素算法的做法如下：
 
@@ -138,23 +138,23 @@ def Tarjan_LCA(u):
 
 拿一棵较小的子树作为示例：
 
-![Sample Subtree](http://7xq4ng.com1.z0.glb.clouddn.com/sample-tree-2.png)
+![Sample Subtree](http://git.oschina.net/riteme/blogimg/raw/master/lca/sample-tree-2.png)
 
 一开始先DFS到`7`处。
 
-![Step 1](http://7xq4ng.com1.z0.glb.clouddn.com/tarjan-1.png)
+![Step 1](http://git.oschina.net/riteme/blogimg/raw/master/lca/tarjan-1.png)
 
 处理到`7`时还并没有什么结点被处理过，只好默默的回到5。
 
-![Step 2](http://7xq4ng.com1.z0.glb.clouddn.com/tarjan-2.png)
+![Step 2](http://git.oschina.net/riteme/blogimg/raw/master/lca/tarjan-2.png)
 
 `5`处将`7`和自己相连，形成集合`{5, 7}`，`5`是这个集合的公共祖先。
 
-![Step 3](http://7xq4ng.com1.z0.glb.clouddn.com/tarjan-3.png)
+![Step 3](http://git.oschina.net/riteme/blogimg/raw/master/lca/tarjan-3.png)
 
 现在DFS到`9`。
 
-![Step 4](http://7xq4ng.com1.z0.glb.clouddn.com/tarjan-4.png)
+![Step 4](http://git.oschina.net/riteme/blogimg/raw/master/lca/tarjan-4.png)
 
 假设我们询问了$ LCA(7,9) $，那么在处理`9`时，会发现`7`被处理过了，**`7`所在的集合的公共祖先为`5`**。
 而`9`是从`5`递归下来的，因此**`9`与`7`的公共祖先中有`5`**。
@@ -203,7 +203,7 @@ $$ f[i, j] : 离节点i相距2^j的父节点 $$
 换言之
 $$ distance(i, f[i, j]) = 2^j \tag{2.1} $$
 
-![Sample Tree](http://7xq4ng.com1.z0.glb.clouddn.com/sample-tree.png)
+![Sample Tree](http://git.oschina.net/riteme/blogimg/raw/master/lca/sample-tree.png)
 
 又是这个图。我们将树上的每一条边的长度都视为1，那么$ f[7, 0] = 5,\,f[7, 1] = 3 ... $，
 因此节点$ 5 $到$ 7 $的距离为$ 1 = 2^0 $，节点$ 3 $到$ 7 $的距离为$ 2 = 2^1 $。
@@ -294,7 +294,7 @@ def Double_LCA(u, v):
 在上面的代码中，就这样逐步上调节点$ u $，并使最后的深度差`dist`变为$ 0 $。
 下面有一张样例：
 
-![Sample #1](http://7xq4ng.com1.z0.glb.clouddn.com/double-1.png)
+![Sample #1](http://git.oschina.net/riteme/blogimg/raw/master/lca/double-1.png)
 
 再来看`KEY #2`，此时$ u $和$ v $处在同一深度上，$ j $从大到小逐一测试。
 
@@ -312,7 +312,7 @@ def Double_LCA(u, v):
 
 下面有一张样例：
 
-![Sample #2](http://7xq4ng.com1.z0.glb.clouddn.com/double-2.png)
+![Sample #2](http://git.oschina.net/riteme/blogimg/raw/master/lca/double-2.png)
 
 至此，倍增法就结束了。
 

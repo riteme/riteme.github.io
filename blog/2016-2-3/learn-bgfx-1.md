@@ -249,7 +249,7 @@ bgfx::shutdown();
 g++ -std=c++11 main.cpp -o exec -L. -lbgfxRelease -lexample-commonRelease -lpthread -lGL -lX11
 ```
 
-注意编译器要打开C++11支持，如果你的编译器不支持C++11，那我很好奇你是怎么把bgfx编译成功的。  
+注意编译器要打开C\+\+11支持，如果你的编译器不支持C\+\+11，那我很好奇你是怎么把bgfx编译成功的。  
 `-lpthread`、`-lGL`和`-lX11`是bgfx依赖的库，分别是POSIX线程库、OpenGL库和X11库。
 
 如果没有错误报出，运行`exec`就能看到以下窗口：
@@ -258,7 +258,7 @@ g++ -std=c++11 main.cpp -o exec -L. -lbgfxRelease -lexample-commonRelease -lpthr
 ./exec
 ```
 
-![helloworld](http://7xq4ng.com1.z0.glb.clouddn.com/learn-bgfx-1.png)
+![helloworld](http://git.oschina.net/riteme/blogimg/raw/master/learn-bgfx/learn-bgfx-1.png)
 
 如果你出现了什么意外，下面贴出了完整的程序用于对照：
 
