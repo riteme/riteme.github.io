@@ -9,38 +9,47 @@ import hashlib
 import pagegen
 
 
-def hash(obj):
-    obj = str(obj).encode("ASCII")
-    return hashlib.md5(obj).hexdigest()
-
 if __name__ != "__main__":
     exit(0)
 
+
 UPDATE_MAP_FILE = "./map.json"
 TEMPLATE_FILE = "./template.html"
+TEMPLATE_PRINTABLE_FILE = "./printable-template.html"
 
 update_map = {}
 update_all = False
 
 
-if len(sys.argv) > 1 and sys.argv[1] == "--force":
-    print("(info) Force to update all pages.")
+if "--force" in sys.argv:
     update_all = True
-
-template_token = hash(TEMPLATE_FILE)
-template_time = hash(int(os.path.getmtime(TEMPLATE_FILE)))
+    print("(info) Force to update all pages.")
 
 if os.path.exists(UPDATE_MAP_FILE):
     with open(UPDATE_MAP_FILE) as fp:
         update_map = json.load(fp)
 
-if template_token not in update_map:
-    update_map[template_token] = template_time
-else:
-    if update_map[template_token] != template_time:
-        update_map[template_token] = template_time
+def check_template_update(token, current_time):
+    global update_map
+    global update_all
+
+    if token not in update_map or update_map[token] != current_time:
+        update_map[token] = current_time
         update_all = True
-        print("(info) Template changed.")
+        print("(info) Template (%s) changed." % token[:8])
+
+def hash(obj):
+    obj = str(obj).encode("ascii")
+    return hashlib.md5(obj).hexdigest()
+
+check_template_update(
+    hash(TEMPLATE_FILE),
+    hash(int(os.path.getmtime(TEMPLATE_FILE)))
+)
+check_template_update(
+    hash(TEMPLATE_PRINTABLE_FILE),
+    hash(int(os.path.getmtime(TEMPLATE_PRINTABLE_FILE)))
+)
 
 
 def real_generate(filepath):
