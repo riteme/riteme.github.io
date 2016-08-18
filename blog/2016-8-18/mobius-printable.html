@@ -19,7 +19,7 @@
 所谓偏序关系，就是指<mathjax>$a,\;b,\;c \in X_n$</mathjax>并且<mathjax>$a \le b,\;b \le c$</mathjax>，有<mathjax>$a \le c$</mathjax>的性质的关系。<br />
 这种偏序关系一般是比较符<mathjax>$\le$</mathjax>、集合的<mathjax>$\subseteq$</mathjax>符号和整除<mathjax>$\;\mid\;$</mathjax>。</p>
 <h2 id="_3">卷积</h2>
-<p>对于定义在偏序集<mathjax>$(X_n,\;\le)$</mathjax>上的二元函数<mathjax>$f(x,\;y$</mathjax>，我们假定当<mathjax>$x \not\le y$</mathjax>时，<mathjax>$f(x,\;y)$</mathjax>均为<mathjax>$0$</mathjax>，这样是为了方便我们之后的讨论。<br />
+<p>对于定义在偏序集<mathjax>$(X_n,\;\le)$</mathjax>上的二元函数<mathjax>$f(x,\;y)$</mathjax>，我们假定当<mathjax>$x \not\le y$</mathjax>时，<mathjax>$f(x,\;y)$</mathjax>均为<mathjax>$0$</mathjax>，这样是为了方便我们之后的讨论。<br />
 考虑偏序集<mathjax>$(X_n, \le)$</mathjax>上的二元函数<mathjax>$f(x,\;y)$</mathjax>和<mathjax>$g(x,\;y)$</mathjax>，定义它们的卷积为：<br />
 <mathjax>$$
 (f \times g)(x,\;y) = \sum_{x \le z \le y} f(x,\;z)g(z,\;y) \tag{2.1}
@@ -50,7 +50,7 @@ $$</mathjax></p>
 &amp; = \sum_{x \le z \le y} \mu(x,\;z)
 \end{align}
 $$</mathjax></p>
-<p>因此：<br />
+<p>因此，当<mathjax>$x \neq y$</mathjax>时：<br />
 <mathjax>$$
 \mu(x,\;y) = - \sum_{x \le z \lt y} \mu(x,\;z) \tag{2.6}
 $$</mathjax></p>
