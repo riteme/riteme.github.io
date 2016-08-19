@@ -6,7 +6,9 @@ tags: Posts
 ---
 
 [TOC]
-#### 所有文章
+## 所有文章
+### 2016
+#### 2016-8
 ##### 2016-8-19
 * [二进制GCD](./blog/2016-8-19/binary-gcd.html): 在算导上发现了一个有趣的算法，有氧环境下可以拿来卡卡常.....
 
@@ -23,6 +25,7 @@ tags: Posts
 ##### 2016-8-11
 * [凸包相关](./blog/2016-8-11/convex-hull.html): 凸包的构造算法与动态凸包、旋转卡壳和斜率优化
 
+#### 2016-7
 ##### 2016-7-28
 * [平衡树套链表](./blog/2016-7-28/bst-with-list.html): 用链表加速平衡树上前趋后继的查询
 
@@ -32,6 +35,7 @@ tags: Posts
 ##### 2016-7-9
 * [HNSDFZ2016 #3](./blog/2016-7-9/hnsdfz-3.html): HNSDFZ2016第三次欢乐互测
 
+#### 2016-6
 ##### 2016-6-23
 * [极限与导数](./blog/2016-6-23/limit-and-derivative.html): 最近学了一些基础微积分，这里稍微记录一下
 
@@ -48,9 +52,11 @@ tags: Posts
 * [HNSDFZ2016 #2](./blog/2016-5-31/hnsdfz2016-2.html): HNSDFZ2016第二次欢乐互测
 * [HNSDFZ2016 #1](./blog/2016-5-31/hnsdfz2016-1.html): HNSDFZ2016第一次欢乐互测
 
+#### 2016-5
 ##### 2016-5-7
 * [排列与组合](./blog/2016-5-7/permutation-and-combination.html): 介绍了排列与组合的基础知识
 
+#### 2016-4
 ##### 2016-4-23
 * [伪代码规定](./blog/2016-4-23/fake-code.html): 规定下本博客的伪代码规范，不要想太多
 
@@ -69,12 +75,14 @@ tags: Posts
 ##### 2016-4-6
 * [替罪羊树(Scapegoat Tree)](./blog/2016-4-6/scapegoat.html): 二叉平衡树替罪羊树
 
+#### 2016-3
 ##### 2016-3-21
 * [$x^n-1$问题](./blog/2016-3-21/x-2-1.html): 对$x^n-1$进行因式分解
 
 ##### 2016-3-12
 * [2-3树与红黑树](./blog/2016-3-12/2-3-tree-and-red-black-tree.html): 2-3树与红黑树
 
+#### 2016-2
 ##### 2016-2-5
 * [DevIL快速入门](./blog/2016-2-5/devil-usage.html): 了解图片库DevIL
 
@@ -94,10 +102,11 @@ tags: Posts
 * [[NOIP2015] 信息传递](./blog/2016-2-1/message.html): NOIP2015 Day1 T2 题解
 * [最近公共祖先(LCA)](./blog/2016-2-1/lca.html): 朴素LCA算法，Tarjan-LCA算法，倍增法
 
+#### 2016-1
 ##### 2016-1-31
 * [pagegen.py的试炼](./blog/2016-1-31/test.html): 测试`pagegen.py`
 
-#### 临时链接
+## 临时链接
 * [$k$-SBK变换](./blog/2016-7-28/ksbk.html) (*HNSDFZ OIER* **FORBIDDEN** before self contest #4)
 * [HNSDFZ #3](./blog/2016-7-1/hnsdfz-3.html)
 * [Lesson 16](./blog/english/16.html)
