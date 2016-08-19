@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?72d0c4a099cd676176e657b871326707";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<head>
+  <title>二进制GCD - riteme.site</title>
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" href="../../favicon.png" type="image/png">
+  <link rel="stylesheet" type="text/css" href="../../css/site.min.css">
+  <script type="text/javascript" async src="../../mathjax/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</head>
+<body>
+<div id="topbar"></div>
+<ul class="breadcrumb"><li><a href="../../index.html">HOME</a></li><li><a href="../../posts.html">POSTS</a></li><li><a href="../../posts.html#2016-8-19">2016-8-19</a></li><li class="active">二进制GCD</li></ul>
+
+<div id="view">
+<div class="toc">
+<ul>
+<li><a href="#gcd">二进制GCD</a><ul>
+<li><a href="#_1">算法原理</a></li>
+<li><a href="#_2">算法实现</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div id="container">
+
+<h1 id="gcd">二进制GCD</h1>
+<p>在算导上发现了一个有趣的算法，有氧环境下可以拿来卡卡常.....</p>
+<h2 id="_1">算法原理</h2>
+<p>下面将考虑计算<mathjax>$\gcd(a,\;b)$</mathjax>，假定<mathjax>$a \ge b$</mathjax>：</p>
+<ol>
+<li>如果<mathjax>$a$</mathjax>、<mathjax>$b$</mathjax>都是<strong>偶数</strong>，那么易知：<br />
+<mathjax>$$
+\gcd(a,\;b) = 2\gcd(a / 2,\;b / 2)
+$$</mathjax></li>
+<li>如果<mathjax>$a$</mathjax>是<strong>偶数</strong>，<mathjax>$b$</mathjax>是<strong>奇数</strong>，那么有：<br />
+<mathjax>$$
+\gcd(a,\;b) = \gcd(a / 2, b)
+$$</mathjax></li>
+<li>如果<mathjax>$a$</mathjax>是<strong>奇数</strong>，<mathjax>$b$</mathjax>是<strong>偶数</strong>，那么有：<br />
+<mathjax>$$
+\gcd(a,\;b) = \gcd(a,\;b / 2)
+$$</mathjax></li>
+<li>如果<mathjax>$a$</mathjax>、<mathjax>$b$</mathjax>都是<strong>奇数</strong>，那么有：<br />
+<mathjax>$$
+\gcd(a,\;b) = \gcd((a - b) / 2, b)
+$$</mathjax></li>
+</ol>
+<p>这些结论都是比较容易证明的，这里就略去了。<br />
+由于<strong>减法的速度比取模快</strong> (减法速度基本与加法一致)，同时除以<mathjax>$2$</mathjax>和乘以<mathjax>$2$</mathjax>可以使用<strong>位运算</strong>来代替，并且每次折半可以保证复杂度，所以理论上这个算法是非常快的。<br />
+但是需要注意，欧几里德算法是上界<mathjax>$O(\log(\min\{a,\;b\}))$</mathjax>，而此算法类似于快速幂，是<strong>上下界</strong><mathjax>$\Theta(\log(\min\{a,\;b\}))$</mathjax>。<br />
+但这并不影响它的效率。在我的机子上 (使用Clang 3.6.0) 实测，在编译器打开<code>-O2</code>优化下比欧几里德算法快。<br />
+但是在没有开<code>-O2</code>优化时，因为<strong>常数问题速度变慢</strong>许多。</p>
+<h2 id="_2">算法实现</h2>
+<p>下面展示一个基本实现：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="codehilite"><pre>function BINARY-GCD(a, b):
+    if a &lt; b:  # 要保证 a &gt;= b
+        SWAP(a, b)
+    if b == 0:
+        return a
+    if a &amp; 1:
+        if b &amp; 1:
+            return BINARY-GCD((a - b) &gt;&gt; 1, b)
+        else:
+            return BINARY-GCD(a, b &gt;&gt; 1)
+    else:
+        if b &amp; 1:
+            return BINARY-GCD(a &gt;&gt; 1, b)
+        else:
+            return BINARY-GCD(a &gt;&gt; 1, b &gt;&gt; 1) &lt;&lt; 1
+</pre></div>
+</td></tr></table>
+
+<p>注意到欧几里德算法里面是<strong>尾递归</strong>，编译器可以依此做优化。<br />
+而上面给出的代码里面并不是这种形式。<br />
+但是我们可以稍微修改一下，就可以将其改为尾递归形式：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="codehilite"><pre>function TAIL-BINARY-GCD(a, b, shift = 0):  # 记录一个shift表示答案乘了几个2
+    if a &lt; b:
+        SWAP(a, b)
+    if b == 0:
+        return a &lt;&lt; shift  # 将shift的记录的2算入答案
+    if a &amp; 1:
+        if b &amp; 1:
+            return TAIL-BINARY-GCD((a - b) &gt;&gt; 1, b, shift)
+        else:
+            return TAIL-BINARY-GCD(a, b &gt;&gt; 1, shift)
+    else:
+        if b &amp; 1:
+            return TAIL-BINARY-GCD(a &gt;&gt; 1, b, shift)
+        else:
+            return TAIL-BINARY-GCD(a &gt;&gt; 1, b &gt;&gt; 1, shift + 1)  # 计数器加1
+</pre></div>
+</td></tr></table>
+
+<p>在编译器优化的帮助下，这份代码跑得更快。</p>
+<p>此外，二进制GCD另一个巨大的优势就是在需要<strong>高精度</strong>的场合下，不但降低时间复杂度也减低了编程难度 (毕竟<strong>不需要高精度取模</strong>)，所以在这种情况下是一个非常好的算法。</p>
+<hr/>
+<a href="binary-gcd-printable.html">查看打印版本</a><br/>
+标签: <span class="label label-default">数学</span> <span class="label label-default">GCD</span><br/>
+创建时间: 2016.08.19<br/>
+上次修改: 2016.08.19
+<div class="ds-thread" data-thread-key="bb4a6182fc189ef45ec48773a29f267a" data-title="二进制GCD" data-url="http://riteme.github.io/blog/2016-8-19/binary-gcd.html"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"riteme"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (
+        document.location.protocol == 'https:' ? 'https:' : 'http:'
+    ) + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+</div>
+</div>
+
+<footer class="page-footer">
+  <div id="container">
+    <div class="footer-left">
+        <h4 class="white-text">关于riteme.site</h5>
+        <ul class="mdul">
+          <li class="mdli white-text">一个从不乱说话的博客...</li>
+        </ul>
+    </div>
+    <div class="footer-right">
+        <h4 class="white-text">友情链接</h5>
+        <ul class="mdul">
+          <li class="mdli"><a class="white-text" href="http://link-arthur.github.io/"><del>LinkSBK</del></a></li>
+          <li class="mdli"><a class="white-text" href="http://ruanxingzhi.github.io/">ruanxingzhi</a></li>
+          <li class="mdli"><a class="white-text" href="http://haogram.hol.es/">核糖核酸</a></li>
+          <li class="mdli"><a class="white-text" href="http://hjwjbsr.is-programmer.com/">HJWJBSR</a></li>
+          <li class="mdli"><a class="white-text" href="http://www.yinzilong.win/">殷子龙</a></li>
+        </ul>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div id="container">
+        Copyright © 2015-2016 riteme. All rights reserved.
+    </div>
+  </div>
+</footer>
+</body>
+</html>
