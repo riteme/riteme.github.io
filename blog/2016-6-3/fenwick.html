@@ -15,9 +15,26 @@ var _hmt = _hmt || [];
   <link rel="shortcut icon" href="../../favicon.png" type="image/png">
   <link rel="stylesheet" type="text/css" href="../../css/site.min.css">
   <script type="text/javascript" async src="../../mathjax/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="../../tipuesearch/tipuesearch_content.js"></script>
+  <link href="../../tipuesearch/tipuesearch.css" rel="stylesheet">
+  <script src="../../tipuesearch/tipuesearch_set.js"></script>
+  <script src="../../tipuesearch/tipuesearch.min.js"></script>
 </head>
 <body>
-<div id="topbar"></div>
+<script>
+$(document).ready(function() {
+$('#tipue_search_input').tipuesearch();
+});
+</script>
+<div id="topbar">
+  <div style="display: block; float: right">
+  <form action="../../search.html">
+  <input type="text" placeholder="Search Here" name="q" id="tipue_search_input" autocomplete="off" required>
+  </form>
+  </div>
+</div>
 <ul class="breadcrumb"><li><a href="../../index.html">HOME</a></li><li><a href="../../posts.html">POSTS</a></li><li><a href="../../posts.html#2016-6-3">2016-6-3</a></li><li class="active">树状数组</li></ul>
 
 <div id="view">

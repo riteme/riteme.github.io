@@ -228,6 +228,11 @@ def generate(filepath):
     navigater.handle("css", "css/site.min.css")
     navigater.handle("mathjax", "mathjax/MathJax.js")
     navigater.handle("posts", "posts.html")
+    navigater.handle("tipuesearch_content", "tipuesearch/tipuesearch_content.js")
+    navigater.handle("tipuesearch_css", "tipuesearch/tipuesearch.css")
+    navigater.handle("tipuesearch_set", "tipuesearch/tipuesearch_set.js")
+    navigater.handle("tipuesearch_min_js", "tipuesearch/tipuesearch.min.js")
+    navigater.handle("search_page", "search.html")
     navigater.home_folder = os.path.dirname(filepath)
 
     mathjax = navigater.get_path("mathjax")
@@ -235,6 +240,11 @@ def generate(filepath):
     css = navigater.get_path("css")
     home = navigater.get_path("home")
     posts = navigater.get_path("posts")
+    tipuesearch_content = navigater.get_path("tipuesearch_content")
+    tipuesearch_css = navigater.get_path("tipuesearch_css")
+    tipuesearch_set = navigater.get_path("tipuesearch_set")
+    tipuesearch_min_js = navigater.get_path("tipuesearch_min_js")
+    search_page = navigater.get_path("search_page")
 
     pagetitle = mdinfo["title"][0].strip()
     pagekey = hashlib.md5(pagetitle.encode("utf8")).hexdigest()
@@ -262,6 +272,11 @@ var _hmt = _hmt || [];
   var s = document.getElementsByTagName("script")[0]; 
   s.parentNode.insertBefore(hm, s);
 })();
+</script>"""
+    tipuesearch_code = """<script>
+$(document).ready(function() {
+$('#tipue_search_input').tipuesearch();
+});
 </script>"""
 
     bread = breadcrumb.Breadcrumb()
@@ -309,7 +324,13 @@ var _hmt = _hmt || [];
             page_url=pageurl,
             duoshuo_code=duoshuo,
             baidu_tonji=baidu_tonji,
-            printable=printable_path
+            printable=printable_path,
+            tipuesearch_css=tipuesearch_css,
+            tipuesearch_content=tipuesearch_content,
+            tipuesearch_set=tipuesearch_set,
+            tipuesearch_min_js=tipuesearch_min_js,
+            tipuesearch_code=tipuesearch_code,
+            search_page=search_page
         ))
 
     with open(new_printable, "w") as writer:

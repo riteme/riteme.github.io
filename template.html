@@ -7,9 +7,22 @@
   <link rel="shortcut icon" href="{favicon}" type="image/png">
   <link rel="stylesheet" type="text/css" href="{css}">
   <script type="text/javascript" async src="{mathjax}?config=TeX-MML-AM_CHTML"></script>
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="{tipuesearch_content}"></script>
+  <link href="{tipuesearch_css}" rel="stylesheet">
+  <script src="{tipuesearch_set}"></script>
+  <script src="{tipuesearch_min_js}"></script>
 </head>
 <body>
-<div id="topbar"></div>
+{tipuesearch_code}
+<div id="topbar">
+  <div style="display: block; float: right">
+  <form action="{search_page}">
+  <input type="text" placeholder="Search Here" name="q" id="tipue_search_input" autocomplete="off" required>
+  </form>
+  </div>
+</div>
 {breadcrumb}
 
 <div id="view">
