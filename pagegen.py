@@ -14,6 +14,8 @@ import parser
 import breadcrumb
 import navigater
 
+import bs4
+
 import markdown
 import markdown.extensions.codehilite
 
@@ -29,8 +31,6 @@ import re
 from markdown.postprocessors import Postprocessor
 
 # Mathjax Extension
-
-
 class MathJaxPattern(markdown.inlinepatterns.Pattern):
 
     def __init__(self):
@@ -223,6 +223,31 @@ def generate(filepath):
     for x in mdinfo["tags"]:
         tags.append(x)
 
+    # 生成索引信息
+    index_title = title
+    temp_text = bs4.BeautifulSoup(content).text
+    index_text = []
+    for c in temp_text:
+        if c in "\n\r":
+            index_text.append("<br />")
+        elif c == "\t":
+            index_text.append("\\t")
+        elif c == "\"":
+            index_text.append("\\\"")
+        elif c == "\\":
+            index_text.append("\\\\")
+        elif c == "%":
+            index_text.append("% ")
+        else:
+            index_text.append(c)
+    index_text = "".join(index_text)
+    index_tags = mdinfo["tags"]
+    navigater.handle("myself", filepath)
+    navigater.home_folder = os.path.abspath(".")
+    index_url = navigater.get_path("myself")
+    index_url = index_url.rsplit(".", 1)[0] + ".html"
+
+    # 处理相对路径
     navigater.handle("favicon", "favicon.png")
     navigater.handle("home", "index.html")
     navigater.handle("css", "css/site.min.css")
@@ -233,8 +258,8 @@ def generate(filepath):
     navigater.handle("tipuesearch_set", "tipuesearch/tipuesearch_set.js")
     navigater.handle("tipuesearch_min_js", "tipuesearch/tipuesearch.min.js")
     navigater.handle("search_page", "search.html")
-    navigater.home_folder = os.path.dirname(filepath)
 
+    navigater.home_folder = os.path.dirname(filepath)
     mathjax = navigater.get_path("mathjax")
     favicon = navigater.get_path("favicon")
     css = navigater.get_path("css")
@@ -246,6 +271,7 @@ def generate(filepath):
     tipuesearch_min_js = navigater.get_path("tipuesearch_min_js")
     search_page = navigater.get_path("search_page")
 
+    # 处理特殊信息
     pagetitle = mdinfo["title"][0].strip()
     pagekey = hashlib.md5(pagetitle.encode("utf8")).hexdigest()
     pageurl = "http://riteme.github.io/" + os.path.relpath(
@@ -273,12 +299,8 @@ var _hmt = _hmt || [];
   s.parentNode.insertBefore(hm, s);
 })();
 </script>"""
-    tipuesearch_code = """<script>
-$(document).ready(function() {
-$('#tipue_search_input').tipuesearch();
-});
-</script>"""
 
+    # 生成导航栏
     bread = breadcrumb.Breadcrumb()
     relative = os.path.relpath(
         os.path.dirname(os.path.abspath(filepath)),
@@ -296,6 +318,7 @@ $('#tipue_search_input').tipuesearch();
 
     bread.append(mdinfo["title"][0].upper(), "#", is_alive=True)
 
+    # 写入文件
     with open("template.html") as ftemplate:
         template = ftemplate.read()
 
@@ -329,7 +352,6 @@ $('#tipue_search_input').tipuesearch();
             tipuesearch_content=tipuesearch_content,
             tipuesearch_set=tipuesearch_set,
             tipuesearch_min_js=tipuesearch_min_js,
-            tipuesearch_code=tipuesearch_code,
             search_page=search_page
         ))
 
@@ -340,6 +362,9 @@ $('#tipue_search_input').tipuesearch();
             mathjax=mathjax,
             css=css
         ))
+
+    # 返回索引信息
+    return (index_title, index_text, index_tags, index_url)
 
 if __name__ == "__main__":
     import sys

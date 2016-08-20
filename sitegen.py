@@ -6,6 +6,7 @@ import sys
 import json
 import hashlib
 
+import tipuesearch
 import pagegen
 
 
@@ -55,8 +56,7 @@ check_template_update(
 def real_generate(filepath):
     try:
         print("(info) Generating {}...".format(filepath))
-        pagegen.generate(filepath)
-        # print("(info) Finished {}".format(filepath))
+        return pagegen.generate(filepath)
     except Exception as e:
         print("(error) Failed to generate {}.\n{}".format(
             filepath, str(e)
@@ -81,11 +81,21 @@ def generate(root, name):
         else:
             update_map[path_token] = time_token
 
-    real_generate(path)
+    data = real_generate(path)
     update_map[path_token] = time_token
+
+    if data is None:
+        return
+
+    title, text, tags, url = data
+    tipuesearch.add_index_info(
+        title, text, tags, url
+    )
 
 
 if __name__ == "__main__":
+    tipuesearch.load_index("tipuesearch/content.json")
+
     generate(os.path.abspath("."), "index.md")
     generate(os.path.abspath("."), "posts.md")
 
@@ -96,3 +106,8 @@ if __name__ == "__main__":
 
     with open(UPDATE_MAP_FILE, "w") as fp:
         json.dump(update_map, fp, indent=4, sort_keys=True)
+
+    tipuesearch.save_index(
+        "tipuesearch/tipuesearch_content.js",
+        "tipuesearch/content.json"
+    )

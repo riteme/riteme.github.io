@@ -54,6 +54,8 @@ http://www.tipue.com/search
 {
      font: 300 21px/1.7 'Open Sans', sans-serif;
 	margin-top: 23px;
+     color: black;
+     font-weight: 400;
 }
 .tipue_search_content_title a
 {
