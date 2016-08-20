@@ -15,6 +15,7 @@ import breadcrumb
 import navigater
 
 import bs4
+BEAUTIFUL_SOUP_PARSER = "lxml"
 
 import markdown
 import markdown.extensions.codehilite
@@ -225,7 +226,7 @@ def generate(filepath):
 
     # 生成索引信息
     index_title = title
-    temp_text = bs4.BeautifulSoup(content).text
+    temp_text = bs4.BeautifulSoup(content, BEAUTIFUL_SOUP_PARSER).text
     index_text = []
     for c in temp_text:
         if c in "\n\r":
