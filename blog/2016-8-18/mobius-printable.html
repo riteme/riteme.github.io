@@ -46,7 +46,7 @@ $$</mathjax></p>
 <p>展开卷积可得：<br />
 <mathjax>$$
 \begin{align}
-\delta = \mu \times \zeta \Longrightarrow \delta(x, y) &amp; = \sum_{x \le z \le y} \mu(x,\;z)\zeta(z,\;y) \\
+\delta = \mu \times \zeta \Longrightarrow \delta(x,\;y) &amp; = \sum_{x \le z \le y} \mu(x,\;z)\zeta(z,\;y) \\
 &amp; = \sum_{x \le z \le y} \mu(x,\;z)
 \end{align}
 $$</mathjax></p>
@@ -368,7 +368,7 @@ $$</mathjax></p>
 <mathjax>$$
 h(n) = \sum_{d \mid n} \frac1d \sum_{e \mid d} k^e\mu(d/e) \tag{10.4}
 $$</mathjax></p>
-<p>由于<mathjax>$e \mid d$</mathjax>并且<mathjax>$d \mid n$</mathjax>，所以我们设<mathjax>$n = rd,\;r = me$</mathjax>，所以<mathjax>$n = rem$</mathjax>，这样将方便我们变换公式：<br />
+<p>由于<mathjax>$e \mid d$</mathjax>并且<mathjax>$d \mid n$</mathjax>，所以我们设<mathjax>$n = rd,\;d = me$</mathjax>，所以<mathjax>$n = rem$</mathjax>，这样将方便我们变换公式：<br />
 <mathjax>$$
 \begin{align}
 \sum_{d \mid n} \frac1d \sum_{e \mid d} k^e\mu(d/e) &amp; = \sum_{e \mid n} k^e \sum_{m \mid (n/e)} \frac1{me}\mu(m) \\

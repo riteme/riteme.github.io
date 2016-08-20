@@ -30,7 +30,7 @@ def save_index(js_file, json_file):
         writer.write(generate_index())
 
     with open(json_file, "w") as writer:
-        writer.write(json.dumps(indices, sort_keys = True))
+        writer.write(json.dumps(indices, sort_keys = True, indent = 0))
 
 
 def add_index_info(title, text, tags, url):

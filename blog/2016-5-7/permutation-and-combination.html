@@ -74,7 +74,7 @@ var _hmt = _hmt || [];
 <strong>定理</strong> 对于任意的<mathjax>$n, r \in N_+$</mathjax>，并且<mathjax>$ r \le n$</mathjax>，有：<br />
 <mathjax>$$ P(n, r) = {n! \over (n-r)!} \tag{2.1} $$</mathjax></p>
 <p><strong>证明</strong> 我们有<mathjax>$r$</mathjax>个空位来摆放元素。在第一个空位我们有<mathjax>$n$</mathjax>种选择，在第二个空位我们有<mathjax>$n - 1$</mathjax>中选择......由此可以得知：<br />
-<mathjax>$$ P(n, r) = \prod^n_{i=r} i = {n! \over (n-r)!} $$</mathjax></p>
+<mathjax>$$ P(n, r) = \prod^n_{i=n-r+1} i = {n! \over (n-r)!} $$</mathjax></p>
 <p>现在我们来运用一下排列。<br />
 首先来计数<strong>由<mathjax>$1$</mathjax>至<mathjax>$9$</mathjax>的数构成的每一位均不同的<mathjax>$7$</mathjax>位数</strong>有多少个。<br />
 这个非常简单，就是<mathjax>$P(9, 7) = 181440$</mathjax>。</p>

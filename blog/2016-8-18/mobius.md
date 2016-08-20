@@ -54,7 +54,7 @@ $$
 展开卷积可得：
 $$
 \begin{align}
-\delta = \mu \times \zeta \Longrightarrow \delta(x, y) & = \sum_{x \le z \le y} \mu(x,\;z)\zeta(z,\;y) \\
+\delta = \mu \times \zeta \Longrightarrow \delta(x,\;y) & = \sum_{x \le z \le y} \mu(x,\;z)\zeta(z,\;y) \\
 & = \sum_{x \le z \le y} \mu(x,\;z)
 \end{align}
 $$
@@ -427,7 +427,7 @@ $$
 h(n) = \sum_{d \mid n} \frac1d \sum_{e \mid d} k^e\mu(d/e) \tag{10.4}
 $$
 
-由于$e \mid d$并且$d \mid n$，所以我们设$n = rd,\;r = me$，所以$n = rem$，这样将方便我们变换公式：
+由于$e \mid d$并且$d \mid n$，所以我们设$n = rd,\;d = me$，所以$n = rem$，这样将方便我们变换公式：
 $$
 \begin{align}
 \sum_{d \mid n} \frac1d \sum_{e \mid d} k^e\mu(d/e) & = \sum_{e \mid n} k^e \sum_{m \mid (n/e)} \frac1{me}\mu(m) \\
