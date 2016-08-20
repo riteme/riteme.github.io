@@ -38,7 +38,7 @@ http://www.tipue.com/search
 }
 #tipue_search_warning a
 {
-     color: #396;
+     color: #3498DB;
      text-decoration: none;
 }
 #tipue_search_warning a:hover
@@ -74,7 +74,7 @@ http://www.tipue.com/search
 }
 .tipue_search_content_url a
 {
-     color: #396;
+     color: #3498DB;
      text-decoration: none;
 }
 .tipue_search_content_url a:hover

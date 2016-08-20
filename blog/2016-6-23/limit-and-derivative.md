@@ -50,7 +50,7 @@ $$ \lim_{\Delta x \rightarrow 0} {f(x_0 + \Delta x) - f(x_0) \over \Delta x} $$
 举一个典型的例子$f(x) = x^2$。按照求导数的方法：
 $$
 \begin{align}
-f^\prime(x) &= \lim_{\Delta x \rightarrow 0} {f(x - \Delta x) - f(x) \over \Delta x} \\
+f^\prime(x) &= \lim_{\Delta x \rightarrow 0} {f(x + \Delta x) - f(x) \over \Delta x} \\
 &= \lim_{\Delta x \rightarrow 0} {(x + \Delta x)^2 - x^2 \over \Delta x} \\
 &= \lim_{\Delta x \rightarrow 0} {\Delta x^2 + 2x\Delta x \over \Delta x} \\
 &= \lim_{\Delta x \rightarrow 0} (\Delta x + 2x) \\
