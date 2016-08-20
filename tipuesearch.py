@@ -30,7 +30,7 @@ def save_index(js_file, json_file):
         writer.write(generate_index())
 
     with open(json_file, "w") as writer:
-        writer.write(json.dumps(indices))
+        writer.write(json.dumps(indices, sort_keys = True))
 
 
 def add_index_info(title, text, tags, url):
@@ -63,6 +63,12 @@ def generate_index():
 
     data = []
     for key, value in indices.items():
-        data.append(ITEM_TEMPLATE % (key, value["text"], value["tags"], value["url"]))
+        data.append((key, value))
 
-    return INDEX_TEMPLATE % (",\n".join(data))
+    # 保证每次顺序不变，防止git多次更新
+    data = sorted(data, key = lambda x: x[0])
+    index_data = []
+    for key, value in data:
+        index_data.append(ITEM_TEMPLATE % (key, value["text"], value["tags"], value["url"]))
+
+    return INDEX_TEMPLATE % (",\n".join(index_data))
