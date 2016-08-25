@@ -37,7 +37,7 @@
 </td></tr></table>
 
 <p>是载入程序的入口。在进行查询之前，会调用这个函数。<br />
-载入所用的时间不会计入你的程序用时。但是载入时间不能超过<mathjax>$5\text{s}$</mathjax>。<br />
+载入所用的时间不会计入你的程序用时。但是载入时间不能超过<mathjax>$3\text{s}$</mathjax>。<br />
 <code>x</code>和<code>y</code>是两个数组，给出的是市区的轮廓，即Lunk绘制的多边形的顶点，按照<strong>逆时针顺序</strong>给出。<br />
 <code>n</code>是多边形的顶点数量。<br />
 <code>id</code>是当前数据点的标号，在下文会有解释。</p>
@@ -54,7 +54,7 @@
 
 <p>是结束程序。这个函数将在所有查询任务完成后调用。<br />
 用于释放你的程序所用的资源。<br />
-该函数的用时不会计入程序用时，但是其运行时间不能超过<mathjax>$5\text{s}$</mathjax>。<br />
+该函数的用时不会计入程序用时，但是其运行时间不能超过<mathjax>$3\text{s}$</mathjax>。<br />
 注意，请不要使用<code>delete[]</code>删除掉之前<code>initialize</code>参数中给你的顶点数组，否则后果自负。</p>
 <h2 id="_3">我该如何测试这个程序</h2>
 <p>选手目录下将会下发<code>main.cpp</code>这个文件。<br />
