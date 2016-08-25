@@ -110,6 +110,7 @@ tags: Posts
 * [pagegen.py的试炼](./blog/2016-1-31/test.html): 测试`pagegen.py`
 
 ## 临时链接
+* [空袭](./blog/2016-8-25/airstrike.html) (*HNSDFZ OIER* **FORBIDDEN** before self contest #5)
 * [$k$-SBK变换](./blog/2016-7-28/ksbk.html) (*HNSDFZ OIER* **FORBIDDEN** before self contest #4)
 * [HNSDFZ #3](./blog/2016-7-1/hnsdfz-3.html)
 * [Lesson 16](./blog/english/16.html)
