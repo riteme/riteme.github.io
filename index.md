@@ -14,9 +14,6 @@ tags: Home
 我的GitHub: <https://github.com/riteme>  
 我的知乎: <https://www.zhihu.com/people/riteme>
 
-NOTICE: 本站**搜索功能**搞好了，**点击右上角使用**。
-请善用搜索，**不要恶意hack**，谢谢合作。
-
 PS: 多说评论居然是在线更新的！
 [-->辣鸡聊天室<--](./blog/chat.html)
 
