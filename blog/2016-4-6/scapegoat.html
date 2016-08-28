@@ -82,7 +82,7 @@ var _hmt = _hmt || [];
 11
 12
 13
-14</pre></div></td><td class="code"><div class="codehilite"><pre><span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+14</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">build</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
 
 <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">):</span>
@@ -198,7 +198,7 @@ $$</mathjax></p>
 22
 23
 24
-25</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">struct</span> <span class="n">Node</span><span class="o">&lt;</span><span class="n">KeyType</span><span class="p">,</span> <span class="n">ValueType</span><span class="o">&gt;</span><span class="p">:</span>
+25</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">struct</span> <span class="n">Node</span><span class="o">&lt;</span><span class="n">KeyType</span><span class="p">,</span> <span class="n">ValueType</span><span class="o">&gt;</span><span class="p">:</span>
     <span class="n">key</span><span class="p">:</span>     <span class="n">KeyType</span>    <span class="c1"># 键</span>
     <span class="n">value</span><span class="p">:</span>   <span class="n">ValueType</span>  <span class="c1"># 值</span>
     <span class="n">size</span><span class="p">:</span>    <span class="nb">int</span>        <span class="c1"># 树的大小</span>
@@ -228,7 +228,7 @@ $$</mathjax></p>
 
 <h4 id="_10">选定α</h4>
 <p>替罪羊树的好处在于我们有了更好的调控能力。<mathjax>$\alpha$</mathjax>这个值可以选取<mathjax>$0.5$</mathjax>到<mathjax>$1$</mathjax>中的任意一个值。一般情况下选取<mathjax>$0.7$</mathjax>到<mathjax>$0.8$</mathjax>最佳。我们可以根据实际需要来作出适当调整。<mathjax>$\alpha$</mathjax>越大插入速度就越快，而访问和删除速度就会降低。反之则插入变慢。这里我们选择<mathjax>$0.75$</mathjax>：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">ALPHA</span> <span class="o">=</span> <span class="mf">0.75</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">ALPHA</span> <span class="o">=</span> <span class="mf">0.75</span>
 </pre></div>
 </td></tr></table>
 
@@ -254,7 +254,7 @@ $$</mathjax></p>
 18
 19
 20
-21</pre></div></td><td class="code"><div class="codehilite"><pre><span class="c1"># 中序遍历</span>
+21</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="c1"># 中序遍历</span>
 <span class="k">def</span> <span class="nf">travel</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">h</span> <span class="ow">is</span> <span class="n">NoneNode</span><span class="p">:</span>
         <span class="k">return</span>
@@ -291,7 +291,7 @@ $$</mathjax></p>
  9
 10
 11
-12</pre></div></td><td class="code"><div class="codehilite"><pre><span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+12</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">h</span> <span class="ow">is</span> <span class="n">NoneNode</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">NoneNode</span><span class="p">()</span>
     <span class="k">elif</span> <span class="nb">max</span><span class="p">(</span><span class="n">h</span><span class="o">.</span><span class="n">left</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">h</span><span class="o">.</span><span class="n">right</span><span class="o">.</span><span class="n">size</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">ALPHA</span> <span class="o">*</span> <span class="n">h</span><span class="o">.</span><span class="n">size</span><span class="p">:</span>
@@ -319,7 +319,7 @@ $$</mathjax></p>
  9
 10
 11
-12</pre></div></td><td class="code"><div class="codehilite"><pre><span class="c1"># 命中时</span>
+12</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="c1"># 命中时</span>
 <span class="n">h</span><span class="o">.</span><span class="n">deleted</span> <span class="o">=</span> <span class="bp">True</span>
 <span class="n">h</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
 <span class="n">deleted_count</span> <span class="o">+=</span> <span class="mi">1</span>

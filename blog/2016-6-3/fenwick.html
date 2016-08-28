@@ -70,7 +70,7 @@ var _hmt = _hmt || [];
 对于数组中的每一个元素，其箭头所指向的元素(包括他自己)都被它所维护。<br />
 对于任意一个元素，其往前的一个区间距离和到它父亲的距离是相同的，即一个被称为<mathjax>$\text{lowbit}$</mathjax>的东西。这个东西定义如下：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre>function LOWBIT(x):
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>function LOWBIT(x):
     return x &amp; (-x)
 </pre></div>
 </td></tr></table>
@@ -97,7 +97,7 @@ var _hmt = _hmt || [];
 15
 16
 17
-18</pre></div></td><td class="code"><div class="codehilite"><pre>// 修改单点
+18</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>// 修改单点
 function MODIFY(x, delta):
     if x &lt; 1:
         return
@@ -146,7 +146,7 @@ function QUERY(right):
 15
 16
 17
-18</pre></div></td><td class="code"><div class="codehilite"><pre>// 修改
+18</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>// 修改
 function MODIFY(right, delta):
     while right &gt; 0:
         fenwick[right] += delta
@@ -210,7 +210,7 @@ function QUERY(x):
 29
 30
 31
-32</pre></div></td><td class="code"><div class="codehilite"><pre>// 修改
+32</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>// 修改
 function MODIFY(right, delta):
     if right &lt; 1:
         return

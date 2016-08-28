@@ -58,7 +58,7 @@ var _hmt = _hmt || [];
 <li>GCC 4.6及以上</li>
 </ul>
 <p>同时准备依赖库：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>sudo apt-get install libgl1-mesa-dev x11proto-core-dev libx11-dev
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>sudo apt-get install libgl1-mesa-dev x11proto-core-dev libx11-dev
 </pre></div>
 </td></tr></table>
 
@@ -66,7 +66,7 @@ var _hmt = _hmt || [];
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
-4</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nb">cd</span> ~/Downloads  <span class="c1"># 下载到Downloads目录</span>
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nb">cd</span> ~/Downloads  <span class="c1"># 下载到Downloads目录</span>
 git clone git://github.com/bkaradzic/bx.git
 git clone git://github.com/bkaradzic/bgfx.git
 <span class="nb">cd</span> bgfx  <span class="c1"># 进入源码目录，准备编译</span>
@@ -74,23 +74,23 @@ git clone git://github.com/bkaradzic/bgfx.git
 </td></tr></table>
 
 <p>使用<code>make</code>生成工程：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>make
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>make
 </pre></div>
 </td></tr></table>
 
 <p>接下来进行编译：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>make linux-release64
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>make linux-release64
 </pre></div>
 </td></tr></table>
 
 <div class="panel panel-info"><div class="panel-heading"><h3 class="panel-title">提示</h3></div><div class="panel-body">
 使用<code>make</code>还可以生成其他版本的，其格式是：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>make <span class="o">[</span>平台<span class="o">]</span>-<span class="o">[</span>release/debug<span class="o">][</span>32/64<span class="o">]</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>make <span class="o">[</span>平台<span class="o">]</span>-<span class="o">[</span>release/debug<span class="o">][</span>32/64<span class="o">]</span>
 </pre></div>
 </td></tr></table>
 
 <p>例如，如果要生成32位的bgfx，使用以下命令：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>make linux-release32
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>make linux-release32
 </pre></div>
 </td></tr></table>
 
@@ -101,7 +101,7 @@ git clone git://github.com/bkaradzic/bgfx.git
 由于样例需要很多资源文件（如着色器、材质之类的），而它们都在<code>exmaples/runtime</code>目录下，<br />
 因此需要在<code>exmaples/runtime</code>目录下用相对路径来运行。</p>
 <p>首先我们切换到样例的目录。对我而言，使用以下命令：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nb">cd</span> .build/linux64_gcc/bin/
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nb">cd</span> .build/linux64_gcc/bin/
 </pre></div>
 </td></tr></table>
 
@@ -123,7 +123,7 @@ git clone git://github.com/bkaradzic/bgfx.git
 14
 15
 16
-17</pre></div></td><td class="code"><div class="codehilite"><pre>example-00-helloworldRelease         example-17-drawstressRelease
+17</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>example-00-helloworldRelease         example-17-drawstressRelease
 example-01-cubesRelease              example-18-iblRelease
 example-02-metaballsRelease          example-19-oitRelease
 example-03-raymarchRelease           example-20-nanovgRelease
@@ -146,12 +146,12 @@ example-16-shadowmapsRelease         texturecRelease
 <p>可以看到每个样例都十分具有代表性，今后的学习就从它们开始。</p>
 <p>同时注意到，有两个<code>.a</code>的静态库和一个<code>.so</code>的动态库，我们可以用它们来编译程序。</p>
 <p>然而并不是在这里运行样例，我们要回到<code>runtime</code>目录来运行：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nb">cd</span> ../../../examples/runtime
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nb">cd</span> ../../../examples/runtime
 </pre></div>
 </td></tr></table>
 
 <p>假如要运行<code>00-helloworld</code>，使用以下命令：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>../../.build/linux64_gcc/bin/example-00-helloworldRelease
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>../../.build/linux64_gcc/bin/example-00-helloworldRelease
 </pre></div>
 </td></tr></table>
 
@@ -162,13 +162,13 @@ example-16-shadowmapsRelease         texturecRelease
 <p>为了通用性，这里使用最基础的终端编译的方法，我们直接用<code>g++</code>进行编译。</p>
 <p>首先，我们创建一个目录来存放我们的程序：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre>mkdir my-first-bgfx
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>mkdir my-first-bgfx
 <span class="nb">cd</span> my-first-bgfx
 </pre></div>
 </td></tr></table>
 
 <p>然后将bgfx的静态库复制过来：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>cp <span class="o">[</span>bgfx的目录<span class="o">]</span>/.build/linux64_gcc/bin/*.a .
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>cp <span class="o">[</span>bgfx的目录<span class="o">]</span>/.build/linux64_gcc/bin/*.a .
 </pre></div>
 </td></tr></table>
 
@@ -181,7 +181,7 @@ example-16-shadowmapsRelease         texturecRelease
 <p>然后需要将bgfx及其依赖库的bx的头文件给复制进来。为了方便，我们还将bgfx用于样例的common库也复制进来：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3</pre></div></td><td class="code"><div class="codehilite"><pre>cp -rf <span class="o">[</span>bgfx的目录<span class="o">]</span>/include/* .         <span class="c1"># bgfx</span>
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>cp -rf <span class="o">[</span>bgfx的目录<span class="o">]</span>/include/* .         <span class="c1"># bgfx</span>
 cp -rf <span class="o">[</span>bgfx的目录<span class="o">]</span>/examples/common/ .  <span class="c1"># bgfx-common</span>
 cp -rf <span class="o">[</span>bx的目录<span class="o">]</span>/include/* .           <span class="c1"># bx</span>
 </pre></div>
@@ -190,7 +190,7 @@ cp -rf <span class="o">[</span>bx的目录<span class="o">]</span>/include/* .  
 <p>下面我们来照着bgfx的<code>hello, world</code>来写第一个程序。我们将会在窗口的左上角打出<code>Hello, world!</code>的字样：</p>
 <p>创建程序<code>main.cpp</code>：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre>touch main.cpp
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>touch main.cpp
 <span class="o">[</span>使用你的编辑器<span class="o">]</span> main.cpp
 </pre></div>
 </td></tr></table>
@@ -199,7 +199,7 @@ cp -rf <span class="o">[</span>bx的目录<span class="o">]</span>/include/* .  
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
-4</pre></div></td><td class="code"><div class="codehilite"><pre><span class="cp">#include</span> <span class="cpf">&lt;cstdint&gt;  // uint32_t</span><span class="cp"></span>
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;cstdint&gt;  // uint32_t</span><span class="cp"></span>
 
 <span class="cp">#include</span> <span class="cpf">&quot;bgfx/bgfx.h&quot;      // bgfx</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&quot;common/common.h&quot;  // bgfx-common</span><span class="cp"></span>
@@ -210,7 +210,7 @@ cp -rf <span class="o">[</span>bx的目录<span class="o">]</span>/include/* .  
 于是设置<code>_main_</code>作为程序入口。</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span class="kt">int</span> <span class="nf">_main_</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kt">int</span> <span class="nf">_main_</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
     <span class="cm">/* 代码 */</span>
 <span class="p">}</span>
 </pre></div>
@@ -220,7 +220,7 @@ cp -rf <span class="o">[</span>bx的目录<span class="o">]</span>/include/* .  
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
-4</pre></div></td><td class="code"><div class="codehilite"><pre><span class="kt">uint32_t</span> <span class="n">width</span>  <span class="o">=</span> <span class="mi">1280</span><span class="p">;</span>              <span class="c1">// 窗口宽度</span>
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kt">uint32_t</span> <span class="n">width</span>  <span class="o">=</span> <span class="mi">1280</span><span class="p">;</span>              <span class="c1">// 窗口宽度</span>
 <span class="kt">uint32_t</span> <span class="n">height</span> <span class="o">=</span> <span class="mi">720</span><span class="p">;</span>               <span class="c1">// 窗口高度</span>
 <span class="kt">uint32_t</span> <span class="n">debug</span>  <span class="o">=</span> <span class="n">BGFX_DEBUG_TEXT</span><span class="p">;</span>   <span class="c1">// debug模式开启，可以直接在窗口输出文字</span>
 <span class="kt">uint32_t</span> <span class="n">reset</span>  <span class="o">=</span> <span class="n">BGFX_RESET_VSYNC</span><span class="p">;</span>  <span class="c1">// 设置垂直同步</span>
@@ -241,7 +241,7 @@ cp -rf <span class="o">[</span>bx的目录<span class="o">]</span>/include/* .  
  7
  8
  9
-10</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">bgfx</span><span class="o">::</span><span class="n">init</span><span class="p">();</span>                             <span class="c1">// 载入</span>
+10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">bgfx</span><span class="o">::</span><span class="n">init</span><span class="p">();</span>                             <span class="c1">// 载入</span>
 <span class="n">bgfx</span><span class="o">::</span><span class="n">reset</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">reset</span><span class="p">);</span>        <span class="c1">// 设置</span>
 <span class="n">bgfx</span><span class="o">::</span><span class="n">setDebug</span><span class="p">(</span><span class="n">debug</span><span class="p">);</span>                    <span class="c1">// 启用调试</span>
 <span class="n">bgfx</span><span class="o">::</span><span class="n">setViewClear</span><span class="p">(</span>                       <span class="c1">// 设置清空的状态</span>
@@ -269,7 +269,7 @@ cp -rf <span class="o">[</span>bx的目录<span class="o">]</span>/include/* .  
 12
 13
 14
-15</pre></div></td><td class="code"><div class="codehilite"><pre><span class="c1">// entry::processEvents是common库一个很方便的函数</span>
+15</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="c1">// entry::processEvents是common库一个很方便的函数</span>
 <span class="c1">// 它能帮我们处理几乎所有的窗口事件。</span>
 <span class="c1">// 如果窗口大小有变化，width和height的值就会变化</span>
 <span class="c1">// 如果窗口被关闭，就会返回true</span>
@@ -299,19 +299,19 @@ A: <font style="color: #8AE234">嫩绿色</font>  B: <font style="color: #FCE94F
 D: <font style="color: #AD7FA8">浅紫色</font>  E: <font style="color: #34E2E2">天蓝色</font>  F: <font style="color: #FFFFFF; background: #000000;">白色</font><br />
 </div></div>
 <p>最后，当窗口关闭时，<code>entry::processEvents</code>就会返回<code>true</code>，于是退出循环，最后要退出bgfx：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">bgfx</span><span class="o">::</span><span class="n">shutdown</span><span class="p">();</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">bgfx</span><span class="o">::</span><span class="n">shutdown</span><span class="p">();</span>
 </pre></div>
 </td></tr></table>
 
 <p>现在来编译<code>main.cpp</code>：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>g++ -std<span class="o">=</span>c++11 main.cpp -o <span class="nb">exec</span> -L. -lbgfxRelease -lexample-commonRelease -lpthread -lGL -lX11
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>g++ -std<span class="o">=</span>c++11 main.cpp -o <span class="nb">exec</span> -L. -lbgfxRelease -lexample-commonRelease -lpthread -lGL -lX11
 </pre></div>
 </td></tr></table>
 
 <p>注意编译器要打开C++11支持，如果你的编译器不支持C++11，那我很好奇你是怎么把bgfx编译成功的。<br />
 <code>-lpthread</code>、<code>-lGL</code>和<code>-lX11</code>是bgfx依赖的库，分别是POSIX线程库、OpenGL库和X11库。</p>
 <p>如果没有错误报出，运行<code>exec</code>就能看到以下窗口：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>./exec
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>./exec
 </pre></div>
 </td></tr></table>
 
@@ -352,7 +352,7 @@ D: <font style="color: #AD7FA8">浅紫色</font>  E: <font style="color: #34E2E2
 33
 34
 35
-36</pre></div></td><td class="code"><div class="codehilite"><pre><span class="cp">#include</span> <span class="cpf">&lt;cstdint&gt;  // uint32_t</span><span class="cp"></span>
+36</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;cstdint&gt;  // uint32_t</span><span class="cp"></span>
 
 <span class="cp">#include</span> <span class="cpf">&quot;bgfx/bgfx.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&quot;common/common.h&quot;</span><span class="cp"></span>
