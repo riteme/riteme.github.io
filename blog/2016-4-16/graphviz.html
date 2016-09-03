@@ -15,7 +15,7 @@ var _hmt = _hmt || [];
   <link rel="shortcut icon" href="../../favicon.png" type="image/png">
   <link rel="stylesheet" type="text/css" href="../../css/site.min.css">
   <script type="text/javascript" async src="../../mathjax/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-  <!-- <script src="http://ajax.useso.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
+  <script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
   <script src="../../tipuesearch/tipuesearch_content.js"></script>
   <link href="../../tipuesearch/tipuesearch.css" rel="stylesheet">
   <script src="../../tipuesearch/tipuesearch_set.js"></script>
@@ -69,7 +69,7 @@ var _hmt = _hmt || [];
 <p>详情参见<a href="http://www.graphviz.org/">Graphviz官网</a>。</p>
 <h2 id="_2">安装</h2>
 <p>这个不是本文的重点。我只知道对于Debian/Ubuntu用户可以按照以下方式安装：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>sudo apt-get install graphviz
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>sudo apt-get install graphviz
 </pre></div>
 </td></tr></table>
 
@@ -79,12 +79,12 @@ var _hmt = _hmt || [];
 <h3 id="hello-graphviz">Hello, GRAPHVIZ!</h3>
 <p>按照惯例，总得有个<code>Hello, world!</code>。<br />
 当然不要着急，我们先创建一个<code>dot</code>脚本文件：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>touch hello-world.dot
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>touch hello-world.dot
 </pre></div>
 </td></tr></table>
 
 <p>用你喜欢的编辑器来编辑它：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>vim hello-world.dot
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>vim hello-world.dot
 </pre></div>
 </td></tr></table>
 
@@ -93,7 +93,7 @@ var _hmt = _hmt || [];
 2
 3
 4
-5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>digraph {
+5</pre></div></td><td class="code"><div class="codehilite"><pre>digraph {
     a -&gt; b;
     b -&gt; c;
     a -&gt; c;
@@ -102,12 +102,12 @@ var _hmt = _hmt || [];
 </td></tr></table>
 
 <p>生成SVG图片：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>dot hello-world.dot -Tsvg &gt; hello-world.svg
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>dot hello-world.dot -Tsvg &gt; hello-world.svg
 </pre></div>
 </td></tr></table>
 
 <p>用你喜欢的图片查看器来看看效果：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>eog hello-world.svg
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>eog hello-world.svg
 </pre></div>
 </td></tr></table>
 
@@ -121,7 +121,7 @@ var _hmt = _hmt || [];
 2
 3
 4
-5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>graph {  // &lt;-- Here
+5</pre></div></td><td class="code"><div class="codehilite"><pre>graph {  // &lt;-- Here
     a -- b;
     b -- c;
     a -- c;
@@ -138,7 +138,7 @@ var _hmt = _hmt || [];
 4
 5
 6
-7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>graph {
+7</pre></div></td><td class="code"><div class="codehilite"><pre>graph {
     a -- b;
     b -- c;
     a -- c;
@@ -157,7 +157,7 @@ var _hmt = _hmt || [];
 4
 5
 6
-7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>strict graph {  // &lt;-- strict HERE
+7</pre></div></td><td class="code"><div class="codehilite"><pre>strict graph {  // &lt;-- strict HERE
     a -- b;
     b -- c;
     a -- c;
@@ -180,7 +180,7 @@ var _hmt = _hmt || [];
 6
 7
 8
-9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>graph {
+9</pre></div></td><td class="code"><div class="codehilite"><pre>graph {
     node [shape = circle];  // 所有顶点全部变成圆形
 
     a -- b;
@@ -207,7 +207,7 @@ var _hmt = _hmt || [];
  7
  8
  9
-10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>graph {
+10</pre></div></td><td class="code"><div class="codehilite"><pre>graph {
     node [shape = circle];  // 所有顶点全部变成圆形
     c [shape = square];  // 指定c变为正方形
 
@@ -233,7 +233,7 @@ var _hmt = _hmt || [];
  7
  8
  9
-10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>graph {
+10</pre></div></td><td class="code"><div class="codehilite"><pre>graph {
     node [shape = circle];  // 所有顶点全部变成圆形
     c [shape = triangle];  // 指定c变为三角形
 
@@ -260,7 +260,7 @@ var _hmt = _hmt || [];
  9
 10
 11
-12</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>graph {
+12</pre></div></td><td class="code"><div class="codehilite"><pre>graph {
     node [shape = circle];
     a [color = blue];  // 变蓝色
     b [color = red];　// 变红色
@@ -290,7 +290,7 @@ var _hmt = _hmt || [];
  9
 10
 11
-12</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>digraph {
+12</pre></div></td><td class="code"><div class="codehilite"><pre>digraph {
     node [shape = circle];
 
     3 -&gt; 2;
@@ -321,7 +321,7 @@ var _hmt = _hmt || [];
  9
 10
 11
-12</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>digraph {
+12</pre></div></td><td class="code"><div class="codehilite"><pre>digraph {
     node [shape = circle];
 
     x :e -&gt; e;
@@ -352,7 +352,7 @@ var _hmt = _hmt || [];
  9
 10
 11
-12</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">digraph</span> <span class="p">{</span>
+12</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nt">digraph</span> <span class="p">{</span>
     <span class="n">node</span> <span class="cp">[</span><span class="n">shape</span><span class="o"> =</span> <span class="nx">circle</span><span class="cp">]</span><span class="p">;</span>
 
     <span class="m">3</span><span class="o">:</span><span class="n">sw</span> <span class="o">-&gt;</span> <span class="m">2</span><span class="p">;</span>
@@ -389,7 +389,7 @@ var _hmt = _hmt || [];
 17
 18
 19
-20</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">digraph</span> <span class="p">{</span>
+20</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nt">digraph</span> <span class="p">{</span>
     <span class="n">node</span> <span class="cp">[</span><span class="n">shape</span><span class="o"> =</span> <span class="nx">circle</span><span class="cp">]</span><span class="p">;</span>
 
     <span class="m">3</span><span class="o">:</span><span class="n">sw</span> <span class="o">-&gt;</span> <span class="m">2</span><span class="p">;</span>
@@ -437,7 +437,7 @@ var _hmt = _hmt || [];
 17
 18
 19
-20</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">digraph</span> <span class="p">{</span>
+20</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nt">digraph</span> <span class="p">{</span>
     <span class="n">node</span> <span class="cp">[</span><span class="n">shape</span><span class="o"> =</span> <span class="nx">circle</span><span class="cp">]</span><span class="p">;</span>
 
     <span class="m">3</span><span class="o">:</span><span class="n">sw</span> <span class="o">-&gt;</span> <span class="m">2</span> <span class="cp">[</span><span class="n">style</span><span class="o"> =</span> <span class="nx">bold</span><span class="cp">]</span><span class="p">;</span>
@@ -485,7 +485,7 @@ var _hmt = _hmt || [];
 17
 18
 19
-20</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">digraph</span> <span class="p">{</span>
+20</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nt">digraph</span> <span class="p">{</span>
     <span class="n">node</span> <span class="cp">[</span><span class="n">shape</span><span class="o"> =</span> <span class="nx">circle</span><span class="cp">]</span><span class="p">;</span>
 
     <span class="m">3</span><span class="o">:</span><span class="n">sw</span> <span class="o">-&gt;</span> <span class="m">2</span> <span class="cp">[</span><span class="n">style</span><span class="o"> =</span> <span class="nx">bold</span><span class="cp">]</span><span class="p">;</span>
@@ -533,7 +533,7 @@ var _hmt = _hmt || [];
 20
 21
 22
-23</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">digraph</span> <span class="p">{</span>
+23</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nt">digraph</span> <span class="p">{</span>
     <span class="n">node</span> <span class="cp">[</span><span class="n">shape</span><span class="o"> =</span> <span class="nx">circle</span><span class="cp">]</span><span class="p">;</span>
 
     <span class="m">3</span> <span class="cp">[</span><span class="n">color</span><span class="o"> =</span> <span class="nx">red</span><span class="cp">]</span><span class="p">;</span>
@@ -571,7 +571,7 @@ dot脚本非常的便于程序生成，因此我们可以在程序运行中途�
 5
 6
 7
-8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>function SHOW(x):
+8</pre></div></td><td class="code"><div class="codehilite"><pre>function SHOW(x):
     buffer = &quot;graph {&quot;
 
     // 读取数据并生成dot脚本

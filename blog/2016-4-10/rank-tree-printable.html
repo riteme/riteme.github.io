@@ -24,7 +24,7 @@ ruanxz: “ZY！”</p>
 <mathjax>$$ x.\text{rank} = \max\{x.\text{left}.\text{rank}, x.\text{right}.\text{rank}\} + 1 \tag{1.2}$$</mathjax></p>
 <p>树的秩我们使用<code>UPDATE</code>函数来维护：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>function UPDATE(h):
+2</pre></div></td><td class="code"><div class="codehilite"><pre>function UPDATE(h):
     h.rank = max(h.left.rank, h.right.rank) + 1
 </pre></div>
 </td></tr></table>
@@ -60,7 +60,7 @@ ruanxz: “ZY！”</p>
 20
 21
 22
-23</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>function LEFT-ROTATE(h):
+23</pre></div></td><td class="code"><div class="codehilite"><pre>function LEFT-ROTATE(h):
     ASSERT h.left != nil
 
     x = h.left
@@ -87,7 +87,7 @@ function RIGHT-ROTATE(h):
 </td></tr></table>
 
 <p>例如，要对节点<code>x</code>进行左旋转时，我们这样调用：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>x = LEFT-ROTATE(x)
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>x = LEFT-ROTATE(x)
 </pre></div>
 </td></tr></table>
 
@@ -110,7 +110,7 @@ function RIGHT-ROTATE(h):
  7
  8
  9
-10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>function QUERY(h, key):
+10</pre></div></td><td class="code"><div class="codehilite"><pre>function QUERY(h, key):
     if h = nil:
         return nil  // 没有查找到
 
@@ -128,7 +128,7 @@ function RIGHT-ROTATE(h):
 进行平衡的依据就是<strong>树的秩</strong>。当左右子树的秩差距太大，我们就要采取行动来使其减小差距。</p>
 <p>首先我们设定一个秩的差距的最大容忍值<mathjax>$t$</mathjax>。这个值是一个正整数，并且值选取的愈小树就会变得愈平衡。当<mathjax>$t=1$</mathjax>时，秩平衡树大多数情况下就是完全平衡的二叉树。<br />
 在普通的秩平衡树中，我们一般选定为<mathjax>$1$</mathjax>：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>TOLERANCE = 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>TOLERANCE = 1
 </pre></div>
 </td></tr></table>
 
@@ -144,7 +144,7 @@ function RIGHT-ROTATE(h):
  7
  8
  9
-10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>function BALANCE(h):
+10</pre></div></td><td class="code"><div class="codehilite"><pre>function BALANCE(h):
     if h.left.rank &gt; h.right.rank and
        h.left.rank - h.right.rank &gt; TOLERANCE:   // 左子树的秩过大
         h = LEFT-ROTATE(h)
@@ -190,7 +190,7 @@ function RIGHT-ROTATE(h):
 14
 15
 16
-17</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>function BALANCE(h):
+17</pre></div></td><td class="code"><div class="codehilite"><pre>function BALANCE(h):
     if h.left.rank &gt; h.right.rank and
        h.left.rank - h.right.rank &gt; TOLERANCE:   // 左子树的秩较大
         if h.left.right.rank &gt; h.left.left.rank:  // 如果左子树的右儿子的秩较大
@@ -223,7 +223,7 @@ function RIGHT-ROTATE(h):
  7
  8
  9
-10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>function INSERT(h, key):
+10</pre></div></td><td class="code"><div class="codehilite"><pre>function INSERT(h, key):
     if h = nil:
         return new node with key
 
@@ -272,7 +272,7 @@ function RIGHT-ROTATE(h):
 31
 32
 33
-34</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>function REAL-REMOVE(h):  // 删除指定的节点
+34</pre></div></td><td class="code"><div class="codehilite"><pre>function REAL-REMOVE(h):  // 删除指定的节点
     if h.left != nil and h.right != nil:
         // 如果有两个非空子树就继续下沉
         // 尽量往秩小的子树中下沉，同时将另一棵子树的秩尽量减小
@@ -367,7 +367,7 @@ function REMOVE(h, key):
 <p>此时我们将在<code>UPDATE</code>函数中维护树的大小：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>function UPDATE(h):
+3</pre></div></td><td class="code"><div class="codehilite"><pre>function UPDATE(h):
     h.size = h.left.size + h.right.size + 1
     h.rank = max(h.left.rank, h.right.rank) + 1
 </pre></div>
@@ -395,7 +395,7 @@ function REMOVE(h, key):
 13
 14
 15
-16</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>function SPLIT(h, k):
+16</pre></div></td><td class="code"><div class="codehilite"><pre>function SPLIT(h, k):
     if h = nil:
         return (nil, nil)  // 如果是空树，那么不需要拆分
 
@@ -443,7 +443,7 @@ function REMOVE(h, key):
 14
 15
 16
-17</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>function MERGE(a, b):
+17</pre></div></td><td class="code"><div class="codehilite"><pre>function MERGE(a, b):
     if a = nil:
         return b
     if b = nil:
@@ -484,7 +484,7 @@ function REMOVE(h, key):
  7
  8
  9
-10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>function RANK(h, key):
+10</pre></div></td><td class="code"><div class="codehilite"><pre>function RANK(h, key):
     if h = nil:
         return 1
 
@@ -507,7 +507,7 @@ function REMOVE(h, key):
  7
  8
  9
-10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>function RANK(h, key, offest = 0):  // 利用offest进行尾递归优化
+10</pre></div></td><td class="code"><div class="codehilite"><pre>function RANK(h, key, offest = 0):  // 利用offest进行尾递归优化
     if h = nil:
         return 1 + offest
 
@@ -533,7 +533,7 @@ function REMOVE(h, key):
 10
 11
 12
-13</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>function RANK(h, key):
+13</pre></div></td><td class="code"><div class="codehilite"><pre>function RANK(h, key):
     offest = 0
 
     while h != nil:                          // 向左走
@@ -586,7 +586,7 @@ function REMOVE(h, key):
 4
 5
 6
-7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>function INSERT(h, key):
+7</pre></div></td><td class="code"><div class="codehilite"><pre>function INSERT(h, key):
     x = new node with key
 
     k = RANK(h, key)
@@ -605,7 +605,7 @@ function REMOVE(h, key):
 5
 6
 7
-8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>function REMOVE(h, key):
+8</pre></div></td><td class="code"><div class="codehilite"><pre>function REMOVE(h, key):
     k = RANK(h, key)
     a1, a2 = SPLIT(h, k - 1)
     b1, b2 = SPLIT(a2, 1)
@@ -623,7 +623,7 @@ function REMOVE(h, key):
 3
 4
 5
-6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>function KTH(h, k):
+6</pre></div></td><td class="code"><div class="codehilite"><pre>function KTH(h, k):
     a1, a2 = SPLIT(h, k - 1)
     b1, b2 = SPLIT(a2, 1)
 
@@ -640,7 +640,7 @@ function REMOVE(h, key):
 2
 3
 4
-5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>function SLICE(h, left, right):
+5</pre></div></td><td class="code"><div class="codehilite"><pre>function SLICE(h, left, right):
     a1, a2 = SPLIT(h, left - 1)
     b1, b2 = SPLIT(a2, right - left + 1)
 

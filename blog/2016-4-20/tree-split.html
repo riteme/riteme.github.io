@@ -15,7 +15,7 @@ var _hmt = _hmt || [];
   <link rel="shortcut icon" href="../../favicon.png" type="image/png">
   <link rel="stylesheet" type="text/css" href="../../css/site.min.css">
   <script type="text/javascript" async src="../../mathjax/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-  <!-- <script src="http://ajax.useso.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
+  <script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
   <script src="../../tipuesearch/tipuesearch_content.js"></script>
   <link href="../../tipuesearch/tipuesearch.css" rel="stylesheet">
   <script src="../../tipuesearch/tipuesearch_set.js"></script>
@@ -107,7 +107,7 @@ var _hmt = _hmt || [];
 21
 22
 23
-24</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>function MAKE-ROOT(G, u):  // 以u为树根
+24</pre></div></td><td class="code"><div class="codehilite"><pre>function MAKE-ROOT(G, u):  // 以u为树根
     u.visited = true  // u已经访问过了
     u.father = nil // u没有父亲
     u.depth = 1
@@ -183,7 +183,7 @@ function REAL-MAKE-ROOT(G, u):  // DFS过程
 20
 21
 22
-23</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>count = 0  // 已编号的数量
+23</pre></div></td><td class="code"><div class="codehilite"><pre>count = 0  // 已编号的数量
 
 function TREE-SPLIT(x):  // 剖分子树u
     x.id = 0  // 根节点没有父亲
@@ -256,7 +256,7 @@ function REAL-TREE-SPLIT(x):  // DFS过程
 15
 16
 17
-18</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>function QUERY-SUM(u, v):
+18</pre></div></td><td class="code"><div class="codehilite"><pre>function QUERY-SUM(u, v):
     sum = 0
 
     // 如果不在同一条树链
