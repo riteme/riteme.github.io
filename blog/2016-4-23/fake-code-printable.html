@@ -14,7 +14,7 @@
 参考了《算法导论》的伪代码风格，杂揉一些Python的写法。</p>
 <h2 id="_2">注释</h2>
 <p><code>//</code>后的所有内容都是注释。</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>// 这是注释
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>// 这是注释
 </pre></div>
 </td></tr></table>
 
@@ -28,7 +28,7 @@
 4
 5
 6
-7</pre></div></td><td class="code"><div class="codehilite"><pre>a = 1  // 第一次声明a
+7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>a = 1  // 第一次声明a
 b = 2  // 第一次声明b
 a = b  // a绑定到b上，即a和b指向同一实体
 a = COPY(b)  // 将b的值复制到a
@@ -46,7 +46,7 @@ b.name = a.name  // 属性的访问与设定
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
-4</pre></div></td><td class="code"><div class="codehilite"><pre>function ADD-TWO-NUMBERS(a, b):
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>function ADD-TWO-NUMBERS(a, b):
     return a + b
 
 c = ADD-TWO-NUMBERS(1, 2)  // c = 3
@@ -84,7 +84,7 @@ c = ADD-TWO-NUMBERS(1, 2)  // c = 3
 5
 6
 7
-8</pre></div></td><td class="code"><div class="codehilite"><pre>if statement:
+8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>if statement:
     // 如果为真
 else if statement2:
     // ...
@@ -97,7 +97,7 @@ else:
 
 <h3 id="while">while</h3>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre>while condition:
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>while condition:
     // ...
 </pre></div>
 </td></tr></table>
@@ -105,21 +105,21 @@ else:
 <h3 id="for">for</h3>
 <p><code>for</code>的形式可以多样。条件可以用陈述句。</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre>for i = 0 to 100 step 2:  // i从0到100，每次加2。
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>for i = 0 to 100 step 2:  // i从0到100，每次加2。
     // ...
 </pre></div>
 </td></tr></table>
 
 <p><code>foreach</code>可以以不定的顺序遍历集合内的所有元素。</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre>foreach a in A:
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>foreach a in A:
     // ...
 </pre></div>
 </td></tr></table>
 
 <p>对于诸如1到100的遍历，可以使用定义域。</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre>foreach i in [1, 100]:
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>foreach i in [1, 100]:
     // ...
 </pre></div>
 </td></tr></table>
@@ -141,18 +141,18 @@ else:
 <h2 id="_9">元组</h2>
 <p>使用小括号来声明元组。</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre>(a, )  // 如果只有一个元素，则需要带上一个额外的逗号。
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>(a, )  // 如果只有一个元素，则需要带上一个额外的逗号。
 (a, b, c)  // 三元组
 </pre></div>
 </td></tr></table>
 
 <p>元组可以裂解。</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>a, b = (1, 2)  // a = 1, b = 2
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>a, b = (1, 2)  // a = 1, b = 2
 </pre></div>
 </td></tr></table>
 
 <p>构成元组的方式也可以随意。</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>a, b = b, a  // 此乃SWAP的实现
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>a, b = b, a  // 此乃SWAP的实现
 </pre></div>
 </td></tr></table>
 

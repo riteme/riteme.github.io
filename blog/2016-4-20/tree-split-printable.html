@@ -64,7 +64,7 @@
 21
 22
 23
-24</pre></div></td><td class="code"><div class="codehilite"><pre>function MAKE-ROOT(G, u):  // 以u为树根
+24</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>function MAKE-ROOT(G, u):  // 以u为树根
     u.visited = true  // u已经访问过了
     u.father = nil // u没有父亲
     u.depth = 1
@@ -140,7 +140,7 @@ function REAL-MAKE-ROOT(G, u):  // DFS过程
 20
 21
 22
-23</pre></div></td><td class="code"><div class="codehilite"><pre>count = 0  // 已编号的数量
+23</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>count = 0  // 已编号的数量
 
 function TREE-SPLIT(x):  // 剖分子树u
     x.id = 0  // 根节点没有父亲
@@ -213,7 +213,7 @@ function REAL-TREE-SPLIT(x):  // DFS过程
 15
 16
 17
-18</pre></div></td><td class="code"><div class="codehilite"><pre>function QUERY-SUM(u, v):
+18</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>function QUERY-SUM(u, v):
     sum = 0
 
     // 如果不在同一条树链
@@ -254,7 +254,8 @@ function REAL-TREE-SPLIT(x):  // DFS过程
 <del>为了达到这样的效果，这棵有根树是接近<strong>平衡</strong>的，即树高为<mathjax>$\Theta(\log n)$</mathjax>。</del><br />
 <del>因此最坏的情况下，当查询最左边的节点时，只需要使用<mathjax>$O(\log n)$</mathjax>次跳转就可完成。</del></p>
 <p><del>当然上面并不是严格的证明，只是一个形象的说明罢了。我们只需要知道树链剖分能保证很好的时间复杂度即可。</del></p>
-<p>可以考虑一棵树中轻边的数量。由于从某一个节点开始，每走一条轻边，子树的大小都会增加一倍。因此任意一条树链上只有<mathjax>$O(\log n)$</mathjax>条轻边，即意味着只有<mathjax>$O(\log n)$</mathjax>。</p>
+<p>正确的证明思路因该是这样的：<br />
+可以考虑一棵树中轻边的数量。由于从某一个节点开始，每走一条轻边，子树的大小都会<strong>减小</strong>一倍。因此任意一条树链上只有<mathjax>$O(\log n)$</mathjax>条轻边，即意味着只有<mathjax>$O(\log n)$</mathjax>。</p>
 <h2 id="lca">树链剖分计算LCA</h2>
 <p>LCA即最近公共祖先。计算LCA的算法可以说是各种各样，有暴力的爬山法，炸空间的Tarjan算法，开挂的倍增法，莫名高大上的ST跳表的搞法，还有不知所云的转成RMQ问题......在与树相关的操作中，经常需要一些求LCA的操作。其中最常用的就是倍增法，它能在<mathjax>$O(\log n)$</mathjax>的时间内求出LCA，并且其空间复杂度为<mathjax>$\Theta(n \log n)$</mathjax>。</p>
 <p>当我们树剖后的操作需要借助到LCA时，是不是就要写个LCA的算法呢？<br />

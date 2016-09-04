@@ -260,7 +260,7 @@ var _hmt = _hmt || [];
 22
 23
 24
-25</pre></div></td><td class="code"><div class="codehilite"><pre><span class="c1"># 顺时针旋转</span>
+25</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="c1"># 顺时针旋转</span>
 <span class="k">def</span> <span class="nf">cw_rotate</span><span class="p">(</span><span class="n">h</span><span class="p">):</span>
     <span class="k">assert</span> <span class="n">h</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">h</span><span class="o">.</span><span class="n">left</span> <span class="ow">is</span> <span class="n">red</span>  <span class="c1"># h是非空节点并且左儿子为红色</span>
 
@@ -304,7 +304,7 @@ var _hmt = _hmt || [];
  7
  8
  9
-10</pre></div></td><td class="code"><div class="codehilite"><pre><span class="k">def</span> <span class="nf">flip_color</span><span class="p">(</span><span class="n">h</span><span class="p">):</span>
+10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">flip_color</span><span class="p">(</span><span class="n">h</span><span class="p">):</span>
     <span class="k">assert</span> <span class="n">h</span><span class="o">.</span><span class="n">color</span> <span class="ow">is</span> <span class="n">different</span> <span class="kn">from</span> <span class="nn">h.children.color</span>  <span class="c1"># h的颜色和它的儿子相反</span>
 
     <span class="n">h</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="p">(</span><span class="n">h</span><span class="o">.</span><span class="n">color</span> <span class="o">==</span> <span class="n">RED</span> <span class="err">?</span> <span class="n">BLACK</span> <span class="p">:</span> <span class="n">RED</span><span class="p">)</span>
@@ -347,7 +347,7 @@ var _hmt = _hmt || [];
 10
 11
 12
-13</pre></div></td><td class="code"><div class="codehilite"><pre><span class="k">def</span> <span class="nf">balance</span><span class="p">(</span><span class="n">h</span><span class="p">):</span>
+13</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">balance</span><span class="p">(</span><span class="n">h</span><span class="p">):</span>
     <span class="k">assert</span> <span class="n">h</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span>  <span class="c1"># 当然不能为非空节点</span>
 
     <span class="k">if</span> <span class="n">h</span><span class="o">.</span><span class="n">right</span> <span class="ow">is</span> <span class="n">red</span> <span class="ow">and</span> <span class="n">h</span><span class="o">.</span><span class="n">left</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">red</span><span class="p">:</span>  <span class="c1"># 情况一</span>
@@ -368,7 +368,7 @@ var _hmt = _hmt || [];
 2
 3
 4
-5</pre></div></td><td class="code"><div class="codehilite"><pre><span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
     <span class="c1"># 二叉搜索树的插入实现</span>
 
     <span class="c1"># return h</span>
@@ -403,7 +403,7 @@ var _hmt = _hmt || [];
 10
 11
 12
-13</pre></div></td><td class="code"><div class="codehilite"><pre><span class="k">def</span> <span class="nf">move_red_to_left</span><span class="p">(</span><span class="n">h</span><span class="p">):</span>
+13</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">move_red_to_left</span><span class="p">(</span><span class="n">h</span><span class="p">):</span>
     <span class="k">assert</span> <span class="n">h</span> <span class="ow">is</span> <span class="n">red</span> <span class="ow">and</span> <span class="n">h</span><span class="o">.</span><span class="n">left</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">red</span>  <span class="c1"># 左儿子必须为黑色，同时当前必须是红色</span>
 
     <span class="n">h</span> <span class="o">=</span> <span class="n">flip_color</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>  <span class="c1"># 与儿子节点结合</span>
@@ -430,7 +430,7 @@ var _hmt = _hmt || [];
  8
  9
 10
-11</pre></div></td><td class="code"><div class="codehilite"><pre><span class="k">def</span> <span class="nf">move_red_to_left</span><span class="p">(</span><span class="n">h</span><span class="p">):</span>
+11</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">move_red_to_left</span><span class="p">(</span><span class="n">h</span><span class="p">):</span>
     <span class="k">assert</span> <span class="n">h</span> <span class="ow">is</span> <span class="n">red</span> <span class="ow">and</span> <span class="n">h</span><span class="o">.</span><span class="n">right</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">red</span>
 
     <span class="n">h</span> <span class="o">=</span> <span class="n">flip_color</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
@@ -498,7 +498,7 @@ var _hmt = _hmt || [];
 37
 38
 39
-40</pre></div></td><td class="code"><div class="codehilite"><pre><span class="c1"># 获取后继节点</span>
+40</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="c1"># 获取后继节点</span>
 <span class="k">def</span> <span class="nf">min_node</span><span class="p">(</span><span class="n">h</span><span class="p">):</span>
     <span class="k">assert</span> <span class="n">h</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span>
 

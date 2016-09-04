@@ -70,7 +70,7 @@
 41
 42
 43
-44</pre></div></td><td class="code"><div class="codehilite"><pre>// 对于每个树节点x，x.point是其表示的点，x.rectangle是其实际管辖的范围
+44</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>// 对于每个树节点x，x.point是其表示的点，x.rectangle是其实际管辖的范围
 // x.NE、x.NW、x.SE、x.SW表示四个方位的子平面
 // 建树前先对点集排序
 
@@ -147,7 +147,7 @@ function BUILD-QUADTREE(P):  // P是点集
 11
 12
 13
-14</pre></div></td><td class="code"><div class="codehilite"><pre>function QUERY(x, rect):  // x表示当前的节点，rect是查询的矩形
+14</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>function QUERY(x, rect):  // x表示当前的节点，rect是查询的矩形
     if x =  nil:
         return 0
     if x.rectangle is out of rect:  // 在矩形外
