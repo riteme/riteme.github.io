@@ -73,7 +73,7 @@ $$</mathjax></p>
 那么我们可以删除图中任意一条边作为匹配。由于每个子集均满足以上条件，那么从<mathjax>$X$</mathjax>和<mathjax>$Y$</mathjax>中各删除一个点不会导致违反Hall条件，所以此操作可以使归纳继续并且使<mathjax>$n$</mathjax>减小。</li>
 <li>如果存在一个<strong>最大的</strong><mathjax>$T \subset X$</mathjax>，满足以下条件：<br />
 <mathjax>$$ |\Gamma(T)| = |T| $$</mathjax><br />
-那么我们可以明确两点：第一，在<mathjax>$T$</mathjax>中我们可以找到一个关于<mathjax>$T$</mathjax>的最大匹配；第二，将这个匹配从图中删去，剩下的图依然满足Hall条件。因为根据Hall条件易知每一个<mathjax>$X$</mathjax>中的点必定至少与一个<mathjax>$Y$</mathjax>中的点有连边关系。而上述条件则表明不存在一个不属于<mathjax>$T$</mathjax>的点，只与<mathjax>$\Gamma(T)$</mathjax>中的点有边相连。故删除它们不会造成有点的出度变为<mathjax>$0$</mathjax>，从而满足了Hall条件。</li>
+那么我们可以明确两点：第一，在<mathjax>$T$</mathjax>中我们可以找到一个关于<mathjax>$T$</mathjax>的最大匹配；第二，将这个匹配从图中删去，剩下的图依然满足Hall条件。因为根据Hall条件易知每一个<mathjax>$X$</mathjax>中的点必定至少与一个<mathjax>$Y$</mathjax>中的点有连边关系。同时Hall条件还表明，不存在一个不属于<mathjax>$T$</mathjax>的点，只与<mathjax>$\Gamma(T)$</mathjax>中的点有边相连。故删除它们不会造成有点的出度变为<mathjax>$0$</mathjax>，从而满足了Hall条件。</li>
 </ol>
 <p>因此可以通过归纳证明Hall定理。</p>
 <h2 id="_3">简单运用</h2>
