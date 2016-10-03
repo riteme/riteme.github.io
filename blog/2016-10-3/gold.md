@@ -52,9 +52,9 @@ $K$和$C$表示Lunk在任意连续的$K$分钟内**至多**取走$C$个黄金。
 <tbody><tr height="18" style="height:13.50pt;">
     <th class="xl65" height="18" width="72" style="height:13.50pt;width:54.00pt;text-align: center" x:str=""><strong>子任务编号</strong></th>
     <th width="72" style="width:54.00pt;text-align: center" x:str=""><strong>数据编号</strong></th>
-    <th width="72" style="width:54.00pt;text-align: center" x:str="">$T$的限制</th>
-    <th width="72" style="width:54.00pt;text-align: center" x:str="">$K$的限制</th>
-    <th width="72" style="width:54.00pt;text-align: center" x:str="">$C$的限制</th>
+    <th width="72" style="width:54.00pt;text-align: center" x:str=""><strong>$T$的限制</strong></th>
+    <th width="72" style="width:54.00pt;text-align: center" x:str=""><strong>$K$的限制</strong></th>
+    <th width="72" style="width:54.00pt;text-align: center" x:str=""><strong>$C$的限制</strong></th>
    </tr>
    <tr height="18" style="height:13.50pt;">
     <td height="18" style="height:13.50pt;text-align: center;line-height:24px" x:num="">1</td>
