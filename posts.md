@@ -117,6 +117,7 @@ tags: Posts
 * [pagegen.py的试炼](./blog/2016-1-31/test.html): 测试`pagegen.py`
 
 ## 临时链接
+* [无尽的黄金](./blog/2016-10-3/gold.html) (*HNSDFZ OIER* **FORBIDDEN** before self contest #6)
 * [空袭](./blog/2016-8-25/airstrike.html) (*HNSDFZ OIER* **FORBIDDEN** before self contest #5)
 * [$k$-SBK变换](./blog/2016-7-28/ksbk.html) (*HNSDFZ OIER* **FORBIDDEN** before self contest #4)
 * [HNSDFZ #3](./blog/2016-7-1/hnsdfz-3.html)
