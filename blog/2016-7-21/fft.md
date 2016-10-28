@@ -305,8 +305,8 @@ function ITERATIVE-FFT(x):
             w = 1
             for k in [0, mid - 1]:
                 t = w * x[mid + k]
-                x[mid + k] = x[left + k] + t
-                x[left + k] = x[left + k] - t
+                x[mid + k] = x[left + k] - t
+                x[left + k] = x[left + k] + t
                 w *= w_n
         s *= 2
     
