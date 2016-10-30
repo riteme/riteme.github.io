@@ -43,10 +43,10 @@ a|b&(!c^d)
 
 |$a$|$b$|$a$ `^` $b$ ($a \oplus b$)|
 |:-:|:-:|:-:|
-|$\text{true}$|$\text{true}$|$\text{true}$|
-|$\text{true}$|$\text{false}$|$\text{false}$|
-|$\text{false}$|$\text{true}$|$\text{false}$|
-|$\text{false}$|$\text{false}$|$\text{true}$|
+|$\text{true}$|$\text{true}$|$\text{fasle}$|
+|$\text{true}$|$\text{false}$|$\text{true}$|
+|$\text{false}$|$\text{true}$|$\text{true}$|
+|$\text{false}$|$\text{false}$|$\text{false}$|
 
 对于`!`运算，它后面会有一个变量或子表达式。其运算规则如下：
 
