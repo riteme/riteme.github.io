@@ -9,7 +9,7 @@ class Tag(object):
     def __init__(self, text):
         super(Tag, self).__init__()
         self.text = text
-        self._style = "<span class=\"label label-default\">{tag}</span>"
+        self._style = "<span class=\"label\">{tag}</span>"
 
     def __str__(self):
         return self._style.format(tag=self.text)

@@ -14,10 +14,10 @@ tags: HNSDFZ
 > 到了附中我这三年也没有什么别的,大概三件事:一个,算出了$\varphi(n)$了; 第二个,算出了$\mu(n)$; 第三个,就是算出$\varphi \times \mu$了。
 > 如果还说有一点成绩就是科普了杜教筛......还有上周的狄利克雷卷积也是很大的。但这些都是次要的。  
 > 我主要干的就是三件事,很惭愧,就做了一点微小的数学。
-> $$ \tag{——Gromah} $$
+> <div style="text-align: right; font-size: 14px">—— Gromah</div>
 
 > 现在请你追随Gromah的脚步,来虐掉这个题,做一点微小的数学吧。
-> $$ \tag{——ruanxingzhi} $$
+> <div style="text-align: right; font-size: 14px">—— ruanxingzhi</div>
 
 一句话题意:求：
 $$

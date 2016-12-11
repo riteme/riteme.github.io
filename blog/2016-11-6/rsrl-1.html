@@ -1,39 +1,63 @@
 <!DOCTYPE html>
 <html>
+
 <script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?72d0c4a099cd676176e657b871326707";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?72d0c4a099cd676176e657b871326707";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  } )();
 </script>
+
 <head>
-  <title>RSRL开发记录（一） - riteme.site</title>
   <meta charset="UTF-8">
-  <link rel="shortcut icon" href="../../favicon.png" type="image/png">
-  <link rel="stylesheet" type="text/css" href="../../css/site.min.css">
-  <script type="text/javascript" async src="../../mathjax/MathJax.js?config=TeX-AMS_HTML"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RSRL开发记录（一） - riteme.site</title>
+  <link rel="shortcut icon" href="/favicon.png" type="image/png">
+  <link rel="stylesheet" href="/material/material-icons.css">
+  <link rel="stylesheet" href="/material/material.min.css" /> 
+  <link href="/tipuesearch/tipuesearch.css" rel="stylesheet" type="text/css">
+  <link href="/css/site.css" rel="stylesheet">
+  <script defer src="/material/material.min.js"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config( { tex2jax: { inlineMath: [['$','$']] } } );
+  </script>
+  <script type="text/javascript" async src="/mathjax/MathJax.js?config=TeX-AMS_HTML"></script>
   <script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
-  <link href="../../tipuesearch/tipuesearch.css" rel="stylesheet">
-  <script src="../../tipuesearch/tipuesearch_set.js"></script>
-  <script src="../../tipuesearch/tipuesearch.min.js"></script>
+  <script src="/tipuesearch/tipuesearch_set.js"></script>
+  <script src="/tipuesearch/tipuesearch.min.js"></script>
 </head>
+
 <body>
-<div id="topbar">
-  <div style="display: block; float: right">
-  <form action="../../search.html">
-  <input type="text" placeholder="Search Here" name="q" id="tipue_search_input" autocomplete="off" required>
-  </form>
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <span class="mdl-layout-title">RSRL开发记录（一）</span>
+        <div class="mdl-layout-spacer"></div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+        mdl-textfield--floating-label mdl-textfield--align-right">
+        <label class="mdl-button mdl-js-button mdl-button--icon"
+        for="fixed-header-drawer-exp"><i class="material-icons">search</i></label>
+        <div class="mdl-textfield__expandable-holder">
+          <form action="/search.html"><input type="text" class="mdl-textfield__input" placeholder="Search Here" name="q" id="fixed-header-drawer-exp" autocomplete="off" required></form>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="mdl-layout__drawer">
+    <span class="mdl-layout-title drawer-title">riteme.site</span>
+    <nav class="mdl-navigation">
+      <a class="mdl-navigation__link" href="/index.html">首页</a>
+      <a class="mdl-navigation__link" href="/posts.html">所有文章</a>
+      <a class="mdl-navigation__link" href="https://github.com/riteme/riteme.github.io">Github项目</a>
+    </nav>
   </div>
-</div>
-<ul class="breadcrumb"><li><a href="../../index.html">HOME</a></li><li><a href="../../posts.html">POSTS</a></li><li><a href="../../posts.html#2016-11-6">2016-11-6</a></li><li class="active">RSRL开发记录（一）</li></ul>
-
-<div id="view">
-
-<div id="container">
-<h1 id="rsrl">RSRL开发记录（一）</h1>
+  <main class="mdl-layout__content">
+    
+    <div class="article">
+      <h1 id="rsrl">RSRL开发记录（一）</h1>
 <p>深觉自己姿势水平还是太低，许多东西并没有学到家就准备搞东西，<code>ne2d</code>就是一个典型的例子吧。虽然以后可能还会继续，但是现在先写个软渲染器来熟悉一些基础知识。</p>
 <p>项目开在了GitHub和Git@OSC上，欢迎围观：<br />
 GitHub: <a href="https://github.com/riteme/RSRL">https://github.com/riteme/RSRL</a><br />
@@ -120,51 +144,49 @@ Z \\
 \right)
 $$</mathjax></p>
 <p>是不是非常巧妙？虽然向量和矩阵都变成了四维，但是这样我们就可以将所有的线性变换都用矩阵表示，并且可以利用矩阵乘法来加速变换。这也就是为什么矩阵在计算机图形学中十分重要的原因之一了。</p>
-<hr/>
-<a href="rsrl-1-printable.html">查看打印版本</a><br/>
-标签: <span class="label label-default">RSRL</span><br/>
-创建时间: 2016.11.06<br/>
-上次修改: 2016.11.06
-<div class="ds-thread" data-thread-key="e95e11d58b56e32f432e65645e8c5d26" data-title="RSRL开发记录（一）" data-url="http://riteme.github.io/blog/2016-11-6/rsrl-1.html"></div>
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"riteme"};
-(function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = (
-        document.location.protocol == 'https:' ? 'https:' : 'http:'
-    ) + '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0]
-     || document.getElementsByTagName('body')[0]).appendChild(ds);
-})();
-</script>
-</div>
-</div>
 
-<footer class="page-footer">
-  <div id="container">
-    <div class="footer-left">
-        <h4 class="white-text">关于riteme.site</h5>
-        <ul class="mdul">
-          <li class="mdli white-text">一个从不乱说话的博客...</li>
-        </ul>
+      <hr/>
+      标签: <span class="label">RSRL</span><br/>
+      创建时间: 2016.11.06<br/>
+      上次修改: 2016.11.06
+      <div class="ds-thread" data-thread-key="e95e11d58b56e32f432e65645e8c5d26" data-title="RSRL开发记录（一）" data-url="http://riteme.github.io/blog/2016-11-6/rsrl-1.html">
+        <script>
+          var _hmt = _hmt || [];
+          (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?72d0c4a099cd676176e657b871326707";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+          } )();
+        </script>
+      </div>
     </div>
-    <div class="footer-right">
-        <h4 class="white-text">友情链接</h5>
-        <ul class="mdul">
-          <li class="mdli"><a class="white-text" href="http://link-arthur.github.io/"><del>LinkSBK</del></a></li>
-          <li class="mdli"><a class="white-text" href="http://ruanxingzhi.github.io/">ruanxingzhi</a></li>
-          <li class="mdli"><a class="white-text" href="http://haogram.hol.es/">核糖核酸</a></li>
-          <li class="mdli"><a class="white-text" href="http://hjwjbsr.is-programmer.com/">HJWJBSR</a></li>
-        </ul>
-    </div>
-  </div>
-  <div class="footer-copyright">
-    <div id="container">
-        Copyright © 2015-2016 riteme. All rights reserved.
-    </div>
-  </div>
-</footer>
+
+    <footer class="mdl-mega-footer">
+      <div class="mdl-mega-footer__middle-section">
+        <div class="mdl-mega-footer__drop-down-section">
+          <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+          <h1 class="mdl-mega-footer__heading">riteme.site</h1>
+          一个从不乱说话的博客...
+        </div>
+
+        <div class="mdl-mega-footer__drop-down-section">
+          <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+          <h1 class="mdl-mega-footer__heading">友情链接</h1>
+          <ul class="mdl-mega-footer__link-list">
+            <li><a href="http://link-arthur.github.io/">Link</a></li>
+            <li><a href="http://ruanxingzhi.github.io/">ruanxingzhi</a></li>
+            <li><a href="http://haogram.hol.es/">Haogram</a></li>
+            <li><a href="http://hjwjbsr.is-programmer.com/">HJWJBSR</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mdl-mega-footer__bottom-section">
+        Based on <a href="https://getmdl.io/">MDL</a> | Copyright © 2015-2016 riteme. All rights reserved.
+      </div>
+    </footer>
+  </main>
+</div>
 </body>
 </html>

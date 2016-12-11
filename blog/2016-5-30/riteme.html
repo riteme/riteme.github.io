@@ -1,39 +1,63 @@
 <!DOCTYPE html>
 <html>
+
 <script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?72d0c4a099cd676176e657b871326707";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?72d0c4a099cd676176e657b871326707";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  } )();
 </script>
+
 <head>
-  <title>BST厂长 - riteme.site</title>
   <meta charset="UTF-8">
-  <link rel="shortcut icon" href="../../favicon.png" type="image/png">
-  <link rel="stylesheet" type="text/css" href="../../css/site.min.css">
-  <script type="text/javascript" async src="../../mathjax/MathJax.js?config=TeX-AMS_HTML"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BST厂长 - riteme.site</title>
+  <link rel="shortcut icon" href="/favicon.png" type="image/png">
+  <link rel="stylesheet" href="/material/material-icons.css">
+  <link rel="stylesheet" href="/material/material.min.css" /> 
+  <link href="/tipuesearch/tipuesearch.css" rel="stylesheet" type="text/css">
+  <link href="/css/site.css" rel="stylesheet">
+  <script defer src="/material/material.min.js"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config( { tex2jax: { inlineMath: [['$','$']] } } );
+  </script>
+  <script type="text/javascript" async src="/mathjax/MathJax.js?config=TeX-AMS_HTML"></script>
   <script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
-  <link href="../../tipuesearch/tipuesearch.css" rel="stylesheet">
-  <script src="../../tipuesearch/tipuesearch_set.js"></script>
-  <script src="../../tipuesearch/tipuesearch.min.js"></script>
+  <script src="/tipuesearch/tipuesearch_set.js"></script>
+  <script src="/tipuesearch/tipuesearch.min.js"></script>
 </head>
+
 <body>
-<div id="topbar">
-  <div style="display: block; float: right">
-  <form action="../../search.html">
-  <input type="text" placeholder="Search Here" name="q" id="tipue_search_input" autocomplete="off" required>
-  </form>
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <span class="mdl-layout-title">BST厂长</span>
+        <div class="mdl-layout-spacer"></div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+        mdl-textfield--floating-label mdl-textfield--align-right">
+        <label class="mdl-button mdl-js-button mdl-button--icon"
+        for="fixed-header-drawer-exp"><i class="material-icons">search</i></label>
+        <div class="mdl-textfield__expandable-holder">
+          <form action="/search.html"><input type="text" class="mdl-textfield__input" placeholder="Search Here" name="q" id="fixed-header-drawer-exp" autocomplete="off" required></form>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="mdl-layout__drawer">
+    <span class="mdl-layout-title drawer-title">riteme.site</span>
+    <nav class="mdl-navigation">
+      <a class="mdl-navigation__link" href="/index.html">首页</a>
+      <a class="mdl-navigation__link" href="/posts.html">所有文章</a>
+      <a class="mdl-navigation__link" href="https://github.com/riteme/riteme.github.io">Github项目</a>
+    </nav>
   </div>
-</div>
-<ul class="breadcrumb"><li><a href="../../index.html">HOME</a></li><li><a href="../../posts.html">POSTS</a></li><li><a href="../../posts.html#2016-5-30">2016-5-30</a></li><li class="active">BST厂长</li></ul>
-
-<div id="view">
-
-<div id="container">
-<h1 id="bst-bstinoutcpp">BST厂长 (bst.in/out/cpp)</h1>
+  <main class="mdl-layout__content">
+    
+    <div class="article">
+      <h1 id="bst-bstinoutcpp">BST厂长 (bst.in/out/cpp)</h1>
 <p>时间限制: 1 s / 内存限制: 128 MB / 打开<code>O2</code>优化</p>
 <h2 id="_1">题目描述</h2>
 <blockquote>
@@ -80,51 +104,49 @@ ZY写个程序来构建BST。然而Link并不屑于写这个程序，于是这�
 对于<mathjax>$20\%$</mathjax>的数据，<mathjax>$n \le 100,000$</mathjax>。<br />
 对于另外<mathjax>$10\%$</mathjax>的数据，<strong>数列完全随机</strong>。<br />
 对于<mathjax>$100\%$</mathjax>的数据，<mathjax>$n \le 200,000$</mathjax>，<mathjax>$1 \le x \le n$</mathjax>，保证每次检查的节点存在。</p>
-<hr/>
-<a href="riteme-printable.html">查看打印版本</a><br/>
-标签: <span class="label label-default">Problems</span> <span class="label label-default">ZY</span> <span class="label label-default">XL</span> <span class="label label-default">LinkSBK</span><br/>
-创建时间: 2016.05.30<br/>
-上次修改: 2016.05.30
-<div class="ds-thread" data-thread-key="2d8779eb353ae8a2b8c3b1d6183e2957" data-title="BST厂长" data-url="http://riteme.github.io/blog/2016-5-30/riteme.html"></div>
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"riteme"};
-(function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = (
-        document.location.protocol == 'https:' ? 'https:' : 'http:'
-    ) + '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0]
-     || document.getElementsByTagName('body')[0]).appendChild(ds);
-})();
-</script>
-</div>
-</div>
 
-<footer class="page-footer">
-  <div id="container">
-    <div class="footer-left">
-        <h4 class="white-text">关于riteme.site</h5>
-        <ul class="mdul">
-          <li class="mdli white-text">一个从不乱说话的博客...</li>
-        </ul>
+      <hr/>
+      标签: <span class="label">Problems</span> <span class="label">ZY</span> <span class="label">XL</span> <span class="label">LinkSBK</span><br/>
+      创建时间: 2016.05.30<br/>
+      上次修改: 2016.05.30
+      <div class="ds-thread" data-thread-key="2d8779eb353ae8a2b8c3b1d6183e2957" data-title="BST厂长" data-url="http://riteme.github.io/blog/2016-5-30/riteme.html">
+        <script>
+          var _hmt = _hmt || [];
+          (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?72d0c4a099cd676176e657b871326707";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+          } )();
+        </script>
+      </div>
     </div>
-    <div class="footer-right">
-        <h4 class="white-text">友情链接</h5>
-        <ul class="mdul">
-          <li class="mdli"><a class="white-text" href="http://link-arthur.github.io/"><del>LinkSBK</del></a></li>
-          <li class="mdli"><a class="white-text" href="http://ruanxingzhi.github.io/">ruanxingzhi</a></li>
-          <li class="mdli"><a class="white-text" href="http://haogram.hol.es/">核糖核酸</a></li>
-          <li class="mdli"><a class="white-text" href="http://hjwjbsr.is-programmer.com/">HJWJBSR</a></li>
-        </ul>
-    </div>
-  </div>
-  <div class="footer-copyright">
-    <div id="container">
-        Copyright © 2015-2016 riteme. All rights reserved.
-    </div>
-  </div>
-</footer>
+
+    <footer class="mdl-mega-footer">
+      <div class="mdl-mega-footer__middle-section">
+        <div class="mdl-mega-footer__drop-down-section">
+          <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+          <h1 class="mdl-mega-footer__heading">riteme.site</h1>
+          一个从不乱说话的博客...
+        </div>
+
+        <div class="mdl-mega-footer__drop-down-section">
+          <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+          <h1 class="mdl-mega-footer__heading">友情链接</h1>
+          <ul class="mdl-mega-footer__link-list">
+            <li><a href="http://link-arthur.github.io/">Link</a></li>
+            <li><a href="http://ruanxingzhi.github.io/">ruanxingzhi</a></li>
+            <li><a href="http://haogram.hol.es/">Haogram</a></li>
+            <li><a href="http://hjwjbsr.is-programmer.com/">HJWJBSR</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mdl-mega-footer__bottom-section">
+        Based on <a href="https://getmdl.io/">MDL</a> | Copyright © 2015-2016 riteme. All rights reserved.
+      </div>
+    </footer>
+  </main>
+</div>
 </body>
 </html>

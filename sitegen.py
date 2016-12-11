@@ -16,7 +16,6 @@ if __name__ != "__main__":
 
 UPDATE_MAP_FILE = "./map.json"
 TEMPLATE_FILE = "./template.html"
-TEMPLATE_PRINTABLE_FILE = "./printable-template.html"
 
 update_map = {}
 update_all = False
@@ -46,10 +45,6 @@ def hash(obj):
 check_template_update(
     hash(TEMPLATE_FILE),
     hash(int(os.path.getmtime(TEMPLATE_FILE)))
-)
-check_template_update(
-    hash(TEMPLATE_PRINTABLE_FILE),
-    hash(int(os.path.getmtime(TEMPLATE_PRINTABLE_FILE)))
 )
 
 

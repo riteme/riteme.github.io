@@ -11,7 +11,6 @@ import info
 import tag
 import tocer
 import parser
-import breadcrumb
 import navigater
 
 import bs4
@@ -248,87 +247,18 @@ def generate(filepath):
     index_url = navigater.get_path("myself")
     index_url = index_url.rsplit(".", 1)[0] + ".html"
 
-    # 处理相对路径
-    navigater.handle("favicon", "favicon.png")
-    navigater.handle("home", "index.html")
-    navigater.handle("css", "css/site.min.css")
-    navigater.handle("mathjax", "mathjax/MathJax.js")
-    navigater.handle("posts", "posts.html")
-    navigater.handle("tipuesearch_content", "tipuesearch/tipuesearch_content.js")
-    navigater.handle("tipuesearch_css", "tipuesearch/tipuesearch.css")
-    navigater.handle("tipuesearch_set", "tipuesearch/tipuesearch_set.js")
-    navigater.handle("tipuesearch_min_js", "tipuesearch/tipuesearch.min.js")
-    navigater.handle("search_page", "search.html")
-
-    navigater.home_folder = os.path.dirname(filepath)
-    mathjax = navigater.get_path("mathjax")
-    favicon = navigater.get_path("favicon")
-    css = navigater.get_path("css")
-    home = navigater.get_path("home")
-    posts = navigater.get_path("posts")
-    tipuesearch_content = navigater.get_path("tipuesearch_content")
-    tipuesearch_css = navigater.get_path("tipuesearch_css")
-    tipuesearch_set = navigater.get_path("tipuesearch_set")
-    tipuesearch_min_js = navigater.get_path("tipuesearch_min_js")
-    search_page = navigater.get_path("search_page")
-
     # 处理特殊信息
     pagetitle = mdinfo["title"][0].strip()
     pagekey = hashlib.md5(pagetitle.encode("utf8")).hexdigest()
     pageurl = "http://riteme.github.io/" + os.path.relpath(
         os.path.abspath(filepath), start=os.path.abspath("."))[
         :-3] + ".html"
-    duoshuo = """<script type="text/javascript">
-var duoshuoQuery = {short_name:"riteme"};
-(function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = (
-        document.location.protocol == 'https:' ? 'https:' : 'http:'
-    ) + '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0]
-     || document.getElementsByTagName('body')[0]).appendChild(ds);
-})();
-</script>"""
-    baidu_tonji = """<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?72d0c4a099cd676176e657b871326707";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>"""
-
-    # 生成导航栏
-    bread = breadcrumb.Breadcrumb()
-    relative = os.path.relpath(
-        os.path.dirname(os.path.abspath(filepath)),
-        start=os.path.abspath(".")
-    )
-    nodes = [
-        x.upper() for x in os.path.split(relative) if x.strip() not in [
-            "", "."
-        ]
-    ]
-    bread.append("HOME", home)
-    if len(nodes) > 1:
-        bread.append("POSTS", posts)
-        bread.append(nodes[-1], "{}#{}".format(posts, nodes[-1]))
-
-    bread.append(mdinfo["title"][0].upper(), "#", is_alive=True)
 
     # 写入文件
     with open("template.html") as ftemplate:
         template = ftemplate.read()
 
-    with open("printable-template.html") as fprintable:
-        printable = fprintable.read()
-
     new_file = os.path.splitext(filepath)[0] + ".html"
-    new_printable = os.path.splitext(filepath)[0] + "-printable.html"
-    printable_path = os.path.basename(new_printable)
 
     with open(new_file, "w") as writer:
         writer.write(template.format(
@@ -338,30 +268,9 @@ var _hmt = _hmt || [];
             tags=str(tags),
             toc=toc,
             content=content,
-            breadcrumb=str(bread),
-            favicon=favicon,
-            mathjax=mathjax,
-            css=css,
-            home=home,
             page_key=pagekey,
             page_title=pagetitle,
-            page_url=pageurl,
-            duoshuo_code=duoshuo,
-            baidu_tonji=baidu_tonji,
-            printable=printable_path,
-            tipuesearch_css=tipuesearch_css,
-            tipuesearch_content=tipuesearch_content,
-            tipuesearch_set=tipuesearch_set,
-            tipuesearch_min_js=tipuesearch_min_js,
-            search_page=search_page
-        ))
-
-    with open(new_printable, "w") as writer:
-        writer.write(printable.format(
-            title=title,
-            content=content,
-            mathjax=mathjax,
-            css=css
+            page_url=pageurl
         ))
 
     # 返回索引信息
