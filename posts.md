@@ -1,5 +1,5 @@
 ---
-title: All Posts
+title: 所有文章
 create: 2016.1.31
 modified: 2016.2.1
 tags: Posts

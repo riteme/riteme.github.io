@@ -110,6 +110,7 @@ td.code {
     margin: 0 0 24px 0;
     padding: 10px 10px 1px 20px;
     font-style: normal;
+    font-size: 14px;
 }
 
 .article blockquote::before {
