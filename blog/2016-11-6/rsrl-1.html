@@ -55,9 +55,10 @@
     </nav>
   </div>
   <main class="mdl-layout__content">
-    
-    <div class="article">
-      <h1 id="rsrl">RSRL开发记录（一）</h1>
+    <div class="mdl-grid">
+      <div class="mdl-cell mdl-cell--9-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+        <div class="article">
+          <h1 id="rsrl">RSRL开发记录（一）</h1>
 <p>深觉自己姿势水平还是太低，许多东西并没有学到家就准备搞东西，<code>ne2d</code>就是一个典型的例子吧。虽然以后可能还会继续，但是现在先写个软渲染器来熟悉一些基础知识。</p>
 <p>项目开在了GitHub和Git@OSC上，欢迎围观：<br />
 GitHub: <a href="https://github.com/riteme/RSRL">https://github.com/riteme/RSRL</a><br />
@@ -145,33 +146,62 @@ Z \\
 $$</mathjax></p>
 <p>是不是非常巧妙？虽然向量和矩阵都变成了四维，但是这样我们就可以将所有的线性变换都用矩阵表示，并且可以利用矩阵乘法来加速变换。这也就是为什么矩阵在计算机图形学中十分重要的原因之一了。</p>
 
-      <hr/>
-      标签: <span class="label">RSRL</span><br/>
-      创建时间: 2016.11.06<br/>
-      上次修改: 2016.11.06
-      <div class="ds-thread" data-thread-key="e95e11d58b56e32f432e65645e8c5d26" data-title="RSRL开发记录（一）" data-url="http://riteme.github.io/blog/2016-11-6/rsrl-1.html">
-        <script type="text/javascript">
-        var duoshuoQuery = { short_name:"riteme" };
-         (function() {
-           var ds = document.createElement('script');
-           ds.type = 'text/javascript';ds.async = true;
-           ds.src = (
-             document.location.protocol == 'https:' ? 'https:' : 'http:'
-             ) + '//static.duoshuo.com/embed.js';
-           ds.charset = 'UTF-8';
-           (document.getElementsByTagName('head')[0]
-            || document.getElementsByTagName('body')[0]).appendChild(ds);
-         } )();
-       </script>
-     </div>
-   </div>
+          <hr/>
 
-   <footer class="mdl-mega-footer">
+          <div class="ds-thread" data-thread-key="e95e11d58b56e32f432e65645e8c5d26" data-title="RSRL开发记录（一）" data-url="http://riteme.github.io/blog/2016-11-6/rsrl-1.html">
+            <script type="text/javascript">
+              var duoshuoQuery = { short_name:"riteme" };
+              (function() {
+               var ds = document.createElement('script');
+               ds.type = 'text/javascript';ds.async = true;
+               ds.src = (
+                 document.location.protocol == 'https:' ? 'https:' : 'http:'
+                 ) + '//static.duoshuo.com/embed.js';
+               ds.charset = 'UTF-8';
+               (document.getElementsByTagName('head')[0]
+                || document.getElementsByTagName('body')[0]).appendChild(ds);
+             } )();
+           </script>
+         </div>
+       </div>
+     </div>
+
+     <div class="mdl-cell mdl-cell--3-col mdl-cell--hide-tablet mdl-cell--hide-phone">
+       <div class="article">
+        标签: <span class="label">RSRL</span><br/>
+        创建时间: 2016.11.06<br/>
+        上次修改: 2016.11.06
+      </div>
+      <hr/>
+      
+      <div class="return-up-button">
+        <a href="javascript:$('main').animate( { scrollTop: 0 } , 'fast')">
+          <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+            <i class="material-icons">vertical_align_top</i>
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="mdl-mega-footer">
     <div class="mdl-mega-footer__middle-section">
       <div class="mdl-mega-footer__drop-down-section">
         <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-        <h1 class="mdl-mega-footer__heading">riteme.site</h1>
+        <h1 class="mdl-mega-footer__heading">RITEME.SITE</h1>
         一个从不乱说话的博客...
+      </div>
+
+      <div class="mdl-mega-footer__drop-down-section">
+        <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+        <h1 class="mdl-mega-footer__heading">POWERED BY</h1>
+        <ul class="mdl-mega-footer__link-list">
+          <li><a href="http://pythonhosted.org/Markdown/">Python Markdown</a></li>
+          <li><a href="http://getmdl.io/">Material Design Lite</a></li>
+          <li><a href="http://www.tipue.com/search/">Tipuesearch</a></li>
+          <li><a href="http://www.mathjax.org/">MathJax</a></li>
+          <li><a href="http://duoshuo.com/">多说</a></li>
+        </ul>
       </div>
 
       <div class="mdl-mega-footer__drop-down-section">
@@ -187,7 +217,7 @@ $$</mathjax></p>
     </div>
 
     <div class="mdl-mega-footer__bottom-section">
-      Based on <a href="https://getmdl.io/">MDL</a> | Copyright © 2015-2016 riteme. All rights reserved.
+      Theme based on <a href="https://getmdl.io/">MDL</a> | Copyright © 2015-2016 riteme. All rights reserved.
     </div>
   </footer>
 </main>

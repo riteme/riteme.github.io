@@ -55,20 +55,10 @@
     </nav>
   </div>
   <main class="mdl-layout__content">
-    <div class="toc">
-<ul>
-<li><a href="#point-quadtree">点分四叉树 (Point Quadtree)</a><ul>
-<li><a href="#_1">原理</a></li>
-<li><a href="#_2">建树</a></li>
-<li><a href="#_3">查询与修改</a></li>
-<li><a href="#_4">动态插入与删除</a></li>
-<li><a href="#_5">扩展至高维</a></li>
-</ul>
-</li>
-</ul>
-</div>
-    <div class="article">
-      
+    <div class="mdl-grid">
+      <div class="mdl-cell mdl-cell--9-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+        <div class="article">
+          
 <h1 id="point-quadtree">点分四叉树 (Point Quadtree)</h1>
 <p>点分四叉树是一种二维平面上的划分树，可以用于快速统计平面上的点的信息。<br />
 下图展现了一棵四叉树。其中箭头表示树中的边，矩形表示一个点所管辖的范围。<br />
@@ -248,33 +238,73 @@ function BUILD-QUADTREE(P):  // P是点集
 </ol>
 </div>
 
-      <hr/>
-      标签: <span class="label">四叉树</span> <span class="label">划分树</span> <span class="label">数据结构</span><br/>
-      创建时间: 2016.06.02<br/>
-      上次修改: 2016.06.02
-      <div class="ds-thread" data-thread-key="ee94791580c58b48ab482a973caf3134" data-title="点分四叉树 (Point Quadtree)" data-url="http://riteme.github.io/blog/2016-6-2/quadtree.html">
-        <script type="text/javascript">
-        var duoshuoQuery = { short_name:"riteme" };
-         (function() {
-           var ds = document.createElement('script');
-           ds.type = 'text/javascript';ds.async = true;
-           ds.src = (
-             document.location.protocol == 'https:' ? 'https:' : 'http:'
-             ) + '//static.duoshuo.com/embed.js';
-           ds.charset = 'UTF-8';
-           (document.getElementsByTagName('head')[0]
-            || document.getElementsByTagName('body')[0]).appendChild(ds);
-         } )();
-       </script>
-     </div>
-   </div>
+          <hr/>
 
-   <footer class="mdl-mega-footer">
+          <div class="ds-thread" data-thread-key="ee94791580c58b48ab482a973caf3134" data-title="点分四叉树 (Point Quadtree)" data-url="http://riteme.github.io/blog/2016-6-2/quadtree.html">
+            <script type="text/javascript">
+              var duoshuoQuery = { short_name:"riteme" };
+              (function() {
+               var ds = document.createElement('script');
+               ds.type = 'text/javascript';ds.async = true;
+               ds.src = (
+                 document.location.protocol == 'https:' ? 'https:' : 'http:'
+                 ) + '//static.duoshuo.com/embed.js';
+               ds.charset = 'UTF-8';
+               (document.getElementsByTagName('head')[0]
+                || document.getElementsByTagName('body')[0]).appendChild(ds);
+             } )();
+           </script>
+         </div>
+       </div>
+     </div>
+
+     <div class="mdl-cell mdl-cell--3-col mdl-cell--hide-tablet mdl-cell--hide-phone">
+       <div class="article">
+        标签: <span class="label">四叉树</span> <span class="label">划分树</span> <span class="label">数据结构</span><br/>
+        创建时间: 2016.06.02<br/>
+        上次修改: 2016.06.02
+      </div>
+      <hr/>
+      <div class="toc">
+<ul>
+<li><a href="#point-quadtree">点分四叉树 (Point Quadtree)</a><ul>
+<li><a href="#_1">原理</a></li>
+<li><a href="#_2">建树</a></li>
+<li><a href="#_3">查询与修改</a></li>
+<li><a href="#_4">动态插入与删除</a></li>
+<li><a href="#_5">扩展至高维</a></li>
+</ul>
+</li>
+</ul>
+</div>
+      <div class="return-up-button">
+        <a href="javascript:$('main').animate( { scrollTop: 0 } , 'fast')">
+          <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+            <i class="material-icons">vertical_align_top</i>
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="mdl-mega-footer">
     <div class="mdl-mega-footer__middle-section">
       <div class="mdl-mega-footer__drop-down-section">
         <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-        <h1 class="mdl-mega-footer__heading">riteme.site</h1>
+        <h1 class="mdl-mega-footer__heading">RITEME.SITE</h1>
         一个从不乱说话的博客...
+      </div>
+
+      <div class="mdl-mega-footer__drop-down-section">
+        <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+        <h1 class="mdl-mega-footer__heading">POWERED BY</h1>
+        <ul class="mdl-mega-footer__link-list">
+          <li><a href="http://pythonhosted.org/Markdown/">Python Markdown</a></li>
+          <li><a href="http://getmdl.io/">Material Design Lite</a></li>
+          <li><a href="http://www.tipue.com/search/">Tipuesearch</a></li>
+          <li><a href="http://www.mathjax.org/">MathJax</a></li>
+          <li><a href="http://duoshuo.com/">多说</a></li>
+        </ul>
       </div>
 
       <div class="mdl-mega-footer__drop-down-section">
@@ -290,7 +320,7 @@ function BUILD-QUADTREE(P):  // P是点集
     </div>
 
     <div class="mdl-mega-footer__bottom-section">
-      Based on <a href="https://getmdl.io/">MDL</a> | Copyright © 2015-2016 riteme. All rights reserved.
+      Theme based on <a href="https://getmdl.io/">MDL</a> | Copyright © 2015-2016 riteme. All rights reserved.
     </div>
   </footer>
 </main>

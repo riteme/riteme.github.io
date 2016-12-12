@@ -55,19 +55,10 @@
     </nav>
   </div>
   <main class="mdl-layout__content">
-    <div class="toc">
-<ul>
-<li><a href="#_1">最小费用最大流</a><ul>
-<li><a href="#_2">最小费用流</a></li>
-<li><a href="#_3">最小费用最大流问题</a></li>
-<li><a href="#_4">增广路算法</a></li>
-<li><a href="#_5">实现细节</a></li>
-</ul>
-</li>
-</ul>
-</div>
-    <div class="article">
-      
+    <div class="mdl-grid">
+      <div class="mdl-cell mdl-cell--9-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+        <div class="article">
+          
 <h1 id="_1">最小费用最大流</h1>
 <p>之前一直想不明白最小费用流，今天翻了很多资料才理解了，在此做点记录。</p>
 <h2 id="_2">最小费用流</h2>
@@ -273,33 +264,72 @@ $$</mathjax></p>
 2. 反向边边权：是相反的<br />
 3. SPFA: 寻找最短路</p>
 
-      <hr/>
-      标签: <span class="label">算法</span> <span class="label">网络流</span> <span class="label">最小费用流</span> <span class="label">图论</span><br/>
-      创建时间: 2016.02.02<br/>
-      上次修改: 2016.02.02
-      <div class="ds-thread" data-thread-key="ba287b21463f8fbbd76f024a56205a6a" data-title="最小费用最大流" data-url="http://riteme.github.io/blog/2016-2-2/mincost-maxflow.html">
-        <script type="text/javascript">
-        var duoshuoQuery = { short_name:"riteme" };
-         (function() {
-           var ds = document.createElement('script');
-           ds.type = 'text/javascript';ds.async = true;
-           ds.src = (
-             document.location.protocol == 'https:' ? 'https:' : 'http:'
-             ) + '//static.duoshuo.com/embed.js';
-           ds.charset = 'UTF-8';
-           (document.getElementsByTagName('head')[0]
-            || document.getElementsByTagName('body')[0]).appendChild(ds);
-         } )();
-       </script>
-     </div>
-   </div>
+          <hr/>
 
-   <footer class="mdl-mega-footer">
+          <div class="ds-thread" data-thread-key="ba287b21463f8fbbd76f024a56205a6a" data-title="最小费用最大流" data-url="http://riteme.github.io/blog/2016-2-2/mincost-maxflow.html">
+            <script type="text/javascript">
+              var duoshuoQuery = { short_name:"riteme" };
+              (function() {
+               var ds = document.createElement('script');
+               ds.type = 'text/javascript';ds.async = true;
+               ds.src = (
+                 document.location.protocol == 'https:' ? 'https:' : 'http:'
+                 ) + '//static.duoshuo.com/embed.js';
+               ds.charset = 'UTF-8';
+               (document.getElementsByTagName('head')[0]
+                || document.getElementsByTagName('body')[0]).appendChild(ds);
+             } )();
+           </script>
+         </div>
+       </div>
+     </div>
+
+     <div class="mdl-cell mdl-cell--3-col mdl-cell--hide-tablet mdl-cell--hide-phone">
+       <div class="article">
+        标签: <span class="label">算法</span> <span class="label">网络流</span> <span class="label">最小费用流</span> <span class="label">图论</span><br/>
+        创建时间: 2016.02.02<br/>
+        上次修改: 2016.02.02
+      </div>
+      <hr/>
+      <div class="toc">
+<ul>
+<li><a href="#_1">最小费用最大流</a><ul>
+<li><a href="#_2">最小费用流</a></li>
+<li><a href="#_3">最小费用最大流问题</a></li>
+<li><a href="#_4">增广路算法</a></li>
+<li><a href="#_5">实现细节</a></li>
+</ul>
+</li>
+</ul>
+</div>
+      <div class="return-up-button">
+        <a href="javascript:$('main').animate( { scrollTop: 0 } , 'fast')">
+          <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+            <i class="material-icons">vertical_align_top</i>
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="mdl-mega-footer">
     <div class="mdl-mega-footer__middle-section">
       <div class="mdl-mega-footer__drop-down-section">
         <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-        <h1 class="mdl-mega-footer__heading">riteme.site</h1>
+        <h1 class="mdl-mega-footer__heading">RITEME.SITE</h1>
         一个从不乱说话的博客...
+      </div>
+
+      <div class="mdl-mega-footer__drop-down-section">
+        <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+        <h1 class="mdl-mega-footer__heading">POWERED BY</h1>
+        <ul class="mdl-mega-footer__link-list">
+          <li><a href="http://pythonhosted.org/Markdown/">Python Markdown</a></li>
+          <li><a href="http://getmdl.io/">Material Design Lite</a></li>
+          <li><a href="http://www.tipue.com/search/">Tipuesearch</a></li>
+          <li><a href="http://www.mathjax.org/">MathJax</a></li>
+          <li><a href="http://duoshuo.com/">多说</a></li>
+        </ul>
       </div>
 
       <div class="mdl-mega-footer__drop-down-section">
@@ -315,7 +345,7 @@ $$</mathjax></p>
     </div>
 
     <div class="mdl-mega-footer__bottom-section">
-      Based on <a href="https://getmdl.io/">MDL</a> | Copyright © 2015-2016 riteme. All rights reserved.
+      Theme based on <a href="https://getmdl.io/">MDL</a> | Copyright © 2015-2016 riteme. All rights reserved.
     </div>
   </footer>
 </main>

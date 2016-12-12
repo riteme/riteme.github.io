@@ -55,26 +55,10 @@
     </nav>
   </div>
   <main class="mdl-layout__content">
-    <div class="toc">
-<ul>
-<li><a href="#sa-is">诱导排序与SA-IS算法</a><ul>
-<li><a href="#1">1. 记号</a></li>
-<li><a href="#2-sa-is">2. SA-IS算法</a><ul>
-<li><a href="#21">2.1 后缀类型</a></li>
-<li><a href="#22-lms">2.2 LMS子串</a></li>
-<li><a href="#23-sa1sa">2.3 从SA1诱导至SA</a></li>
-<li><a href="#24-lms">2.4 对LMS子串排序</a></li>
-</ul>
-</li>
-<li><a href="#3">3. 时空复杂度分析</a></li>
-<li><a href="#4">4. 运行示例</a></li>
-<li><a href="#5">5. 具体实现及性能对比</a></li>
-</ul>
-</li>
-</ul>
-</div>
-    <div class="article">
-      
+    <div class="mdl-grid">
+      <div class="mdl-cell mdl-cell--9-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+        <div class="article">
+          
 <h1 id="sa-is">诱导排序与SA-IS算法</h1>
 <p>SA-IS是一种在实际运用中相当快速的线性时间构建字符串的后缀数组的算法。本文将通过对原论文<sup id="fnref:paper"><a class="footnote-ref" href="#fn:paper" rel="footnote">1</a></sup>进行一些翻译和总结来介绍该算法。最后会提供一个SA-IS算法的C++实现。</p>
 <h2 id="1">1. 记号</h2>
@@ -795,33 +779,79 @@ return SA
 </ol>
 </div>
 
-      <hr/>
-      标签: <span class="label">数据结构</span> <span class="label">字符串</span> <span class="label">后缀数组</span> <span class="label">诱导排序</span> <span class="label">SA-IS</span><br/>
-      创建时间: 2016.06.19<br/>
-      上次修改: 2016.06.19
-      <div class="ds-thread" data-thread-key="9269fdafdb0cc04fe631d3d5c6d5625a" data-title="诱导排序与SA-IS算法" data-url="http://riteme.github.io/blog/2016-6-19/sais.html">
-        <script type="text/javascript">
-        var duoshuoQuery = { short_name:"riteme" };
-         (function() {
-           var ds = document.createElement('script');
-           ds.type = 'text/javascript';ds.async = true;
-           ds.src = (
-             document.location.protocol == 'https:' ? 'https:' : 'http:'
-             ) + '//static.duoshuo.com/embed.js';
-           ds.charset = 'UTF-8';
-           (document.getElementsByTagName('head')[0]
-            || document.getElementsByTagName('body')[0]).appendChild(ds);
-         } )();
-       </script>
-     </div>
-   </div>
+          <hr/>
 
-   <footer class="mdl-mega-footer">
+          <div class="ds-thread" data-thread-key="9269fdafdb0cc04fe631d3d5c6d5625a" data-title="诱导排序与SA-IS算法" data-url="http://riteme.github.io/blog/2016-6-19/sais.html">
+            <script type="text/javascript">
+              var duoshuoQuery = { short_name:"riteme" };
+              (function() {
+               var ds = document.createElement('script');
+               ds.type = 'text/javascript';ds.async = true;
+               ds.src = (
+                 document.location.protocol == 'https:' ? 'https:' : 'http:'
+                 ) + '//static.duoshuo.com/embed.js';
+               ds.charset = 'UTF-8';
+               (document.getElementsByTagName('head')[0]
+                || document.getElementsByTagName('body')[0]).appendChild(ds);
+             } )();
+           </script>
+         </div>
+       </div>
+     </div>
+
+     <div class="mdl-cell mdl-cell--3-col mdl-cell--hide-tablet mdl-cell--hide-phone">
+       <div class="article">
+        标签: <span class="label">数据结构</span> <span class="label">字符串</span> <span class="label">后缀数组</span> <span class="label">诱导排序</span> <span class="label">SA-IS</span><br/>
+        创建时间: 2016.06.19<br/>
+        上次修改: 2016.06.19
+      </div>
+      <hr/>
+      <div class="toc">
+<ul>
+<li><a href="#sa-is">诱导排序与SA-IS算法</a><ul>
+<li><a href="#1">1. 记号</a></li>
+<li><a href="#2-sa-is">2. SA-IS算法</a><ul>
+<li><a href="#21">2.1 后缀类型</a></li>
+<li><a href="#22-lms">2.2 LMS子串</a></li>
+<li><a href="#23-sa1sa">2.3 从SA1诱导至SA</a></li>
+<li><a href="#24-lms">2.4 对LMS子串排序</a></li>
+</ul>
+</li>
+<li><a href="#3">3. 时空复杂度分析</a></li>
+<li><a href="#4">4. 运行示例</a></li>
+<li><a href="#5">5. 具体实现及性能对比</a></li>
+</ul>
+</li>
+</ul>
+</div>
+      <div class="return-up-button">
+        <a href="javascript:$('main').animate( { scrollTop: 0 } , 'fast')">
+          <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+            <i class="material-icons">vertical_align_top</i>
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="mdl-mega-footer">
     <div class="mdl-mega-footer__middle-section">
       <div class="mdl-mega-footer__drop-down-section">
         <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-        <h1 class="mdl-mega-footer__heading">riteme.site</h1>
+        <h1 class="mdl-mega-footer__heading">RITEME.SITE</h1>
         一个从不乱说话的博客...
+      </div>
+
+      <div class="mdl-mega-footer__drop-down-section">
+        <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+        <h1 class="mdl-mega-footer__heading">POWERED BY</h1>
+        <ul class="mdl-mega-footer__link-list">
+          <li><a href="http://pythonhosted.org/Markdown/">Python Markdown</a></li>
+          <li><a href="http://getmdl.io/">Material Design Lite</a></li>
+          <li><a href="http://www.tipue.com/search/">Tipuesearch</a></li>
+          <li><a href="http://www.mathjax.org/">MathJax</a></li>
+          <li><a href="http://duoshuo.com/">多说</a></li>
+        </ul>
       </div>
 
       <div class="mdl-mega-footer__drop-down-section">
@@ -837,7 +867,7 @@ return SA
     </div>
 
     <div class="mdl-mega-footer__bottom-section">
-      Based on <a href="https://getmdl.io/">MDL</a> | Copyright © 2015-2016 riteme. All rights reserved.
+      Theme based on <a href="https://getmdl.io/">MDL</a> | Copyright © 2015-2016 riteme. All rights reserved.
     </div>
   </footer>
 </main>

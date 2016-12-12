@@ -55,22 +55,10 @@
     </nav>
   </div>
   <main class="mdl-layout__content">
-    <div class="toc">
-<ul>
-<li><a href="#devil">DevIL快速入门</a><ul>
-<li><a href="#_1">特点</a></li>
-<li><a href="#_2">安装</a></li>
-<li><a href="#_3">初始化</a></li>
-<li><a href="#_4">加载图片</a></li>
-<li><a href="#_5">创建材质</a></li>
-<li><a href="#_6">保存图片</a></li>
-<li><a href="#_7">结尾</a></li>
-</ul>
-</li>
-</ul>
-</div>
-    <div class="article">
-      
+    <div class="mdl-grid">
+      <div class="mdl-cell mdl-cell--9-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+        <div class="article">
+          
 <h1 id="devil">DevIL快速入门</h1>
 <p><a href="http://openil.sourceforge.net/">DevIL</a>全名是“Developer&rsquo;s Image Library”，它是一个多功能的图像库，能过很方便地载入、修改和保存图片。<br />
 其原名是OpenIL，后来是因为SGI的要求才改名为DevIL<sup id="fnref:devil-rename"><a class="footnote-ref" href="#fn:devil-rename" rel="footnote">1</a></sup>。</p>
@@ -364,33 +352,75 @@ Bit Per Pixel（每个像素所占位数，<code>IL_IMAGE_BITS_PER_PIXEL</code>�
 </ol>
 </div>
 
-      <hr/>
-      标签: <span class="label">C/C++</span> <span class="label">DevIL</span> <span class="label">OpenGL</span><br/>
-      创建时间: 2016.02.05<br/>
-      上次修改: 2016.02.05
-      <div class="ds-thread" data-thread-key="30581953f1031de48a5195ecf0f0a1c2" data-title="DevIL快速入门" data-url="http://riteme.github.io/blog/2016-2-5/devil-usage.html">
-        <script type="text/javascript">
-        var duoshuoQuery = { short_name:"riteme" };
-         (function() {
-           var ds = document.createElement('script');
-           ds.type = 'text/javascript';ds.async = true;
-           ds.src = (
-             document.location.protocol == 'https:' ? 'https:' : 'http:'
-             ) + '//static.duoshuo.com/embed.js';
-           ds.charset = 'UTF-8';
-           (document.getElementsByTagName('head')[0]
-            || document.getElementsByTagName('body')[0]).appendChild(ds);
-         } )();
-       </script>
-     </div>
-   </div>
+          <hr/>
 
-   <footer class="mdl-mega-footer">
+          <div class="ds-thread" data-thread-key="30581953f1031de48a5195ecf0f0a1c2" data-title="DevIL快速入门" data-url="http://riteme.github.io/blog/2016-2-5/devil-usage.html">
+            <script type="text/javascript">
+              var duoshuoQuery = { short_name:"riteme" };
+              (function() {
+               var ds = document.createElement('script');
+               ds.type = 'text/javascript';ds.async = true;
+               ds.src = (
+                 document.location.protocol == 'https:' ? 'https:' : 'http:'
+                 ) + '//static.duoshuo.com/embed.js';
+               ds.charset = 'UTF-8';
+               (document.getElementsByTagName('head')[0]
+                || document.getElementsByTagName('body')[0]).appendChild(ds);
+             } )();
+           </script>
+         </div>
+       </div>
+     </div>
+
+     <div class="mdl-cell mdl-cell--3-col mdl-cell--hide-tablet mdl-cell--hide-phone">
+       <div class="article">
+        标签: <span class="label">C/C++</span> <span class="label">DevIL</span> <span class="label">OpenGL</span><br/>
+        创建时间: 2016.02.05<br/>
+        上次修改: 2016.02.05
+      </div>
+      <hr/>
+      <div class="toc">
+<ul>
+<li><a href="#devil">DevIL快速入门</a><ul>
+<li><a href="#_1">特点</a></li>
+<li><a href="#_2">安装</a></li>
+<li><a href="#_3">初始化</a></li>
+<li><a href="#_4">加载图片</a></li>
+<li><a href="#_5">创建材质</a></li>
+<li><a href="#_6">保存图片</a></li>
+<li><a href="#_7">结尾</a></li>
+</ul>
+</li>
+</ul>
+</div>
+      <div class="return-up-button">
+        <a href="javascript:$('main').animate( { scrollTop: 0 } , 'fast')">
+          <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+            <i class="material-icons">vertical_align_top</i>
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="mdl-mega-footer">
     <div class="mdl-mega-footer__middle-section">
       <div class="mdl-mega-footer__drop-down-section">
         <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-        <h1 class="mdl-mega-footer__heading">riteme.site</h1>
+        <h1 class="mdl-mega-footer__heading">RITEME.SITE</h1>
         一个从不乱说话的博客...
+      </div>
+
+      <div class="mdl-mega-footer__drop-down-section">
+        <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+        <h1 class="mdl-mega-footer__heading">POWERED BY</h1>
+        <ul class="mdl-mega-footer__link-list">
+          <li><a href="http://pythonhosted.org/Markdown/">Python Markdown</a></li>
+          <li><a href="http://getmdl.io/">Material Design Lite</a></li>
+          <li><a href="http://www.tipue.com/search/">Tipuesearch</a></li>
+          <li><a href="http://www.mathjax.org/">MathJax</a></li>
+          <li><a href="http://duoshuo.com/">多说</a></li>
+        </ul>
       </div>
 
       <div class="mdl-mega-footer__drop-down-section">
@@ -406,7 +436,7 @@ Bit Per Pixel（每个像素所占位数，<code>IL_IMAGE_BITS_PER_PIXEL</code>�
     </div>
 
     <div class="mdl-mega-footer__bottom-section">
-      Based on <a href="https://getmdl.io/">MDL</a> | Copyright © 2015-2016 riteme. All rights reserved.
+      Theme based on <a href="https://getmdl.io/">MDL</a> | Copyright © 2015-2016 riteme. All rights reserved.
     </div>
   </footer>
 </main>

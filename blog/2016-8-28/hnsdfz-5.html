@@ -55,69 +55,10 @@
     </nav>
   </div>
   <main class="mdl-layout__content">
-    <div class="toc">
-<ul>
-<li><a href="#hnsdfz2016-5">HNSDFZ2016 #5</a><ul>
-<li><a href="#a-ruanxingzhi">A. 微小的数学 (ruanxingzhi)</a><ul>
-<li><a href="#_1">题目描述</a></li>
-<li><a href="#_2">输入格式</a></li>
-<li><a href="#_3">输出格式</a></li>
-<li><a href="#1">样例输入1</a></li>
-<li><a href="#1_1">样例输出1</a></li>
-<li><a href="#2">样例输入2</a></li>
-<li><a href="#2_1">样例输出2</a></li>
-<li><a href="#_4">数据范围及提示</a></li>
-</ul>
-</li>
-<li><a href="#b-haogram">B. 一圈一圈 (Haogram)</a><ul>
-<li><a href="#_5">题目描述</a></li>
-<li><a href="#_6">输入格式</a></li>
-<li><a href="#_7">输出格式</a></li>
-<li><a href="#_8">样例输入</a></li>
-<li><a href="#_9">样例输出</a></li>
-<li><a href="#_10">数据范围及提示</a></li>
-</ul>
-</li>
-<li><a href="#c-kfight-link">C. KFight (Link)</a><ul>
-<li><a href="#_11">题目描述</a></li>
-<li><a href="#_12">输入格式</a></li>
-<li><a href="#_13">输出格式</a></li>
-<li><a href="#_14">样例输入</a></li>
-<li><a href="#_15">样例输出</a></li>
-<li><a href="#_16">数据范围及提示</a></li>
-</ul>
-</li>
-<li><a href="#d-riteme">D. 空袭 (riteme)</a><ul>
-<li><a href="#_17">题目描述</a></li>
-<li><a href="#_18">我该如何编写这个程序</a></li>
-<li><a href="#_19">我该如何测试这个程序</a></li>
-<li><a href="#_20">输入格式</a></li>
-<li><a href="#_21">输出格式</a></li>
-<li><a href="#1_2">样例输入1</a></li>
-<li><a href="#1_3">样例输出1</a></li>
-<li><a href="#1_4">样例解释1</a></li>
-<li><a href="#2_2">样例输入2</a></li>
-<li><a href="#2_3">样例输出2</a></li>
-<li><a href="#2_4">样例解释2</a></li>
-<li><a href="#_22">数据限制</a></li>
-<li><a href="#_23">评分标准</a></li>
-<li><a href="#_24">关于评测机</a></li>
-<li><a href="#_25">温馨提示</a></li>
-</ul>
-</li>
-<li><a href="#_26">部分题解</a><ul>
-<li><a href="#a">A</a></li>
-<li><a href="#b">B</a></li>
-<li><a href="#c">C</a></li>
-<li><a href="#d">D</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</div>
-    <div class="article">
-      
+    <div class="mdl-grid">
+      <div class="mdl-cell mdl-cell--9-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+        <div class="article">
+          
 <h1 id="hnsdfz2016-5">HNSDFZ2016 #5</h1>
 <h2 id="a-ruanxingzhi">A. 微小的数学 (ruanxingzhi)</h2>
 <h3 id="_1">题目描述</h3>
@@ -650,33 +591,122 @@ $$</mathjax></p>
 <p>这样我们每扫描完一个<mathjax>$x$</mathjax>，就可以逐个回答当前的询问了。在平衡树上二分找到上下边，然后判定这个点是否在这两条边所表示的半平面交的范围内。<br />
 由于是交互题，被强制在线了。为了能够在线，我们需要每一个<mathjax>$x$</mathjax>处的平衡树来在线回答。这个东西可以利用可持久化平衡树高效地存下来。</p>
 
-      <hr/>
-      标签: <span class="label">HNSDFZ</span> <span class="label">互测</span> <span class="label">2016</span><br/>
-      创建时间: 2016.08.28<br/>
-      上次修改: 2016.08.28
-      <div class="ds-thread" data-thread-key="d622ce0979dd98c89278e8b3e20749d1" data-title="HNSDFZ2016 #5" data-url="http://riteme.github.io/blog/2016-8-28/hnsdfz-5.html">
-        <script type="text/javascript">
-        var duoshuoQuery = { short_name:"riteme" };
-         (function() {
-           var ds = document.createElement('script');
-           ds.type = 'text/javascript';ds.async = true;
-           ds.src = (
-             document.location.protocol == 'https:' ? 'https:' : 'http:'
-             ) + '//static.duoshuo.com/embed.js';
-           ds.charset = 'UTF-8';
-           (document.getElementsByTagName('head')[0]
-            || document.getElementsByTagName('body')[0]).appendChild(ds);
-         } )();
-       </script>
-     </div>
-   </div>
+          <hr/>
 
-   <footer class="mdl-mega-footer">
+          <div class="ds-thread" data-thread-key="d622ce0979dd98c89278e8b3e20749d1" data-title="HNSDFZ2016 #5" data-url="http://riteme.github.io/blog/2016-8-28/hnsdfz-5.html">
+            <script type="text/javascript">
+              var duoshuoQuery = { short_name:"riteme" };
+              (function() {
+               var ds = document.createElement('script');
+               ds.type = 'text/javascript';ds.async = true;
+               ds.src = (
+                 document.location.protocol == 'https:' ? 'https:' : 'http:'
+                 ) + '//static.duoshuo.com/embed.js';
+               ds.charset = 'UTF-8';
+               (document.getElementsByTagName('head')[0]
+                || document.getElementsByTagName('body')[0]).appendChild(ds);
+             } )();
+           </script>
+         </div>
+       </div>
+     </div>
+
+     <div class="mdl-cell mdl-cell--3-col mdl-cell--hide-tablet mdl-cell--hide-phone">
+       <div class="article">
+        标签: <span class="label">HNSDFZ</span> <span class="label">互测</span> <span class="label">2016</span><br/>
+        创建时间: 2016.08.28<br/>
+        上次修改: 2016.08.28
+      </div>
+      <hr/>
+      <div class="toc">
+<ul>
+<li><a href="#hnsdfz2016-5">HNSDFZ2016 #5</a><ul>
+<li><a href="#a-ruanxingzhi">A. 微小的数学 (ruanxingzhi)</a><ul>
+<li><a href="#_1">题目描述</a></li>
+<li><a href="#_2">输入格式</a></li>
+<li><a href="#_3">输出格式</a></li>
+<li><a href="#1">样例输入1</a></li>
+<li><a href="#1_1">样例输出1</a></li>
+<li><a href="#2">样例输入2</a></li>
+<li><a href="#2_1">样例输出2</a></li>
+<li><a href="#_4">数据范围及提示</a></li>
+</ul>
+</li>
+<li><a href="#b-haogram">B. 一圈一圈 (Haogram)</a><ul>
+<li><a href="#_5">题目描述</a></li>
+<li><a href="#_6">输入格式</a></li>
+<li><a href="#_7">输出格式</a></li>
+<li><a href="#_8">样例输入</a></li>
+<li><a href="#_9">样例输出</a></li>
+<li><a href="#_10">数据范围及提示</a></li>
+</ul>
+</li>
+<li><a href="#c-kfight-link">C. KFight (Link)</a><ul>
+<li><a href="#_11">题目描述</a></li>
+<li><a href="#_12">输入格式</a></li>
+<li><a href="#_13">输出格式</a></li>
+<li><a href="#_14">样例输入</a></li>
+<li><a href="#_15">样例输出</a></li>
+<li><a href="#_16">数据范围及提示</a></li>
+</ul>
+</li>
+<li><a href="#d-riteme">D. 空袭 (riteme)</a><ul>
+<li><a href="#_17">题目描述</a></li>
+<li><a href="#_18">我该如何编写这个程序</a></li>
+<li><a href="#_19">我该如何测试这个程序</a></li>
+<li><a href="#_20">输入格式</a></li>
+<li><a href="#_21">输出格式</a></li>
+<li><a href="#1_2">样例输入1</a></li>
+<li><a href="#1_3">样例输出1</a></li>
+<li><a href="#1_4">样例解释1</a></li>
+<li><a href="#2_2">样例输入2</a></li>
+<li><a href="#2_3">样例输出2</a></li>
+<li><a href="#2_4">样例解释2</a></li>
+<li><a href="#_22">数据限制</a></li>
+<li><a href="#_23">评分标准</a></li>
+<li><a href="#_24">关于评测机</a></li>
+<li><a href="#_25">温馨提示</a></li>
+</ul>
+</li>
+<li><a href="#_26">部分题解</a><ul>
+<li><a href="#a">A</a></li>
+<li><a href="#b">B</a></li>
+<li><a href="#c">C</a></li>
+<li><a href="#d">D</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+      <div class="return-up-button">
+        <a href="javascript:$('main').animate( { scrollTop: 0 } , 'fast')">
+          <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+            <i class="material-icons">vertical_align_top</i>
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="mdl-mega-footer">
     <div class="mdl-mega-footer__middle-section">
       <div class="mdl-mega-footer__drop-down-section">
         <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-        <h1 class="mdl-mega-footer__heading">riteme.site</h1>
+        <h1 class="mdl-mega-footer__heading">RITEME.SITE</h1>
         一个从不乱说话的博客...
+      </div>
+
+      <div class="mdl-mega-footer__drop-down-section">
+        <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+        <h1 class="mdl-mega-footer__heading">POWERED BY</h1>
+        <ul class="mdl-mega-footer__link-list">
+          <li><a href="http://pythonhosted.org/Markdown/">Python Markdown</a></li>
+          <li><a href="http://getmdl.io/">Material Design Lite</a></li>
+          <li><a href="http://www.tipue.com/search/">Tipuesearch</a></li>
+          <li><a href="http://www.mathjax.org/">MathJax</a></li>
+          <li><a href="http://duoshuo.com/">多说</a></li>
+        </ul>
       </div>
 
       <div class="mdl-mega-footer__drop-down-section">
@@ -692,7 +722,7 @@ $$</mathjax></p>
     </div>
 
     <div class="mdl-mega-footer__bottom-section">
-      Based on <a href="https://getmdl.io/">MDL</a> | Copyright © 2015-2016 riteme. All rights reserved.
+      Theme based on <a href="https://getmdl.io/">MDL</a> | Copyright © 2015-2016 riteme. All rights reserved.
     </div>
   </footer>
 </main>

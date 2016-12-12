@@ -55,17 +55,10 @@
     </nav>
   </div>
   <main class="mdl-layout__content">
-    <div class="toc">
-<ul>
-<li><a href="#noip2014">[NOIP2014] 寻找道路</a><ul>
-<li><a href="#_1">原题题意</a></li>
-<li><a href="#_2">做法</a></li>
-</ul>
-</li>
-</ul>
-</div>
-    <div class="article">
-      
+    <div class="mdl-grid">
+      <div class="mdl-cell mdl-cell--9-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+        <div class="article">
+          
 <h1 id="noip2014">[NOIP2014] 寻找道路</h1>
 <h2 id="_1">原题题意</h2>
 <p>给你一张<mathjax>$ n(n \le 1000) $</mathjax>个点和<mathjax>$ m(m\le200000) $</mathjax>条边权为1的无向边的图，找出一条符合下列要求的路径：<br />
@@ -76,33 +69,70 @@
 我们使用一个<code>valid</code>数组来存储某个点是否直接或间接地到终点的布尔值，故最暴力的方法就是每个点DFS。其实只需要一次DFS即可，因为只要任意一个与某个点的出边相连接的点能够到达终点，那么这个点也可以到达终点，否则不行。这样在写的过程中，比较麻烦，因此我们在读入图的时候同时构造一张反向图，即每条边与原图方向相反，然后从终点BFS，将每个可以便利到的点打上标记。<br />
 做完这个处理后，只需要从起点BFS就能求出答案。</p>
 
-      <hr/>
-      标签: <span class="label">NOIP</span> <span class="label">BFS</span> <span class="label">图论</span><br/>
-      创建时间: 2016.02.01<br/>
-      上次修改: 2016.02.01
-      <div class="ds-thread" data-thread-key="9a0aef084e919f6ef5dd0502b501423f" data-title="NOIP2014 寻找道路题解" data-url="http://riteme.github.io/blog/2016-2-1/find-path.html">
-        <script type="text/javascript">
-        var duoshuoQuery = { short_name:"riteme" };
-         (function() {
-           var ds = document.createElement('script');
-           ds.type = 'text/javascript';ds.async = true;
-           ds.src = (
-             document.location.protocol == 'https:' ? 'https:' : 'http:'
-             ) + '//static.duoshuo.com/embed.js';
-           ds.charset = 'UTF-8';
-           (document.getElementsByTagName('head')[0]
-            || document.getElementsByTagName('body')[0]).appendChild(ds);
-         } )();
-       </script>
-     </div>
-   </div>
+          <hr/>
 
-   <footer class="mdl-mega-footer">
+          <div class="ds-thread" data-thread-key="9a0aef084e919f6ef5dd0502b501423f" data-title="NOIP2014 寻找道路题解" data-url="http://riteme.github.io/blog/2016-2-1/find-path.html">
+            <script type="text/javascript">
+              var duoshuoQuery = { short_name:"riteme" };
+              (function() {
+               var ds = document.createElement('script');
+               ds.type = 'text/javascript';ds.async = true;
+               ds.src = (
+                 document.location.protocol == 'https:' ? 'https:' : 'http:'
+                 ) + '//static.duoshuo.com/embed.js';
+               ds.charset = 'UTF-8';
+               (document.getElementsByTagName('head')[0]
+                || document.getElementsByTagName('body')[0]).appendChild(ds);
+             } )();
+           </script>
+         </div>
+       </div>
+     </div>
+
+     <div class="mdl-cell mdl-cell--3-col mdl-cell--hide-tablet mdl-cell--hide-phone">
+       <div class="article">
+        标签: <span class="label">NOIP</span> <span class="label">BFS</span> <span class="label">图论</span><br/>
+        创建时间: 2016.02.01<br/>
+        上次修改: 2016.02.01
+      </div>
+      <hr/>
+      <div class="toc">
+<ul>
+<li><a href="#noip2014">[NOIP2014] 寻找道路</a><ul>
+<li><a href="#_1">原题题意</a></li>
+<li><a href="#_2">做法</a></li>
+</ul>
+</li>
+</ul>
+</div>
+      <div class="return-up-button">
+        <a href="javascript:$('main').animate( { scrollTop: 0 } , 'fast')">
+          <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+            <i class="material-icons">vertical_align_top</i>
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="mdl-mega-footer">
     <div class="mdl-mega-footer__middle-section">
       <div class="mdl-mega-footer__drop-down-section">
         <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-        <h1 class="mdl-mega-footer__heading">riteme.site</h1>
+        <h1 class="mdl-mega-footer__heading">RITEME.SITE</h1>
         一个从不乱说话的博客...
+      </div>
+
+      <div class="mdl-mega-footer__drop-down-section">
+        <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+        <h1 class="mdl-mega-footer__heading">POWERED BY</h1>
+        <ul class="mdl-mega-footer__link-list">
+          <li><a href="http://pythonhosted.org/Markdown/">Python Markdown</a></li>
+          <li><a href="http://getmdl.io/">Material Design Lite</a></li>
+          <li><a href="http://www.tipue.com/search/">Tipuesearch</a></li>
+          <li><a href="http://www.mathjax.org/">MathJax</a></li>
+          <li><a href="http://duoshuo.com/">多说</a></li>
+        </ul>
       </div>
 
       <div class="mdl-mega-footer__drop-down-section">
@@ -118,7 +148,7 @@
     </div>
 
     <div class="mdl-mega-footer__bottom-section">
-      Based on <a href="https://getmdl.io/">MDL</a> | Copyright © 2015-2016 riteme. All rights reserved.
+      Theme based on <a href="https://getmdl.io/">MDL</a> | Copyright © 2015-2016 riteme. All rights reserved.
     </div>
   </footer>
 </main>

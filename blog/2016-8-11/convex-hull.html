@@ -55,34 +55,10 @@
     </nav>
   </div>
   <main class="mdl-layout__content">
-    <div class="toc">
-<ul>
-<li><a href="#_1">凸包相关</a><ul>
-<li><a href="#_2">定义</a></li>
-<li><a href="#_3">构造算法</a><ul>
-<li><a href="#jarvis-gift-wrapping">Jarvis步进法 (Gift Wrapping)</a></li>
-<li><a href="#_4">水平扫描线法</a></li>
-<li><a href="#graham">Graham扫描法</a></li>
-<li><a href="#_5">小结</a></li>
-</ul>
-</li>
-<li><a href="#_6">扩展与应用</a><ul>
-<li><a href="#_7">动态凸包</a><ul>
-<li><a href="#_8">水平序</a></li>
-<li><a href="#_9">极角序</a></li>
-<li><a href="#_10">具体实现</a></li>
-</ul>
-</li>
-<li><a href="#_11">旋转卡壳</a></li>
-<li><a href="#_12">斜率优化</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</div>
-    <div class="article">
-      
+    <div class="mdl-grid">
+      <div class="mdl-cell mdl-cell--9-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+        <div class="article">
+          
 <h1 id="_1">凸包相关</h1>
 <h2 id="_2">定义</h2>
 <p>通常说的凸包是指一个点集的凸包，并且是指在二维平面上<sup id="fnref:high-d-convex-hull"><a class="footnote-ref" href="#fn:high-d-convex-hull" rel="footnote">1</a></sup>。这种凸包本身是一个凸多边形，由点集中的点构成，并且要求凸包上的点<strong>尽可能少</strong>。下面是一个凸包的示例：</p>
@@ -470,33 +446,87 @@ Graham算法有一个好处，就是最终得到的凸包还是按照极角序�
 </ol>
 </div>
 
-      <hr/>
-      标签: <span class="label">凸包</span> <span class="label">计算几何</span> <span class="label">数据结构</span> <span class="label">斜率优化</span> <span class="label">旋转卡壳</span><br/>
-      创建时间: 2016.08.11<br/>
-      上次修改: 2016.08.11
-      <div class="ds-thread" data-thread-key="a9a907005a2f89952abbe5e79ba1dbdd" data-title="凸包相关" data-url="http://riteme.github.io/blog/2016-8-11/convex-hull.html">
-        <script type="text/javascript">
-        var duoshuoQuery = { short_name:"riteme" };
-         (function() {
-           var ds = document.createElement('script');
-           ds.type = 'text/javascript';ds.async = true;
-           ds.src = (
-             document.location.protocol == 'https:' ? 'https:' : 'http:'
-             ) + '//static.duoshuo.com/embed.js';
-           ds.charset = 'UTF-8';
-           (document.getElementsByTagName('head')[0]
-            || document.getElementsByTagName('body')[0]).appendChild(ds);
-         } )();
-       </script>
-     </div>
-   </div>
+          <hr/>
 
-   <footer class="mdl-mega-footer">
+          <div class="ds-thread" data-thread-key="a9a907005a2f89952abbe5e79ba1dbdd" data-title="凸包相关" data-url="http://riteme.github.io/blog/2016-8-11/convex-hull.html">
+            <script type="text/javascript">
+              var duoshuoQuery = { short_name:"riteme" };
+              (function() {
+               var ds = document.createElement('script');
+               ds.type = 'text/javascript';ds.async = true;
+               ds.src = (
+                 document.location.protocol == 'https:' ? 'https:' : 'http:'
+                 ) + '//static.duoshuo.com/embed.js';
+               ds.charset = 'UTF-8';
+               (document.getElementsByTagName('head')[0]
+                || document.getElementsByTagName('body')[0]).appendChild(ds);
+             } )();
+           </script>
+         </div>
+       </div>
+     </div>
+
+     <div class="mdl-cell mdl-cell--3-col mdl-cell--hide-tablet mdl-cell--hide-phone">
+       <div class="article">
+        标签: <span class="label">凸包</span> <span class="label">计算几何</span> <span class="label">数据结构</span> <span class="label">斜率优化</span> <span class="label">旋转卡壳</span><br/>
+        创建时间: 2016.08.11<br/>
+        上次修改: 2016.08.11
+      </div>
+      <hr/>
+      <div class="toc">
+<ul>
+<li><a href="#_1">凸包相关</a><ul>
+<li><a href="#_2">定义</a></li>
+<li><a href="#_3">构造算法</a><ul>
+<li><a href="#jarvis-gift-wrapping">Jarvis步进法 (Gift Wrapping)</a></li>
+<li><a href="#_4">水平扫描线法</a></li>
+<li><a href="#graham">Graham扫描法</a></li>
+<li><a href="#_5">小结</a></li>
+</ul>
+</li>
+<li><a href="#_6">扩展与应用</a><ul>
+<li><a href="#_7">动态凸包</a><ul>
+<li><a href="#_8">水平序</a></li>
+<li><a href="#_9">极角序</a></li>
+<li><a href="#_10">具体实现</a></li>
+</ul>
+</li>
+<li><a href="#_11">旋转卡壳</a></li>
+<li><a href="#_12">斜率优化</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+      <div class="return-up-button">
+        <a href="javascript:$('main').animate( { scrollTop: 0 } , 'fast')">
+          <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+            <i class="material-icons">vertical_align_top</i>
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="mdl-mega-footer">
     <div class="mdl-mega-footer__middle-section">
       <div class="mdl-mega-footer__drop-down-section">
         <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-        <h1 class="mdl-mega-footer__heading">riteme.site</h1>
+        <h1 class="mdl-mega-footer__heading">RITEME.SITE</h1>
         一个从不乱说话的博客...
+      </div>
+
+      <div class="mdl-mega-footer__drop-down-section">
+        <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+        <h1 class="mdl-mega-footer__heading">POWERED BY</h1>
+        <ul class="mdl-mega-footer__link-list">
+          <li><a href="http://pythonhosted.org/Markdown/">Python Markdown</a></li>
+          <li><a href="http://getmdl.io/">Material Design Lite</a></li>
+          <li><a href="http://www.tipue.com/search/">Tipuesearch</a></li>
+          <li><a href="http://www.mathjax.org/">MathJax</a></li>
+          <li><a href="http://duoshuo.com/">多说</a></li>
+        </ul>
       </div>
 
       <div class="mdl-mega-footer__drop-down-section">
@@ -512,7 +542,7 @@ Graham算法有一个好处，就是最终得到的凸包还是按照极角序�
     </div>
 
     <div class="mdl-mega-footer__bottom-section">
-      Based on <a href="https://getmdl.io/">MDL</a> | Copyright © 2015-2016 riteme. All rights reserved.
+      Theme based on <a href="https://getmdl.io/">MDL</a> | Copyright © 2015-2016 riteme. All rights reserved.
     </div>
   </footer>
 </main>

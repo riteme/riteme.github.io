@@ -55,17 +55,10 @@
     </nav>
   </div>
   <main class="mdl-layout__content">
-    <div class="toc">
-<ul>
-<li><a href="#xn-1">$x^n-1$问题</a><ul>
-<li><a href="#_1">问题描述</a></li>
-<li><a href="#_2">分析</a></li>
-</ul>
-</li>
-</ul>
-</div>
-    <div class="article">
-      
+    <div class="mdl-grid">
+      <div class="mdl-cell mdl-cell--9-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+        <div class="article">
+          
 <h1 id="xn-1"><mathjax>$x^n-1$</mathjax>问题</h1>
 <h2 id="_1">问题描述</h2>
 <p>请对下面的多项式<mathjax>$ A_n(x) $</mathjax>进行因式分解：</p>
@@ -93,33 +86,70 @@ $$</mathjax></p>
 <p><mathjax>$$ A_n(x) = \prod_{i \mid n} p_i(x) \tag{4}$$</mathjax></p>
 <p>根据<mathjax>$(3)$</mathjax>式和<mathjax>$(4)$</mathjax>式，递推完<mathjax>$ p_n(x) $</mathjax>后，我们就可以将<mathjax>$ A_n(x) $</mathjax>中的每一项都求解出来。如果多项式除法的时间复杂度为<mathjax>$ \Theta(g(n)) $</mathjax>，那么我们可以在<mathjax>$ \Theta(n\sqrt{n} \cdot g(n)) + \Theta(\sqrt{n}) = \Theta(n\sqrt{n} \cdot g(n))$</mathjax>的时间内对<mathjax>$ A_n(x) $</mathjax>进行因式分解。</p>
 
-      <hr/>
-      标签: <span class="label">数学</span> <span class="label">多项式</span><br/>
-      创建时间: 2016.03.21<br/>
-      上次修改: 2016.07.18
-      <div class="ds-thread" data-thread-key="0d8781acbc5548b9ba41b6f081c58855" data-title="x^n-1问题" data-url="http://riteme.github.io/blog/2016-3-21/x-2-1.html">
-        <script type="text/javascript">
-        var duoshuoQuery = { short_name:"riteme" };
-         (function() {
-           var ds = document.createElement('script');
-           ds.type = 'text/javascript';ds.async = true;
-           ds.src = (
-             document.location.protocol == 'https:' ? 'https:' : 'http:'
-             ) + '//static.duoshuo.com/embed.js';
-           ds.charset = 'UTF-8';
-           (document.getElementsByTagName('head')[0]
-            || document.getElementsByTagName('body')[0]).appendChild(ds);
-         } )();
-       </script>
-     </div>
-   </div>
+          <hr/>
 
-   <footer class="mdl-mega-footer">
+          <div class="ds-thread" data-thread-key="0d8781acbc5548b9ba41b6f081c58855" data-title="x^n-1问题" data-url="http://riteme.github.io/blog/2016-3-21/x-2-1.html">
+            <script type="text/javascript">
+              var duoshuoQuery = { short_name:"riteme" };
+              (function() {
+               var ds = document.createElement('script');
+               ds.type = 'text/javascript';ds.async = true;
+               ds.src = (
+                 document.location.protocol == 'https:' ? 'https:' : 'http:'
+                 ) + '//static.duoshuo.com/embed.js';
+               ds.charset = 'UTF-8';
+               (document.getElementsByTagName('head')[0]
+                || document.getElementsByTagName('body')[0]).appendChild(ds);
+             } )();
+           </script>
+         </div>
+       </div>
+     </div>
+
+     <div class="mdl-cell mdl-cell--3-col mdl-cell--hide-tablet mdl-cell--hide-phone">
+       <div class="article">
+        标签: <span class="label">数学</span> <span class="label">多项式</span><br/>
+        创建时间: 2016.03.21<br/>
+        上次修改: 2016.07.18
+      </div>
+      <hr/>
+      <div class="toc">
+<ul>
+<li><a href="#xn-1">$x^n-1$问题</a><ul>
+<li><a href="#_1">问题描述</a></li>
+<li><a href="#_2">分析</a></li>
+</ul>
+</li>
+</ul>
+</div>
+      <div class="return-up-button">
+        <a href="javascript:$('main').animate( { scrollTop: 0 } , 'fast')">
+          <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+            <i class="material-icons">vertical_align_top</i>
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="mdl-mega-footer">
     <div class="mdl-mega-footer__middle-section">
       <div class="mdl-mega-footer__drop-down-section">
         <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-        <h1 class="mdl-mega-footer__heading">riteme.site</h1>
+        <h1 class="mdl-mega-footer__heading">RITEME.SITE</h1>
         一个从不乱说话的博客...
+      </div>
+
+      <div class="mdl-mega-footer__drop-down-section">
+        <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+        <h1 class="mdl-mega-footer__heading">POWERED BY</h1>
+        <ul class="mdl-mega-footer__link-list">
+          <li><a href="http://pythonhosted.org/Markdown/">Python Markdown</a></li>
+          <li><a href="http://getmdl.io/">Material Design Lite</a></li>
+          <li><a href="http://www.tipue.com/search/">Tipuesearch</a></li>
+          <li><a href="http://www.mathjax.org/">MathJax</a></li>
+          <li><a href="http://duoshuo.com/">多说</a></li>
+        </ul>
       </div>
 
       <div class="mdl-mega-footer__drop-down-section">
@@ -135,7 +165,7 @@ $$</mathjax></p>
     </div>
 
     <div class="mdl-mega-footer__bottom-section">
-      Based on <a href="https://getmdl.io/">MDL</a> | Copyright © 2015-2016 riteme. All rights reserved.
+      Theme based on <a href="https://getmdl.io/">MDL</a> | Copyright © 2015-2016 riteme. All rights reserved.
     </div>
   </footer>
 </main>

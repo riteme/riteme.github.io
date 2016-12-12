@@ -1,13 +1,5 @@
-@media screen and (min-width: 1000px) {
-    .article {  
-        margin: 40px 300px;
-    }
-}
-
-@media screen and (max-width: 1000px) {
-    .article {  
-        margin: 40px 20px;
-    }
+.article {  
+    margin: 40px 20px;
 }
 
 .article h1 {
@@ -103,7 +95,6 @@ td.code {
 }
 
 .article blockquote {
-    z-index: -1;
     background: #eeeeee;
     color: #666666;
     border-left: 5px solid #cccccc;
@@ -126,10 +117,11 @@ td.code {
 }
 
 .article .label {
-    padding: 3px 4px;
+    padding: 2px 4px;
     border-radius: 3px;
     background-color: rgb(62, 169, 243);
     color: white;
+    font-size: 60%;
 }
 
 pre, code {
@@ -152,15 +144,14 @@ div.toc:before {
 }
 
 div.toc {
-    float: right;
     background: #EEEEEE;
-    margin: 40px 10px;
-    padding: 5px 10px 0 0;
+    margin-top: 40px;
+    padding: 5px 10px 5px 0;
     box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
 }
 
 div.toc ul {
-    margin: 0 0 5px 0;
+    margin: 0;
 }
 
 div.toc li {
@@ -172,12 +163,6 @@ div.toc a {
     text-decoration: none;
 }
 
-@media screen and (max-width: 1000px) {
-    div.toc {
-        display: none;
-    }
-}
-
 .mdl-card {
     min-height: 100px;
 }
@@ -186,6 +171,48 @@ div.toc a {
     font-family: Ubuntu, Merriweather, Georgia, "Times New Roman";
     font-style: italic;
     color: #0077bb;
+}
+
+.return-up-button {
+    position: fixed;
+    right: 40px;
+    bottom: 40px;
+}
+
+.panel {
+    margin-bottom: 20px;
+    background-color: #ffffff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.panel-info {
+    border-color: #dddddd;
+}
+
+.panel-heading {
+    padding-left: 15px;
+    border-bottom: 1px solid transparent;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+}
+
+.panel-info > .panel-heading {
+    color: white;
+    background-color: #2196f3;
+    border-color: #dddddd;
+}
+
+.panel-body {
+    padding: 15px;
+}
+
+h3.panel-title {
+    font-size: 20px;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .codehilite .hll { background-color: #ffffcc }
