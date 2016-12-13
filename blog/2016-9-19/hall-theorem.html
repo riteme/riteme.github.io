@@ -49,9 +49,10 @@
   <div class="mdl-layout__drawer">
     <span class="mdl-layout-title drawer-title">riteme.site</span>
     <nav class="mdl-navigation">
-      <a class="mdl-navigation__link" href="/index.html">首页</a>
-      <a class="mdl-navigation__link" href="/posts.html">所有文章</a>
-      <a class="mdl-navigation__link" href="https://github.com/riteme/riteme.github.io">Github项目</a>
+      <a class="mdl-navigation__link" href="/index.html"><i class="material-icons" style="vertical-align: bottom;">home</i> 首页</a>
+      <a class="mdl-navigation__link" href="/posts.html"><i class="material-icons" style="vertical-align: bottom;">library_books</i> 所有文章</a>
+      <a class="mdl-navigation__link" href="/about.html"><i class="material-icons" style="vertical-align: bottom;">info</i> 关于</a>
+      <a class="mdl-navigation__link" href="https://github.com/riteme/riteme.github.io"><i class="material-icons" style="vertical-align: bottom;">class</i> Github项目</a>
     </nav>
   </div>
   <main class="mdl-layout__content">
@@ -130,12 +131,23 @@ $$</mathjax></p>
 
      <div class="mdl-cell mdl-cell--3-col mdl-cell--hide-tablet mdl-cell--hide-phone">
        <div class="article">
-        标签: <span class="label">图论</span> <span class="label">二分图</span> <span class="label">Hall定理</span><br/>
-        创建时间: 2016.09.19<br/>
-        上次修改: 2016.09.19
-      </div>
-      <hr/>
-      <div class="toc">
+        <div class="mdl-card mdl-shadow--3dp" style="width: 100%">
+          <div class="mdl-card__supporting-text">
+            标签: <span class="label">图论</span> <span class="label">二分图</span> <span class="label">Hall定理</span><br/>
+            创建时间: 2016.09.19<br/>
+            上次修改: 2016.09.19
+          </div>
+        </div>
+
+        <br />
+
+        
+<div class="mdl-card mdl-shadow--3dp" style="width: 100%">
+  <div class="mdl-card__title mdl-card--border">
+    <h4 class="mdl-card__title-text">目录</h4>
+  </div>
+  <div class="mdl-card__supporting-text">
+    <div class="toc">
 <ul>
 <li><a href="#hall">Hall定理</a><ul>
 <li><a href="#_1">基本形式</a></li>
@@ -145,6 +157,11 @@ $$</mathjax></p>
 </li>
 </ul>
 </div>
+  </div>
+</div>
+
+      </div>
+
       <div class="return-up-button">
         <a href="javascript:$('main').animate( { scrollTop: 0 } , 'fast')">
           <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
