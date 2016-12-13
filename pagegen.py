@@ -248,7 +248,7 @@ def generate(filepath):
     index_url = index_url.rsplit(".", 1)[0] + ".html"
 
     # 处理特殊信息
-    pagetitle = mdinfo["title"][0].strip()
+    pagetitle = mdinfo["title"][0].strip().replace("\"", " ")
     pagekey = hashlib.md5(pagetitle.encode("utf8")).hexdigest()
     pageurl = "http://riteme.github.io/" + os.path.relpath(
         os.path.abspath(filepath), start=os.path.abspath("."))[

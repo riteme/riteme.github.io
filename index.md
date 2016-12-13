@@ -1,5 +1,5 @@
 ---
-title: Home Page
+title: <i class="material-icons" style="vertical-align: sub;">home</i> Home Page
 create: 2016.1.31
 modified: 2016.4.14
 tags: Home
@@ -10,9 +10,6 @@ tags: Home
 全部换成Material Design啦，虽然还是不清真...
 博客更新比较缓慢，可能会长期不更......
 博客里大多关于编程与OI，大家随意翻阅~~
-
-我的GitHub: <https://github.com/riteme>
-我的知乎: <https://www.zhihu.com/people/riteme>
 
 ### 最近文章
 <div class="mdl-card mdl-shadow--4dp" style="width: 100%"><div class="mdl-card__title"><h4 class="mdl-card__title-text">欧拉回路</h4></div><div class="mdl-card__supporting-text">欧拉回路的判定与构造算法</div><div class="mdl-card__actions mdl-card--border"><a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="./blog/2016-12-13/eular-tour.html">Read More...</a></div></div>
