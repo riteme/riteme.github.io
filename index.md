@@ -14,9 +14,6 @@ tags: Home
 我的GitHub: <https://github.com/riteme>
 我的知乎: <https://www.zhihu.com/people/riteme>
 
-PS: 多说评论居然是在线更新的！
-[-->辣鸡聊天室<--](./blog/chat.html)
-
 ### 最近文章
 <div class="mdl-card mdl-shadow--4dp" style="width: 100%"><div class="mdl-card__title"><h4 class="mdl-card__title-text">欧拉回路</h4></div><div class="mdl-card__supporting-text">欧拉回路的判定与构造算法</div><div class="mdl-card__actions mdl-card--border"><a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="./blog/2016-12-13/eular-tour.html">Read More...</a></div></div>
 <div class="mdl-card mdl-shadow--4dp" style="width: 100%"><div class="mdl-card__title"><h4 class="mdl-card__title-text">差分序列与Stirling数</h4></div><div class="mdl-card__supporting-text">介绍了差分序列和两类Stirling数</div><div class="mdl-card__actions mdl-card--border"><a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="./blog/2016-11-29/delta-and-stirling.html">Read More...</a></div></div>
