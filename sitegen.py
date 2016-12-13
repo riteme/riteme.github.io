@@ -93,6 +93,7 @@ if __name__ == "__main__":
 
     generate(os.path.abspath("."), "index.md")
     generate(os.path.abspath("."), "posts.md")
+    # generate(os.path.abspath("."), "search.md")
 
     for root, dirs, files in os.walk(os.path.abspath("./blog/")):
         for name in files:

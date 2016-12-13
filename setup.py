@@ -1,30 +1,87 @@
 #!/usr/bin/env python3
 
 import os
+import sys
 import shutil
 
-print("Removing last files...")
+HELP_DOCUMENT = """{command_line}: Setup this site to local server.
+    Usage: {command_line} [--quick] [--install-to=PATH] [--help/-h]
 
-if os.path.exists("/var/www/html/blog"):
-    shutil.rmtree("/var/www/html/blog")
+    --quick: Copy smallest required files to the server.
+    --install-to=PATH: Set the server location.
+    --help -h: Show this help.
+"""
 
-if os.path.exists("/var/www/html/css"):
-    shutil.rmtree("/var/www/html/css")
+INSTALL_TO = "/var/www/html/"
 
-if os.path.exists("/var/www/html/index.html"):
-    os.remove("/var/www/html/index.html")
+SMALLEST_UPDATE_FOLDERS = [
+    "blog",
+    "css"
+]
 
-if os.path.exists("/var/www/html/posts.html"):
-    os.remove("/var/www/html/posts.html")
+SMALLEST_UPDATE_FILES = [
+    "index.html",
+    "posts.html",
+    "search.html",
+    "tipuesearch/tipuesearch_content.js"
+]
 
-if os.path.exists("/var/www/html/search.html"):
-    os.remove("/var/www/html/search.html")
+def setup_quick():
+    global INSTALL_TO
+    global SMALLEST_UPDATE_FOLDERS
+    global SMALLEST_UPDATE_FILES
 
+    print("(warn) Quick setup enabled")
 
-print("Copying new files...")
-shutil.copytree(os.path.join(os.getcwd(), "blog"), "/var/www/html/blog")
-shutil.copytree(os.path.join(os.getcwd(), "css"), "/var/www/html/css")
-shutil.copy2(os.path.join(os.getcwd(), "index.html"), "/var/www/html/index.html")
-shutil.copy2(os.path.join(os.getcwd(), "posts.html"), "/var/www/html/posts.html")
-shutil.copy2(os.path.join(os.getcwd(), "search.html"), "/var/www/html/search.html")
+    print("(info) Removing previous files...")
 
+    for target in SMALLEST_UPDATE_FOLDERS:
+        path = os.path.join(INSTALL_TO, target)
+        if os.path.exists(path):
+            shutil.rmtree(path)
+
+    for target in SMALLEST_UPDATE_FILES:
+        path = os.path.join(INSTALL_TO, target)
+        if os.path.exists(path):
+            os.remove(path)
+
+    print("(info) Copying new files...")
+
+    for target in SMALLEST_UPDATE_FOLDERS:
+        src = os.path.join(os.getcwd(), target)
+        dest = os.path.join(INSTALL_TO, target)
+        shutil.copytree(src, dest)
+
+    for target in SMALLEST_UPDATE_FILES:
+        src = os.path.join(os.getcwd(), target)
+        dest = os.path.join(INSTALL_TO, target)
+        shutil.copy2(src, dest)
+
+def setup():
+    global INSTALL_TO
+
+    print("(info) Removing previous files...")
+
+    if os.path.exists(INSTALL_TO):
+        shutil.rmtree(INSTALL_TO)
+
+    print("(info) Copying new files...")
+
+    shutil.copytree(os.getcwd(), INSTALL_TO)
+
+if __name__ == "__main__":
+    handler = setup
+
+    for param in sys.argv[1:]:
+        if param.startswith("--help") or param.startswith("-h"):
+            print(HELP_DOCUMENT.format(command_line = sys.argv[0]))
+            exit()
+        elif param.startswith("--quick"):
+            handler = setup_quick
+        elif param.startswith("--install-to="):
+            pre, INSTALL_TO = param.split("=")
+        else:
+            print("(error) Unrecognized parameter '{param}'".format(param = param))
+            exit(-1)
+
+    handler()

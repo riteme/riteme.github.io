@@ -3,12 +3,12 @@
 
 <script>
   var _hmt = _hmt || [];
-  (function() {{
+  (function() {
     var hm = document.createElement("script");
     hm.src = "//hm.baidu.com/hm.js?72d0c4a099cd676176e657b871326707";
     var s = document.getElementsByTagName("script")[0]; 
     s.parentNode.insertBefore(hm, s);
-  }} )();
+  } )();
 </script>
 
 <head>
@@ -22,7 +22,7 @@
   <link href="/css/site.css" rel="stylesheet">
   <script defer src="/material/material.min.js"></script>
   <script type="text/x-mathjax-config">
-    MathJax.Hub.Config( {{ tex2jax: {{ inlineMath: [['$','$']] }} }} );
+    MathJax.Hub.Config( { tex2jax: { inlineMath: [['$','$']] } } );
   </script>
   <script type="text/javascript" async src="/mathjax/MathJax.js?config=TeX-AMS_HTML"></script>
   <script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
@@ -32,73 +32,90 @@
 </head>
 
 <body>
-  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-    <header class="mdl-layout__header">
-      <div class="mdl-layout__header-row">
-        <span class="mdl-layout-title">搜索结果</span>
-        <div class="mdl-layout-spacer"></div>
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
-        mdl-textfield--floating-label mdl-textfield--align-right">
-        <label class="mdl-button mdl-js-button mdl-button--icon"
-        for="fixed-header-drawer-exp"><i class="material-icons">search</i></label>
-        <div class="mdl-textfield__expandable-holder">
-          <form action="/search.html"><input type="text" class="mdl-textfield__input" placeholder="Search Here" name="q" id="fixed-header-drawer-exp" autocomplete="off" required></form>
-        </div>
+ <script>
+   $(document).ready(function() {
+    $('#tipue_search_input').tipuesearch({
+     'minimumLength': 0,
+     'descriptiveWords': 10,
+     'showTitleCount': false
+   });
+  });
+</script>
+
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <span class="mdl-layout-title">搜索结果</span>
+      <div class="mdl-layout-spacer"></div>
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+      mdl-textfield--floating-label mdl-textfield--align-right">
+      <label class="mdl-button mdl-js-button mdl-button--icon"
+      for="fixed-header-drawer-exp"><i class="material-icons">search</i></label>
+      <div class="mdl-textfield__expandable-holder">
+        <form action="/search.html"><input type="text" class="mdl-textfield__input" placeholder="Search Here" name="q" id="fixed-header-drawer-exp" autocomplete="off" required></form>
       </div>
     </div>
-  </header>
-  <div class="mdl-layout__drawer">
-    <span class="mdl-layout-title drawer-title">riteme.site</span>
-    <nav class="mdl-navigation">
-      <a class="mdl-navigation__link" href="/index.html">首页</a>
-      <a class="mdl-navigation__link" href="/posts.html">所有文章</a>
-      <a class="mdl-navigation__link" href="https://github.com/riteme/riteme.github.io">Github项目</a>
-    </nav>
   </div>
-  <main class="mdl-layout__content">
-    <div class="article">
+</header>
+<div class="mdl-layout__drawer">
+  <span class="mdl-layout-title drawer-title">riteme.site</span>
+  <nav class="mdl-navigation">
+    <a class="mdl-navigation__link" href="/index.html">首页</a>
+    <a class="mdl-navigation__link" href="/posts.html">所有文章</a>
+    <a class="mdl-navigation__link" href="https://github.com/riteme/riteme.github.io">Github项目</a>
+  </nav>
+</div>
+<main class="mdl-layout__content">
+  <div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--12-col">
+      <div class="article">
 
-      <script>
-        $(document).ready(function() {
-         $('#tipue_search_input').tipuesearch({
-          'minimumLength': 0,
-          'descriptiveWords': 10,
-          'showTitleCount': false
-        });
-       });
-     </script>
-     <h2 id="_1">搜索结果</h2>
-     <form action="search.html">
-      <input type="text" name="q" id="tipue_search_input" autocomplete="off" required style="padding: 12px 12px 12px 40px;background: #fff url(' tipuesearch/img/search.png') no-repeat 15px 15px;width: 100%">
-    </form>
-    <div id="tipue_search_content" style="min-height: 400px"></div>
+       <h2 id="_1">搜索结果</h2>
+       <form action="search.html">
+        <input type="text" name="q" id="tipue_search_input" autocomplete="off" required style="padding: 12px 12px 12px 40px;background: #fff url(' tipuesearch/img/search.png') no-repeat 15px 15px;width: 100%">
+      </form>
+      <div id="tipue_search_content" style="min-height: 400px"></div>
 
+    </div>
+  </div>
+</div>
+
+<footer class="mdl-mega-footer">
+  <div class="mdl-mega-footer__middle-section">
+    <div class="mdl-mega-footer__drop-down-section">
+      <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+      <h1 class="mdl-mega-footer__heading">RITEME.SITE</h1>
+      一个从不乱说话的博客...
+    </div>
+
+    <div class="mdl-mega-footer__drop-down-section">
+      <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+      <h1 class="mdl-mega-footer__heading">POWERED BY</h1>
+      <ul class="mdl-mega-footer__link-list">
+        <li><a href="http://pythonhosted.org/Markdown/">Python Markdown</a></li>
+        <li><a href="http://getmdl.io/">Material Design Lite</a></li>
+        <li><a href="http://www.tipue.com/search/">Tipuesearch</a></li>
+        <li><a href="http://www.mathjax.org/">MathJax</a></li>
+        <li><a href="http://duoshuo.com/">多说</a></li>
+      </ul>
+    </div>
+
+    <div class="mdl-mega-footer__drop-down-section">
+      <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+      <h1 class="mdl-mega-footer__heading">友情链接</h1>
+      <ul class="mdl-mega-footer__link-list">
+        <li><a href="http://link-arthur.github.io/">Link</a></li>
+        <li><a href="http://ruanxingzhi.github.io/">ruanxingzhi</a></li>
+        <li><a href="http://haogram.hol.es/">Haogram</a></li>
+        <li><a href="http://hjwjbsr.is-programmer.com/">HJWJBSR</a></li>
+      </ul>
+    </div>
   </div>
 
-  <footer class="mdl-mega-footer">
-    <div class="mdl-mega-footer__middle-section">
-      <div class="mdl-mega-footer__drop-down-section">
-        <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-        <h1 class="mdl-mega-footer__heading">riteme.site</h1>
-        一个从不乱说话的博客...
-      </div>
-
-      <div class="mdl-mega-footer__drop-down-section">
-        <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-        <h1 class="mdl-mega-footer__heading">友情链接</h1>
-        <ul class="mdl-mega-footer__link-list">
-          <li><a href="http://link-arthur.github.io/">Link</a></li>
-          <li><a href="http://ruanxingzhi.github.io/">ruanxingzhi</a></li>
-          <li><a href="http://haogram.hol.es/">Haogram</a></li>
-          <li><a href="http://hjwjbsr.is-programmer.com/">HJWJBSR</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="mdl-mega-footer__bottom-section">
-      Based on <a href="https://getmdl.io/">MDL</a> | Copyright © 2015-2016 riteme. All rights reserved.
-    </div>
-  </footer>
+  <div class="mdl-mega-footer__bottom-section">
+    Theme based on <a href="https://getmdl.io/">MDL</a> | Copyright © 2015-2016 riteme. All rights reserved.
+  </div>
+</footer>
 </main>
 </div>
 </body>

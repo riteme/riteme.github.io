@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+
+<script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?72d0c4a099cd676176e657b871326707";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  } )();
+</script>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>欧拉回路 - riteme.site</title>
+  <link rel="shortcut icon" href="/favicon.png" type="image/png">
+  <link rel="stylesheet" href="/material/material-icons.css">
+  <link rel="stylesheet" href="/material/material.min.css" /> 
+  <link href="/tipuesearch/tipuesearch.css" rel="stylesheet" type="text/css">
+  <link href="/css/site.css" rel="stylesheet">
+  <script defer src="/material/material.min.js"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config( { tex2jax: { inlineMath: [['$','$']] } } );
+  </script>
+  <script type="text/javascript" async src="/mathjax/MathJax.js?config=TeX-AMS_HTML"></script>
+  <script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+  <script src="/tipuesearch/tipuesearch_set.js"></script>
+  <script src="/tipuesearch/tipuesearch.min.js"></script>
+</head>
+
+<body>
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <span class="mdl-layout-title">欧拉回路</span>
+        <div class="mdl-layout-spacer"></div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+        mdl-textfield--floating-label mdl-textfield--align-right">
+        <label class="mdl-button mdl-js-button mdl-button--icon"
+        for="fixed-header-drawer-exp"><i class="material-icons">search</i></label>
+        <div class="mdl-textfield__expandable-holder">
+          <form action="/search.html"><input type="text" class="mdl-textfield__input" placeholder="Search Here" name="q" id="fixed-header-drawer-exp" autocomplete="off" required></form>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="mdl-layout__drawer">
+    <span class="mdl-layout-title drawer-title">riteme.site</span>
+    <nav class="mdl-navigation">
+      <a class="mdl-navigation__link" href="/index.html">首页</a>
+      <a class="mdl-navigation__link" href="/posts.html">所有文章</a>
+      <a class="mdl-navigation__link" href="https://github.com/riteme/riteme.github.io">Github项目</a>
+    </nav>
+  </div>
+  <main class="mdl-layout__content">
+    <div class="mdl-grid">
+      <div class="mdl-cell mdl-cell--9-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+        <div class="article">
+          
+<h1 id="_1">欧拉回路</h1>
+<h2 id="_2">定义</h2>
+<p>欧拉回路通常用来解决&rdquo;一笔画&rdquo;问题。具体而言就是询问一张图上是否存在一条回路使得它<strong>经过所有的边一次</strong>。如果有，那么求出这条回路。</p>
+<p>例如，在下面这个图里面：</p>
+<p><img alt="undirected-graph-1" src="http://git.oschina.net/riteme/blogimg/raw/master/eular-tour/undirected-graph-1.svg" /></p>
+<p>一条欧拉回路是<code>1 - 4 - 2 - 3 - 4 - 5 - 2 - 1</code>。</p>
+<h2 id="_3">存在性</h2>
+<h3 id="_4">无向图</h3>
+<p>考虑在走一条欧拉回路的时候，如果不是起点，我们每进入一个点，就一定会走出去。如果是起点，每出去一次，就一定又会回来一次。这说明如果有欧拉回路，那么每个点的度数应当是偶数。</p>
+<p>同时，从另一方面来讲，如果某个点的度数是奇数，那么在某一次进入这个点之后，我们就出不来了。如果起点的度数是奇数，那么之后必定有一次无法回到起点。</p>
+<p>总而言之，对于无向图，<strong>每个点的度数必须是偶数</strong>。</p>
+<p>此外考虑当图不连通时，一般是没有欧拉回路的。但是如果有连通块上本来就没有边，像下面这样：</p>
+<p><img alt="two-component" src="http://git.oschina.net/riteme/blogimg/raw/master/eular-tour/two-component.svg" /></p>
+<p>此时<code>1</code>这个点是不需要考虑的。但是并不意味着大小为<mathjax>$1$</mathjax>的连通块就不必考虑，因为它们可能有自环，如同下面这样：</p>
+<p><img alt="self-loop-1" src="http://git.oschina.net/riteme/blogimg/raw/master/eular-tour/self-loop-1.svg" /></p>
+<p>但是很多的这样的连通块不行，我们的程序在判定的时候需要注意这些细节：</p>
+<p><img alt="self-loop-3" src="http://git.oschina.net/riteme/blogimg/raw/master/eular-tour/self-loop-3.svg" /></p>
+<h3 id="_5">有向图</h3>
+<p>有向图与无向图是类似的。同样按照之前的方式考虑，进入一点就意味着需要出来，那么就说明每个点的<strong>入度与出度相同</strong>。</p>
+<p>此外考虑连通性，与无向图类似，我们要求这个图只存在<strong>一个有边的强连通分量</strong>。</p>
+<h2 id="_6">构造算法</h2>
+<p>如果满足了存在性的要求，那么这张图将被称为<strong>欧拉图</strong>。</p>
+<p>构造一条欧拉回路看上去是可以随意走的，因为你每走一个点总能保证你有地方出去。但是这样的算法却不能保证你走过了每一条边。举一个经典的例子：</p>
+<p><img alt="sample-undirected" src="http://git.oschina.net/riteme/blogimg/raw/master/eular-tour/sample-undirected.svg" /></p>
+<p>在这张无向图中，一条欧拉回路是<code>1 - 2 - 4 - 5 - 2 - 3 - 1</code>。如果采用随便走的策略，那么有可能走出<code>1 - 2 - 3 - 1</code>这样的路径就终止了。</p>
+<p>这是因为欧拉回路实际上是由一些环以点相交构成的。观察上面正确的欧拉回路，可以发现它是由<code>1 - 2 - 3 - 1</code>和<code>2 - 4 - 5 - 2</code>构成的。</p>
+<p>因此正确的方法应当是实现一个DFS搜索，每搜到一个环就将其插入之前的欧拉回路中，这样可以实现欧拉回路的构造。</p>
+<p>实际上我们没有必要显式地实现插入环，而是可以通过下面这个DFS来实现：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">tour</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># 欧拉回路</span>
+
+<span class="k">def</span> <span class="nf">construct</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="n">adj</span><span class="p">:</span>
+        <span class="n">x</span><span class="o">.</span><span class="n">adj</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>  <span class="c1"># 边被访问</span>
+        <span class="n">construct</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">either</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>  <span class="c1"># 沿着边走下去</span>
+        <span class="n">tour</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+
+<span class="c1"># 最后将tour中的边倒序输出就是欧拉回路</span>
+</pre></div>
+</td></tr></table>
+
+<p>这里关键是为什么是先递归后将边加入欧拉回路，并且需要倒序输出。假设现在正在考虑<mathjax>$u$</mathjax>，那么就可能会有一些环会从<mathjax>$u$</mathjax>开始并且以<mathjax>$u$</mathjax>结束，那么它们在之后的递归中又会回到<mathjax>$u$</mathjax>，因此我们先将后面的环放入欧拉回路是没有问题的。如果从<mathjax>$u$</mathjax>出发后就回不来了，那么这条&rdquo;不归路应当在那些会回到<mathjax>$u$</mathjax>的环之后插入。所以这个DFS就保证了这一点。</p>
+<p>此外，对于每一条访问过的边，我们应当将其删除 (或者使用其它方法保证之后不会再次遍历)。否则当我们进入一个点多次的时候，这些边也会遍历多次，复杂度就会变得很高。</p>
+<p>事实上，这个无向图的构造算法对有向图也通用。</p>
+<p><img alt="sample-directed" src="http://git.oschina.net/riteme/blogimg/raw/master/eular-tour/sample-directed.svg" /></p>
+<h2 id="_7">判定算法</h2>
+<p>为什么要先说构造算法然后再说判定算法呢？以为构造算法可以帮助我们判定图的连通性，而在构造之前，我们需要保证基础的度数限制是满足的。</p>
+<p>如果度数限制满足以后，那么图中的每一个连通块 (或者强连通分量) 都可以使用之前的构造算法构造出欧拉回路。因此我们只用找到一个有边的连通块 (或强连通分量) 就可开始构造。如果构造完之后图中依然有边剩余，那么说明这张图没有欧拉回路。</p>
+<p>完整的判定算法如下：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="n">G</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">G</span> <span class="ow">is</span> <span class="n">directed</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">G</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">v</span><span class="o">.</span><span class="n">indegree</span> <span class="o">!=</span> <span class="n">v</span><span class="o">.</span><span class="n">outdegree</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">False</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">G</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">v</span><span class="o">.</span><span class="n">degree</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">False</span>
+
+    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">G</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">adj</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">construct</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+            <span class="k">break</span>
+
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">tour</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">E</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<h2 id="_8">其他</h2>
+<h3 id="_9">欧拉路径</h3>
+<p>与欧拉回路相似，欧拉路径是一条经过所有边的路径。由于欧拉路径比欧拉回路少一条边，所以在无向图上，当且仅当存在两个点的度数是奇数。而在有向图上，则必须存在一个点入度比出度大<mathjax>$1$</mathjax>，以及另一个点出度比入度大<mathjax>$1$</mathjax>。对于有向图，只要满足单联通即可。</p>
+<h3 id="_10">中国邮递员问题</h3>
+<blockquote>
+<p>假设现在有一张联通的无向图，保证度数为奇数的点的个数是偶数，问你最短的经过所有边<strong>至少一次</strong>的环的长度。</p>
+</blockquote>
+<p>之所以称其为邮递员问题，因为原问题是在邮递员送信的背景下提出的。</p>
+<p>假设图的边数为<mathjax>$m$</mathjax>，那么欧拉回路可以给出一个<mathjax>$2m$</mathjax>条边的方案。因为我们将原图中每一条边都复制一遍，我们将得到一张<mathjax>$n$</mathjax>个点<mathjax>$2m$</mathjax>条边的图，并且由于每个点的度数都被乘以<mathjax>$2$</mathjax>，那么这张新图必定存在欧拉路径，同时也可以给出上述问题的一个答案。</p>
+
+          <hr/>
+
+          <div class="ds-thread" data-thread-key="b7c30bb9a3e7cea2dd4a6f869ac51008" data-title="欧拉回路" data-url="http://riteme.github.io/blog/2016-12-13/eular-tour.html">
+            <script type="text/javascript">
+              var duoshuoQuery = { short_name:"riteme" };
+              (function() {
+               var ds = document.createElement('script');
+               ds.type = 'text/javascript';ds.async = true;
+               ds.src = (
+                 document.location.protocol == 'https:' ? 'https:' : 'http:'
+                 ) + '//static.duoshuo.com/embed.js';
+               ds.charset = 'UTF-8';
+               (document.getElementsByTagName('head')[0]
+                || document.getElementsByTagName('body')[0]).appendChild(ds);
+             } )();
+           </script>
+         </div>
+       </div>
+     </div>
+
+     <div class="mdl-cell mdl-cell--3-col mdl-cell--hide-tablet mdl-cell--hide-phone">
+       <div class="article">
+        标签: <span class="label">欧拉回路</span> <span class="label">图论</span><br/>
+        创建时间: 2016.12.13<br/>
+        上次修改: 2016.12.13
+      </div>
+      <hr/>
+      <div class="toc">
+<ul>
+<li><a href="#_1">欧拉回路</a><ul>
+<li><a href="#_2">定义</a></li>
+<li><a href="#_3">存在性</a><ul>
+<li><a href="#_4">无向图</a></li>
+<li><a href="#_5">有向图</a></li>
+</ul>
+</li>
+<li><a href="#_6">构造算法</a></li>
+<li><a href="#_7">判定算法</a></li>
+<li><a href="#_8">其他</a><ul>
+<li><a href="#_9">欧拉路径</a></li>
+<li><a href="#_10">中国邮递员问题</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+      <div class="return-up-button">
+        <a href="javascript:$('main').animate( { scrollTop: 0 } , 'fast')">
+          <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+            <i class="material-icons">vertical_align_top</i>
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="mdl-mega-footer">
+    <div class="mdl-mega-footer__middle-section">
+      <div class="mdl-mega-footer__drop-down-section">
+        <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+        <h1 class="mdl-mega-footer__heading">RITEME.SITE</h1>
+        一个从不乱说话的博客...
+      </div>
+
+      <div class="mdl-mega-footer__drop-down-section">
+        <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+        <h1 class="mdl-mega-footer__heading">POWERED BY</h1>
+        <ul class="mdl-mega-footer__link-list">
+          <li><a href="http://pythonhosted.org/Markdown/">Python Markdown</a></li>
+          <li><a href="http://getmdl.io/">Material Design Lite</a></li>
+          <li><a href="http://www.tipue.com/search/">Tipuesearch</a></li>
+          <li><a href="http://www.mathjax.org/">MathJax</a></li>
+          <li><a href="http://duoshuo.com/">多说</a></li>
+        </ul>
+      </div>
+
+      <div class="mdl-mega-footer__drop-down-section">
+        <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+        <h1 class="mdl-mega-footer__heading">友情链接</h1>
+        <ul class="mdl-mega-footer__link-list">
+          <li><a href="http://link-arthur.github.io/">Link</a></li>
+          <li><a href="http://ruanxingzhi.github.io/">ruanxingzhi</a></li>
+          <li><a href="http://haogram.hol.es/">Haogram</a></li>
+          <li><a href="http://hjwjbsr.is-programmer.com/">HJWJBSR</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mdl-mega-footer__bottom-section">
+      Theme based on <a href="https://getmdl.io/">MDL</a> | Copyright © 2015-2016 riteme. All rights reserved.
+    </div>
+  </footer>
+</main>
+</div>
+</body>
+</html>
