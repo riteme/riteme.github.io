@@ -24,7 +24,7 @@ tags: 树状数组
 > * 修改某一位置上的数
 > * 查询某一位置前缀和
 
-![fenwick](http://git.oschina.net/riteme/blogimg/raw/master/fenwick/fenwick.png)
+![fenwick](https://git.oschina.net/riteme/blogimg/raw/master/fenwick/fenwick.png)
 
 树状数组是套在原数组上的一层[^fenwick]，用来进行一些维护。上图中的树状数组被画成了它该有的样子，实际上就是一个数组。
 对于数组中的每一个元素，其箭头所指向的元素(包括他自己)都被它所维护。
@@ -76,7 +76,7 @@ function QUERY(right):
 > * 修改一段前缀和
 > * 查询某一个位置上数的大小
 
-![fenwick](http://git.oschina.net/riteme/blogimg/raw/master/fenwick/fenwick.png)
+![fenwick](https://git.oschina.net/riteme/blogimg/raw/master/fenwick/fenwick.png)
 
 考虑到能够影响到一个点的值的，只有其父亲。因此每次修改前缀和时，只需要修改它们的某一个父亲即可。查询单点时，也只需要访问其每一个父亲，从而可以得知自己被加上了多少。
 

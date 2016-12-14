@@ -65,29 +65,29 @@
 <h2 id="_1">概述</h2>
 <h3 id="_2">红黑树</h3>
 <p>红黑树<sup id="fnref:red-black-tree-wiki"><a class="footnote-ref" href="#fn:red-black-tree-wiki" rel="footnote">1</a></sup>是一种平衡二叉树，其目标是为了优化二叉搜索树，防止极端情况下时间复杂度的退化。</p>
-<p><img alt="red-black-tree-wiki-pic" src="http://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/rbtree-example.png" /></p>
+<p><img alt="red-black-tree-wiki-pic" src="https://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/rbtree-example.png" /></p>
 <p>红黑树的背后原型其实是2-3树。因此我们将先了解什么是2-3树。</p>
 <h3 id="2-3_1">2-3树</h3>
 <p>2-3树<sup id="fnref:2-3-tree-wiki"><a class="footnote-ref" href="#fn:2-3-tree-wiki" rel="footnote">2</a></sup>是一种阶为3的B树<sup id="fnref:b-tree-wiki"><a class="footnote-ref" href="#fn:b-tree-wiki" rel="footnote">3</a></sup>，可以简单的理解为3叉树。2-3树最大的特点就是它一定是一棵完全3叉树，即除了叶节点外，其它的节点没有空儿子。</p>
-<p><img alt="2-3-tree" src="http://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/23-tree-example.png" /></p>
+<p><img alt="2-3-tree" src="https://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/23-tree-example.png" /></p>
 <p>接下来我们将探究2-3树的基本操作。之后再来观察2-3树与红黑树之间的联系。</p>
 <h2 id="2-3_2">2-3树？</h2>
 <h3 id="_3">树的表示</h3>
 <p>从之前给出的图中可以看出，2-3树的每个节点不一定只有一个键<sup id="fnref:key"><a class="footnote-ref" href="#fn:key" rel="footnote">4</a></sup>，同时儿子的数量也有不同。</p>
 <p>在2-3树中，共有两种节点。<br />
 第一种是“2-节点”：</p>
-<p><img alt="2-node" src="http://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/23-2-node-example.png" /></p>
+<p><img alt="2-node" src="https://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/23-2-node-example.png" /></p>
 <p>2-节点和普通的二叉查找树的节点没有什么不同。其左儿子表示比<code>a</code>小的子树，右儿子表示比<code>a</code>大的子树。</p>
 <p>接下来是不一样的“3-节点”：</p>
-<p><img alt="3-node" src="http://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/23-3-node-example.png" /></p>
+<p><img alt="3-node" src="https://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/23-3-node-example.png" /></p>
 <p>3-节点有两个键。最左边的儿子表示比<code>a</code>小的子树，<strong>中间的儿子</strong>表示大于<code>a</code>但小于<code>b</code>的子树，右边的儿子表示比<code>b</code>大的子树。</p>
 <p>虽然这是2-3树，<strong>呈现给我们看的树中是不存在“4-节点”的</strong>。但是为了保持树的平衡性，我们将会利用4-节点来在插入和删除过程中保持树的完美平衡。下面是一个4-节点：</p>
-<p><img alt="4-node" src="http://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/23-4-node-example.png" /></p>
+<p><img alt="4-node" src="https://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/23-4-node-example.png" /></p>
 <p>与3-节点类似，左边和右边的儿子分别表示小于<code>a</code>和大于<code>c</code>的子树。中间的两个儿子分别表示大于<code>a</code>且小于<code>b</code>的子树和大于<code>b</code>小于<code>c</code>的子树。</p>
 <h3 id="_4">查询操作</h3>
 <p>2-3树具有和二叉查找树一样的有序性，使得查找操作和二叉查找树类似。<br />
 我们先来看一棵2-3树：</p>
-<p><img alt="2-3-tree" src="http://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/23-tree-example.png" /></p>
+<p><img alt="2-3-tree" src="https://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/23-tree-example.png" /></p>
 <p>使用和二叉查找树一样的方法，我们在向下递归这棵树的时候通过“打擂台”来确定查找的节点应该在哪棵子树中。</p>
 <p>例如我们要查找<code>8</code>,首先和根节点<code>5</code>做比较，发现比<code>5</code>大，于是在其右子树中查找。<br />
 接下来<code>7-9</code>这个3-节点中，我们先和<code>9</code>比较，发现比<code>9</code>小，于是<strong>向左移一位</strong>，与<code>7</code>比较，发现比<code>7</code>大，因此查找的节点应当在中间的子树中。<br />
@@ -111,14 +111,14 @@
 <li>在一个<strong>3-节点</strong>的<strong>右边</strong></li>
 </ul>
 <p>嗯&hellip;这些情况很无聊，下面是它们的转换情况：</p>
-<p><img alt="2-3-tree-5-cases" src="http://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/23-tree-insert-5-cases.png" /></p>
+<p><img alt="2-3-tree-5-cases" src="https://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/23-tree-insert-5-cases.png" /></p>
 <p>合并的过程是很直观的，就是将2-节点放到了一个合适的地方。<br />
 由于2-3树中不存在4-节点，因此不需要考虑与4-节点的合并。</p>
 <h4 id="_7">节点分裂</h4>
 <p>在上面的节点合并的操作中，我们发现<strong>出现了4-节点</strong>。然而4-节点是不能出现在最后的2-3树中的。<br />
 因此我们需要将4-节点“肢解”，以确保这是一棵2-3树。<br />
 通常情况下，一个4-节点可以分裂成3个2-节点：</p>
-<p><img alt="4-node-to-2-node" src="http://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/23-tree-4-node-to-2-node.png" /></p>
+<p><img alt="4-node-to-2-node" src="https://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/23-tree-4-node-to-2-node.png" /></p>
 <p>分裂的过程十分简单，只需要将4-叉节点从中间分开，并将中间的两个儿子分别重新接在<code>a</code>的右儿子和<code>c</code>的左儿子即可。<br />
 但是4-节点是在插入时出现的，并且是出现在<strong>树的底部</strong>。我们发现这样一分裂就<strong>导致高度加1</strong>，直接导致树的不平衡。为了解决这个问题，我们<strong>将<code>a</code>和<code>c</code>留在原处，把<code>b</code>向上传递，与父亲节点结合</strong>。这样就可以避免高度的增加了。<br />
 但是父亲节点可能是一个3-节点，<strong><code>b</code>向上结合时又会产生4-节点</strong>！但是不必慌张，我们只需要<strong>继续分解这个新生成的4-节点</strong>即可。<br />
@@ -126,7 +126,7 @@
 <p>其实非常简单，我们依然可以分解4-节点，由于根节点没有父亲，因此向上传递的节点就没必要去结合了，此时<strong>整棵树的高度加1</strong>，保证了2-3树的完美平衡性。</p>
 <h4 id="_8">插入示例</h4>
 <p>下面是一个完整的插入示例，依次向一棵空的2-3树中插入<code>1</code>到<code>7</code>：</p>
-<p><img alt="2-3-tree-insert" src="http://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/23-tree-insert-example.png" /></p>
+<p><img alt="2-3-tree-insert" src="https://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/23-tree-insert-example.png" /></p>
 <p>在插入节点中，找到其正确的位置需要访问<mathjax>$ \Theta(\text{log}N) $</mathjax>个节点。回溯向上调整2-3树时，每个节点处的调整时间为<mathjax>$ \Theta(1) $</mathjax>。因此，2-3树的插入操作的时间复杂度为<mathjax>$ \Theta(\text{log}N) $</mathjax>。</p>
 <h3 id="_9">删除操作</h3>
 <p>可以看出，2-3树的插入操作是有点复杂的，然而删除操作更加麻烦。我们首先从简单的情况开始讨论。</p>
@@ -145,14 +145,14 @@
 但如果两个儿子中没有一个是3-节点，那么我们现在就只凑到了3个键，还不足以分解出3-节点。因此，我们索性将从当前节点的分离出来的键和儿子们<strong>构成一个临时的4-节点</strong>。没错，就是4-节点，在4-节点中删除一个键也是很容易的，并且如果不是从中删除键，我们也有办法在删除完指定的键之后的回溯过程中来<strong>分解这个4-节点</strong>，从而保证2-3树中不会出现不该出现的东西。</p>
 <p>为了更清楚的说明上面这坨东西在讲什么，我放几张图解释一下：<br />
 首先是可以从旁边“抢”节点的情况：</p>
-<p><img alt="2-3-tree-delete-1" src="http://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/23-tree-delete-1-2.png" /></p>
+<p><img alt="2-3-tree-delete-1" src="https://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/23-tree-delete-1-2.png" /></p>
 <p>上图是准备向右递归之前的调整过程。首先取出<code>e</code>与它的儿子3-节点<code>c-d</code>和2-节点<code>f</code>结合生成了一个5-节点<code>c-d-e-f</code>，然后我们取出<code>e</code>和<code>f</code>在右边创建出一个3-节点，然后<code>d</code>代替原来3-节点<code>b-e</code>中<code>e</code>从而还原，然后被抢掉一个键的<code>c</code>就默默的留在原地&hellip;<br />
 对于向左边和中间调整都是类似的做法。只是向中间递归的调整需要先判定是左边有3-节点还是右边有3-节点，从而确定被取出的键是谁。</p>
 <p>如果这个键的儿子都是2-节点，我们从这个节点中取出一个键向下合并，却只能创造出一个临时的4-节点，无法从中提取出3-节点。因此我们将其留在那里当作是3-节点。这个4-节点等到我们删除完之后再来处理。如果要删除的键就在这个节点中，我们就不需要管了。如果这个4-节点依然保留着，只需分解它即可。下面是合并的过程：</p>
-<p><img alt="2-3-tree-delete-2" src="http://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/23-tree-delete-2.png" /></p>
+<p><img alt="2-3-tree-delete-2" src="https://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/23-tree-delete-2.png" /></p>
 <p>但是，上面的做法都是在假设当前正处在一个3-节点处而做的。倘若根节点就不是3-节点，那该怎么办呢？</p>
 <p>考虑到根节点的特殊性，我们可以直接将其和它的儿子合并为4-节点。</p>
-<p><img alt="2-3-tree-root-transformation" src="http://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/2-3-tree-root-trans-1.png" /></p>
+<p><img alt="2-3-tree-root-transformation" src="https://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/2-3-tree-root-trans-1.png" /></p>
 <p>如果根节点和它的左右儿子都是2-节点，那么我们可以直接将它和儿子们结合，变成一个3-节点。这样会导致树的局部的高度降低。然而这是在根节点处，所以这样的变化是全局性的，不会影响2-3树的完美平衡性。同时有保证向下变换时有充足的键可取。同理，这个遗留的4-节点可以日后再来将其分解掉。</p>
 <p>这样，我们就能确保在删除操作必定是在3-节点内进行的了。于是我们完成了底部节点的删除操作。</p>
 <h4 id="_11">删除中间节点</h4>
@@ -163,16 +163,16 @@
 <h4 id="_12">删除示例</h4>
 <p>为了使大家想得更明白，这里给出一个删除底部节点的示例。</p>
 <p>首先，下面是一棵高度为4的2-3树，我们准备删除<code>i</code>：</p>
-<p><img alt="2-3-tree-delete-example-1" src="http://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/23-tree-delete-example-1.png" /></p>
+<p><img alt="2-3-tree-delete-example-1" src="https://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/23-tree-delete-example-1.png" /></p>
 <p>从根节点开始，发现<code>i</code>在右子树中，但发现根节点自己和左右儿子都是2-节点，于是它们合并为一个4-节点：</p>
-<p><img alt="2-3-tree-delete-example-2" src="http://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/23-tree-delete-example-2.png" /></p>
+<p><img alt="2-3-tree-delete-example-2" src="https://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/23-tree-delete-example-2.png" /></p>
 <p>接下来在新的4-节点<code>d-h-n</code>中发现右儿子为3-节点，于是直接向下搜索。</p>
 <p>在3-节点<code>j-l</code>中我们发现<code>i</code>在其左子树中，并且左儿子不是3-节点，于是我们将<code>j</code>向下合并：</p>
-<p><img alt="2-3-tree-delete-example-3" src="http://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/23-tree-delete-example-3.png" /></p>
+<p><img alt="2-3-tree-delete-example-3" src="https://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/23-tree-delete-example-3.png" /></p>
 <p>向下后来到4-节点<code>i-j-k</code>，发现目标<code>i</code>就在其中，我们直接将其删除：</p>
-<p><img alt="2-3-tree-delete-example-4" src="http://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/23-tree-delete-example-4.png" /></p>
+<p><img alt="2-3-tree-delete-example-4" src="https://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/23-tree-delete-example-4.png" /></p>
 <p>删除完成，我们沿着递归向下的顺序向上回溯。回溯到根节点时，我们发现是一个4-节点，于是我们将其分解：</p>
-<p><img alt="2-3-tree-delete-example-5" src="http://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/23-tree-delete-example-5.png" /></p>
+<p><img alt="2-3-tree-delete-example-5" src="https://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/23-tree-delete-example-5.png" /></p>
 <p>至此。删除操作就完成了。</p>
 <p>对于所有的删除操作，2-3树需要<mathjax>$ \Theta(\text{log}N) $</mathjax>的时间查找节点，并且以<mathjax>$ \Theta(1) $</mathjax>的时间在每个回溯的节点处来作出适当的调整。故2-3树的删除操作是<mathjax>$ \Theta(\text{log}N) $</mathjax>的。</p>
 <h2 id="2-3_3">2-3树到红黑树</h2>
@@ -181,17 +181,17 @@
 但是由于2-3树的变化十分直观，因此前人在2-3树的理论基础上发明了红黑树。</p>
 <h3 id="_13">变化到红黑树</h3>
 <p>红黑树是一种平衡二叉树，只有一种节点。这种节点有两个儿子，和2-3树中的2-节点对应。</p>
-<p><img alt="rbtree-normal-node" src="http://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/rbtree-normal-node.png" /></p>
+<p><img alt="rbtree-normal-node" src="https://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/rbtree-normal-node.png" /></p>
 <p>如何表示3-节点呢？我们尝试一种特殊的边：默认情况下节点的颜色均为黑色。我们将某个节点染为红色，表示它和父亲的的链接是红色的，就像下图：</p>
-<p><img alt="rbtree-red-node-1" src="http://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/rbtree-red-node-normal.png" /></p>
+<p><img alt="rbtree-red-node-1" src="https://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/rbtree-red-node-normal.png" /></p>
 <p>当我们将红链接画平时&hellip;</p>
-<p><img alt="rbtree-red-node-2" src="http://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/rbtree-red-node-flat.png" /></p>
+<p><img alt="rbtree-red-node-2" src="https://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/rbtree-red-node-flat.png" /></p>
 <p>我们发现它和2-3树中的3-节点极为类似！<br />
 事实上，我们完全可以用这样的方式来表示2-3树中的3-节点。</p>
 <p>下图是一棵典型的红黑树：</p>
-<p><img alt="rbtree-example-1" src="http://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/rbtree-example-1.png" /></p>
+<p><img alt="rbtree-example-1" src="https://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/rbtree-example-1.png" /></p>
 <p>如果将红链接画平，将得到一棵完美平衡的“2-3树”：</p>
-<p><img alt="rbtree-example-2" src="http://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/rbtree-example-2.png" /></p>
+<p><img alt="rbtree-example-2" src="https://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/rbtree-example-2.png" /></p>
 <p>从某种意义上来说，红黑树和2-3树是一种等同。</p>
 <p>同时，为了我们的操作方便，我们对红黑树作出以下规定：</p>
 <ul>
@@ -209,7 +209,7 @@
 <h4 id="_16">旋转</h4>
 <p>红黑树的旋转只有两种：顺时针旋转和逆时针旋转<sup id="fnref:rotate-different"><a class="footnote-ref" href="#fn:rotate-different" rel="footnote">7</a></sup>。<br />
 红黑树的旋转操作是为了在保证二叉搜索树和红黑树的性质的前提下，来转换红链接的位置。  </p>
-<p><img alt="rbtree-rotate-1" src="http://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/rbtree-rotate-1-2.png" /></p>
+<p><img alt="rbtree-rotate-1" src="https://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/rbtree-rotate-1-2.png" /></p>
 <p>可以看出顺时针旋转就是将节点的左儿子提上来，将自己变做它的右儿子，将左儿子的右子树接到自己的左子树中，同时转变红链接。可以将其想象成把<code>4-&gt;2</code>这条边顺时针旋转了一下。逆时针旋转也是类似的做法。同时顺时针旋转和逆时针旋转可以视为一对逆操作，因为一次左旋和一次右旋可以变回原来的样子。</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -266,9 +266,9 @@
 <h4 id="_17">反色</h4>
 <p>如同在2-3树中一样，红黑树要能够处理4-节点。<br />
 对于4-节点，我们只有两种操作：合成一个4-节点和分解一个4-节点。</p>
-<p><img alt="rbtree-flip-1" src="http://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/rbtree-flip-1.png" /></p>
+<p><img alt="rbtree-flip-1" src="https://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/rbtree-flip-1.png" /></p>
 <p>对照一下2-3树，这个操作就显而易见了。</p>
-<p><img alt="rbtree-flip-2" src="http://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/rbtree-flip-2-2.png" /></p>
+<p><img alt="rbtree-flip-2" src="https://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/rbtree-flip-2-2.png" /></p>
 <p>也许你会注意到反色操作会将两个儿子的父节点变为红色，是因为在2-3树中，中间取出来的键要向上传递并结合进去。此外，反色操作会导致出现右边的红链接，然而这没有关系，因为4-节点是临时的，我们最终会通过逆时针旋转将其变为左边的红链接或者再次反色将这个4-节点分解。</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -297,16 +297,16 @@
 <p>然而插入后，新的红节点可能会违反我们的规定，因此需要在回溯的时候进行调整。</p>
 <h4 id="_19">情况一：调整右边的红链接</h4>
 <p>当我们发现某个节点的<strong>左儿子是黑色</strong>但<strong>右儿子是红色</strong>时，我们要将右边的红色链接转到左边来：</p>
-<p><img alt="rbtree-insert-1" src="http://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/rbtree-insert-1.png" /></p>
+<p><img alt="rbtree-insert-1" src="https://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/rbtree-insert-1.png" /></p>
 <p>如上图，通过对<code>b</code><strong>逆时针旋转</strong>，完成了对红链接位置的纠正。<br />
 这样做是为了方便接下来的操作。</p>
 <h4 id="4-">情况二：分解4-节点</h4>
 <p>在情况一中，我们要求节点的左儿子是黑色。这是因为当<strong>左儿子和右儿子都是红色</strong>时，就代表着一个4-节点，为此我们可以直接将其反色来分解它：</p>
-<p><img alt="rbtree-insert-2" src="http://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/rbtree-insert-2.png" /></p>
+<p><img alt="rbtree-insert-2" src="https://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/rbtree-insert-2.png" /></p>
 <p>如果该操作是在根节点上，那么整棵红黑树的黑高将会加1。</p>
 <h4 id="_20">情况三：连续的红色左儿子</h4>
 <p>在情况一中，我们能够把所有的右边的红色节点转到左边来，这样就好判断是否存在4-节点。除了情况二中的4-节点外，<strong>连续的两个红色左儿子</strong>也将表示一个4-节点：</p>
-<p><img alt="rbtree-insert-3" src="http://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/rbtree-insert-3.png" /></p>
+<p><img alt="rbtree-insert-3" src="https://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/rbtree-insert-3.png" /></p>
 <p>对此，我们的做法是将节点<strong>顺时针旋转</strong>，从而变为了情况二。</p>
 <h4 id="_21">平衡操作</h4>
 <p>上面介绍了三种插入时的情况，实际上已经将插入的所有情况都概括到了。接下来我们将实现一个平衡操作。这个平衡操作就是通过对节点的情况进行判定并作出调整。</p>
@@ -360,10 +360,10 @@
 <p>我们先讨论红色左移的情况，毕竟红色右移也是类似的做法。<br />
 当我们要在左儿子处造一个3-节点时，首先肯定<strong>左儿子不是3-节点</strong>。那么按照2-3树的做法，我们要么是从右儿子借一个节点，要么就是把自己“献身”。</p>
 <p>第一种情况是右儿子不是3-节点，我们直接在左儿子处创建4-节点：</p>
-<p><img alt="rbtree-delete-1" src="http://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/rbtree-delete-1.png" /></p>
+<p><img alt="rbtree-delete-1" src="https://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/rbtree-delete-1.png" /></p>
 <p>上面就是利用了<strong>反色操作</strong>。<br />
 另一种情况是右儿子是一个3-节点，那么操作就有点复杂了：</p>
-<p><img alt="rbtree-delete-2" src="http://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/rbtree-delete-2.png" /></p>
+<p><img alt="rbtree-delete-2" src="https://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/rbtree-delete-2.png" /></p>
 <p>和2-3树一样，我们将<code>b</code>合并创建出一个5-节点。然后我们发现右儿子的左儿子是红色的，即右儿子为3-节点。为此，我们通过两次旋转操作将代替节点<code>b</code>的节点<code>c</code>旋转到曾经<code>b</code>的位置。最后我们分裂这个5-节点，此时左儿子已经是一个3-节点。</p>
 <p>这样我们就能把红色左移给写出来了：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
@@ -421,7 +421,7 @@
 
 <h4 id="_24">处理根节点</h4>
 <p>和2-3树一样，根节点可能为2-节点。为了方便处理，我们可以把根节点也看作是一个3-节点：</p>
-<p><img alt="rbtree-root-1" src="http://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/rbtree-root-1-2.png" /></p>
+<p><img alt="rbtree-root-1" src="https://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/rbtree-root-1-2.png" /></p>
 <p>上图中，<code>a</code>是真正的根节点，而<mathjax>$ \infty $</mathjax>是一个想象的节点，实际上不存在。这样根节点就变成了一个3-节点。<br />
 并且，对于这个3-节点，无论红色左移和红色右移都不会关系到<mathjax>$ \infty $</mathjax>，因此这样不会导致问题。<br />
 实际中，我们直接<strong>将根节点设为红色即可</strong>。当删除操作完成后，<strong>再把根节点设为黑色</strong>。</p>

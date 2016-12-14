@@ -20,7 +20,7 @@ tags: NOIP
 2. 注意DFS的起点而导致的冲突。  
    为了说明这个问题，我放一张图解释一下。  
    下面是一张有向图：  
-   ![digraph](http://git.oschina.net/riteme/blogimg/raw/master/message/message-digraph-1.png)  
+   ![digraph](https://git.oschina.net/riteme/blogimg/raw/master/message/message-digraph-1.png)  
    假如我们第一次从`2`出发，DFS完后将`2`之后的点都打上了标记。
    然后从`1`出发继续寻找，发现`2`被打上了标记，会误认为是一个环，导致错误的结果。  
    解决方法很简单，我们给每次DFS一个不同的编号，通常从1开始。

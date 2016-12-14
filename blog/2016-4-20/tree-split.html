@@ -81,7 +81,7 @@
 <li><mathjax>$x.\text{size}$</mathjax>: 以<mathjax>$x$</mathjax>为根的这一棵子树的大小。</li>
 <li><mathjax>$x.\text{depth}$</mathjax>: <mathjax>$x$</mathjax>在树中的深度，即<mathjax>$x$</mathjax>到树根的距离<mathjax>$+1$</mathjax>。</li>
 </ul>
-<p><img alt="tree-normal" src="http://git.oschina.net/riteme/blogimg/raw/master/tree-split/tree-normal.svg" /><br />
+<p><img alt="tree-normal" src="https://git.oschina.net/riteme/blogimg/raw/master/tree-split/tree-normal.svg" /><br />
 这是一棵以<mathjax>$1$</mathjax>为根的树。为了解释更加清楚，这里举几个例子：</p>
 <ul>
 <li><mathjax>$10.\text{father} = 5,\; 1.\text{father} = nil$</mathjax></li>
@@ -145,7 +145,7 @@ function REAL-MAKE-ROOT(G, u):  // DFS过程
 
 <h2 id="_4">剖分</h2>
 <p>在介绍树链剖分的算法之前，我们先来看看剖分后的树是个什么样子：<br />
-<img alt="tree-splited" src="http://git.oschina.net/riteme/blogimg/raw/master/tree-split/tree-splited.png" /><br />
+<img alt="tree-splited" src="https://git.oschina.net/riteme/blogimg/raw/master/tree-split/tree-splited.png" /><br />
 剖分后的树信息量一下子大了很多。我将会逐条解释上面都画了些什么。</p>
 <ul>
 <li><strong>树链(重链)</strong>: 所有红色的边所连成的一条链都是剖分后的结果。某些树链没有边，就只有一个节点，这个节点是红色的。在上面，<code>1-6-8-11-13-17</code>是剖分出来的最长的树链，而<code>3</code>独自一个节点形成了树链。</li>
@@ -287,7 +287,7 @@ function REAL-TREE-SPLIT(x):  // DFS过程
 </td></tr></table>
 
 <p>如果不能理解，这里给出一个示例：<br />
-<img alt="tree-splited" src="http://git.oschina.net/riteme/blogimg/raw/master/tree-split/tree-splited.png" /><br />
+<img alt="tree-splited" src="https://git.oschina.net/riteme/blogimg/raw/master/tree-split/tree-splited.png" /><br />
 假设我们查询<mathjax>$16$</mathjax>到<mathjax>$17$</mathjax>：<br />
 首先会发现它们不在同一条链上，由于<mathjax>$16$</mathjax>所处的链的深度较大，为<mathjax>$5$</mathjax>，因此将<mathjax>$16$</mathjax>进行上移，上移至<mathjax>$14$</mathjax>，并统计<mathjax>$[13, 13]$</mathjax>的和。<br />
 然后<mathjax>$14$</mathjax>和<mathjax>$17$</mathjax>依然不在同一条链中，由于<mathjax>$14$</mathjax>所处的链的深度为<mathjax>$2$</mathjax>，因此将<mathjax>$14$</mathjax>上移。上移至<mathjax>$1$</mathjax>，并统计<mathjax>$[9, 11]$</mathjax>的和。<br />
@@ -301,7 +301,7 @@ function REAL-TREE-SPLIT(x):  // DFS过程
 即基于树剖的其它操作的时间复杂度为<mathjax>$\Omega(\log n)$</mathjax>(注意是下界，具体的上界取决于操作本身的附加的复杂度)。</p>
 <p><del>为什么会只有<mathjax>$O(\log n)$</mathjax>条呢？</del><br />
 <del>我们来考虑树链剖分时最坏的情况：</del><br />
-<img alt="tree-worst" src="http://git.oschina.net/riteme/blogimg/raw/master/tree-split/tree-worst.png" /><br />
+<img alt="tree-worst" src="https://git.oschina.net/riteme/blogimg/raw/master/tree-split/tree-worst.png" /><br />
 <del>想象这是树剖是最坏的情况(因为实际上并不会这样)。因为树剖总是尝试将最长的剖分出来，因此树链都是向右的。如果最左链再加一个节点，树链就会向左剖分了。</del><br />
 <del>为了达到这样的效果，这棵有根树是接近<strong>平衡</strong>的，即树高为<mathjax>$\Theta(\log n)$</mathjax>。</del><br />
 <del>因此最坏的情况下，当查询最左边的节点时，只需要使用<mathjax>$O(\log n)$</mathjax>次跳转就可完成。</del></p>

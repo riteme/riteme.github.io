@@ -78,7 +78,7 @@
 <li>查询某一位置前缀和</li>
 </ul>
 </blockquote>
-<p><img alt="fenwick" src="http://git.oschina.net/riteme/blogimg/raw/master/fenwick/fenwick.png" /></p>
+<p><img alt="fenwick" src="https://git.oschina.net/riteme/blogimg/raw/master/fenwick/fenwick.png" /></p>
 <p>树状数组是套在原数组上的一层<sup id="fnref:fenwick"><a class="footnote-ref" href="#fn:fenwick" rel="footnote">2</a></sup>，用来进行一些维护。上图中的树状数组被画成了它该有的样子，实际上就是一个数组。<br />
 对于数组中的每一个元素，其箭头所指向的元素(包括他自己)都被它所维护。<br />
 对于任意一个元素，其往前的一个区间距离和到它父亲的距离是相同的，即一个被称为<mathjax>$\text{lowbit}$</mathjax>的东西。这个东西定义如下：</p>
@@ -140,7 +140,7 @@ function QUERY(right):
 <li>查询某一个位置上数的大小</li>
 </ul>
 </blockquote>
-<p><img alt="fenwick" src="http://git.oschina.net/riteme/blogimg/raw/master/fenwick/fenwick.png" /></p>
+<p><img alt="fenwick" src="https://git.oschina.net/riteme/blogimg/raw/master/fenwick/fenwick.png" /></p>
 <p>考虑到能够影响到一个点的值的，只有其父亲。因此每次修改前缀和时，只需要修改它们的某一个父亲即可。查询单点时，也只需要访问其每一个父亲，从而可以得知自己被加上了多少。</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2

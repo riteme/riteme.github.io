@@ -12,7 +12,7 @@ tags: 辛普森积分法
 ## 用抛物线拟合
 假设我们有三个不重合的点，那么可以唯一确定一个抛物线经过这三个点。如下图所示：
 
-![quadratic](http://git.oschina.net/riteme/blogimg/raw/master/simpson/simpson1.svg)
+![quadratic](https://git.oschina.net/riteme/blogimg/raw/master/simpson/simpson1.svg)
 
 辛普森积分法就是在积分区间$[a,\;b]$上去三个点$a$、$b$和$m = (a + b) / 2$，计算其原函数的在此处的值，然后用抛物线来拟合原函数，即使用该二次函数的积分值代替原函数的积分值，达到近似积分的效果。
 

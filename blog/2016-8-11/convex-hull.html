@@ -64,12 +64,12 @@
 <h1 id="_1">凸包相关</h1>
 <h2 id="_2">定义</h2>
 <p>通常说的凸包是指一个点集的凸包，并且是指在二维平面上<sup id="fnref:high-d-convex-hull"><a class="footnote-ref" href="#fn:high-d-convex-hull" rel="footnote">1</a></sup>。这种凸包本身是一个凸多边形，由点集中的点构成，并且要求凸包上的点<strong>尽可能少</strong>。下面是一个凸包的示例：</p>
-<p><img alt="convex-hull-example-1" src="http://git.oschina.net/riteme/blogimg/raw/master/convex-hull/convex-hull-example-1.svg" /></p>
+<p><img alt="convex-hull-example-1" src="https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/convex-hull-example-1.svg" /></p>
 <p>对于其它的图形，也可以有凸包，如线段的凸包：</p>
-<p><img alt="convex-hull-example-2" src="http://git.oschina.net/riteme/blogimg/raw/master/convex-hull/convex-hull-example-2.svg" /></p>
+<p><img alt="convex-hull-example-2" src="https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/convex-hull-example-2.svg" /></p>
 <p>实际上线段的凸包就是<strong>所有线段的端点的凸包</strong>。更一般的，多边形的凸包就是所有多边形的顶点的凸包。</p>
 <p>而曲线图形的凸包则没有这么简单，从圆的凸包就可见一窥：</p>
-<p><img alt="convex-hull-example-3" src="http://git.oschina.net/riteme/blogimg/raw/master/convex-hull/convex-hull-example-3.svg" /></p>
+<p><img alt="convex-hull-example-3" src="https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/convex-hull-example-3.svg" /></p>
 <p>下面的文章将不讨论与曲线相关的凸包。</p>
 <p>特别的，当点集里只有两个点时，凸包退化为一条线段。只有一个点时，退化为一个点。<br />
 同时需要注意<strong>多点共线</strong>和<strong>多点重合</strong>而导致的凸包退化现象。</p>
@@ -83,16 +83,16 @@
 <li>与第二步相似，构造凸包的左边（每一步寻找极角最大的点）。</li>
 </ol>
 <p>以下面的点集为例：</p>
-<p><img alt="jarvis-1" src="http://git.oschina.net/riteme/blogimg/raw/master/convex-hull/jarvis-1.svg" /></p>
+<p><img alt="jarvis-1" src="https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/jarvis-1.svg" /></p>
 <p>首先找到左下和右上两个点：</p>
-<p><img alt="jarvis-2" src="http://git.oschina.net/riteme/blogimg/raw/master/convex-hull/jarvis-2.svg" /></p>
+<p><img alt="jarvis-2" src="https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/jarvis-2.svg" /></p>
 <p>构建右凸包：</p>
-<p><img alt="jarvis-3" src="http://git.oschina.net/riteme/blogimg/raw/master/convex-hull/jarvis-3.svg" /><br />
-<img alt="jarvis-4" src="http://git.oschina.net/riteme/blogimg/raw/master/convex-hull/jarvis-4.svg" /></p>
+<p><img alt="jarvis-3" src="https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/jarvis-3.svg" /><br />
+<img alt="jarvis-4" src="https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/jarvis-4.svg" /></p>
 <p>构建左凸包：</p>
-<p><img alt="jarvis-5" src="http://git.oschina.net/riteme/blogimg/raw/master/convex-hull/jarvis-5.svg" /><br />
-<img alt="jarvis-6" src="http://git.oschina.net/riteme/blogimg/raw/master/convex-hull/jarvis-6.svg" /><br />
-<img alt="jarvis-7" src="http://git.oschina.net/riteme/blogimg/raw/master/convex-hull/jarvis-7.svg" /></p>
+<p><img alt="jarvis-5" src="https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/jarvis-5.svg" /><br />
+<img alt="jarvis-6" src="https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/jarvis-6.svg" /><br />
+<img alt="jarvis-7" src="https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/jarvis-7.svg" /></p>
 <p>至此，凸包构建完毕。</p>
 <p>由于Jarvis步进法中凸包每一个点都需要对剩下的点进行处理，所以该算法的时间复杂度为<mathjax>$\Theta(nh)$</mathjax>，其中<mathjax>$h$</mathjax>是凸包的规模。最坏情况下为<mathjax>$\Theta(n^2)$</mathjax>。由于当点在一个有限矩形内随机分布时凸包的期望规模为<mathjax>$O(\log n)$</mathjax>，所以在这种情况下，该算法的时间复杂度为<mathjax>$O(n\log n)$</mathjax>。</p>
 <p>下面是其伪代码：</p>
@@ -205,24 +205,24 @@
 <li>从左至右扫描每一个点，根据基点利用叉积计算该点是应插入上凸包还下凸包，将其插入对应的凸包中。然后从这个点开始向前访问，如果和之前的点形成内凹的形状（可以利用叉积判断），就将之前的点删除。直到不存在这样的形状为止。</li>
 </ol>
 <p>下面展示了一个水平扫描线的示例：</p>
-<p><img alt="scanline-1" src="http://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-1.svg" /><br />
-<img alt="scanline-2" src="http://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-2.svg" /><br />
-<img alt="scanline-3" src="http://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-3.svg" /><br />
-<img alt="scanline-4" src="http://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-4.svg" /><br />
-<img alt="scanline-5" src="http://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-5.svg" /><br />
-<img alt="scanline-6" src="http://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-6.svg" /><br />
-<img alt="scanline-7" src="http://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-7.svg" /><br />
-<img alt="scanline-8" src="http://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-8.svg" /><br />
-<img alt="scanline-9" src="http://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-9.svg" /><br />
-<img alt="scanline-10" src="http://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-10.svg" /><br />
-<img alt="scanline-11" src="http://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-11.svg" /><br />
-<img alt="scanline-12" src="http://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-12.svg" /><br />
+<p><img alt="scanline-1" src="https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-1.svg" /><br />
+<img alt="scanline-2" src="https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-2.svg" /><br />
+<img alt="scanline-3" src="https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-3.svg" /><br />
+<img alt="scanline-4" src="https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-4.svg" /><br />
+<img alt="scanline-5" src="https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-5.svg" /><br />
+<img alt="scanline-6" src="https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-6.svg" /><br />
+<img alt="scanline-7" src="https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-7.svg" /><br />
+<img alt="scanline-8" src="https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-8.svg" /><br />
+<img alt="scanline-9" src="https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-9.svg" /><br />
+<img alt="scanline-10" src="https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-10.svg" /><br />
+<img alt="scanline-11" src="https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-11.svg" /><br />
+<img alt="scanline-12" src="https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-12.svg" /><br />
 开始从上凸包中删除点：</p>
-<p><img alt="scanline-13" src="http://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-13.svg" /><br />
-<img alt="scanline-14" src="http://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-14.svg" /><br />
-<img alt="scanline-15" src="http://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-15.svg" /><br />
-<img alt="scanline-16" src="http://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-16.svg" /><br />
-<img alt="scanline-17" src="http://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-17.svg" /></p>
+<p><img alt="scanline-13" src="https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-13.svg" /><br />
+<img alt="scanline-14" src="https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-14.svg" /><br />
+<img alt="scanline-15" src="https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-15.svg" /><br />
+<img alt="scanline-16" src="https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-16.svg" /><br />
+<img alt="scanline-17" src="https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-17.svg" /></p>
 <p>由于每个点只会被访问1次，点在栈中只会被弹出一次，所以扫描线的部分是<mathjax>$\Theta(n)$</mathjax>的。但排序需要<mathjax>$O(n\log n)$</mathjax>的时间，所以总复杂度是<mathjax>$O(n\log n)$</mathjax>的。是一个非常不错的算法。</p>
 <p>伪代码如下：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
@@ -294,17 +294,17 @@ Graham算法有一个好处，就是最终得到的凸包还是按照极角序�
 <li>最后栈中元素就是凸包</li>
 </ol>
 <p>下面给出了一个示例：</p>
-<p><img alt="graham-1" src="http://git.oschina.net/riteme/blogimg/raw/master/convex-hull/graham-1.svg" /><br />
-<img alt="graham-2" src="http://git.oschina.net/riteme/blogimg/raw/master/convex-hull/graham-2.svg" /><br />
-<img alt="graham-3" src="http://git.oschina.net/riteme/blogimg/raw/master/convex-hull/graham-3.svg" /><br />
-<img alt="graham-4" src="http://git.oschina.net/riteme/blogimg/raw/master/convex-hull/graham-4.svg" /><br />
-<img alt="graham-5" src="http://git.oschina.net/riteme/blogimg/raw/master/convex-hull/graham-5.svg" /><br />
-<img alt="graham-6" src="http://git.oschina.net/riteme/blogimg/raw/master/convex-hull/graham-6.svg" /><br />
-<img alt="graham-7" src="http://git.oschina.net/riteme/blogimg/raw/master/convex-hull/graham-7.svg" /><br />
-<img alt="graham-8" src="http://git.oschina.net/riteme/blogimg/raw/master/convex-hull/graham-8.svg" /><br />
-<img alt="graham-9" src="http://git.oschina.net/riteme/blogimg/raw/master/convex-hull/graham-9.svg" /><br />
-<img alt="graham-10" src="http://git.oschina.net/riteme/blogimg/raw/master/convex-hull/graham-10.svg" /><br />
-<img alt="graham-11" src="http://git.oschina.net/riteme/blogimg/raw/master/convex-hull/graham-11.svg" /></p>
+<p><img alt="graham-1" src="https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/graham-1.svg" /><br />
+<img alt="graham-2" src="https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/graham-2.svg" /><br />
+<img alt="graham-3" src="https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/graham-3.svg" /><br />
+<img alt="graham-4" src="https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/graham-4.svg" /><br />
+<img alt="graham-5" src="https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/graham-5.svg" /><br />
+<img alt="graham-6" src="https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/graham-6.svg" /><br />
+<img alt="graham-7" src="https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/graham-7.svg" /><br />
+<img alt="graham-8" src="https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/graham-8.svg" /><br />
+<img alt="graham-9" src="https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/graham-9.svg" /><br />
+<img alt="graham-10" src="https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/graham-10.svg" /><br />
+<img alt="graham-11" src="https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/graham-11.svg" /></p>
 <p>图上依次连接的线表示栈中的元素。</p>
 <p>对于Graham扫描法的时间复杂度，与水平扫描线的分析一致，关键在于排序的时间复杂度。<br />
 该算法总体复杂度为<mathjax>$O(n\log n)$</mathjax>。</p>
@@ -386,11 +386,11 @@ Graham算法有一个好处，就是最终得到的凸包还是按照极角序�
 有没有一种更快的算法呢？首先可以注意到，最远的两个点一定在凸包上，因为如果它们不在凸包上，那么凸包实际上可以被扩大。<br />
 这样我们就只用考虑凸包上的点了。对于凸包上的一个点，很直观的想法就是找到凸包<strong>另一边</strong>最远的点。<br />
 这是就要用到旋转卡壳，我们用一对平行线&rdquo;夹紧&rdquo;这个凸包，这样被两条直线所压住的点之间就可能有最远点对。</p>
-<p><img alt="ruler-1" src="http://git.oschina.net/riteme/blogimg/raw/master/convex-hull/ruler-1.svg" /></p>
+<p><img alt="ruler-1" src="https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/ruler-1.svg" /></p>
 <p>由于当前所卡中的不一定就是最远点对，所以还需要继续寻找。<br />
 而对每一条凸包上的边而言，都只有最远的点对其有效。<br />
 所以可以想象其中一条直线不断的沿着凸包上的边进行旋转，而另一条直线则不断更新与之最远的点。</p>
-<p><img alt="ruler-2" src="http://git.oschina.net/riteme/blogimg/raw/master/convex-hull/ruler-2.svg" /></p>
+<p><img alt="ruler-2" src="https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/ruler-2.svg" /></p>
 <p>第一条直线的事情好办，关键在于第二条。由于凸包上的点到第一条直线的距离具有单调性，所以第二条直线可以沿着一个方向移动，从而到达合适的位置。<br />
 当然需要注意一种边界情况：如果有两条平行的边，那么第二条直线<strong>可能卡中两个点</strong><sup id="fnref:two-points"><a class="footnote-ref" href="#fn:two-points" rel="footnote">5</a></sup>，这样就需要多枚举一些情况。</p>
 <p>按照这样的方法旋转一周，就可以对所有可能的点对完成枚举，极大地减少了枚举量。<br />
@@ -414,7 +414,7 @@ Graham算法有一个好处，就是最终得到的凸包还是按照极角序�
 <p><mathjax>$$ {f(j) - f(k) \over f(j-1) - f(k-1)} \lt -{B[x] \over A[x]} \tag{2} $$</mathjax></p>
 <p>回想一下直线斜率的计算公式，不难发现<mathjax>$(2)$</mathjax>式左边是一个计算斜率的形式，而右边是一个常量（对特定的<mathjax>$x$</mathjax>而言）。<br />
 因此<mathjax>$(2)$</mathjax>式左边可以视为是两个点<mathjax>$(f(j-1),\;f(j))$</mathjax>和<mathjax>$(f(k-1),\;f(k))$</mathjax>的直线的斜率与<mathjax>$-B[x] / A[x]$</mathjax>的关系。</p>
-<p><img alt="slope-opt-1" src="http://git.oschina.net/riteme/blogimg/raw/master/convex-hull/slope-opt-1.png" /></p>
+<p><img alt="slope-opt-1" src="https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/slope-opt-1.png" /></p>
 <p>如上图所示，这个时候：<br />
 <mathjax>$$ {f(j) - f(k) \over f(j-1) - f(k-1)} \gt -{B[x] \over A[x]} $$</mathjax></p>
 <p>故此时<mathjax>$j$</mathjax>不比<mathjax>$k$</mathjax>更优。</p>

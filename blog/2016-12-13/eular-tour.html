@@ -65,7 +65,7 @@
 <h2 id="_2">定义</h2>
 <p>欧拉回路通常用来解决&rdquo;一笔画&rdquo;问题。具体而言就是询问一张图上是否存在一条回路使得它<strong>经过所有的边一次</strong>。如果有，那么求出这条回路。</p>
 <p>例如，在下面这个图里面：</p>
-<p><img alt="undirected-graph-1" src="http://git.oschina.net/riteme/blogimg/raw/master/eular-tour/undirected-graph-1.svg" /></p>
+<p><img alt="undirected-graph-1" src="https://git.oschina.net/riteme/blogimg/raw/master/eular-tour/undirected-graph-1.svg" /></p>
 <p>一条欧拉回路是<code>1 - 4 - 2 - 3 - 4 - 5 - 2 - 1</code>。</p>
 <h2 id="_3">存在性</h2>
 <h3 id="_4">无向图</h3>
@@ -73,18 +73,18 @@
 <p>同时，从另一方面来讲，如果某个点的度数是奇数，那么在某一次进入这个点之后，我们就出不来了。如果起点的度数是奇数，那么之后必定有一次无法回到起点。</p>
 <p>总而言之，对于无向图，<strong>每个点的度数必须是偶数</strong>。</p>
 <p>此外考虑当图不连通时，一般是没有欧拉回路的。但是如果有连通块上本来就没有边，像下面这样：</p>
-<p><img alt="two-component" src="http://git.oschina.net/riteme/blogimg/raw/master/eular-tour/two-component.svg" /></p>
+<p><img alt="two-component" src="https://git.oschina.net/riteme/blogimg/raw/master/eular-tour/two-component.svg" /></p>
 <p>此时<code>1</code>这个点是不需要考虑的。但是并不意味着大小为<mathjax>$1$</mathjax>的连通块就不必考虑，因为它们可能有自环，如同下面这样：</p>
-<p><img alt="self-loop-1" src="http://git.oschina.net/riteme/blogimg/raw/master/eular-tour/self-loop-1.svg" /></p>
+<p><img alt="self-loop-1" src="https://git.oschina.net/riteme/blogimg/raw/master/eular-tour/self-loop-1.svg" /></p>
 <p>但是很多的这样的连通块不行，我们的程序在判定的时候需要注意这些细节：</p>
-<p><img alt="self-loop-3" src="http://git.oschina.net/riteme/blogimg/raw/master/eular-tour/self-loop-3.svg" /></p>
+<p><img alt="self-loop-3" src="https://git.oschina.net/riteme/blogimg/raw/master/eular-tour/self-loop-3.svg" /></p>
 <h3 id="_5">有向图</h3>
 <p>有向图与无向图是类似的。同样按照之前的方式考虑，进入一点就意味着需要出来，那么就说明每个点的<strong>入度与出度相同</strong>。</p>
 <p>此外考虑连通性，与无向图类似，我们要求这个图只存在<strong>一个有边的强连通分量</strong>。</p>
 <h2 id="_6">构造算法</h2>
 <p>如果满足了存在性的要求，那么这张图将被称为<strong>欧拉图</strong>。</p>
 <p>构造一条欧拉回路看上去是可以随意走的，因为你每走一个点总能保证你有地方出去。但是这样的算法却不能保证你走过了每一条边。举一个经典的例子：</p>
-<p><img alt="sample-undirected" src="http://git.oschina.net/riteme/blogimg/raw/master/eular-tour/sample-undirected.svg" /></p>
+<p><img alt="sample-undirected" src="https://git.oschina.net/riteme/blogimg/raw/master/eular-tour/sample-undirected.svg" /></p>
 <p>在这张无向图中，一条欧拉回路是<code>1 - 2 - 4 - 5 - 2 - 3 - 1</code>。如果采用随便走的策略，那么有可能走出<code>1 - 2 - 3 - 1</code>这样的路径就终止了。</p>
 <p>这是因为欧拉回路实际上是由一些环以点相交构成的。观察上面正确的欧拉回路，可以发现它是由<code>1 - 2 - 3 - 1</code>和<code>2 - 4 - 5 - 2</code>构成的。</p>
 <p>因此正确的方法应当是实现一个DFS搜索，每搜到一个环就将其插入之前的欧拉回路中，这样可以实现欧拉回路的构造。</p>
@@ -112,7 +112,7 @@
 <p>这里关键是为什么是先递归后将边加入欧拉回路，并且需要倒序输出。假设现在正在考虑<mathjax>$u$</mathjax>，那么就可能会有一些环会从<mathjax>$u$</mathjax>开始并且以<mathjax>$u$</mathjax>结束，那么它们在之后的递归中又会回到<mathjax>$u$</mathjax>，因此我们先将后面的环放入欧拉回路是没有问题的。如果从<mathjax>$u$</mathjax>出发后就回不来了，那么这条&rdquo;不归路应当在那些会回到<mathjax>$u$</mathjax>的环之后插入。所以这个DFS就保证了这一点。</p>
 <p>此外，对于每一条访问过的边，我们应当将其删除 (或者使用其它方法保证之后不会再次遍历)。否则当我们进入一个点多次的时候，这些边也会遍历多次，复杂度就会变得很高。</p>
 <p>事实上，这个无向图的构造算法对有向图也通用。</p>
-<p><img alt="sample-directed" src="http://git.oschina.net/riteme/blogimg/raw/master/eular-tour/sample-directed.svg" /></p>
+<p><img alt="sample-directed" src="https://git.oschina.net/riteme/blogimg/raw/master/eular-tour/sample-directed.svg" /></p>
 <h2 id="_7">判定算法</h2>
 <p>为什么要先说构造算法然后再说判定算法呢？以为构造算法可以帮助我们判定图的连通性，而在构造之前，我们需要保证基础的度数限制是满足的。</p>
 <p>如果度数限制满足以后，那么图中的每一个连通块 (或者强连通分量) 都可以使用之前的构造算法构造出欧拉回路。因此我们只用找到一个有边的连通块 (或强连通分量) 就可开始构造。如果构造完之后图中依然有边剩余，那么说明这张图没有欧拉回路。</p>

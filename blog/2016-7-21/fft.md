@@ -123,7 +123,7 @@ $$
 从几何的角度来讲，相当于将一个周角均分成$n$份，从每一个角度发出一个单位长度的向量。
 $\omega_8$的每一个幂次在平面上的情况如下图，注意$\omega_8^0 = 1$。
 
-![w_8](http://git.oschina.net/riteme/blogimg/raw/master/fft/w.svg)
+![w_8](https://git.oschina.net/riteme/blogimg/raw/master/fft/w.svg)
 
 ### DFT
 接下来介绍DFT。标准的DFT是作用在一个长度为$n$复数序列$\{x_0,\;x_1,\;x_2,\;\dots,\;x_{n-1}\}$，将其变换为另一个复数序列$\{X_0,\;X_1,\;X_2,\;\dots,\;X_{n-1}\}$，其定义如下：

@@ -216,7 +216,7 @@ $n \le 5 \times 10^5$, $m \le 2\times 10^9$
 作为采矿的工具，空间建筑工程车 (Space Constrution Vehicle)，简称SCV，它们的多样性和无以比拟的可靠性使得它们成为一种极有价值的建筑工具。
 采矿的流程如下，然而图不能动。
 
-<img alt="SCV采矿" src="http://i4.piimg.com/4851/3367f8e64dddef2d.jpg" style="
+<img alt="SCV采矿" src="https://i4.piimg.com/4851/3367f8e64dddef2d.jpg" style="
     width: 450px;
 ">
 

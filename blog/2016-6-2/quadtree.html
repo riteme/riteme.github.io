@@ -64,7 +64,7 @@
 <h1 id="point-quadtree">点分四叉树 (Point Quadtree)</h1>
 <p>点分四叉树是一种二维平面上的划分树，可以用于快速统计平面上的点的信息。<br />
 下图展现了一棵四叉树。其中箭头表示树中的边，矩形表示一个点所管辖的范围。<br />
-<img alt="quadtree" src="http://git.oschina.net/riteme/blogimg/raw/master/quadtree/quadtree.png" /></p>
+<img alt="quadtree" src="https://git.oschina.net/riteme/blogimg/raw/master/quadtree/quadtree.png" /></p>
 <h2 id="_1">原理</h2>
 <p>考虑下面的问题：</p>
 <blockquote>
@@ -173,7 +173,7 @@ function BUILD-QUADTREE(P):  // P是点集
 你也许会好奇作为四叉树却不是<mathjax>$O(\log_4 n)$</mathjax>，那是因为可能存在所有点的某一维全部相同的情况。<br />
 如果有所有点都一样的情况，会导致树的退化。解决办法就是剔除重复点，从而保证树高。</p>
 <p>经过对随机分布的点的测试，四叉树的树高保持在<mathjax>$O(\log n)$</mathjax>：<br />
-<img alt="quadtree-height" src="http://git.oschina.net/riteme/blogimg/raw/master/quadtree/quadtree-average-height.png" /></p>
+<img alt="quadtree-height" src="https://git.oschina.net/riteme/blogimg/raw/master/quadtree/quadtree-average-height.png" /></p>
 <p>同时可以得知四叉树的空间复杂度为<mathjax>$\Theta(n)$</mathjax>，因为每个点都会被用一次。</p>
 <h2 id="_3">查询与修改</h2>
 <p>在建立完树以后，进行查询或修改就十分简单了。许多操作可以借鉴线段树，因为每个节点都管理了一段区间。</p>

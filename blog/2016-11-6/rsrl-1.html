@@ -64,10 +64,10 @@
 <p>深觉自己姿势水平还是太低，许多东西并没有学到家就准备搞东西，<code>ne2d</code>就是一个典型的例子吧。虽然以后可能还会继续，但是现在先写个软渲染器来熟悉一些基础知识。</p>
 <p>项目开在了GitHub和Git@OSC上，欢迎围观：<br />
 GitHub: <a href="https://github.com/riteme/RSRL">https://github.com/riteme/RSRL</a><br />
-Git@OSC: <a href="http://git.oschina.net/riteme/RSRL">http://git.oschina.net/riteme/RSRL</a></p>
+Git@OSC: <a href="https://git.oschina.net/riteme/RSRL">https://git.oschina.net/riteme/RSRL</a></p>
 <p>所谓乎开发记录，就是记录一点有点价值的东西，各位随意看看。</p>
 <h2 id="_1">颜色运算</h2>
-<p><a href="http://git.oschina.net/riteme/RSRL/blob/master/include/Color.h">Color.h</a> &amp; <a href="http://git.oschina.net/riteme/RSRL/blob/master/source/Color.cpp">Color.cpp</a></p>
+<p><a href="https://git.oschina.net/riteme/RSRL/blob/master/include/Color.h">Color.h</a> &amp; <a href="https://git.oschina.net/riteme/RSRL/blob/master/source/Color.cpp">Color.cpp</a></p>
 <p>常见的屏幕颜色有四个分量：红(<mathjax>$\mathrm{R}$</mathjax>)、绿(<mathjax>$\mathrm{G}$</mathjax>)、蓝(<mathjax>$\mathrm{B}$</mathjax>)和透明度(<mathjax>$\mathrm{A}$</mathjax>)。通常这四个分量用<code>uint8_t</code>来记录，范围就是<mathjax>$0$</mathjax>至<mathjax>$255$</mathjax>。在计算机图形学中为了方便插值，通常都是用浮点数来存储的，范围为<mathjax>$0.0$</mathjax>至<mathjax>$1.0$</mathjax>。</p>
 <p>计算一个颜色的反色可以用以下公式：<br />
 <mathjax>$$
@@ -86,7 +86,7 @@ $$</mathjax></p>
 <p>其中<mathjax>$\{\mathrm{R}_1,\;\mathrm{G}_1,\;\mathrm{B}_1,\;\mathrm{A}_1\}$</mathjax>是前景色，<mathjax>$\{\mathrm{R}_1,\;\mathrm{G}_1,\;\mathrm{B}_1,\;\mathrm{A}_1\}$</mathjax>是后景色。<br />
 同时，这个公式可以实现颜色的叠加顺序不同，最终的结果也会有所不同。</p>
 <h2 id="_2">向量与矩阵</h2>
-<p><a href="http://git.oschina.net/riteme/RSRL/blob/master/include/Math.h">Math.h</a> &amp; <a href="http://git.oschina.net/riteme/RSRL/blob/master/source/Math.cpp">Math.cpp</a></p>
+<p><a href="https://git.oschina.net/riteme/RSRL/blob/master/include/Math.h">Math.h</a> &amp; <a href="https://git.oschina.net/riteme/RSRL/blob/master/source/Math.cpp">Math.cpp</a></p>
 <p>这里不在介绍什么是向量和矩阵了，这里至介绍一下为什么要使用矩阵。</p>
 <p>首先我们的可能需要缩放一个向量，这可以使用矩阵来表示：<br />
 <mathjax>$$

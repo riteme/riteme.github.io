@@ -258,7 +258,7 @@ g++ -std=c++11 main.cpp -o exec -L. -lbgfxRelease -lexample-commonRelease -lpthr
 ./exec
 ```
 
-![helloworld](http://git.oschina.net/riteme/blogimg/raw/master/learn-bgfx/learn-bgfx-1.png)
+![helloworld](https://git.oschina.net/riteme/blogimg/raw/master/learn-bgfx/learn-bgfx-1.png)
 
 如果你出现了什么意外，下面贴出了完整的程序用于对照：
 

@@ -21,7 +21,7 @@ $$
 
 即表示$T$中所有点能够直接到达的$Y$中的点的集合。
 
-![bigraph](http://git.oschina.net/riteme/blogimg/raw/master/hall-theorme/bigraph.png)
+![bigraph](https://git.oschina.net/riteme/blogimg/raw/master/hall-theorme/bigraph.png)
 
 上图中，$\Gamma(\{1,\;3\}) = \{4,\;5,\;6\}$。
 那么Hall条件则用于判断一个二分图是否存在最大匹配。Hall条件如下：

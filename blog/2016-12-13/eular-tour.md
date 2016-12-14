@@ -13,7 +13,7 @@ tags: 欧拉回路
 
 例如，在下面这个图里面：
 
-![undirected-graph-1](http://git.oschina.net/riteme/blogimg/raw/master/eular-tour/undirected-graph-1.svg)
+![undirected-graph-1](https://git.oschina.net/riteme/blogimg/raw/master/eular-tour/undirected-graph-1.svg)
 
 一条欧拉回路是`1 - 4 - 2 - 3 - 4 - 5 - 2 - 1`。
 
@@ -27,15 +27,15 @@ tags: 欧拉回路
 
 此外考虑当图不连通时，一般是没有欧拉回路的。但是如果有连通块上本来就没有边，像下面这样：
 
-![two-component](http://git.oschina.net/riteme/blogimg/raw/master/eular-tour/two-component.svg)
+![two-component](https://git.oschina.net/riteme/blogimg/raw/master/eular-tour/two-component.svg)
 
 此时`1`这个点是不需要考虑的。但是并不意味着大小为$1$的连通块就不必考虑，因为它们可能有自环，如同下面这样：
 
-![self-loop-1](http://git.oschina.net/riteme/blogimg/raw/master/eular-tour/self-loop-1.svg)
+![self-loop-1](https://git.oschina.net/riteme/blogimg/raw/master/eular-tour/self-loop-1.svg)
 
 但是很多的这样的连通块不行，我们的程序在判定的时候需要注意这些细节：
 
-![self-loop-3](http://git.oschina.net/riteme/blogimg/raw/master/eular-tour/self-loop-3.svg)
+![self-loop-3](https://git.oschina.net/riteme/blogimg/raw/master/eular-tour/self-loop-3.svg)
 
 ### 有向图
 有向图与无向图是类似的。同样按照之前的方式考虑，进入一点就意味着需要出来，那么就说明每个点的**入度与出度相同**。
@@ -47,7 +47,7 @@ tags: 欧拉回路
 
 构造一条欧拉回路看上去是可以随意走的，因为你每走一个点总能保证你有地方出去。但是这样的算法却不能保证你走过了每一条边。举一个经典的例子：
 
-![sample-undirected](http://git.oschina.net/riteme/blogimg/raw/master/eular-tour/sample-undirected.svg)
+![sample-undirected](https://git.oschina.net/riteme/blogimg/raw/master/eular-tour/sample-undirected.svg)
 
 在这张无向图中，一条欧拉回路是`1 - 2 - 4 - 5 - 2 - 3 - 1`。如果采用随便走的策略，那么有可能走出`1 - 2 - 3 - 1`这样的路径就终止了。
 
@@ -75,7 +75,7 @@ def construct(x):
 
 事实上，这个无向图的构造算法对有向图也通用。
 
-![sample-directed](http://git.oschina.net/riteme/blogimg/raw/master/eular-tour/sample-directed.svg)
+![sample-directed](https://git.oschina.net/riteme/blogimg/raw/master/eular-tour/sample-directed.svg)
 
 ## 判定算法
 为什么要先说构造算法然后再说判定算法呢？以为构造算法可以帮助我们判定图的连通性，而在构造之前，我们需要保证基础的度数限制是满足的。

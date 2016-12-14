@@ -10,12 +10,12 @@ tags: RSRL
 
 项目开在了GitHub和Git@OSC上，欢迎围观：
 GitHub: <https://github.com/riteme/RSRL>
-Git@OSC: <http://git.oschina.net/riteme/RSRL>
+Git@OSC: <https://git.oschina.net/riteme/RSRL>
 
 所谓乎开发记录，就是记录一点有点价值的东西，各位随意看看。
 
 ## 颜色运算
-[Color.h](http://git.oschina.net/riteme/RSRL/blob/master/include/Color.h) & [Color.cpp](http://git.oschina.net/riteme/RSRL/blob/master/source/Color.cpp)
+[Color.h](https://git.oschina.net/riteme/RSRL/blob/master/include/Color.h) & [Color.cpp](https://git.oschina.net/riteme/RSRL/blob/master/source/Color.cpp)
 
 常见的屏幕颜色有四个分量：红($\mathrm{R}$)、绿($\mathrm{G}$)、蓝($\mathrm{B}$)和透明度($\mathrm{A}$)。通常这四个分量用`uint8_t`来记录，范围就是$0$至$255$。在计算机图形学中为了方便插值，通常都是用浮点数来存储的，范围为$0.0$至$1.0$。
 
@@ -40,7 +40,7 @@ $$
 同时，这个公式可以实现颜色的叠加顺序不同，最终的结果也会有所不同。
 
 ## 向量与矩阵
-[Math.h](http://git.oschina.net/riteme/RSRL/blob/master/include/Math.h) & [Math.cpp](http://git.oschina.net/riteme/RSRL/blob/master/source/Math.cpp)
+[Math.h](https://git.oschina.net/riteme/RSRL/blob/master/include/Math.h) & [Math.cpp](https://git.oschina.net/riteme/RSRL/blob/master/source/Math.cpp)
 
 这里不在介绍什么是向量和矩阵了，这里至介绍一下为什么要使用矩阵。
 

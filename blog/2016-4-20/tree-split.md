@@ -30,7 +30,7 @@ tags: 数据结构
 * $x.\text{size}$: 以$x$为根的这一棵子树的大小。
 * $x.\text{depth}$: $x$在树中的深度，即$x$到树根的距离$+1$。
 
-![tree-normal](http://git.oschina.net/riteme/blogimg/raw/master/tree-split/tree-normal.svg)
+![tree-normal](https://git.oschina.net/riteme/blogimg/raw/master/tree-split/tree-normal.svg)
 这是一棵以$1$为根的树。为了解释更加清楚，这里举几个例子：
 
 * $10.\text{father} = 5,\; 1.\text{father} = nil$
@@ -74,7 +74,7 @@ function REAL-MAKE-ROOT(G, u):  // DFS过程
 
 ## 剖分
 在介绍树链剖分的算法之前，我们先来看看剖分后的树是个什么样子：
-![tree-splited](http://git.oschina.net/riteme/blogimg/raw/master/tree-split/tree-splited.png)
+![tree-splited](https://git.oschina.net/riteme/blogimg/raw/master/tree-split/tree-splited.png)
 剖分后的树信息量一下子大了很多。我将会逐条解释上面都画了些什么。
 
 * **树链(重链)**: 所有红色的边所连成的一条链都是剖分后的结果。某些树链没有边，就只有一个节点，这个节点是红色的。在上面，`1-6-8-11-13-17`是剖分出来的最长的树链，而`3`独自一个节点形成了树链。
@@ -187,7 +187,7 @@ function QUERY-SUM(u, v):
 ```
 
 如果不能理解，这里给出一个示例：
-![tree-splited](http://git.oschina.net/riteme/blogimg/raw/master/tree-split/tree-splited.png)
+![tree-splited](https://git.oschina.net/riteme/blogimg/raw/master/tree-split/tree-splited.png)
 假设我们查询$16$到$17$：
 首先会发现它们不在同一条链上，由于$16$所处的链的深度较大，为$5$，因此将$16$进行上移，上移至$14$，并统计$[13, 13]$的和。
 然后$14$和$17$依然不在同一条链中，由于$14$所处的链的深度为$2$，因此将$14$上移。上移至$1$，并统计$[9, 11]$的和。
@@ -204,7 +204,7 @@ function QUERY-SUM(u, v):
 
 ~~为什么会只有$O(\log n)$条呢？~~
 ~~我们来考虑树链剖分时最坏的情况：~~
-![tree-worst](http://git.oschina.net/riteme/blogimg/raw/master/tree-split/tree-worst.png)
+![tree-worst](https://git.oschina.net/riteme/blogimg/raw/master/tree-split/tree-worst.png)
 ~~想象这是树剖是最坏的情况(因为实际上并不会这样)。因为树剖总是尝试将最长的剖分出来，因此树链都是向右的。如果最左链再加一个节点，树链就会向左剖分了。~~
 ~~为了达到这样的效果，这棵有根树是接近**平衡**的，即树高为$\Theta(\log n)$。~~
 ~~因此最坏的情况下，当查询最左边的节点时，只需要使用$O(\log n)$次跳转就可完成。~~

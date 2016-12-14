@@ -34,7 +34,7 @@ function UPDATE(h):
 
 现在我们来看一棵二叉搜索树。
 
-![tree-example](http://git.oschina.net/riteme/blogimg/raw/master/rank-tree/binary-tree.png)
+![tree-example](https://git.oschina.net/riteme/blogimg/raw/master/rank-tree/binary-tree.png)
 
 上图中，`a`的秩为$1$，`e`的秩为$2$，`c`的秩为$3$，根节点`j`的秩为$6$。
 
@@ -134,11 +134,11 @@ function BALANCE(h):
 
 考虑下面的情况：
 
-![balance-situation-1](http://git.oschina.net/riteme/blogimg/raw/master/rank-tree/rank-tree-balance-1.png)
+![balance-situation-1](https://git.oschina.net/riteme/blogimg/raw/master/rank-tree/rank-tree-balance-1.png)
 
 现在我们要平衡`b`节点。左子树的秩比右子树大。倘若按照上面的方法进行调整，将会得到下面的结果：
 
-![balance-situation-2](http://git.oschina.net/riteme/blogimg/raw/master/rank-tree/rank-tree-balance-2.png)
+![balance-situation-2](https://git.oschina.net/riteme/blogimg/raw/master/rank-tree/rank-tree-balance-2.png)
 
 呃...你会发现并没有什么变化。  
 其原因在于左子树的右儿子的秩太大，导致旋转过去之后没有太大效果。  
@@ -149,11 +149,11 @@ function BALANCE(h):
 
 首先我们将左子树的右儿子通过**右旋**上移，这样使得右儿子的秩减小：
 
-![balance-situation-3](http://git.oschina.net/riteme/blogimg/raw/master/rank-tree/rank-tree-balance-3.png)
+![balance-situation-3](https://git.oschina.net/riteme/blogimg/raw/master/rank-tree/rank-tree-balance-3.png)
 
 然后再进行**左旋**操作，完成平衡：
 
-![balance-situation-4](http://git.oschina.net/riteme/blogimg/raw/master/rank-tree/rank-tree-balance-4.png)
+![balance-situation-4](https://git.oschina.net/riteme/blogimg/raw/master/rank-tree/rank-tree-balance-4.png)
 
 这时左右子树的秩的差距就减小了。
 

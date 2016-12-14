@@ -82,7 +82,7 @@ ruanxz: “ZY！”</p>
 </td></tr></table>
 
 <p>现在我们来看一棵二叉搜索树。</p>
-<p><img alt="tree-example" src="http://git.oschina.net/riteme/blogimg/raw/master/rank-tree/binary-tree.png" /></p>
+<p><img alt="tree-example" src="https://git.oschina.net/riteme/blogimg/raw/master/rank-tree/binary-tree.png" /></p>
 <p>上图中，<code>a</code>的秩为<mathjax>$1$</mathjax>，<code>e</code>的秩为<mathjax>$2$</mathjax>，<code>c</code>的秩为<mathjax>$3$</mathjax>，根节点<code>j</code>的秩为<mathjax>$6$</mathjax>。</p>
 <h3 id="12">1.2 按秩合并</h3>
 <p>在并查集的优化方法中有一个是<strong>启发式按秩合并</strong>。做法是将秩小的树接在秩大的树下面，这样就可以尽可能避免树的高度的暴涨。同样，在秩平衡树中，也要利用到这种思想。</p>
@@ -211,18 +211,18 @@ function RIGHT-ROTATE(h):
 
 <p>实际上，这样还不足够。</p>
 <p>考虑下面的情况：</p>
-<p><img alt="balance-situation-1" src="http://git.oschina.net/riteme/blogimg/raw/master/rank-tree/rank-tree-balance-1.png" /></p>
+<p><img alt="balance-situation-1" src="https://git.oschina.net/riteme/blogimg/raw/master/rank-tree/rank-tree-balance-1.png" /></p>
 <p>现在我们要平衡<code>b</code>节点。左子树的秩比右子树大。倘若按照上面的方法进行调整，将会得到下面的结果：</p>
-<p><img alt="balance-situation-2" src="http://git.oschina.net/riteme/blogimg/raw/master/rank-tree/rank-tree-balance-2.png" /></p>
+<p><img alt="balance-situation-2" src="https://git.oschina.net/riteme/blogimg/raw/master/rank-tree/rank-tree-balance-2.png" /></p>
 <p>呃&hellip;你会发现并没有什么变化。<br />
 其原因在于左子树的右儿子的秩太大，导致旋转过去之后没有太大效果。<br />
 这样导致中间的子树的<strong>深度下移一位</strong>。加之它本来就秩比较大，如此一来这个平衡就毫无作用。<br />
 然而，如果左子树的连个儿子如果秩是一样的，就不会有太大的影响，因为这样就只会导致秩的差距为<mathjax>$1$</mathjax>。倘若右儿子的秩更小，就不会有这样的问题。</p>
 <p>为了解决这个问题，我们考虑使左子树右儿子的秩<strong>减小</strong>，这样就不会因为中间的子树而导致无用的平衡。</p>
 <p>首先我们将左子树的右儿子通过<strong>右旋</strong>上移，这样使得右儿子的秩减小：</p>
-<p><img alt="balance-situation-3" src="http://git.oschina.net/riteme/blogimg/raw/master/rank-tree/rank-tree-balance-3.png" /></p>
+<p><img alt="balance-situation-3" src="https://git.oschina.net/riteme/blogimg/raw/master/rank-tree/rank-tree-balance-3.png" /></p>
 <p>然后再进行<strong>左旋</strong>操作，完成平衡：</p>
-<p><img alt="balance-situation-4" src="http://git.oschina.net/riteme/blogimg/raw/master/rank-tree/rank-tree-balance-4.png" /></p>
+<p><img alt="balance-situation-4" src="https://git.oschina.net/riteme/blogimg/raw/master/rank-tree/rank-tree-balance-4.png" /></p>
 <p>这时左右子树的秩的差距就减小了。</p>
 <p>同样，对于右子树的平衡操作也是类似的处理方法。这里就不再多说。具体的可以参考实现伪代码。</p>
 <p>完整的平衡代码如下：</p>

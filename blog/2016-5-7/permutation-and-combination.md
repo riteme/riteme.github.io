@@ -16,7 +16,7 @@ $$ n! = \prod^n_{i=1} i \tag{1.1} $$
 特别的，$0! = 1$。之所以$0$的阶乘这样定义，是为了使后面的公式更具有普遍性。
 
 我们来看一下阶乘函数的增长：
-![factorial-function](http://git.oschina.net/riteme/blogimg/raw/master/permutation-and-combination/factorial.png)
+![factorial-function](https://git.oschina.net/riteme/blogimg/raw/master/permutation-and-combination/factorial.png)
 上图中，红色的阶乘函数$ f(x) = x! $，蓝色的是$g(x) = x^2 $，而绿色的是$ h(x) = x^3 $。
 由此可见阶乘函数的增长比平方快。与三次方相比，阶乘函数在之后也将赶超。
 因此如果时间复杂度里面出现了阶乘，那将是一件可怕的事情。
@@ -107,7 +107,7 @@ $$
 这样就完成了证明。注意，在上面的证明中，利用到了阶乘的性质：$(n-1)!\cdot n=n!$。
 
 不难发现，帕斯卡公式实际上是组合数的一个递推公式。
-![pascal-dp](http://git.oschina.net/riteme/blogimg/raw/master/permutation-and-combination/dp.svg)
+![pascal-dp](https://git.oschina.net/riteme/blogimg/raw/master/permutation-and-combination/dp.svg)
 上图是由帕斯卡公式得到的一个递推的关系图，这里以${4 \choose 3}$为例。其中灰色的节点是无效的值。为了方便，直接将其设为$0$。除了${1 \choose 0} = {1 \choose 1} = 1$为初始值外，其它的值都是由其所指向的节点的值求和而来。
 上面的步骤就是动态规划中的状态转移的过程。利用这个公式，我们可以在$\Theta(nr)$的时间来计算大量的组合数。因此可以将此作为一个预处理。
 在具体实现的时候只需注意一些无效的特殊情况，其中包括$ r > n $和$n < 0$或$r < 0$。这些情况下的值均设为$0$。然后通过${1 \choose 0}$和${1 \choose 1}$这两个初始值就可以完成递推。

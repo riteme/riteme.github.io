@@ -65,7 +65,7 @@
 <p>辛普森积分法是一种快速求函数定积分的方法。与普通的直线拟合方法相比，辛普森积分法采用的是二次函数来拟合函数，而效果十分显著。</p>
 <h2 id="_2">用抛物线拟合</h2>
 <p>假设我们有三个不重合的点，那么可以唯一确定一个抛物线经过这三个点。如下图所示：</p>
-<p><img alt="quadratic" src="http://git.oschina.net/riteme/blogimg/raw/master/simpson/simpson1.svg" /></p>
+<p><img alt="quadratic" src="https://git.oschina.net/riteme/blogimg/raw/master/simpson/simpson1.svg" /></p>
 <p>辛普森积分法就是在积分区间<mathjax>$[a,\;b]$</mathjax>上去三个点<mathjax>$a$</mathjax>、<mathjax>$b$</mathjax>和<mathjax>$m = (a + b) / 2$</mathjax>，计算其原函数的在此处的值，然后用抛物线来拟合原函数，即使用该二次函数的积分值代替原函数的积分值，达到近似积分的效果。</p>
 <p>如何计算这个二次函数？我们自然可以解三元三次方程组，但更方便的方法是拉格朗日差值公式：<br />
 <mathjax>$$

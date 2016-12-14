@@ -75,10 +75,10 @@
 <p>实际上我们就是需要在插入节点时同时记录一个节点的前趋和后继。<br />
 由于新插入的节点一定是在树的底部，因此我们需要考虑的情况很少。</p>
 <p>这时有两种情况，一种是插入到左儿子：</p>
-<p><img alt="left-node" src="http://git.oschina.net/riteme/blogimg/raw/master/bst-with-list/insert-1.png" /></p>
+<p><img alt="left-node" src="https://git.oschina.net/riteme/blogimg/raw/master/bst-with-list/insert-1.png" /></p>
 <p>那么新插入的节点必定是其父亲的前趋。这个过程可以看作是往链表中插入一个元素。</p>
 <p>同样，对于插入到右儿子，情况也是类似的：</p>
-<p><img alt="right-node" src="http://git.oschina.net/riteme/blogimg/raw/master/bst-with-list/insert-2.png" /></p>
+<p><img alt="right-node" src="https://git.oschina.net/riteme/blogimg/raw/master/bst-with-list/insert-2.png" /></p>
 <p>因此，对于每个新插入的节点，只需要花费<mathjax>$\Theta(1)$</mathjax>的时间来记录前趋后继。</p>
 <h2 id="_4">旋转</h2>
 <p>许多平衡树 (Treap、Splay等) 都是以旋转操作来进行平衡的。然而平衡的时候是否要维护链表信息呢？<br />
