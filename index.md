@@ -1,5 +1,5 @@
 ---
-title: <i class="material-icons" style="vertical-align: sub;">home</i> Home Page
+title: Home Page
 create: 2016.1.31
 modified: 2016.4.14
 tags: Home

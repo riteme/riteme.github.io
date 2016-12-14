@@ -50,7 +50,7 @@ def add_index_info(title, text, tags, url):
             "url": ""
         }
 
-    indices[title]["text"] = text
+    indices[title]["text"] = text.replace("\"", " ")
     indices[title]["tags"] = " ".join(tags)
     indices[title]["url"] = url
 
