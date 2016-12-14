@@ -216,6 +216,10 @@ h3.panel-title {
     margin-bottom: 0;
 }
 
+mdl-mega-footer__bottom-section.a {
+    text-decoration: none;
+}
+
 .codehilite .hll { background-color: #ffffcc }
 .codehilite .c { color: #008000 }
 .codehilite .err { border: 1px solid #FF0000 }
