@@ -67,14 +67,14 @@
 </blockquote>
 <h2 id="_2">偏序集</h2>
 <p>这里的莫比乌斯反演是从关联代数的角度来介绍的。首先介绍一个基础的概念：偏序集。<br />
-它通常写作<mathjax>$(X_n,\;\le)$</mathjax>，其中<mathjax>$X_n$</mathjax>是一个有限或者无限的集合，<mathjax>$\le$</mathjax>是代指偏序关系，而<strong>不是特指小于等于符号</strong>。<br />
-所谓偏序关系，就是指<mathjax>$a,\;b,\;c \in X_n$</mathjax>并且<mathjax>$a \le b,\;b \le c$</mathjax>，有<mathjax>$a \le c$</mathjax>的性质的关系。<br />
-这种偏序关系一般是比较符<mathjax>$\le$</mathjax>、集合的<mathjax>$\subseteq$</mathjax>符号和整除<mathjax>$\;\mid\;$</mathjax>。</p>
+它通常写作<mathjax>$(X_n,\;\leqslant)$</mathjax>，其中<mathjax>$X_n$</mathjax>是一个有限或者无限的集合，<mathjax>$\leqslant$</mathjax>是代指偏序关系，而<strong>不是特指小于等于符号</strong>。<br />
+所谓偏序关系，就是指<mathjax>$a,\;b,\;c \in X_n$</mathjax>并且<mathjax>$a \leqslant b,\;b \leqslant c$</mathjax>，有<mathjax>$a \leqslant c$</mathjax>的性质的关系。<br />
+这种偏序关系一般是比较符<mathjax>$\leqslant$</mathjax>、集合的<mathjax>$\subseteq$</mathjax>符号和整除<mathjax>$\;\mid\;$</mathjax>。</p>
 <h2 id="_3">卷积</h2>
-<p>对于定义在偏序集<mathjax>$(X_n,\;\le)$</mathjax>上的二元函数<mathjax>$f(x,\;y)$</mathjax>，我们假定当<mathjax>$x \not\le y$</mathjax>时，<mathjax>$f(x,\;y)$</mathjax>均为<mathjax>$0$</mathjax>，这样是为了方便我们之后的讨论。<br />
-考虑偏序集<mathjax>$(X_n, \le)$</mathjax>上的二元函数<mathjax>$f(x,\;y)$</mathjax>和<mathjax>$g(x,\;y)$</mathjax>，定义它们的卷积为：<br />
+<p>对于定义在偏序集<mathjax>$(X_n,\;\leqslant)$</mathjax>上的二元函数<mathjax>$f(x,\;y)$</mathjax>，我们假定当<mathjax>$x \not\leqslant y$</mathjax>时，<mathjax>$f(x,\;y)$</mathjax>均为<mathjax>$0$</mathjax>，这样是为了方便我们之后的讨论。<br />
+考虑偏序集<mathjax>$(X_n, \leqslant)$</mathjax>上的二元函数<mathjax>$f(x,\;y)$</mathjax>和<mathjax>$g(x,\;y)$</mathjax>，定义它们的卷积为：<br />
 <mathjax>$$
-(f \times g)(x,\;y) = \sum_{x \le z \le y} f(x,\;z)g(z,\;y) \tag{2.1}
+(f \times g)(x,\;y) = \sum_{x \leqslant z \leqslant y} f(x,\;z)g(z,\;y) \tag{2.1}
 $$</mathjax></p>
 <p>这个卷积满足结合律：<br />
 <mathjax>$$
@@ -89,7 +89,7 @@ $$</mathjax></p>
 <p>任意函数卷<mathjax>$\delta$</mathjax>函数均会得到原函数。</p>
 <p><mathjax>$\zeta$</mathjax> (zeta) 函数：<br />
 <mathjax>$$
-\zeta(x,\;y) = [x \le y] \tag{2.4}
+\zeta(x,\;y) = [x \leqslant y] \tag{2.4}
 $$</mathjax></p>
 <p>以及莫比乌斯<mathjax>$\mu$</mathjax>函数是定义为<mathjax>$\zeta$</mathjax>函数的<strong>逆函数</strong>，即：<br />
 <mathjax>$$
@@ -98,74 +98,74 @@ $$</mathjax></p>
 <p>展开卷积可得：<br />
 <mathjax>$$
 \begin{align}
-\delta = \mu \times \zeta \Longrightarrow \delta(x,\;y) &amp; = \sum_{x \le z \le y} \mu(x,\;z)\zeta(z,\;y) \\
-&amp; = \sum_{x \le z \le y} \mu(x,\;z)
+\delta = \mu \times \zeta \Longrightarrow \delta(x,\;y) &amp; = \sum_{x \leqslant z \leqslant y} \mu(x,\;z)\zeta(z,\;y) \\
+&amp; = \sum_{x \leqslant z \leqslant y} \mu(x,\;z)
 \end{align}
 $$</mathjax></p>
 <p>因此，当<mathjax>$x \neq y$</mathjax>时：<br />
 <mathjax>$$
-\mu(x,\;y) = - \sum_{x \le z \lt y} \mu(x,\;z) \tag{2.6}
+\mu(x,\;y) = - \sum_{x \leqslant z \lt y} \mu(x,\;z) \tag{2.6}
 $$</mathjax></p>
 <h2 id="_4">莫比乌斯反演公式</h2>
 <blockquote>
 <p><strong>(莫比乌斯反演公式)</strong><br />
-对于有限偏序集<mathjax>$(X_n,\;\le)$</mathjax>上的两个函数<mathjax>$F(x,\;y)$</mathjax>和<mathjax>$G(x,\;y)$</mathjax>，如果：<br />
-<mathjax>$$ G(x,\;y) = \sum_{x \le z \le y} F(x,\;z) \tag{3.1}$$</mathjax></p>
+对于有限偏序集<mathjax>$(X_n,\;\leqslant)$</mathjax>上的两个函数<mathjax>$F(x,\;y)$</mathjax>和<mathjax>$G(x,\;y)$</mathjax>，如果：<br />
+<mathjax>$$ G(x,\;y) = \sum_{x \leqslant z \leqslant y} F(x,\;z) \tag{3.1}$$</mathjax></p>
 <p>那么：<br />
-<mathjax>$$F(x,\;y) = \sum_{x \le z \le y} G(x,\;z)\mu(z,\;y)  = (G \times \mu)(x,\;y) \tag{3.2}$$</mathjax></p>
+<mathjax>$$F(x,\;y) = \sum_{x \leqslant z \leqslant y} G(x,\;z)\mu(z,\;y)  = (G \times \mu)(x,\;y) \tag{3.2}$$</mathjax></p>
 </blockquote>
 <p><strong>证明</strong> 首先将式子展开：<br />
 <mathjax>$$
 \begin{align}
-F(x,\;y) &amp; = \sum_{x \le z \le y} G(x,\;z)\mu(z,\;y) \\
-&amp; = \sum_{x \le z \le y} \mu(z,\;y) \sum_{x \le m \le z} F(x,\;m)
+F(x,\;y) &amp; = \sum_{x \leqslant z \leqslant y} G(x,\;z)\mu(z,\;y) \\
+&amp; = \sum_{x \leqslant z \leqslant y} \mu(z,\;y) \sum_{x \leqslant m \leqslant z} F(x,\;m)
 \end{align}
 $$</mathjax></p>
 <p>我们使用<mathjax>$\zeta$</mathjax>函数来表示上下界，于是式子改写为以下形式：<br />
 <mathjax>$$
-\sum_{x \le z \le y} \mu(z,\;y) \sum_{m \in X_n} F(x,\;m)\zeta(x,\;m)\zeta(m,\;z)
+\sum_{x \leqslant z \leqslant y} \mu(z,\;y) \sum_{m \in X_n} F(x,\;m)\zeta(x,\;m)\zeta(m,\;z)
 $$</mathjax></p>
 <p>改变求和的枚举顺序，先枚举<mathjax>$m$</mathjax>，其值依然不变：<br />
 <mathjax>$$
-\sum_{m \in X_n} \sum_{x \le z \le y} \zeta(m,\;z)\mu(z,\;y)\zeta(x,\;m)F(x,\;m)
+\sum_{m \in X_n} \sum_{x \leqslant z \leqslant y} \zeta(m,\;z)\mu(z,\;y)\zeta(x,\;m)F(x,\;m)
 $$</mathjax></p>
-<p>由于当<mathjax>$m \lt x$</mathjax>的时候<mathjax>$\zeta(x,\;m)$</mathjax>为<mathjax>$0$</mathjax>，因此只用考虑<mathjax>$m \ge x$</mathjax>。<br />
-并且当<mathjax>$m \ge x$</mathjax>时，<mathjax>$z \ge m$</mathjax>必需成立。<br />
+<p>由于当<mathjax>$m \lt x$</mathjax>的时候<mathjax>$\zeta(x,\;m)$</mathjax>为<mathjax>$0$</mathjax>，因此只用考虑<mathjax>$m \geqslant x$</mathjax>。<br />
+同理，我们可以得出<mathjax>$z \geqslant m$</mathjax>是必须的。<br />
 因此可以改写下界：<br />
 <mathjax>$$
-\sum_{m \in X_n} \sum_{m \le z \le y} \zeta(m,\;z)\mu(z,\;y)F(x,\;m)
+\sum_{m \in X_n} \sum_{m \leqslant z \leqslant y} \zeta(m,\;z)\mu(z,\;y)F(x,\;m)
 $$</mathjax></p>
 <p>然后变成了卷积的形式：<br />
 <mathjax>$$
 \begin{align}
-\sum_{m \in X_n} F(x,\;m) \sum_{m \le z \le y} \zeta(m,\;z)\mu(z,\;y) &amp; = \sum_{m \in X_n} F(x,\;m) \delta(m,\;y) \\
+\sum_{m \in X_n} F(x,\;m) \sum_{m \leqslant z \leqslant y} \zeta(m,\;z)\mu(z,\;y) &amp; = \sum_{m \in X_n} F(x,\;m) \delta(m,\;y) \\
 &amp; = F(x,\;y)
 \end{align}
 $$</mathjax></p>
 <p>当<mathjax>$m = y$</mathjax>时，<mathjax>$\delta(m,\;y)$</mathjax>才为<mathjax>$1$</mathjax>，所以综上所述：<br />
 <mathjax>$$
-F(x,\;y) = \sum_{x \le z \le y} G(x,\;z)\mu(z,\;y) \tag{3.2}
+F(x,\;y) = \sum_{x \leqslant z \leqslant y} G(x,\;z)\mu(z,\;y) \tag{3.2}
 $$</mathjax></p>
 <h2 id="_5">偏序集直积</h2>
-<p>对于两个偏序集<mathjax>$(A,\;\le_1)$</mathjax>和<mathjax>$(B,\;\le_2)$</mathjax>，它们的直积<mathjax>$C = A \times B = (A \times B,\;\le)$</mathjax>也是偏序集，其中的元素为<mathjax>$(x,\;y)\;\;(x \in A,\;y \in B)$</mathjax>。其关系<mathjax>$\le$</mathjax>的定义如下：<br />
+<p>对于两个偏序集<mathjax>$(A,\;\leqslant_1)$</mathjax>和<mathjax>$(B,\;\leqslant_2)$</mathjax>，它们的直积<mathjax>$C = A \times B = (A \times B,\;\leqslant)$</mathjax>也是偏序集，其中的元素为<mathjax>$(x,\;y)\;\;(x \in A,\;y \in B)$</mathjax>。其关系<mathjax>$\leqslant$</mathjax>的定义如下：<br />
 <mathjax>$$
-(x_1,\;y_1) \le (x_2,\;y_2) \Longleftrightarrow x_1 \le_1 x_2 \land y_1 \le_2 y_2
+(x_1,\;y_1) \leqslant (x_2,\;y_2) \Longleftrightarrow x_1 \leqslant_1 x_2 \land y_1 \leqslant_2 y_2
 $$</mathjax></p>
 <p>对于偏序集的直积，我们有以下定理：</p>
 <blockquote>
 <p>设<mathjax>$A$</mathjax>和<mathjax>$B$</mathjax>的莫比乌斯函数分别为<mathjax>$\mu_1$</mathjax>和<mathjax>$\mu_2$</mathjax>，那么<mathjax>$C$</mathjax>的莫比乌斯函数满足：<br />
 <mathjax>$$\mu((x_1,\;y_1),\;(x_2,\;y_2)) = \mu_1(x_1,\;x_2)\mu(y_1,\;y_2) \tag{4.1}$$</mathjax></p>
 </blockquote>
-<p><strong>证明</strong> 对于<mathjax>$(x_1,\;y_1) \not\le (x_2,\;y_2)$</mathjax>和<mathjax>$(x_1,\;y_1) = (x_2,\;y_2)$</mathjax>的情况，上式显然成立。<br />
-假设对于满足<mathjax>$(x_1,\;y_1) \le (u,\;v) \lt (x_2,\;y_2)$</mathjax>的二元组均满足，那么有：<br />
+<p><strong>证明</strong> 对于<mathjax>$(x_1,\;y_1) \not\leqslant (x_2,\;y_2)$</mathjax>和<mathjax>$(x_1,\;y_1) = (x_2,\;y_2)$</mathjax>的情况，上式显然成立。<br />
+假设对于满足<mathjax>$(x_1,\;y_1) \leqslant (u,\;v) \lt (x_2,\;y_2)$</mathjax>的二元组均满足，那么有：<br />
 <mathjax>$$
 \begin{align}
-\mu((x_1,\;y_1),\;(x_2,\;y_2)) &amp; = - \sum_{(x_1,\;y_1) \le (u,\;v) \lt (x_2,\;y_2)} \mu((x_1,\;y_1),\;(u,\;v)) \\
-&amp; = - \sum_{(x_1,\;y_1) \le (u,\;v) \lt (x_2,\;y_2)} \mu_1(x_1,\;u)\mu_2(y_1,\;v) &amp; (\text{根据归纳假设}) \\
-&amp; = - \sum_{x_1 \le_1 u \lt_1 x_2} \sum_{y_1 \le_2 v \lt_2 y_2} \mu_1(x_1,\;u)\mu_2(y_1,\;v) &amp; (\text{分别枚举}) \\
-&amp; =  - \sum_{x_1 \le_1 u \le_1 x_2} \sum_{y_1 \le_2 v \le_2 y_2} \mu_1(x_1,\;u)\mu_2(y_1,\;v) \\
-&amp;\;\;\;\, + \mu_1(x_1,\;x_2)\sum_{y_1 \le_2 v \le_2 y_2} \mu_2(y_1,\;v) \\
-&amp;\;\;\;\, + \mu_2(y_1,\;y_2)\sum_{x_1 \le_1 u \le_1 x_2} \mu_1(x_1,\;u) \\
+\mu((x_1,\;y_1),\;(x_2,\;y_2)) &amp; = - \sum_{(x_1,\;y_1) \leqslant (u,\;v) \lt (x_2,\;y_2)} \mu((x_1,\;y_1),\;(u,\;v)) \\
+&amp; = - \sum_{(x_1,\;y_1) \leqslant (u,\;v) \lt (x_2,\;y_2)} \mu_1(x_1,\;u)\mu_2(y_1,\;v) &amp; (\text{根据归纳假设}) \\
+&amp; = - \sum_{x_1 \leqslant_1 u \lt_1 x_2} \sum_{y_1 \leqslant_2 v \lt_2 y_2} \mu_1(x_1,\;u)\mu_2(y_1,\;v) &amp; (\text{分别枚举}) \\
+&amp; =  - \sum_{x_1 \leqslant_1 u \leqslant_1 x_2} \sum_{y_1 \leqslant_2 v \leqslant_2 y_2} \mu_1(x_1,\;u)\mu_2(y_1,\;v) \\
+&amp;\;\;\;\, + \mu_1(x_1,\;x_2)\sum_{y_1 \leqslant_2 v \leqslant_2 y_2} \mu_2(y_1,\;v) \\
+&amp;\;\;\;\, + \mu_2(y_1,\;y_2)\sum_{x_1 \leqslant_1 u \leqslant_1 x_2} \mu_1(x_1,\;u) \\
 &amp;\;\;\;\, + \mu_1(x_1,\;x_2)\mu_2(y_1,\;y_2) &amp; (\text{扩展上界})
 \end{align}
 $$</mathjax></p>
@@ -173,13 +173,13 @@ $$</mathjax></p>
 <mathjax>$$
 \begin{align}
 0
-&amp; = \sum_{y_1 \le_2 v \le_2 y_2} \mu_2(y_1,\;v) \\
-&amp; = \sum_{x_1 \le_1 u \le_1 x_2} \mu_1(x_1,\;u)  \\ 
-&amp; = \sum_{x_1 \le_1 u \le_1 x_2} \sum_{y_1 \le_2 v \le_2 y_2} \mu_1(x_1,\;u)\mu_2(y_1,\;v) 
+&amp; = \sum_{y_1 \leqslant_2 v \leqslant_2 y_2} \mu_2(y_1,\;v) \\
+&amp; = \sum_{x_1 \leqslant_1 u \leqslant_1 x_2} \mu_1(x_1,\;u)  \\ 
+&amp; = \sum_{x_1 \leqslant_1 u \leqslant_1 x_2} \sum_{y_1 \leqslant_2 v \leqslant_2 y_2} \mu_1(x_1,\;u)\mu_2(y_1,\;v) 
 \end{align}
 $$</mathjax></p>
 <p>所以定理成立。</p>
-<h2 id="x_nle">在<mathjax>$(X_n,\;\le)$</mathjax>上的莫比乌斯函数</h2>
+<h2 id="x_nleqslant">在<mathjax>$(X_n,\;\leqslant)$</mathjax>上的莫比乌斯函数</h2>
 <p>注意这里的是真正的小于等于号了......<br />
 这个比较智障，分析一下就好了：<br />
 对于<mathjax>$y = x$</mathjax>，我们有：<br />
@@ -192,7 +192,7 @@ $$</mathjax></p>
 $$</mathjax></p>
 <p>对于<mathjax>$y = x + 2$</mathjax>，我们有：<br />
 <mathjax>$$
-\mu(x,\;y) = \mu(x,\;x + 2) = -\left[\mu(x,\;x) + \mu(x,\;x + 1)\right] = 0
+\mu(x,\;y) = \mu(x,\;x + 2) = -\leqslantft[\mu(x,\;x) + \mu(x,\;x + 1)\right] = 0
 $$</mathjax></p>
 <p>不难发现，对于<mathjax>$y \gt x + 1$</mathjax>的函数值就全都变为<mathjax>$0$</mathjax>了。<br />
 总结一下就是：<br />
@@ -216,13 +216,13 @@ $$</mathjax></p>
 <mathjax>$$
 \mu(A, B) = \mu(A, A) = 1 = (-1)^0
 $$</mathjax></p>
-<p>假设对于<mathjax>$|B| - |A| \le k$</mathjax>均成立，尝试证明对于<mathjax>$|B| - |A| = k + 1$</mathjax>也成立：<br />
+<p>假设对于<mathjax>$|B| - |A| \leqslant k$</mathjax>均成立，尝试证明对于<mathjax>$|B| - |A| = k + 1$</mathjax>也成立：<br />
 <mathjax>$$
 \begin{align}
 \mu(A,\;B) &amp; = -\sum_{A \subseteq C \subset B} \mu(A,\;C) \\
 &amp; = -\sum_{A \subseteq C \subset B} (-1)^{|C| - |A|} \\
 &amp; = -\sum_{i = 0}^{k} {k + 1 \choose i}(-1)^i \\
-&amp; = -\left[(1 - 1)^{k + 1} - (-1)^{k + 1} \right] \\
+&amp; = -\leqslantft[(1 - 1)^{k + 1} - (-1)^{k + 1} \right] \\
 &amp; = (-1)^{k + 1} \\
 &amp; = (-1)^{|B| - |A|}
 \end{align}
@@ -245,7 +245,7 @@ n = p_1^{\alpha_1}p_2^{\alpha_2}\cdots p_m^{\alpha_m}
 $$</mathjax></p>
 <p>对于<mathjax>$n$</mathjax>的任意一个因子<mathjax>$d$</mathjax>都有：<br />
 <mathjax>$$
-d = p_1^{\beta_1}p_2^{\beta_2}\cdots p_m^{\beta_m} \;\;\;\; (0 \le \beta_i \le \alpha_i)
+d = p_1^{\beta_1}p_2^{\beta_2}\cdots p_m^{\beta_m} \;\;\;\; (0 \leqslant \beta_i \leqslant \alpha_i)
 $$</mathjax></p>
 <p>相当于可以看作<mathjax>$m$</mathjax>个大小为<mathjax>$\alpha_1 + 1,\;\alpha_2 + 1,\;\dots,\;\alpha_m + 1$</mathjax>的偏序集的直积的结果。<br />
 于是可以得到：<br />
@@ -256,7 +256,7 @@ $$</mathjax></p>
 <mathjax>$$
 \mu(1,\;1) = 1 \\
 \mu(1,\;p) = -\mu(1,\;1) = -1 \;\; \\
-\mu(1,\;p^2) = -\left[ \mu(1,\;1) + \mu(1,\;p) \right] = 0 \\
+\mu(1,\;p^2) = -\leqslantft[ \mu(1,\;1) + \mu(1,\;p) \right] = 0 \\
 \dots
 $$</mathjax></p>
 <p>总结一下就是：<br />
@@ -297,7 +297,7 @@ s \in \bigcap_{i \not\in K} A_i
 $$</mathjax></p>
 <p>即：<br />
 <mathjax>$$
-F(K) = \left| \bigcap_{i \not\in K} A_i - \bigcup_{i \in K} A_i \right| \tag{8.1}
+F(K) = \leqslantft| \bigcap_{i \not\in K} A_i - \bigcup_{i \in K} A_i \right| \tag{8.1}
 $$</mathjax></p>
 <p>如何脑补这个函数？可以想象成是用<mathjax>$K$</mathjax>把<mathjax>$S$</mathjax>中的很多东西挖走了，然后剩下的集合再求交集。<br />
 对于此，再定义函数<mathjax>$G(K)$</mathjax>：<br />
@@ -306,7 +306,7 @@ G(K) = \sum_{L \subseteq K} F(L) \tag{8.2}
 $$</mathjax></p>
 <p>这货居然计数的是：<br />
 <mathjax>$$
-G(K) = \left| \bigcap_{i \not\in K} A_i \right| \tag{8.3}
+G(K) = \leqslantft| \bigcap_{i \not\in K} A_i \right| \tag{8.3}
 $$</mathjax></p>
 <p>如何脑补其正确性？可以想象是一个智障用<mathjax>$K$</mathjax>把本来属于它们交集的东西挖去了，然后又一个一个吐出来，于是就还原了原本的交集......<br />
 根据莫比乌斯反演公式可以知道：<br />
@@ -319,11 +319,11 @@ F(K) = \sum_{L \subseteq K} (-1)^{n - |L|} G(L) \tag{8.4}
 $$</mathjax></p>
 <p>这个时候的<mathjax>$F(K)$</mathjax>计数的东西有了新的含义：<br />
 <mathjax>$$
-F(K) = \left|\bigcup_{i \in K} A_i\right| = \left|\bigcap_{i \in K} \overline{A}_i \right| \tag{8.5}
+F(K) = \leqslantft|\bigcup_{i \in K} A_i\right| = \leqslantft|\bigcap_{i \in K} \overline{A}_i \right| \tag{8.5}
 $$</mathjax></p>
 <p>用<mathjax>$F(K)$</mathjax>和<mathjax>$G(K)$</mathjax>本身的含义来替换，就可以得到<strong>容斥原理</strong> (感觉好神奇)：<br />
 <mathjax>$$
-\left|\bigcap_{i = 1}^n \overline{A}_i \right| = \sum_{K \subseteq \{1,\;,2,\;,\dots,\;n\}} (-1)^{|K|} \left| \bigcap_{i \in K} A_i \right| \tag{8.6}
+\leqslantft|\bigcap_{i = 1}^n \overline{A}_i \right| = \sum_{K \subseteq \{1,\;,2,\;,\dots,\;n\}} (-1)^{|K|} \leqslantft| \bigcap_{i \in K} A_i \right| \tag{8.6}
 $$</mathjax></p>
 <h2 id="varphin">反演示例：<mathjax>$\varphi(n)$</mathjax>通项公式</h2>
 <p>欧拉<mathjax>$\varphi(n)$</mathjax>函数计数的是不大于<mathjax>$n$</mathjax>的与<mathjax>$n$</mathjax>互质的正整数个数。<br />
@@ -377,15 +377,15 @@ $$</mathjax></p>
 设<mathjax>$n = p_1^{k_1}p_2^{k_2}\cdots p_m^{k_m}$</mathjax>。<br />
 因此可以得到下面的式子：<br />
 <mathjax>$$
-\varphi(n) = n\left[1 - \sum \frac1{p_i} + \sum \frac1{p_ip_j} - \cdots + (-1)^{m}\sum \frac1{\prod_{i=1}^m p_i} \right] \tag{9.2}
+\varphi(n) = n\leqslantft[1 - \sum \frac1{p_i} + \sum \frac1{p_ip_j} - \cdots + (-1)^{m}\sum \frac1{\prod_{i=1}^m p_i} \right] \tag{9.2}
 $$</mathjax></p>
 <p>这恰好是下面的式子展开的形式：<br />
 <mathjax>$$
-\varphi(n) = n\prod_{i=1}^m \left( 1 - \frac1{p_i} \right) \tag{9.3}
+\varphi(n) = n\prod_{i=1}^m \leqslantft( 1 - \frac1{p_i} \right) \tag{9.3}
 $$</mathjax></p>
 <p>因此：<br />
 <mathjax>$$
-\varphi(n) = n\prod_{p \mid n,\;\varphi(p) = p - 1} \left( 1 - \frac1p\right) \tag{9.4}
+\varphi(n) = n\prod_{p \mid n,\;\varphi(p) = p - 1} \leqslantft( 1 - \frac1p\right) \tag{9.4}
 $$</mathjax></p>
 <h2 id="_7">反演示例：多重集合的循环排列</h2>
 <blockquote>
@@ -439,19 +439,19 @@ $$</mathjax></p>
 <p>除了莫比乌斯反演公式，莫比乌斯函数本身的性质也是很好的。<br />
 考虑下面一个问题：</p>
 <blockquote>
-<p>给定<mathjax>$n$</mathjax>和<mathjax>$m$</mathjax>，求<mathjax>$\gcd(x,\;y)\;\;(1 \le x \le n,\;1 \le y \le m)$</mathjax>为<strong>素数</strong>的二元组<mathjax>$(x,\;y)$</mathjax>个数。</p>
+<p>给定<mathjax>$n$</mathjax>和<mathjax>$m$</mathjax>，求<mathjax>$\gcd(x,\;y)\;\;(1 \leqslant x \leqslant n,\;1 \leqslant y \leqslant m)$</mathjax>为<strong>素数</strong>的二元组<mathjax>$(x,\;y)$</mathjax>个数。</p>
 </blockquote>
 <p>换言之，我们要求的是这个：<br />
 <mathjax>$$
-\sum_{x=1}^n\sum_{y=1}^m \left[\varphi(\gcd(x,\;y)) = \gcd(x,\;y) - 1\right] \tag{11.1}
+\sum_{x=1}^n\sum_{y=1}^m \leqslantft[\varphi(\gcd(x,\;y)) = \gcd(x,\;y) - 1\right] \tag{11.1}
 $$</mathjax></p>
 <p>首先，我们可以换个思路，就是枚举最大公约数的答案：<br />
 <mathjax>$$
-\sum_{\varphi(p) = p - 1}^{\min\{n,\;m\}}\sum_{x=1}^n\sum_{y=1}^m \left[ \gcd(x,\;y) = p \right] \tag{11.2}
+\sum_{\varphi(p) = p - 1}^{\min\{n,\;m\}}\sum_{x=1}^n\sum_{y=1}^m \leqslantft[ \gcd(x,\;y) = p \right] \tag{11.2}
 $$</mathjax></p>
 <p>由于<mathjax>$\gcd(x,\;y) = p \Longrightarrow \gcd(x/p,\;y/p) = 1$</mathjax>，所以就变成了枚举互质的数的对数：<br />
 <mathjax>$$
-\sum_{\varphi(p) = p - 1}^{\min\{n,\;m\}}\sum_{x=1}^{\left\lfloor \frac{n}p\right\rfloor}\sum_{y=1}^{\left\lfloor \frac{m}p \right\rfloor} \left[ \gcd(x,\;y) = 1 \right] \tag{11.3}
+\sum_{\varphi(p) = p - 1}^{\min\{n,\;m\}}\sum_{x=1}^{\leqslantft\lfloor \frac{n}p\right\rfloor}\sum_{y=1}^{\leqslantft\lfloor \frac{m}p \right\rfloor} \leqslantft[ \gcd(x,\;y) = 1 \right] \tag{11.3}
 $$</mathjax></p>
 <p>由于莫比乌斯函数有这样的性质：<br />
 <mathjax>$$
@@ -459,23 +459,23 @@ $$</mathjax></p>
 $$</mathjax></p>
 <p>所以可以使用莫比乌斯函数来测试一个数是否为<mathjax>$1$</mathjax>：<br />
 <mathjax>$$
-\sum_{\varphi(p) = p - 1}^{\min\{n,\;m\}}\sum_{x=1}^{\left\lfloor \frac{n}p\right\rfloor}\sum_{y=1}^{\left\lfloor \frac{m}p \right\rfloor} \sum_{d \mid \gcd(x,\;y)} \mu(d) \tag{11.5}
+\sum_{\varphi(p) = p - 1}^{\min\{n,\;m\}}\sum_{x=1}^{\leqslantft\lfloor \frac{n}p\right\rfloor}\sum_{y=1}^{\leqslantft\lfloor \frac{m}p \right\rfloor} \sum_{d \mid \gcd(x,\;y)} \mu(d) \tag{11.5}
 $$</mathjax></p>
 <p>因为<mathjax>$d \mid \gcd(x,\;y)$</mathjax>当且仅当<mathjax>$d \mid x$</mathjax>并且<mathjax>$d \mid y$</mathjax>，所以可以变成这样：<br />
 <mathjax>$$
-\sum_{\varphi(p) = p - 1}^{\min\{n,\;m\}}\sum_{x=1}^{\left\lfloor \frac{n}p\right\rfloor}\sum_{y=1}^{\left\lfloor \frac{m}p \right\rfloor} \sum_{d \mid x \,\land\, d \mid y} \mu(d) \tag{11.6}
+\sum_{\varphi(p) = p - 1}^{\min\{n,\;m\}}\sum_{x=1}^{\leqslantft\lfloor \frac{n}p\right\rfloor}\sum_{y=1}^{\leqslantft\lfloor \frac{m}p \right\rfloor} \sum_{d \mid x \,\land\, d \mid y} \mu(d) \tag{11.6}
 $$</mathjax></p>
 <p>现在东西越来越多了，是时候考虑简化一下了。<br />
 首先对于一堆和式的一个技巧就是<strong>调整枚举顺序</strong>。<br />
 尝试先枚举<mathjax>$d$</mathjax>，这样合法的<mathjax>$d$</mathjax>就可以直接计算了：<br />
 <mathjax>$$
-\sum_{\varphi(p) = p - 1}^{\min\{n,\;m\}} \sum_{d=1}^{\min\{n,\;m\}} \left\lfloor \frac{n}{dp} \right\rfloor \left\lfloor \frac{m}{dp} \right\rfloor \mu(d) \tag{11.7}
+\sum_{\varphi(p) = p - 1}^{\min\{n,\;m\}} \sum_{d=1}^{\min\{n,\;m\}} \leqslantft\lfloor \frac{n}{dp} \right\rfloor \leqslantft\lfloor \frac{m}{dp} \right\rfloor \mu(d) \tag{11.7}
 $$</mathjax></p>
 <p>其实这个式子已经可以用来计算答案了。因为两个向下取整的乘积最多有<mathjax>$O(\sqrt{n} + \sqrt{m})$</mathjax>个不同的取值，左边枚举的素数约为<mathjax>$O({n \over \ln n})$</mathjax>个，故根据此公式计算的时间复杂度为<mathjax>$O({n (\sqrt{n} + \sqrt{m}) \over \ln n})$</mathjax>。<br />
 然而我们可以做得更快一些。<br />
 设<mathjax>$T = dp$</mathjax>，现在改成先枚举<mathjax>$T$</mathjax>：<br />
 <mathjax>$$
-\sum_{T = 1}^{\min\{n,\;m\}} \left\lfloor \frac{n}T \right\rfloor \left\lfloor \frac{m}T \right\rfloor \sum_{p \mid T,\;\varphi(p) = p - 1} \mu(T / p) \tag{11.8}
+\sum_{T = 1}^{\min\{n,\;m\}} \leqslantft\lfloor \frac{n}T \right\rfloor \leqslantft\lfloor \frac{m}T \right\rfloor \sum_{p \mid T,\;\varphi(p) = p - 1} \mu(T / p) \tag{11.8}
 $$</mathjax></p>
 <p>这样左边就可以在<mathjax>$O(\sqrt{n} + \sqrt{m})$</mathjax>的时间内进行枚举。<br />
 枚举大概是这样的一个过程：</p>
@@ -587,7 +587,7 @@ $$</mathjax></p>
 <li><a href="#_3">卷积</a></li>
 <li><a href="#_4">莫比乌斯反演公式</a></li>
 <li><a href="#_5">偏序集直积</a></li>
-<li><a href="#x_nle">在$(X_n,\;\le)$上的莫比乌斯函数</a></li>
+<li><a href="#x_nleqslant">在$(X_n,\;\leqslant)$上的莫比乌斯函数</a></li>
 <li><a href="#x_nsubseteq">在$(X_n,\;\subseteq)$上的莫比乌斯函数</a></li>
 <li><a href="#x_nmid">在$(X_n,\;\mid)$上的莫比乌斯函数</a></li>
 <li><a href="#_6">反演示例：容斥原理</a></li>

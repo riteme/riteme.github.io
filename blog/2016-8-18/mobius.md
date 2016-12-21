@@ -13,15 +13,15 @@ tags: 数学
 
 ## 偏序集
 这里的莫比乌斯反演是从关联代数的角度来介绍的。首先介绍一个基础的概念：偏序集。
-它通常写作$(X_n,\;\le)$，其中$X_n$是一个有限或者无限的集合，$\le$是代指偏序关系，而**不是特指小于等于符号**。
-所谓偏序关系，就是指$a,\;b,\;c \in X_n$并且$a \le b,\;b \le c$，有$a \le c$的性质的关系。
-这种偏序关系一般是比较符$\le$、集合的$\subseteq$符号和整除$\;\mid\;$。
+它通常写作$(X_n,\;\leqslant)$，其中$X_n$是一个有限或者无限的集合，$\leqslant$是代指偏序关系，而**不是特指小于等于符号**。
+所谓偏序关系，就是指$a,\;b,\;c \in X_n$并且$a \leqslant b,\;b \leqslant c$，有$a \leqslant c$的性质的关系。
+这种偏序关系一般是比较符$\leqslant$、集合的$\subseteq$符号和整除$\;\mid\;$。
 
 ## 卷积
-对于定义在偏序集$(X_n,\;\le)$上的二元函数$f(x,\;y)$，我们假定当$x \not\le y$时，$f(x,\;y)$均为$0$，这样是为了方便我们之后的讨论。
-考虑偏序集$(X_n, \le)$上的二元函数$f(x,\;y)$和$g(x,\;y)$，定义它们的卷积为：
+对于定义在偏序集$(X_n,\;\leqslant)$上的二元函数$f(x,\;y)$，我们假定当$x \not\leqslant y$时，$f(x,\;y)$均为$0$，这样是为了方便我们之后的讨论。
+考虑偏序集$(X_n, \leqslant)$上的二元函数$f(x,\;y)$和$g(x,\;y)$，定义它们的卷积为：
 $$
-(f \times g)(x,\;y) = \sum_{x \le z \le y} f(x,\;z)g(z,\;y) \tag{2.1}
+(f \times g)(x,\;y) = \sum_{x \leqslant z \leqslant y} f(x,\;z)g(z,\;y) \tag{2.1}
 $$
 
 这个卷积满足结合律：
@@ -43,7 +43,7 @@ $$
 
 $\zeta$ (zeta) 函数：
 $$
-\zeta(x,\;y) = [x \le y] \tag{2.4}
+\zeta(x,\;y) = [x \leqslant y] \tag{2.4}
 $$
 
 以及莫比乌斯$\mu$函数是定义为$\zeta$函数的**逆函数**，即：
@@ -54,66 +54,66 @@ $$
 展开卷积可得：
 $$
 \begin{align}
-\delta = \mu \times \zeta \Longrightarrow \delta(x,\;y) & = \sum_{x \le z \le y} \mu(x,\;z)\zeta(z,\;y) \\
-& = \sum_{x \le z \le y} \mu(x,\;z)
+\delta = \mu \times \zeta \Longrightarrow \delta(x,\;y) & = \sum_{x \leqslant z \leqslant y} \mu(x,\;z)\zeta(z,\;y) \\
+& = \sum_{x \leqslant z \leqslant y} \mu(x,\;z)
 \end{align}
 $$
 
 因此，当$x \neq y$时：
 $$
-\mu(x,\;y) = - \sum_{x \le z \lt y} \mu(x,\;z) \tag{2.6}
+\mu(x,\;y) = - \sum_{x \leqslant z \lt y} \mu(x,\;z) \tag{2.6}
 $$
 
 ## 莫比乌斯反演公式
 > **(莫比乌斯反演公式)**
-> 对于有限偏序集$(X_n,\;\le)$上的两个函数$F(x,\;y)$和$G(x,\;y)$，如果：
-> $$ G(x,\;y) = \sum_{x \le z \le y} F(x,\;z) \tag{3.1}$$
+> 对于有限偏序集$(X_n,\;\leqslant)$上的两个函数$F(x,\;y)$和$G(x,\;y)$，如果：
+> $$ G(x,\;y) = \sum_{x \leqslant z \leqslant y} F(x,\;z) \tag{3.1}$$
 > 
 > 那么：
-> $$F(x,\;y) = \sum_{x \le z \le y} G(x,\;z)\mu(z,\;y)  = (G \times \mu)(x,\;y) \tag{3.2}$$
+> $$F(x,\;y) = \sum_{x \leqslant z \leqslant y} G(x,\;z)\mu(z,\;y)  = (G \times \mu)(x,\;y) \tag{3.2}$$
 
 **证明** 首先将式子展开：
 $$
 \begin{align}
-F(x,\;y) & = \sum_{x \le z \le y} G(x,\;z)\mu(z,\;y) \\
-& = \sum_{x \le z \le y} \mu(z,\;y) \sum_{x \le m \le z} F(x,\;m)
+F(x,\;y) & = \sum_{x \leqslant z \leqslant y} G(x,\;z)\mu(z,\;y) \\
+& = \sum_{x \leqslant z \leqslant y} \mu(z,\;y) \sum_{x \leqslant m \leqslant z} F(x,\;m)
 \end{align}
 $$
 
 我们使用$\zeta$函数来表示上下界，于是式子改写为以下形式：
 $$
-\sum_{x \le z \le y} \mu(z,\;y) \sum_{m \in X_n} F(x,\;m)\zeta(x,\;m)\zeta(m,\;z)
+\sum_{x \leqslant z \leqslant y} \mu(z,\;y) \sum_{m \in X_n} F(x,\;m)\zeta(x,\;m)\zeta(m,\;z)
 $$
 
 改变求和的枚举顺序，先枚举$m$，其值依然不变：
 $$
-\sum_{m \in X_n} \sum_{x \le z \le y} \zeta(m,\;z)\mu(z,\;y)\zeta(x,\;m)F(x,\;m)
+\sum_{m \in X_n} \sum_{x \leqslant z \leqslant y} \zeta(m,\;z)\mu(z,\;y)\zeta(x,\;m)F(x,\;m)
 $$
 
-由于当$m \lt x$的时候$\zeta(x,\;m)$为$0$，因此只用考虑$m \ge x$。
-并且当$m \ge x$时，$z \ge m$必需成立。
+由于当$m \lt x$的时候$\zeta(x,\;m)$为$0$，因此只用考虑$m \geqslant x$。
+同理，我们可以得出$z \geqslant m$是必须的。
 因此可以改写下界：
 $$
-\sum_{m \in X_n} \sum_{m \le z \le y} \zeta(m,\;z)\mu(z,\;y)F(x,\;m)
+\sum_{m \in X_n} \sum_{m \leqslant z \leqslant y} \zeta(m,\;z)\mu(z,\;y)F(x,\;m)
 $$
 
 然后变成了卷积的形式：
 $$
 \begin{align}
-\sum_{m \in X_n} F(x,\;m) \sum_{m \le z \le y} \zeta(m,\;z)\mu(z,\;y) & = \sum_{m \in X_n} F(x,\;m) \delta(m,\;y) \\
+\sum_{m \in X_n} F(x,\;m) \sum_{m \leqslant z \leqslant y} \zeta(m,\;z)\mu(z,\;y) & = \sum_{m \in X_n} F(x,\;m) \delta(m,\;y) \\
 & = F(x,\;y)
 \end{align}
 $$
 
 当$m = y$时，$\delta(m,\;y)$才为$1$，所以综上所述：
 $$
-F(x,\;y) = \sum_{x \le z \le y} G(x,\;z)\mu(z,\;y) \tag{3.2}
+F(x,\;y) = \sum_{x \leqslant z \leqslant y} G(x,\;z)\mu(z,\;y) \tag{3.2}
 $$
 
 ## 偏序集直积
-对于两个偏序集$(A,\;\le_1)$和$(B,\;\le_2)$，它们的直积$C = A \times B = (A \times B,\;\le)$也是偏序集，其中的元素为$(x,\;y)\;\;(x \in A,\;y \in B)$。其关系$\le$的定义如下：
+对于两个偏序集$(A,\;\leqslant_1)$和$(B,\;\leqslant_2)$，它们的直积$C = A \times B = (A \times B,\;\leqslant)$也是偏序集，其中的元素为$(x,\;y)\;\;(x \in A,\;y \in B)$。其关系$\leqslant$的定义如下：
 $$
-(x_1,\;y_1) \le (x_2,\;y_2) \Longleftrightarrow x_1 \le_1 x_2 \land y_1 \le_2 y_2
+(x_1,\;y_1) \leqslant (x_2,\;y_2) \Longleftrightarrow x_1 \leqslant_1 x_2 \land y_1 \leqslant_2 y_2
 $$
 
 对于偏序集的直积，我们有以下定理：
@@ -121,16 +121,16 @@ $$
 > 设$A$和$B$的莫比乌斯函数分别为$\mu_1$和$\mu_2$，那么$C$的莫比乌斯函数满足：
 > $$\mu((x_1,\;y_1),\;(x_2,\;y_2)) = \mu_1(x_1,\;x_2)\mu(y_1,\;y_2) \tag{4.1}$$
 
-**证明** 对于$(x_1,\;y_1) \not\le (x_2,\;y_2)$和$(x_1,\;y_1) = (x_2,\;y_2)$的情况，上式显然成立。
-假设对于满足$(x_1,\;y_1) \le (u,\;v) \lt (x_2,\;y_2)$的二元组均满足，那么有：
+**证明** 对于$(x_1,\;y_1) \not\leqslant (x_2,\;y_2)$和$(x_1,\;y_1) = (x_2,\;y_2)$的情况，上式显然成立。
+假设对于满足$(x_1,\;y_1) \leqslant (u,\;v) \lt (x_2,\;y_2)$的二元组均满足，那么有：
 $$
 \begin{align}
-\mu((x_1,\;y_1),\;(x_2,\;y_2)) & = - \sum_{(x_1,\;y_1) \le (u,\;v) \lt (x_2,\;y_2)} \mu((x_1,\;y_1),\;(u,\;v)) \\
-& = - \sum_{(x_1,\;y_1) \le (u,\;v) \lt (x_2,\;y_2)} \mu_1(x_1,\;u)\mu_2(y_1,\;v) & (\text{根据归纳假设}) \\
-& = - \sum_{x_1 \le_1 u \lt_1 x_2} \sum_{y_1 \le_2 v \lt_2 y_2} \mu_1(x_1,\;u)\mu_2(y_1,\;v) & (\text{分别枚举}) \\
-& =  - \sum_{x_1 \le_1 u \le_1 x_2} \sum_{y_1 \le_2 v \le_2 y_2} \mu_1(x_1,\;u)\mu_2(y_1,\;v) \\
-&\;\;\;\, + \mu_1(x_1,\;x_2)\sum_{y_1 \le_2 v \le_2 y_2} \mu_2(y_1,\;v) \\
-&\;\;\;\, + \mu_2(y_1,\;y_2)\sum_{x_1 \le_1 u \le_1 x_2} \mu_1(x_1,\;u) \\
+\mu((x_1,\;y_1),\;(x_2,\;y_2)) & = - \sum_{(x_1,\;y_1) \leqslant (u,\;v) \lt (x_2,\;y_2)} \mu((x_1,\;y_1),\;(u,\;v)) \\
+& = - \sum_{(x_1,\;y_1) \leqslant (u,\;v) \lt (x_2,\;y_2)} \mu_1(x_1,\;u)\mu_2(y_1,\;v) & (\text{根据归纳假设}) \\
+& = - \sum_{x_1 \leqslant_1 u \lt_1 x_2} \sum_{y_1 \leqslant_2 v \lt_2 y_2} \mu_1(x_1,\;u)\mu_2(y_1,\;v) & (\text{分别枚举}) \\
+& =  - \sum_{x_1 \leqslant_1 u \leqslant_1 x_2} \sum_{y_1 \leqslant_2 v \leqslant_2 y_2} \mu_1(x_1,\;u)\mu_2(y_1,\;v) \\
+&\;\;\;\, + \mu_1(x_1,\;x_2)\sum_{y_1 \leqslant_2 v \leqslant_2 y_2} \mu_2(y_1,\;v) \\
+&\;\;\;\, + \mu_2(y_1,\;y_2)\sum_{x_1 \leqslant_1 u \leqslant_1 x_2} \mu_1(x_1,\;u) \\
 &\;\;\;\, + \mu_1(x_1,\;x_2)\mu_2(y_1,\;y_2) & (\text{扩展上界})
 \end{align}
 $$
@@ -139,15 +139,15 @@ $$
 $$
 \begin{align}
 0
-& = \sum_{y_1 \le_2 v \le_2 y_2} \mu_2(y_1,\;v) \\
-& = \sum_{x_1 \le_1 u \le_1 x_2} \mu_1(x_1,\;u)  \\ 
-& = \sum_{x_1 \le_1 u \le_1 x_2} \sum_{y_1 \le_2 v \le_2 y_2} \mu_1(x_1,\;u)\mu_2(y_1,\;v) 
+& = \sum_{y_1 \leqslant_2 v \leqslant_2 y_2} \mu_2(y_1,\;v) \\
+& = \sum_{x_1 \leqslant_1 u \leqslant_1 x_2} \mu_1(x_1,\;u)  \\ 
+& = \sum_{x_1 \leqslant_1 u \leqslant_1 x_2} \sum_{y_1 \leqslant_2 v \leqslant_2 y_2} \mu_1(x_1,\;u)\mu_2(y_1,\;v) 
 \end{align}
 $$
 
 所以定理成立。
 
-## 在$(X_n,\;\le)$上的莫比乌斯函数
+## 在$(X_n,\;\leqslant)$上的莫比乌斯函数
 注意这里的是真正的小于等于号了......
 这个比较智障，分析一下就好了：
 对于$y = x$，我们有：
@@ -162,7 +162,7 @@ $$
 
 对于$y = x + 2$，我们有：
 $$
-\mu(x,\;y) = \mu(x,\;x + 2) = -\left[\mu(x,\;x) + \mu(x,\;x + 1)\right] = 0
+\mu(x,\;y) = \mu(x,\;x + 2) = -\leqslantft[\mu(x,\;x) + \mu(x,\;x + 1)\right] = 0
 $$
 
 不难发现，对于$y \gt x + 1$的函数值就全都变为$0$了。
@@ -188,13 +188,13 @@ $$
 \mu(A, B) = \mu(A, A) = 1 = (-1)^0
 $$
 
-假设对于$|B| - |A| \le k$均成立，尝试证明对于$|B| - |A| = k + 1$也成立：
+假设对于$|B| - |A| \leqslant k$均成立，尝试证明对于$|B| - |A| = k + 1$也成立：
 $$
 \begin{align}
 \mu(A,\;B) & = -\sum_{A \subseteq C \subset B} \mu(A,\;C) \\
 & = -\sum_{A \subseteq C \subset B} (-1)^{|C| - |A|} \\
 & = -\sum_{i = 0}^{k} {k + 1 \choose i}(-1)^i \\
-& = -\left[(1 - 1)^{k + 1} - (-1)^{k + 1} \right] \\
+& = -\leqslantft[(1 - 1)^{k + 1} - (-1)^{k + 1} \right] \\
 & = (-1)^{k + 1} \\
 & = (-1)^{|B| - |A|}
 \end{align}
@@ -222,7 +222,7 @@ $$
 
 对于$n$的任意一个因子$d$都有：
 $$
-d = p_1^{\beta_1}p_2^{\beta_2}\cdots p_m^{\beta_m} \;\;\;\; (0 \le \beta_i \le \alpha_i)
+d = p_1^{\beta_1}p_2^{\beta_2}\cdots p_m^{\beta_m} \;\;\;\; (0 \leqslant \beta_i \leqslant \alpha_i)
 $$
 
 相当于可以看作$m$个大小为$\alpha_1 + 1,\;\alpha_2 + 1,\;\dots,\;\alpha_m + 1$的偏序集的直积的结果。
@@ -235,7 +235,7 @@ $$
 $$
 \mu(1,\;1) = 1 \\
 \mu(1,\;p) = -\mu(1,\;1) = -1 \;\; \\
-\mu(1,\;p^2) = -\left[ \mu(1,\;1) + \mu(1,\;p) \right] = 0 \\
+\mu(1,\;p^2) = -\leqslantft[ \mu(1,\;1) + \mu(1,\;p) \right] = 0 \\
 \dots
 $$
 
@@ -283,7 +283,7 @@ $$
 
 即：
 $$
-F(K) = \left| \bigcap_{i \not\in K} A_i - \bigcup_{i \in K} A_i \right| \tag{8.1}
+F(K) = \leqslantft| \bigcap_{i \not\in K} A_i - \bigcup_{i \in K} A_i \right| \tag{8.1}
 $$
 
 如何脑补这个函数？可以想象成是用$K$把$S$中的很多东西挖走了，然后剩下的集合再求交集。
@@ -294,7 +294,7 @@ $$
 
 这货居然计数的是：
 $$
-G(K) = \left| \bigcap_{i \not\in K} A_i \right| \tag{8.3}
+G(K) = \leqslantft| \bigcap_{i \not\in K} A_i \right| \tag{8.3}
 $$
 
 如何脑补其正确性？可以想象是一个智障用$K$把本来属于它们交集的东西挖去了，然后又一个一个吐出来，于是就还原了原本的交集......
@@ -310,12 +310,12 @@ $$
 
 这个时候的$F(K)$计数的东西有了新的含义：
 $$
-F(K) = \left|\bigcup_{i \in K} A_i\right| = \left|\bigcap_{i \in K} \overline{A}_i \right| \tag{8.5}
+F(K) = \leqslantft|\bigcup_{i \in K} A_i\right| = \leqslantft|\bigcap_{i \in K} \overline{A}_i \right| \tag{8.5}
 $$
 
 用$F(K)$和$G(K)$本身的含义来替换，就可以得到**容斥原理** (感觉好神奇)：
 $$
-\left|\bigcap_{i = 1}^n \overline{A}_i \right| = \sum_{K \subseteq \{1,\;,2,\;,\dots,\;n\}} (-1)^{|K|} \left| \bigcap_{i \in K} A_i \right| \tag{8.6}
+\leqslantft|\bigcap_{i = 1}^n \overline{A}_i \right| = \sum_{K \subseteq \{1,\;,2,\;,\dots,\;n\}} (-1)^{|K|} \leqslantft| \bigcap_{i \in K} A_i \right| \tag{8.6}
 $$
 
 ## 反演示例：$\varphi(n)$通项公式
@@ -377,17 +377,17 @@ $$
 设$n = p_1^{k_1}p_2^{k_2}\cdots p_m^{k_m}$。
 因此可以得到下面的式子：
 $$
-\varphi(n) = n\left[1 - \sum \frac1{p_i} + \sum \frac1{p_ip_j} - \cdots + (-1)^{m}\sum \frac1{\prod_{i=1}^m p_i} \right] \tag{9.2}
+\varphi(n) = n\leqslantft[1 - \sum \frac1{p_i} + \sum \frac1{p_ip_j} - \cdots + (-1)^{m}\sum \frac1{\prod_{i=1}^m p_i} \right] \tag{9.2}
 $$
 
 这恰好是下面的式子展开的形式：
 $$
-\varphi(n) = n\prod_{i=1}^m \left( 1 - \frac1{p_i} \right) \tag{9.3}
+\varphi(n) = n\prod_{i=1}^m \leqslantft( 1 - \frac1{p_i} \right) \tag{9.3}
 $$
 
 因此：
 $$
-\varphi(n) = n\prod_{p \mid n,\;\varphi(p) = p - 1} \left( 1 - \frac1p\right) \tag{9.4}
+\varphi(n) = n\prod_{p \mid n,\;\varphi(p) = p - 1} \leqslantft( 1 - \frac1p\right) \tag{9.4}
 $$
 
 ## 反演示例：多重集合的循环排列
@@ -449,21 +449,21 @@ $$
 除了莫比乌斯反演公式，莫比乌斯函数本身的性质也是很好的。
 考虑下面一个问题：
 
-> 给定$n$和$m$，求$\gcd(x,\;y)\;\;(1 \le x \le n,\;1 \le y \le m)$为**素数**的二元组$(x,\;y)$个数。
+> 给定$n$和$m$，求$\gcd(x,\;y)\;\;(1 \leqslant x \leqslant n,\;1 \leqslant y \leqslant m)$为**素数**的二元组$(x,\;y)$个数。
 
 换言之，我们要求的是这个：
 $$
-\sum_{x=1}^n\sum_{y=1}^m \left[\varphi(\gcd(x,\;y)) = \gcd(x,\;y) - 1\right] \tag{11.1}
+\sum_{x=1}^n\sum_{y=1}^m \leqslantft[\varphi(\gcd(x,\;y)) = \gcd(x,\;y) - 1\right] \tag{11.1}
 $$
 
 首先，我们可以换个思路，就是枚举最大公约数的答案：
 $$
-\sum_{\varphi(p) = p - 1}^{\min\{n,\;m\}}\sum_{x=1}^n\sum_{y=1}^m \left[ \gcd(x,\;y) = p \right] \tag{11.2}
+\sum_{\varphi(p) = p - 1}^{\min\{n,\;m\}}\sum_{x=1}^n\sum_{y=1}^m \leqslantft[ \gcd(x,\;y) = p \right] \tag{11.2}
 $$
 
 由于$\gcd(x,\;y) = p \Longrightarrow \gcd(x/p,\;y/p) = 1$，所以就变成了枚举互质的数的对数：
 $$
-\sum_{\varphi(p) = p - 1}^{\min\{n,\;m\}}\sum_{x=1}^{\left\lfloor \frac{n}p\right\rfloor}\sum_{y=1}^{\left\lfloor \frac{m}p \right\rfloor} \left[ \gcd(x,\;y) = 1 \right] \tag{11.3}
+\sum_{\varphi(p) = p - 1}^{\min\{n,\;m\}}\sum_{x=1}^{\leqslantft\lfloor \frac{n}p\right\rfloor}\sum_{y=1}^{\leqslantft\lfloor \frac{m}p \right\rfloor} \leqslantft[ \gcd(x,\;y) = 1 \right] \tag{11.3}
 $$
 
 由于莫比乌斯函数有这样的性质：
@@ -473,26 +473,26 @@ $$
 
 所以可以使用莫比乌斯函数来测试一个数是否为$1$：
 $$
-\sum_{\varphi(p) = p - 1}^{\min\{n,\;m\}}\sum_{x=1}^{\left\lfloor \frac{n}p\right\rfloor}\sum_{y=1}^{\left\lfloor \frac{m}p \right\rfloor} \sum_{d \mid \gcd(x,\;y)} \mu(d) \tag{11.5}
+\sum_{\varphi(p) = p - 1}^{\min\{n,\;m\}}\sum_{x=1}^{\leqslantft\lfloor \frac{n}p\right\rfloor}\sum_{y=1}^{\leqslantft\lfloor \frac{m}p \right\rfloor} \sum_{d \mid \gcd(x,\;y)} \mu(d) \tag{11.5}
 $$
 
 因为$d \mid \gcd(x,\;y)$当且仅当$d \mid x$并且$d \mid y$，所以可以变成这样：
 $$
-\sum_{\varphi(p) = p - 1}^{\min\{n,\;m\}}\sum_{x=1}^{\left\lfloor \frac{n}p\right\rfloor}\sum_{y=1}^{\left\lfloor \frac{m}p \right\rfloor} \sum_{d \mid x \,\land\, d \mid y} \mu(d) \tag{11.6}
+\sum_{\varphi(p) = p - 1}^{\min\{n,\;m\}}\sum_{x=1}^{\leqslantft\lfloor \frac{n}p\right\rfloor}\sum_{y=1}^{\leqslantft\lfloor \frac{m}p \right\rfloor} \sum_{d \mid x \,\land\, d \mid y} \mu(d) \tag{11.6}
 $$
 
 现在东西越来越多了，是时候考虑简化一下了。
 首先对于一堆和式的一个技巧就是**调整枚举顺序**。
 尝试先枚举$d$，这样合法的$d$就可以直接计算了：
 $$
-\sum_{\varphi(p) = p - 1}^{\min\{n,\;m\}} \sum_{d=1}^{\min\{n,\;m\}} \left\lfloor \frac{n}{dp} \right\rfloor \left\lfloor \frac{m}{dp} \right\rfloor \mu(d) \tag{11.7}
+\sum_{\varphi(p) = p - 1}^{\min\{n,\;m\}} \sum_{d=1}^{\min\{n,\;m\}} \leqslantft\lfloor \frac{n}{dp} \right\rfloor \leqslantft\lfloor \frac{m}{dp} \right\rfloor \mu(d) \tag{11.7}
 $$
 
 其实这个式子已经可以用来计算答案了。因为两个向下取整的乘积最多有$O(\sqrt{n} + \sqrt{m})$个不同的取值，左边枚举的素数约为$O({n \over \ln n})$个，故根据此公式计算的时间复杂度为$O({n (\sqrt{n} + \sqrt{m}) \over \ln n})$。
 然而我们可以做得更快一些。
 设$T = dp$，现在改成先枚举$T$：
 $$
-\sum_{T = 1}^{\min\{n,\;m\}} \left\lfloor \frac{n}T \right\rfloor \left\lfloor \frac{m}T \right\rfloor \sum_{p \mid T,\;\varphi(p) = p - 1} \mu(T / p) \tag{11.8}
+\sum_{T = 1}^{\min\{n,\;m\}} \leqslantft\lfloor \frac{n}T \right\rfloor \leqslantft\lfloor \frac{m}T \right\rfloor \sum_{p \mid T,\;\varphi(p) = p - 1} \mu(T / p) \tag{11.8}
 $$
 
 这样左边就可以在$O(\sqrt{n} + \sqrt{m})$的时间内进行枚举。
