@@ -131,9 +131,11 @@ $$
 & =  - \sum_{x_1 \leqslant_1 u \leqslant_1 x_2} \sum_{y_1 \leqslant_2 v \leqslant_2 y_2} \mu_1(x_1,\;u)\mu_2(y_1,\;v) \\
 &\;\;\;\, + \mu_1(x_1,\;x_2)\sum_{y_1 \leqslant_2 v \leqslant_2 y_2} \mu_2(y_1,\;v) \\
 &\;\;\;\, + \mu_2(y_1,\;y_2)\sum_{x_1 \leqslant_1 u \leqslant_1 x_2} \mu_1(x_1,\;u) \\
-&\;\;\;\, + \mu_1(x_1,\;x_2)\mu_2(y_1,\;y_2) & (\text{扩展上界})
+&\;\;\;\, \color{red}{+} \mu_1(x_1,\;x_2)\mu_2(y_1,\;y_2) & (\text{扩展上界})
 \end{align}
 $$
+
+(2016.12.22: 上述证明最后一步展开存在问题 (红色正号)，但是《组合数学》上没有这一步的详细推导，正确的证明方式还请大神们指出)
 
 由于：
 $$
@@ -162,7 +164,7 @@ $$
 
 对于$y = x + 2$，我们有：
 $$
-\mu(x,\;y) = \mu(x,\;x + 2) = -\leqslantft[\mu(x,\;x) + \mu(x,\;x + 1)\right] = 0
+\mu(x,\;y) = \mu(x,\;x + 2) = -\left[\mu(x,\;x) + \mu(x,\;x + 1)\right] = 0
 $$
 
 不难发现，对于$y \gt x + 1$的函数值就全都变为$0$了。
@@ -194,22 +196,42 @@ $$
 \mu(A,\;B) & = -\sum_{A \subseteq C \subset B} \mu(A,\;C) \\
 & = -\sum_{A \subseteq C \subset B} (-1)^{|C| - |A|} \\
 & = -\sum_{i = 0}^{k} {k + 1 \choose i}(-1)^i \\
-& = -\leqslantft[(1 - 1)^{k + 1} - (-1)^{k + 1} \right] \\
+& = -\left[(1 - 1)^{k + 1} - (-1)^{k + 1} \right] \\
 & = (-1)^{k + 1} \\
 & = (-1)^{|B| - |A|}
 \end{align}
 $$
 
 ## 在$(X_n,\;\mid)$上的莫比乌斯函数
-首先我**不会**证这玩意：
+对于$(X_n, \;\mid)$这个偏序集，有如下定理：
 $$
 a \mid b \Longrightarrow \mu(a,\;b) = \mu(1,\;\frac{b}a) \tag{7.1}
 $$
 
-不管了......
-反正它是对的......
+**证明** 我们尝试使用归纳法证明。首先对于$a = b$的情况显然成立：
+$$
+\mu(a,\;b) = \mu(a,\;a) = \mu(1,\;1) = 1
+$$
 
-由于有上面的式子，所以我们只用关心$\mu(1,\;n)$。
+假设对于$a \leqslant c \lt b$的莫比乌斯函数$\mu(a,\;c)$均满足上述定理，下面证明对于$\mu(a,\;b)$也满足。
+根据莫比乌斯函数的性质可得：
+$$
+\mu(a,\;b) = -\sum_{a \mid c \mid b, \;c \neq b} \mu(a,\;c)
+$$
+
+由于$a \mid b$，所以：
+$$
+-\sum_{c \mid (b / a), \;c \neq (b / a)} \mu(a,\;ac)
+$$
+
+根据归纳假设，可以将上式变为：
+$$
+-\sum_{c \mid (b / a), \;c \neq (b / a)} \mu(1,\;c) = \mu(1,\;\frac{b}a)
+$$
+
+因此定理成立。
+
+由于有上面的定理，所以我们只用关心$\mu(1,\;n)$。
 首先可以递归计算：
 $$
 \mu(1,\;n) = -\sum_{a \mid n,\;a\neq n} \mu(1,\;a)
@@ -235,7 +257,7 @@ $$
 $$
 \mu(1,\;1) = 1 \\
 \mu(1,\;p) = -\mu(1,\;1) = -1 \;\; \\
-\mu(1,\;p^2) = -\leqslantft[ \mu(1,\;1) + \mu(1,\;p) \right] = 0 \\
+\mu(1,\;p^2) = -\left[ \mu(1,\;1) + \mu(1,\;p) \right] = 0 \\
 \dots
 $$
 
@@ -283,7 +305,7 @@ $$
 
 即：
 $$
-F(K) = \leqslantft| \bigcap_{i \not\in K} A_i - \bigcup_{i \in K} A_i \right| \tag{8.1}
+F(K) = \left| \bigcap_{i \not\in K} A_i - \bigcup_{i \in K} A_i \right| \tag{8.1}
 $$
 
 如何脑补这个函数？可以想象成是用$K$把$S$中的很多东西挖走了，然后剩下的集合再求交集。
@@ -294,7 +316,7 @@ $$
 
 这货居然计数的是：
 $$
-G(K) = \leqslantft| \bigcap_{i \not\in K} A_i \right| \tag{8.3}
+G(K) = \left| \bigcap_{i \not\in K} A_i \right| \tag{8.3}
 $$
 
 如何脑补其正确性？可以想象是一个智障用$K$把本来属于它们交集的东西挖去了，然后又一个一个吐出来，于是就还原了原本的交集......
@@ -310,12 +332,12 @@ $$
 
 这个时候的$F(K)$计数的东西有了新的含义：
 $$
-F(K) = \leqslantft|\bigcup_{i \in K} A_i\right| = \leqslantft|\bigcap_{i \in K} \overline{A}_i \right| \tag{8.5}
+F(K) = \left|\bigcup_{i \in K} A_i\right| = \left|\bigcap_{i \in K} \overline{A}_i \right| \tag{8.5}
 $$
 
 用$F(K)$和$G(K)$本身的含义来替换，就可以得到**容斥原理** (感觉好神奇)：
 $$
-\leqslantft|\bigcap_{i = 1}^n \overline{A}_i \right| = \sum_{K \subseteq \{1,\;,2,\;,\dots,\;n\}} (-1)^{|K|} \leqslantft| \bigcap_{i \in K} A_i \right| \tag{8.6}
+\left|\bigcap_{i = 1}^n \overline{A}_i \right| = \sum_{K \subseteq \{1,\;,2,\;,\dots,\;n\}} (-1)^{|K|} \left| \bigcap_{i \in K} A_i \right| \tag{8.6}
 $$
 
 ## 反演示例：$\varphi(n)$通项公式
@@ -377,17 +399,17 @@ $$
 设$n = p_1^{k_1}p_2^{k_2}\cdots p_m^{k_m}$。
 因此可以得到下面的式子：
 $$
-\varphi(n) = n\leqslantft[1 - \sum \frac1{p_i} + \sum \frac1{p_ip_j} - \cdots + (-1)^{m}\sum \frac1{\prod_{i=1}^m p_i} \right] \tag{9.2}
+\varphi(n) = n\left[1 - \sum \frac1{p_i} + \sum \frac1{p_ip_j} - \cdots + (-1)^{m}\sum \frac1{\prod_{i=1}^m p_i} \right] \tag{9.2}
 $$
 
 这恰好是下面的式子展开的形式：
 $$
-\varphi(n) = n\prod_{i=1}^m \leqslantft( 1 - \frac1{p_i} \right) \tag{9.3}
+\varphi(n) = n\prod_{i=1}^m \left( 1 - \frac1{p_i} \right) \tag{9.3}
 $$
 
 因此：
 $$
-\varphi(n) = n\prod_{p \mid n,\;\varphi(p) = p - 1} \leqslantft( 1 - \frac1p\right) \tag{9.4}
+\varphi(n) = n\prod_{p \mid n,\;\varphi(p) = p - 1} \left( 1 - \frac1p\right) \tag{9.4}
 $$
 
 ## 反演示例：多重集合的循环排列
@@ -453,17 +475,17 @@ $$
 
 换言之，我们要求的是这个：
 $$
-\sum_{x=1}^n\sum_{y=1}^m \leqslantft[\varphi(\gcd(x,\;y)) = \gcd(x,\;y) - 1\right] \tag{11.1}
+\sum_{x=1}^n\sum_{y=1}^m \left[\varphi(\gcd(x,\;y)) = \gcd(x,\;y) - 1\right] \tag{11.1}
 $$
 
 首先，我们可以换个思路，就是枚举最大公约数的答案：
 $$
-\sum_{\varphi(p) = p - 1}^{\min\{n,\;m\}}\sum_{x=1}^n\sum_{y=1}^m \leqslantft[ \gcd(x,\;y) = p \right] \tag{11.2}
+\sum_{\varphi(p) = p - 1}^{\min\{n,\;m\}}\sum_{x=1}^n\sum_{y=1}^m \left[ \gcd(x,\;y) = p \right] \tag{11.2}
 $$
 
 由于$\gcd(x,\;y) = p \Longrightarrow \gcd(x/p,\;y/p) = 1$，所以就变成了枚举互质的数的对数：
 $$
-\sum_{\varphi(p) = p - 1}^{\min\{n,\;m\}}\sum_{x=1}^{\leqslantft\lfloor \frac{n}p\right\rfloor}\sum_{y=1}^{\leqslantft\lfloor \frac{m}p \right\rfloor} \leqslantft[ \gcd(x,\;y) = 1 \right] \tag{11.3}
+\sum_{\varphi(p) = p - 1}^{\min\{n,\;m\}}\sum_{x=1}^{\left\lfloor \frac{n}p\right\rfloor}\sum_{y=1}^{\left\lfloor \frac{m}p \right\rfloor} \left[ \gcd(x,\;y) = 1 \right] \tag{11.3}
 $$
 
 由于莫比乌斯函数有这样的性质：
@@ -473,26 +495,26 @@ $$
 
 所以可以使用莫比乌斯函数来测试一个数是否为$1$：
 $$
-\sum_{\varphi(p) = p - 1}^{\min\{n,\;m\}}\sum_{x=1}^{\leqslantft\lfloor \frac{n}p\right\rfloor}\sum_{y=1}^{\leqslantft\lfloor \frac{m}p \right\rfloor} \sum_{d \mid \gcd(x,\;y)} \mu(d) \tag{11.5}
+\sum_{\varphi(p) = p - 1}^{\min\{n,\;m\}}\sum_{x=1}^{\left\lfloor \frac{n}p\right\rfloor}\sum_{y=1}^{\left\lfloor \frac{m}p \right\rfloor} \sum_{d \mid \gcd(x,\;y)} \mu(d) \tag{11.5}
 $$
 
 因为$d \mid \gcd(x,\;y)$当且仅当$d \mid x$并且$d \mid y$，所以可以变成这样：
 $$
-\sum_{\varphi(p) = p - 1}^{\min\{n,\;m\}}\sum_{x=1}^{\leqslantft\lfloor \frac{n}p\right\rfloor}\sum_{y=1}^{\leqslantft\lfloor \frac{m}p \right\rfloor} \sum_{d \mid x \,\land\, d \mid y} \mu(d) \tag{11.6}
+\sum_{\varphi(p) = p - 1}^{\min\{n,\;m\}}\sum_{x=1}^{\left\lfloor \frac{n}p\right\rfloor}\sum_{y=1}^{\left\lfloor \frac{m}p \right\rfloor} \sum_{d \mid x \,\land\, d \mid y} \mu(d) \tag{11.6}
 $$
 
 现在东西越来越多了，是时候考虑简化一下了。
 首先对于一堆和式的一个技巧就是**调整枚举顺序**。
 尝试先枚举$d$，这样合法的$d$就可以直接计算了：
 $$
-\sum_{\varphi(p) = p - 1}^{\min\{n,\;m\}} \sum_{d=1}^{\min\{n,\;m\}} \leqslantft\lfloor \frac{n}{dp} \right\rfloor \leqslantft\lfloor \frac{m}{dp} \right\rfloor \mu(d) \tag{11.7}
+\sum_{\varphi(p) = p - 1}^{\min\{n,\;m\}} \sum_{d=1}^{\min\{n,\;m\}} \left\lfloor \frac{n}{dp} \right\rfloor \left\lfloor \frac{m}{dp} \right\rfloor \mu(d) \tag{11.7}
 $$
 
 其实这个式子已经可以用来计算答案了。因为两个向下取整的乘积最多有$O(\sqrt{n} + \sqrt{m})$个不同的取值，左边枚举的素数约为$O({n \over \ln n})$个，故根据此公式计算的时间复杂度为$O({n (\sqrt{n} + \sqrt{m}) \over \ln n})$。
 然而我们可以做得更快一些。
 设$T = dp$，现在改成先枚举$T$：
 $$
-\sum_{T = 1}^{\min\{n,\;m\}} \leqslantft\lfloor \frac{n}T \right\rfloor \leqslantft\lfloor \frac{m}T \right\rfloor \sum_{p \mid T,\;\varphi(p) = p - 1} \mu(T / p) \tag{11.8}
+\sum_{T = 1}^{\min\{n,\;m\}} \left\lfloor \frac{n}T \right\rfloor \left\lfloor \frac{m}T \right\rfloor \sum_{p \mid T,\;\varphi(p) = p - 1} \mu(T / p) \tag{11.8}
 $$
 
 这样左边就可以在$O(\sqrt{n} + \sqrt{m})$的时间内进行枚举。
@@ -510,13 +532,13 @@ while i <= min(n, m):
 我们企图能使右边快速计算。因此我们来研究一下右边这个玩意。
 设：
 $$
-g(x) = \sum_{p \mid x,\;\varphi(p) = p - 1} \mu(p) \tag{11.9}
+g(x) = \sum_{p \mid x,\;\varphi(p) = p - 1} \mu(x/p) \tag{11.9}
 $$
 
 考虑使用线性筛来计算$g(x)$。
 
 1. 当$x = 1$时，$g(x) = 0$。
-2. 当$x$为素数时，$g(x) = -1$。
+2. 当$x$为素数时，$g(x) = 1$。
 3. 在线性筛的处理过程中，设当前数为$i$，枚举到的素数为$p$，我们将要计算$g(ip)$：
     1. 当$\mu(i) = 0$时，说明$i$的质因数分解中至少存在一个一个素因子的次数大于$1$。
        在这种情况下，除非**只有一个**素因子的次数为$2$，其它均为$1$，否则无论如何$g$的函数值都为$0$。
