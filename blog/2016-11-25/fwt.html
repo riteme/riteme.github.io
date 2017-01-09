@@ -455,26 +455,8 @@ $$</mathjax></p>
 <p>当然这里给出版本不是常数上效率最高的，大家可以根据实际情况改写代码。</p>
 <h2 id="_6">其他的位运算</h2>
 <p>之前一直在讨论异或，没有关注与运算和或运算。因为它们的推导过程是一样的。这里就不重复其过程了。</p>
-<p>对于与运算而言：</p>
-<p><mathjax>$$
-T = 
-\left[
-\begin{matrix}
-1 &amp; 0 \\
-1 &amp; 1 \\
-\end{matrix}
-\right] \\
-T^{-1} = 
-\left[
-\begin{matrix}
-1 &amp; 0 \\
--1 &amp; 1 \\
-\end{matrix}
-\right]
-\tag{5.1}
-$$</mathjax></p>
-<p>对于或运算而言：</p>
-<p><mathjax>$$
+<p>对于与运算而言：<br />
+<mathjax>$$
 T = 
 \left[
 \begin{matrix}
@@ -490,6 +472,24 @@ T^{-1} =
 \end{matrix}
 \right]
 \tag{5.2}
+$$</mathjax></p>
+<p>对于或运算而言：<br />
+<mathjax>$$
+T = 
+\left[
+\begin{matrix}
+1 &amp; 0 \\
+1 &amp; 1 \\
+\end{matrix}
+\right] \\
+T^{-1} = 
+\left[
+\begin{matrix}
+1 &amp; 0 \\
+-1 &amp; 1 \\
+\end{matrix}
+\right]
+\tag{5.1}
 $$</mathjax></p>
 <p>实现它们的位运算卷积就只用修改合并的过程即可。</p>
 <div class="footnote">

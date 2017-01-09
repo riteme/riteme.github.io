@@ -405,27 +405,6 @@ def iterative_rfwt(X):
 之前一直在讨论异或，没有关注与运算和或运算。因为它们的推导过程是一样的。这里就不重复其过程了。
 
 对于与运算而言：
-
-$$
-T = 
-\left[
-\begin{matrix}
-1 & 0 \\
-1 & 1 \\
-\end{matrix}
-\right] \\
-T^{-1} = 
-\left[
-\begin{matrix}
-1 & 0 \\
--1 & 1 \\
-\end{matrix}
-\right]
-\tag{5.1}
-$$
-
-对于或运算而言：
-
 $$
 T = 
 \left[
@@ -442,6 +421,25 @@ T^{-1} =
 \end{matrix}
 \right]
 \tag{5.2}
+$$
+
+对于或运算而言：
+$$
+T = 
+\left[
+\begin{matrix}
+1 & 0 \\
+1 & 1 \\
+\end{matrix}
+\right] \\
+T^{-1} = 
+\left[
+\begin{matrix}
+1 & 0 \\
+-1 & 1 \\
+\end{matrix}
+\right]
+\tag{5.1}
 $$
 
 实现它们的位运算卷积就只用修改合并的过程即可。
