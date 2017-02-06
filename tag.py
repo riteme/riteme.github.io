@@ -9,7 +9,7 @@ class Tag(object):
     def __init__(self, text):
         super(Tag, self).__init__()
         self.text = text
-        self._style = "<span class=\"label\">{tag}</span>"
+        self._style = "<a href=\"/search.html?q={tag}\"><span class=\"label\">{tag}</span></a>"
 
     def __str__(self):
         return self._style.format(tag=self.text)
