@@ -85,8 +85,6 @@
 .linenodiv > pre {
     word-wrap: normal;
     word-break: normal;
-    white-space: normal;
-    text-align: right;
 }
 
 td.code {
