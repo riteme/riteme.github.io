@@ -25,7 +25,7 @@
     MathJax.Hub.Config( { tex2jax: { inlineMath: [['$','$']] }, "HTML-CSS": { scale: 95 } } );
   </script>
   <script type="text/javascript" async src="/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-  <script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+  <script src="/jquery/jquery-2.2.4.min.js"></script>
   <script src="/tipuesearch/tipuesearch_set.js"></script>
   <script src="/tipuesearch/tipuesearch.min.js"></script>
 </head>
@@ -47,7 +47,11 @@
     </div>
   </header>
   <div class="mdl-layout__drawer">
-    <span class="mdl-layout-title drawer-title">riteme.site</span>
+    <span class="mdl-layout-title drawer-title">
+      <a href="/index.html" style="color: inherit; font-weight: inherit;text-decoration: none;">
+        <img src="/favicon.png" width=32 height=32> riteme.site
+      </a>
+    </span>
     <nav class="mdl-navigation">
       <a class="mdl-navigation__link" href="/index.html"><i class="material-icons" style="vertical-align: bottom;">home</i> 首页</a>
       <a class="mdl-navigation__link" href="/posts.html"><i class="material-icons" style="vertical-align: bottom;">library_books</i> 所有文章</a>
