@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+
+<script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?72d0c4a099cd676176e657b871326707";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  } )();
+</script>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>无向图最小割 - riteme.site</title>
+  <link rel="shortcut icon" href="/favicon.png" type="image/png">
+  <link rel="stylesheet" href="/material/material-icons.css">
+  <link rel="stylesheet" href="/material/material.min.css" /> 
+  <link href="/tipuesearch/tipuesearch.css" rel="stylesheet" type="text/css">
+  <link href="/css/site.css" rel="stylesheet">
+  <script defer src="/material/material.min.js"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config( { tex2jax: { inlineMath: [['$','$']] }, "HTML-CSS": { scale: 95 } } );
+  </script>
+  <script type="text/javascript" async src="/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+  <script src="/tipuesearch/tipuesearch_set.js"></script>
+  <script src="/tipuesearch/tipuesearch.min.js"></script>
+</head>
+
+<body>
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <span class="mdl-layout-title">无向图最小割</span>
+        <div class="mdl-layout-spacer"></div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+        mdl-textfield--floating-label mdl-textfield--align-right">
+        <label class="mdl-button mdl-js-button mdl-button--icon"
+        for="fixed-header-drawer-exp"><i class="material-icons">search</i></label>
+        <div class="mdl-textfield__expandable-holder">
+          <form action="/search.html"><input type="text" class="mdl-textfield__input" placeholder="Search Here" name="q" id="fixed-header-drawer-exp" autocomplete="off" required></form>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="mdl-layout__drawer">
+    <span class="mdl-layout-title drawer-title">riteme.site</span>
+    <nav class="mdl-navigation">
+      <a class="mdl-navigation__link" href="/index.html"><i class="material-icons" style="vertical-align: bottom;">home</i> 首页</a>
+      <a class="mdl-navigation__link" href="/posts.html"><i class="material-icons" style="vertical-align: bottom;">library_books</i> 所有文章</a>
+      <a class="mdl-navigation__link" href="/about.html"><i class="material-icons" style="vertical-align: bottom;">info</i> 关于</a>
+      <a class="mdl-navigation__link" href="/links.html"><i class="material-icons" style="vertical-align: bottom;">link</i> 友链</a>
+      <a class="mdl-navigation__link" href="/search.html"><i class="material-icons" style="vertical-align: bottom;">search</i> 搜索</a>
+      <a class="mdl-navigation__link" href="https://github.com/riteme/riteme.github.io"><i class="material-icons" style="vertical-align: bottom;">class</i> GitHub项目</a>
+    </nav>
+  </div>
+  <main class="mdl-layout__content">
+    <div class="mdl-grid">
+      <div class="mdl-cell mdl-cell--9-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+        <div class="article">
+          
+<h1 id="_1">无向图最小割</h1>
+<h2 id="_2">基本定义</h2>
+<p>对于一张无向带权图<mathjax>$G = (V, E, w)$</mathjax>，将点集<mathjax>$V$</mathjax>分为两个不相交的集合<mathjax>$S$</mathjax>和<mathjax>$T$</mathjax>，满足<mathjax>$S \cup T = V$</mathjax>，那么称<mathjax>$C = (S, T)$</mathjax>是图<mathjax>$G$</mathjax>的一个<strong>割</strong>。<strong>割的权值</strong>定义为两个端点不在同一集合内的边的权值之和，记做<mathjax>$W(C)$</mathjax>：</p>
+<p><mathjax>$$
+W(C) = \sum_{u \in S, v \in T, (u, v) \in E} w(u, v)
+\tag{1.1}
+$$</mathjax></p>
+<p>对于指定的<mathjax>$s$</mathjax>和<mathjax>$t$</mathjax>，如果存在一个割<mathjax>$C = (S, T)$</mathjax>满足<mathjax>$s \in S, t \in T$</mathjax>或者<mathjax>$s \in T, t \in S$</mathjax>，那么称这个割为<strong><mathjax>$s$</mathjax>-<mathjax>$t$</mathjax>割</strong>。</p>
+<p>对于一张图，权值最小的割称为<strong>最小割</strong>。多数情况下，最小割不是唯一的。</p>
+<p>例如，在下图中：</p>
+<p><img alt="graph-example" src="https://git.oschina.net/riteme/blogimg/raw/master/mincut/graph-example.svg" /></p>
+<p><mathjax>$(\{2\}, \{1,3,4,5,6\})$</mathjax>和<mathjax>$(\{4\}, \{1,2,3,5,6\})$</mathjax>均是最小割，其权值为<mathjax>$3$</mathjax>。而<mathjax>$(\{1,2,3\}, \{4,5,6\})$</mathjax>是一个<mathjax>$1$</mathjax>-<mathjax>$6$</mathjax>最小割，其权值为<mathjax>$51$</mathjax>。</p>
+<p>为了方便，我们对于任意的不相交集合<mathjax>$U$</mathjax>、<mathjax>$V$</mathjax>，要求<mathjax>$U \cup V \subseteq V$</mathjax>，定义它们之间的权值为：</p>
+<p><mathjax>$$
+W(U, V) = \sum_{u \in U, v \in V, (u, v) \in E} w(u, v)
+\tag{1.2}
+$$</mathjax></p>
+<p>换言之。权值是横跨<mathjax>$U$</mathjax>和<mathjax>$V$</mathjax>的边的权值之和。</p>
+<p>现在来考虑一个比较浅显的定理：</p>
+<blockquote>
+<p>对于任意四个不相交集合<mathjax>$S_1$</mathjax>、<mathjax>$T_1$</mathjax>、<mathjax>$S_2$</mathjax>和<mathjax>$T_2$</mathjax>，满足<mathjax>$S_1 \cup T_1 \cup S_2 \cup T_2 \subseteq V$</mathjax>，那么一定有：<br />
+<mathjax>$$ W(S_1, T_1) + W(S_2, T_2) \leqslant W(S_1 \cup S_2, T_1 \cup T_2) \tag{1.3}$$</mathjax></p>
+</blockquote>
+<p><strong>证明</strong>：<br />
+<mathjax>$$
+\begin{aligned}
+&amp; W(S_1 \cup S_2, T_1 \cup T_2) = W(S_1, T_1) + W(S_1, T_2) + W(S_2, T_1) + W(S_2, T_2) \\
+&amp; \because W(S_1, T_2), W(S_2, T_1) \geqslant 0\\
+&amp; \therefore W(S_1 \cup S_2, T_1 \cup T_2) \geqslant W(S_1, T_1) + W(S_2, T_2)
+\end{aligned}
+$$</mathjax></p>
+<h2 id="s-t">求解<mathjax>$s$</mathjax>-<mathjax>$t$</mathjax>最小割</h2>
+<p>利用最大流最小割定理，一个图的<mathjax>$s$</mathjax>-<mathjax>$t$</mathjax>最小割实际上就是将原图建成一个源点为<mathjax>$s$</mathjax>，汇点为<mathjax>$t$</mathjax>的网络上的最大流，因此可以采用各种最大流算法来解决。这里不再详细介绍。</p>
+<h2 id="_3">求解全局最小割</h2>
+<p>所谓全局最小割就是无向图本身的最小割，没有限定<mathjax>$s$</mathjax>和<mathjax>$t$</mathjax>。考虑到一个<mathjax>$s$</mathjax>-<mathjax>$t$</mathjax>最小割可能成为全局最小割，所以可以想出以下的过程：</p>
+<blockquote>
+<ol>
+<li>令<mathjax>$i = 1, w_0 = \infty$</mathjax>。</li>
+<li>如果<mathjax>$|V| \leqslant 1$</mathjax>，返回<mathjax>$\min\{w_0, w_1, \dots, w_{n - 1}\}$</mathjax>。</li>
+<li>随便选定两个点<mathjax>$s$</mathjax>和<mathjax>$t$</mathjax>，求出其<mathjax>$s$</mathjax>-<mathjax>$t$</mathjax>最小割，记权值为<mathjax>$w_i$</mathjax>。</li>
+<li>将<mathjax>$s$</mathjax>和<mathjax>$t$</mathjax>合并，即将<mathjax>$E$</mathjax>中的每条边的<mathjax>$t$</mathjax>改成<mathjax>$s$</mathjax>，并从<mathjax>$V$</mathjax>中删去<mathjax>$t$</mathjax>。</li>
+<li><mathjax>$i = i + 1$</mathjax>，跳回第二步。</li>
+</ol>
+</blockquote>
+<p>这样做的理由是：假设全局最小割为<mathjax>$(S, T)$</mathjax>，那么分两种情况：</p>
+<ol>
+<li>如果<mathjax>$s$</mathjax>和<mathjax>$t$</mathjax>分别在<mathjax>$S$</mathjax>和<mathjax>$T$</mathjax>中，那么<mathjax>$s$</mathjax>-<mathjax>$t$</mathjax>的最小割就是全局最小割。</li>
+<li>如果<mathjax>$s$</mathjax>和<mathjax>$t$</mathjax>同在<mathjax>$S$</mathjax>或<mathjax>$T$</mathjax>内，那么将<mathjax>$s$</mathjax>和<mathjax>$t$</mathjax>合并为一个点后，不会影响割的权值。</li>
+</ol>
+<p>这样我们可以在<mathjax>$\Theta(n)$</mathjax>次网络流内求出最小割。但是由于网络流算法时间复杂度比较高，所以这并不是一个很优的过程。</p>
+<p>考虑到在第三步中，我们实际上并不关心<mathjax>$s$</mathjax>和<mathjax>$t$</mathjax>是谁，我们只在意得到一个<mathjax>$s$</mathjax>-<mathjax>$t$</mathjax>最小割。那么是不是可以实现一个更加高效的方法来求出任意一个<mathjax>$s$</mathjax>-<mathjax>$t$</mathjax>最小割呢？</p>
+<p>现在来考虑以下这个算法：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>function ST-MINCUT(G):
+    assert |V| &gt; 1
+
+    A = {}
+    B = V
+    s = 0
+    t = 0
+    while |B| &gt; 0:
+        p = 0
+        for u in B:
+            if W(A, {u}) &gt; W(A, {p}):  // Assume that W(A, 0) = 0
+                p = u
+
+        A = A ∪ p
+        B = B - {p}
+        s = t
+        t = p
+
+    return (s, t)
+</pre></div>
+</td></tr></table>
+
+<p>该算法会返回一个二元组<mathjax>$(s, t)$</mathjax>，表示<mathjax>$(V - {t}, {t})$</mathjax>是一个<mathjax>$s$</mathjax>-<mathjax>$t$</mathjax>最小割。<br />
+下面我们将证明这是对的：</p>
+<blockquote>
+<p>设<mathjax>$s$</mathjax>和<mathjax>$t$</mathjax>为<code>ST-MINCUT</code>中<mathjax>$A$</mathjax>集合倒数第二个加入的点和最后加入的点，那么<mathjax>$(V - \{t\}, \{t\})$</mathjax>是一个<mathjax>$s$</mathjax>-<mathjax>$t$</mathjax>最小割。</p>
+</blockquote>
+<p><strong>证明</strong><sup id="fnref:mistake"><a class="footnote-ref" href="#fn:mistake" rel="footnote">1</a></sup>：<br />
+我们令<mathjax>$S^\prime = V - \{t\}$</mathjax>、<mathjax>$T^\prime = \{t\}$</mathjax>。对于图中任意一个<mathjax>$s$</mathjax>-<mathjax>$t$</mathjax>割<mathjax>$C = (S, T)$</mathjax>，假设<mathjax>$t \in T$</mathjax>并且<mathjax>$s \in S$</mathjax>。设<mathjax>$t^\prime = v_i$</mathjax>为<mathjax>$T$</mathjax>中除了<mathjax>$t$</mathjax>之外最后被加入<mathjax>$A$</mathjax>的点。令<mathjax>$V_i = \{v_1, v_2, \dots, v_i\}$</mathjax>。此外我们注意到<mathjax>$V_i$</mathjax>实际上是<code>ST-MINCUT</code>算法在<mathjax>$G$</mathjax>关于<mathjax>$V_i$</mathjax>的导出子图上的运行结果。<br />
+这几个集合内的点的一种可能如下表所示：</p>
+<p><mathjax>$$
+\begin{matrix}
+S        &amp; = &amp;     &amp; v_2 &amp;          &amp; \dots  &amp; s &amp;   \\
+T        &amp; = &amp; v_1 &amp;     &amp; t^\prime &amp;        &amp;   &amp; t \\
+S^\prime &amp; = &amp; v_1 &amp; v_2 &amp; v_3      &amp; \dots  &amp; s &amp;   \\
+T^\prime &amp; = &amp;     &amp;     &amp;          &amp;        &amp;   &amp; t \\
+\end{matrix}
+$$</mathjax></p>
+<p>进行归纳假设，对于<mathjax>$|V| = 2$</mathjax>的图，以上结论显然成立。现在假设对于<mathjax>$|V| \lt n$</mathjax>的图均满足，尝试证明对于<mathjax>$|V| = n$</mathjax>的图也满足。</p>
+<p>现在我们要证明<mathjax>$W(S^\prime, T^\prime) \leqslant W(S, T)$</mathjax>，就可以得出算法的正确性。首先注意到：</p>
+<p><mathjax>$$
+W(S, T) \geqslant W(V_i \cap S, V_i \cap T) + W(V_{n - 1} - V_{i - 1}, \{t\})
+\tag{3.1}
+$$</mathjax></p>
+<p>以及：</p>
+<p><mathjax>$$
+W(S^\prime, T^\prime) = W(V_{i - 1}, \{t\}) + W(V_{n - 1} - V_{i - 1}, \{t\})
+\tag{3.2}
+$$</mathjax></p>
+<p>根据归纳假设，我们有：</p>
+<p><mathjax>$$
+W(V_{i - 1}, \{t^\prime\}) \leqslant W(V_i \cap S, V_i \cap T)
+\tag{3.3}
+$$</mathjax></p>
+<p>考虑到算法的<mathjax>$A$</mathjax>变为<mathjax>$V_{i - 1}$</mathjax>时，选择了<mathjax>$t^\prime$</mathjax>而不是<mathjax>$t$</mathjax>加入<mathjax>$A$</mathjax>集合，那么说明：</p>
+<p><mathjax>$$
+W(V_{i - 1}, \{t\}) \leqslant W(V_{i - 1}, \{t^\prime\}) \leqslant W(V_i \cap S, V_i \cap T)
+\tag{3.4}
+$$</mathjax></p>
+<p>综上可知：<br />
+<mathjax>$$
+\begin{aligned}
+W(S^\prime, T^\prime) &amp; = W(V_{i - 1}, \{t\}) + W(V_{n - 1} - V_{i - 1}, \{t\}) \\
+&amp; \leqslant W(V_i \cap S, V_i \cap T) + W(V_{n - 1} - V_{i - 1}, \{t\}) \\
+&amp; \leqslant W(S, T)
+\end{aligned}
+$$</mathjax></p>
+<p>这样，我们可以通过执行<mathjax>$\Theta(n)$</mathjax>次<code>ST-MINCUT</code>算法来找出全局最小割。<code>ST-MINCUT</code>的直接实现是<mathjax>$\Theta(n^2)$</mathjax>的，如果使用二叉堆这种数据结构来实现，那么可以做到<mathjax>$\Theta((n + m) \log n)$</mathjax>的复杂度。这个算法就是Stoer-Wanger算法。</p>
+<h2 id="_4">求解所有点对间最小割</h2>
+<p>对于任意点对<mathjax>$s$</mathjax>和<mathjax>$t$</mathjax>之间的最小割可以通过<mathjax>$\Theta(n^2)$</mathjax>次最大流算法计算出来，但是显然这个算法复杂度非常高。有没有更加快速的算法呢？</p>
+<p>为了方便，令<mathjax>$C(s, t)$</mathjax>表示<mathjax>$s$</mathjax>到<mathjax>$t$</mathjax>的最小割的权值，那么有如下的定理：</p>
+<blockquote>
+<p>在图<mathjax>$G$</mathjax>上有三个不同的点<mathjax>$u$</mathjax>、<mathjax>$v$</mathjax>和<mathjax>$k$</mathjax>，那么：<br />
+<mathjax>$$ C(u, v) = \min\{C(u, k), C(k, v)\} \tag{4.1}$$</mathjax></p>
+</blockquote>
+<p><strong>证明</strong>：<br />
+1. <strong>证明<mathjax>$C(u, v) \geqslant \min\{C(u, k), C(k, v)\}$</mathjax>：</strong><br />
+不失一般性，令<mathjax>$C = (S, T)$</mathjax>为一个<mathjax>$u$</mathjax>-<mathjax>$v$</mathjax>最小割，并且<mathjax>$k$</mathjax>和<mathjax>$u$</mathjax>在同一个集合内，那么存在<mathjax>$C(k, v) \leqslant C(u, v)$</mathjax>。对于<mathjax>$C(u, k)$</mathjax>，如果<mathjax>$C(u, k) \geqslant C(k, v)$</mathjax>，那么不会影响<mathjax>$\min$</mathjax>函数的取值。如果<mathjax>$C(u, k) \lt C(k, v)$</mathjax>，那么存在<mathjax>$C(u, k) \lt C(k, v) \leqslant C(u, v)$</mathjax>，不等式成立。<br />
+2. <strong>证明<mathjax>$C(u, v) \leqslant \min\{C(u, k), C(k, v)\}$</mathjax>：</strong><br />
+与上面相同，令<mathjax>$C = (S, T)$</mathjax>为一个<mathjax>$k$</mathjax>-<mathjax>$v$</mathjax>最小割，并且<mathjax>$k$</mathjax>和<mathjax>$u$</mathjax>在同一个集合内，那么存在<mathjax>$C(u, v) \leqslant C(k, v)$</mathjax>。利用之前的结论，我们得到<mathjax>$C(u, k) \geqslant \min\{C(u, v), C(v, k)\}$</mathjax>，所以我们得到<mathjax>$C(u, v) \leqslant C(u, k)$</mathjax>，不等式成立。</p>
+<p>综上，我们得到<mathjax>$C(u, v) = \min\{C(u, k), C(k, v)\}$</mathjax>。</p>
+<p>将<mathjax>$(4.1)$</mathjax>进一步推广，可以得到：</p>
+<p><mathjax>$$
+C(u, v) = \min\{C(u, k_1), C(k_1, k_2), \dots, C(k_n, v)\}
+\tag{4.2}
+$$</mathjax></p>
+<p><mathjax>$(4.2)$</mathjax>式有什么有？考虑现在对图进行了一次<mathjax>$s$</mathjax>-<mathjax>$t$</mathjax>最小割，那么图的顶点集被划分为了两个不相交的部分<mathjax>$S$</mathjax>和<mathjax>$T$</mathjax>，对于任意的<mathjax>$u \in S$</mathjax>和<mathjax>$v \in T$</mathjax>都有<mathjax>$C(u, v) \leqslant C(s, t)$</mathjax>。构建一个新图，新图中<mathjax>$s$</mathjax>和<mathjax>$t$</mathjax>之间连接一条权值为<mathjax>$C(s, t)$</mathjax>的边。对于其中的一个部分，将另外一个部分的所有点合并为一个点，然后在这张图上继续按照最小割分割。这样我们最后会获得一棵树，其中树上两个点之间的路径上最小的边权为这两个点在原图中的最小割。<br />
+实际上这是Gomory-Hu Tree。维基百科上有一个Gomory-Hu Tree的<a href="https://en.wikipedia.org/wiki/Gomory%E2%80%93Hu_tree#Example">详细构建样例</a>。</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:mistake">
+<p>这个证明是原论文中的证明方式，个人认为其中有一些不妥之处，因为在最后一步时，好像忽略了<mathjax>$w(t^\prime, t)$</mathjax>，导致不等式会不成立。不知道是不是个人的理解上的偏差还是确实有误，如果有看过原证明的大神希望能指点我一下。&#160;<a class="footnote-backref" href="#fnref:mistake" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+          <hr/>
+
+          <div class="ds-thread" data-thread-key="120ef352b6e7dfe23bd7e861fd34b914" data-title="无向图最小割" data-url="http://riteme.github.io/blog/2017-2-12/mincut.html">
+            <script type="text/javascript">
+              var duoshuoQuery = { short_name:"riteme" };
+              (function() {
+               var ds = document.createElement('script');
+               ds.type = 'text/javascript';ds.async = true;
+               ds.src = (
+                 document.location.protocol == 'https:' ? 'https:' : 'http:'
+                 ) + '//static.duoshuo.com/embed.js';
+               ds.charset = 'UTF-8';
+               (document.getElementsByTagName('head')[0]
+                || document.getElementsByTagName('body')[0]).appendChild(ds);
+             } )();
+           </script>
+           <script src="https://dn-hb0716.qbox.me/duoshuo.js"></script>
+         </div>
+       </div>
+     </div>
+
+     <div class="mdl-cell mdl-cell--3-col mdl-cell--hide-tablet mdl-cell--hide-phone">
+       <div class="article">
+        <div class="mdl-card mdl-shadow--3dp" style="width: 100%">
+          <div class="mdl-card__supporting-text">
+            标签: <a href="/search.html?q=最小割"><span class="label">最小割</span></a> <a href="/search.html?q=网络流"><span class="label">网络流</span></a> <a href="/search.html?q=图论"><span class="label">图论</span></a> <a href="/search.html?q=组合优化"><span class="label">组合优化</span></a><br/>
+            创建时间: 2017.02.12<br/>
+            上次修改: 2017.02.12
+          </div>
+        </div>
+
+        <br />
+
+        
+<div class="mdl-card mdl-shadow--3dp" style="width: 100%">
+  <div class="mdl-card__title mdl-card--border">
+    <h4 class="mdl-card__title-text">目录</h4>
+  </div>
+  <div class="mdl-card__supporting-text">
+    <div class="toc">
+<ul>
+<li><a href="#_1">无向图最小割</a><ul>
+<li><a href="#_2">基本定义</a></li>
+<li><a href="#s-t">求解$s$-$t$最小割</a></li>
+<li><a href="#_3">求解全局最小割</a></li>
+<li><a href="#_4">求解所有点对间最小割</a></li>
+</ul>
+</li>
+</ul>
+</div>
+  </div>
+</div>
+
+      </div>
+
+      <div class="return-up-button">
+        <a href="javascript:$('main').animate( { scrollTop: 0 } , 'fast')">
+          <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+            <i class="material-icons">vertical_align_top</i>
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="mdl-mega-footer">
+    <div class="mdl-mega-footer__middle-section">
+      <div class="mdl-mega-footer__drop-down-section">
+        <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+        <h1 class="mdl-mega-footer__heading">RITEME.SITE</h1>
+        一个从不乱说话的博客...
+      </div>
+
+      <div class="mdl-mega-footer__drop-down-section">
+        <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+        <h1 class="mdl-mega-footer__heading">POWERED BY</h1>
+        <ul class="mdl-mega-footer__link-list">
+          <li><a href="http://pythonhosted.org/Markdown/">Python Markdown</a></li>
+          <li><a href="http://getmdl.io/">Material Design Lite</a></li>
+          <li><a href="http://www.tipue.com/search/">Tipuesearch</a></li>
+          <li><a href="http://www.mathjax.org/">MathJax</a></li>
+          <li><a href="http://duoshuo.com/">多说</a></li>
+        </ul>
+      </div>
+
+      <div class="mdl-mega-footer__drop-down-section">
+        <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+        <h1 class="mdl-mega-footer__heading">友情链接</h1>
+        <ul class="mdl-mega-footer__link-list">
+          <li><a href="http://link-arthur.github.io/">Link</a></li>
+          <li><a href="http://ruanxingzhi.github.io/">ruanxingzhi</a></li>
+          <li><a href="http://haogram.hol.es/">Haogram</a></li>
+          <li><a href="http://hjwjbsr.is-programmer.com/">HJWJBSR</a></li>
+          <li><a href="https://www.ianime.co/">Mr.Rabbit</a></li>
+          <li><a href="https://www.linro.xyz/">Linro</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mdl-mega-footer__bottom-section">
+      Theme based on <a href="https://getmdl.io/">MDL</a> | Copyright © 2015-2017 riteme. All rights reserved.
+    </div>
+  </footer>
+</main>
+</div>
+</body>
+</html>
