@@ -222,7 +222,7 @@ $$</mathjax></p>
 C(u, v) = \min\{C(u, k_1), C(k_1, k_2), \dots, C(k_n, v)\}
 \tag{4.2}
 $$</mathjax></p>
-<p><mathjax>$(4.2)$</mathjax>式有什么有？考虑现在对图进行了一次<mathjax>$s$</mathjax>-<mathjax>$t$</mathjax>最小割，那么图的顶点集被划分为了两个不相交的部分<mathjax>$S$</mathjax>和<mathjax>$T$</mathjax>，对于任意的<mathjax>$u \in S$</mathjax>和<mathjax>$v \in T$</mathjax>都有<mathjax>$C(u, v) \leqslant C(s, t)$</mathjax>。构建一个新图，新图中<mathjax>$s$</mathjax>和<mathjax>$t$</mathjax>之间连接一条权值为<mathjax>$C(s, t)$</mathjax>的边。对于其中的一个部分，将另外一个部分的所有点合并为一个点，然后在这张图上继续按照最小割分割。这样我们最后会获得一棵树，其中树上两个点之间的路径上最小的边权为这两个点在原图中的最小割。<br />
+<p><mathjax>$(4.2)$</mathjax>式有什么有？考虑现在对图进行了一次<mathjax>$s$</mathjax>-<mathjax>$t$</mathjax>最小割，那么图的顶点集被划分为了两个不相交的部分<mathjax>$S$</mathjax>和<mathjax>$T$</mathjax>，对于任意的<mathjax>$u \in S$</mathjax>和<mathjax>$v \in T$</mathjax>都有<mathjax>$C(u, v) \leqslant C(s, t)$</mathjax>。构建一个新图，两个集合之间连接一条权值为<mathjax>$C(s, t)$</mathjax>的边。对于其中的一个部分，将另外一个部分的所有点合并为一个点，然后在这张图上继续按照最小割分割。这样我们最后会获得一棵树，其中树上两个点之间的路径上最小的边权为这两个点在原图中的最小割。<br />
 实际上这是Gomory-Hu Tree。维基百科上有一个Gomory-Hu Tree的<a href="https://en.wikipedia.org/wiki/Gomory%E2%80%93Hu_tree#Example">详细构建样例</a>。</p>
 <div class="footnote">
 <hr />
