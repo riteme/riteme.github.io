@@ -204,26 +204,6 @@ W(S^\prime, T^\prime) &amp; = W(V_{i - 1}, \{t\}) + W(V_{n - 1} - V_{i - 1}, \{t
 \end{aligned}
 $$</mathjax></p>
 <p>这样，我们可以通过执行<mathjax>$\Theta(n)$</mathjax>次<code>ST-MINCUT</code>算法来找出全局最小割。<code>ST-MINCUT</code>的直接实现是<mathjax>$\Theta(n^2)$</mathjax>的，如果使用二叉堆这种数据结构来实现，那么可以做到<mathjax>$\Theta((n + m) \log n)$</mathjax>的复杂度。这个算法就是Stoer-Wanger算法。</p>
-<h2 id="_4">求解所有点对间最小割</h2>
-<p>对于任意点对<mathjax>$s$</mathjax>和<mathjax>$t$</mathjax>之间的最小割可以通过<mathjax>$\Theta(n^2)$</mathjax>次最大流算法计算出来，但是显然这个算法复杂度非常高。有没有更加快速的算法呢？</p>
-<p>为了方便，令<mathjax>$C(s, t)$</mathjax>表示<mathjax>$s$</mathjax>到<mathjax>$t$</mathjax>的最小割的权值，那么有如下的定理：</p>
-<blockquote>
-<p>在图<mathjax>$G$</mathjax>上有三个不同的点<mathjax>$u$</mathjax>、<mathjax>$v$</mathjax>和<mathjax>$k$</mathjax>，那么：<br />
-<mathjax>$$ C(u, v) = \min\{C(u, k), C(k, v)\} \tag{4.1}$$</mathjax></p>
-</blockquote>
-<p><strong>证明</strong>：<br />
-1. <strong>证明<mathjax>$C(u, v) \geqslant \min\{C(u, k), C(k, v)\}$</mathjax>：</strong><br />
-不失一般性，令<mathjax>$C = (S, T)$</mathjax>为一个<mathjax>$u$</mathjax>-<mathjax>$v$</mathjax>最小割，并且<mathjax>$k$</mathjax>和<mathjax>$u$</mathjax>在同一个集合内，那么存在<mathjax>$C(k, v) \leqslant C(u, v)$</mathjax>。对于<mathjax>$C(u, k)$</mathjax>，如果<mathjax>$C(u, k) \geqslant C(k, v)$</mathjax>，那么不会影响<mathjax>$\min$</mathjax>函数的取值。如果<mathjax>$C(u, k) \lt C(k, v)$</mathjax>，那么存在<mathjax>$C(u, k) \lt C(k, v) \leqslant C(u, v)$</mathjax>，不等式成立。<br />
-2. <strong>证明<mathjax>$C(u, v) \leqslant \min\{C(u, k), C(k, v)\}$</mathjax>：</strong><br />
-与上面相同，令<mathjax>$C = (S, T)$</mathjax>为一个<mathjax>$k$</mathjax>-<mathjax>$v$</mathjax>最小割，并且<mathjax>$k$</mathjax>和<mathjax>$u$</mathjax>在同一个集合内，那么存在<mathjax>$C(u, v) \leqslant C(k, v)$</mathjax>。利用之前的结论，我们得到<mathjax>$C(u, k) \geqslant \min\{C(u, v), C(v, k)\}$</mathjax>，所以我们得到<mathjax>$C(u, v) \leqslant C(u, k)$</mathjax>，不等式成立。</p>
-<p>综上，我们得到<mathjax>$C(u, v) = \min\{C(u, k), C(k, v)\}$</mathjax>。</p>
-<p>将<mathjax>$(4.1)$</mathjax>进一步推广，可以得到：</p>
-<p><mathjax>$$
-C(u, v) = \min\{C(u, k_1), C(k_1, k_2), \dots, C(k_n, v)\}
-\tag{4.2}
-$$</mathjax></p>
-<p><mathjax>$(4.2)$</mathjax>式有什么有？考虑现在对图进行了一次<mathjax>$s$</mathjax>-<mathjax>$t$</mathjax>最小割，那么图的顶点集被划分为了两个不相交的部分<mathjax>$S$</mathjax>和<mathjax>$T$</mathjax>，对于任意的<mathjax>$u \in S$</mathjax>和<mathjax>$v \in T$</mathjax>都有<mathjax>$C(u, v) \leqslant C(s, t)$</mathjax>。构建一个新图，两个集合之间连接一条权值为<mathjax>$C(s, t)$</mathjax>的边。对于其中的一个部分，将另外一个部分的所有点合并为一个点，然后在这张图上继续按照最小割分割。这样我们最后会获得一棵树，其中树上两个点之间的路径上最小的边权为这两个点在原图中的最小割。<br />
-实际上这是Gomory-Hu Tree。维基百科上有一个Gomory-Hu Tree的<a href="https://en.wikipedia.org/wiki/Gomory%E2%80%93Hu_tree#Example">详细构建样例</a>。</p>
 <div class="footnote">
 <hr />
 <ol>
@@ -278,7 +258,6 @@ $$</mathjax></p>
 <li><a href="#_2">基本定义</a></li>
 <li><a href="#s-t">求解$s$-$t$最小割</a></li>
 <li><a href="#_3">求解全局最小割</a></li>
-<li><a href="#_4">求解所有点对间最小割</a></li>
 </ul>
 </li>
 </ul>

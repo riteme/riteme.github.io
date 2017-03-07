@@ -19,6 +19,10 @@
     font-size: 24px;
 }
 
+.article p, ul, ol {
+    font-size: 16px;
+}
+
 .article img {
     display: block;
     margin: 0 auto;
@@ -26,6 +30,7 @@
 }
 
 .article pre, code {
+    font-size: 16px;
     margin: 2px 5px;
 }
 
@@ -97,9 +102,10 @@ td.code {
     color: #666666;
     border-left: 10px solid #cccccc;
     margin: 0 0 24px 0;
-    padding: 10px 10px 1px 20px;
+    padding-left: 10px;
     font-style: normal;
     font-size: 14px;
+    display: flex;
 }
 
 .article blockquote::before {
@@ -111,7 +117,8 @@ td.code {
 }
 
 .article blockquote > p {
-    margin-bottom: 9px;
+    width: 100%;
+    margin: 9px 0 9px 0;
 }
 
 .article .label {
