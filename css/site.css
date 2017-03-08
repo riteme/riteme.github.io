@@ -102,10 +102,9 @@ td.code {
     color: #666666;
     border-left: 10px solid #cccccc;
     margin: 0 0 24px 0;
-    padding-left: 10px;
+    padding: 1px 0 1px 10px;
     font-style: normal;
     font-size: 14px;
-    display: flex;
 }
 
 .article blockquote::before {
@@ -137,6 +136,8 @@ pre, code {
 
 .footnote li > p {
     margin: 0 auto;
+    color: #666;
+    font-size: 90%;
 }
 
 div.toc ul {
@@ -203,6 +204,14 @@ h3.panel-title {
     font-size: 20px;
     margin-top: 0;
     margin-bottom: 0;
+}
+
+.ds-powered-by {
+    display: none;
+}
+
+.ds-post-button {
+    background-color: #2196f3 !important;
 }
 
 .codehilite .hll { background-color: #ffffcc }
