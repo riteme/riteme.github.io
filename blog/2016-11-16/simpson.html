@@ -108,7 +108,7 @@ $$</mathjax></p>
 $$</mathjax></p>
 <p>于是就是：<br />
 <mathjax>$$
-\int_a^b f(x) \;\mathrm{d}x \approx {b - a \over 6}(f(a) + 4f(m) + f(b))
+\int_a^b f(x) \;\mathrm{d}x = {b - a \over 6}(f(a) + 4f(m) + f(b))
 $$</mathjax></p>
 <p>这就是辛普森法则。</p>
 <h2 id="_4">辛普森积分</h2>
@@ -175,7 +175,7 @@ $$</mathjax></p>
 </pre></div>
 </td></tr></table>
 
-<p>可以发现分为<mathjax>$100000$</mathjax>个区间就获得了<mathjax>$7$</mathjax>位的精度。事实上，如果你将<code>sample</code>换为直线的拟合，你将只能得到<mathjax>$6$</mathjax>的精度。</p>
+<p>可以发现分为<mathjax>$100000$</mathjax>个区间就获得了<mathjax>$7$</mathjax>位的精度。事实上，如果你将<code>sample</code>换为直线的拟合，你将只能得到<mathjax>$6$</mathjax>位的精度。</p>
 <h2 id="_5">自适应辛普森积分</h2>
 <p>然而控制区间个数不是一个控制答案精度的好办法，通常我们将使用特定的<mathjax>$\varepsilon$</mathjax>来控制精度误差。</p>
 <p>如何让算法知道应当继续细分来达到特定精度呢？通常的方法就是将当前区间分为两半，用这两半的拟合值与当前计算的值做差。如果小于<mathjax>$\varepsilon$</mathjax>，那么我们就认为精度达到了要求。否则我们就递归下去，计算两个子区间的积分。注意，此时<mathjax>$\varepsilon$</mathjax>也应当缩小，从而避免累积的误差超过了<mathjax>$\varepsilon$</mathjax>。</p>
@@ -263,7 +263,7 @@ $$</mathjax></p>
 
 <p>可见辛普森积分法是相当迅速的。</p>
 <h2 id="_6">异常情况</h2>
-<p>由于是使用二次函数拟合，所以辛普森积分法对光滑的函数效果较好。但下面集中情况需要谨慎考虑：</p>
+<p>由于是使用二次函数拟合，所以辛普森积分法对光滑的函数效果较好。但下面几种情况需要谨慎考虑：</p>
 <ul>
 <li>上下震荡十分剧烈的函数（如<mathjax>$y = \sin(1/x)$</mathjax>）不适用，事实上这种函数一般都不好积。</li>
 <li>突变的函数（如<mathjax>$y = |x|$</mathjax>，在<mathjax>$x = 0$</mathjax>处无导数）不适用。</li>
