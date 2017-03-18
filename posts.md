@@ -9,6 +9,7 @@ tags: Posts
 ## 所有文章
 ### 2017
 #### 2017-3
+* [拉格朗日插值法](./blog/2017-3-18/lagrange-interpolation.html): 拉格朗日插值公式和其应用，用于求自然数的$k$次幂的前缀和
 * [指数与原根笔记](./blog/2017-3-8/exp-and-primitive-root.html): 数论中有关指数和原根的一些定理和相关算法
 
 #### 2017-2
