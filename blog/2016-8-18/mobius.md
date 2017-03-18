@@ -1,7 +1,7 @@
 ---
 title: 莫比乌斯反演
 create: 2016.8.18
-modified: 2016.8.18
+modified: 2017.3.18
 tags: 数学
       组合数学
       莫比乌斯反演
@@ -510,7 +510,12 @@ $$
 \sum_{\varphi(p) = p - 1}^{\min\{n,\;m\}} \sum_{d=1}^{\min\{n,\;m\}} \left\lfloor \frac{n}{dp} \right\rfloor \left\lfloor \frac{m}{dp} \right\rfloor \mu(d) \tag{11.7}
 $$
 
-其实这个式子已经可以用来计算答案了。因为两个向下取整的乘积最多有$O(\sqrt{n} + \sqrt{m})$个不同的取值，左边枚举的素数约为$O({n \over \ln n})$个，故根据此公式计算的时间复杂度为$O({n (\sqrt{n} + \sqrt{m}) \over \ln n})$。
+其实这个式子已经可以用来计算答案了。注意到对于一个数$n$，$\lfloor n / i \rfloor$的取值最多有$O(\sqrt{n})$种，因为：
+
+1. 如果$i \leqslant \sqrt{n}$，这样的$i$只有$O(\sqrt{n})$种。
+2. 如果$i > \sqrt{n}$，那么$\lfloor n / i \rfloor \leqslant \sqrt{n}$，这样的取值只有$O(\sqrt{n})$种。
+
+所以两个向下取整的乘积最多有$O(\sqrt{n} + \sqrt{m})$个不同的取值，左边枚举的素数约为$O({n \over \ln n})$个，故根据此公式计算的时间复杂度为$O({n (\sqrt{n} + \sqrt{m}) \over \ln n})$。
 然而我们可以做得更快一些。
 设$T = dp$，现在改成先枚举$T$：
 $$
@@ -561,3 +566,129 @@ $$
 
 这样就可以欢快地计算$f$函数啦~
 回到之前的问题，我们能够计算$g(x)$函数后，预处理出它的前缀和，就可以在前面伪代码中展示的迭代过程计算答案了。时间复杂度是$O(\sqrt{n} + \sqrt{m})$。
+
+## 莫比乌斯函数示例：DIVCNT2
+[SPOJ DIVCNT2](http://www.spoj.com/problems/DIVCNT2)
+
+> 要求求出：
+> $$ \sum_{a = 1}^n \sigma(a^2) $$
+>
+> 的值。其中$\sigma(n)$表示$n$的因子个数。
+
+考虑这么几个等式关系：
+$$
+\sigma(n^2) = \sum_{d \mid n} 2^{\omega(d)}
+\tag{12.1}
+$$
+
+其中$\omega(n)$表示$n$的质因子个数。为什么这是正确的呢？考虑每个$n$的因子$d$，$d^2$都是$n^2$的因子。另外，对于任意$n$的任意两个不同的因子，它们的质因数分解中至少有一个素数的次数的差不小于$1$，那么经过平方后，这个差值将不小于$2$。于是它们的平方任意删去一个素数后，是不会冲突的。这样，我们只要对每个$d^2$，都枚举一下删去素数的方案，就可以得到$n^2$的所有因子。答案也就是上式。
+
+$$
+2^{\omega(n)} = \sum_{d \mid n} \mu^2(d)
+\tag{12.2}
+$$
+
+考虑到$\mu$函数的取值：
+$$
+\mu(n) = 
+\begin{cases}
+1 & (n = 1) \\
+(-1)^k & (n = p_1p_2\cdots p_k, \;\;\varphi(p_i) = p_i - 1) \\
+0 & (\text{otherwise})
+\end{cases}
+$$
+
+因此：
+$$
+\mu^2(n) = 
+\begin{cases}
+1 & (n = 1) \\
+1 & (n = p_1p_2\cdots p_k, \;\;\varphi(p_i) = p_i - 1) \\
+0 & (\text{otherwise})
+\end{cases}
+$$
+
+即只要是$d$是素数连乘的形式，就会对答案贡献。否则没有贡献。这也正是$2^{\omega(n)}$想要统计的。
+
+对于省去了第一维的数论函数$f$和$g$，定义它们的**狄利克雷卷积**是下面的形式：
+$$
+(f \times g)(n) = \sum_{d \mid n} f(d)g\left(\frac{n}{d}\right)
+\tag{12.3}
+$$
+
+也就是在偏序集$(X_n, \;\mid)$上的卷积。令$f(n) = \sigma(n^2)$，$g(n) = 2^{\omega(n)}$，$h(n) = \mu^2(n)$以及$\epsilon(n) = 1$，这样我们可以把之前的结果简写为：
+$$
+f = g \times \epsilon \\
+g = h \times \epsilon
+$$
+
+利用卷积的结合律，可以得到：
+$$
+\begin{aligned}
+f & = (h \times \epsilon) \times \epsilon \\
+& = h \times (\epsilon \times \epsilon)
+\end{aligned}
+$$
+
+注意到：
+$$
+\begin{aligned}
+\epsilon \times \epsilon & = \sum_{d \mid n} 1 \\
+& = \sigma(n)
+\end{aligned}
+$$
+
+所以，我们要求的东西也就是：
+$$
+\begin{aligned}
+\sum_{i = 1}^n f(i) & = \sum_{i = 1}^n \sum_{d \mid i} \mu^2(d) \sigma\left({i \over d}\right) \\
+& = \sum_{i = 1}^n \mu^2(i) \sum_{j = 1}^{\left\lfloor {n \over i} \right\rfloor} \sigma(j)
+\end{aligned}
+$$
+
+首先考虑$\sigma(n)$的前缀和如何计算：
+$$
+\sum_{i = 1}^n \sigma(i) = \sum_{i = 1}^n \left\lfloor {n \over i} \right\rfloor
+\tag{12.4}
+$$
+
+由于下取整可以分段，所以可以在$O(\sqrt{n})$的复杂度内计算。
+
+然后考虑$\mu^2(n)$的前缀和如何计算：
+$$
+\sum_{i = 1}^n \mu^2(i) = \sum_{i = 1}^{\sqrt{n}} \mu(i)\left\lfloor {n \over i^2} \right\rfloor
+\tag{12.5}
+$$
+
+这是为什么？结合$\mu^2(n)$的意义，这个前缀和就是统计前$n$个数里面，有多少个数是素数连乘的形式。当$i = 1$时，所有数字均被统计了一遍。然后枚举$1$到$\sqrt{n}$的每个数字，如果不是素数连乘的形式，$\mu(i)$会返回$0$。如果是素数连乘的形式，那么它的任意大于$1$的次数的幂都不是答案，此时应当删去。于是$\mu$函数在此充当了容斥系数。
+
+回到之前的式子：
+$$
+\sum_{i = 1}^n \mu^2(i) \sum_{j = 1}^{\left\lfloor {n \over i} \right\rfloor} \sigma(j)
+$$
+
+对于$\sigma(n)$的前缀和的上标也是可以分段的，这样就需要用到$\mu^2(n)$的前缀和。
+
+所以最后的复杂度可以这样估计：
+$$
+\sum_{k = 1}^{\sqrt{n}} \sqrt{k} + \sum_{k = 1}^{\sqrt{n}} \sqrt{{n \over k}}
+\tag{12.6}
+$$
+
+显然右边的代价更高。用积分可以估计一下：
+$$
+\sum_{k = 1}^{\lfloor \sqrt{n} \rfloor} \sqrt{n \over k} \leqslant \int_0^{\lfloor \sqrt{n} \rfloor} \sqrt{n \over x} \;\mathrm{d}x = O(n^{3/4})
+$$
+
+如果预处理前$S$个前缀和的答案，当询问$\mu^2(n)$和$\sigma(n)$的前缀和时，如果$n \leqslant S$，就直接返回预处理的值。那么复杂度大约为：
+$$
+\sum_{k = 1}^{\min\{\lfloor \sqrt{n} \rfloor, \lfloor n / S \rfloor\}} \sqrt{n \over x}
+\tag{12.7}
+$$
+
+当$S \lt \sqrt{n}$时，时间复杂度的分析不变。否则时间复杂度上界变为：
+$$
+O\left(S + {n \over \sqrt{S}}\right)
+$$
+
+当$S = n / \sqrt{S}$时取得最小值，此时$S = n^{2/3}$，时间复杂度为$O(n^{2/3})$。注意，这里空间上也要付出同样的代价。
