@@ -90,14 +90,35 @@ $$</mathjax></p>
 首先我们令<mathjax>$n = |X|$</mathjax>，那么，当<mathjax>$n$</mathjax>等于<mathjax>$0$</mathjax>或<mathjax>$1$</mathjax>时，可以验证是正确的。<br />
 我们尝试进行逆向归纳。对于一个<mathjax>$n &gt; 1$</mathjax>的二分图，考虑以下两种情况：</p>
 <ol>
-<li>如果对于任意的<mathjax>$T \subseteq X$</mathjax>均满足以下条件：<br />
-<mathjax>$$ |\Gamma(T)| \ge |T| + 1 $$</mathjax><br />
-那么我们可以删除图中任意一条边作为匹配。由于每个子集均满足以上条件，那么从<mathjax>$X$</mathjax>和<mathjax>$Y$</mathjax>中各删除一个点不会导致违反Hall条件，所以此操作可以使归纳继续并且使<mathjax>$n$</mathjax>减小。</li>
-<li>如果存在一个<strong>最大的</strong><mathjax>$T \subset X$</mathjax>，满足以下条件：<br />
-<mathjax>$$ |\Gamma(T)| = |T| $$</mathjax><br />
-那么我们可以明确两点：第一，在<mathjax>$T$</mathjax>中我们可以找到一个关于<mathjax>$T$</mathjax>的最大匹配；第二，将这个匹配从图中删去，剩下的图依然满足Hall条件。因为根据Hall条件易知每一个<mathjax>$X$</mathjax>中的点必定至少与一个<mathjax>$Y$</mathjax>中的点有连边关系。同时Hall条件还表明，不存在一个不属于<mathjax>$T$</mathjax>的点，只与<mathjax>$\Gamma(T)$</mathjax>中的点有边相连。故删除它们不会造成有点的出度变为<mathjax>$0$</mathjax>，从而满足了Hall条件。</li>
+<li>
+<p>如果对于任意的<mathjax>$T \subseteq X$</mathjax>均满足以下条件：<br />
+<mathjax>$$ |\Gamma(T)| \ge |T| + 1 $$</mathjax></p>
+<p>那么我们可以删除图中任意一条边作为匹配。由于每个子集均满足以上条件，那么从<mathjax>$X$</mathjax>和<mathjax>$Y$</mathjax>中各删除一个点不会导致违反Hall条件，所以此操作可以使归纳继续并且使<mathjax>$n$</mathjax>减小。</p>
+</li>
+<li>
+<p>如果存在一个<strong>最大的</strong><mathjax>$T \subset X$</mathjax>，满足以下条件：<br />
+<mathjax>$$ |\Gamma(T)| = |T| $$</mathjax></p>
+<p>那么我们可以明确两点：第一，在<mathjax>$T$</mathjax>中我们可以找到一个关于<mathjax>$T$</mathjax>的最大匹配；第二，将这个匹配从图中删去，剩下的图依然满足Hall条件。因为根据Hall条件易知每一个<mathjax>$X$</mathjax>中的点必定至少与一个<mathjax>$Y$</mathjax>中的点有连边关系。同时Hall条件还表明，不存在一个不属于<mathjax>$T$</mathjax>的点，只与<mathjax>$\Gamma(T)$</mathjax>中的点有边相连。故删除它们不会造成有点的出度变为<mathjax>$0$</mathjax>，从而满足了Hall条件。</p>
+</li>
 </ol>
 <p>因此可以通过归纳证明Hall定理。</p>
+<h2 id="hall_1">计算所有满足Hall条件的子集</h2>
+<p>对于一张二分图而言，如何确定<mathjax>$X$</mathjax>或<mathjax>$Y$</mathjax>的一个子集是否满足Hall条件？<br />
+令<mathjax>$n$</mathjax>为<mathjax>$|X|$</mathjax>或者<mathjax>$|Y|$</mathjax>。首先我们可以根据定义，对于每个子集枚举自己的子集。采用DP，可以推算出所有子集的答案。时间复杂度为<mathjax>$O(3^n)$</mathjax>。<br />
+考虑到直接枚举子集过于暴力，因此先选择集合中的一个点<mathjax>$u$</mathjax>，将其删去，将会得到一个更小的子集，这个值已经被提前计算过了，因此一大部分的子集的答案就都被算入其中了。剩下的还未考虑到的子集均包含<mathjax>$u$</mathjax>，但是除了集合本身外，剩余的子集均会相差至少一个点。因此我们枚举所有集合中的点并去掉，用得到的新的更小的集合的DP值来更新当前集合，最后再计算自己是否满足不等式。这样计算的时间是<mathjax>$O(2^n \cdot n)$</mathjax>的。</p>
+<p>大致的代码如下：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="p">[</span><span class="bp">True</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span><span class="o">^</span><span class="n">n</span>  <span class="o">//</span> <span class="n">DP数组</span>
+<span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">^</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="n">f</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">&amp;=</span> <span class="n">f</span><span class="p">[</span><span class="n">s</span> <span class="o">^</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">u</span><span class="p">)]</span>
+    <span class="c1"># 检查s本身是否可行，更新f[s]</span>
+</pre></div>
+</td></tr></table>
+
 <h2 id="_3">简单运用</h2>
 <p>Hall定理一般没有什么优化算法复杂度上的用途，但是可以作为一个<strong>比较好的思维工具</strong>。<br />
 例如下面这个问题：<br />
@@ -159,6 +180,7 @@ $$</mathjax></p>
 <li><a href="#hall">Hall定理</a><ul>
 <li><a href="#_1">基本形式</a></li>
 <li><a href="#_2">证明</a></li>
+<li><a href="#hall_1">计算所有满足Hall条件的子集</a></li>
 <li><a href="#_3">简单运用</a></li>
 </ul>
 </li>
