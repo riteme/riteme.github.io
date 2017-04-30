@@ -482,4 +482,6 @@ SA-IS的实现还可以参考一篇很好的博文: [A walk through the SA-IS Su
 运行环境: Ubuntu 14.04 LTS x64 / CPU: 2.0GHz 奔腾某CPU / 4GB内存 / 未启动X window
 
 从上面的结果可以看出，SA-IS算法速度上明显优于DC3算法，并且数据规模越大，两者的速度差距越明显。
-总而言之，SA-IS算法是一个相当不错的后缀数组的构建算法。似乎SA-IS算法所利用的诱导排序的思想还可以解决其它的一些字符串的问题，如计算LCP数组，我并没有对此做过多的了解了。
+总而言之，SA-IS算法是一个相当不错的后缀数组的构建算法。似乎SA-IS算法所利用的诱导排序的思想还可以解决其它的一些字符串的问题，如计算LCP数组[^lcp]，我并没有对此做过多的了解了。
+
+[^lcp]: Johannes Fischer (2011): [Inducing the LCP-Array](https://arxiv.org/pdf/1101.3448.pdf)

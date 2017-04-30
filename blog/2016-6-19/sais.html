@@ -758,7 +758,7 @@ return SA
 <p>编译命令: <code>g++ SAIS.cpp/DC3.cpp -o sais/dc3 -O3</code><br />
 运行环境: Ubuntu 14.04 LTS x64 / CPU: 2.0GHz 奔腾某CPU / 4GB内存 / 未启动X window</p>
 <p>从上面的结果可以看出，SA-IS算法速度上明显优于DC3算法，并且数据规模越大，两者的速度差距越明显。<br />
-总而言之，SA-IS算法是一个相当不错的后缀数组的构建算法。似乎SA-IS算法所利用的诱导排序的思想还可以解决其它的一些字符串的问题，如计算LCP数组，我并没有对此做过多的了解了。</p>
+总而言之，SA-IS算法是一个相当不错的后缀数组的构建算法。似乎SA-IS算法所利用的诱导排序的思想还可以解决其它的一些字符串的问题，如计算LCP数组<sup id="fnref:lcp"><a class="footnote-ref" href="#fn:lcp" rel="footnote">8</a></sup>，我并没有对此做过多的了解了。</p>
 <div class="footnote">
 <hr />
 <ol>
@@ -782,6 +782,9 @@ return SA
 </li>
 <li id="fn:cache">
 <p>即降低cache-missing。&#160;<a class="footnote-backref" href="#fnref:cache" rev="footnote" title="Jump back to footnote 7 in the text">&#8617;</a></p>
+</li>
+<li id="fn:lcp">
+<p>Johannes Fischer (2011): <a href="https://arxiv.org/pdf/1101.3448.pdf">Inducing the LCP-Array</a>&#160;<a class="footnote-backref" href="#fnref:lcp" rev="footnote" title="Jump back to footnote 8 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
