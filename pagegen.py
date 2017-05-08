@@ -187,6 +187,25 @@ MARKDOWN_CONFIG = {
 }
 
 
+def convert_string(s):
+    S = []
+    for c in s:
+        if c in "\n\r":
+            S.append("<br/>")
+        elif c == "\t":
+            S.append("\\t")
+        elif c == "\"":
+            S.append("\\\"")
+        elif c == "\\":
+            S.append("\\\\")
+        elif c == "%":
+            S.append("% ")
+        else:
+            S.append(c)
+
+    return "".join(S)
+
+
 def generate(filepath):
     if not os.path.exists(filepath):
         raise ValueError("File not found")
@@ -224,23 +243,8 @@ def generate(filepath):
         tags.append(x)
 
     # 生成索引信息
-    index_title = title
-    temp_text = bs4.BeautifulSoup(content, BEAUTIFUL_SOUP_PARSER).text
-    index_text = []
-    for c in temp_text:
-        if c in "\n\r":
-            index_text.append("<br />")
-        elif c == "\t":
-            index_text.append("\\t")
-        elif c == "\"":
-            index_text.append("\\\"")
-        elif c == "\\":
-            index_text.append("\\\\")
-        elif c == "%":
-            index_text.append("% ")
-        else:
-            index_text.append(c)
-    index_text = "".join(index_text)
+    index_title = convert_string(title)
+    index_text = convert_string(bs4.BeautifulSoup(content, BEAUTIFUL_SOUP_PARSER).text)
     index_tags = mdinfo["tags"]
     navigater.handle("myself", filepath)
     navigater.home_folder = os.path.abspath(".")
