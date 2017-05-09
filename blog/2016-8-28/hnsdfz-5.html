@@ -558,7 +558,7 @@ mdzz，<mathjax>$O(n \ln n)$</mathjax>怎敢过......</p>
 设每隔<mathjax>$T$</mathjax>个打一个表，那么总共会打<mathjax>$n / T$</mathjax>个表，每次询问的时间为<mathjax>$O(T\sqrt{n})$</mathjax>。因此，只要你的文件存得下，<mathjax>$T$</mathjax>越小这个速度越快。</p>
 <p>第二种是<mathjax>$\Theta(n)$</mathjax>的算法。首先考虑将式子变形，改变枚举顺序：<br />
 <mathjax>$$
-\sum_{i=1}^n \sum_{d \mid i} \varphi(d) \mu(\frac{i}d) \Longrightarrow \sum_{d = 1}^n \varphi(d) \sum_{k = 1}^{\left\lfloor \frac{n}d \right\rfloor} \mu(dk)
+\sum_{i=1}^n \sum_{d \mid i} \varphi(d) \mu(\frac{i}d) \Longrightarrow \sum_{d = 1}^n \varphi(d) \sum_{k = 1}^{\left\lfloor \frac{n}d \right\rfloor} \mu(k)
 $$</mathjax></p>
 <p>变成了先枚举因子，然后枚举因子的倍数。于是就变成了欧拉函数和莫比乌斯函数的前缀和之积。<br />
 注意不要写出以下代码：</p>

@@ -374,7 +374,7 @@ mdzz，$O(n \ln n)$怎敢过......
 
 第二种是$\Theta(n)$的算法。首先考虑将式子变形，改变枚举顺序：
 $$
-\sum_{i=1}^n \sum_{d \mid i} \varphi(d) \mu(\frac{i}d) \Longrightarrow \sum_{d = 1}^n \varphi(d) \sum_{k = 1}^{\left\lfloor \frac{n}d \right\rfloor} \mu(dk)
+\sum_{i=1}^n \sum_{d \mid i} \varphi(d) \mu(\frac{i}d) \Longrightarrow \sum_{d = 1}^n \varphi(d) \sum_{k = 1}^{\left\lfloor \frac{n}d \right\rfloor} \mu(k)
 $$
 
 变成了先枚举因子，然后枚举因子的倍数。于是就变成了欧拉函数和莫比乌斯函数的前缀和之积。
