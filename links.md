@@ -13,4 +13,4 @@ tags: Friend Links
 * [Haogram](http://haogram.hol.es/)
 * [HJWJBSR](http://hjwjbsr.is-programmer.com/)
 * [Mr.Rabbit](https://www.ianime.co/)
-* [Linro](https://www.linro.xyz/)
+* [Linro](http://blog.linyxus.xyz/)
