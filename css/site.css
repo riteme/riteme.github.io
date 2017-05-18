@@ -68,6 +68,14 @@
     border: 1px solid #CCCCCC;
 }
 
+mathjax:before {
+    content: " ";
+}
+
+mathjax:after {
+    content: " ";
+}
+
 .codehilitetable {
     border-collapse: collapse;
     border-spacing: 0;

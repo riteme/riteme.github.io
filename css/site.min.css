@@ -19,6 +19,10 @@
     font-size: 24px;
 }
 
+.article p, ul, ol {
+    font-size: 16px;
+}
+
 .article img {
     display: block;
     margin: 0 auto;
@@ -26,6 +30,7 @@
 }
 
 .article pre, code {
+    font-size: 16px;
     margin: 2px 5px;
 }
 
@@ -63,6 +68,14 @@
     border: 1px solid #CCCCCC;
 }
 
+mathjax:before {
+    content: " ";
+}
+
+mathjax:after {
+    content: " ";
+}
+
 .codehilitetable {
     border-collapse: collapse;
     border-spacing: 0;
@@ -97,7 +110,7 @@ td.code {
     color: #666666;
     border-left: 10px solid #cccccc;
     margin: 0 0 24px 0;
-    padding: 10px 10px 1px 20px;
+    padding: 1px 0 1px 10px;
     font-style: normal;
     font-size: 14px;
 }
@@ -111,7 +124,8 @@ td.code {
 }
 
 .article blockquote > p {
-    margin-bottom: 9px;
+    width: 100%;
+    margin: 9px 0 9px 0;
 }
 
 .article .label {
@@ -130,6 +144,8 @@ pre, code {
 
 .footnote li > p {
     margin: 0 auto;
+    color: #666;
+    font-size: 90%;
 }
 
 div.toc ul {
@@ -196,6 +212,14 @@ h3.panel-title {
     font-size: 20px;
     margin-top: 0;
     margin-bottom: 0;
+}
+
+.ds-powered-by {
+    display: none;
+}
+
+.ds-post-button {
+    background-color: #2196f3 !important;
 }
 
 .codehilite .hll { background-color: #ffffcc }
