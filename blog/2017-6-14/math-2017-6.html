@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+
+<script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?72d0c4a099cd676176e657b871326707";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  } )();
+</script>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>数学问题杂记 - 2017.6 - riteme.site</title>
+  <link rel="shortcut icon" href="/favicon.png" type="image/png">
+  <link rel="stylesheet" href="/material/material-icons.css">
+  <link rel="stylesheet" href="/material/material.min.css" /> 
+  <link href="/tipuesearch/tipuesearch.css" rel="stylesheet" type="text/css">
+  <link href="/css/site.css" rel="stylesheet">
+  <script defer src="/material/material.min.js"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config( { tex2jax: { inlineMath: [['$','$']] }, "HTML-CSS": { scale: 95 } } );
+  </script>
+  <script type="text/javascript" async src="/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script src="/jquery/jquery-2.2.4.min.js"></script>
+  <script src="/tipuesearch/tipuesearch_set.js"></script>
+  <script src="/tipuesearch/tipuesearch.min.js"></script>
+</head>
+
+<body>
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <span class="mdl-layout-title">数学问题杂记 - 2017.6</span>
+        <div class="mdl-layout-spacer"></div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+        mdl-textfield--floating-label mdl-textfield--align-right">
+        <label class="mdl-button mdl-js-button mdl-button--icon"
+        for="fixed-header-drawer-exp"><i class="material-icons">search</i></label>
+        <div class="mdl-textfield__expandable-holder">
+          <form action="/search.html"><input type="text" class="mdl-textfield__input" placeholder="Search Here" name="q" id="fixed-header-drawer-exp" autocomplete="off" required></form>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="mdl-layout__drawer">
+    <span class="mdl-layout-title drawer-title">
+      <a href="/index.html" style="color: inherit; font-weight: inherit;text-decoration: none;">
+        <img src="/favicon.png" width=32 height=32> riteme.site
+      </a>
+    </span>
+    <nav class="mdl-navigation">
+      <a class="mdl-navigation__link" href="/index.html"><i class="material-icons" style="vertical-align: bottom;">home</i> 首页</a>
+      <a class="mdl-navigation__link" href="/posts.html"><i class="material-icons" style="vertical-align: bottom;">library_books</i> 所有文章</a>
+      <a class="mdl-navigation__link" href="/about.html"><i class="material-icons" style="vertical-align: bottom;">info</i> 关于</a>
+      <a class="mdl-navigation__link" href="/links.html"><i class="material-icons" style="vertical-align: bottom;">link</i> 友链</a>
+      <a class="mdl-navigation__link" href="/search.html"><i class="material-icons" style="vertical-align: bottom;">search</i> 搜索</a>
+      <a class="mdl-navigation__link" href="https://github.com/riteme/riteme.github.io"><i class="material-icons" style="vertical-align: bottom;">class</i> GitHub项目</a>
+    </nav>
+  </div>
+  <main class="mdl-layout__content">
+    <div class="mdl-grid">
+      <div class="mdl-cell mdl-cell--9-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+        <div class="article">
+          
+<h1 id="-20176">数学问题杂记 - 2017.6</h1>
+<h2 id="_1">最简刻度尺问题</h2>
+<h3 id="_2">问题描述</h3>
+<blockquote>
+<p>给你一个无限长度的空白的尺子，求最少在上面画多少个刻度，使得可以量出<mathjax>$1$</mathjax>到<mathjax>$10$</mathjax>每一个整数长度？<br />
+假设一共画了<mathjax>$n$</mathjax>个刻度，每个刻度到最左边的刻度的距离为<mathjax>$a_1,\; a_2, \;..., \;a_n$</mathjax>，那么称一个长度<mathjax>$x$</mathjax>为可测量的当且仅当存在一对<mathjax>$i, \;j$</mathjax>，满足<mathjax>$a_i - a_j = x$</mathjax>。</p>
+</blockquote>
+<h3 id="_3">解决方案</h3>
+<p>首先我们可以xjb试一试，<mathjax>$7$</mathjax>个点的方案是非常naïve的：</p>
+<p><img alt="p1" src="https://git.oschina.net/riteme/blogimg/raw/master/math-2017-6/p1.svg" /> </p>
+<p>通过一番尝试，我们可以构造出<mathjax>$6$</mathjax>个点的方案：</p>
+<p><img alt="p2" src="https://git.oschina.net/riteme/blogimg/raw/master/math-2017-6/p2.svg" /> </p>
+<p>当然，因为没有长度限制，所以更长的方案我也构造出来过。总而言之，<mathjax>$6$</mathjax>个点的方案不是非常困难。构造上面这个方案时，我先画了一个原点，然后向右走一步，画一个点，继续走两步，画一个点。随后回到原点左边四格的位置画一个点。然后钦定最右边的为<mathjax>$10$</mathjax>，将<mathjax>$0$</mathjax>刻度画出来。此时发现<mathjax>$9$</mathjax>不存在，所以将<mathjax>$1$</mathjax>也点上。</p>
+<p>那么现在问题来了，<mathjax>$5$</mathjax>个点的方案能否找出来？</p>
+<p>理论上，<mathjax>$5$</mathjax>个点两两配对刚好<mathjax>$10$</mathjax>对，给人一种可以构造的感觉。不过很可惜，<mathjax>$5$</mathjax>个点的方案是不存在的，这一结论可以使用计算机暴力得出。</p>
+<p>下面给出一个不需要任何暴力的证明：</p>
+<ol>
+<li>由于<mathjax>$5$</mathjax>个点两两配对一共<mathjax>$10$</mathjax>对，所以所有点对之间的距离刚好是<mathjax>$1$</mathjax>到<mathjax>$10$</mathjax>，即不存在两个不同的点对之间的距离相同。由此可以推出，最远的两个点之间的距离为<mathjax>$10$</mathjax>，所以我们可以先钦定刻度<mathjax>$0$</mathjax>和刻度<mathjax>$10$</mathjax>上有两个点。</li>
+<li>剩下还有<mathjax>$3$</mathjax>个点，它们将长度为<mathjax>$10$</mathjax>的线段分为<mathjax>$4$</mathjax>段，这四段的长度总和要为<mathjax>$10$</mathjax>，而<mathjax>$10$</mathjax>的四拆分只有<mathjax>$10 = 1 + 2 + 3 + 4$</mathjax>，所以这四段的长度构成<mathjax>$1$</mathjax>至<mathjax>$4$</mathjax>的一个排列。</li>
+<li>根据第一点，我们知道<mathjax>$1$</mathjax>不能与<mathjax>$2$</mathjax>或<mathjax>$3$</mathjax>相邻，因为那样相邻的两段的长度之和就会与单独的长度为<mathjax>$3$</mathjax>或<mathjax>$4$</mathjax>的一段冲突，因此<mathjax>$1$</mathjax>只能与<mathjax>$4$</mathjax>相邻，并且<mathjax>$1$</mathjax>只能在第一位或者最后一位。这样<mathjax>$2$</mathjax>和<mathjax>$3$</mathjax>必须相邻。又因为<mathjax>$1+4 = 2+3$</mathjax>，所以我们推出矛盾，故不存在<mathjax>$5$</mathjax>个点的方案。</li>
+</ol>
+<p>到此处，我们已经可以回答上面的问题了，最少使用<mathjax>$6$</mathjax>个刻度。</p>
+<h2 id="_4">基本不等式的证明</h2>
+<h3 id="_5">问题描述</h3>
+<blockquote>
+<p>对于<mathjax>$n$</mathjax>个非负实数<mathjax>$x_1, \;x_2, \;...,\;x_n$</mathjax>，证明：<br />
+<mathjax>$$ x_1x_2\cdots x_n \leqslant \left( \frac{x_1 + x_2 + \cdots x_n}n \right)^n $$</mathjax></p>
+</blockquote>
+<h3 id="_6">问题解决</h3>
+<p>我是在《具体数学》一书的习题上看到的，居然可以用反向归纳法，只能表示我这种菜鸡根本想不出来。</p>
+<p>首先<mathjax>$n = 1$</mathjax>时显然，就不再考虑了。</p>
+<p>其次，根据初中知识，<mathjax>$(x_1 + x_2)^2 - 4x_1 x_2 = (x_1 - x_2)^2 \geqslant 0$</mathjax>，我们可以得到<mathjax>$n = 2$</mathjax>时的结论。</p>
+<p>接下来就比较机智了，首先如果对于<mathjax>$n$</mathjax>成立，那么对于<mathjax>$2n$</mathjax>也成立。我们可以考虑<mathjax>$2n$</mathjax>时的不等式，是这样子的（现在还不成立）：<br />
+<mathjax>$$
+x_1x_2\cdots x_{2n} \leqslant \left({x_1 + x_2 + \cdots x_{2n} \over 2n}\right)^{2n}
+$$</mathjax></p>
+<p>设<mathjax>$n$</mathjax>个变量<mathjax>$y_1, \;y_2, \;..., \;y_n$</mathjax>和<mathjax>$z_1, \;z_2$</mathjax>。我们令：<br />
+<mathjax>$$
+x_{i + (j - 1)n} = y_i z_j \;\;\;\; (1 \leqslant i \leqslant n, \; j = 1, \;2)
+$$</mathjax></p>
+<p>所以之前的不等式可以变为：<br />
+<mathjax>$$
+(y_1y_2\cdots y_n)^2(z_1z_2)^n \leqslant \left( {y_1 + y_2 + \cdots y_n \over n} \right)^{2n} \left( {z_1 + z_2 \over 2} \right)^{2n}
+$$</mathjax></p>
+<p>由于：<br />
+<mathjax>$$
+\begin{aligned}
+y_1y_2\cdots y_n &amp;\leqslant \left( {y_1 + y_2 + \cdots + y_n \over n} \right)^n \\
+z_1z_2 &amp;\leqslant \left( {z_1 + z_2 \over 2} \right)^2
+\end{aligned}
+$$</mathjax></p>
+<p>都成立，所以对于<mathjax>$2n$</mathjax>时基本不等式也成立。</p>
+<p>最后一步就是反向数学归纳法证明。假设现在<mathjax>$n$</mathjax>是成立的，那么需要证明<mathjax>$n - 1$</mathjax>也是成立的。这个证明非常简单，只需要令<mathjax>$x_n$</mathjax>为<mathjax>$E = \left(\sum_{k=1}^{n-1}x_k\right) / (n - 1)$</mathjax>，就可以发现：<br />
+<mathjax>$$
+\begin{aligned}
+x_1x_2\cdots x_{n-1}E &amp;\leqslant \left( {x_1 + x_2 + \cdots + x_{n - 1} + E \over n} \right)^n \\
+x_1x_2\cdots x_{n-1}E &amp;\leqslant \left( {(n - 1)E + E \over n} \right)^n \\
+x_1x_2\cdots x_{n-1}E &amp;\leqslant E^n \\
+x_1x_2\cdots x_{n-1} &amp;\leqslant E^{n-1} \\
+x_1x_2\cdots x_{n-1} &amp;\leqslant \left( {x_1 + x_2 + \cdots + x_{n - 1} \over n - 1} \right)^{n - 1}
+\end{aligned}
+$$</mathjax></p>
+<p>因此对于<mathjax>$n - 1$</mathjax>也是成立的。</p>
+<p>最后综合一下，如果要想证明<mathjax>$n &gt; 2$</mathjax>成立，只需要从<mathjax>$m = 2$</mathjax>开始，倍增<mathjax>$m$</mathjax>直到<mathjax>$m \geqslant n$</mathjax>，然后反向归纳到<mathjax>$n$</mathjax>即可。因此基本不等式对于所有正整数<mathjax>$n$</mathjax>均成立。</p>
+
+          <hr/>
+
+          <div class="ds-thread" data-thread-key="d88cf95eb164f7cfde75d6fa39dbee95" data-title="数学问题杂记 - 2017.6" data-url="http://riteme.github.io/blog/2017-6-14/math-2017-6.html">
+            <script type="text/javascript">
+              var duoshuoQuery = { short_name:"riteme" };
+              (function() {
+               var ds = document.createElement('script');
+               ds.type = 'text/javascript';ds.async = true;
+               ds.src = (
+                 document.location.protocol == 'https:' ? 'https:' : 'http:'
+                 ) + '//static.duoshuo.com/embed.js';
+               ds.charset = 'UTF-8';
+               (document.getElementsByTagName('head')[0]
+                || document.getElementsByTagName('body')[0]).appendChild(ds);
+             } )();
+           </script>
+           <script src="https://dn-hb0716.qbox.me/duoshuo.js"></script>
+         </div>
+       </div>
+     </div>
+
+     <div class="mdl-cell mdl-cell--3-col mdl-cell--hide-tablet mdl-cell--hide-phone">
+       <div class="article">
+        <div class="mdl-card mdl-shadow--3dp" style="width: 100%">
+          <div class="mdl-card__supporting-text">
+            标签: <a href="/search.html?q=数学"><span class="label">数学</span></a><br/>
+            创建时间: 2017.06.14<br/>
+            上次修改: 2017.06.14
+          </div>
+        </div>
+
+        <br />
+
+        
+<div class="mdl-card mdl-shadow--3dp" style="width: 100%">
+  <div class="mdl-card__title mdl-card--border">
+    <h4 class="mdl-card__title-text">目录</h4>
+  </div>
+  <div class="mdl-card__supporting-text">
+    <div class="toc">
+<ul>
+<li><a href="#-20176">数学问题杂记 - 2017.6</a><ul>
+<li><a href="#_1">最简刻度尺问题</a><ul>
+<li><a href="#_2">问题描述</a></li>
+<li><a href="#_3">解决方案</a></li>
+</ul>
+</li>
+<li><a href="#_4">基本不等式的证明</a><ul>
+<li><a href="#_5">问题描述</a></li>
+<li><a href="#_6">问题解决</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+  </div>
+</div>
+
+      </div>
+
+      <div class="return-up-button">
+        <a href="javascript:$('main').animate( { scrollTop: 0 } , 'fast')">
+          <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+            <i class="material-icons">vertical_align_top</i>
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="mdl-mega-footer">
+    <div class="mdl-mega-footer__middle-section">
+      <div class="mdl-mega-footer__drop-down-section">
+        <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+        <h1 class="mdl-mega-footer__heading">RITEME.SITE</h1>
+        一个从不乱说话的博客...
+      </div>
+
+      <div class="mdl-mega-footer__drop-down-section">
+        <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+        <h1 class="mdl-mega-footer__heading">POWERED BY</h1>
+        <ul class="mdl-mega-footer__link-list">
+          <li><a href="http://pythonhosted.org/Markdown/">Python Markdown</a></li>
+          <li><a href="http://getmdl.io/">Material Design Lite</a></li>
+          <li><a href="http://www.tipue.com/search/">Tipuesearch</a></li>
+          <li><a href="http://www.mathjax.org/">MathJax</a></li>
+          <li><a href="http://duoshuo.com/">多说</a></li>
+        </ul>
+      </div>
+
+      <div class="mdl-mega-footer__drop-down-section">
+        <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+        <h1 class="mdl-mega-footer__heading">友情链接</h1>
+        <ul class="mdl-mega-footer__link-list">
+          <li><a href="http://link-arthur.github.io/">Link</a></li>
+          <li><a href="http://ruanxingzhi.github.io/">ruanxingzhi</a></li>
+          <li><a href="http://haogram.hol.es/">Haogram</a></li>
+          <li><a href="http://hjwjbsr.is-programmer.com/">HJWJBSR</a></li>
+          <li><a href="https://www.ianime.co/">Mr.Rabbit</a></li>
+          <li><a href="http://blog.linyxus.xyz/">Linro</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mdl-mega-footer__bottom-section">
+      Theme based on <a href="https://getmdl.io/">MDL</a> | Copyright © 2015-2017 riteme. All rights reserved.
+    </div>
+  </footer>
+</main>
+</div>
+</body>
+</html>
