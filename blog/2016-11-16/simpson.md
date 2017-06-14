@@ -40,7 +40,7 @@ $$
 
 所以：
 $$
-\int_a^b (Ax^2 + Bx + C)\;\mathrm{d}x = \frac{A}3(b-a)^3 + \frac{B}2(b-a)^2 + C(b-a)
+\int_a^b (Ax^2 + Bx + C)\;\mathrm{d}x = \frac{A}3(b^3-a^3) + \frac{B}2(b^2-a^2) + C(b-a)
 $$
 
 因为：
