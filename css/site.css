@@ -214,12 +214,12 @@ h3.panel-title {
     margin-bottom: 0;
 }
 
-.ds-powered-by {
+.gitment-footer-container {
     display: none;
 }
 
-.ds-post-button {
-    background-color: #2196f3 !important;
+.gitment-comments-init-btn, .gitment-editor-submit, .gitment-comments-init-btn:disabled, .gitment-editor-submit:disabled {
+    background-color: #2196f3;
 }
 
 .codehilite .hll { background-color: #ffffcc }

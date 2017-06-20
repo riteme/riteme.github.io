@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="/material/material-icons.css">
   <link rel="stylesheet" href="/material/material.min.css" /> 
   <link href="/tipuesearch/tipuesearch.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
   <link href="/css/site.css" rel="stylesheet">
   <script defer src="/material/material.min.js"></script>
   <script type="text/x-mathjax-config">
@@ -28,6 +29,7 @@
   <script src="/jquery/jquery-2.2.4.min.js"></script>
   <script src="/tipuesearch/tipuesearch_set.js"></script>
   <script src="/tipuesearch/tipuesearch.min.js"></script>
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 </head>
 
 <body>
@@ -75,25 +77,20 @@
 <p>既然路径上的所有点都要满足要求1,于是我们先求出这张有向图中哪些点满足要求。<br />
 我们使用一个<code>valid</code>数组来存储某个点是否直接或间接地到终点的布尔值，故最暴力的方法就是每个点DFS。其实只需要一次DFS即可，因为只要任意一个与某个点的出边相连接的点能够到达终点，那么这个点也可以到达终点，否则不行。这样在写的过程中，比较麻烦，因此我们在读入图的时候同时构造一张反向图，即每条边与原图方向相反，然后从终点BFS，将每个可以便利到的点打上标记。<br />
 做完这个处理后，只需要从起点BFS就能求出答案。</p>
-
           <hr/>
-
-          <div class="ds-thread" data-thread-key="9a0aef084e919f6ef5dd0502b501423f" data-title="NOIP2014 寻找道路题解" data-url="http://riteme.github.io/blog/2016-2-1/find-path.html">
-            <script type="text/javascript">
-              var duoshuoQuery = { short_name:"riteme" };
-              (function() {
-               var ds = document.createElement('script');
-               ds.type = 'text/javascript';ds.async = true;
-               ds.src = (
-                 document.location.protocol == 'https:' ? 'https:' : 'http:'
-                 ) + '//static.duoshuo.com/embed.js';
-               ds.charset = 'UTF-8';
-               (document.getElementsByTagName('head')[0]
-                || document.getElementsByTagName('body')[0]).appendChild(ds);
-             } )();
-           </script>
-           <script src="https://dn-hb0716.qbox.me/duoshuo.js"></script>
-         </div>
+          <div id="comments"></div>
+          <script type="text/javascript">
+            const gitment = new Gitment({
+              id: '9a0aef084e919f6ef5dd0502b501423f',
+              owner: 'riteme',
+              repo: 'riteme.github.io',
+              oauth: {
+                client_id: 'd4fcffa25858a7a58e1a',
+                client_secret: 'e0c8e08beb95497871f8355416c69390634cec76',
+              },
+            })
+            gitment.render('comments')
+          </script>
        </div>
      </div>
 
@@ -155,7 +152,7 @@
           <li><a href="http://getmdl.io/">Material Design Lite</a></li>
           <li><a href="http://www.tipue.com/search/">Tipuesearch</a></li>
           <li><a href="http://www.mathjax.org/">MathJax</a></li>
-          <li><a href="http://duoshuo.com/">多说</a></li>
+          <li><a href="https://github.com/imsun/gitment">Gitment</a></li>
         </ul>
       </div>
 

@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="/material/material-icons.css">
   <link rel="stylesheet" href="/material/material.min.css" /> 
   <link href="/tipuesearch/tipuesearch.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
   <link href="/css/site.css" rel="stylesheet">
   <script defer src="/material/material.min.js"></script>
   <script type="text/x-mathjax-config">
@@ -28,6 +29,7 @@
   <script src="/jquery/jquery-2.2.4.min.js"></script>
   <script src="/tipuesearch/tipuesearch_set.js"></script>
   <script src="/tipuesearch/tipuesearch.min.js"></script>
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 </head>
 
 <body>
@@ -92,25 +94,20 @@ $$</mathjax></p>
 <p>这样，我们可以将任意的<mathjax>$ A_n(x) $</mathjax>表示为如下形式：</p>
 <p><mathjax>$$ A_n(x) = \prod_{i \mid n} p_i(x) \tag{4}$$</mathjax></p>
 <p>根据<mathjax>$(3)$</mathjax>式和<mathjax>$(4)$</mathjax>式，递推完<mathjax>$ p_n(x) $</mathjax>后，我们就可以将<mathjax>$ A_n(x) $</mathjax>中的每一项都求解出来。如果多项式除法的时间复杂度为<mathjax>$ \Theta(g(n)) $</mathjax>，那么我们可以在<mathjax>$ \Theta(n\sqrt{n} \cdot g(n)) + \Theta(\sqrt{n}) = \Theta(n\sqrt{n} \cdot g(n))$</mathjax>的时间内对<mathjax>$ A_n(x) $</mathjax>进行因式分解。</p>
-
           <hr/>
-
-          <div class="ds-thread" data-thread-key="0d8781acbc5548b9ba41b6f081c58855" data-title="x^n-1问题" data-url="http://riteme.github.io/blog/2016-3-21/x-2-1.html">
-            <script type="text/javascript">
-              var duoshuoQuery = { short_name:"riteme" };
-              (function() {
-               var ds = document.createElement('script');
-               ds.type = 'text/javascript';ds.async = true;
-               ds.src = (
-                 document.location.protocol == 'https:' ? 'https:' : 'http:'
-                 ) + '//static.duoshuo.com/embed.js';
-               ds.charset = 'UTF-8';
-               (document.getElementsByTagName('head')[0]
-                || document.getElementsByTagName('body')[0]).appendChild(ds);
-             } )();
-           </script>
-           <script src="https://dn-hb0716.qbox.me/duoshuo.js"></script>
-         </div>
+          <div id="comments"></div>
+          <script type="text/javascript">
+            const gitment = new Gitment({
+              id: '0d8781acbc5548b9ba41b6f081c58855',
+              owner: 'riteme',
+              repo: 'riteme.github.io',
+              oauth: {
+                client_id: 'd4fcffa25858a7a58e1a',
+                client_secret: 'e0c8e08beb95497871f8355416c69390634cec76',
+              },
+            })
+            gitment.render('comments')
+          </script>
        </div>
      </div>
 
@@ -172,7 +169,7 @@ $$</mathjax></p>
           <li><a href="http://getmdl.io/">Material Design Lite</a></li>
           <li><a href="http://www.tipue.com/search/">Tipuesearch</a></li>
           <li><a href="http://www.mathjax.org/">MathJax</a></li>
-          <li><a href="http://duoshuo.com/">多说</a></li>
+          <li><a href="https://github.com/imsun/gitment">Gitment</a></li>
         </ul>
       </div>
 

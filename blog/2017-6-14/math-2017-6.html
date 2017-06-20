@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="/material/material-icons.css">
   <link rel="stylesheet" href="/material/material.min.css" /> 
   <link href="/tipuesearch/tipuesearch.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
   <link href="/css/site.css" rel="stylesheet">
   <script defer src="/material/material.min.js"></script>
   <script type="text/x-mathjax-config">
@@ -28,6 +29,7 @@
   <script src="/jquery/jquery-2.2.4.min.js"></script>
   <script src="/tipuesearch/tipuesearch_set.js"></script>
   <script src="/tipuesearch/tipuesearch.min.js"></script>
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 </head>
 
 <body>
@@ -130,25 +132,20 @@ x_1x_2\cdots x_{n-1} &amp;\leqslant \left( {x_1 + x_2 + \cdots + x_{n - 1} \over
 $$</mathjax></p>
 <p>因此对于<mathjax>$n - 1$</mathjax>也是成立的。</p>
 <p>最后综合一下，如果要想证明<mathjax>$n &gt; 2$</mathjax>成立，只需要从<mathjax>$m = 2$</mathjax>开始，倍增<mathjax>$m$</mathjax>直到<mathjax>$m \geqslant n$</mathjax>，然后反向归纳到<mathjax>$n$</mathjax>即可。因此基本不等式对于所有正整数<mathjax>$n$</mathjax>均成立。</p>
-
           <hr/>
-
-          <div class="ds-thread" data-thread-key="d88cf95eb164f7cfde75d6fa39dbee95" data-title="数学问题杂记 - 2017.6" data-url="http://riteme.github.io/blog/2017-6-14/math-2017-6.html">
-            <script type="text/javascript">
-              var duoshuoQuery = { short_name:"riteme" };
-              (function() {
-               var ds = document.createElement('script');
-               ds.type = 'text/javascript';ds.async = true;
-               ds.src = (
-                 document.location.protocol == 'https:' ? 'https:' : 'http:'
-                 ) + '//static.duoshuo.com/embed.js';
-               ds.charset = 'UTF-8';
-               (document.getElementsByTagName('head')[0]
-                || document.getElementsByTagName('body')[0]).appendChild(ds);
-             } )();
-           </script>
-           <script src="https://dn-hb0716.qbox.me/duoshuo.js"></script>
-         </div>
+          <div id="comments"></div>
+          <script type="text/javascript">
+            const gitment = new Gitment({
+              id: 'd88cf95eb164f7cfde75d6fa39dbee95',
+              owner: 'riteme',
+              repo: 'riteme.github.io',
+              oauth: {
+                client_id: 'd4fcffa25858a7a58e1a',
+                client_secret: 'e0c8e08beb95497871f8355416c69390634cec76',
+              },
+            })
+            gitment.render('comments')
+          </script>
        </div>
      </div>
 
@@ -218,7 +215,7 @@ $$</mathjax></p>
           <li><a href="http://getmdl.io/">Material Design Lite</a></li>
           <li><a href="http://www.tipue.com/search/">Tipuesearch</a></li>
           <li><a href="http://www.mathjax.org/">MathJax</a></li>
-          <li><a href="http://duoshuo.com/">多说</a></li>
+          <li><a href="https://github.com/imsun/gitment">Gitment</a></li>
         </ul>
       </div>
 

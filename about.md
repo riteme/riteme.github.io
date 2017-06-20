@@ -1,7 +1,7 @@
 ---
 title: 关于
 create: 2016.12.13
-modified: 2016.12.13
+modified: 2017.6.20
 tags: About
 ---
 
@@ -40,13 +40,15 @@ riteme来自HNSDFZ。
 ### 数学公式
 使用[MathJax](http://www.mathjax.org/)。
 
+以后计划抛弃笨重的MathJax，换用清真的KaTeX。
+
 ### 站内搜索
 使用[Tipuesearch](http://www.tipue.com/search/)。
 
 Tipuesearch有个缺点就是需要浏览器将搜索数据下载下来。而这个文件通常很大。以后可能会考虑换成其它的东西。
 
 ### 评论
-使用[多说](http://duoshuo.com/)。
+使用[Gitment](https://github.com/imsun/gitment)。
 
 ### 友链
 欢迎互换友链~~~

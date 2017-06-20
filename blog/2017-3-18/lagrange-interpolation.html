@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="/material/material-icons.css">
   <link rel="stylesheet" href="/material/material.min.css" /> 
   <link href="/tipuesearch/tipuesearch.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
   <link href="/css/site.css" rel="stylesheet">
   <script defer src="/material/material.min.js"></script>
   <script type="text/x-mathjax-config">
@@ -28,6 +29,7 @@
   <script src="/jquery/jquery-2.2.4.min.js"></script>
   <script src="/tipuesearch/tipuesearch_set.js"></script>
   <script src="/tipuesearch/tipuesearch.min.js"></script>
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 </head>
 
 <body>
@@ -107,25 +109,20 @@ $$</mathjax></p>
 <p>注意到后面的分式中，分子是一个前缀积乘以一个后缀积，而分母是两个阶乘。这些都可以在<mathjax>$\Theta(k)$</mathjax>的时间内求出。<br />
 现在剩下的问题就是如何求出<mathjax>$f(0), f(1), \dots, f(k + 1)$</mathjax>了。由于<mathjax>$g(x) = x^k$</mathjax>是个完全积性函数，所以我们可以通过欧拉筛法求出<mathjax>$g$</mathjax>函数前面的一些值。具体的就是对于质数采取直接快速幂，合数则拆出任意一个因子来算，通常是欧拉筛法中可以顺便求得的最小质因子。根据素数定理，素数大约有<mathjax>$O(k/\ln k)$</mathjax>个。每次快速幂需要花费<mathjax>$\Theta(\log k)$</mathjax>的时间，因此总的时间复杂度可以估计为<mathjax>$\Theta(k)$</mathjax>，是一个非常优秀的算法。<br />
 上面的方法具有通用性，只要我们可以快速的求出某个<mathjax>$k$</mathjax>次多项式的前<mathjax>$k + 1$</mathjax>个值，那么剩下的部分可以使用拉格朗日插值法在<mathjax>$\Theta(k)$</mathjax>的时间内完成计算。</p>
-
           <hr/>
-
-          <div class="ds-thread" data-thread-key="d8b1cc660f4122f9855da620df737420" data-title="拉格朗日插值法" data-url="http://riteme.github.io/blog/2017-3-18/lagrange-interpolation.html">
-            <script type="text/javascript">
-              var duoshuoQuery = { short_name:"riteme" };
-              (function() {
-               var ds = document.createElement('script');
-               ds.type = 'text/javascript';ds.async = true;
-               ds.src = (
-                 document.location.protocol == 'https:' ? 'https:' : 'http:'
-                 ) + '//static.duoshuo.com/embed.js';
-               ds.charset = 'UTF-8';
-               (document.getElementsByTagName('head')[0]
-                || document.getElementsByTagName('body')[0]).appendChild(ds);
-             } )();
-           </script>
-           <script src="https://dn-hb0716.qbox.me/duoshuo.js"></script>
-         </div>
+          <div id="comments"></div>
+          <script type="text/javascript">
+            const gitment = new Gitment({
+              id: 'd8b1cc660f4122f9855da620df737420',
+              owner: 'riteme',
+              repo: 'riteme.github.io',
+              oauth: {
+                client_id: 'd4fcffa25858a7a58e1a',
+                client_secret: 'e0c8e08beb95497871f8355416c69390634cec76',
+              },
+            })
+            gitment.render('comments')
+          </script>
        </div>
      </div>
 
@@ -187,7 +184,7 @@ $$</mathjax></p>
           <li><a href="http://getmdl.io/">Material Design Lite</a></li>
           <li><a href="http://www.tipue.com/search/">Tipuesearch</a></li>
           <li><a href="http://www.mathjax.org/">MathJax</a></li>
-          <li><a href="http://duoshuo.com/">多说</a></li>
+          <li><a href="https://github.com/imsun/gitment">Gitment</a></li>
         </ul>
       </div>
 

@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="/material/material-icons.css">
   <link rel="stylesheet" href="/material/material.min.css" /> 
   <link href="/tipuesearch/tipuesearch.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
   <link href="/css/site.css" rel="stylesheet">
   <script defer src="/material/material.min.js"></script>
   <script type="text/x-mathjax-config">
@@ -28,6 +29,7 @@
   <script src="/jquery/jquery-2.2.4.min.js"></script>
   <script src="/tipuesearch/tipuesearch_set.js"></script>
   <script src="/tipuesearch/tipuesearch.min.js"></script>
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 </head>
 
 <body>
@@ -154,25 +156,20 @@ $$</mathjax></p>
 <p><img alt="area" src="https://git.oschina.net/riteme/blogimg/raw/master/geometry/area-9.svg" /></p>
 <p>上图中就是计算<mathjax>$S_{OCBAG}$</mathjax>，而这几条边的叉积之和是负数。因此相加后就只剩下多边形的面积了。<br />
 又因为叉积计算的是平行四边形的面积，所以最后要除以<mathjax>$2$</mathjax>。</p>
-
           <hr/>
-
-          <div class="ds-thread" data-thread-key="ce3d4fa5000c55ff6dad088e0cef8a46" data-title="平面计算几何" data-url="http://riteme.github.io/blog/2016-4-12/geometry.html">
-            <script type="text/javascript">
-              var duoshuoQuery = { short_name:"riteme" };
-              (function() {
-               var ds = document.createElement('script');
-               ds.type = 'text/javascript';ds.async = true;
-               ds.src = (
-                 document.location.protocol == 'https:' ? 'https:' : 'http:'
-                 ) + '//static.duoshuo.com/embed.js';
-               ds.charset = 'UTF-8';
-               (document.getElementsByTagName('head')[0]
-                || document.getElementsByTagName('body')[0]).appendChild(ds);
-             } )();
-           </script>
-           <script src="https://dn-hb0716.qbox.me/duoshuo.js"></script>
-         </div>
+          <div id="comments"></div>
+          <script type="text/javascript">
+            const gitment = new Gitment({
+              id: 'ce3d4fa5000c55ff6dad088e0cef8a46',
+              owner: 'riteme',
+              repo: 'riteme.github.io',
+              oauth: {
+                client_id: 'd4fcffa25858a7a58e1a',
+                client_secret: 'e0c8e08beb95497871f8355416c69390634cec76',
+              },
+            })
+            gitment.render('comments')
+          </script>
        </div>
      </div>
 
@@ -239,7 +236,7 @@ $$</mathjax></p>
           <li><a href="http://getmdl.io/">Material Design Lite</a></li>
           <li><a href="http://www.tipue.com/search/">Tipuesearch</a></li>
           <li><a href="http://www.mathjax.org/">MathJax</a></li>
-          <li><a href="http://duoshuo.com/">多说</a></li>
+          <li><a href="https://github.com/imsun/gitment">Gitment</a></li>
         </ul>
       </div>
 

@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="/material/material-icons.css">
   <link rel="stylesheet" href="/material/material.min.css" /> 
   <link href="/tipuesearch/tipuesearch.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
   <link href="/css/site.css" rel="stylesheet">
   <script defer src="/material/material.min.js"></script>
   <script type="text/x-mathjax-config">
@@ -28,6 +29,7 @@
   <script src="/jquery/jquery-2.2.4.min.js"></script>
   <script src="/tipuesearch/tipuesearch_set.js"></script>
   <script src="/tipuesearch/tipuesearch.min.js"></script>
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 </head>
 
 <body>
@@ -96,36 +98,32 @@
 <p>使用的是功能比较简单的<a href="http://getmdl.io/">Material Design Lite</a>。</p>
 <h3 id="_2">数学公式</h3>
 <p>使用<a href="http://www.mathjax.org/">MathJax</a>。</p>
+<p>以后计划抛弃笨重的MathJax，换用清真的KaTeX。</p>
 <h3 id="_3">站内搜索</h3>
 <p>使用<a href="http://www.tipue.com/search/">Tipuesearch</a>。</p>
 <p>Tipuesearch有个缺点就是需要浏览器将搜索数据下载下来。而这个文件通常很大。以后可能会考虑换成其它的东西。</p>
 <h3 id="_4">评论</h3>
-<p>使用<a href="http://duoshuo.com/">多说</a>。</p>
+<p>使用<a href="https://github.com/imsun/gitment">Gitment</a>。</p>
 <h3 id="_5">友链</h3>
 <p>欢迎互换友链~~~</p>
 <h3 id="_6">联系我</h3>
 <p>我的邮箱：<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#114;&#105;&#116;&#101;&#109;&#101;&#64;&#113;&#113;&#46;&#99;&#111;&#109;">&#114;&#105;&#116;&#101;&#109;&#101;&#64;&#113;&#113;&#46;&#99;&#111;&#109;</a><br />
 我的GitHub：<a href="https://github.com/riteme">https://github.com/riteme</a><br />
 我的知乎：<a href="https://www.zhihu.com/people/riteme">https://www.zhihu.com/people/riteme</a></p>
-
           <hr/>
-
-          <div class="ds-thread" data-thread-key="81d9f505441078e06980e0bd02616e94" data-title="关于" data-url="http://riteme.github.io/about.html">
-            <script type="text/javascript">
-              var duoshuoQuery = { short_name:"riteme" };
-              (function() {
-               var ds = document.createElement('script');
-               ds.type = 'text/javascript';ds.async = true;
-               ds.src = (
-                 document.location.protocol == 'https:' ? 'https:' : 'http:'
-                 ) + '//static.duoshuo.com/embed.js';
-               ds.charset = 'UTF-8';
-               (document.getElementsByTagName('head')[0]
-                || document.getElementsByTagName('body')[0]).appendChild(ds);
-             } )();
-           </script>
-           <script src="https://dn-hb0716.qbox.me/duoshuo.js"></script>
-         </div>
+          <div id="comments"></div>
+          <script type="text/javascript">
+            const gitment = new Gitment({
+              id: '81d9f505441078e06980e0bd02616e94',
+              owner: 'riteme',
+              repo: 'riteme.github.io',
+              oauth: {
+                client_id: 'd4fcffa25858a7a58e1a',
+                client_secret: 'e0c8e08beb95497871f8355416c69390634cec76',
+              },
+            })
+            gitment.render('comments')
+          </script>
        </div>
      </div>
 
@@ -135,7 +133,7 @@
           <div class="mdl-card__supporting-text">
             标签: <a href="/search.html?q=About"><span class="label">About</span></a><br/>
             创建时间: 2016.12.13<br/>
-            上次修改: 2016.12.13
+            上次修改: 2017.06.20
           </div>
         </div>
 
@@ -170,7 +168,7 @@
           <li><a href="http://getmdl.io/">Material Design Lite</a></li>
           <li><a href="http://www.tipue.com/search/">Tipuesearch</a></li>
           <li><a href="http://www.mathjax.org/">MathJax</a></li>
-          <li><a href="http://duoshuo.com/">多说</a></li>
+          <li><a href="https://github.com/imsun/gitment">Gitment</a></li>
         </ul>
       </div>
 
