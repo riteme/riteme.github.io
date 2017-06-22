@@ -274,7 +274,7 @@ a.gitment-editor-logout-link:hover {
 
 .gitment-comment-body-folded::after {
   display: block !important;
-  content: "Click to Expand" !important;
+  content: "点击展开" !important;
   text-align: center;
   color: #666;
   position: absolute;
