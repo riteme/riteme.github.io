@@ -299,7 +299,7 @@ $$
 那么合并的过程就是这样[^other-forms]：
 
 $$
-A = (TA_0 + TA_1, TA_0 - TA_1)
+TA = (TA_0 + TA_1, TA_0 - TA_1)
 \tag{3.2}
 $$
 
@@ -307,7 +307,7 @@ $$
 对于逆变换，就是这样合并：
 
 $$
-A = \left({TA_0 + TA_1 \over 2}, {TA_0 - TA_1 \over 2}\right)
+T^{-1} A = \left({T^{-1}A_0 + T^{-1}A_1 \over 2}, {T^{-1}A_0 - T^{-1}A_1 \over 2}\right)
 \tag{3.3}
 $$
 
