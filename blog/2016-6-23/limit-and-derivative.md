@@ -117,34 +117,20 @@ $$ y = x^{1/x} $$
 $$ \ln y = \ln x^{1/x} = \frac1x\ln x $$
 
 将两边对$x$求导。注意按照$(1)$式，左式需要乘上$y^\prime$两者才能相等。
-$$ {y^\prime \over y} = {\ln x - 1 \over x^2} $$
+$$ {y^\prime \over y} = {1 - \ln x \over x^2} $$
 
 于是我们可以得到：
-$$ y^\prime = {\ln x - 1 \over x^2}y = {\ln x - 1 \over x^2}x^x = f^\prime(x) $$
+$$ y^\prime = {1 - \ln x \over x^2}y = {1 - \ln x \over x^2}x^{1/x} = f^\prime(x) $$
 
 这样我们就完成了求导。
 既然都对这个函数求过导了，我们来验证一下它的一个性质。
 将$\text{e}$代入导函数：
 $$
 \begin{align}
-f^\prime(\text{e}) & = {\ln \text{e} - 1 \over \text{e}^2}\text{e}^{1/\text{e}} \\
+f^\prime(\text{e}) & = {1 - \ln \text{e} \over \text{e}^2}\text{e}^{1/\text{e}} \\
 & = {1 - 1 \over \text{e}^2} \\
 & = 0
 \end{align}
 $$
 
 因此我们发现$x = \text{e}$是这个函数的极值点。
-但究竟是极大值还是极小值呢。设$h > \text{e}$，则：
-$$
-f^\prime(\text{e} + h) = {\ln (\text{e} + h) - 1 \over (\text{e} + h)^2}(\text{e} + h)^{1/(\text{e} + h)}
-$$
-
-因为$(\text{e} + h)^2$和$(\text{e} + h)^{1/(\text{e} + h)}$都大于$0$，因此只要看分子的符号。
-由于自然对数函数是单调递增的，易知分子是大于$0$的。故$f^\prime(\text{e} + h) > 0$。同理，当$0 < h < \text{e}$时，$f^\prime(\text{e} - h) < 0$。
-这样我们就证明了这是一个极大值点。
-事实上，我们可以证明这个导函数的单调性，从而得知这是最大值。
-
-## 后记
-有关微积分的教材这里我推荐一本：Ron Larson的<font style="font-family: Georgia">*Calculus*</font>。
-这本教材的比较像我们的数学教科书，不是像某些教科书一样不停的放出各种定理......
-用于自学是非常适合的~~~
