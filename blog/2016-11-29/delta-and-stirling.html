@@ -99,10 +99,10 @@ $$</mathjax></p>
 0, \;\;0, \dots \\
 \dots
 $$</mathjax></p>
-<p>我们发现<mathjax>$h(n)$</mathjax>是个<mathjax>$3$</mathjax>次多项式，而它的序列经过<mathjax>$3$</mathjax>次差分就变成了全是<mathjax>$0$</mathjax>的序列。</p>
-<p>可以证明，一个<mathjax>$p$</mathjax>次多项式的序列<strong>最多经过</strong><mathjax>$p$</mathjax>次差分就会变为全<mathjax>$0$</mathjax>序列。</p>
+<p>我们发现<mathjax>$h(n)$</mathjax>是个<mathjax>$3$</mathjax>次多项式，而它的序列经过<mathjax>$4$</mathjax>次差分就变成了全是<mathjax>$0$</mathjax>的序列。</p>
+<p>可以证明，一个<mathjax>$p$</mathjax>次多项式的序列<strong>最多经过</strong><mathjax>$p + 1$</mathjax>次差分就会变为全<mathjax>$0$</mathjax>序列。</p>
 <p>首先考虑<mathjax>$0$</mathjax>次多项式，它的序列值是一个常数，所以至多经过一次差分就可以变为<mathjax>$0$</mathjax>。</p>
-<p>现在进行归纳假设：假设对于<mathjax>$p$</mathjax>次多项式的序列最多经过<mathjax>$p$</mathjax>次差分就会得到全<mathjax>$0$</mathjax>序列，那么现在证明对于<mathjax>$p + 1$</mathjax>次多项式最多差分<mathjax>$p + 1$</mathjax>就可以得到全<mathjax>$0$</mathjax>序列。</p>
+<p>现在进行归纳假设：假设对于<mathjax>$p$</mathjax>次多项式的序列最多经过<mathjax>$p + 1$</mathjax>次差分就会得到全<mathjax>$0$</mathjax>序列，那么现在证明对于<mathjax>$p + 1$</mathjax>次多项式最多差分<mathjax>$p + 2$</mathjax>次就可以得到全<mathjax>$0$</mathjax>序列。</p>
 <p>观察最高次数的项，在每一次差分中的变化：</p>
 <p><mathjax>$$
 \begin{align}
@@ -111,7 +111,7 @@ $$</mathjax></p>
 &amp; = \sum_{k = 0}^p {p \choose k} n^k + \cdots - n^p - \cdots
 \end{align}
 $$</mathjax></p>
-<p>由于<mathjax>${p \choose p} = 1$</mathjax>，所以最高次数的项在一次差分中被减去了，所以差分后的序列是一个至多<mathjax>$p - 1$</mathjax>次的多项式的序列。因此，根据归纳假设，<mathjax>$p + 1$</mathjax>次的多项式最多进行<mathjax>$p + 1$</mathjax>次差分就可以对到全<mathjax>$0$</mathjax>序列。</p>
+<p>由于<mathjax>${p \choose p} = 1$</mathjax>，所以最高次数的项在一次差分中被减去了，所以差分后的序列是一个至多<mathjax>$p$</mathjax>次的多项式的序列。因此，根据归纳假设，<mathjax>$p + 1$</mathjax>次的多项式最多进行<mathjax>$p + 2$</mathjax>次差分就可以对到全<mathjax>$0$</mathjax>序列。</p>
 <h3 id="_4">差分的线性性</h3>
 <p>如果：</p>
 <p><mathjax>$$
@@ -309,7 +309,7 @@ n^{\underline{p}} &amp; = (n - p + 1)\sum_{k = 0}^{p-1} (-1)^{p - k - 1}s(p - 1,
 $$</mathjax></p>
 <p>通过比较同次项的系数可以得知：</p>
 <p><mathjax>$$
-s(p, k) + (p - 1)s(p - 1, k) + s(p - 1, k - 1)
+s(p, k) = (p - 1)s(p - 1, k) + s(p - 1, k - 1)
 $$</mathjax></p>
 <h3 id="_10">组合意义</h3>
 <p>同样的，第一类Stirling数也具有其组合意义。通过考虑下面的问题就可以证明：</p>
