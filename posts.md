@@ -64,7 +64,6 @@ tags: Posts
 * [极限与导数](./blog/2016-6-23/limit-and-derivative.html): 最近学了一些基础微积分，这里稍微记录一下
 * [诱导排序与SA-IS算法](./blog/2016-6-19/sais.html): 介绍一种在2009年出现的基于诱导排序思想的线性时间构建后缀数组的算法SA-IS。此算法号称是目前速度最快的后缀数组构建算法
 * [树状数组](./blog/2016-6-3/fenwick.html): 总结一下树状数组的用法
-* [点分四叉树 (Point Quadtree)](./blog/2016-6-2/quadtree.html): 二维平面上的一种划分树
 
 #### 2016-5
 * [HNSDFZ2016 #2](./blog/2016-5-31/hnsdfz2016-2.html): HNSDFZ2016第二次欢乐互测
