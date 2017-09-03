@@ -69,6 +69,9 @@
         <div class="article">
           
 <h1 id="lca">最近公共祖先(LCA)</h1>
+<blockquote>
+<p><strong>NOTICE:</strong> 这是一篇旧文，可能存在一些没有被勘察出的错误。另有一篇同主题的文章<a href="../2017-9-3/lca.html">在此</a>。</p>
+</blockquote>
 <h2 id="1">1 概述</h2>
 <h3 id="11-lca">1.1 什么是LCA？</h3>
 <p>下面是一棵有根树，注意不一定是二叉树。</p>
@@ -99,7 +102,7 @@
 <p>因为LCA的算法中会用到并查集，但我们还没学，因此并查集的实现不会过多纠结，我们只需知道并查集提供的几个函数即可。</p>
 <p>并查集提供查询和连接操作：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span class="k">def</span> <span class="nf">find</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span>
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">find</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span>
 <span class="k">def</span> <span class="nf">union</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">void</span>
 </pre></div>
 </td></tr></table>
@@ -139,7 +142,7 @@
 11
 12
 13
-14</pre></div></td><td class="code"><div class="codehilite"><pre><span class="k">def</span> <span class="nf">Plain_LCA</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+14</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">Plain_LCA</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">d</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">d</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
         <span class="n">swap</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>  <span class="c1"># 始终保持u所处的深度较深</span>
 
@@ -180,7 +183,7 @@
 15
 16
 17
-18</pre></div></td><td class="code"><div class="codehilite"><pre><span class="k">def</span> <span class="nf">Tarjan_LCA</span><span class="p">(</span><span class="n">u</span><span class="p">):</span>
+18</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">Tarjan_LCA</span><span class="p">(</span><span class="n">u</span><span class="p">):</span>
     <span class="c1"># ancestor数组表示一个集合的公共祖先</span>
     <span class="c1"># 如anscestor[i]表示标号为i的集合中所有结点的公共祖先。</span>
     <span class="c1"># marked数组表示结点是否被处理过</span>
@@ -274,7 +277,7 @@ $$</mathjax></p>
 5
 6
 7
-8</pre></div></td><td class="code"><div class="codehilite"><pre><span class="c1"># 初始化f[i, 0]</span>
+8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="c1"># 初始化f[i, 0]</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">]:</span>
     <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">father</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 
@@ -311,7 +314,7 @@ $$</mathjax></p>
 18
 19
 20
-21</pre></div></td><td class="code"><div class="codehilite"><pre><span class="k">def</span> <span class="nf">Double_LCA</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+21</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">Double_LCA</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">d</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">d</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
         <span class="n">swap</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>  <span class="c1"># 始终保持u所处的深度较深</span>
 

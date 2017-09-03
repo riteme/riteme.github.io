@@ -89,7 +89,7 @@
  7
  8
  9
-10</pre></div></td><td class="code"><div class="codehilite"><pre>function LCA(u, v):
+10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>function LCA(u, v):
     // mark: 大小为 n 的整数数组
     // cur: 一个整型，记录该函数被调用了多少次
     cur += 1
@@ -118,7 +118,7 @@
 3
 4
 5
-6</pre></div></td><td class="code"><div class="codehilite"><pre>function LCA(u, v):
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>function LCA(u, v):
     for k = int(log(h)) to 0:
         p = g(v, k)
         if p is not an ancestor of u:
@@ -157,7 +157,7 @@
 22
 23
 24
-25</pre></div></td><td class="code"><div class="codehilite"><pre>// 计算 g 函数
+25</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>// 计算 g 函数
 for u = 1 to n:
     g(u, 0) = f(u)
 for k = 1 to int(log(h)):
@@ -190,7 +190,7 @@ function LCA(u, v):
 <h3 id="_6">链剖分</h3>
 <p>看到这里的时候：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre>if u == v:  // 需要特判 v 是 u 的祖先的情况
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>if u == v:  // 需要特判 v 是 u 的祖先的情况
     return u
 </pre></div>
 </td></tr></table>
@@ -213,7 +213,7 @@ function LCA(u, v):
 11
 12
 13
-14</pre></div></td><td class="code"><div class="codehilite"><pre>function LCA(u, v):
+14</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>function LCA(u, v):
     // top: 一个整型数组，top[u] 表示 u 所处的链的链顶
     while top[u] != top[v]:
         // 挑选链顶深度较深的一个点向上跳
@@ -274,7 +274,7 @@ function LCA(u, v):
 4
 5
 6
-7</pre></div></td><td class="code"><div class="codehilite"><pre>highbit[1] = 0
+7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>highbit[1] = 0
 for i = 2 to n:
     highbit[i] = highbit[i &gt;&gt; 1] + 1
 
@@ -325,7 +325,7 @@ function QUERY(l, r):
 13
 14
 15
-16</pre></div></td><td class="code"><div class="codehilite"><pre>// a: 长度为 L 的整型数组，表示序列
+16</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>// a: 长度为 L 的整型数组，表示序列
 Q = []  // 单调队列
 for i = 1 to L:
     while Q is not empty and a[Q.last()] &lt;= a[i]:
@@ -374,7 +374,7 @@ foreach i in Q:
 16
 17
 18
-19</pre></div></td><td class="code"><div class="codehilite"><pre>// 现在每个元素 a[i] 有三个属性 value、left 和 right，
+19</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>// 现在每个元素 a[i] 有三个属性 value、left 和 right，
 // 分别表示权值、二叉树上的左儿子和右儿子，如果没有儿子则为 null
 function BUILD-CARTESIAN-TREE(a):
     Q = []
