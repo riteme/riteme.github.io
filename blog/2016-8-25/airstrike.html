@@ -84,14 +84,14 @@
 你需要在同一目录下新建一个文件<code>airstrike.cpp</code>，其中包含以下内容：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;interface.h&quot;</span><span class="cp"></span>
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span class="cp">#include</span> <span class="cpf">&quot;interface.h&quot;</span><span class="cp"></span>
 
 <span class="c1">// 实现部分</span>
 </pre></div>
 </td></tr></table>
 
 <p>你需要实现的接口在头文件中有简要说明。这里做详细说明。</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="nf">initialize</span><span class="p">(</span><span class="k">const</span> <span class="kt">double</span> <span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="k">const</span> <span class="kt">double</span> <span class="o">*</span><span class="n">y</span><span class="p">,</span> <span class="k">const</span> <span class="kt">size_t</span> <span class="n">n</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">id</span><span class="p">);</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="kt">void</span> <span class="nf">initialize</span><span class="p">(</span><span class="k">const</span> <span class="kt">double</span> <span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="k">const</span> <span class="kt">double</span> <span class="o">*</span><span class="n">y</span><span class="p">,</span> <span class="k">const</span> <span class="kt">size_t</span> <span class="n">n</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">id</span><span class="p">);</span>
 </pre></div>
 </td></tr></table>
 
@@ -100,14 +100,14 @@
 <code>x</code>和<code>y</code>是两个数组，给出的是市区的轮廓，即Lunk绘制的多边形的顶点，按照<strong>逆时针顺序</strong>给出。<br />
 <code>n</code>是多边形的顶点数量。<br />
 <code>id</code>是当前数据点的标号，在下文会有解释。</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kt">bool</span> <span class="nf">query</span><span class="p">(</span><span class="k">const</span> <span class="kt">double</span> <span class="n">dx</span><span class="p">,</span> <span class="k">const</span> <span class="kt">double</span> <span class="n">dy</span><span class="p">);</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="kt">bool</span> <span class="nf">query</span><span class="p">(</span><span class="k">const</span> <span class="kt">double</span> <span class="n">dx</span><span class="p">,</span> <span class="k">const</span> <span class="kt">double</span> <span class="n">dy</span><span class="p">);</span>
 </pre></div>
 </td></tr></table>
 
 <p>是Lunk的操作，每次调用即查询炸弹是否炸在市区内。如果炸在市区内则返回<code>true</code>，否则返回<code>false</code>。<br />
 <code>dx</code>和<code>dy</code>是炸弹炸到的坐标。<br />
 该函数的用时会被计入程序用时。</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="nf">finalize</span><span class="p">();</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="kt">void</span> <span class="nf">finalize</span><span class="p">();</span>
 </pre></div>
 </td></tr></table>
 
@@ -119,23 +119,23 @@
 <p>选手目录下将会下发<code>main.cpp</code>这个文件。<br />
 首先你需要有输入的数据，其格式将在下文给出。<br />
 假设你的程序文件是<code>airstrike.cpp</code>，那么使用以下命令来编译：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>g++ main.cpp airstrike.cpp -std<span class="o">=</span>c++11 -o main
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>g++ main.cpp airstrike.cpp -std<span class="o">=</span>c++11 -o main
 </pre></div>
 </td></tr></table>
 
 <p>或者你需要调试：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>g++ main.cpp airstrike.cpp -std<span class="o">=</span>c++11 -o main -g
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>g++ main.cpp airstrike.cpp -std<span class="o">=</span>c++11 -o main -g
 </pre></div>
 </td></tr></table>
 
 <p>打开<code>-O2</code>优化：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>g++ main.cpp airstrike.cpp -std<span class="o">=</span>c++11 -o main -O2
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>g++ main.cpp airstrike.cpp -std<span class="o">=</span>c++11 -o main -O2
 </pre></div>
 </td></tr></table>
 
 <p>对于C语言，将<code>main.cpp</code>改名为<code>main.c</code>，使用<code>gcc</code>，并且将<code>-std=c++11</code>改为<code>-std=c11</code>即可。<br />
 然后使用：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>./main
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>./main
 </pre></div>
 </td></tr></table>
 
@@ -158,7 +158,7 @@
 6
 7
 8
-9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>3 1
+9</pre></div></td><td class="code"><div class="codehilite"><pre>3 1
 0 0
 6 1
 8 7
@@ -174,7 +174,7 @@
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
-4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>YES
+4</pre></div></td><td class="code"><div class="codehilite"><pre>YES
 NO
 NO
 YES
@@ -199,7 +199,7 @@ YES
 12
 13
 14
-15</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>7 1
+15</pre></div></td><td class="code"><div class="codehilite"><pre>7 1
 1 1
 7 1
 4 2
@@ -223,7 +223,7 @@ YES
 3
 4
 5
-6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>NO
+6</pre></div></td><td class="code"><div class="codehilite"><pre>NO
 YES
 NO
 NO

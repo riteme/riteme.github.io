@@ -104,7 +104,7 @@
 6
 7
 8
-9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">tour</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># 欧拉回路</span>
+9</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">tour</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># 欧拉回路</span>
 
 <span class="k">def</span> <span class="nf">construct</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="n">adj</span><span class="p">:</span>
@@ -139,7 +139,7 @@
 13
 14
 15
-16</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="n">G</span><span class="p">):</span>
+16</pre></div></td><td class="code"><div class="codehilite"><pre><span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="n">G</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">G</span> <span class="ow">is</span> <span class="n">directed</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">G</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">v</span><span class="o">.</span><span class="n">indegree</span> <span class="o">!=</span> <span class="n">v</span><span class="o">.</span><span class="n">outdegree</span><span class="p">:</span>
