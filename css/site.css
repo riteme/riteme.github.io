@@ -1,5 +1,31 @@
-.article {  
+@font-face {
+    font-family: NUM;
+    unicode-range: U+30-39;
+    src: local("Times New Roman"), local(Times);
+}
+
+@font-face {
+    font-family: EN;
+    src: local(Georgia), local("Times New Roman"), local("Times");
+}
+
+@font-face {
+    font-family: SC;
+    font-weight: lighter;
+    src: local('Source Han Sans'), local('Source Han Sans CN'),
+         local('Source Han Sans SC'), local("Microsoft Yahei");
+}
+
+body {
+    font-family: NUM, EN, SC, serif;
+}
+
+.article {
     margin: 40px 20px;
+}
+
+.article h1, h2, h3, h4, h5, h6 {
+    font-family: inherit;
 }
 
 .article h1 {
