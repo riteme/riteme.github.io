@@ -57,7 +57,7 @@ body {
 
 .article pre, code {
     font-size: 16px;
-    margin: 2px 5px;
+    margin: 4px 5px 2px 5px;
 }
 
 .article a {
