@@ -16,8 +16,7 @@ INSTALL_TO = "/var/www/html/"
 
 SMALLEST_UPDATE_FOLDERS = [
     "blog",
-    "css",
-    "gitment"
+    "css"
 ]
 
 SMALLEST_UPDATE_FILES = [

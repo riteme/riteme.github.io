@@ -72,12 +72,12 @@
 <p><a href="../2016-7-21/fft.html#_4">之前</a>写了一篇关于多项式算法的博客，提到了快速傅立叶变换 (FFT)。<br />
 快速傅立叶变换中使用了<strong>单位复数根</strong>来进行采样与插值，快速数论变换和这是类似的，只不过使用的是<strong>原根</strong>。</p>
 <h2 id="_1">原根的性质</h2>
-<p>为了方便，假设下面所有的<mathjax>$n$</mathjax>都是大于<mathjax>$1$</mathjax>的<mathjax>$2$</mathjax>的幂，我们设：<br />
+<p>为了方便，假设下面所有的 <mathjax>$n$</mathjax> 都是大于 <mathjax>$1$</mathjax> 的 <mathjax>$2$</mathjax> 的幂，我们设：<br />
 <mathjax>$$
 g_n = g^{(p-1) / n}
 $$</mathjax></p>
-<p>其中<mathjax>$p$</mathjax>是素数并且<mathjax>$n \mid (p-1)$</mathjax>，另外<mathjax>$g$</mathjax>是模<mathjax>$p$</mathjax>意义下的原根。<br />
-考虑下单位复数根为什能做到<mathjax>$\Theta(n \log n)$</mathjax>的时间复杂度，是因为它具有下面的性质：</p>
+<p>其中 <mathjax>$p$</mathjax> 是素数并且 <mathjax>$n \mid (p-1)$</mathjax>，另外 <mathjax>$g$</mathjax> 是模 <mathjax>$p$</mathjax> 意义下的原根。<br />
+考虑下单位复数根为什能做到 <mathjax>$\Theta(n \log n)$</mathjax> 的时间复杂度，是因为它具有下面的性质：</p>
 <blockquote>
 <p><mathjax>$$ \omega_n^n = 1 \\ \omega_n^{n/2} = -1$$</mathjax></p>
 </blockquote>
@@ -90,7 +90,7 @@ $$</mathjax></p>
 <mathjax>$$
 g^{(p - 1)/2} \equiv \sqrt{1} \pmod{p}
 $$</mathjax></p>
-<p>因此应该有<mathjax>$\pm 1$</mathjax>这两种取值。但是由于<mathjax>$g$</mathjax>是<mathjax>$p$</mathjax>的原根，所以不能为<mathjax>$1$</mathjax>。</p>
+<p>因此应该有 <mathjax>$\pm 1$</mathjax> 这两种取值。但是由于 <mathjax>$g^{(p-1) / 2} \neq g^{p-1} = 1$</mathjax>，所以不能为 <mathjax>$1$</mathjax>。</p>
 <blockquote>
 <p><mathjax>$$ \omega_{dn}^{dk} = \omega_n^k $$</mathjax></p>
 </blockquote>
@@ -110,18 +110,18 @@ $$</mathjax></p>
 $$</mathjax></p>
 <p>因此，单位复数根该有的性质原根居然都有！</p>
 <h2 id="ntt_1">NTT算法</h2>
-<p>从上面的讨论中我们知道，将你的FFT代码中的单位复数根换成<mathjax>$g_n^k$</mathjax>，就是NTT。注意<strong>到处取模</strong>。<br />
-逆FFT变换时需要除以<mathjax>$n$</mathjax>，在模<mathjax>$p$</mathjax>意义下记住是<strong>使用逆元</strong>。<br />
-NTT的总复杂度与FFT一致，是<mathjax>$\Theta(n \log n)$</mathjax>。</p>
-<p>最后还剩下一个问题：<mathjax>$p$</mathjax>和<mathjax>$g$</mathjax>该怎么办。<br />
-在FFT中，为了方便处理，<mathjax>$n$</mathjax>一般都是选定了一个<mathjax>$2$</mathjax>的幂。因此，对于<mathjax>$p$</mathjax>，我们只需要选出一个<mathjax>$p-1$</mathjax>中含有<mathjax>$2$</mathjax>的幂的因子的素数，并且这个<mathjax>$2$</mathjax>的幂要大于<mathjax>$n$</mathjax>。通常选择形如<mathjax>$a\cdot 2^k + 1$</mathjax>的素数。注意你必须保证这个素数有原根！<br />
+<p>从上面的讨论中我们知道，将你的 FFT 代码中的单位复数根换成 <mathjax>$g_n^k$</mathjax>，就是 NTT。注意<strong>到处取模</strong>。<br />
+逆 FFT 变换时需要除以 <mathjax>$n$</mathjax>，在模 <mathjax>$p$</mathjax> 意义下记住是<strong>使用逆元</strong>。<br />
+NTT 的总复杂度与 FFT 一致，是 <mathjax>$\Theta(n \log n)$</mathjax>。</p>
+<p>最后还剩下一个问题：<mathjax>$p$</mathjax> 和 <mathjax>$g$</mathjax> 该怎么办。<br />
+在 FFT 中，为了方便处理，<mathjax>$n$</mathjax> 一般都是选定了一个 <mathjax>$2$</mathjax> 的幂。因此，对于 <mathjax>$p$</mathjax>，我们只需要选出一个 <mathjax>$p-1$</mathjax> 中含有 <mathjax>$2$</mathjax> 的幂的因子的素数，并且这个 <mathjax>$2$</mathjax> 的幂要大于 <mathjax>$n$</mathjax>。通常选择形如 <mathjax>$a\cdot 2^k + 1$</mathjax> 的素数。<br />
 为了方便，通常选定：<br />
 <mathjax>$$
 p = 1004535809 = 479 \times 2^{21} + 1
 $$</mathjax></p>
-<p>它的最小正原根是<mathjax>$3$</mathjax>。</p>
-<p>另外一个是著名的UOJ模数<mathjax>$998244353 = 2^{23} \times 7 \times 17 + 1$</mathjax>，最小正原根也是<mathjax>$3$</mathjax>。</p>
-<p>使用快速数论变换的好处就是避免了浮点数精度误差。当输入系数都是整型的时候最好优先考虑NTT。</p>
+<p>它的最小正原根是 <mathjax>$3$</mathjax>。</p>
+<p>另外一个是著名的 UOJ 模数 <mathjax>$998244353 = 2^{23} \times 7 \times 17 + 1$</mathjax>，最小正原根也是 <mathjax>$3$</mathjax>。<br />
+使用快速数论变换的好处就是避免了浮点数精度误差。当输入系数都是整型的时候最好优先考虑 NTT。</p>
           <hr/>
           <div id="comments"></div>
           <script type="text/javascript">
