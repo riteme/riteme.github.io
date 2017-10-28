@@ -9,6 +9,7 @@ tags: Posts
 ## 所有文章
 ### 2017
 #### 2017-10
+* [计算纯电阻网络的等效电阻](./blog/2017-10-28/resist.html)
 * [OI Coding Guidelines](./blog/2017-10-28/oi-coding-guidelines.html): 个人对 OI 编程的一些经验
 * [计算分拆数的一种方法](./blog/2017-10-1/p-and-q.html): 使用多项式乘法加速计算分拆数
 
