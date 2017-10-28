@@ -368,18 +368,18 @@
  9
 10
 11
-12</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">digraph</span> <span class="p">{</span>
-    <span class="n">node</span> <span class="cp">[</span><span class="n">shape</span><span class="o"> =</span> <span class="nx">circle</span><span class="cp">]</span><span class="p">;</span>
+12</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>digraph {
+    node [shape = circle];
 
-    <span class="m">3</span><span class="o">:</span><span class="n">sw</span> <span class="o">-&gt;</span> <span class="m">2</span><span class="p">;</span>
-    <span class="m">3</span><span class="o">:</span><span class="n">se</span> <span class="o">-&gt;</span> <span class="m">8</span><span class="p">;</span>
-    <span class="m">2</span><span class="o">:</span><span class="n">sw</span> <span class="o">-&gt;</span> <span class="m">1</span><span class="p">;</span>
-    <span class="m">8</span><span class="o">:</span><span class="n">sw</span> <span class="o">-&gt;</span> <span class="m">5</span><span class="p">;</span>
-    <span class="m">8</span><span class="o">:</span><span class="n">se</span> <span class="o">-&gt;</span> <span class="m">9</span><span class="p">;</span>
-    <span class="m">5</span><span class="o">:</span><span class="n">sw</span> <span class="o">-&gt;</span> <span class="m">4</span><span class="p">;</span>
-    <span class="m">5</span><span class="o">:</span><span class="n">se</span> <span class="o">-&gt;</span> <span class="m">7</span><span class="p">;</span>
-    <span class="m">7</span><span class="o">:</span><span class="n">sw</span> <span class="o">-&gt;</span> <span class="m">6</span><span class="p">;</span>
-<span class="p">}</span>
+    3:sw -&gt; 2;
+    3:se -&gt; 8;
+    2:sw -&gt; 1;
+    8:sw -&gt; 5;
+    8:se -&gt; 9;
+    5:sw -&gt; 4;
+    5:se -&gt; 7;
+    7:sw -&gt; 6;
+}
 </pre></div>
 </td></tr></table>
 
@@ -405,26 +405,26 @@
 17
 18
 19
-20</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">digraph</span> <span class="p">{</span>
-    <span class="n">node</span> <span class="cp">[</span><span class="n">shape</span><span class="o"> =</span> <span class="nx">circle</span><span class="cp">]</span><span class="p">;</span>
+20</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>digraph {
+    node [shape = circle];
 
-    <span class="m">3</span><span class="o">:</span><span class="n">sw</span> <span class="o">-&gt;</span> <span class="m">2</span><span class="p">;</span>
-    <span class="m">2</span> <span class="o">-&gt;</span> <span class="m">3</span><span class="p">;</span>
-    <span class="m">3</span><span class="o">:</span><span class="n">se</span> <span class="o">-&gt;</span> <span class="m">8</span><span class="p">;</span>
-    <span class="m">8</span> <span class="o">-&gt;</span> <span class="m">3</span><span class="p">;</span>
-    <span class="m">2</span><span class="o">:</span><span class="n">sw</span> <span class="o">-&gt;</span> <span class="m">1</span><span class="p">;</span>
-    <span class="m">1</span> <span class="o">-&gt;</span> <span class="m">2</span><span class="p">;</span>
-    <span class="m">8</span><span class="o">:</span><span class="n">sw</span> <span class="o">-&gt;</span> <span class="m">5</span><span class="p">;</span>
-    <span class="m">5</span> <span class="o">-&gt;</span> <span class="m">8</span><span class="p">;</span>
-    <span class="m">8</span><span class="o">:</span><span class="n">se</span> <span class="o">-&gt;</span> <span class="m">9</span><span class="p">;</span>
-    <span class="m">9</span> <span class="o">-&gt;</span> <span class="m">8</span><span class="p">;</span>
-    <span class="m">5</span><span class="o">:</span><span class="n">sw</span> <span class="o">-&gt;</span> <span class="m">4</span><span class="p">;</span>
-    <span class="m">4</span> <span class="o">-&gt;</span> <span class="m">5</span><span class="p">;</span>
-    <span class="m">5</span><span class="o">:</span><span class="n">se</span> <span class="o">-&gt;</span> <span class="m">7</span><span class="p">;</span>
-    <span class="m">7</span> <span class="o">-&gt;</span> <span class="m">5</span><span class="p">;</span>
-    <span class="m">7</span><span class="o">:</span><span class="n">sw</span> <span class="o">-&gt;</span> <span class="m">6</span><span class="p">;</span>
-    <span class="m">6</span> <span class="o">-&gt;</span> <span class="m">7</span><span class="p">;</span>
-<span class="p">}</span>
+    3:sw -&gt; 2;
+    2 -&gt; 3;
+    3:se -&gt; 8;
+    8 -&gt; 3;
+    2:sw -&gt; 1;
+    1 -&gt; 2;
+    8:sw -&gt; 5;
+    5 -&gt; 8;
+    8:se -&gt; 9;
+    9 -&gt; 8;
+    5:sw -&gt; 4;
+    4 -&gt; 5;
+    5:se -&gt; 7;
+    7 -&gt; 5;
+    7:sw -&gt; 6;
+    6 -&gt; 7;
+}
 </pre></div>
 </td></tr></table>
 
@@ -453,26 +453,26 @@
 17
 18
 19
-20</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">digraph</span> <span class="p">{</span>
-    <span class="n">node</span> <span class="cp">[</span><span class="n">shape</span><span class="o"> =</span> <span class="nx">circle</span><span class="cp">]</span><span class="p">;</span>
+20</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>digraph {
+    node [shape = circle];
 
-    <span class="m">3</span><span class="o">:</span><span class="n">sw</span> <span class="o">-&gt;</span> <span class="m">2</span> <span class="cp">[</span><span class="n">style</span><span class="o"> =</span> <span class="nx">bold</span><span class="cp">]</span><span class="p">;</span>
-    <span class="m">2</span> <span class="o">-&gt;</span> <span class="m">3</span><span class="p">;</span>
-    <span class="m">3</span><span class="o">:</span><span class="n">se</span> <span class="o">-&gt;</span> <span class="m">8</span> <span class="cp">[</span><span class="n">style</span><span class="o"> =</span> <span class="nx">bold</span><span class="cp">]</span><span class="p">;</span>
-    <span class="m">8</span> <span class="o">-&gt;</span> <span class="m">3</span><span class="p">;</span>
-    <span class="m">2</span><span class="o">:</span><span class="n">sw</span> <span class="o">-&gt;</span> <span class="m">1</span> <span class="cp">[</span><span class="n">style</span><span class="o"> =</span> <span class="nx">bold</span><span class="cp">]</span><span class="p">;</span>
-    <span class="m">1</span> <span class="o">-&gt;</span> <span class="m">2</span><span class="p">;</span>
-    <span class="m">8</span><span class="o">:</span><span class="n">sw</span> <span class="o">-&gt;</span> <span class="m">5</span> <span class="cp">[</span><span class="n">style</span><span class="o"> =</span> <span class="nx">bold</span><span class="cp">]</span><span class="p">;</span>
-    <span class="m">5</span> <span class="o">-&gt;</span> <span class="m">8</span><span class="p">;</span>
-    <span class="m">8</span><span class="o">:</span><span class="n">se</span> <span class="o">-&gt;</span> <span class="m">9</span> <span class="cp">[</span><span class="n">style</span><span class="o"> =</span> <span class="nx">bold</span><span class="cp">]</span><span class="p">;</span>
-    <span class="m">9</span> <span class="o">-&gt;</span> <span class="m">8</span><span class="p">;</span>
-    <span class="m">5</span><span class="o">:</span><span class="n">sw</span> <span class="o">-&gt;</span> <span class="m">4</span> <span class="cp">[</span><span class="n">style</span><span class="o"> =</span> <span class="nx">bold</span><span class="cp">]</span><span class="p">;</span>
-    <span class="m">4</span> <span class="o">-&gt;</span> <span class="m">5</span><span class="p">;</span>
-    <span class="m">5</span><span class="o">:</span><span class="n">se</span> <span class="o">-&gt;</span> <span class="m">7</span> <span class="cp">[</span><span class="n">style</span><span class="o"> =</span> <span class="nx">bold</span><span class="cp">]</span><span class="p">;</span>
-    <span class="m">7</span> <span class="o">-&gt;</span> <span class="m">5</span><span class="p">;</span>
-    <span class="m">7</span><span class="o">:</span><span class="n">sw</span> <span class="o">-&gt;</span> <span class="m">6</span> <span class="cp">[</span><span class="n">style</span><span class="o"> =</span> <span class="nx">bold</span><span class="cp">]</span><span class="p">;</span>
-    <span class="m">6</span> <span class="o">-&gt;</span> <span class="m">7</span><span class="p">;</span>
-<span class="p">}</span>
+    3:sw -&gt; 2 [style = bold];
+    2 -&gt; 3;
+    3:se -&gt; 8 [style = bold];
+    8 -&gt; 3;
+    2:sw -&gt; 1 [style = bold];
+    1 -&gt; 2;
+    8:sw -&gt; 5 [style = bold];
+    5 -&gt; 8;
+    8:se -&gt; 9 [style = bold];
+    9 -&gt; 8;
+    5:sw -&gt; 4 [style = bold];
+    4 -&gt; 5;
+    5:se -&gt; 7 [style = bold];
+    7 -&gt; 5;
+    7:sw -&gt; 6 [style = bold];
+    6 -&gt; 7;
+}
 </pre></div>
 </td></tr></table>
 
@@ -501,26 +501,26 @@
 17
 18
 19
-20</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">digraph</span> <span class="p">{</span>
-    <span class="n">node</span> <span class="cp">[</span><span class="n">shape</span><span class="o"> =</span> <span class="nx">circle</span><span class="cp">]</span><span class="p">;</span>
+20</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>digraph {
+    node [shape = circle];
 
-    <span class="m">3</span><span class="o">:</span><span class="n">sw</span> <span class="o">-&gt;</span> <span class="m">2</span> <span class="cp">[</span><span class="n">style</span><span class="o"> =</span> <span class="nx">bold</span><span class="cp">]</span><span class="p">;</span>
-    <span class="m">2</span> <span class="o">-&gt;</span> <span class="m">3</span> <span class="cp">[</span><span class="n">style</span><span class="o"> =</span> <span class="nx">dotted</span><span class="cp">]</span><span class="p">;</span>
-    <span class="m">3</span><span class="o">:</span><span class="n">se</span> <span class="o">-&gt;</span> <span class="m">8</span> <span class="cp">[</span><span class="n">style</span><span class="o"> =</span> <span class="nx">bold</span><span class="cp">]</span><span class="p">;</span>
-    <span class="m">8</span> <span class="o">-&gt;</span> <span class="m">3</span> <span class="cp">[</span><span class="n">style</span><span class="o"> =</span> <span class="nx">dotted</span><span class="cp">]</span><span class="p">;</span>
-    <span class="m">2</span><span class="o">:</span><span class="n">sw</span> <span class="o">-&gt;</span> <span class="m">1</span> <span class="cp">[</span><span class="n">style</span><span class="o"> =</span> <span class="nx">bold</span><span class="cp">]</span><span class="p">;</span>
-    <span class="m">1</span> <span class="o">-&gt;</span> <span class="m">2</span> <span class="cp">[</span><span class="n">style</span><span class="o"> =</span> <span class="nx">dotted</span><span class="cp">]</span><span class="p">;</span>
-    <span class="m">8</span><span class="o">:</span><span class="n">sw</span> <span class="o">-&gt;</span> <span class="m">5</span> <span class="cp">[</span><span class="n">style</span><span class="o"> =</span> <span class="nx">bold</span><span class="cp">]</span><span class="p">;</span>
-    <span class="m">5</span> <span class="o">-&gt;</span> <span class="m">8</span> <span class="cp">[</span><span class="n">style</span><span class="o"> =</span> <span class="nx">dotted</span><span class="cp">]</span><span class="p">;</span>
-    <span class="m">8</span><span class="o">:</span><span class="n">se</span> <span class="o">-&gt;</span> <span class="m">9</span> <span class="cp">[</span><span class="n">style</span><span class="o"> =</span> <span class="nx">bold</span><span class="cp">]</span><span class="p">;</span>
-    <span class="m">9</span> <span class="o">-&gt;</span> <span class="m">8</span> <span class="cp">[</span><span class="n">style</span><span class="o"> =</span> <span class="nx">dotted</span><span class="cp">]</span><span class="p">;</span>
-    <span class="m">5</span><span class="o">:</span><span class="n">sw</span> <span class="o">-&gt;</span> <span class="m">4</span> <span class="cp">[</span><span class="n">style</span><span class="o"> =</span> <span class="nx">bold</span><span class="cp">]</span><span class="p">;</span>
-    <span class="m">4</span> <span class="o">-&gt;</span> <span class="m">5</span> <span class="cp">[</span><span class="n">style</span><span class="o"> =</span> <span class="nx">dotted</span><span class="cp">]</span><span class="p">;</span>
-    <span class="m">5</span><span class="o">:</span><span class="n">se</span> <span class="o">-&gt;</span> <span class="m">7</span> <span class="cp">[</span><span class="n">style</span><span class="o"> =</span> <span class="nx">bold</span><span class="cp">]</span><span class="p">;</span>
-    <span class="m">7</span> <span class="o">-&gt;</span> <span class="m">5</span> <span class="cp">[</span><span class="n">style</span><span class="o"> =</span> <span class="nx">dotted</span><span class="cp">]</span><span class="p">;</span>
-    <span class="m">7</span><span class="o">:</span><span class="n">sw</span> <span class="o">-&gt;</span> <span class="m">6</span> <span class="cp">[</span><span class="n">style</span><span class="o"> =</span> <span class="nx">bold</span><span class="cp">]</span><span class="p">;</span>
-    <span class="m">6</span> <span class="o">-&gt;</span> <span class="m">7</span> <span class="cp">[</span><span class="n">style</span><span class="o"> =</span> <span class="nx">dotted</span><span class="cp">]</span><span class="p">;</span>
-<span class="p">}</span>
+    3:sw -&gt; 2 [style = bold];
+    2 -&gt; 3 [style = dotted];
+    3:se -&gt; 8 [style = bold];
+    8 -&gt; 3 [style = dotted];
+    2:sw -&gt; 1 [style = bold];
+    1 -&gt; 2 [style = dotted];
+    8:sw -&gt; 5 [style = bold];
+    5 -&gt; 8 [style = dotted];
+    8:se -&gt; 9 [style = bold];
+    9 -&gt; 8 [style = dotted];
+    5:sw -&gt; 4 [style = bold];
+    4 -&gt; 5 [style = dotted];
+    5:se -&gt; 7 [style = bold];
+    7 -&gt; 5 [style = dotted];
+    7:sw -&gt; 6 [style = bold];
+    6 -&gt; 7 [style = dotted];
+}
 </pre></div>
 </td></tr></table>
 
@@ -549,29 +549,29 @@
 20
 21
 22
-23</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">digraph</span> <span class="p">{</span>
-    <span class="n">node</span> <span class="cp">[</span><span class="n">shape</span><span class="o"> =</span> <span class="nx">circle</span><span class="cp">]</span><span class="p">;</span>
+23</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>digraph {
+    node [shape = circle];
 
-    <span class="m">3</span> <span class="cp">[</span><span class="n">color</span><span class="o"> =</span> <span class="nx">red</span><span class="cp">]</span><span class="p">;</span>
-    <span class="m">5</span> <span class="cp">[</span><span class="n">color</span><span class="o"> =</span> <span class="nx">red</span><span class="cp">]</span><span class="p">;</span>
+    3 [color = red];
+    5 [color = red];
 
-    <span class="m">3</span><span class="o">:</span><span class="n">sw</span> <span class="o">-&gt;</span> <span class="m">2</span> <span class="cp">[</span><span class="n">style</span><span class="o"> =</span> <span class="nx">bold</span><span class="cp">]</span><span class="p">;</span>
-    <span class="m">2</span> <span class="o">-&gt;</span> <span class="m">3</span> <span class="cp">[</span><span class="n">style</span><span class="o"> =</span> <span class="nx">dotted</span><span class="cp">]</span><span class="p">;</span>
-    <span class="m">3</span><span class="o">:</span><span class="n">se</span> <span class="o">-&gt;</span> <span class="m">8</span> <span class="cp">[</span><span class="n">style</span><span class="o"> =</span> <span class="nx">bold</span><span class="cp">]</span><span class="p">;</span>
-    <span class="m">8</span> <span class="o">-&gt;</span> <span class="m">3</span> <span class="cp">[</span><span class="n">style</span><span class="o"> =</span> <span class="nx">dotted</span><span class="cp">]</span><span class="p">;</span>
-    <span class="m">2</span><span class="o">:</span><span class="n">sw</span> <span class="o">-&gt;</span> <span class="m">1</span> <span class="cp">[</span><span class="n">style</span><span class="o"> =</span> <span class="nx">bold</span><span class="cp">]</span><span class="p">;</span>
-    <span class="m">1</span> <span class="o">-&gt;</span> <span class="m">2</span> <span class="cp">[</span><span class="n">style</span><span class="o"> =</span> <span class="nx">dotted</span><span class="cp">]</span><span class="p">;</span>
-    <span class="m">8</span><span class="o">:</span><span class="n">sw</span> <span class="o">-&gt;</span> <span class="m">5</span> <span class="cp">[</span><span class="n">style</span><span class="o"> =</span> <span class="nx">bold</span><span class="cp">]</span><span class="p">;</span>
-    <span class="m">5</span> <span class="o">-&gt;</span> <span class="m">8</span> <span class="cp">[</span><span class="n">style</span><span class="o"> =</span> <span class="nx">dotted</span><span class="cp">]</span><span class="p">;</span>
-    <span class="m">8</span><span class="o">:</span><span class="n">se</span> <span class="o">-&gt;</span> <span class="m">9</span> <span class="cp">[</span><span class="n">style</span><span class="o"> =</span> <span class="nx">bold</span><span class="cp">]</span><span class="p">;</span>
-    <span class="m">9</span> <span class="o">-&gt;</span> <span class="m">8</span> <span class="cp">[</span><span class="n">style</span><span class="o"> =</span> <span class="nx">dotted</span><span class="cp">]</span><span class="p">;</span>
-    <span class="m">5</span><span class="o">:</span><span class="n">sw</span> <span class="o">-&gt;</span> <span class="m">4</span> <span class="cp">[</span><span class="n">style</span><span class="o"> =</span> <span class="nx">bold</span><span class="cp">]</span><span class="p">;</span>
-    <span class="m">4</span> <span class="o">-&gt;</span> <span class="m">5</span> <span class="cp">[</span><span class="n">style</span><span class="o"> =</span> <span class="nx">dotted</span><span class="cp">]</span><span class="p">;</span>
-    <span class="m">5</span><span class="o">:</span><span class="n">se</span> <span class="o">-&gt;</span> <span class="m">7</span> <span class="cp">[</span><span class="n">style</span><span class="o"> =</span> <span class="nx">bold</span><span class="cp">]</span><span class="p">;</span>
-    <span class="m">7</span> <span class="o">-&gt;</span> <span class="m">5</span> <span class="cp">[</span><span class="n">style</span><span class="o"> =</span> <span class="nx">dotted</span><span class="cp">]</span><span class="p">;</span>
-    <span class="m">7</span><span class="o">:</span><span class="n">sw</span> <span class="o">-&gt;</span> <span class="m">6</span> <span class="cp">[</span><span class="n">style</span><span class="o"> =</span> <span class="nx">bold</span><span class="cp">]</span><span class="p">;</span>
-    <span class="m">6</span> <span class="o">-&gt;</span> <span class="m">7</span> <span class="cp">[</span><span class="n">style</span><span class="o"> =</span> <span class="nx">dotted</span><span class="cp">]</span><span class="p">;</span>
-<span class="p">}</span>
+    3:sw -&gt; 2 [style = bold];
+    2 -&gt; 3 [style = dotted];
+    3:se -&gt; 8 [style = bold];
+    8 -&gt; 3 [style = dotted];
+    2:sw -&gt; 1 [style = bold];
+    1 -&gt; 2 [style = dotted];
+    8:sw -&gt; 5 [style = bold];
+    5 -&gt; 8 [style = dotted];
+    8:se -&gt; 9 [style = bold];
+    9 -&gt; 8 [style = dotted];
+    5:sw -&gt; 4 [style = bold];
+    4 -&gt; 5 [style = dotted];
+    5:se -&gt; 7 [style = bold];
+    7 -&gt; 5 [style = dotted];
+    7:sw -&gt; 6 [style = bold];
+    6 -&gt; 7 [style = dotted];
+}
 </pre></div>
 </td></tr></table>
 

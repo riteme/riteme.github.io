@@ -182,7 +182,7 @@ MARKDOWN_EXT = [
 MARKDOWN_CONFIG = {
     "markdown.extensions.codehilite": {
         "linenums": True,
-        "guess_lang": True
+        "guess_lang": False
     }
 }
 
