@@ -14,7 +14,6 @@ import parser
 import navigater
 
 import bs4
-BEAUTIFUL_SOUP_PARSER = "lxml"
 
 import markdown
 import markdown.extensions.codehilite
@@ -29,6 +28,9 @@ import re
 # from markdown.extensions import Extension
 # from markdown.preprocessors import Preprocessor
 from markdown.postprocessors import Postprocessor
+
+WORDS_PER_MINUTE = 250
+BEAUTIFUL_SOUP_PARSER = "lxml"
 
 # Mathjax Extension
 class MathJaxPattern(markdown.inlinepatterns.Pattern):
@@ -206,6 +208,13 @@ def convert_string(s):
     return "".join(S)
 
 
+def convert_time(m):
+    h = m // 60
+    m %= 60
+    if h:
+        return '%s 小时 %s 分钟' % (h, m)
+    return '%s 分钟' % m
+
 def generate(filepath):
     if not os.path.exists(filepath):
         raise ValueError("File not found")
@@ -250,6 +259,7 @@ def generate(filepath):
     navigater.home_folder = os.path.abspath(".")
     index_url = navigater.get_path("myself")
     index_url = index_url.rsplit(".", 1)[0] + ".html"
+    words = len(index_text)
 
     # 处理特殊信息
     pagetitle = mdinfo["title"][0].strip().replace("\"", " ")
@@ -269,6 +279,7 @@ def generate(filepath):
             title=title,
             create=create_time,
             modified=modified_time,
+            time='%s 字 / 约 %s' % (words, convert_time(words // WORDS_PER_MINUTE)),
             tags=str(tags),
             toc=toc,
             content=content,
