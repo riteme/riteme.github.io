@@ -1,7 +1,7 @@
 ---
 title: OI Coding Guidelines
 create: 2017.10.28
-modified: 2017.10.28
+modified: 2017.12.2
 tags: 胡言乱语
 ---
 
@@ -127,77 +127,77 @@ for (int i = 1; i <= n; i++) {
 
 下面列举了一些在 OI 中常见的写法及其含义：
 
-|              写法           |       原始单词 / 符号      |                    注释                  |
-| :--------------------------:| :-----------------------: | :--------------------------------------: |
-|            `aha`             |           Aha!            |             dalao HJWJBSR 最爱           |
+|              写法              |         原始单词 / 符号         |                    注释                    |
+| :--------------------------: | :-----------------------: | :--------------------------------------: |
+|            `aha`             |           Aha!            |             dalao HJWJBSR 最爱             |
 |            `ans`             |          answer           |                                          |
 |            `arr`             |           array           |                                          |
-|            `buc`             |          bucket           |                  桶排序相关               |
-|            `buf`             |          buffer           |                  缓存、缓冲               |
-|             `ch`             |     child / children      |                 通常指树上的儿子          |
+|            `buc`             |          bucket           |                  桶排序相关                   |
+|            `buf`             |          buffer           |                  缓存、缓冲                   |
+|             `ch`             |     child / children      |                 通常指树上的儿子                 |
 |            `chk`             |           check           |                                          |
-|            `cls`             |           clear           |                貌似来源于一个命令         |
-|        `cmp`, `comp`          |          compare          |             想必你在 `sort` 中用过         |
+|            `cls`             |       clear screen        |                   清空屏幕                   |
+|        `cmp`, `comp`         |          compare          |             想必你在 `sort` 中用过              |
 |            `cnt`             |           count           |                                          |
 |            `cur`             |          current          |                                          |
 |            `del`             |          delete           |                                          |
-|        `dist`, `dis`          |         distance          |                                          |
-|            `div`             |          divisor          |                    因子                  |
-|            `div`             |          divide           |                    除法                  |
-|           `e`, `E`            | $\mathrm{e} = 2.71828...$ |                自然对数函数的底数         |
-|         `eps`, `EPS`          |  $\varepsilon$ (epsilon)  |         通常表示精度设定（浮点数中）       |
+|        `dist`, `dis`         |         distance          |                                          |
+|            `div`             |          divisor          |                    因子                    |
+|            `div`             |          divide           |                    除法                    |
+|           `e`, `E`           | $\mathrm{e} = 2.71828...$ |                自然对数函数的底数                 |
+|         `eps`, `EPS`         |  $\varepsilon$ (epsilon)  |              通常表示精度设定（浮点数中）              |
 |            `equ`             |           equal           |                                          |
 |            `err`             |           error           |                                          |
-|            `eval`            |         evaluate          |                    计算                   |
-|            `expr`            |        expression         |                   表达式                  |
-|     `f`, `g`, `h`, `dp`         |             -             |                一般的 DP 数组             |
+|            `eval`            |         evaluate          |                    计算                    |
+|            `expr`            |        expression         |                   表达式                    |
+|     `f`, `g`, `h`, `dp`      |             -             |                一般的 DP 数组                 |
 |             `fa`             |          father           |                                          |
-|            `func`            |         function          |                    函数                  |
-|           `g`, `G`            |   graph / primive root    |                图 / 数论中的原根          |
-|        `i`, `j`, `k`           |             -             |                   各种下标                |
-|         `inf`, `INF`          |         infinity          |        `#define INF 0x3f3f3f3f`?          |
+|            `func`            |         function          |                    函数                    |
+|           `g`, `G`           |   graph / primive root    |                图 / 数论中的原根                |
+|        `i`, `j`, `k`         |             -             |                   各种下标                   |
+|         `inf`, `INF`         |         infinity          |        `#define INF 0x3f3f3f3f`?         |
 |            `init`            |        initialize         |                                          |
 |            `ins`             |          insert           |                                          |
 |           `interp`           |        interpolate        |  线性插值，$\vec c = (1-t)\vec a + t \vec b$  |
-|            `inv`             |          inverse          |                    逆元                  |
-| `iX` `(X = 16, 32, 64, 128)`  |      signed integer       |                  有符号整型               |
+|            `inv`             |          inverse          |                    逆元                    |
+| `iX` `(X = 16, 32, 64, 128)` |      signed integer       |                  有符号整型                   |
 |            `jmp`             |           jump            |                                          |
-|        `l`, `r`, `m`           |    left, right, middle    |                  常用于二分中             |
+|        `l`, `r`, `m`         |    left, right, middle    |                  常用于二分中                  |
 |            `lch`             |        left child         |                                          |
 |            `len`             |          length           |                                          |
-|          `ll`, `LL`           |   `long long` (in C\+\+)    |                                         |
-|          `mi`, `mx`           |         min, max          |          （我个人不喜欢 `mi`）             |
+|          `ll`, `LL`          |  `long long` (in C\+\+)   |                                          |
+|          `mi`, `mx`          |         min, max          |              （我个人不喜欢 `mi`）               |
 |            `mid`             |          middle           |                                          |
-|         `mod`, `MOD`          |          modulo           | $10^9 + 7,\;998244353$, your best friends |
+|         `mod`, `MOD`         |          modulo           | $10^9 + 7,\;998244353$, your best friends |
 |            `mul`             |         multiply          |                                          |
 |            `num`             |          number           |                                          |
 |            `nxt`             |           next            |                                          |
-|          `pi`, `PI`           |    $\pi = 3.14159...$     |                                          |
+|          `pi`, `PI`          |    $\pi = 3.14159...$     |                                          |
 |            `pos`             |         position          |                                          |
-|            `pre`             |          prefix           |                    前缀                  |
-|        `pre`, `prev`          |         previous          |                   上一个                 |
+|            `pre`             |          prefix           |                    前缀                    |
+|        `pre`, `prev`         |         previous          |                   上一个                    |
 |            `pri`             |           prime           |                                          |
-|            `ptr`             |          pointer          |                    指针                  |
-|        `rand`, `rnd`          |          random           |                                          |
+|            `ptr`             |          pointer          |                    指针                    |
+|        `rand`, `rnd`         |          random           |                                          |
 |            `rch`             |        right child        |                                          |
-|            `ref`             |         reference         |                    引用                  |
+|            `ref`             |         reference         |                    引用                    |
 |            `res`             |          result           |                                          |
 |            `ret`             |          return           |                                          |
 |            `rev`             |          reverse          |                                          |
-|             `S`              |            set            |                  通常表示集合             |
-|           `s`, `t`            |   source, sink (target)   |     源点和汇点，在网络流和最短路中常见     |
+|             `S`              |            set            |                  通常表示集合                  |
+|           `s`, `t`           |   source, sink (target)   |            源点和汇点，在网络流和最短路中常见             |
 |            `seg`             |          segment          |       You must know segment trees.       |
 |            `seq`             |         sequence          |                                          |
 |            `sqr`             |          square           |                  $x^2$                   |
 |            `sqrt`            |        square root        |                $\sqrt x$                 |
 |            `stk`             |           stack           |                                          |
 |            `str`             |          string           |                                          |
-|            `suf`             |          suffix           |                    后缀                  |
-|            `tmp`             |         temporary         |                   临时的                 |
-|            `tot`             |           total           |             似乎 Pascal 选手喜欢用？      |
-|        `u`, `v`, `w`           |    vertexes and weight    |                 图论题中天天有            |
+|            `suf`             |          suffix           |                    后缀                    |
+|            `tmp`             |         temporary         |                   临时的                    |
+|            `tot`             |           total           |             似乎 Pascal 选手喜欢用？             |
+|        `u`, `v`, `w`         |    vertexes and weight    |                 图论题中天天有                  |
 |            `upd`             |          update           |                                          |
-| `uX` `(X = 16, 32, 64, 128)`  |     unsigned integer      |                  无符号整型               |
+| `uX` `(X = 16, 32, 64, 128)` |     unsigned integer      |                  无符号整型                   |
 |            `val`             |           value           |                                          |
 
 当然，每个人都会有自己的喜好，你可以参照上面来简化你的命名规范。
