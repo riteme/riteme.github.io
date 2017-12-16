@@ -8,6 +8,9 @@ tags: Posts
 [TOC]
 ## 所有文章
 ### 2017
+#### 2017-12
+* [数学问题杂记](./blog/2017-12-16/math-problems.html): 一些比较有意思的数学问题
+
 #### 2017-10
 * [计算纯电阻网络的等效电阻](./blog/2017-10-28/resist.html)
 * [OI Coding Guidelines](./blog/2017-10-28/oi-coding-guidelines.html): 个人对 OI 编程的一些经验
@@ -18,7 +21,6 @@ tags: Posts
 
 #### 2017-6
 * [双重计数的简单应用](./blog/2017-6-19/double-count.html): 介绍了几个双重计数在图计数上的例子
-* [数学问题杂记 - 2017.6](./blog/2017-6-14/math-2017-6.html)
 
 #### 2017-5
 * [【NOI2016】“循环之美” 无脑解法](./blog/2017-5-18/cyclic.html): NOI2016 Day1 T3直接DP做法
