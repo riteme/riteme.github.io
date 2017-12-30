@@ -138,6 +138,7 @@ td.code {
     padding: 1px 4px 1px 10px;
     font-style: normal;
     font-size: 14px;
+    font-family: inherit;
 }
 
 .article blockquote::before {

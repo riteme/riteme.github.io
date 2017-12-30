@@ -14,7 +14,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hall定理 - riteme.site</title>
+  <title>Hall 定理 - riteme.site</title>
   <link rel="shortcut icon" href="/favicon.png" type="image/png">
   <link rel="stylesheet" href="/material/material-icons.css">
   <link rel="stylesheet" href="/material/material.min.css" />
@@ -36,7 +36,7 @@
   <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
     <header class="mdl-layout__header">
       <div class="mdl-layout__header-row">
-        <span class="mdl-layout-title">Hall定理</span>
+        <span class="mdl-layout-title">Hall 定理</span>
         <div class="mdl-layout-spacer"></div>
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
         mdl-textfield--floating-label mdl-textfield--align-right">
@@ -68,46 +68,41 @@
       <div class="mdl-cell mdl-cell--9-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
         <div class="article">
           
-<h1 id="hall">Hall定理</h1>
+<h1 id="hall">Hall 定理</h1>
 <h2 id="_1">基本形式</h2>
-<p>Hall定理是一个用于判定<strong>二分图是否具有最大匹配</strong>的定理。<br />
-首先对于二分图<mathjax>$G = (X \cup Y, E)$</mathjax>，点集被分为了<mathjax>$X$</mathjax>和<mathjax>$Y$</mathjax>两部分。<br />
-是否具有最大匹配，首先一个最基本的条件就是<mathjax>$|X| = |Y|$</mathjax>。<br />
-Hall定理则在此基础上给出了一个更强的条件。<br />
-首先对于一个点集<mathjax>$T \subseteq X$</mathjax>，定义<mathjax>$\Gamma(T)$</mathjax>如下：<br />
+<p>Hall 定理是一个用于判定<strong>二分图是否具有完美匹配</strong>的定理。<br />
+首先对于二分图 <mathjax>$G = (X \cup Y, E)$</mathjax>，点集被分为了 <mathjax>$X$</mathjax> 和 <mathjax>$Y$</mathjax> 两部分。<br />
+是否具有完美匹配，首先一个最基本的条件就是 <mathjax>$|X| = |Y|$</mathjax>。<br />
+Hall 定理则在此基础上给出了一个更强的条件。<br />
+首先对于一个点集 <mathjax>$T \subseteq X$</mathjax>，定义 <mathjax>$\Gamma(T)$</mathjax> 如下：<br />
 <mathjax>$$
 \Gamma(T) = \{v \mid u \rightarrow v \in E,\; u \in T,\; v \in Y\}
 $$</mathjax></p>
-<p>即表示<mathjax>$T$</mathjax>中所有点能够直接到达的<mathjax>$Y$</mathjax>中的点的集合。</p>
+<p>即表示 <mathjax>$T$</mathjax> 中所有点能够直接到达的 <mathjax>$Y$</mathjax> 中的点的集合。</p>
 <p><img alt="bigraph" src="https://git.oschina.net/riteme/blogimg/raw/master/hall-theorme/bigraph.png" /></p>
 <p>上图中，<mathjax>$\Gamma(\{1,\;3\}) = \{4,\;5,\;6\}$</mathjax>。<br />
-那么Hall条件则用于判断一个二分图是否存在最大匹配。Hall条件如下：<br />
-对于<strong>任意</strong>的点集<mathjax>$T \subseteq X$</mathjax>，均存在：<br />
+Hall 条件用于判断一个二分图是否存在完美匹配。如果对于<strong>任意</strong>的点集 <mathjax>$T \subseteq X$</mathjax>，均存在：<br />
 <mathjax>$$
 |T| \le |\Gamma(T)|
 $$</mathjax></p>
-<p>那么此二分图必定存在最大匹配。</p>
+<p>称此二分图满足 Hall 条件。Hall 定理的表述如下：</p>
+<blockquote>
+<p>二分图 <mathjax>$G(X \cup Y,E)$</mathjax> 存在完美匹配<strong>当且仅当</strong> <mathjax>$|X| = |Y|$</mathjax> 并且满足 Hall 条件。</p>
+</blockquote>
+<p>本文会使用 <mathjax>$C = A - B$</mathjax> 表示集合之差，即 <mathjax>$C = A \cap \overline B$</mathjax>。</p>
 <h2 id="_2">证明</h2>
-<p>这个定理看起来很显然，证明起来也不是很难。<br />
-首先我们令<mathjax>$n = |X|$</mathjax>，那么，当<mathjax>$n$</mathjax>等于<mathjax>$0$</mathjax>或<mathjax>$1$</mathjax>时，可以验证是正确的。<br />
-我们尝试进行逆向归纳。对于一个<mathjax>$n &gt; 1$</mathjax>的二分图，考虑以下两种情况：</p>
-<ol>
-<li>
-<p>如果对于任意的<mathjax>$T \subseteq X$</mathjax>均满足以下条件：<br />
-<mathjax>$$ |\Gamma(T)| \ge |T| + 1 $$</mathjax></p>
-<p>那么我们可以删除图中任意一条边作为匹配。由于每个子集均满足以上条件，那么从<mathjax>$X$</mathjax>和<mathjax>$Y$</mathjax>中各删除一个点不会导致违反Hall条件，所以此操作可以使归纳继续并且使<mathjax>$n$</mathjax>减小。</p>
-</li>
-<li>
-<p>如果存在一个<strong>最大的</strong><mathjax>$T \subset X$</mathjax>，满足以下条件：<br />
-<mathjax>$$ |\Gamma(T)| = |T| $$</mathjax></p>
-<p>那么我们可以明确两点：第一，在<mathjax>$T$</mathjax>中我们可以找到一个关于<mathjax>$T$</mathjax>的最大匹配；第二，将这个匹配从图中删去，剩下的图依然满足Hall条件。因为根据Hall条件易知每一个<mathjax>$X$</mathjax>中的点必定至少与一个<mathjax>$Y$</mathjax>中的点有连边关系。同时Hall条件还表明，不存在一个不属于<mathjax>$T$</mathjax>的点，只与<mathjax>$\Gamma(T)$</mathjax>中的点有边相连。故删除它们不会造成有点的出度变为<mathjax>$0$</mathjax>，从而满足了Hall条件。</p>
-</li>
-</ol>
-<p>因此可以通过归纳证明Hall定理。</p>
-<h2 id="hall_1">计算所有满足Hall条件的子集</h2>
-<p>对于一张二分图而言，如何确定<mathjax>$X$</mathjax>或<mathjax>$Y$</mathjax>的一个子集是否满足Hall条件？<br />
-令<mathjax>$n$</mathjax>为<mathjax>$|X|$</mathjax>或者<mathjax>$|Y|$</mathjax>。首先我们可以根据定义，对于每个子集枚举自己的子集。采用DP，可以推算出所有子集的答案。时间复杂度为<mathjax>$O(3^n)$</mathjax>。<br />
-考虑到直接枚举子集过于暴力，因此先选择集合中的一个点<mathjax>$u$</mathjax>，将其删去，将会得到一个更小的子集，这个值已经被提前计算过了，因此一大部分的子集的答案就都被算入其中了。剩下的还未考虑到的子集均包含<mathjax>$u$</mathjax>，但是除了集合本身外，剩余的子集均会相差至少一个点。因此我们枚举所有集合中的点并去掉，用得到的新的更小的集合的DP值来更新当前集合，最后再计算自己是否满足不等式。这样计算的时间是<mathjax>$O(2^n \cdot n)$</mathjax>的。</p>
+<p>首先，当 <mathjax>$|X| \neq |Y|$</mathjax> 时，二分图不存在完美匹配。如果二分图存在完美匹配，则意味着 <mathjax>$|X| = |Y|$</mathjax>。此外，上述定理的充分性非常显然，因为如果 <mathjax>$|\Gamma(T)| &lt; |T|$</mathjax>，那么对于子集 <mathjax>$T$</mathjax> 是无法找出完美匹配的。</p>
+<p>现在来证明必要性。记 <mathjax>$n = |X|$</mathjax>，不难发现当 <mathjax>$n = 0$</mathjax> 或 <mathjax>$n = 1$</mathjax> 时，Hall 定理是成立的。</p>
+<p>尝试使用数学归纳法来证明 <mathjax>$n &gt; 1$</mathjax> 的情形。假设对于任意 <mathjax>$n &lt; k$</mathjax> 的情况都是成立的，则需要证明当 <mathjax>$n = k$</mathjax> 时也是成立的。先来考虑条件最为苛刻的一类非空真子集 <mathjax>$T \subset X$</mathjax>，它满足 <mathjax>$|\Gamma(T)| = |T|$</mathjax>。对于子集 <mathjax>$S \subseteq X - T$</mathjax>，由于满足 Hall 条件，所以 <mathjax>$|\Gamma(S  \cap T)| \geq |S \cap T|$</mathjax>，又因为 <mathjax>$|\Gamma(T)| = |T|$</mathjax>，所以 <mathjax>$|\Gamma(S) - \Gamma(T)| \geq |S|$</mathjax>，也就是说，如果图 <mathjax>$G$</mathjax> 中删去 <mathjax>$T$</mathjax> 和 <mathjax>$\Gamma(T)$</mathjax> 中的所有点得到新图 <mathjax>$G'(X' \cup Y',E')$</mathjax>，则 <mathjax>$|X'| &lt; k$</mathjax> 且依然满足 Hall 条件，故 <mathjax>$G'$</mathjax> 存在完美匹配。由于 <mathjax>$T$</mathjax> 是真子集，所以 <mathjax>$|T| &lt; k$</mathjax>，所以 <mathjax>$G$</mathjax> 关于点集 <mathjax>$T \cup \Gamma(T)$</mathjax> 的导出子图一定存在完美匹配。即 <mathjax>$G$</mathjax> 存在完美匹配。</p>
+<p>注意到满足上述条件的非空真子集 <mathjax>$T$</mathjax> 并不总是存在。当不存在的时候，我们有：<br />
+<mathjax>$$
+|\Gamma(T)| \geq |T| + 1 \;\;\;\; (\forall \; T \subset X)
+$$</mathjax></p>
+<p>这个时候任意删去图 <mathjax>$G$</mathjax> 的任意一条匹配边，不会使 <mathjax>$G$</mathjax> 不符合 Hall 条件。由于 <mathjax>$n$</mathjax> 减少了 <mathjax>$1$</mathjax>，所以删去该匹配边后的图存在完美匹配。</p>
+<h2 id="hall_1">计算所有满足 Hall 条件的子集</h2>
+<p>对于一张二分图而言，如何确定 <mathjax>$X$</mathjax> 或 <mathjax>$Y$</mathjax> 的一个子集是否满足 Hall 条件？<br />
+令 <mathjax>$n$</mathjax> 为 <mathjax>$|X|$</mathjax>。首先我们可以根据定义，对于每个子集枚举自己的子集。采用 DP，可以推算出所有子集的答案。时间复杂度为 <mathjax>$O(3^n)$</mathjax>。<br />
+考虑到直接枚举子集过于暴力，因此先选择集合中的一个点 <mathjax>$u$</mathjax>，将其删去，将会得到一个更小的子集，这个值已经被提前计算过了，因此一大部分的子集的答案就都被算入其中了。剩下的还未考虑到的子集均包含 <mathjax>$u$</mathjax>，但是除了集合本身外，剩余的子集均会相差至少一个点。因此我们枚举所有集合中的点并去掉，用得到的新的更小的集合的 DP 值来更新当前集合，最后再计算自己是否满足不等式。这样计算的时间是 <mathjax>$O(2^n \cdot n)$</mathjax> 的。</p>
 <p>大致的代码如下：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -122,26 +117,26 @@ $$</mathjax></p>
 </td></tr></table>
 
 <h2 id="_3">简单运用</h2>
-<p>Hall定理一般没有什么优化算法复杂度上的用途，但是可以作为一个<strong>比较好的思维工具</strong>。<br />
+<p>Hall 定理一般没有什么优化算法复杂度上的用途，但是可以作为一个<strong>比较好的思维工具</strong>。<br />
 例如下面这个问题：<br />
 <a href="http://codeforces.com/problemset/problem/720/A">[Russian Code Cup 2016 - Finals] A. Closing ceremony</a></p>
-<p>大意是有一个<mathjax>$n\times m$</mathjax>的网格和<mathjax>$n \times m$</mathjax>个人，每个人都要走到一个网格上的一点，每个点只能装下一个人。<br />
+<p>大意是有一个 <mathjax>$n\times m$</mathjax> 的网格和 <mathjax>$n \times m$</mathjax> 个人，每个人都要走到一个网格上的一点，每个点只能装下一个人。<br />
 同时定义两个点之间的距离为曼哈顿距离，每个人有自己行走的路程上限。<br />
-现在这<mathjax>$n \times m$</mathjax>个人分成两批，从<mathjax>$(0,\;0)$</mathjax>和<mathjax>$(0,\;m+1)$</mathjax>出发，问你是否存在一种安排每个人的最终位置的方案，来满足每个人走到对应位置时的路程不超过自己的上限。</p>
-<p>令点<mathjax>$A$</mathjax>为<mathjax>$(0,\;0)$</mathjax>，点<mathjax>$B$</mathjax>为<mathjax>$(0,\;m+1)$</mathjax>。并且设<mathjax>$f(i,\;j)$</mathjax>表示离<mathjax>$A$</mathjax>距离至少为<mathjax>$i$</mathjax>，离<mathjax>$B$</mathjax>距离至少为<mathjax>$j$</mathjax>的格子的个数。<br />
-设<mathjax>$S_A(i)$</mathjax>表示在<mathjax>$A$</mathjax>最远距离至少为<mathjax>$i$</mathjax>的人数，同理，<mathjax>$S_B(i)$</mathjax>表示在<mathjax>$B$</mathjax>处最远距离至少为<mathjax>$i$</mathjax>的人数。由于每个人和一个位置形成了一个一一对应的关系，由此我们可以构建一个二分图，并且我们所要做的就是判定这个二分图是否具有最大匹配。<br />
-事实上由于存在单调性，利用Hall定理可以知道，我们只用判定是否对于所有的<mathjax>$f(i,\;j)$</mathjax>均不大于<mathjax>$S_A(i) + S_B(j)$</mathjax>，如果满足这个条件，那么这个二分图就有最大匹配。<br />
-那么现在的问题就是求得<mathjax>$f$</mathjax>。由于曼哈顿距离为<mathjax>$i$</mathjax>的等距线实际上是一条斜率为<mathjax>$1$</mathjax>或<mathjax>$-1$</mathjax>的直线，所以<mathjax>$f(i,\;j)$</mathjax>就是两条直线在网格中围成的面积。<br />
+现在这 <mathjax>$n \times m$</mathjax> 个人分成两批，从 <mathjax>$(0,\;0)$</mathjax> 和 <mathjax>$(0,\;m+1)$</mathjax> 出发，问你是否存在一种安排每个人的最终位置的方案，来满足每个人走到对应位置时的路程不超过自己的上限。</p>
+<p>令点 <mathjax>$A$</mathjax> 为 <mathjax>$(0,\;0)$</mathjax>，点 <mathjax>$B$</mathjax> 为 <mathjax>$(0,\;m+1)$</mathjax>。并且设 <mathjax>$f(i,\;j)$</mathjax> 表示离 <mathjax>$A$</mathjax> 距离至少为 <mathjax>$i$</mathjax>，离 <mathjax>$B$</mathjax> 距离至少为 <mathjax>$j$</mathjax> 的格子的个数。<br />
+设 <mathjax>$S_A(i)$</mathjax> 表示在 <mathjax>$A$</mathjax> 最远距离至少为 <mathjax>$i$</mathjax> 的人数，同理，<mathjax>$S_B(i)$</mathjax> 表示在 <mathjax>$B$</mathjax> 处最远距离至少为 <mathjax>$i$</mathjax> 的人数。由于每个人和一个位置形成了一个一一对应的关系，由此我们可以构建一个二分图，并且我们所要做的就是判定这个二分图是否具有完美匹配。<br />
+事实上由于存在单调性，利用 Hall 定理可以知道，我们只用判定是否对于所有的 <mathjax>$f(i,\;j)$</mathjax> 均不大于 <mathjax>$S_A(i) + S_B(j)$</mathjax>，如果满足这个条件，那么这个二分图就有最大匹配。<br />
+那么现在的问题就是求得 <mathjax>$f$</mathjax>。由于曼哈顿距离为 <mathjax>$i$</mathjax> 的等距线实际上是一条斜率为 <mathjax>$1$</mathjax> 或 <mathjax>$-1$</mathjax> 的直线，所以 <mathjax>$f(i,\;j)$</mathjax> 就是两条直线在网格中围成的面积。<br />
 并且注意到它可以递归计算：<br />
 <mathjax>$$
 f(i,\;j) = f(i+1,\;j) + f(i,\;j+1) - f(i+1,\;j+1)
 $$</mathjax></p>
-<p>并且需要考虑这两条直线的交点是否会占用一个格子。所以我们的做法就是枚举交点，确定是那两条直线相交，并且赋给对应的<mathjax>$f$</mathjax>去，然后对<mathjax>$f$</mathjax>计算后缀和就是我们想要的东西啦～</p>
+<p>并且需要考虑这两条直线的交点是否会占用一个格子。所以我们的做法就是枚举交点，确定是那两条直线相交，并且赋给对应的 <mathjax>$f$</mathjax> 去，然后对 <mathjax>$f$</mathjax> 计算后缀和就是我们想要的东西啦～</p>
           <hr/>
           <div id="comments"></div>
           <script type="text/javascript">
             const gitment = new Gitment({
-              id: 'b0158994982ed91db41ce1a9a89d01b0',
+              id: 'dd44e30c22b32e9d4e98aaee30422387',
               owner: 'riteme',
               repo: 'riteme.github.io',
               oauth: {
@@ -159,10 +154,10 @@ $$</mathjax></p>
        <div class="article">
         <div class="mdl-card mdl-shadow--3dp" style="width: 100%">
           <div class="mdl-card__supporting-text">
-            标签: <a href="/search.html?q=图论"><span class="label">图论</span></a> <a href="/search.html?q=二分图"><span class="label">二分图</span></a> <a href="/search.html?q=Hall定理"><span class="label">Hall定理</span></a><br/>
+            标签: <a href="/search.html?q=图论"><span class="label">图论</span></a> <a href="/search.html?q=二分图"><span class="label">二分图</span></a> <a href="/search.html?q=Hall 定理"><span class="label">Hall 定理</span></a><br/>
             创建时间: 2016.09.19<br/>
-            上次修改: 2016.09.19<br />
-            统计: 2579 字 / 约 10 分钟
+            上次修改: 2017.12.30<br />
+            统计: 3094 字 / 约 12 分钟
           </div>
         </div>
 
@@ -176,10 +171,10 @@ $$</mathjax></p>
   <div class="mdl-card__supporting-text">
     <div class="toc">
 <ul>
-<li><a href="#hall">Hall定理</a><ul>
+<li><a href="#hall">Hall 定理</a><ul>
 <li><a href="#_1">基本形式</a></li>
 <li><a href="#_2">证明</a></li>
-<li><a href="#hall_1">计算所有满足Hall条件的子集</a></li>
+<li><a href="#hall_1">计算所有满足 Hall 条件的子集</a></li>
 <li><a href="#_3">简单运用</a></li>
 </ul>
 </li>
