@@ -177,6 +177,41 @@ $$</mathjax><br />
 <li>若 <mathjax>$p \notin P$</mathjax>，则 <mathjax>$k = p^q$</mathjax>，此时 <mathjax>$j = 1$</mathjax>。从这里可以看出我们要求 <mathjax>$m \notin P$</mathjax> 的好处。</li>
 </ol>
 <p>至此，我们就成功证明了 (2) 中的等式。</p>
+<h3 id="201817">2018.1.7</h3>
+<h4 id="_8">问题描述</h4>
+<p>证明：对于任意的正整数 <mathjax>$n$</mathjax>，均可被表示为 <mathjax>$\left\lfloor \sqrt2 k \right\rfloor$</mathjax> 或 <mathjax>$\left\lfloor (2 + \sqrt2)k \right\rfloor$</mathjax> 中的有且仅有一种形式，其中 <mathjax>$k$</mathjax> 也是正整数。</p>
+<p>换句话说，集合 <mathjax>$A = \left\{\left\lfloor \sqrt2 k \right\rfloor \mid k \in \mathbf{N}^+\right\}$</mathjax>，<mathjax>$B = \left\{\left\lfloor (2 + \sqrt2) k \right\rfloor \mid k \in \mathbf{N}^+ \right\}$</mathjax>，证明 <mathjax>$A \cap B = \varnothing$</mathjax> 并且 <mathjax>$A \cup B = \mathbf{N}^+$</mathjax>，就像把正整数集划分为两半一样。</p>
+<h4 id="_9">解决方案</h4>
+<p>这个思路确实比较有趣，我们尝试证明，对于任意的正整数 <mathjax>$n$</mathjax>，集合 <mathjax>$A$</mathjax> 中不大于 <mathjax>$n$</mathjax> 的元素个数 <mathjax>$a$</mathjax> 与集合 <mathjax>$B$</mathjax> 中不大于 <mathjax>$n$</mathjax> 的元素个数 <mathjax>$b$</mathjax> 之和等于 <mathjax>$n$</mathjax>。如果得到了这个结论，原命题就很容易说明了。</p>
+<p>先考虑集合 <mathjax>$A$</mathjax>:<br />
+<mathjax>$$
+\begin{aligned}
+a &amp; = \sum_k  \left[1 \leqslant \left\lfloor \sqrt2 k \right\rfloor \leqslant n \right] \\
+&amp; = \sum_k  \left[1 \leqslant \sqrt2 k &lt; n + 1\right] \\
+&amp; = \left\lceil {n + 1 \over \sqrt2} \right\rceil - \left\lceil {1 \over \sqrt2} \right\rceil \\
+&amp; = \left\lceil {n + 1 \over \sqrt2} \right\rceil - 1
+\end{aligned}
+$$</mathjax><br />
+同理可得：<br />
+<mathjax>$$
+\begin{aligned}
+b &amp; = \left\lceil {n + 1 \over 2 + \sqrt2} \right\rceil - 1 = \left\lceil {(2 - \sqrt2)(n + 1) \over 2} \right\rceil - 1 \\
+&amp; = n + 1 + \left\lceil -{\sqrt2(n + 1) \over 2} \right\rceil - 1 \\
+&amp; = n - \left\lfloor {n + 1 \over \sqrt2} \right\rfloor
+\end{aligned}
+$$</mathjax><br />
+因此：<br />
+<mathjax>$$
+a + b = n - 1 + \left\lceil {n + 1 \over \sqrt2} \right\rceil - \left\lfloor {n + 1 \over \sqrt2} \right\rfloor \tag{1}
+$$</mathjax><br />
+我们知道，对于任意实数 <mathjax>$r$</mathjax>：<br />
+<mathjax>$$
+\lceil r \rceil - \lfloor r \rfloor  = \begin{cases}
+0 &amp;  (r \in \mathbf{N}) \\
+1 &amp;  (\text{otherwise})
+\end{cases}
+$$</mathjax><br />
+而 <mathjax>$(n+1) / \sqrt2$</mathjax> 一定是无理数，故 <mathjax>$(1)$</mathjax> 式中的取上整减取下整的部分恒为 <mathjax>$1$</mathjax>，即 <mathjax>$a + b = n$</mathjax>。</p>
           <hr/>
           <div id="comments"></div>
           <script type="text/javascript">
@@ -201,8 +236,8 @@ $$</mathjax><br />
           <div class="mdl-card__supporting-text">
             标签: <a href="/search.html?q=数学"><span class="label">数学</span></a><br/>
             创建时间: 2017.12.16<br/>
-            上次修改: 2017.12.16<br />
-            统计: 4615 字 / 约 18 分钟
+            上次修改: 2018.01.08<br />
+            统计: 6379 字 / 约 25 分钟
           </div>
         </div>
 
@@ -230,6 +265,11 @@ $$</mathjax><br />
 <li><a href="#20171216">2017.12.16</a><ul>
 <li><a href="#_6">问题描述</a></li>
 <li><a href="#_7">解决方案</a></li>
+</ul>
+</li>
+<li><a href="#201817">2018.1.7</a><ul>
+<li><a href="#_8">问题描述</a></li>
+<li><a href="#_9">解决方案</a></li>
 </ul>
 </li>
 </ul>
