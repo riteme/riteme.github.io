@@ -212,6 +212,98 @@ $$</mathjax><br />
 \end{cases}
 $$</mathjax><br />
 而 <mathjax>$(n+1) / \sqrt2$</mathjax> 一定是无理数，故 <mathjax>$(1)$</mathjax> 式中的取上整减取下整的部分恒为 <mathjax>$1$</mathjax>，即 <mathjax>$a + b = n$</mathjax>。</p>
+<h3 id="2018113">2018.1.13</h3>
+<h4 id="_10">问题描述</h4>
+<p>求下面这个递推式的通项公式：<br />
+<mathjax>$$
+\begin{aligned}
+R(1) &amp; = 4  \\
+R(n + 1) &amp; = 3R(n) + 2^{n-1}-4n ~~~~(\forall n &gt; 1)
+\end{aligned}
+$$</mathjax></p>
+<h4 id="_11">解决方案</h4>
+<p>这里主要是记录一下 Repertoire Method 这种方法，不过现在我还不知道该怎么翻译这个名称&hellip;</p>
+<p>这个方法基于一个简单的观察：如果设<br />
+<mathjax>$$
+\begin{aligned}
+R(1) &amp; = a \\
+R(n + 1) &amp; = 3R(n) + b\cdot 2^{n-1} + c\cdot  n + d
+\end{aligned}
+$$</mathjax><br />
+我们会发现：<br />
+<mathjax>$$
+\begin{aligned}
+R(1) &amp; = a \\
+R(2) &amp; = 3a + b + c + d \\
+R(3) &amp; = 9a + 5b + 5c + 4d \\
+R(4) &amp; = 27a + 19b + 18c + 13d \\
+R(5) &amp; = 81a + 65b + 58c + 40d \\
+&amp;\cdots
+\end{aligned}
+$$</mathjax><br />
+可以猜测，<mathjax>$R(n)$</mathjax> 的通项公式可以被写成以下形式：<br />
+<mathjax>$$
+R(n) = a\cdot f(n) + b \cdot g(n) + c\cdot h(n) + d \cdot \varphi(n)
+$$</mathjax><br />
+其中 <mathjax>$f(n)$</mathjax>、<mathjax>$g(n)$</mathjax>、<mathjax>$h(n)$</mathjax> 和 <mathjax>$\varphi(n)$</mathjax> 都是关于 <mathjax>$n$</mathjax> 的简单函数。运用数学归纳法，不难证明可以一直保持这种形式。</p>
+<p>我们现在的目标就是求出这四个函数。接下来的步骤就比较投机了，我们可以猜测当 <mathjax>$a$</mathjax>、 <mathjax>$b$</mathjax>、<mathjax>$c$</mathjax>、<mathjax>$d$</mathjax> 取不同值的时候 <mathjax>$R(n)$</mathjax> 可能的形式，我们可以假设 <mathjax>$R(n) = 1$</mathjax>，尝试找出是否有对应的值。根据递推的等式，可以列出：<br />
+<mathjax>$$
+\begin{cases}
+1 = a \\
+1 = 3 \times 1 + b \cdot 2^{n-1} + c\cdot n + d
+\end{cases}
+$$</mathjax><br />
+不难发现：<mathjax>$a = 1$</mathjax> 以及 <mathjax>$d = -2$</mathjax>，其余两个变量只能为 <mathjax>$0$</mathjax>。回代到 <mathjax>$R(n)$</mathjax> 的通项公式中：<br />
+<mathjax>$$
+R(n) = f(n) - 2\varphi(n) = 1
+$$</mathjax><br />
+我们明白，如果能按照类似的方式找到 <mathjax>$4$</mathjax> 个这样的方程，我们就可以把四个函数全部都解出来。现在继续尝试一些其它的函数。考虑到递推式中有 <mathjax>$n$</mathjax> 这种东西，可以尝试当 <mathjax>$R(n) = n$</mathjax> 时的情况：<br />
+<mathjax>$$
+\begin{cases}
+0 = a \\
+n + 1 = 3n + b \cdot 2^{n-1} + c\cdot n + d
+\end{cases}
+$$</mathjax><br />
+可以解出 <mathjax>$a = 1,\;c = -2,\;d = 1$</mathjax>。因此 <mathjax>$f(n) - 2h(n) + \varphi(n) = n$</mathjax>。</p>
+<p>根据同样的想法，尝试一下 <mathjax>$R(n) = 2^n$</mathjax>：<br />
+<mathjax>$$
+\begin{cases}
+2 = a \\
+2^{n+1} = 3 \times 2^n + b \cdot 2^{n-1} + c\cdot n + d
+\end{cases}
+$$</mathjax><br />
+此时 <mathjax>$a = 2,\;b = -2$</mathjax>，同时我们有 <mathjax>$f(n) - g(n) = 2^{n-1}$</mathjax>。</p>
+<p>此外注意到第二个递推式中 <mathjax>$R(n)$</mathjax> 前的系数是 <mathjax>$3$</mathjax>，说明通项公式中应该是有 <mathjax>$3^n$</mathjax> 这种东西的。于是尝试 <mathjax>$R(n) = 3^n$</mathjax>：<br />
+<mathjax>$$
+\begin{cases}
+3 = a \\
+3^{n + 1} = 3^{n+1} + b \cdot 2^{n-1} + c\cdot n + d
+\end{cases}
+$$</mathjax><br />
+So easy, <mathjax>$a = 3$</mathjax>，并且可以直接知道 <mathjax>$f(n) = 3^{n - 1}$</mathjax>。</p>
+<p>现在 <mathjax>$4$</mathjax> 个方程集齐了，只需要解下面这个方程组：<br />
+<mathjax>$$
+\left\{
+\begin{aligned}
+f(n) - 2\varphi(n) &amp; = 1 \\
+f(n) - 2h(n) + \varphi(n) &amp; = n \\
+f(n) - g(n) &amp;= 2^{n-1} \\
+f(n) &amp; = 3^{n - 1}
+\end{aligned}
+\right.
+$$</mathjax><br />
+不难解出：<br />
+<mathjax>$$
+\left\{
+\begin{aligned}
+f (n) &amp; = 3^{n - 1} \\
+g(n) &amp; = 3^{n-1} - 2^{n - 1}\\
+h(n) &amp; = \frac14 3^n - \frac12 n - \frac14 \\
+\varphi(n) &amp; = \frac12 3^{n - 1} - \frac12
+\end{aligned}
+\right.
+$$</mathjax><br />
+现在来解决原问题。原问题中，<mathjax>$a = 4,\;b = 1,\;c = -4,\;d = 0$</mathjax>，所以 <mathjax>$R(n) = 4f(n) + g(n) - 4h(n) = 2\times 3^{n-1} - 2^{n-1}+2n+1$</mathjax>。纵观整个过程，Repertoire Method 并不简单，甚至有点繁琐，但仍不失为探究问题的一种好思路。</p>
           <hr/>
           <div id="comments"></div>
           <script type="text/javascript">
@@ -236,8 +328,8 @@ $$</mathjax><br />
           <div class="mdl-card__supporting-text">
             标签: <a href="/search.html?q=数学"><span class="label">数学</span></a><br/>
             创建时间: 2017.12.16<br/>
-            上次修改: 2018.01.08<br />
-            统计: 6379 字 / 约 25 分钟
+            上次修改: 2018.01.13<br />
+            统计: 9022 字 / 约 36 分钟
           </div>
         </div>
 
@@ -270,6 +362,11 @@ $$</mathjax><br />
 <li><a href="#201817">2018.1.7</a><ul>
 <li><a href="#_8">问题描述</a></li>
 <li><a href="#_9">解决方案</a></li>
+</ul>
+</li>
+<li><a href="#2018113">2018.1.13</a><ul>
+<li><a href="#_10">问题描述</a></li>
+<li><a href="#_11">解决方案</a></li>
 </ul>
 </li>
 </ul>
