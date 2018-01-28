@@ -7,6 +7,10 @@ tags: Posts
 
 [TOC]
 ## 所有文章
+### 2018
+#### 2018-1
+* [区间加多项式问题的研究](./blog/2018-1-28/interval-polynomial.html)
+
 ### 2017
 #### 2017-12
 * [数学问题杂记](./blog/2017-12-16/math-problems.html): 一些比较有意思的数学问题

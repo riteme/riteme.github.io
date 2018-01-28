@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+
+<script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?72d0c4a099cd676176e657b871326707";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  } )();
+</script>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>区间加多项式问题的研究 - riteme.site</title>
+  <link rel="shortcut icon" href="/favicon.png" type="image/png">
+  <link rel="stylesheet" href="/material/material-icons.css">
+  <link rel="stylesheet" href="/material/material.min.css" />
+  <link href="/tipuesearch/tipuesearch.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/gitment/gitment.css">
+  <link href="/css/site.css" rel="stylesheet">
+  <script defer src="/material/material.min.js"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config( { tex2jax: { inlineMath: [['$','$']] }, "HTML-CSS": { scale: 95 } } );
+  </script>
+  <script type="text/javascript" async src="/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script src="/jquery/jquery-2.2.4.min.js"></script>
+  <script src="/tipuesearch/tipuesearch_set.js"></script>
+  <script src="/tipuesearch/tipuesearch.min.js"></script>
+  <script src="/gitment/gitment.js"></script>
+</head>
+
+<body>
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <span class="mdl-layout-title">区间加多项式问题的研究</span>
+        <div class="mdl-layout-spacer"></div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+        mdl-textfield--floating-label mdl-textfield--align-right">
+        <label class="mdl-button mdl-js-button mdl-button--icon"
+        for="fixed-header-drawer-exp"><i class="material-icons">search</i></label>
+        <div class="mdl-textfield__expandable-holder">
+          <form action="/search.html"><input type="text" class="mdl-textfield__input" placeholder="Search Here" name="q" id="fixed-header-drawer-exp" autocomplete="off" required></form>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="mdl-layout__drawer">
+    <span class="mdl-layout-title drawer-title">
+      <a href="/index.html" style="color: inherit; font-weight: inherit;text-decoration: none;">
+        <img src="/favicon.png" width=32 height=32> riteme.site
+      </a>
+    </span>
+    <nav class="mdl-navigation">
+      <a class="mdl-navigation__link" href="/index.html"><i class="material-icons" style="vertical-align: bottom;">home</i> 首页</a>
+      <a class="mdl-navigation__link" href="/posts.html"><i class="material-icons" style="vertical-align: bottom;">library_books</i> 所有文章</a>
+      <a class="mdl-navigation__link" href="/about.html"><i class="material-icons" style="vertical-align: bottom;">info</i> 关于</a>
+      <a class="mdl-navigation__link" href="/links.html"><i class="material-icons" style="vertical-align: bottom;">link</i> 友链</a>
+      <a class="mdl-navigation__link" href="/search.html"><i class="material-icons" style="vertical-align: bottom;">search</i> 搜索</a>
+      <a class="mdl-navigation__link" href="https://github.com/riteme/riteme.github.io"><i class="material-icons" style="vertical-align: bottom;">class</i> GitHub 项目</a>
+    </nav>
+  </div>
+  <main class="mdl-layout__content">
+    <div class="mdl-grid">
+      <div class="mdl-cell mdl-cell--9-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+        <div class="article">
+          
+<h1 id="_1">区间加多项式问题的研究</h1>
+<h2 id="_2">问题描述</h2>
+<p>给定一个长度为 <mathjax>$n$</mathjax>，初始值全为 <mathjax>$0$</mathjax> 的序列 <mathjax>$A[1..n]$</mathjax>，要求支持以下两种操作：</p>
+<ul>
+<li>修改操作：每次给定一个区间 <mathjax>$[l, r]$</mathjax> 以及一个 <mathjax>$K$</mathjax> 次多项式 <mathjax>$P(x)$</mathjax>，要求将 <mathjax>$[l, r]$</mathjax> 的第 <mathjax>$k$</mathjax> 项加上 <mathjax>$P(k)$</mathjax>。也就是 <mathjax>$A[l + k - 1]$</mathjax> 加上 <mathjax>$P(k)$</mathjax>，对于所有的 <mathjax>$1 \leqslant k \leqslant r - l + 1$</mathjax>。</li>
+<li>查询操作：查询操作分为两种 (i) 给定位置 <mathjax>$k$</mathjax>，要求输出 <mathjax>$A[k]$</mathjax> 的值 （单点查询）; (ii) 给定区间 <mathjax>$[l, r]$</mathjax>，要求输出区间 <mathjax>$[l, r]$</mathjax> 内所有数之和，即 <mathjax>$\sum_{k = l}^r A[k]$</mathjax>（区间查询）。</li>
+</ul>
+<p>记操作总数为 <mathjax>$q$</mathjax>，修改操作中多项式的最高次数为 <mathjax>$K$</mathjax>，并且 <mathjax>$K$</mathjax> 与 <mathjax>$n$</mathjax> 和 <mathjax>$q$</mathjax> 相比较小。本文的目的是针对修改操作和区间查询给出一个 <mathjax>$O((n + q)K \log n)$</mathjax> 的<strong>在线算法</strong>以及一个 <mathjax>$O(qK \log q)$</mathjax> 的<strong>离线算法</strong>。</p>
+<h2 id="_3">解决方案</h2>
+<h3 id="_4">在线算法</h3>
+<p>我们可以首先考虑一个简化的修改操作：每次指定区间为 <mathjax>$[1..n]$</mathjax>，也就是整个序列。实际上我们只用保存一个多项式 <mathjax>$Q(x)$</mathjax>，每次修改操作就将 <mathjax>$P(x)$</mathjax> 加到 <mathjax>$Q(x)$</mathjax> 上，修改后的序列中 <mathjax>$A[k]$</mathjax> 实际上就是 <mathjax>$Q(k)$</mathjax>。如果我们花费 <mathjax>$\Theta(nK)$</mathjax> 的时间来计算一个表 <mathjax>$F(n, k) = \sum_{x = 1}^n x^k$</mathjax>，即 <mathjax>$x^k$</mathjax> 的前缀和，就可以在单次 <mathjax>$\Theta(K)$</mathjax> 的时间内计算出 <mathjax>$A$</mathjax> 的区间和。</p>
+<p>回到原先的问题，发现 <mathjax>$P(x)$</mathjax> 不仅在序列中的起始位置变了，而且管辖范围也缩减到 <mathjax>$[l, r]$</mathjax>。为了尽可能简化问题，我们尝试对多项式进行处理。我们希望 <mathjax>$P(k)  = A[k]$</mathjax> 而不是 <mathjax>$P(k) = A[l + k - 1]$</mathjax>，不难发现我们所需要做的，就是函数的平移：<mathjax>$P'(x) = P(x - l + 1)$</mathjax>。这样做的好处在于，修改操作变为了对整个序列的修改，但是只在指定的区间有作用。经过平移之后，不同的多项式可以按照之前的方式累加并且正确地计算结果，因此，只要配合平衡树或线段树之类的数据结构即可快速解决区间问题。具体而言，就是对序列的每一个位置维护一个多项式，修改时，将平移后的多项式 <mathjax>$P'(x)$</mathjax> 加到区间 <mathjax>$[l, r]$</mathjax> 上的每一个位置，并利用线段树上的节点来存储必要的信息用于计算区间和。这一部分的时间复杂度是 <mathjax>$O(qK \log n)$</mathjax>，至于使用数据结构处理区间加的过程这里就不详细讨论了。</p>
+<p>现在的问题是我们需要得到 <mathjax>$P'(x)$</mathjax> 的系数表达形式才能方便地加减。设 <mathjax>$P(x) = \sum_{k = 0}^K a_k x^k$</mathjax>，以及平移量 <mathjax>$c$</mathjax>，那么 <mathjax>$P'(x) = P(x + c) = \sum_{k = 0}^K a_k (x + c)^k$</mathjax>。这显然可以直接用二项式定理在 <mathjax>$\Theta(K^2)$</mathjax> 的时间复杂度内展开。但是这种形式的式子普遍可以转化为卷积<sup id="fnref:product"><a class="footnote-ref" href="#fn:product" rel="footnote">1</a></sup>，从而能够利用 FFT 算法来加速。为了达到这一点，考虑利用二项式定理展开并进行整理：<br />
+<mathjax>$$
+\begin{aligned}
+\sum_{k = 0}^K a_k(x + c) ^k &amp; = \sum_{k = 0}^K a_k \sum_{j = 0}^k \binom{k}{j} x^j c^{k - j} = \sum_{j = 0}^K x^j \sum_{k = j}^K \binom{k}{j}a_k c^{k - j} \\
+&amp; = \sum_{j = 0}^K {x^j \over j!} \sum_{k = j}^K k!\  a_k \cdot {c^{k - j} \over (k - j)!} \\
+&amp; = \sum_{j = 0}^K {x^j \over j!} \sum_{t = 0}^{K - j} (j + t)!\  a_{j + t} \cdot {c^t \over t!} ~~~~ (t = k - j)\\
+\end{aligned}
+$$</mathjax><br />
+此时右边的式子已经变成了一个卷积的形式。令 <mathjax>$B_k = (K - k)! \ a_{K - k}$</mathjax>、<mathjax>$C_k = c^k / k!$</mathjax>，那么：<br />
+<mathjax>$$
+P'(x) = \sum_{j = 0}^K {x^j \over j!} \sum_{t = 0}^{K - j}B_{K - j - t} \cdot C_t
+$$</mathjax><br />
+令 <mathjax>$F(n) = \sum_{k = 0}^n B_k \cdot C_{n - k}$</mathjax>，<mathjax>$F(n)$</mathjax> 可以用 FFT 算法在 <mathjax>$\Theta(K \log K)$</mathjax> 的时间内计算出来，此时：<br />
+<mathjax>$$
+P'(x) = \sum_{j = 0}^K {F(K - j) \over j!} x^j
+$$</mathjax></p>
+<p>因此，我们可以在 <mathjax>$\Theta(K \log K)$</mathjax> 的时间复杂度内完成多项式平移。结合数据结构，我们可以在 <mathjax>$O(nK + qK(\log n + \log K)) = O((n + q)K \log n)$</mathjax> 的时间复杂度解决区间加多项式问题。</p>
+<h3 id="_5">离线算法</h3>
+<p>接下来的目标是让时间复杂度变得与序列长度 <mathjax>$n$</mathjax> 无关。考虑求区间和的一种离线算法：扫描线算法。</p>
+<p><img alt="scanline-example" src="https://gitee.com/riteme/blogimg/raw/master/interval-polynomial/scanline-example.svg" /></p>
+<p><center>(<strong>Fig.1.</strong> 扫描线算法的一个示例。<mathjax>$6$</mathjax> 个方格代表序列 <mathjax>$X[1..6]$</mathjax>。上面的操作是将区间 <mathjax>$[2, 4]$</mathjax> 都加上 <mathjax>$3$</mathjax>；下面的是扫描线的过程，首先将原序列视为差分序列，在位置 <mathjax>$2$</mathjax> 加上 <mathjax>$3$</mathjax>，位置 <mathjax>$4$</mathjax> 减去 <mathjax>$3$</mathjax>，模拟一根扫描线从 <mathjax>$1$</mathjax> 一直扫描到 <mathjax>$6$</mathjax>，其中遇到正数就给 <mathjax>$A$</mathjax> 加上，遇到负数则相应地减去，这样扫描线扫到哪里，<mathjax>$A$</mathjax> 的值就是那个位置的值)</center></p>
+<p>为了方便，我们先只考虑单点查询。由于需要支持修改过程中的查询，所以对每个操作记录一个时间戳 <mathjax>$t$</mathjax>，特别的，第一个操作的时间戳是 <mathjax>$1$</mathjax>。如果是修改操作，则当前时间加 <mathjax>$1$</mathjax>，而查询操作不必增加时间。这样对于每一个单点查询以及它的时间戳 <mathjax>$t$</mathjax>，只需要将所有时间戳不大于 <mathjax>$t$</mathjax> 的区间覆盖了当前位置的修改操作的多项式加起来，就可得到当前位置的多项式，从而可以计算这个位置的值。因此我们在扫描线的过程中维护一个数据结构（平衡树/线段树），按照时间戳的顺序来维护所有的修改操作的多项式。对于每个修改操作，在区间开始的位置加一个“添加”事件，区间末尾加一个“删除”事件，执行相应的事件时就将数据结构中的对应多项式插入或删除；而对于查询操作，就只需查询前缀和即可。实际上，如果某个位置没有任何事件，那么<strong>这个位置就可以直接跳过</strong>，因为它不会对我们的数据结构产生任何影响，从而可以在 <mathjax>$O(qK \log q)$</mathjax> 的时间复杂度下完成区间修改/单点查询问题。</p>
+<p>现在来考虑区间查询。我们知道，利用前缀和，可以将区间和变为两个单点值之差。利用这一点，不难想到我们可以直接将多项式 <mathjax>$P(x)$</mathjax> 变成自己的前缀和多项式，即 <mathjax>$P'(x) = \sum_{k = 1}^x P(k)$</mathjax>，这样我们维护的实际上就是原序列的前缀和序列，成功地将区间查询问题转化为了单点查询问题。我们知道，<mathjax>$K$</mathjax> 次多项式的前缀和是 <mathjax>$K + 1$</mathjax> 次多项式，而计算多项式前缀和有很多公式或方法：伯努利公式（又称 Faulhaber&rsquo;s formula）、离散微积分、子集反演或者多项式插值。但它们都是针对 <mathjax>$k$</mathjax> 次单项式（即 <mathjax>$x^k$</mathjax>）的公式，并且计算复杂度都是 <mathjax>$\Theta(k)$</mathjax>，如果运用到任意 <mathjax>$K$</mathjax> 次多项式，就又需要 <mathjax>$\Theta(K^2)$</mathjax> 的时间。</p>
+<p>到了这种时候，我们可能又会想要 FFT 出场了。在此之前，我们需要选择一个便于变形的公式。我经过一番挑选，发现还是伯努利公式形式最优秀：<br />
+<mathjax>$$
+\sum_{k = 1}^x k^n = 1^n + 2^n + \cdots + x^n = \frac1{n+1}\sum_{k = 0}^n \binom{n + 1}{k} B_k x^{n + 1 - k}
+\tag{Bernoulli's Formula}
+$$</mathjax><br />
+其中 <mathjax>$B_k$</mathjax> 表示伯努利数，并且 <mathjax>$B_1 = +1/2$</mathjax><sup id="fnref:bernoulli-number"><a class="footnote-ref" href="#fn:bernoulli-number" rel="footnote">2</a></sup>。伯努利数可以通过多项式逆元快速计算，具体可以查看<a href="http://blog.miskcoo.com/2015/05/polynomial-inverse#_Bernoulli">这里</a>。或者当 <mathjax>$K$</mathjax> 足够小时，我们可以直接将需要的伯努利数存入程序。</p>
+<p>接下来又要经过一番套路变形：<br />
+<mathjax>$$
+\begin{aligned}
+\sum_{k = 1}^x P(k) &amp; = \sum_{k = 1}^x \sum_{j = 0}^K a_j k^j = \sum_{j = 0}^K a_j \sum_{k = 1}^x k^j \\
+&amp; = \sum_{j = 0}^K {a_j \over j + 1} \sum_{k = 0}^j \binom{j + 1}{k} B_k x^{j + 1 - k} \\
+&amp;  = \sum_{j = 0}^K {a_j \over j + 1} \sum_{t = 0}^j \binom{j + 1}{j - t} B_{j - t} x^{t + 1} ~~~~ (t = j - k) \\
+&amp;  = \sum_{t = 0}^K x^{t  + 1} \sum_{j  = t}^K {a_j \over j + 1} \binom{j + 1}{j - t} B_{j - t} \\
+&amp; = \sum_{t = 0}^K {x^{t + 1} \over (t + 1)!} \sum_{j = t}^K j!\ a_j \cdot {B_{j - t} \over (j - t)!} \\
+&amp; = \sum_{t = 0}^K {x^{t + 1} \over (t + 1)!} \sum_{j = 0}^{K - t} (j + t)!\ a_{j + t} \cdot {B_j \over j!}
+\end{aligned}
+$$</mathjax><br />
+Alright！<sup id="fnref:alright"><a class="footnote-ref" href="#fn:alright" rel="footnote">3</a></sup>又是熟悉的面孔。故技重施，令 <mathjax>$C_k = (K - k)!\ a_{K - k}$</mathjax>、<mathjax>$D_k = B_k / k!$</mathjax>，右边就变成了卷积的形式。因此我们可以在 <mathjax>$\Theta(K \log K)$</mathjax> 的时间复杂度内计算多项式前缀和的表达式。结合之前单点查询的算法，如果允许离线操作，区间加多项式问题可以在 <mathjax>$O(qK \log q)$</mathjax> 的时间复杂度内解决。</p>
+<p>最后，我自己使用 C++ 实现了离线算法，如果想要查看可以前往 <a href="https://github.com/riteme/toys/tree/master/oi-ideas/180120-interval-polynomial">我的 GitHub</a>。</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:product">
+<p>卷积是针对两个序列 <mathjax>$A[0..n]$</mathjax> 和 <mathjax>$B[0..n]$</mathjax> 而言的。定义卷积 <mathjax>$C = A \times B$</mathjax>，则 <mathjax>$C(n) = \sum_{k = 0}^n A(k) \cdot B(n - k)$</mathjax>，这一过程可以视为多项式乘法，故可以使用 FFT（快速傅里叶变换）来实现，时间复杂度为 <mathjax>$\Theta(n \log n)$</mathjax>。&#160;<a class="footnote-backref" href="#fnref:product" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:bernoulli-number">
+<p>有一些地方的会使用 <mathjax>$B_1 = -1/2$</mathjax> 的伯努利数。&#160;<a class="footnote-backref" href="#fnref:bernoulli-number" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:alright">
+<p>&ldquo;But your spelling is alwrong.&rdquo; —— <em>Concrete Mathematics</em>&#160;<a class="footnote-backref" href="#fnref:alright" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+          <hr/>
+          <div id="comments"></div>
+          <script type="text/javascript">
+            const gitment = new Gitment({
+              id: '41ad0d7a3f9811acbeef63535c78e204',
+              owner: 'riteme',
+              repo: 'riteme.github.io',
+              oauth: {
+                client_id: 'd4fcffa25858a7a58e1a',
+                client_secret: 'e0c8e08beb95497871f8355416c69390634cec76',
+              },
+              perPage: 10,
+            })
+            gitment.render('comments')
+          </script>
+       </div>
+     </div>
+
+     <div class="mdl-cell mdl-cell--3-col mdl-cell--hide-tablet mdl-cell--hide-phone">
+       <div class="article">
+        <div class="mdl-card mdl-shadow--3dp" style="width: 100%">
+          <div class="mdl-card__supporting-text">
+            标签: <a href="/search.html?q=数据结构"><span class="label">数据结构</span></a> <a href="/search.html?q=多项式"><span class="label">多项式</span></a> <a href="/search.html?q=FFT"><span class="label">FFT</span></a> <a href="/search.html?q=伯努利数"><span class="label">伯努利数</span></a><br/>
+            创建时间: 2018.01.28<br/>
+            上次修改: 2018.01.28<br />
+            统计: 5072 字 / 约 20 分钟
+          </div>
+        </div>
+
+        <br />
+
+        
+<div class="mdl-card mdl-shadow--3dp" style="width: 100%">
+  <div class="mdl-card__title mdl-card--border">
+    <h4 class="mdl-card__title-text">目录</h4>
+  </div>
+  <div class="mdl-card__supporting-text">
+    <div class="toc">
+<ul>
+<li><a href="#_1">区间加多项式问题的研究</a><ul>
+<li><a href="#_2">问题描述</a></li>
+<li><a href="#_3">解决方案</a><ul>
+<li><a href="#_4">在线算法</a></li>
+<li><a href="#_5">离线算法</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+  </div>
+</div>
+
+      </div>
+
+      <div class="return-up-button">
+        <a href="javascript:$('main').animate( { scrollTop: 0 } , 'fast')">
+          <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+            <i class="material-icons">vertical_align_top</i>
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="mdl-mega-footer">
+    <div class="mdl-mega-footer__middle-section">
+      <div class="mdl-mega-footer__drop-down-section">
+        <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+        <h1 class="mdl-mega-footer__heading">RITEME.SITE</h1>
+        一个从不乱说话的博客...
+      </div>
+
+      <div class="mdl-mega-footer__drop-down-section">
+        <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+        <h1 class="mdl-mega-footer__heading">POWERED BY</h1>
+        <ul class="mdl-mega-footer__link-list">
+          <li><a href="http://pythonhosted.org/Markdown/">Python Markdown</a></li>
+          <li><a href="http://getmdl.io/">Material Design Lite</a></li>
+          <li><a href="http://www.tipue.com/search/">Tipuesearch</a></li>
+          <li><a href="http://www.mathjax.org/">MathJax</a></li>
+          <li><a href="https://github.com/imsun/gitment">Gitment</a></li>
+        </ul>
+      </div>
+
+      <div class="mdl-mega-footer__drop-down-section">
+        <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+        <h1 class="mdl-mega-footer__heading">友情链接</h1>
+        <ul class="mdl-mega-footer__link-list">
+          <li><a href="http://link-arthur.github.io/">Link</a></li>
+          <li><a href="http://ruanxingzhi.github.io/">ruanxingzhi</a></li>
+          <li><a href="http://haogram.hol.es/">Haogram</a></li>
+          <li><a href="http://hjwjbsr.is-programmer.com/">HJWJBSR</a></li>
+          <li><a href="https://www.ianime.co/">Mr.Rabbit</a></li>
+          <li><a href="http://blog.linyxus.xyz/">Linro</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mdl-mega-footer__bottom-section">
+      Theme based on <a href="https://getmdl.io/">MDL</a> | Copyright © 2015-2017 riteme. All rights reserved.
+    </div>
+  </footer>
+</main>
+</div>
+</body>
+</html>

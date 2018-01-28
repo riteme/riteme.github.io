@@ -168,6 +168,14 @@ pre, code {
     white-space: pre-wrap;
 }
 
+.footnote-ref:before {
+    content: '[';
+}
+
+.footnote-ref:after {
+    content: ']';
+}
+
 .footnote li > p {
     margin: 0 auto;
     color: #666;
