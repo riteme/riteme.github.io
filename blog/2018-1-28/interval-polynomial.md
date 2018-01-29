@@ -82,7 +82,7 @@ $$
 & = \sum_{t = 0}^K {x^{t + 1} \over (t + 1)!} \sum_{j = 0}^{K - t} (j + t)!\ a_{j + t} \cdot {B_j \over j!}
 \end{aligned}
 $$
-Alright！[^alright]又是熟悉的面孔。故技重施，令 $C_k = (K - k)!\ a_{K - k}$、$D_k = B_k / k!$，右边就变成了卷积的形式。因此我们可以在 $\Theta(K \log K)$ 的时间复杂度内计算多项式前缀和的表达式。结合之前单点查询的算法，如果允许离线操作，区间加多项式问题可以在 $O(qK \log q)$ 的时间复杂度内解决。
+Alright！[^alright]又是熟悉的面孔。故技重施，令 $C_k = (K - k)!\ a_{K - k}$、$D_k = B_k / k!$，右边就变成了卷积的形式。因此我们可以在 $\Theta(K \log K)$ 的时间复杂度内计算多项式前缀和的表达式。结合之前单点查询的算法，如果允许离线操作，区间加多项式问题可以在 $O(qK \log q)$ 的时间复杂度内解决。另外，将区间和转化为单点差之后，实际上还可以使用动态开点的数据结构来实现在线算法，时间复杂度是 $O(qK \log n)$ 的。
 
 [^alright]: "But your spelling is alwrong." —— *Concrete Mathematics*
 

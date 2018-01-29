@@ -120,7 +120,7 @@ $$</mathjax><br />
 &amp; = \sum_{t = 0}^K {x^{t + 1} \over (t + 1)!} \sum_{j = 0}^{K - t} (j + t)!\ a_{j + t} \cdot {B_j \over j!}
 \end{aligned}
 $$</mathjax><br />
-Alright！<sup id="fnref:alright"><a class="footnote-ref" href="#fn:alright" rel="footnote">3</a></sup>又是熟悉的面孔。故技重施，令 <mathjax>$C_k = (K - k)!\ a_{K - k}$</mathjax>、<mathjax>$D_k = B_k / k!$</mathjax>，右边就变成了卷积的形式。因此我们可以在 <mathjax>$\Theta(K \log K)$</mathjax> 的时间复杂度内计算多项式前缀和的表达式。结合之前单点查询的算法，如果允许离线操作，区间加多项式问题可以在 <mathjax>$O(qK \log q)$</mathjax> 的时间复杂度内解决。</p>
+Alright！<sup id="fnref:alright"><a class="footnote-ref" href="#fn:alright" rel="footnote">3</a></sup>又是熟悉的面孔。故技重施，令 <mathjax>$C_k = (K - k)!\ a_{K - k}$</mathjax>、<mathjax>$D_k = B_k / k!$</mathjax>，右边就变成了卷积的形式。因此我们可以在 <mathjax>$\Theta(K \log K)$</mathjax> 的时间复杂度内计算多项式前缀和的表达式。结合之前单点查询的算法，如果允许离线操作，区间加多项式问题可以在 <mathjax>$O(qK \log q)$</mathjax> 的时间复杂度内解决。另外，将区间和转化为单点差之后，实际上还可以使用动态开点的数据结构来实现在线算法，时间复杂度是 <mathjax>$O(qK \log n)$</mathjax> 的。</p>
 <p>最后，我自己使用 C++ 实现了离线算法，如果想要查看可以前往 <a href="https://github.com/riteme/toys/tree/master/oi-ideas/180120-interval-polynomial">我的 GitHub</a>。</p>
 <div class="footnote">
 <hr />
@@ -161,7 +161,7 @@ Alright！<sup id="fnref:alright"><a class="footnote-ref" href="#fn:alright" rel
             标签: <a href="/search.html?q=数据结构"><span class="label">数据结构</span></a> <a href="/search.html?q=多项式"><span class="label">多项式</span></a> <a href="/search.html?q=FFT"><span class="label">FFT</span></a> <a href="/search.html?q=伯努利数"><span class="label">伯努利数</span></a><br/>
             创建时间: 2018.01.28<br/>
             上次修改: 2018.01.28<br />
-            统计: 5072 字 / 约 20 分钟
+            统计: 5138 字 / 约 20 分钟
           </div>
         </div>
 
