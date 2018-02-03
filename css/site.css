@@ -101,9 +101,20 @@ mathjax:after {
     content: " ";
 }
 
+br + mathjax {
+    display: block;
+    overflow: auto;
+}
+
+mathjax + br {
+    display: none;
+}
+
 .codehilitetable {
     border-collapse: collapse;
     border-spacing: 0;
+    display: block;
+    overflow: auto;
 }
 
 .codehilitetable table {
@@ -120,10 +131,10 @@ mathjax:after {
     border-right: solid 1px gray;
 }
 
-.linenodiv > pre {
+/*.linenodiv > pre {
     word-wrap: normal;
     word-break: normal;
-}
+}*/
 
 td.code {
     text-align: left;
@@ -162,11 +173,11 @@ td.code {
     font-size: 60%;
 }
 
-pre, code {
+/*pre, code {
     word-wrap: break-word;
     word-break: break-all;
     white-space: pre-wrap;
-}
+}*/
 
 .footnote-ref:before {
     content: '[';
