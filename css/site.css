@@ -93,32 +93,28 @@ body {
     border: 1px solid #CCCCCC;
 }
 
-mathjax:before {
-    content: " ";
-}
-
-mathjax:after {
-    content: " ";
-}
-
-br + mathjax {
-    display: block;
-    overflow: auto;
-}
-
 mathjax + br {
     display: none;
+}
+
+.MathJax_SVG_Display, .MathJax_Display {
+    overflow-x: auto;
+    overflow-y: hidden;
 }
 
 .codehilitetable {
     border-collapse: collapse;
     border-spacing: 0;
-    display: block;
-    overflow: auto;
 }
 
-.codehilitetable table {
+.codehilitetable, .codehilitetable tbody, .codehilitetable tr {
+    display: flex;
     width: 100%;
+}
+
+.code {
+    display: block;
+    overflow-x: auto;
 }
 
 .codehilitetable td {
