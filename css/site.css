@@ -10,6 +10,12 @@
 }
 
 @font-face {
+    font-family: EN;
+    font-style: italic;
+    src: local(Georgia), local("Times New Roman"), local("Times");
+}
+
+@font-face {
     font-family: SC;
     font-weight: lighter;
     src: local('Source Han Sans'), local('Source Han Sans CN'),
@@ -89,50 +95,11 @@ body {
 }
 
 .article th {
-    background-color: #E9E9E9;
+    background-color: #f6f6f6;
     border: 1px solid #CCCCCC;
 }
 
-mathjax + br {
-    display: none;
-}
-
-.MathJax_SVG_Display, .MathJax_Display {
-    overflow-x: auto;
-    overflow-y: hidden;
-}
-
-.codehilitetable {
-    border-collapse: collapse;
-    border-spacing: 0;
-}
-
-.codehilitetable, .codehilitetable tbody, .codehilitetable tr {
-    display: flex;
-    width: 100%;
-}
-
-.code {
-    display: block;
-    overflow-x: auto;
-}
-
-.codehilitetable td {
-    padding: 0;
-    text-align: left;
-    line-height: 18px;
-}
-
-.linenodiv {
-    border-right: solid 1px gray;
-}
-
-/*.linenodiv > pre {
-    word-wrap: normal;
-    word-break: normal;
-}*/
-
-td.code {
+.article td.code {
     text-align: left;
     width: 100%;
 }
@@ -254,6 +221,54 @@ h3.panel-title {
     margin-top: 0;
     margin-bottom: 0;
 }
+
+mathjax:before {
+    content: " ";
+}
+
+mathjax:after {
+    content: " ";
+}
+
+mathjax + br {
+    display: none;
+}
+
+.MathJax_SVG_Display, .MathJax_Display {
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.codehilitetable {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.codehilitetable, .codehilitetable tbody, .codehilitetable tr {
+    display: flex;
+    width: 100%;
+}
+
+.code {
+    display: block;
+    overflow-x: auto;
+    border-left: none;
+}
+
+.codehilitetable td {
+    padding: 0;
+    text-align: left;
+    line-height: 18px;
+}
+
+.linenos {
+    border-right: solid 1px black !important;
+}
+
+/*.linenodiv > pre {
+    word-wrap: normal;
+    word-break: normal;
+}*/
 
 .gitment-footer-container {
     display: none;
