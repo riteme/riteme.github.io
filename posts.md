@@ -1,7 +1,7 @@
 ---
 title: 所有文章
 create: 2016.1.31
-modified: 2017.12.30
+modified: 2018.2.12
 tags: Posts
 ---
 
@@ -27,7 +27,7 @@ tags: Posts
 * [双重计数的简单应用](./blog/2017-6-19/double-count.html): 介绍了几个双重计数在图计数上的例子
 
 #### 2017-5
-* [【NOI2016】“循环之美” 无脑解法](./blog/2017-5-18/cyclic.html): NOI2016 Day1 T3直接DP做法
+* [【NOI2016】“循环之美” 无脑解法](./blog/2017-5-18/cyclic.html): NOI2016 Day1 T3 直接 DP 做法
 * [$n = p \mathrm{\;mod\;} n$递推次数的上界？](./blog/2017-5-8/nmodp.html): 一个简单的求模质数意义下的逆元的算法的时间复杂度分析，未完工。
 
 #### 2017-3
@@ -36,20 +36,20 @@ tags: Posts
 
 #### 2017-2
 * [无向图最小割](./blog/2017-2-12/mincut.html): 关于无向图上的最小割问题以及该问题的解决方法
-* [长链剖分](./blog/2017-2-6/long-chain.html): 长链剖分算法，与树链剖分类似，但可以以$O(n \log n) - \Theta(1)$的复杂度查询树上祖先
+* [长链剖分](./blog/2017-2-6/long-chain.html): 长链剖分算法，与树链剖分类似，但可以以 $O(n \log n) - \Theta(1)$ 的复杂度查询树上祖先
 
 #### 2017-1
-* [曼哈顿距离最小生成树](./blog/2017-1-17/manhattan-mst.html): 记录一下求$n$个点的最小曼哈顿距离生成树的算法
+* [曼哈顿距离最小生成树](./blog/2017-1-17/manhattan-mst.html): 记录一下求 $n$ 个点的最小曼哈顿距离生成树的算法
 
 ### 2016
 #### 2016-12
-* [公平组合游戏](./blog/2016-12-30/sg.html): 公平组合游戏中十分重要的概念和Sprague-Grundy定理
-* [染色计数](./blog/2016-12-19/burnside.html): 介绍了用于解决本质不同的染色问题的有力工具Burnside定理
+* [公平组合游戏](./blog/2016-12-30/sg.html): 公平组合游戏中十分重要的概念和 Sprague-Grundy 定理
+* [染色计数](./blog/2016-12-19/burnside.html): 介绍了用于解决本质不同的染色问题的有力工具 Burnside 定理
 * [欧拉回路](./blog/2016-12-13/eular-tour.html): 欧拉回路的判定与构造算法
 
 #### 2016-11
-* [差分序列与Stirling数](./blog/2016-11-29/delta-and-stirling.html): 介绍了差分序列和两类Stirling数
-* [位运算卷积与FWT](./blog/2016-11-25/fwt.html): 介绍了位运算卷积以及快速计算的FWT算法
+* [差分序列与 Stirling 数](./blog/2016-11-29/delta-and-stirling.html): 介绍了差分序列和两类 Stirling 数
+* [位运算卷积与 FWT](./blog/2016-11-25/fwt.html): 介绍了位运算卷积以及快速计算的 FWT 算法
 * [辛普森积分法](./blog/2016-11-16/simpson.html): 简单介绍了辛普森积分法和自适应辛普森积分法
 * [RSRL开发记录（一）](./blog/2016-11-6/rsrl-1.html)
 
@@ -60,59 +60,59 @@ tags: Posts
 * [Hall 定理](./blog/2016-9-19/hall-theorem.html): 一个用于判定二分图是否具有最大匹配的定理
 
 #### 2016-8
-* [HNSDFZ2016 #5](./blog/2016-8-28/hnsdfz-5.html): HNSDFZ2016第五次欢乐互测
+* [HNSDFZ2016 #5](./blog/2016-8-28/hnsdfz-5.html): HNSDFZ2016 第五次欢乐互测
 * [快速数论变换 (NTT)](./blog/2016-8-22/ntt.html): 快速傅立叶变换的双胞胎，用原根代替单位复数根
-* [二进制GCD](./blog/2016-8-19/binary-gcd.html): 在算导上发现了一个有趣的算法，有氧环境下可以拿来卡卡常.....
+* [二进制 GCD](./blog/2016-8-19/binary-gcd.html): 在算导上发现了一个有趣的算法，有氧环境下可以拿来卡卡常.....
 * [莫比乌斯反演](./blog/2016-8-18/mobius.html): 介绍了莫比乌斯函数和莫比乌斯反演公式
 * [二项式定理及其它](./blog/2016-8-18/binomial.html): 记录一下二项式定理、多项式定理和牛顿二项式定理的一些东西
 * [中国剩余定理 (CRT)](./blog/2016-8-17/crt.html): 介绍了基本的中国剩余定理
-* [HNSDFZ2016 #4](./blog/2016-8-15/hnsdfz-4.html): HNSDFZ2016第四次欢乐互测
+* [HNSDFZ2016 #4](./blog/2016-8-15/hnsdfz-4.html): HNSDFZ2016 第四次欢乐互测
 * [凸包相关](./blog/2016-8-11/convex-hull.html): 凸包的构造算法与动态凸包、旋转卡壳和斜率优化
 
 #### 2016-7
 * [平衡树套链表](./blog/2016-7-28/bst-with-list.html): 用链表加速平衡树上前趋后继的查询
 * [有关多项式的算法](./blog/2016-7-21/fft.html):记录一些与多项相关式算法
-* [HNSDFZ2016 #3](./blog/2016-7-9/hnsdfz-3.html): HNSDFZ2016第三次欢乐互测
+* [HNSDFZ2016 #3](./blog/2016-7-9/hnsdfz-3.html): HNSDFZ2016 第三次欢乐互测
 
 #### 2016-6
 * [极限与导数](./blog/2016-6-23/limit-and-derivative.html): 最近学了一些基础微积分，这里稍微记录一下
-* [诱导排序与SA-IS算法](./blog/2016-6-19/sais.html): 介绍一种在2009年出现的基于诱导排序思想的线性时间构建后缀数组的算法SA-IS。此算法号称是目前速度最快的后缀数组构建算法
+* [诱导排序与 SA-IS 算法](./blog/2016-6-19/sais.html): 介绍一种在 2009 年出现的基于诱导排序思想的线性时间构建后缀数组的算法 SA-IS。此算法号称是目前速度最快的后缀数组构建算法
 * [树状数组](./blog/2016-6-3/fenwick.html): 总结一下树状数组的用法
 
 #### 2016-5
-* [HNSDFZ2016 #2](./blog/2016-5-31/hnsdfz2016-2.html): HNSDFZ2016第二次欢乐互测
-* [HNSDFZ2016 #1](./blog/2016-5-31/hnsdfz2016-1.html): HNSDFZ2016第一次欢乐互测
+* [HNSDFZ2016 #2](./blog/2016-5-31/hnsdfz2016-2.html): HNSDFZ2016 第二次欢乐互测
+* [HNSDFZ2016 #1](./blog/2016-5-31/hnsdfz2016-1.html): HNSDFZ2016 第一次欢乐互测
 * [排列与组合](./blog/2016-5-7/permutation-and-combination.html): 介绍了排列与组合的基础知识
 
 #### 2016-4
 * [伪代码规定](./blog/2016-4-23/fake-code.html): 规定下本博客的伪代码规范，不要想太多
 * [树链剖分](./blog/2016-4-20/tree-split.html): 介绍了树链剖分算法及其小扩展
-* [Graphviz: 可视化调试利器](./blog/2016-4-16/graphviz.html): 介绍可视化工具Graphviz的基本使用
+* [Graphviz: 可视化调试利器](./blog/2016-4-16/graphviz.html): 介绍可视化工具 Graphviz 的基本使用
 * [平面计算几何](./blog/2016-4-12/geometry.html): 计算几何的基础知识和算法
-* [秩平衡树(Rank Balanced Tree)](./blog/2016-4-10/rank-tree.html): 利用秩进行平衡的二叉搜索树
-* [替罪羊树(Scapegoat Tree)](./blog/2016-4-6/scapegoat.html): 二叉平衡树替罪羊树
+* [秩平衡树 (Rank Balanced Tree)](./blog/2016-4-10/rank-tree.html): 利用秩进行平衡的二叉搜索树
+* [替罪羊树 (Scapegoat Tree)](./blog/2016-4-6/scapegoat.html): 二叉平衡树替罪羊树
 
 #### 2016-3
-* [$x^n-1$问题](./blog/2016-3-21/x-2-1.html): 对$x^n-1$进行因式分解
-* [2-3树与红黑树](./blog/2016-3-12/2-3-tree-and-red-black-tree.html): 2-3树与红黑树
+* [$x^n-1$ 问题](./blog/2016-3-21/x-2-1.html): 对 $x^n-1$ 进行因式分解
+* [2-3 树与红黑树](./blog/2016-3-12/2-3-tree-and-red-black-tree.html): 2-3 树与红黑树
 
 #### 2016-2
-* [DevIL快速入门](./blog/2016-2-5/devil-usage.html): 了解图片库DevIL
-* [正式开始编写ne2d](./blog/2016-2-4/ne2d-1.html): 启动ne2d
+* [DevIL 快速入门](./blog/2016-2-5/devil-usage.html): 了解图片库 DevIL
+* [正式开始编写 ne2d](./blog/2016-2-4/ne2d-1.html): 启动 ne2d
 * [测试多说](./blog/2016-2-4/comments.html): 测试多说评论系统
-* [编译并使用bgfx](./blog/2016-2-3/learn-bgfx-1.html): bgfx在Ubuntu上编译
+* [编译并使用 bgfx](./blog/2016-2-3/learn-bgfx-1.html): bgfx 在 Ubuntu 上编译
 * [最小费用最大流](./blog/2016-2-2/mincost-maxflow.html): 增广路算法
 * [[POJ2135] Farm Tour](./blog/2016-2-1/farm-tour.html): POJ2135 题解
 * [[NOIP2014] 寻找道路](./blog/2016-2-1/find-path.html): NOIP2014 Day2 T2 题解
 * [[NOIP2015] 信息传递](./blog/2016-2-1/message.html): NOIP2015 Day1 T2 题解
-* [最近公共祖先(LCA)](./blog/2016-2-1/lca.html): 朴素LCA算法，Tarjan-LCA算法，倍增法
+* [最近公共祖先 (LCA)](./blog/2016-2-1/lca.html): 朴素 LCA 算法，Tarjan LCA 算法，倍增法
 
 #### 2016-1
-* [pagegen.py的试炼](./blog/2016-1-31/test.html): 测试`pagegen.py`
+* [pagegen.py 的试炼](./blog/2016-1-31/test.html): 测试 `pagegen.py`
 
 ## 临时链接
 * [无尽的黄金](./blog/2016-10-3/gold.html) (*HNSDFZ OIER* **FORBIDDEN** before self contest #6)
 * [空袭](./blog/2016-8-25/airstrike.html) (*HNSDFZ OIER* **FORBIDDEN** before self contest #5)
-* [$k$-SBK变换](./blog/2016-7-28/ksbk.html) (*HNSDFZ OIER* **FORBIDDEN** before self contest #4)
+* [$k$-SBK 变换](./blog/2016-7-28/ksbk.html) (*HNSDFZ OIER* **FORBIDDEN** before self contest #4)
 * [HNSDFZ #3](./blog/2016-7-1/hnsdfz-3.html)
 * [Lesson 16](./blog/english/16.html)
