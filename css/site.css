@@ -5,17 +5,6 @@
 }
 
 @font-face {
-    font-family: EN;
-    src: local(Georgia), local("Times New Roman"), local("Times");
-}
-
-@font-face {
-    font-family: EN;
-    font-style: italic;
-    src: local(Georgia), local("Times New Roman"), local("Times");
-}
-
-@font-face {
     font-family: SC;
     font-weight: lighter;
     src: local('Source Han Sans'), local('Source Han Sans CN'),
@@ -23,7 +12,7 @@
 }
 
 body {
-    font-family: NUM, EN, SC, serif;
+    font-family: NUM, Georgia, "Times New Roman", Times, SC, serif;
 }
 
 .article {
