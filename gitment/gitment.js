@@ -3116,7 +3116,7 @@ function renderEditor(_ref3, instance) {
     instance.markdown(content).then(function (html) {
       preview.innerHTML = html;
 
-      renderMath(preview.innerHTML);
+      renderMath(preview);
       return preview.innerHTML
     });
 
