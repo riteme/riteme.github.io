@@ -17,19 +17,24 @@
   <title>位运算卷积与FWT - riteme.site</title>
   <link rel="shortcut icon" href="/favicon.png" type="image/png">
   <link rel="stylesheet" href="/material/material-icons.css">
-  <link rel="stylesheet" href="/material/material.min.css" />
+  <link rel="stylesheet" href="/material/material.min.css" >
   <link href="/tipuesearch/tipuesearch.css" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="/gitment/gitment.css">
+  <link rel="stylesheet" href="/math-renderer/katex/katex.min.css">
   <link href="/css/site.css" rel="stylesheet">
+  <script src="/jquery/jquery-2.2.4.min.js"></script>
+  <script src="/jquery/js-cookie.js"></script>
   <script defer src="/material/material.min.js"></script>
+  <script src="/tipuesearch/tipuesearch_set.js"></script>
+  <script src="/tipuesearch/tipuesearch.min.js"></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config( { tex2jax: { inlineMath: [['$','$']] }, "HTML-CSS": { scale: 95 } } );
   </script>
-  <script type="text/javascript" async src="/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-  <script src="/jquery/jquery-2.2.4.min.js"></script>
-  <script src="/tipuesearch/tipuesearch_set.js"></script>
-  <script src="/tipuesearch/tipuesearch.min.js"></script>
+  <script src="/math-renderer/selector.js"></script>
   <script src="/gitment/gitment.js"></script>
+  <script src="/math-renderer/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script src="/math-renderer/katex/katex.min.js"></script>
+  <script src="/math-renderer/katex/auto-render.js"></script>
 </head>
 
 <body>
@@ -83,7 +88,7 @@ C_i = \sum_{j \oplus k = i} A_j \cdot B_k \;\;\;\;\forall \; j, k \in [0, n)
 $$</mathjax></p>
 <p>其中 <mathjax>$\oplus$</mathjax> 指代任意二元位运算符号，如异或 (就是记做 <mathjax>$\oplus$</mathjax>)、与运算 (<mathjax>$\land$</mathjax>) 和或运算 (<mathjax>$\lor$</mathjax>) 等等。</p>
 <p>注意到，在多项式乘法中，如果两个多项式的界为 <mathjax>$A$</mathjax> 和 <mathjax>$B$</mathjax>，那么答案的界就是 <mathjax>$A + B - 1$</mathjax>。而在位运算卷积中，却是 <mathjax>$2^{\left\lceil\log_2\max\{A,B\}\right\rceil}$</mathjax>。而且对于两个输入向量而言，末尾添加几个 <mathjax>$0$</mathjax> 是不会对答案产生影响的<sup id="fnref:tailing-zero"><a class="footnote-ref" href="#fn:tailing-zero" rel="footnote">1</a></sup>。因此，像在快速傅里叶变换中一样，假定输入的向量大小一致且均为 <mathjax>$2$</mathjax> 的幂，设这个大小为 <mathjax>$n$</mathjax>。</p>
-<p>在下文中，向量 <mathjax>$A = (a_0, a_1, ..., a_k)​$</mathjax> 的倒置 <mathjax>$A^T​$</mathjax> 为：<br />
+<p>在下文中，向量 <mathjax>$A = (a_0, a_1, ..., a_k)$</mathjax> 的倒置 <mathjax>$A^T​$</mathjax> 为：<br />
 <mathjax>$$
 A^T = \left[\begin{matrix}
 a_0 \\
@@ -741,12 +746,10 @@ $$</mathjax><br />
             标签: <a href="/search.html?q=位运算卷积"><span class="label">位运算卷积</span></a> <a href="/search.html?q=FWT"><span class="label">FWT</span></a><br/>
             创建时间: 2016.11.25<br/>
             上次修改: 2018.02.12<br />
-            统计: 12768 字 / 约 51 分钟
+            统计: 12767 字 / 约 51 分钟
           </div>
         </div>
-
         <br />
-
         
 <div class="mdl-card mdl-shadow--3dp" style="width: 100%">
   <div class="mdl-card__title mdl-card--border">
@@ -782,8 +785,31 @@ $$</mathjax><br />
   </div>
 </div>
 
+        <br />
+        <div class="mdl-card mdl-shadow--3dp" style="width: 100%">
+          <div class="mdl-card__title mdl-card--border">
+            <h4 class="mdl-card__title-text">选项</h4>
+          </div>
+          <div class="mdl-card__supporting-text">
+            <span class="mathopt-head">数学公式渲染引擎：</span>
+            <form name="mathopt">
+              <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
+                <input type="radio" id="option-1" class="mdl-radio__button" name="sel" value="mathjax">
+                <span class="mdl-radio__label">MathJax (推荐)</span>
+              </label><br />
+              <div id="tip-1">
+                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+                  <input type="radio" id="option-2" class="mdl-radio__button" name="sel" value="katex">
+                  <span class="mdl-radio__label">KaTeX</span>
+                </label>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="mdl-tooltip" data-mdl-for="tip-1">
+        KaTeX 渲染效率很高，但是由于部分 LaTeX 命令无法使用（如 <code>\tag</code>），并且目前 KaTeX 容错性不强，因此使用 KaTeX 时可能会存在一些数学公式无法渲染的情况。
+        </div>
       </div>
-
       <div class="return-up-button">
         <a href="javascript:$('main').animate( { scrollTop: 0 } , 'fast')">
           <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">

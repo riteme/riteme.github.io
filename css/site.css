@@ -223,7 +223,8 @@ mathjax + br {
     display: none;
 }
 
-.MathJax_SVG_Display, .MathJax_Display {
+.katex-display, .MathJax_SVG_Display, .MathJax_Display {
+    display: block;
     overflow-x: auto;
     overflow-y: hidden;
 }
@@ -258,6 +259,13 @@ mathjax + br {
     word-wrap: normal;
     word-break: normal;
 }*/
+
+.mathopt-head {
+    color: black;
+    font-size: 120%;
+    padding-bottom: 5px;
+    display: block;
+}
 
 .gitment-footer-container {
     display: none;
