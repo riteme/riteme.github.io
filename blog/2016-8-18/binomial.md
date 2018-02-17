@@ -28,7 +28,7 @@ $$
 结论显然成立。
 假设对$n$成立，求证对$n + 1$成立：
 $$
-\begin{align}
+\begin{aligned}
 (x + y)^{n+1} & = (x + y)(x + y)^n \\
 & = (x + y)\sum_{k=0}^n {n \choose k} x^ky^{n-k} \\
 & = \sum_{k=0}^n {n \choose k} x^{k+1}y^{n-k} + \sum_{k=0}^n {n \choose k} x^ky^{n-k+1} \\
@@ -37,7 +37,7 @@ $$
 & = x^{n+1} + y^{n+1} + \sum_{k=1}^n \left[{n \choose k - 1}+{n \choose k}\right] x^ky^{n-k+1} \\
 & = x^{n+1} + y^{n+1} + \sum_{k=1}^n {n+1 \choose k} x^ky^{n-k+1} \\
 & = \sum_{k=0}^{n+1} {n+1 \choose k} x^ky^{n-k+1} \\
-\end{align}
+\end{aligned}
 $$
 
 这样就完成了我们的证明。
@@ -108,10 +108,10 @@ $$
 
 运用二项式定理展开可得：
 $$
-\begin{align}
+\begin{aligned}
 \sum_{i=0}^n {n\choose i} x^i \cdot \sum_{j=0}^n {n\choose j} x^j & = \sum_{i=0}^n\sum_{j=0}^n {n \choose i}{n \choose j} x^ix^j \\
 & = \sum_{k=0}^{2n} {2n \choose k} x^k
-\end{align}
+\end{aligned}
 $$
 
 考虑等号两边系数同为$k$的项，一定满足下面的等式：
@@ -121,11 +121,11 @@ $$
 
 当$k = n$时：
 $$
-\begin{align}
+\begin{aligned}
 \sum_{i=0}^n {n \choose i}{n \choose n - i} & = \sum_{i=0}^n {n \choose i}{n \choose i} \\
 & = \sum_{i=0}^n {n \choose i}^2 \\
 & = {2n \choose n}
-\end{align}
+\end{aligned}
 $$
 
 这样就证明了组合数的平方和的结论。
@@ -148,11 +148,11 @@ $$
 
 运用二项式定理可以证明泰勒展开的结果与上面的定义等价：
 $$
-\begin{align}
+\begin{aligned}
 \text{e} & = \lim_{n\rightarrow\infty} \left(1 + \frac1n\right)^n \\
 & = \lim_{n\rightarrow\infty} \sum_{k=0}^n {n \choose k} \frac1{n^k} \\
 & = \lim_{n\rightarrow\infty} \sum_{k=0}^n \frac1{k!} \frac{\prod_{i=n-k+1}^n i}{n^k}
-\end{align}
+\end{aligned}
 $$
 
 由于：
@@ -202,12 +202,12 @@ $$
 
 所以：
 $$
-\begin{align}
+\begin{aligned}
 (z + 1)^\alpha & = \sum_{k=0}^\alpha {\alpha \choose k} {x^ky^{\alpha-k} \over y^\alpha} \\
 & = \sum_{k=0}^\alpha {\alpha \choose k} {x^k \over y^k}\cdot{y^{\alpha-k} \over y^{\alpha-k}} \\
 & = \sum_{k=0}^\alpha {\alpha \choose k} z^k \\
 & = (1 + z)^\alpha
-\end{align}
+\end{aligned}
 \tag{3.2}
 $$
 
@@ -239,12 +239,12 @@ $$
 现在我们来求一下有限几何级数的公式。
 注意$\mid z \mid \;\lt 1$：
 $$
-\begin{align}
+\begin{aligned}
 \sum_{k=0}^n z^k & = \sum_{k=0}^\infty z^k - \sum_{k=n+1}^\infty z^k \\
 & = \sum_{k=0}^\infty z^k - z^{n+1}\sum_{k=0}^\infty z^k \\
 & = (1 - z^{n+1}) \sum_{k=0}^\infty z^k \\
 & = {1 - z^{n+1} \over 1-z}
-\end{align}
+\end{aligned}
 \tag{3.3}
 $$
 

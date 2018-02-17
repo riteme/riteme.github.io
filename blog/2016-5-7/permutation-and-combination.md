@@ -95,13 +95,13 @@ $$ {n\choose k} = {n-1\choose k} + {n-1\choose k-1} \tag{4.3} $$
 
 **证明** 尝试将右式化为左式即可。
 $$
-\begin{align}
+\begin{aligned}
 {n-1\choose k} + {n-1\choose k-1} &= {(n-1)! \over k!(n-k-1)!} + {(n-1)! \over (k-1)!(n-k)!} \\
 &= {(n-1)!(n-k) \over k!(n-k)!} + {(n-1)!k \over k!(n-k)!} \\
 &= {(n-1)!n \over k!(n-k)!} \\
 &= {n! \over k!(n-k)!} \\
 &= {n \choose k}
-\end{align}
+\end{aligned}
 $$
 
 这样就完成了证明。注意，在上面的证明中，利用到了阶乘的性质：$(n-1)!\cdot n=n!$。

@@ -27,11 +27,11 @@
   <script defer src="/material/material.min.js"></script>
   <script src="/tipuesearch/tipuesearch_set.js"></script>
   <script src="/tipuesearch/tipuesearch.min.js"></script>
+  <script src="/gitment/gitment.js"></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config( { tex2jax: { inlineMath: [['$','$']] }, "HTML-CSS": { scale: 95 } } );
   </script>
   <script src="/math-renderer/selector.js"></script>
-  <script src="/gitment/gitment.js"></script>
   <script src="/math-renderer/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   <script src="/math-renderer/katex/katex.min.js"></script>
   <script src="/math-renderer/katex/auto-render.js"></script>
@@ -88,7 +88,7 @@ C_i = \sum_{j \oplus k = i} A_j \cdot B_k \;\;\;\;\forall \; j, k \in [0, n)
 $$</mathjax></p>
 <p>其中 <mathjax>$\oplus$</mathjax> 指代任意二元位运算符号，如异或 (就是记做 <mathjax>$\oplus$</mathjax>)、与运算 (<mathjax>$\land$</mathjax>) 和或运算 (<mathjax>$\lor$</mathjax>) 等等。</p>
 <p>注意到，在多项式乘法中，如果两个多项式的界为 <mathjax>$A$</mathjax> 和 <mathjax>$B$</mathjax>，那么答案的界就是 <mathjax>$A + B - 1$</mathjax>。而在位运算卷积中，却是 <mathjax>$2^{\left\lceil\log_2\max\{A,B\}\right\rceil}$</mathjax>。而且对于两个输入向量而言，末尾添加几个 <mathjax>$0$</mathjax> 是不会对答案产生影响的<sup id="fnref:tailing-zero"><a class="footnote-ref" href="#fn:tailing-zero" rel="footnote">1</a></sup>。因此，像在快速傅里叶变换中一样，假定输入的向量大小一致且均为 <mathjax>$2$</mathjax> 的幂，设这个大小为 <mathjax>$n$</mathjax>。</p>
-<p>在下文中，向量 <mathjax>$A = (a_0, a_1, ..., a_k)$</mathjax> 的倒置 <mathjax>$A^T​$</mathjax> 为：<br />
+<p>在下文中，向量 <mathjax>$A = (a_0, a_1, ..., a_k)$</mathjax> 的倒置 <mathjax>$A^T$</mathjax> 为：<br />
 <mathjax>$$
 A^T = \left[\begin{matrix}
 a_0 \\
@@ -746,7 +746,7 @@ $$</mathjax><br />
             标签: <a href="/search.html?q=位运算卷积"><span class="label">位运算卷积</span></a> <a href="/search.html?q=FWT"><span class="label">FWT</span></a><br/>
             创建时间: 2016.11.25<br/>
             上次修改: 2018.02.12<br />
-            统计: 12767 字 / 约 51 分钟
+            统计: 12766 字 / 约 51 分钟
           </div>
         </div>
         <br />
@@ -835,7 +835,7 @@ $$</mathjax><br />
           <li><a href="http://pythonhosted.org/Markdown/">Python Markdown</a></li>
           <li><a href="http://getmdl.io/">Material Design Lite</a></li>
           <li><a href="http://www.tipue.com/search/">Tipuesearch</a></li>
-          <li><a href="http://www.mathjax.org/">MathJax</a></li>
+          <li><a href="http://www.mathjax.org/">MathJax</a> & <a href="http://khan.github.io/KaTeX/">KaTeX</a></li>
           <li><a href="https://github.com/imsun/gitment">Gitment</a></li>
         </ul>
       </div>

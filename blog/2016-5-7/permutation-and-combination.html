@@ -27,11 +27,11 @@
   <script defer src="/material/material.min.js"></script>
   <script src="/tipuesearch/tipuesearch_set.js"></script>
   <script src="/tipuesearch/tipuesearch.min.js"></script>
+  <script src="/gitment/gitment.js"></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config( { tex2jax: { inlineMath: [['$','$']] }, "HTML-CSS": { scale: 95 } } );
   </script>
   <script src="/math-renderer/selector.js"></script>
-  <script src="/gitment/gitment.js"></script>
   <script src="/math-renderer/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   <script src="/math-renderer/katex/katex.min.js"></script>
   <script src="/math-renderer/katex/auto-render.js"></script>
@@ -134,13 +134,13 @@
 <mathjax>$$ {n\choose k} = {n-1\choose k} + {n-1\choose k-1} \tag{4.3} $$</mathjax></p>
 <p><strong>证明</strong> 尝试将右式化为左式即可。<br />
 <mathjax>$$
-\begin{align}
+\begin{aligned}
 {n-1\choose k} + {n-1\choose k-1} &amp;= {(n-1)! \over k!(n-k-1)!} + {(n-1)! \over (k-1)!(n-k)!} \\
 &amp;= {(n-1)!(n-k) \over k!(n-k)!} + {(n-1)!k \over k!(n-k)!} \\
 &amp;= {(n-1)!n \over k!(n-k)!} \\
 &amp;= {n! \over k!(n-k)!} \\
 &amp;= {n \choose k}
-\end{align}
+\end{aligned}
 $$</mathjax></p>
 <p>这样就完成了证明。注意，在上面的证明中，利用到了阶乘的性质：<mathjax>$(n-1)!\cdot n=n!$</mathjax>。</p>
 <p>不难发现，帕斯卡公式实际上是组合数的一个递推公式。<br />
@@ -190,7 +190,7 @@ $$</mathjax></p>
             标签: <a href="/search.html?q=组合数学"><span class="label">组合数学</span></a><br/>
             创建时间: 2016.05.07<br/>
             上次修改: 2016.05.07<br />
-            统计: 3313 字 / 约 13 分钟
+            统计: 3317 字 / 约 13 分钟
           </div>
         </div>
         <br />
@@ -264,7 +264,7 @@ $$</mathjax></p>
           <li><a href="http://pythonhosted.org/Markdown/">Python Markdown</a></li>
           <li><a href="http://getmdl.io/">Material Design Lite</a></li>
           <li><a href="http://www.tipue.com/search/">Tipuesearch</a></li>
-          <li><a href="http://www.mathjax.org/">MathJax</a></li>
+          <li><a href="http://www.mathjax.org/">MathJax</a> & <a href="http://khan.github.io/KaTeX/">KaTeX</a></li>
           <li><a href="https://github.com/imsun/gitment">Gitment</a></li>
         </ul>
       </div>

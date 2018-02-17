@@ -27,11 +27,11 @@
   <script defer src="/material/material.min.js"></script>
   <script src="/tipuesearch/tipuesearch_set.js"></script>
   <script src="/tipuesearch/tipuesearch.min.js"></script>
+  <script src="/gitment/gitment.js"></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config( { tex2jax: { inlineMath: [['$','$']] }, "HTML-CSS": { scale: 95 } } );
   </script>
   <script src="/math-renderer/selector.js"></script>
-  <script src="/gitment/gitment.js"></script>
   <script src="/math-renderer/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   <script src="/math-renderer/katex/katex.min.js"></script>
   <script src="/math-renderer/katex/auto-render.js"></script>
@@ -98,7 +98,7 @@
 <p>我使用 Python 实现了上面所说的过程。不过偷了懒，是用 SymPy 解的方程......所以算的不是很快。具体的代码可以<a href="https://github.com/riteme/toys/blob/master/resistance-calcuator/resist.py">查看这里</a>。</p>
 <h2 id="_4">计算所有点对</h2>
 <p>想到可以计算所有点对等效电阻的初衷是由于计算不同点对时的列出方程组其实没有多大差别，只有源点和汇点列出的电流方程存在着一个常数。根据这一点，我们不妨多写几个变量 <mathjax>$x_1,\;x_2,\;...,\;x_{n - 1}$</mathjax>，表示每个节点从外部电路得到的电流。之所以只到 <mathjax>$x_{n - 1}$</mathjax>，是因为电流方程只列出了 <mathjax>$n - 1$</mathjax> 个。如果 <mathjax>$x_i = 0$</mathjax> 表示节点 <mathjax>$i$</mathjax> 没有直接与外部电路相连，而 <mathjax>$x_i = 1$</mathjax> 和 <mathjax>$x_i = -1$</mathjax> 分别表示从外部电路流入和流出到外部电路。在不预先指定源点和汇点的情况下把它们当做已知量写入方程。虽然现在有 <mathjax>$m + n - 1$</mathjax> 个未知数却只有 <mathjax>$m$</mathjax> 个方程，但是这个时候执行高斯消元可以得到每个电流与 <mathjax>$x_1,\;...,\;x_{n-1}$</mathjax> 的关系（如 <mathjax>$I_1 = 2x_1 + 0.3x_3$</mathjax>）。如果再给出 <mathjax>$x_1,\;...,\;x_{n - 1}$</mathjax> 的值，就可以直接算出每个电流的具体值。</p>
-<p>现在来指定源点 <mathjax>$s​$</mathjax> 和汇点 <mathjax>$t​$</mathjax>。相当于之前新设的变量中，令 <mathjax>$x_s = 1​$</mathjax> 和 <mathjax>$x_t = -1​$</mathjax>，其它的均为 <mathjax>$0​$</mathjax>。因此只用 <mathjax>$\Theta(n)​$</mathjax> 的时间就可以计算出所有电流值，也就可以算出电阻。由于点对总数只有 <mathjax>$\Theta(n^2)​$</mathjax> 对，因此高斯消元后只需要 <mathjax>$\Theta(n^3)​$</mathjax> 的时间就可以计算所有的等效电阻。在连通图中，存在 <mathjax>$m \geqslant n - 1​$</mathjax>，因此总的复杂度依然为 <mathjax>$\Theta(m^3)​$</mathjax>。</p>
+<p>现在来指定源点 <mathjax>$s$</mathjax> 和汇点 <mathjax>$t$</mathjax>。相当于之前新设的变量中，令 <mathjax>$x_s = 1$</mathjax> 和 <mathjax>$x_t = -1$</mathjax>，其它的均为 <mathjax>$0$</mathjax>。因此只用 <mathjax>$\Theta(n)$</mathjax> 的时间就可以计算出所有电流值，也就可以算出电阻。由于点对总数只有 <mathjax>$\Theta(n^2)$</mathjax> 对，因此高斯消元后只需要 <mathjax>$\Theta(n^3)$</mathjax> 的时间就可以计算所有的等效电阻。在连通图中，存在 <mathjax>$m \geqslant n - 1$</mathjax>，因此总的复杂度依然为 <mathjax>$\Theta(m^3)$</mathjax>。</p>
 <p>我的 C++ 实现可以在<a href="https://github.com/riteme/toys/blob/master/resistance-calcuator/resistances-of-all-pairs.cpp">这里</a>查看。</p>
           <hr/>
           <div id="comments"></div>
@@ -125,7 +125,7 @@
             标签: <a href="/search.html?q=电阻网络"><span class="label">电阻网络</span></a> <a href="/search.html?q=高斯消元"><span class="label">高斯消元</span></a><br/>
             创建时间: 2017.10.28<br/>
             上次修改: 2017.10.28<br />
-            统计: 2581 字 / 约 10 分钟
+            统计: 2571 字 / 约 10 分钟
           </div>
         </div>
         <br />
@@ -198,7 +198,7 @@
           <li><a href="http://pythonhosted.org/Markdown/">Python Markdown</a></li>
           <li><a href="http://getmdl.io/">Material Design Lite</a></li>
           <li><a href="http://www.tipue.com/search/">Tipuesearch</a></li>
-          <li><a href="http://www.mathjax.org/">MathJax</a></li>
+          <li><a href="http://www.mathjax.org/">MathJax</a> & <a href="http://khan.github.io/KaTeX/">KaTeX</a></li>
           <li><a href="https://github.com/imsun/gitment">Gitment</a></li>
         </ul>
       </div>

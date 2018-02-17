@@ -53,10 +53,10 @@ $$
 
 展开卷积可得：
 $$
-\begin{align}
+\begin{aligned}
 \delta = \mu \times \zeta \Longrightarrow \delta(x,\;y) & = \sum_{x \leqslant z \leqslant y} \mu(x,\;z)\zeta(z,\;y) \\
 & = \sum_{x \leqslant z \leqslant y} \mu(x,\;z)
-\end{align}
+\end{aligned}
 $$
 
 因此，当$x \neq y$时：
@@ -68,16 +68,16 @@ $$
 > **(莫比乌斯反演公式)**
 > 对于有限偏序集$(X_n,\;\leqslant)$上的两个函数$F(x,\;y)$和$G(x,\;y)$，如果：
 > $$ G(x,\;y) = \sum_{x \leqslant z \leqslant y} F(x,\;z) \tag{3.1}$$
-> 
+>
 > 那么：
 > $$F(x,\;y) = \sum_{x \leqslant z \leqslant y} G(x,\;z)\mu(z,\;y)  = (G \times \mu)(x,\;y) \tag{3.2}$$
 
 **证明** 首先将式子展开：
 $$
-\begin{align}
+\begin{aligned}
 F(x,\;y) & = \sum_{x \leqslant z \leqslant y} G(x,\;z)\mu(z,\;y) \\
 & = \sum_{x \leqslant z \leqslant y} \mu(z,\;y) \sum_{x \leqslant m \leqslant z} F(x,\;m)
-\end{align}
+\end{aligned}
 $$
 
 我们使用$\zeta$函数来表示上下界，于是式子改写为以下形式：
@@ -99,10 +99,10 @@ $$
 
 然后变成了卷积的形式：
 $$
-\begin{align}
+\begin{aligned}
 \sum_{m \in X_n} F(x,\;m) \sum_{m \leqslant z \leqslant y} \zeta(m,\;z)\mu(z,\;y) & = \sum_{m \in X_n} F(x,\;m) \delta(m,\;y) \\
 & = F(x,\;y)
-\end{align}
+\end{aligned}
 $$
 
 当$m = y$时，$\delta(m,\;y)$才为$1$，所以综上所述：
@@ -124,7 +124,7 @@ $$
 **证明** 对于$(x_1,\;y_1) \not\leqslant (x_2,\;y_2)$和$(x_1,\;y_1) = (x_2,\;y_2)$的情况，上式显然成立。
 假设对于满足$(x_1,\;y_1) \leqslant (u,\;v) \lt (x_2,\;y_2)$的二元组均满足，那么有：
 $$
-\begin{align}
+\begin{aligned}
 \mu((x_1,\;y_1),\;(x_2,\;y_2)) & = - \sum_{(x_1,\;y_1) \leqslant (u,\;v) \lt (x_2,\;y_2)} \mu((x_1,\;y_1),\;(u,\;v)) \\
 & = - \sum_{(x_1,\;y_1) \leqslant (u,\;v) \lt (x_2,\;y_2)} \mu_1(x_1,\;u)\mu_2(y_1,\;v) & (\text{根据归纳假设}) \\
 & = - \sum_{x_1 \leqslant_1 u \lt_1 x_2} \sum_{y_1 \leqslant_2 v \lt_2 y_2} \mu_1(x_1,\;u)\mu_2(y_1,\;v) & (\text{分别枚举}) \\
@@ -132,19 +132,19 @@ $$
 &\;\;\;\, + \mu_1(x_1,\;x_2)\sum_{y_1 \leqslant_2 v \leqslant_2 y_2} \mu_2(y_1,\;v) \\
 &\;\;\;\, + \mu_2(y_1,\;y_2)\sum_{x_1 \leqslant_1 u \leqslant_1 x_2} \mu_1(x_1,\;u) \\
 &\;\;\;\, \color{red}{+} \mu_1(x_1,\;x_2)\mu_2(y_1,\;y_2) & (\text{扩展上界})
-\end{align}
+\end{aligned}
 $$
 
 (2016.12.22: 上述证明最后一步展开存在问题 (红色正号)，但是《组合数学》上没有这一步的详细推导，正确的证明方式还请大神们指出)
 
 由于：
 $$
-\begin{align}
+\begin{aligned}
 0
 & = \sum_{y_1 \leqslant_2 v \leqslant_2 y_2} \mu_2(y_1,\;v) \\
-& = \sum_{x_1 \leqslant_1 u \leqslant_1 x_2} \mu_1(x_1,\;u)  \\ 
-& = \sum_{x_1 \leqslant_1 u \leqslant_1 x_2} \sum_{y_1 \leqslant_2 v \leqslant_2 y_2} \mu_1(x_1,\;u)\mu_2(y_1,\;v) 
-\end{align}
+& = \sum_{x_1 \leqslant_1 u \leqslant_1 x_2} \mu_1(x_1,\;u)  \\
+& = \sum_{x_1 \leqslant_1 u \leqslant_1 x_2} \sum_{y_1 \leqslant_2 v \leqslant_2 y_2} \mu_1(x_1,\;u)\mu_2(y_1,\;v)
+\end{aligned}
 $$
 
 所以定理成立。
@@ -170,7 +170,7 @@ $$
 不难发现，对于$y \gt x + 1$的函数值就全都变为$0$了。
 总结一下就是：
 $$
-\mu(x,\;y) = 
+\mu(x,\;y) =
 \begin{cases}
 1 & (y = x) \\
 -1 & (y = x + 1) \\
@@ -192,14 +192,14 @@ $$
 
 假设对于$|B| - |A| \leqslant k$均成立，尝试证明对于$|B| - |A| = k + 1$也成立：
 $$
-\begin{align}
+\begin{aligned}
 \mu(A,\;B) & = -\sum_{A \subseteq C \subset B} \mu(A,\;C) \\
 & = -\sum_{A \subseteq C \subset B} (-1)^{|C| - |A|} \\
 & = -\sum_{i = 0}^{k} {k + 1 \choose i}(-1)^i \\
 & = -\left[(1 - 1)^{k + 1} - (-1)^{k + 1} \right] \\
 & = (-1)^{k + 1} \\
 & = (-1)^{|B| - |A|}
-\end{align}
+\end{aligned}
 $$
 
 ## 在$(X_n,\;\mid)$上的莫比乌斯函数
@@ -263,10 +263,10 @@ $$
 
 总结一下就是：
 $$
-\mu(1,\;p^k) = 
+\mu(1,\;p^k) =
 \begin{cases}
 1 & (k = 0) \\
--1 & (k = 1) \\ 
+-1 & (k = 1) \\
 0 & (\text{otherwise})
 \end{cases}
 \tag{7.3}
@@ -274,7 +274,7 @@ $$
 
 运用直积，可以知道：
 $$
-\mu(1,\;n) = 
+\mu(1,\;n) =
 \begin{cases}
 1 & (n = 1) \\
 (-1)^k & (n = p_1p_2\cdots p_k, \;\;\varphi(p_i) = p_i - 1) \\
@@ -360,12 +360,12 @@ $$
 
 所以我们对其进行等比数列求和：
 $$
-\begin{align}
+\begin{aligned}
 \sum_{d \mid n} \varphi(d) & = 1 + (p - 1)\sum_{i=0}^{k-1} p^i \\
 & = 1 + (p - 1) \cdot {1 - p^k \over 1 - p} \\
 & = 1 + p^k - 1 \\
 & = p^k
-\end{align}
+\end{aligned}
 $$
 
 故对质数的幂也成立。
@@ -376,23 +376,23 @@ $$
 
 下面证明$\sum_{n \mid a} \varphi(n) \sum_{m \mid b} \varphi(m) = \sum_{d \mid c} \varphi(d)$，即可证明原式：
 $$
-\begin{align}
+\begin{aligned}
 \sum_{n \mid a} \varphi(n) \sum_{m \mid b} \varphi(m) & = \sum_{n \mid a}\sum_{m \mid b}\varphi(n)\varphi(m) & (\text{改变枚举顺序}) \\
 & = \sum_{n \mid a}\sum_{m \mid b} \varphi(nm) & (\text{由于}n \bot m) \\
 & = \sum_{nm \mid ab} \varphi(nm) & (\text{由于}a \bot b) \\
 & = \sum_{d \mid c} \varphi(d) & (\text{等价代换}) \\
 & = c
-\end{align}
+\end{aligned}
 $$
 
 注意到$(9.1)$式是一个明显的莫比乌斯反演的形式。根据莫比乌斯反演公式，我们可以得到：
 $$
-\begin{align}
+\begin{aligned}
 \varphi(n) & = \sum_{d \mid n} d \cdot \mu(d,\;n) \\
 & = \sum_{d \mid n} d \cdot \mu(1,\;n / d) \\
 & = \sum_{d \mid n} d \cdot \mu(n / d) \\
 & = \sum_{d \mid n} \mu(d) \cdot n/d
-\end{align}
+\end{aligned}
 $$
 
 考虑一下$\mu$函数的取值，对于因子$1$，和式中的结果为$n$。对于由素数相乘的因子，这些素因子必定来自$n$。而其它情况就都为$0$。
@@ -437,10 +437,10 @@ $$
 
 根据莫比乌斯反演公式可得：
 $$
-\begin{align}
+\begin{aligned}
 f(n) & = \sum_{d \mid n} g(d)\mu(n/d) \\
 & = \sum_{d \mid n} k^d\mu(n/d)
-\end{align}
+\end{aligned}
 \tag{10.3}
 $$
 
@@ -451,10 +451,10 @@ $$
 
 由于$e \mid d$并且$d \mid n$，所以我们设$n = rd,\;d = me$，所以$n = rem$，这样将方便我们变换公式：
 $$
-\begin{align}
+\begin{aligned}
 \sum_{d \mid n} \frac1d \sum_{e \mid d} k^e\mu(d/e) & = \sum_{e \mid n} k^e \sum_{m \mid (n/e)} \frac1{me}\mu(m) \\
 & =\sum_{e\mid n} \frac{k^e}n \sum_{r \mid (n/e)} r\cdot\mu(\frac{n}e/r)
-\end{align}
+\end{aligned}
 $$
 
 由于：
@@ -590,7 +590,7 @@ $$
 
 考虑到$\mu$函数的取值：
 $$
-\mu(n) = 
+\mu(n) =
 \begin{cases}
 1 & (n = 1) \\
 (-1)^k & (n = p_1p_2\cdots p_k, \;\;\varphi(p_i) = p_i - 1) \\
@@ -600,7 +600,7 @@ $$
 
 因此：
 $$
-\mu^2(n) = 
+\mu^2(n) =
 \begin{cases}
 1 & (n = 1) \\
 1 & (n = p_1p_2\cdots p_k, \;\;\varphi(p_i) = p_i - 1) \\

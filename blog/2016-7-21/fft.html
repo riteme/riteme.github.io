@@ -27,11 +27,11 @@
   <script defer src="/material/material.min.js"></script>
   <script src="/tipuesearch/tipuesearch_set.js"></script>
   <script src="/tipuesearch/tipuesearch.min.js"></script>
+  <script src="/gitment/gitment.js"></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config( { tex2jax: { inlineMath: [['$','$']] }, "HTML-CSS": { scale: 95 } } );
   </script>
   <script src="/math-renderer/selector.js"></script>
-  <script src="/gitment/gitment.js"></script>
   <script src="/math-renderer/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   <script src="/math-renderer/katex/katex.min.js"></script>
   <script src="/math-renderer/katex/auto-render.js"></script>
@@ -141,19 +141,19 @@ $$</mathjax></p>
 <mathjax>$$ \text{e}^{xi} = \cos x + i\sin x \tag{3.1.1}$$</mathjax></p>
 <p>为了证明这个等式，首先考虑一下 <mathjax>$i$</mathjax> 的幂次的规律：<br />
 <mathjax>$$
-\begin{align}
+\begin{aligned}
 &amp; i^0 = 1,\; i^1 = i,\; i^2 = -1,\; i^3 = -i \\
 &amp; i^4 = 1,\; i^5 = i,\; i^6 = -1,\; i^7 = -i \\
 &amp; \dots
-\end{align}
+\end{aligned}
 $$</mathjax></p>
 <p>我们注意到 <mathjax>$i$</mathjax> 的幂次是一个长度为 <mathjax>$4$</mathjax> 的循环节。考虑 <mathjax>$\text{e}$</mathjax> 的泰勒展开：<br />
 <mathjax>$$
-\begin{align}
+\begin{aligned}
 \text{e}^{xi} &amp; = \sum_{n=0}^{\infty} {x^ni^n \over n!} \\
 &amp; = 1 + xi - \frac{x^2}{2} - \frac{x^3}{6}i + \dots \\
 &amp; = \sum_{n = 2k,\;k \in \mathbf{N}}^{\infty} (-1)^k{x^n \over n!} + i\sum_{n = 2k + 1,\;k \in \mathbf{N}}^{\infty} (-1)^k{x^n \over n!}
-\end{align}
+\end{aligned}
 $$</mathjax></p>
 <p>和式左边就是 <mathjax>$\cos x$</mathjax> 的泰勒展开，而右边就是 <mathjax>$\sin x$</mathjax> 的泰勒展开。<br />
 因此：<br />
@@ -216,11 +216,11 @@ $$</mathjax></p>
 $$</mathjax></p>
 <p>由于几何级数的求和对复数也适用，所以：<br />
 <mathjax>$$
-\begin{align}
+\begin{aligned}
 \sum_{j=0}^{n-1}(\omega_n^k)^j &amp; = {(\omega_n^k)^n - 1 \over \omega_n^k - 1} \\
 &amp; = {(\omega_n^n)^k - 1 \over \omega_n^k - 1} \\
 &amp; = 0
-\end{align}
+\end{aligned}
 $$</mathjax></p>
 <p>注意，只有在 <mathjax>$n \not\mid k$</mathjax> 时上式成立。当 <mathjax>$n \mid k$</mathjax> 时，<mathjax>$\omega_n^k = 1$</mathjax>。<br />
 于是 <mathjax>$V \cdot V^{-1}$</mathjax> 中只有 <mathjax>$j = k$</mathjax> 的位置为 <mathjax>$1$</mathjax>，其余元素均为 <mathjax>$0$</mathjax>，即单位矩阵。所以 <mathjax>$V^{-1}$</mathjax> 确实是 <mathjax>$V$</mathjax> 的逆矩阵。</p>
@@ -229,20 +229,20 @@ $$</mathjax></p>
 下面为了讨论方便，假设所有的给 FFT 处理的序列长度都是 <mathjax>$2$</mathjax> 的某次幂。<br />
 快速傅立叶变换是基于分治思想的。算法首先将序列分为两部分，一部分的元素的下标为偶数，另一部分为奇数：<br />
 <mathjax>$$
-\begin{align}
+\begin{aligned}
 A \ \ \ &amp; = \{x_0,\;x_1,\;x_2,\;x_3,\;x_4,\;x_5,\;x_6,\;x_7\} \\
 A^{[0]} &amp; = \{x_0,\;x_2,\;x_4,\;x_6\} \\
 A^{[1]} &amp; = \{x_1,\;x_3,\;x_5,\;x_7\}
-\end{align}
+\end{aligned}
 $$</mathjax></p>
 <p>可以注意到，下标为偶数就是下标的二进制表示的最后一位为 <mathjax>$0$</mathjax> (它们放入 <mathjax>$A^{[0]}$</mathjax>)，奇数就是为 <mathjax>$1$</mathjax> (放入 <mathjax>$A^{[1]}$</mathjax>)。<br />
 分成两部分后，对于每一部分递归求解。然后尝试将这两部分合并，得到原序列的 DFT。<br />
 考虑假设我们获得了变换后的 <mathjax>$A^{\prime[0]}$</mathjax> 和 <mathjax>$A^{\prime[1]}$</mathjax>。<br />
 <mathjax>$$
-\begin{align}
+\begin{aligned}
 A^{\prime[0]}(x) &amp;= \sum_{j=0}^{n/2-1}A^{[0]}_jx^j \\
 A^{\prime[1]}(x) &amp;= \sum_{j=0}^{n/2-1}A^{[1]}_jx^j
-\end{align}
+\end{aligned}
 $$</mathjax></p>
 <p>因此：<br />
 <mathjax>$$
@@ -250,12 +250,12 @@ A(x) = A^{\prime[0]}(x^2) + xA^{\prime[1]}(x^2) \tag{4.3.1}
 $$</mathjax></p>
 <p>将单位复数根带入：<br />
 <mathjax>$$
-\begin{align}
+\begin{aligned}
 A^{\prime[0]}(\omega_n^{2k}) + \omega_n^kA^{\prime[1]}(\omega_n^{2k}) &amp;= A(\omega_n^k) \\
 A^{\prime[0]}(\omega_n^{2k}) - \omega_n^kA^{\prime[1]}(\omega_n^{2k}) &amp;= A^{\prime[0]}(\omega_n^{2k}) + \omega_n^{k + n/2}A^{\prime[1]}(\omega_n^{2k}) \\
 &amp;= A^{\prime[0]}(\omega_n^{2k + n}) + \omega_n^{k + n/2}A^{\prime[1]}(\omega_n^{2k + n}) \\
 &amp;= A(\omega_n^{k+(n/2)})
-\end{align}
+\end{aligned}
 $$</mathjax></p>
 <p>由此我们获得了如何将两部分合并为一部分的方法。<br />
 对于逆变换，可以使用同样的方法，只是单位复数根的次数的符号恰好相反，并且最后需要对每一个数除以 <mathjax>$n$</mathjax>。</p>
@@ -441,7 +441,7 @@ $$</mathjax></p>
             标签: <a href="/search.html?q=多项式"><span class="label">多项式</span></a> <a href="/search.html?q=FFT"><span class="label">FFT</span></a><br/>
             创建时间: 2016.07.21<br/>
             上次修改: 2018.01.28<br />
-            统计: 9676 字 / 约 38 分钟
+            统计: 9700 字 / 约 38 分钟
           </div>
         </div>
         <br />
@@ -525,7 +525,7 @@ $$</mathjax></p>
           <li><a href="http://pythonhosted.org/Markdown/">Python Markdown</a></li>
           <li><a href="http://getmdl.io/">Material Design Lite</a></li>
           <li><a href="http://www.tipue.com/search/">Tipuesearch</a></li>
-          <li><a href="http://www.mathjax.org/">MathJax</a></li>
+          <li><a href="http://www.mathjax.org/">MathJax</a> & <a href="http://khan.github.io/KaTeX/">KaTeX</a></li>
           <li><a href="https://github.com/imsun/gitment">Gitment</a></li>
         </ul>
       </div>

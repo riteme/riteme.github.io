@@ -12,10 +12,10 @@ tags: 数学
 ## 玩一玩
 找出**所有**$a$，使得满足下列关系式：
 $$
-\begin{align}
+\begin{aligned}
 a & \equiv 3\;(\text{mod}\;5) \\
 a & \equiv 2\;(\text{mod}\;7)
-\end{align}
+\end{aligned}
 $$
 
 通过暴力枚举，我们可以得知答案：

@@ -27,11 +27,11 @@
   <script defer src="/material/material.min.js"></script>
   <script src="/tipuesearch/tipuesearch_set.js"></script>
   <script src="/tipuesearch/tipuesearch.min.js"></script>
+  <script src="/gitment/gitment.js"></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config( { tex2jax: { inlineMath: [['$','$']] }, "HTML-CSS": { scale: 95 } } );
   </script>
   <script src="/math-renderer/selector.js"></script>
-  <script src="/gitment/gitment.js"></script>
   <script src="/math-renderer/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   <script src="/math-renderer/katex/katex.min.js"></script>
   <script src="/math-renderer/katex/auto-render.js"></script>
@@ -115,10 +115,10 @@
 <p>上面的热身非常简单。下面要讲的替罪羊树其实也很简单。在介绍替罪羊树之前，我们先了解下它的一个基本理论：<strong>α权重平衡(α-weight-balanced)</strong>。下文所述的平衡均为α权重平衡。</p>
 <p>我们认为一棵树<mathjax>$x$</mathjax>是平衡的当且仅当它<strong>每一棵子树</strong>满足下列条件：</p>
 <p><mathjax>$$
-\begin{align}
+\begin{aligned}
 \text{size}(x.\text{left}) &amp;\le \alpha \cdot \text{size}(x) \\
 \text{size}(x.\text{right}) &amp;\le \alpha \cdot \text{size}(x)
-\end{align}
+\end{aligned}
 $$</mathjax></p>
 <p>其中，<mathjax>$ \alpha \in [0.5, 1] $</mathjax>。</p>
 <p>这个<mathjax>$\alpha$</mathjax>可能会令人非常疑惑。我们首先来思考一下两个极值：<mathjax>$1$</mathjax>和<mathjax>$0.5$</mathjax>。<br />
@@ -421,7 +421,7 @@ $$</mathjax></p>
             标签: <a href="/search.html?q=算法"><span class="label">算法</span></a> <a href="/search.html?q=数据结构"><span class="label">数据结构</span></a> <a href="/search.html?q=替罪羊树"><span class="label">替罪羊树</span></a><br/>
             创建时间: 2016.04.06<br/>
             上次修改: 2016.04.06<br />
-            统计: 7216 字 / 约 28 分钟
+            统计: 7220 字 / 约 28 分钟
           </div>
         </div>
         <br />
@@ -510,7 +510,7 @@ $$</mathjax></p>
           <li><a href="http://pythonhosted.org/Markdown/">Python Markdown</a></li>
           <li><a href="http://getmdl.io/">Material Design Lite</a></li>
           <li><a href="http://www.tipue.com/search/">Tipuesearch</a></li>
-          <li><a href="http://www.mathjax.org/">MathJax</a></li>
+          <li><a href="http://www.mathjax.org/">MathJax</a> & <a href="http://khan.github.io/KaTeX/">KaTeX</a></li>
           <li><a href="https://github.com/imsun/gitment">Gitment</a></li>
         </ul>
       </div>

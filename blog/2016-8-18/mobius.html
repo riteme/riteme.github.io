@@ -27,11 +27,11 @@
   <script defer src="/material/material.min.js"></script>
   <script src="/tipuesearch/tipuesearch_set.js"></script>
   <script src="/tipuesearch/tipuesearch.min.js"></script>
+  <script src="/gitment/gitment.js"></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config( { tex2jax: { inlineMath: [['$','$']] }, "HTML-CSS": { scale: 95 } } );
   </script>
   <script src="/math-renderer/selector.js"></script>
-  <script src="/gitment/gitment.js"></script>
   <script src="/math-renderer/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   <script src="/math-renderer/katex/katex.min.js"></script>
   <script src="/math-renderer/katex/auto-render.js"></script>
@@ -109,10 +109,10 @@ $$</mathjax></p>
 $$</mathjax></p>
 <p>展开卷积可得：<br />
 <mathjax>$$
-\begin{align}
+\begin{aligned}
 \delta = \mu \times \zeta \Longrightarrow \delta(x,\;y) &amp; = \sum_{x \leqslant z \leqslant y} \mu(x,\;z)\zeta(z,\;y) \\
 &amp; = \sum_{x \leqslant z \leqslant y} \mu(x,\;z)
-\end{align}
+\end{aligned}
 $$</mathjax></p>
 <p>因此，当<mathjax>$x \neq y$</mathjax>时：<br />
 <mathjax>$$
@@ -128,10 +128,10 @@ $$</mathjax></p>
 </blockquote>
 <p><strong>证明</strong> 首先将式子展开：<br />
 <mathjax>$$
-\begin{align}
+\begin{aligned}
 F(x,\;y) &amp; = \sum_{x \leqslant z \leqslant y} G(x,\;z)\mu(z,\;y) \\
 &amp; = \sum_{x \leqslant z \leqslant y} \mu(z,\;y) \sum_{x \leqslant m \leqslant z} F(x,\;m)
-\end{align}
+\end{aligned}
 $$</mathjax></p>
 <p>我们使用<mathjax>$\zeta$</mathjax>函数来表示上下界，于是式子改写为以下形式：<br />
 <mathjax>$$
@@ -149,10 +149,10 @@ $$</mathjax></p>
 $$</mathjax></p>
 <p>然后变成了卷积的形式：<br />
 <mathjax>$$
-\begin{align}
+\begin{aligned}
 \sum_{m \in X_n} F(x,\;m) \sum_{m \leqslant z \leqslant y} \zeta(m,\;z)\mu(z,\;y) &amp; = \sum_{m \in X_n} F(x,\;m) \delta(m,\;y) \\
 &amp; = F(x,\;y)
-\end{align}
+\end{aligned}
 $$</mathjax></p>
 <p>当<mathjax>$m = y$</mathjax>时，<mathjax>$\delta(m,\;y)$</mathjax>才为<mathjax>$1$</mathjax>，所以综上所述：<br />
 <mathjax>$$
@@ -171,7 +171,7 @@ $$</mathjax></p>
 <p><strong>证明</strong> 对于<mathjax>$(x_1,\;y_1) \not\leqslant (x_2,\;y_2)$</mathjax>和<mathjax>$(x_1,\;y_1) = (x_2,\;y_2)$</mathjax>的情况，上式显然成立。<br />
 假设对于满足<mathjax>$(x_1,\;y_1) \leqslant (u,\;v) \lt (x_2,\;y_2)$</mathjax>的二元组均满足，那么有：<br />
 <mathjax>$$
-\begin{align}
+\begin{aligned}
 \mu((x_1,\;y_1),\;(x_2,\;y_2)) &amp; = - \sum_{(x_1,\;y_1) \leqslant (u,\;v) \lt (x_2,\;y_2)} \mu((x_1,\;y_1),\;(u,\;v)) \\
 &amp; = - \sum_{(x_1,\;y_1) \leqslant (u,\;v) \lt (x_2,\;y_2)} \mu_1(x_1,\;u)\mu_2(y_1,\;v) &amp; (\text{根据归纳假设}) \\
 &amp; = - \sum_{x_1 \leqslant_1 u \lt_1 x_2} \sum_{y_1 \leqslant_2 v \lt_2 y_2} \mu_1(x_1,\;u)\mu_2(y_1,\;v) &amp; (\text{分别枚举}) \\
@@ -179,17 +179,17 @@ $$</mathjax></p>
 &amp;\;\;\;\, + \mu_1(x_1,\;x_2)\sum_{y_1 \leqslant_2 v \leqslant_2 y_2} \mu_2(y_1,\;v) \\
 &amp;\;\;\;\, + \mu_2(y_1,\;y_2)\sum_{x_1 \leqslant_1 u \leqslant_1 x_2} \mu_1(x_1,\;u) \\
 &amp;\;\;\;\, \color{red}{+} \mu_1(x_1,\;x_2)\mu_2(y_1,\;y_2) &amp; (\text{扩展上界})
-\end{align}
+\end{aligned}
 $$</mathjax></p>
 <p>(2016.12.22: 上述证明最后一步展开存在问题 (红色正号)，但是《组合数学》上没有这一步的详细推导，正确的证明方式还请大神们指出)</p>
 <p>由于：<br />
 <mathjax>$$
-\begin{align}
+\begin{aligned}
 0
 &amp; = \sum_{y_1 \leqslant_2 v \leqslant_2 y_2} \mu_2(y_1,\;v) \\
-&amp; = \sum_{x_1 \leqslant_1 u \leqslant_1 x_2} \mu_1(x_1,\;u)  \\ 
-&amp; = \sum_{x_1 \leqslant_1 u \leqslant_1 x_2} \sum_{y_1 \leqslant_2 v \leqslant_2 y_2} \mu_1(x_1,\;u)\mu_2(y_1,\;v) 
-\end{align}
+&amp; = \sum_{x_1 \leqslant_1 u \leqslant_1 x_2} \mu_1(x_1,\;u)  \\
+&amp; = \sum_{x_1 \leqslant_1 u \leqslant_1 x_2} \sum_{y_1 \leqslant_2 v \leqslant_2 y_2} \mu_1(x_1,\;u)\mu_2(y_1,\;v)
+\end{aligned}
 $$</mathjax></p>
 <p>所以定理成立。</p>
 <h2 id="x_nleqslant">在<mathjax>$(X_n,\;\leqslant)$</mathjax>上的莫比乌斯函数</h2>
@@ -210,7 +210,7 @@ $$</mathjax></p>
 <p>不难发现，对于<mathjax>$y \gt x + 1$</mathjax>的函数值就全都变为<mathjax>$0$</mathjax>了。<br />
 总结一下就是：<br />
 <mathjax>$$
-\mu(x,\;y) = 
+\mu(x,\;y) =
 \begin{cases}
 1 &amp; (y = x) \\
 -1 &amp; (y = x + 1) \\
@@ -231,14 +231,14 @@ $$</mathjax></p>
 $$</mathjax></p>
 <p>假设对于<mathjax>$|B| - |A| \leqslant k$</mathjax>均成立，尝试证明对于<mathjax>$|B| - |A| = k + 1$</mathjax>也成立：<br />
 <mathjax>$$
-\begin{align}
+\begin{aligned}
 \mu(A,\;B) &amp; = -\sum_{A \subseteq C \subset B} \mu(A,\;C) \\
 &amp; = -\sum_{A \subseteq C \subset B} (-1)^{|C| - |A|} \\
 &amp; = -\sum_{i = 0}^{k} {k + 1 \choose i}(-1)^i \\
 &amp; = -\left[(1 - 1)^{k + 1} - (-1)^{k + 1} \right] \\
 &amp; = (-1)^{k + 1} \\
 &amp; = (-1)^{|B| - |A|}
-\end{align}
+\end{aligned}
 $$</mathjax></p>
 <h2 id="x_nmid">在<mathjax>$(X_n,\;\mid)$</mathjax>上的莫比乌斯函数</h2>
 <p>对于<mathjax>$(X_n, \;\mid)$</mathjax>这个偏序集，有如下定理：<br />
@@ -290,17 +290,17 @@ $$</mathjax></p>
 $$</mathjax></p>
 <p>总结一下就是：<br />
 <mathjax>$$
-\mu(1,\;p^k) = 
+\mu(1,\;p^k) =
 \begin{cases}
 1 &amp; (k = 0) \\
--1 &amp; (k = 1) \\ 
+-1 &amp; (k = 1) \\
 0 &amp; (\text{otherwise})
 \end{cases}
 \tag{7.3}
 $$</mathjax></p>
 <p>运用直积，可以知道：<br />
 <mathjax>$$
-\mu(1,\;n) = 
+\mu(1,\;n) =
 \begin{cases}
 1 &amp; (n = 1) \\
 (-1)^k &amp; (n = p_1p_2\cdots p_k, \;\;\varphi(p_i) = p_i - 1) \\
@@ -371,12 +371,12 @@ $$</mathjax></p>
 $$</mathjax></p>
 <p>所以我们对其进行等比数列求和：<br />
 <mathjax>$$
-\begin{align}
+\begin{aligned}
 \sum_{d \mid n} \varphi(d) &amp; = 1 + (p - 1)\sum_{i=0}^{k-1} p^i \\
 &amp; = 1 + (p - 1) \cdot {1 - p^k \over 1 - p} \\
 &amp; = 1 + p^k - 1 \\
 &amp; = p^k
-\end{align}
+\end{aligned}
 $$</mathjax></p>
 <p>故对质数的幂也成立。<br />
 假设对于一个数<mathjax>$c$</mathjax>，所有小于<mathjax>$c$</mathjax>的数均成立，那么选取<mathjax>$n$</mathjax>的两个互质的因子<mathjax>$a$</mathjax>、<mathjax>$b$</mathjax>使得<mathjax>$ab = c$</mathjax>，那么有：<br />
@@ -385,22 +385,22 @@ $$</mathjax></p>
 $$</mathjax></p>
 <p>下面证明<mathjax>$\sum_{n \mid a} \varphi(n) \sum_{m \mid b} \varphi(m) = \sum_{d \mid c} \varphi(d)$</mathjax>，即可证明原式：<br />
 <mathjax>$$
-\begin{align}
+\begin{aligned}
 \sum_{n \mid a} \varphi(n) \sum_{m \mid b} \varphi(m) &amp; = \sum_{n \mid a}\sum_{m \mid b}\varphi(n)\varphi(m) &amp; (\text{改变枚举顺序}) \\
 &amp; = \sum_{n \mid a}\sum_{m \mid b} \varphi(nm) &amp; (\text{由于}n \bot m) \\
 &amp; = \sum_{nm \mid ab} \varphi(nm) &amp; (\text{由于}a \bot b) \\
 &amp; = \sum_{d \mid c} \varphi(d) &amp; (\text{等价代换}) \\
 &amp; = c
-\end{align}
+\end{aligned}
 $$</mathjax></p>
 <p>注意到<mathjax>$(9.1)$</mathjax>式是一个明显的莫比乌斯反演的形式。根据莫比乌斯反演公式，我们可以得到：<br />
 <mathjax>$$
-\begin{align}
+\begin{aligned}
 \varphi(n) &amp; = \sum_{d \mid n} d \cdot \mu(d,\;n) \\
 &amp; = \sum_{d \mid n} d \cdot \mu(1,\;n / d) \\
 &amp; = \sum_{d \mid n} d \cdot \mu(n / d) \\
 &amp; = \sum_{d \mid n} \mu(d) \cdot n/d
-\end{align}
+\end{aligned}
 $$</mathjax></p>
 <p>考虑一下<mathjax>$\mu$</mathjax>函数的取值，对于因子<mathjax>$1$</mathjax>，和式中的结果为<mathjax>$n$</mathjax>。对于由素数相乘的因子，这些素因子必定来自<mathjax>$n$</mathjax>。而其它情况就都为<mathjax>$0$</mathjax>。<br />
 设<mathjax>$n = p_1^{k_1}p_2^{k_2}\cdots p_m^{k_m}$</mathjax>。<br />
@@ -439,10 +439,10 @@ g(n) = k^n \tag{10.2}
 $$</mathjax></p>
 <p>根据莫比乌斯反演公式可得：<br />
 <mathjax>$$
-\begin{align}
+\begin{aligned}
 f(n) &amp; = \sum_{d \mid n} g(d)\mu(n/d) \\
 &amp; = \sum_{d \mid n} k^d\mu(n/d)
-\end{align}
+\end{aligned}
 \tag{10.3}
 $$</mathjax></p>
 <p>带入<mathjax>$h(n)$</mathjax>的计算公式可得：<br />
@@ -451,10 +451,10 @@ h(n) = \sum_{d \mid n} \frac1d \sum_{e \mid d} k^e\mu(d/e) \tag{10.4}
 $$</mathjax></p>
 <p>由于<mathjax>$e \mid d$</mathjax>并且<mathjax>$d \mid n$</mathjax>，所以我们设<mathjax>$n = rd,\;d = me$</mathjax>，所以<mathjax>$n = rem$</mathjax>，这样将方便我们变换公式：<br />
 <mathjax>$$
-\begin{align}
+\begin{aligned}
 \sum_{d \mid n} \frac1d \sum_{e \mid d} k^e\mu(d/e) &amp; = \sum_{e \mid n} k^e \sum_{m \mid (n/e)} \frac1{me}\mu(m) \\
 &amp; =\sum_{e\mid n} \frac{k^e}n \sum_{r \mid (n/e)} r\cdot\mu(\frac{n}e/r)
-\end{align}
+\end{aligned}
 $$</mathjax></p>
 <p>由于：<br />
 <mathjax>$$
@@ -585,7 +585,7 @@ $$</mathjax></p>
 $$</mathjax></p>
 <p>考虑到<mathjax>$\mu$</mathjax>函数的取值：<br />
 <mathjax>$$
-\mu(n) = 
+\mu(n) =
 \begin{cases}
 1 &amp; (n = 1) \\
 (-1)^k &amp; (n = p_1p_2\cdots p_k, \;\;\varphi(p_i) = p_i - 1) \\
@@ -594,7 +594,7 @@ $$</mathjax></p>
 $$</mathjax></p>
 <p>因此：<br />
 <mathjax>$$
-\mu^2(n) = 
+\mu^2(n) =
 \begin{cases}
 1 &amp; (n = 1) \\
 1 &amp; (n = p_1p_2\cdots p_k, \;\;\varphi(p_i) = p_i - 1) \\
@@ -702,7 +702,7 @@ $$</mathjax></p>
             标签: <a href="/search.html?q=数学"><span class="label">数学</span></a> <a href="/search.html?q=组合数学"><span class="label">组合数学</span></a> <a href="/search.html?q=莫比乌斯反演"><span class="label">莫比乌斯反演</span></a><br/>
             创建时间: 2016.08.18<br/>
             上次修改: 2017.03.18<br />
-            统计: 21092 字 / 约 1 小时 24 分钟
+            统计: 21128 字 / 约 1 小时 24 分钟
           </div>
         </div>
         <br />
@@ -784,7 +784,7 @@ $$</mathjax></p>
           <li><a href="http://pythonhosted.org/Markdown/">Python Markdown</a></li>
           <li><a href="http://getmdl.io/">Material Design Lite</a></li>
           <li><a href="http://www.tipue.com/search/">Tipuesearch</a></li>
-          <li><a href="http://www.mathjax.org/">MathJax</a></li>
+          <li><a href="http://www.mathjax.org/">MathJax</a> & <a href="http://khan.github.io/KaTeX/">KaTeX</a></li>
           <li><a href="https://github.com/imsun/gitment">Gitment</a></li>
         </ul>
       </div>

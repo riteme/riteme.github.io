@@ -41,10 +41,10 @@ def build(s, left, right):
 我们认为一棵树$x$是平衡的当且仅当它**每一棵子树**满足下列条件：
 
 $$
-\begin{align}
+\begin{aligned}
 \text{size}(x.\text{left}) &\le \alpha \cdot \text{size}(x) \\
 \text{size}(x.\text{right}) &\le \alpha \cdot \text{size}(x)
-\end{align}
+\end{aligned}
 $$
 
 其中，$ \alpha \in [0.5, 1] $。

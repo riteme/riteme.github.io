@@ -9,7 +9,7 @@ tags: About
 riteme 来自 HNSDFZ。
 
 ### The sitegen.py
-使用 `Python3` 编写的不清真站点生成器。
+使用 `Python 3` 编写的不清真站点生成器。
 参见左侧栏 ["GitHub 项目"](https://github.com/riteme/riteme.github.io)。
 
 需要的依赖：
@@ -38,9 +38,11 @@ riteme 来自 HNSDFZ。
 使用的是功能比较简单的 [Material Design Lite](http://getmdl.io/)。
 
 ### 数学公式
-使用 [MathJax](http://www.mathjax.org/)。
+使用 [MathJax](http://www.mathjax.org/) 和 [KaTeX](http://khan.github.io/KaTeX/)。
 
-以后计划抛弃笨重的 MathJax，换用清真的 KaTeX。
+~~以后计划抛弃笨重的 MathJax，换用清真的 KaTeX。~~
+正在尝试 KaTeX......但现实很残酷，KaTeX 容错性实在不行，因此变成了浏览者可在 MathJax 和 KaTeX 之间二选一。
+实际上 KaTeX 能够无错渲染的文章真的不多......
 
 ### 站内搜索
 使用 [Tipuesearch](http://www.tipue.com/search/)。

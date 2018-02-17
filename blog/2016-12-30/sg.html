@@ -27,11 +27,11 @@
   <script defer src="/material/material.min.js"></script>
   <script src="/tipuesearch/tipuesearch_set.js"></script>
   <script src="/tipuesearch/tipuesearch.min.js"></script>
+  <script src="/gitment/gitment.js"></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config( { tex2jax: { inlineMath: [['$','$']] }, "HTML-CSS": { scale: 95 } } );
   </script>
   <script src="/math-renderer/selector.js"></script>
-  <script src="/gitment/gitment.js"></script>
   <script src="/math-renderer/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   <script src="/math-renderer/katex/katex.min.js"></script>
   <script src="/math-renderer/katex/auto-render.js"></script>
@@ -98,9 +98,11 @@
 <h2 id="_3">必胜与必败</h2>
 <p>我们规定一个<strong>位置</strong> (例如上面的Nim游戏中石子的个数) 是<mathjax>$\mathrm{N}$</mathjax>点是当此时先手的人必胜的位置，而<mathjax>$\mathrm{P}$</mathjax>点则是此时先手的人必输的位置<sup id="fnref:n-and-p"><a class="footnote-ref" href="#fn:n-and-p" rel="footnote">1</a></sup>。例如，当<mathjax>$n = 0$</mathjax>时 (下面简写为<mathjax>$0$</mathjax>)，先手是必输的。因此<mathjax>$0$</mathjax>是<mathjax>$\mathrm{P}$</mathjax>点。而在<mathjax>$1$</mathjax>和<mathjax>$2$</mathjax>时，先手会必胜，所以它们是<mathjax>$\mathrm{N}$</mathjax>点。</p>
 <p>简单分析可知：</p>
-<p>1.　终止位置是<mathjax>$\mathrm{P}$</mathjax>点。<br />
-2.　所能到达的位置都是<mathjax>$\mathrm{N}$</mathjax>点的位置是<mathjax>$\mathrm{P}$</mathjax>点。<br />
-3.　能够到达<mathjax>$\mathrm{P}$</mathjax>点的位置是<mathjax>$\mathrm{N}$</mathjax>点。</p>
+<ol>
+<li>终止位置是<mathjax>$\mathrm{P}$</mathjax>点。</li>
+<li>所能到达的位置都是<mathjax>$\mathrm{N}$</mathjax>点的位置是<mathjax>$\mathrm{P}$</mathjax>点。</li>
+<li>能够到达<mathjax>$\mathrm{P}$</mathjax>点的位置是<mathjax>$\mathrm{N}$</mathjax>点。</li>
+</ol>
 <p>例如，在<mathjax>$3$</mathjax>这个位置，取走一个石子会到达<mathjax>$2$</mathjax>这个位置，取走两个石子会到达<mathjax>$1$</mathjax>这个位置，而这两个位置都是<mathjax>$\mathrm{N}$</mathjax>点，所以<mathjax>$3$</mathjax>是<mathjax>$\mathrm{P}$</mathjax>点。因此<mathjax>$3$</mathjax>个石子时先手必败。</p>
 <h2 id="_4">图的表示</h2>
 <p>如果将每个位置用点表示，而位置之间的转移用有向边表示，那么<mathjax>$0$</mathjax>到<mathjax>$3$</mathjax>之间的关系可以由下图表示：</p>
@@ -200,7 +202,7 @@ $$</mathjax></p>
             标签: <a href="/search.html?q=公平组合游戏"><span class="label">公平组合游戏</span></a> <a href="/search.html?q=Sprague-Grundy定理"><span class="label">Sprague-Grundy定理</span></a> <a href="/search.html?q=SG函数"><span class="label">SG函数</span></a> <a href="/search.html?q=博弈论"><span class="label">博弈论</span></a><br/>
             创建时间: 2016.12.30<br/>
             上次修改: 2016.12.30<br />
-            统计: 4761 字 / 约 19 分钟
+            统计: 4762 字 / 约 19 分钟
           </div>
         </div>
         <br />
@@ -275,7 +277,7 @@ $$</mathjax></p>
           <li><a href="http://pythonhosted.org/Markdown/">Python Markdown</a></li>
           <li><a href="http://getmdl.io/">Material Design Lite</a></li>
           <li><a href="http://www.tipue.com/search/">Tipuesearch</a></li>
-          <li><a href="http://www.mathjax.org/">MathJax</a></li>
+          <li><a href="http://www.mathjax.org/">MathJax</a> & <a href="http://khan.github.io/KaTeX/">KaTeX</a></li>
           <li><a href="https://github.com/imsun/gitment">Gitment</a></li>
         </ul>
       </div>

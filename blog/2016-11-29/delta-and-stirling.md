@@ -62,11 +62,11 @@ $$
 观察最高次数的项，在每一次差分中的变化：
 
 $$
-\begin{align}
+\begin{aligned}
 \Delta^{(c)} h(n) & = \Delta^{(c-1)} h(n + 1) - \Delta^{(c-1)}h(n) \\
 & = (n + 1)^{p} + \cdots - n^p - \cdots \\
 & = \sum_{k = 0}^p {p \choose k} n^k + \cdots - n^p - \cdots
-\end{align}
+\end{aligned}
 $$
 
 由于${p \choose p} = 1$，所以最高次数的项在一次差分中被减去了，所以差分后的序列是一个至多$p$次的多项式的序列。因此，根据归纳假设，$p + 1$次的多项式最多进行$p + 2$次差分就可以对到全$0$序列。
@@ -81,11 +81,11 @@ $$
 那么：
 
 $$
-\begin{align}
+\begin{aligned}
 \Delta h(n) & = \Delta (af(n) + bg(n)) \\
 & = a(f(n + 1) - f(n)) + b(g(n + 1) - g(n)) \\
 & = a\Delta f(n) + b\Delta g(n)
-\end{align}
+\end{aligned}
 $$
 
 由此我们证明了差分是一个线性变换。这称为差分的线性性。

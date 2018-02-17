@@ -49,13 +49,13 @@ $$ \lim_{\Delta x \rightarrow 0} {f(x_0 + \Delta x) - f(x_0) \over \Delta x} $$
 
 举一个典型的例子$f(x) = x^2$。按照求导数的方法：
 $$
-\begin{align}
+\begin{aligned}
 f^\prime(x) &= \lim_{\Delta x \rightarrow 0} {f(x + \Delta x) - f(x) \over \Delta x} \\
 &= \lim_{\Delta x \rightarrow 0} {(x + \Delta x)^2 - x^2 \over \Delta x} \\
 &= \lim_{\Delta x \rightarrow 0} {\Delta x^2 + 2x\Delta x \over \Delta x} \\
 &= \lim_{\Delta x \rightarrow 0} (\Delta x + 2x) \\
 &= 2x
-\end{align}
+\end{aligned}
 $$
 
 事实上，对于幂函数$f(x) = x^\alpha$，其导函数为$f^\prime(x) = \alpha x^{\alpha - 1}$。
@@ -126,11 +126,11 @@ $$ y^\prime = {1 - \ln x \over x^2}y = {1 - \ln x \over x^2}x^{1/x} = f^\prime(x
 既然都对这个函数求过导了，我们来验证一下它的一个性质。
 将$\text{e}$代入导函数：
 $$
-\begin{align}
+\begin{aligned}
 f^\prime(\text{e}) & = {1 - \ln \text{e} \over \text{e}^2}\text{e}^{1/\text{e}} \\
 & = {1 - 1 \over \text{e}^2} \\
 & = 0
-\end{align}
+\end{aligned}
 $$
 
 因此我们发现$x = \text{e}$是这个函数的极值点。

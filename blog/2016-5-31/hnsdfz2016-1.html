@@ -27,11 +27,11 @@
   <script defer src="/material/material.min.js"></script>
   <script src="/tipuesearch/tipuesearch_set.js"></script>
   <script src="/tipuesearch/tipuesearch.min.js"></script>
+  <script src="/gitment/gitment.js"></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config( { tex2jax: { inlineMath: [['$','$']] }, "HTML-CSS": { scale: 95 } } );
   </script>
   <script src="/math-renderer/selector.js"></script>
-  <script src="/gitment/gitment.js"></script>
   <script src="/math-renderer/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   <script src="/math-renderer/katex/katex.min.js"></script>
   <script src="/math-renderer/katex/auto-render.js"></script>
@@ -320,10 +320,10 @@ n &lt;= 1000 ?</p>
 接下来考虑维护答案。对于每条边的修改，自己的<mathjax>$a$</mathjax>和<mathjax>$b$</mathjax>不会有影响，对于从这条边到根节点的链上的每一条边的<mathjax>$a$</mathjax>值都会增加，而对于其它的边的<mathjax>$b$</mathjax>值都会增加。因此我们用<mathjax>$\Delta a$</mathjax>和<mathjax>$\Delta b$</mathjax>来记录每一条边的增量，这个值可以利用树链剖分+线段树来维护，链上的边直接增加，其它边先全局打上标记，然后对不需要的边打上反标记即可。<br />
 最后在线段树的根节点统计答案，利用求和的性质即可：<br />
 <mathjax>$$
-\begin{align}
+\begin{aligned}
 \sum^n_{i=1} a^,_i b^,_i &amp; = \sum^n_{i=1} (a_i + \Delta a)(b_i + \Delta b) \\
 &amp; = \sum^n_{i=1} a_ib_i + \Delta a\sum^n_{i=1}b_i + \Delta b\sum^n_{i=1} a_i + n\Delta a\Delta b
-\end{align}
+\end{aligned}
 $$</mathjax><br />
 从这也能看出维护三个和式和两个标记就可完成维护。总复杂度为<mathjax>$O(n\log^2n)$</mathjax>。</p>
 <h3 id="c-missing">C (Missing)</h3>
@@ -361,7 +361,7 @@ $$</mathjax><br />
             标签: <a href="/search.html?q=HNSDFZ"><span class="label">HNSDFZ</span></a> <a href="/search.html?q=互测"><span class="label">互测</span></a> <a href="/search.html?q=2016"><span class="label">2016</span></a><br/>
             创建时间: 2016.05.31<br/>
             上次修改: 2016.05.31<br />
-            统计: 5489 字 / 约 21 分钟
+            统计: 5493 字 / 约 21 分钟
           </div>
         </div>
         <br />
@@ -474,7 +474,7 @@ $$</mathjax><br />
           <li><a href="http://pythonhosted.org/Markdown/">Python Markdown</a></li>
           <li><a href="http://getmdl.io/">Material Design Lite</a></li>
           <li><a href="http://www.tipue.com/search/">Tipuesearch</a></li>
-          <li><a href="http://www.mathjax.org/">MathJax</a></li>
+          <li><a href="http://www.mathjax.org/">MathJax</a> & <a href="http://khan.github.io/KaTeX/">KaTeX</a></li>
           <li><a href="https://github.com/imsun/gitment">Gitment</a></li>
         </ul>
       </div>

@@ -94,20 +94,20 @@ $$ \text{e}^{xi} = \cos x + i\sin x \tag{3.1.1}$$
 
 为了证明这个等式，首先考虑一下 $i$ 的幂次的规律：
 $$
-\begin{align}
+\begin{aligned}
 & i^0 = 1,\; i^1 = i,\; i^2 = -1,\; i^3 = -i \\
 & i^4 = 1,\; i^5 = i,\; i^6 = -1,\; i^7 = -i \\
 & \dots
-\end{align}
+\end{aligned}
 $$
 
 我们注意到 $i$ 的幂次是一个长度为 $4$ 的循环节。考虑 $\text{e}$ 的泰勒展开：
 $$
-\begin{align}
+\begin{aligned}
 \text{e}^{xi} & = \sum_{n=0}^{\infty} {x^ni^n \over n!} \\
 & = 1 + xi - \frac{x^2}{2} - \frac{x^3}{6}i + \dots \\
 & = \sum_{n = 2k,\;k \in \mathbf{N}}^{\infty} (-1)^k{x^n \over n!} + i\sum_{n = 2k + 1,\;k \in \mathbf{N}}^{\infty} (-1)^k{x^n \over n!}
-\end{align}
+\end{aligned}
 $$
 
 和式左边就是 $\cos x$ 的泰勒展开，而右边就是 $\sin x$ 的泰勒展开。
@@ -179,11 +179,11 @@ $$
 
 由于几何级数的求和对复数也适用，所以：
 $$
-\begin{align}
+\begin{aligned}
 \sum_{j=0}^{n-1}(\omega_n^k)^j & = {(\omega_n^k)^n - 1 \over \omega_n^k - 1} \\
 & = {(\omega_n^n)^k - 1 \over \omega_n^k - 1} \\
 & = 0
-\end{align}
+\end{aligned}
 $$
 
 注意，只有在 $n \not\mid k$ 时上式成立。当 $n \mid k$ 时，$\omega_n^k = 1$。
@@ -194,21 +194,21 @@ $$
 下面为了讨论方便，假设所有的给 FFT 处理的序列长度都是 $2$ 的某次幂。
 快速傅立叶变换是基于分治思想的。算法首先将序列分为两部分，一部分的元素的下标为偶数，另一部分为奇数：
 $$
-\begin{align}
+\begin{aligned}
 A \ \ \ & = \{x_0,\;x_1,\;x_2,\;x_3,\;x_4,\;x_5,\;x_6,\;x_7\} \\
 A^{[0]} & = \{x_0,\;x_2,\;x_4,\;x_6\} \\
 A^{[1]} & = \{x_1,\;x_3,\;x_5,\;x_7\}
-\end{align}
+\end{aligned}
 $$
 
 可以注意到，下标为偶数就是下标的二进制表示的最后一位为 $0$ (它们放入 $A^{[0]}$)，奇数就是为 $1$ (放入 $A^{[1]}$)。
 分成两部分后，对于每一部分递归求解。然后尝试将这两部分合并，得到原序列的 DFT。
 考虑假设我们获得了变换后的 $A^{\prime[0]}$ 和 $A^{\prime[1]}$。
 $$
-\begin{align}
+\begin{aligned}
 A^{\prime[0]}(x) &= \sum_{j=0}^{n/2-1}A^{[0]}_jx^j \\
 A^{\prime[1]}(x) &= \sum_{j=0}^{n/2-1}A^{[1]}_jx^j
-\end{align}
+\end{aligned}
 $$
 
 因此：
@@ -218,12 +218,12 @@ $$
 
 将单位复数根带入：
 $$
-\begin{align}
+\begin{aligned}
 A^{\prime[0]}(\omega_n^{2k}) + \omega_n^kA^{\prime[1]}(\omega_n^{2k}) &= A(\omega_n^k) \\
 A^{\prime[0]}(\omega_n^{2k}) - \omega_n^kA^{\prime[1]}(\omega_n^{2k}) &= A^{\prime[0]}(\omega_n^{2k}) + \omega_n^{k + n/2}A^{\prime[1]}(\omega_n^{2k}) \\
 &= A^{\prime[0]}(\omega_n^{2k + n}) + \omega_n^{k + n/2}A^{\prime[1]}(\omega_n^{2k + n}) \\
 &= A(\omega_n^{k+(n/2)})
-\end{align}
+\end{aligned}
 $$
 
 由此我们获得了如何将两部分合并为一部分的方法。

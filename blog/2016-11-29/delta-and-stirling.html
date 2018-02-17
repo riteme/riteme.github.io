@@ -27,11 +27,11 @@
   <script defer src="/material/material.min.js"></script>
   <script src="/tipuesearch/tipuesearch_set.js"></script>
   <script src="/tipuesearch/tipuesearch.min.js"></script>
+  <script src="/gitment/gitment.js"></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config( { tex2jax: { inlineMath: [['$','$']] }, "HTML-CSS": { scale: 95 } } );
   </script>
   <script src="/math-renderer/selector.js"></script>
-  <script src="/gitment/gitment.js"></script>
   <script src="/math-renderer/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   <script src="/math-renderer/katex/katex.min.js"></script>
   <script src="/math-renderer/katex/auto-render.js"></script>
@@ -110,11 +110,11 @@ $$</mathjax></p>
 <p>现在进行归纳假设：假设对于<mathjax>$p$</mathjax>次多项式的序列最多经过<mathjax>$p + 1$</mathjax>次差分就会得到全<mathjax>$0$</mathjax>序列，那么现在证明对于<mathjax>$p + 1$</mathjax>次多项式最多差分<mathjax>$p + 2$</mathjax>次就可以得到全<mathjax>$0$</mathjax>序列。</p>
 <p>观察最高次数的项，在每一次差分中的变化：</p>
 <p><mathjax>$$
-\begin{align}
+\begin{aligned}
 \Delta^{(c)} h(n) &amp; = \Delta^{(c-1)} h(n + 1) - \Delta^{(c-1)}h(n) \\
 &amp; = (n + 1)^{p} + \cdots - n^p - \cdots \\
 &amp; = \sum_{k = 0}^p {p \choose k} n^k + \cdots - n^p - \cdots
-\end{align}
+\end{aligned}
 $$</mathjax></p>
 <p>由于<mathjax>${p \choose p} = 1$</mathjax>，所以最高次数的项在一次差分中被减去了，所以差分后的序列是一个至多<mathjax>$p$</mathjax>次的多项式的序列。因此，根据归纳假设，<mathjax>$p + 1$</mathjax>次的多项式最多进行<mathjax>$p + 2$</mathjax>次差分就可以对到全<mathjax>$0$</mathjax>序列。</p>
 <h3 id="_4">差分的线性性</h3>
@@ -124,11 +124,11 @@ h(n) = af(n) + bg(n)
 $$</mathjax></p>
 <p>那么：</p>
 <p><mathjax>$$
-\begin{align}
+\begin{aligned}
 \Delta h(n) &amp; = \Delta (af(n) + bg(n)) \\
 &amp; = a(f(n + 1) - f(n)) + b(g(n + 1) - g(n)) \\
 &amp; = a\Delta f(n) + b\Delta g(n)
-\end{align}
+\end{aligned}
 $$</mathjax></p>
 <p>由此我们证明了差分是一个线性变换。这称为差分的线性性。</p>
 <h3 id="_5">特殊差分表</h3>
@@ -357,7 +357,7 @@ $$</mathjax></p>
             标签: <a href="/search.html?q=差分"><span class="label">差分</span></a> <a href="/search.html?q=Stirling数"><span class="label">Stirling数</span></a> <a href="/search.html?q=多项式插值"><span class="label">多项式插值</span></a><br/>
             创建时间: 2016.11.29<br/>
             上次修改: 2016.11.29<br />
-            统计: 8248 字 / 约 32 分钟
+            统计: 8256 字 / 约 33 分钟
           </div>
         </div>
         <br />
@@ -445,7 +445,7 @@ $$</mathjax></p>
           <li><a href="http://pythonhosted.org/Markdown/">Python Markdown</a></li>
           <li><a href="http://getmdl.io/">Material Design Lite</a></li>
           <li><a href="http://www.tipue.com/search/">Tipuesearch</a></li>
-          <li><a href="http://www.mathjax.org/">MathJax</a></li>
+          <li><a href="http://www.mathjax.org/">MathJax</a> & <a href="http://khan.github.io/KaTeX/">KaTeX</a></li>
           <li><a href="https://github.com/imsun/gitment">Gitment</a></li>
         </ul>
       </div>

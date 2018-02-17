@@ -202,6 +202,8 @@ def convert_string(s):
             S.append("\\\\")
         elif c == "%":
             S.append("% ")
+        elif ord(c) == 8203:  # ZERO WIDTH SAPCE, it fucks KaTeX
+            pass
         else:
             S.append(c)
 
@@ -224,7 +226,9 @@ def generate(filepath):
         extension_configs=MARKDOWN_CONFIG
     )
     with open(filepath) as md:
-        content = converter.convert(md.read())
+        content = md.read()
+        content = content.replace(chr(8203), '')
+        content = converter.convert(content)
     mdinfo = converter.Meta
 
     reader = parser.Parser()

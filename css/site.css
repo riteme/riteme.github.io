@@ -223,6 +223,10 @@ mathjax + br {
     display: none;
 }
 
+.katex {
+    font-size: 110%;
+}
+
 .katex-display, .MathJax_SVG_Display, .MathJax_Display {
     display: block;
     overflow-x: auto;

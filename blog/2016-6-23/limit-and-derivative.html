@@ -27,11 +27,11 @@
   <script defer src="/material/material.min.js"></script>
   <script src="/tipuesearch/tipuesearch_set.js"></script>
   <script src="/tipuesearch/tipuesearch.min.js"></script>
+  <script src="/gitment/gitment.js"></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config( { tex2jax: { inlineMath: [['$','$']] }, "HTML-CSS": { scale: 95 } } );
   </script>
   <script src="/math-renderer/selector.js"></script>
-  <script src="/gitment/gitment.js"></script>
   <script src="/math-renderer/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   <script src="/math-renderer/katex/katex.min.js"></script>
   <script src="/math-renderer/katex/auto-render.js"></script>
@@ -102,13 +102,13 @@ $$</mathjax></p>
 <p>如何求导函数呢？根据导数的定义，我们将<mathjax>$x_0$</mathjax>换为<mathjax>$x$</mathjax>，然后求极限就好了。然而说的轻巧，实际上很多都比较难以求出，因此早有先人为我们把各种导函数算好了。</p>
 <p>举一个典型的例子<mathjax>$f(x) = x^2$</mathjax>。按照求导数的方法：<br />
 <mathjax>$$
-\begin{align}
+\begin{aligned}
 f^\prime(x) &amp;= \lim_{\Delta x \rightarrow 0} {f(x + \Delta x) - f(x) \over \Delta x} \\
 &amp;= \lim_{\Delta x \rightarrow 0} {(x + \Delta x)^2 - x^2 \over \Delta x} \\
 &amp;= \lim_{\Delta x \rightarrow 0} {\Delta x^2 + 2x\Delta x \over \Delta x} \\
 &amp;= \lim_{\Delta x \rightarrow 0} (\Delta x + 2x) \\
 &amp;= 2x
-\end{align}
+\end{aligned}
 $$</mathjax></p>
 <p>事实上，对于幂函数<mathjax>$f(x) = x^\alpha$</mathjax>，其导函数为<mathjax>$f^\prime(x) = \alpha x^{\alpha - 1}$</mathjax>。</p>
 <p>导数与导数之间存在运算关系，有了这些运算关系，我们就可以方便地进行求导。<br />
@@ -154,11 +154,11 @@ $$</mathjax></p>
 既然都对这个函数求过导了，我们来验证一下它的一个性质。<br />
 将<mathjax>$\text{e}$</mathjax>代入导函数：<br />
 <mathjax>$$
-\begin{align}
+\begin{aligned}
 f^\prime(\text{e}) &amp; = {1 - \ln \text{e} \over \text{e}^2}\text{e}^{1/\text{e}} \\
 &amp; = {1 - 1 \over \text{e}^2} \\
 &amp; = 0
-\end{align}
+\end{aligned}
 $$</mathjax></p>
 <p>因此我们发现<mathjax>$x = \text{e}$</mathjax>是这个函数的极值点。</p>
           <hr/>
@@ -186,7 +186,7 @@ $$</mathjax></p>
             标签: <a href="/search.html?q=数学"><span class="label">数学</span></a> <a href="/search.html?q=极限"><span class="label">极限</span></a> <a href="/search.html?q=导数"><span class="label">导数</span></a><br/>
             创建时间: 2016.06.23<br/>
             上次修改: 2016.06.24<br />
-            统计: 3861 字 / 约 15 分钟
+            统计: 3869 字 / 约 15 分钟
           </div>
         </div>
         <br />
@@ -259,7 +259,7 @@ $$</mathjax></p>
           <li><a href="http://pythonhosted.org/Markdown/">Python Markdown</a></li>
           <li><a href="http://getmdl.io/">Material Design Lite</a></li>
           <li><a href="http://www.tipue.com/search/">Tipuesearch</a></li>
-          <li><a href="http://www.mathjax.org/">MathJax</a></li>
+          <li><a href="http://www.mathjax.org/">MathJax</a> & <a href="http://khan.github.io/KaTeX/">KaTeX</a></li>
           <li><a href="https://github.com/imsun/gitment">Gitment</a></li>
         </ul>
       </div>

@@ -1,11 +1,15 @@
-renderMath = function() {
+renderMath = function(container) {
     renderer = Cookies.get('math-renderer')
 
     if (renderer == 'mathjax') {
         MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
     } else if (renderer == 'katex') {
+        if (container == null) {
+            container = $("#comments")[0];
+        }
+
         renderMathInElement(
-            document.body,
+            container,
             options = {
                 delimiters: [
                     { left: "$$", right: "$$", display: true },
@@ -3044,7 +3048,9 @@ function renderComments(_ref2, instance) {
     }
   }
 
-  renderMath();
+  console.log("233");
+  renderMath(container);
+  console.log("234");
   return container;
 }
 
@@ -3110,7 +3116,7 @@ function renderEditor(_ref3, instance) {
     instance.markdown(content).then(function (html) {
       preview.innerHTML = html;
 
-      renderMath();
+      renderMath(preview.innerHTML);
       return preview.innerHTML
     });
 
@@ -3126,7 +3132,7 @@ function renderEditor(_ref3, instance) {
       submitButton.removeAttribute('disabled');
       submitButton.innerText = '评论';
 
-      renderMath();
+      renderMath(null);
     }).catch(function (e) {
       alert(e);
       submitButton.removeAttribute('disabled');

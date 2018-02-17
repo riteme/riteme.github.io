@@ -27,11 +27,11 @@
   <script defer src="/material/material.min.js"></script>
   <script src="/tipuesearch/tipuesearch_set.js"></script>
   <script src="/tipuesearch/tipuesearch.min.js"></script>
+  <script src="/gitment/gitment.js"></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config( { tex2jax: { inlineMath: [['$','$']] }, "HTML-CSS": { scale: 95 } } );
   </script>
   <script src="/math-renderer/selector.js"></script>
-  <script src="/gitment/gitment.js"></script>
   <script src="/math-renderer/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   <script src="/math-renderer/katex/katex.min.js"></script>
   <script src="/math-renderer/katex/auto-render.js"></script>
@@ -89,7 +89,7 @@ $$</mathjax></p>
 <p>结论显然成立。<br />
 假设对<mathjax>$n$</mathjax>成立，求证对<mathjax>$n + 1$</mathjax>成立：<br />
 <mathjax>$$
-\begin{align}
+\begin{aligned}
 (x + y)^{n+1} &amp; = (x + y)(x + y)^n \\
 &amp; = (x + y)\sum_{k=0}^n {n \choose k} x^ky^{n-k} \\
 &amp; = \sum_{k=0}^n {n \choose k} x^{k+1}y^{n-k} + \sum_{k=0}^n {n \choose k} x^ky^{n-k+1} \\
@@ -98,7 +98,7 @@ $$</mathjax></p>
 &amp; = x^{n+1} + y^{n+1} + \sum_{k=1}^n \left[{n \choose k - 1}+{n \choose k}\right] x^ky^{n-k+1} \\
 &amp; = x^{n+1} + y^{n+1} + \sum_{k=1}^n {n+1 \choose k} x^ky^{n-k+1} \\
 &amp; = \sum_{k=0}^{n+1} {n+1 \choose k} x^ky^{n-k+1} \\
-\end{align}
+\end{aligned}
 $$</mathjax></p>
 <p>这样就完成了我们的证明。</p>
 <h3 id="_4">简单运用</h3>
@@ -154,10 +154,10 @@ $$</mathjax></p>
 $$</mathjax></p>
 <p>运用二项式定理展开可得：<br />
 <mathjax>$$
-\begin{align}
+\begin{aligned}
 \sum_{i=0}^n {n\choose i} x^i \cdot \sum_{j=0}^n {n\choose j} x^j &amp; = \sum_{i=0}^n\sum_{j=0}^n {n \choose i}{n \choose j} x^ix^j \\
 &amp; = \sum_{k=0}^{2n} {2n \choose k} x^k
-\end{align}
+\end{aligned}
 $$</mathjax></p>
 <p>考虑等号两边系数同为<mathjax>$k$</mathjax>的项，一定满足下面的等式：<br />
 <mathjax>$$
@@ -165,11 +165,11 @@ $$</mathjax></p>
 $$</mathjax></p>
 <p>当<mathjax>$k = n$</mathjax>时：<br />
 <mathjax>$$
-\begin{align}
+\begin{aligned}
 \sum_{i=0}^n {n \choose i}{n \choose n - i} &amp; = \sum_{i=0}^n {n \choose i}{n \choose i} \\
 &amp; = \sum_{i=0}^n {n \choose i}^2 \\
 &amp; = {2n \choose n}
-\end{align}
+\end{aligned}
 $$</mathjax></p>
 <p>这样就证明了组合数的平方和的结论。</p>
 <h4 id="texte">二项式定理与<mathjax>$\text{e}$</mathjax></h4>
@@ -187,11 +187,11 @@ $$</mathjax></p>
 $$</mathjax></p>
 <p>运用二项式定理可以证明泰勒展开的结果与上面的定义等价：<br />
 <mathjax>$$
-\begin{align}
+\begin{aligned}
 \text{e} &amp; = \lim_{n\rightarrow\infty} \left(1 + \frac1n\right)^n \\
 &amp; = \lim_{n\rightarrow\infty} \sum_{k=0}^n {n \choose k} \frac1{n^k} \\
 &amp; = \lim_{n\rightarrow\infty} \sum_{k=0}^n \frac1{k!} \frac{\prod_{i=n-k+1}^n i}{n^k}
-\end{align}
+\end{aligned}
 $$</mathjax></p>
 <p>由于：<br />
 <mathjax>$$
@@ -231,12 +231,12 @@ $$</mathjax></p>
 $$</mathjax></p>
 <p>所以：<br />
 <mathjax>$$
-\begin{align}
+\begin{aligned}
 (z + 1)^\alpha &amp; = \sum_{k=0}^\alpha {\alpha \choose k} {x^ky^{\alpha-k} \over y^\alpha} \\
 &amp; = \sum_{k=0}^\alpha {\alpha \choose k} {x^k \over y^k}\cdot{y^{\alpha-k} \over y^{\alpha-k}} \\
 &amp; = \sum_{k=0}^\alpha {\alpha \choose k} z^k \\
 &amp; = (1 + z)^\alpha
-\end{align}
+\end{aligned}
 \tag{3.2}
 $$</mathjax></p>
 <h4 id="_11">几何级数</h4>
@@ -263,12 +263,12 @@ $$</mathjax></p>
 现在我们来求一下有限几何级数的公式。<br />
 注意<mathjax>$\mid z \mid \;\lt 1$</mathjax>：<br />
 <mathjax>$$
-\begin{align}
+\begin{aligned}
 \sum_{k=0}^n z^k &amp; = \sum_{k=0}^\infty z^k - \sum_{k=n+1}^\infty z^k \\
 &amp; = \sum_{k=0}^\infty z^k - z^{n+1}\sum_{k=0}^\infty z^k \\
 &amp; = (1 - z^{n+1}) \sum_{k=0}^\infty z^k \\
 &amp; = {1 - z^{n+1} \over 1-z}
-\end{align}
+\end{aligned}
 \tag{3.3}
 $$</mathjax></p>
 <h4 id="_12">开根运算</h4>
@@ -305,7 +305,7 @@ $$</mathjax></p>
             标签: <a href="/search.html?q=数学"><span class="label">数学</span></a> <a href="/search.html?q=组合数学"><span class="label">组合数学</span></a> <a href="/search.html?q=二项式定理"><span class="label">二项式定理</span></a> <a href="/search.html?q=多项式定理"><span class="label">多项式定理</span></a> <a href="/search.html?q=牛顿二项式定理"><span class="label">牛顿二项式定理</span></a><br/>
             创建时间: 2016.08.18<br/>
             上次修改: 2016.08.18<br />
-            统计: 6256 字 / 约 25 分钟
+            统计: 6280 字 / 约 25 分钟
           </div>
         </div>
         <br />
@@ -395,7 +395,7 @@ $$</mathjax></p>
           <li><a href="http://pythonhosted.org/Markdown/">Python Markdown</a></li>
           <li><a href="http://getmdl.io/">Material Design Lite</a></li>
           <li><a href="http://www.tipue.com/search/">Tipuesearch</a></li>
-          <li><a href="http://www.mathjax.org/">MathJax</a></li>
+          <li><a href="http://www.mathjax.org/">MathJax</a> & <a href="http://khan.github.io/KaTeX/">KaTeX</a></li>
           <li><a href="https://github.com/imsun/gitment">Gitment</a></li>
         </ul>
       </div>
