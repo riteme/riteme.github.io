@@ -304,6 +304,25 @@ h(n) &amp; = \frac14 3^n - \frac12 n - \frac14 \\
 \right.
 $$</mathjax><br />
 现在来解决原问题。原问题中，<mathjax>$a = 4,\;b = 1,\;c = -4,\;d = 0$</mathjax>，所以 <mathjax>$R(n) = 4f(n) + g(n) - 4h(n) = 2\times 3^{n-1} - 2^{n-1}+2n+1$</mathjax>。纵观整个过程，Repertoire Method 并不简单，甚至有点繁琐，但仍不失为探究问题的一种好思路。</p>
+<h3 id="2018217">2018.2.17</h3>
+<h4 id="_12">问题描述</h4>
+<p>证明，对于任意的<strong>整数</strong> <mathjax>$n$</mathjax> 和<strong>正整数</strong> <mathjax>$m$</mathjax>，满足：<br />
+<mathjax>$$
+\left\lceil {n \over m} \right\rceil = \left\lfloor {n + m - 1 \over m} \right\rfloor
+$$</mathjax></p>
+<h4 id="_13">解决方案</h4>
+<p>直接证明这个问题并不是特别困难，因为右边就是 <mathjax>$1 + \lfloor n/m - 1/m \rfloor$</mathjax>，然后分情况讨论 <mathjax>$n/m$</mathjax> 是否为整数就可以得到结论。这里就不详细说了。</p>
+<p>另外一种方法比较有意思，考虑将 <mathjax>$n$</mathjax> 表示为 <mathjax>$m\lfloor n/m \rfloor + n \bmod m$</mathjax> 的形式，然后上式左右同减 <mathjax>$\lfloor n/m \rfloor$</mathjax> 可以得到：<br />
+<mathjax>$$
+\begin{aligned}
+&amp; \left\lceil {n \over m} \right\rceil = \left\lfloor {n + m - 1 \over m} \right\rfloor \\
+\Leftrightarrow \  &amp; \left\lceil {n \over m} \right\rceil - \left\lfloor {n \over m} \right\rfloor = \left\lfloor {m\lfloor n/m \rfloor + n \bmod m + m - 1 \over m} \right\rfloor  - \left\lfloor {n \over m} \right\rfloor \\
+\Leftrightarrow \  &amp; \left[\frac{n}m \not\in \mathbf{Z} \right] = \left\lfloor {n \over m} \right\rfloor + \left\lfloor {n \bmod m + m - 1 \over m} \right\rfloor  - \left\lfloor {n \over m} \right\rfloor \\
+\Leftrightarrow \  &amp; [n \bmod m \neq 0] = [n \bmod m + m - 1 \geqslant m] \\
+\Leftrightarrow \  &amp; [n \bmod m &gt; 0] = [n \bmod m &gt; 0]
+\end{aligned}
+$$</mathjax><br />
+从而证明了等式。</p>
           <hr/>
           <div id="comments"></div>
           <script type="text/javascript">
@@ -328,8 +347,8 @@ $$</mathjax><br />
           <div class="mdl-card__supporting-text">
             标签: <a href="/search.html?q=数学"><span class="label">数学</span></a><br/>
             创建时间: 2017.12.16<br/>
-            上次修改: 2018.01.13<br />
-            统计: 9022 字 / 约 36 分钟
+            上次修改: 2018.02.17<br />
+            统计: 10225 字 / 约 40 分钟
           </div>
         </div>
 
@@ -367,6 +386,11 @@ $$</mathjax><br />
 <li><a href="#2018113">2018.1.13</a><ul>
 <li><a href="#_10">问题描述</a></li>
 <li><a href="#_11">解决方案</a></li>
+</ul>
+</li>
+<li><a href="#2018217">2018.2.17</a><ul>
+<li><a href="#_12">问题描述</a></li>
+<li><a href="#_13">解决方案</a></li>
 </ul>
 </li>
 </ul>

@@ -1,7 +1,7 @@
 ---
 title: 数学问题杂记
 create: 2017.12.16
-modified: 2018.1.13
+modified: 2018.2.17
 tags: 数学
 ---
 
@@ -302,3 +302,28 @@ h(n) & = \frac14 3^n - \frac12 n - \frac14 \\
 \right.
 $$
 现在来解决原问题。原问题中，$a = 4,\;b = 1,\;c = -4,\;d = 0$，所以 $R(n) = 4f(n) + g(n) - 4h(n) = 2\times 3^{n-1} - 2^{n-1}+2n+1$。纵观整个过程，Repertoire Method 并不简单，甚至有点繁琐，但仍不失为探究问题的一种好思路。
+
+### 2018.2.17
+
+#### 问题描述
+
+证明，对于任意的**整数** $n$ 和**正整数** $m$，满足：
+$$
+\left\lceil {n \over m} \right\rceil = \left\lfloor {n + m - 1 \over m} \right\rfloor
+$$
+
+#### 解决方案
+
+直接证明这个问题并不是特别困难，因为右边就是 $1 + \lfloor n/m - 1/m \rfloor$，然后分情况讨论 $n/m$ 是否为整数就可以得到结论。这里就不详细说了。
+
+另外一种方法比较有意思，考虑将 $n$ 表示为 $m\lfloor n/m \rfloor + n \bmod m$ 的形式，然后上式左右同减 $\lfloor n/m \rfloor$ 可以得到：
+$$
+\begin{aligned}
+& \left\lceil {n \over m} \right\rceil = \left\lfloor {n + m - 1 \over m} \right\rfloor \\
+\Leftrightarrow \  & \left\lceil {n \over m} \right\rceil - \left\lfloor {n \over m} \right\rfloor = \left\lfloor {m\lfloor n/m \rfloor + n \bmod m + m - 1 \over m} \right\rfloor  - \left\lfloor {n \over m} \right\rfloor \\
+\Leftrightarrow \  & \left[\frac{n}m \not\in \mathbf{Z} \right] = \left\lfloor {n \over m} \right\rfloor + \left\lfloor {n \bmod m + m - 1 \over m} \right\rfloor  - \left\lfloor {n \over m} \right\rfloor \\
+\Leftrightarrow \  & [n \bmod m \neq 0] = [n \bmod m + m - 1 \geqslant m] \\
+\Leftrightarrow \  & [n \bmod m > 0] = [n \bmod m > 0]
+\end{aligned}
+$$
+从而证明了等式。
