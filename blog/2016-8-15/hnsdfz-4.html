@@ -497,9 +497,6 @@ zy想知道他要买多少金坷垃才够用。</p>
 
         <br />
         <div class="mdl-card mdl-shadow--3dp" style="width: 100%">
-          <div class="mdl-card__title mdl-card--border">
-            <h4 class="mdl-card__title-text">选项</h4>
-          </div>
           <div class="mdl-card__supporting-text">
             <span class="mathopt-head">数学公式渲染引擎：</span>
             <form name="mathopt">
@@ -513,11 +510,20 @@ zy想知道他要买多少金坷垃才够用。</p>
                   <span class="mdl-radio__label">KaTeX</span>
                 </label>
               </div>
+              <div id="tip-2">
+                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
+                  <input type="radio" id="option-3" class="mdl-radio__button" name="sel" value="katex&mathjax">
+                  <span class="mdl-radio__label">Mixed</span>
+                </label>
+              </div>
             </form>
           </div>
         </div>
         <div class="mdl-tooltip" data-mdl-for="tip-1">
-        KaTeX 渲染效率很高，但是由于部分 LaTeX 命令无法使用（如 <code>\tag</code>），并且目前 KaTeX 容错性不强，因此使用 KaTeX 时可能会存在一些数学公式无法渲染的情况。
+        KaTeX 渲染效率很高，但是由于部分 LaTeX 命令无法使用（如 <code>\tag</code>），并且目前 KaTeX 容错性不强，因此使用 KaTeX 时可能会存在一些数学公式无法渲染的情况
+        </div>
+        <div class="mdl-tooltip" data-mdl-for="tip-2">
+        先使用 KaTeX 渲染，再使用 MathJax 渲染
         </div>
       </div>
       <div class="return-up-button">

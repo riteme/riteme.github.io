@@ -268,6 +268,7 @@ mathjax + br {
     color: black;
     font-size: 120%;
     padding-bottom: 5px;
+    padding-top: 8px;
     display: block;
 }
 

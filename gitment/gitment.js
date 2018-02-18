@@ -1,25 +1,3 @@
-renderMath = function(container) {
-    renderer = Cookies.get('math-renderer')
-
-    if (renderer == 'mathjax') {
-        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-    } else if (renderer == 'katex') {
-        if (container == null) {
-            container = $("#comments")[0];
-        }
-
-        renderMathInElement(
-            container,
-            options = {
-                delimiters: [
-                    { left: "$$", right: "$$", display: true },
-                    { left: "$", right: "$", display: false }
-                ]
-            }
-        );
-    }
-}
-
 var Gitment =
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -3048,9 +3026,7 @@ function renderComments(_ref2, instance) {
     }
   }
 
-  console.log("233");
   renderMath(container);
-  console.log("234");
   return container;
 }
 

@@ -25,7 +25,9 @@ SMALLEST_UPDATE_FILES = [
     "search.html",
     "about.html",
     "links.html",
-    "tipuesearch/tipuesearch_content.js"
+    "tipuesearch/tipuesearch_content.js",
+    "math-renderer/selector.js",
+    "gitment/gitment.js"
 ]
 
 def setup_quick():
