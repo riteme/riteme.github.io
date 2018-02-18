@@ -15,19 +15,15 @@ HELP_DOCUMENT = """{command_line}: Setup this site to local server.
 INSTALL_TO = "/var/www/html/"
 
 SMALLEST_UPDATE_FOLDERS = [
-    "blog",
-    "css"
+    "blog"
 ]
 
 SMALLEST_UPDATE_FILES = [
     "index.html",
     "posts.html",
-    "search.html",
     "about.html",
     "links.html",
-    "tipuesearch/tipuesearch_content.js",
-    "math-renderer/selector.js",
-    "gitment/gitment.js"
+    "tipuesearch/tipuesearch_content.js"
 ]
 
 def setup_quick():
