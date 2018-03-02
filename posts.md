@@ -1,13 +1,16 @@
 ---
 title: 所有文章
 create: 2016.1.31
-modified: 2018.2.12
+modified: 2018.3.2
 tags: Posts
 ---
 
 [TOC]
 ## 所有文章
 ### 2018
+#### 2018-3
+* [砍木棍问题](./blog/2018-3-2/cut-the-stick.html): 将一根长为 $a$ 的木棍每次随机砍掉一段，期望多少次后木棍长度小于 $b$ ？
+
 #### 2018-1
 * [区间加多项式问题的研究](./blog/2018-1-28/interval-polynomial.html)
 

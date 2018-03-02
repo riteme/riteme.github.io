@@ -23,6 +23,7 @@ SMALLEST_UPDATE_FILES = [
     "posts.html",
     "about.html",
     "links.html",
+    "css/site.css",
     "tipuesearch/tipuesearch_content.js"
 ]
 
