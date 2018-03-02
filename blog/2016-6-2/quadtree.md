@@ -1,3 +1,4 @@
+[temporary]
 ---
 title: 点分四叉树 (Point Quadtree)
 create: 2016.6.2
@@ -41,14 +42,14 @@ tags: 四叉树
 function BUILD-QUADTREE(P):  // P是点集
     if |P| = 0:  // 如果没有点
         return nil
-    
+
     x = allocate a new node
     if |P| = 1:
         x.point = P[0]
         x.rectangle = { x.point.x, x.point.x, x.point.y, x.point.y }
-        
+
         return x
-    
+
     p = P[|P| / 2]  // 选取最中间的点
     midx = p.x, midy = p.y  // 切分线
     minx = INFTY, max = -INFTY, miny = INFTY, maxy = -INFTY  // 实际管辖的边界
@@ -58,7 +59,7 @@ function BUILD-QUADTREE(P):  // P是点集
         maxx = max(maxx, u.x)
         miny = min(miny, u.y)
         maxy = max(maxy, u.y)
-        
+
         if u != p:  // 分发点至四个子平面
             if u in Q1.rectangle:  // 在第一个子平面中
                 Q1.append(u)
@@ -68,7 +69,7 @@ function BUILD-QUADTREE(P):  // P是点集
                 Q3.append(u)
             else
                 Q4.append(u)
-    
+
     // 更新树节点
     x.point = p
     x.rectangle = { minx, maxx, miny, maxy }
@@ -76,7 +77,7 @@ function BUILD-QUADTREE(P):  // P是点集
     x.NW = BUILD-QUADTREE(Q2)
     x.SE = BUILD-QUADTREE(Q3)
     x.SW = BUILD-QUADTREE(Q4)
-    
+
     return x
 ```
 
@@ -112,7 +113,7 @@ function QUERY(x, rect):  // x表示当前的节点，rect是查询的矩形
         return x.count
     else:  // 相交
         answer = QUERY(x.NE, rect) + QUERY(x.NW, rect) + QUERY(x.SE, rect) + QUERY(x.SW, rect)  // 分治
-        
+
         if x.point in rect:  // 判断自己在不在矩形内
             return answer + 1
         else:
