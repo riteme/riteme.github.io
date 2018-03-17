@@ -15,4 +15,4 @@ tags: Friend Links
 | **HJWJBSR** | [hjwjbsr.is-programmer.com](http://hjwjbsr.is-programmer.com/)
 | Mr.Rabbit | [www.ianime.co](http://www.ianime.co/) |
 | Linyxus | [blog.linyxus.xyz](http://blog.linyxus.xyz/) |
-| memset0 | [memset0.scris.top](http://memset0.scris.top/) |
+| memset0 | [memset0.cf](http://memset0.cf/) |
