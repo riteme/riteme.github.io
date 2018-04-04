@@ -125,6 +125,11 @@ body {
     font-size: 60%;
 }
 
+.article center {
+    max-width: 90%;
+    margin: auto;
+}
+
 /*pre, code {
     word-wrap: break-word;
     word-break: break-all;
