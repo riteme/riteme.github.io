@@ -70,8 +70,8 @@
 <p>对于一个字符串我们可以访问其中的任意字符，用<mathjax>$S[x]$</mathjax>表示<mathjax>$S$</mathjax>中下标为<mathjax>$x$</mathjax>的字符。下标从<mathjax>$0$</mathjax>开始。我们用<mathjax>$S[a, b]$</mathjax>表示<mathjax>$S$</mathjax>的一个子串，即下标为<mathjax>$a$</mathjax>的字符开始一直到下标为<mathjax>$b$</mathjax>的字符依次连接而成的字符串，其中必须满足<mathjax>$0 \le a \le b \lt |S|$</mathjax>。定义一个字符串<mathjax>$S$</mathjax>的前缀为<mathjax>$\text{prefix}(S, i) = S[0, i]$</mathjax>，其后缀为<mathjax>$\text{suffix}(S, i) = S[i, |S| - 1]$</mathjax>。</p>
 <p>两个字符串<mathjax>$A$</mathjax>和<mathjax>$B$</mathjax>之间存在比较关系。当<mathjax>$A$</mathjax>与<mathjax>$B$</mathjax>的长度相同，且其中对应下标的字符也相同时，则为<mathjax>$A = B$</mathjax>。当从左至右出现第一对不相同的字符时，则以这两个字符的大小关系作为<mathjax>$A$</mathjax>和<mathjax>$B$</mathjax>间的大小关系，这称为字典序。为了简化一些操作，定义<mathjax>$\#$</mathjax>是字典序最小的字符，并且将其默认作为每个字符串的最后一个字符<sup id="fnref:dollar"><a class="footnote-ref" href="#fn:dollar" rel="footnote">2</a></sup>，即作为<mathjax>$S[|S|]$</mathjax>。<br />
 另外，定义函数<mathjax>$\text{lcp}(A, B)$</mathjax>表示<mathjax>$A$</mathjax>和<mathjax>$B$</mathjax>的最长公共前缀的长度，即两者所有相同的前缀中，最长的一个的长度。由此我们可以得知字典序的一个性质：</p>
-<p><strong>定理 1.1</strong> <mathjax>$A &lt; B$</mathjax>当且仅当<mathjax>$A[\text{lcp}(A, B)] &lt; B[\text{lcp}(A, B)]$</mathjax>。<br />
-<strong>证明</strong> 这个结论显然成立，因为<mathjax>$\text{prefix}(A, \text{lcp}(A, B) - 1) = \text{prefix}(B, \text{lcp}(A, B) - 1)$</mathjax>。</p>
+<p><strong>定理 1.1</strong> <mathjax>$A &lt; B$</mathjax>当且仅当<mathjax>$A[\text{lcp}(A, B)] &lt; B[\text{lcp}(A, B)]$</mathjax>。</p>
+<p><strong>证明</strong> 这个结论显然成立，因为<mathjax>$\text{prefix}(A, \text{lcp}(A, B) - 1) = \text{prefix}(B, \text{lcp}(A, B) - 1)$</mathjax>。</p>
 <h2 id="2-sa-is">2. SA-IS算法</h2>
 <p>SA-IS算法是基于诱导排序这种思想。基本想法就是将问题的规模缩小，通过解决更小的问题，获取足够信息，就可以快速的解决原始问题。从这里也可以看出，这一过程需要递归处理子问题。</p>
 <p>在介绍SA-IS算法前，我们先来看一下该算法的基本框架：</p>
@@ -139,8 +139,8 @@ t[i]: L  L  S  S  L  L  S  S  L  L  S  S  L  L  L  L  S
 <p><strong>证明</strong> 这里证明<mathjax>$S$</mathjax>型的，<mathjax>$L$</mathjax>型是类似的。对于第一种情况，显然是成立的。对于第二种情况，我们设<mathjax>$\text{suffix}(S, i) = aA, \text{suffix}(S, i + 1) = aB$</mathjax>。由于第一个字符是相同的，因此我们需要比较<mathjax>$A$</mathjax>和<mathjax>$B$</mathjax>的大小。因为它们是连续的后缀，所以<mathjax>$A = \text{suffix}(S, i + 1), B = \text{suffix}(S, i + 2)$</mathjax>。由于我们是从右往左推出<mathjax>$t$</mathjax>，所以<mathjax>$A$</mathjax>与<mathjax>$B$</mathjax>的关系实际上可以由<mathjax>$t[i + 1]$</mathjax>给出。故<mathjax>$t[i] = t[i + 1]$</mathjax>。</p>
 <p>因此，我们可以在<mathjax>$\Theta(|S|)$</mathjax>的时间内，推出整个<mathjax>$t$</mathjax>数组。</p>
 <p>关于后缀类型，我们还可得出另外一个比较重要的性质：</p>
-<p><strong>引理 2.2</strong> (后缀类型指导排序) 对于两个后缀<mathjax>$A$</mathjax>和<mathjax>$B$</mathjax>，如果<mathjax>$A[0] = B[0]$</mathjax>且<mathjax>$A$</mathjax>是<mathjax>$L$</mathjax>型，<mathjax>$B$</mathjax>是<mathjax>$S$</mathjax>型，则<mathjax>$A &lt; B$</mathjax>。<br />
-<strong>证明</strong> 设<mathjax>$A = abX, B = acY$</mathjax>，这里假设<mathjax>$a \neq b, a \neq c$</mathjax>。因为<mathjax>$A$</mathjax>是<mathjax>$S$</mathjax>型，所以可知<mathjax>$a &lt; b$</mathjax>。同理，<mathjax>$B$</mathjax>是<mathjax>$L$</mathjax>型，可知<mathjax>$a &gt; c$</mathjax>。故<mathjax>$ c &lt; a &lt; b$</mathjax>，所以<mathjax>$A &lt; B$</mathjax>。如果<mathjax>$a = b, a = c$</mathjax>，则我们可以将第一个字符去掉，得到新的后缀来进行比较。根据引理 2.1，去掉第一个字符后的后缀类型不变。因此我们可以通过这样的操作从而变为第一种情况。</p>
+<p><strong>引理 2.2</strong> (后缀类型指导排序) 对于两个后缀<mathjax>$A$</mathjax>和<mathjax>$B$</mathjax>，如果<mathjax>$A[0] = B[0]$</mathjax>且<mathjax>$A$</mathjax>是<mathjax>$S$</mathjax>型，<mathjax>$B$</mathjax>是<mathjax>$L$</mathjax>型，则<mathjax>$A &lt; B$</mathjax>。</p>
+<p><strong>证明</strong> 设<mathjax>$A = abX, B = acY$</mathjax>，这里假设<mathjax>$a \neq b, a \neq c$</mathjax>。因为<mathjax>$A$</mathjax>是<mathjax>$S$</mathjax>型，所以可知<mathjax>$a &lt; b$</mathjax>。同理，<mathjax>$B$</mathjax>是<mathjax>$L$</mathjax>型，可知<mathjax>$a &gt; c$</mathjax>。故<mathjax>$ c &lt; a &lt; b$</mathjax>，所以<mathjax>$A &lt; B$</mathjax>。如果<mathjax>$a = b, a = c$</mathjax>，则我们可以将第一个字符去掉，得到新的后缀来进行比较。根据引理 2.1，去掉第一个字符后的后缀类型不变。因此我们可以通过这样的操作从而变为第一种情况。</p>
 <h3 id="22-lms">2.2 LMS子串</h3>
 <p>然而光有后缀类型，还不足以进行排序。因此我们在后缀类型的<mathjax>$S$</mathjax>型中挑出特别的一类，记为<mathjax>$*$</mathjax>型。<mathjax>$*$</mathjax>型是<mathjax>$S$</mathjax>型的一种，它的特殊之处在于它要求它的左边的后缀必须是<mathjax>$L$</mathjax>型的。依然以<code>mmiissiissiippii</code>为例：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
@@ -157,12 +157,12 @@ t[i]: L  L  S  S  L  L  S  S  L  L  S  S  L  L  L  L  S
 对于每一个<mathjax>$*$</mathjax>型所对应上的字符，我们称为LMS字符。上面的示例中，下标为<mathjax>$2, 6, 10, 16$</mathjax>都是LMS字符。<br />
 位置相邻的两个LMS字符中间(包括这两个字符)所构成的子串，称为LMS子串。对于<code>mmiissiissiippii</code>，其LMS子串依次为<code>iissi</code>、<code>iissi</code>、<code>iippii#</code>和<code>#</code>。</p>
 <p>通过观察，我们发现LMS子串具有以下的性质：<br />
-<strong>引理 2.3</strong> <code>#</code>是最短的LMS子串。<br />
-<strong>引理 2.4</strong> 对于任意的非<code>#</code>的LMS子串，其长度大于<mathjax>$2$</mathjax>。<br />
-<strong>证明</strong> 因为两个LMS字符中间必定有一个<mathjax>$L$</mathjax>型的后缀。<br />
-<strong>引理 2.5</strong> (原串折半) 一个字符串中LMS子串的数量不超过<mathjax>$\left\lceil{|S| / 2}\right\rceil$</mathjax>。<br />
-<strong>证明</strong> 根据引理2.4可知。<br />
-<strong>引理 2.6</strong> 一个字符串的所有LMS子串的长度之和为<mathjax>$O(|S|)$</mathjax>。</p>
+<strong>引理 2.3</strong> <code>#</code>是最短的LMS子串。</p>
+<p><strong>引理 2.4</strong> 对于任意的非<code>#</code>的LMS子串，其长度大于<mathjax>$2$</mathjax>。</p>
+<p><strong>证明</strong> 因为两个LMS字符中间必定有一个<mathjax>$L$</mathjax>型的后缀。</p>
+<p><strong>引理 2.5</strong> (原串折半) 一个字符串中LMS子串的数量不超过<mathjax>$\left\lceil{|S| / 2}\right\rceil$</mathjax>。</p>
+<p><strong>证明</strong> 根据引理2.4可知。</p>
+<p><strong>引理 2.6</strong> 一个字符串的所有LMS子串的长度之和为<mathjax>$O(|S|)$</mathjax>。</p>
 <p>此外，对于LMS子串间的大小比较，除了对每个字符的字典序进行比较外，还要对比每个字符所对应的后缀类型。<mathjax>$S$</mathjax>型的有更高的优先权，因为根据引理2.2可得，<mathjax>$S$</mathjax>型的后缀字典序更大。只有当每一个字符与其后缀类型都相同时，这两个LMS子串才被称为是相同的。<br />
 之所以这样定义，是因为在之后我们会利用LMS子串来进行对后缀的排序。如果缺少后缀类型的信息，就不能够任务。<br />
 根据引理2.6，我们可以利用<strong>基数排序</strong>在<mathjax>$O(|S|)$</mathjax>的时间内对所有的LMS子串排序<sup id="fnref:lms-sort"><a class="footnote-ref" href="#fn:lms-sort" rel="footnote">3</a></sup>。对LMS子串排序完后，我们按照字典序依次重新命名<sup id="fnref:lms-name"><a class="footnote-ref" href="#fn:lms-name" rel="footnote">4</a></sup>，注意，如果两个LMS子串相同，则使用同样的名称<sup id="fnref:lms-compare"><a class="footnote-ref" href="#fn:lms-compare" rel="footnote">5</a></sup>。这样给每个LMS子串命名后，按照其子串原有的顺序排出一个新串<mathjax>$S_1$</mathjax>。继续以<code>mmiissiissiippii</code>为例：</p>
@@ -181,8 +181,8 @@ S1:   2 2 1 0
 </td></tr></table>
 
 <p>这样有什么用呢？我们发现，这实际上是将所有<mathjax>$*$</mathjax>型的后缀进行了缩减，从而减小了问题的规模。对于这一点，我们有如下的引理：</p>
-<p><strong>引理 2.7</strong> (问题缩减) <mathjax>$S_1$</mathjax>中两个后缀的字典序关系，就是<mathjax>$S$</mathjax>中对应的<mathjax>$*$</mathjax>型后缀的字典序关系。<br />
-<strong>证明</strong> 我们可以将<mathjax>$S_1$</mathjax>视为是将<mathjax>$*$</mathjax>后缀中不重合的部分进行切割并缩减。这样每一个LMS子串就可作为一个整体来进行比较。从而保持了这两者的一致性。</p>
+<p><strong>引理 2.7</strong> (问题缩减) <mathjax>$S_1$</mathjax>中两个后缀的字典序关系，就是<mathjax>$S$</mathjax>中对应的<mathjax>$*$</mathjax>型后缀的字典序关系。</p>
+<p><strong>证明</strong> 我们可以将<mathjax>$S_1$</mathjax>视为是将<mathjax>$*$</mathjax>后缀中不重合的部分进行切割并缩减。这样每一个LMS子串就可作为一个整体来进行比较。从而保持了这两者的一致性。</p>
 <p>需要注意的是这里只是<mathjax>$*$</mathjax>型后缀的字典序关系，与其它后缀无关。</p>
 <h3 id="23-sa1sa">2.3 从SA1诱导至SA</h3>
 <p>从上面的引理2.7我们得知，只要获得了<mathjax>$S_1$</mathjax>的后缀数组<mathjax>$SA_1$</mathjax>，就可以得到所有<mathjax>$*$</mathjax>型后缀的相对顺序。如果我们可以利用<mathjax>$*$</mathjax>型后缀的相对顺序来对其它的<mathjax>$L$</mathjax>型和<mathjax>$S$</mathjax>型后缀<sup id="fnref:star-in-S"><a class="footnote-ref" href="#fn:star-in-S" rel="footnote">6</a></sup>进行排序，就可以完成后缀数组的计算。</p>
@@ -245,8 +245,8 @@ baaaab#
 </ol>
 <p>这样，我们就完成了对这个诱导排序的正确性的证明。但我们需要注意的是，这只是对LMS前缀的排序，我们期望是对LMS子串进行排序。我们注意到每一个LMS子串都可以视为是一个LMS字符与一个LMS前缀连接而成的，因此我们只需要判断两个LMS字符和其后一位对应的LMS前缀的大小关系，就可以判断LMS子串之间的大小关系。<br />
 然而，我们其实可以做得更简单。下面的引理说明了上面的算法结束后的<mathjax>$SA$</mathjax>数组就是排好序的LMS子串的数组。</p>
-<p><strong>引理 2.8</strong> (LMS子串排序) <mathjax>$SA$</mathjax>数组中每一个LMS字符所对应的LMS前缀已经按照其对应的LMS子串的顺序排好。<br />
-<strong>证明</strong> 对于首字母不同的LMS子串，这个结论是显然的。<br />
+<p><strong>引理 2.8</strong> (LMS子串排序) <mathjax>$SA$</mathjax>数组中每一个LMS字符所对应的LMS前缀已经按照其对应的LMS子串的顺序排好。</p>
+<p><strong>证明</strong> 对于首字母不同的LMS子串，这个结论是显然的。<br />
 对于首字母相同的LMS子串，它必定是由一个<mathjax>$L$</mathjax>型LMS前缀从右至左的推导过来的。由于不同的LMS子串必定对应着不同的递推的顺序，并且在第二步中，所有的<mathjax>$L$</mathjax>型LMS前缀已经排好了序。所以结论成立。</p>
 <p>根据这个引理，我们可以直接对<mathjax>$SA$</mathjax>数组扫描一遍，就可以得到LMS子串的字典序，同时对它们进行命名。</p>
 <h2 id="3">3. 时空复杂度分析</h2>
@@ -431,20 +431,7 @@ return SA
 </td></tr></table>
 
 <h2 id="5">5. 具体实现及性能对比</h2>
-<p>在原论文中说道SA-IS算法可以在100行左右的代码完成。我试了一下，基本符合这个要求。<br />
-在进行具体实现之前，你可能需要先考虑下面几个问题，避免陷入一些陷阱......</p>
-<ul>
-<li>我真的<strong>理解</strong>了SA-IS算法了吗？</li>
-<li>如何为每一层递归<strong>申请空间</strong>？</li>
-<li>诱导排序的过程被<strong>调用了两次</strong>，可以用一个函数封装起来吗？</li>
-<li>后缀类型可以用<strong><code>bool</code>数组</strong>存储吗？</li>
-<li>字符集是否是<strong>动态</strong>的？</li>
-<li>如何通过一遍扫描<strong>为LMS子串命名</strong>？</li>
-<li>如何快速判断S1中是否有<strong>重复的字符</strong>？</li>
-<li>如果每个字符都<strong>不一样</strong>，如何快速计算后缀数组？</li>
-<li>实际工程中，需要考虑<strong>内存回收</strong>。</li>
-</ul>
-<p>如果说你考虑清楚了上面的问题，基本上写出SA-IS也只是时间的问题了。下面将会给出一个C++实现。需要注意的是，为了方便，这份代码中并没有回收分配的内存。</p>
+<p>在原论文中说道SA-IS算法可以在100行左右的代码完成。我试了一下，基本符合这个要求。下面将会给出一个C++实现。需要注意的是，为了方便，这份代码中并没有回收分配的内存。</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
   2
   3
@@ -809,7 +796,7 @@ return SA
             标签: <a href="/search.html?q=数据结构"><span class="label">数据结构</span></a> <a href="/search.html?q=字符串"><span class="label">字符串</span></a> <a href="/search.html?q=后缀数组"><span class="label">后缀数组</span></a> <a href="/search.html?q=诱导排序"><span class="label">诱导排序</span></a> <a href="/search.html?q=SA-IS"><span class="label">SA-IS</span></a><br/>
             创建时间: 2016.06.19<br/>
             上次修改: 2016.06.19<br />
-            统计: 20582 字 / 约 1 小时 22 分钟
+            统计: 20288 字 / 约 1 小时 21 分钟
           </div>
         </div>
         <br />
