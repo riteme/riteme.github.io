@@ -1,10 +1,4 @@
 @font-face {
-    font-family: NUM;
-    unicode-range: U+30-39;
-    src: local("Times New Roman"), local(Times);
-}
-
-@font-face {
     font-family: SC;
     font-weight: lighter;
     src: local('Source Han Sans'), local('Source Han Sans CN'),
@@ -12,7 +6,7 @@
 }
 
 body {
-    font-family: NUM, Georgia, "Times New Roman", Times, SC, serif;
+    font-family: "Segoe UI", Ubuntu, SC, sans-serif;
 }
 
 .article {
@@ -168,7 +162,7 @@ div.toc a {
 }
 
 .drawer-title {
-    font-family: Ubuntu, Merriweather, Georgia, "Times New Roman";
+    font-family: Ubuntu, "Segoe UI", Merriweather, "Times New Roman", serif;
     font-style: italic;
     color: #0077bb;
 }
@@ -283,6 +277,10 @@ mathjax + br {
 
 .gitment-comments-init-btn, .gitment-editor-submit, .gitment-comments-init-btn:disabled, .gitment-editor-submit:disabled {
     background-color: #2196f3;
+}
+
+.mdl-layout-title {
+    font-family: "Segoe UI", Ubuntu, SC, sans-serif;
 }
 
 .codehilite .hll { background-color: #ffffcc }
