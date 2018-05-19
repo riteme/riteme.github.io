@@ -362,6 +362,18 @@ $$</mathjax><br />
 \end{aligned}
 $$</mathjax><br />
 最后一行最左边的小于等于号是通过分 <mathjax>$(2n - 1) / 5$</mathjax> 是否为整数的两种情况讨论得来的：当它是整数时取等，否则其小数部分不大于 <mathjax>$4/5$</mathjax>，所以不等式成立。综上，答案就是 <mathjax>$\lceil (2n - 5) / 5 \rceil = \lfloor (2n - 1) / 5 \rfloor$</mathjax>。</p>
+<h3 id="2018519">2018.5.19</h3>
+<h4 id="_16">问题描述</h4>
+<p>给定自然数 <mathjax>$n$</mathjax>，计算 <mathjax>$\sum_{k=1}^\infty 2^k\lfloor n/2^k + 1/2\rfloor^2$</mathjax>。</p>
+<h4 id="_17">解决方案</h4>
+<p>计算这个和的思路有点非常规，考虑递推的方法，设 <mathjax>$S_n$</mathjax> 为上面的和式。考虑到任意自然数 <mathjax>$n$</mathjax> 均可被唯一分解为 <mathjax>$2^p \cdot q$</mathjax>（<mathjax>$q$</mathjax> 是奇数），当 <mathjax>$k = p + 1$</mathjax> 时：<br />
+<mathjax>$$
+\begin{aligned}
+\left\lfloor {n \over 2^k} + \frac12 \right\rfloor &amp; = \left\lfloor {q + 1 \over 2} \right\rfloor = {q + 1 \over 2} \\
+\left\lfloor {n - 1 \over 2^k} + \frac12 \right\rfloor &amp; =  \left\lfloor {q + 1 \over 2} \right\rfloor - 1 = {q - 1 \over 2}
+\end{aligned}
+$$</mathjax><br />
+所以 <mathjax>$S_n$</mathjax> 和 <mathjax>$S_{n - 1}$</mathjax> 中第 <mathjax>$k$</mathjax> 项之差为 <mathjax>$2^k \cdot q = 2n$</mathjax>，而其余项中 <mathjax>$n / 2^k$</mathjax> 得不到像上面 <mathjax>$q$</mathjax> 这样的奇数，两者结果相同。所以 <mathjax>$S_n = S_{n - 1} + 2n = n^2 + n$</mathjax>。</p>
           <hr/>
           <div id="comments"></div>
           <script type="text/javascript">
@@ -387,7 +399,7 @@ $$</mathjax><br />
             标签: <a href="/search.html?q=数学"><span class="label">数学</span></a><br/>
             创建时间: 2017.12.16<br/>
             上次修改: 2018.02.17<br />
-            统计: 13514 字 / 约 54 分钟
+            统计: 14192 字 / 约 56 分钟
           </div>
         </div>
         <br />
@@ -433,6 +445,11 @@ $$</mathjax><br />
 <li><a href="#201844">2018.4.4</a><ul>
 <li><a href="#_14">问题描述</a></li>
 <li><a href="#_15">解决方案</a></li>
+</ul>
+</li>
+<li><a href="#2018519">2018.5.19</a><ul>
+<li><a href="#_16">问题描述</a></li>
+<li><a href="#_17">解决方案</a></li>
 </ul>
 </li>
 </ul>

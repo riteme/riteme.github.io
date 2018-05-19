@@ -388,3 +388,20 @@ $$
 \end{aligned}
 $$
 最后一行最左边的小于等于号是通过分 $(2n - 1) / 5$ 是否为整数的两种情况讨论得来的：当它是整数时取等，否则其小数部分不大于 $4/5$，所以不等式成立。综上，答案就是 $\lceil (2n - 5) / 5 \rceil = \lfloor (2n - 1) / 5 \rfloor$。
+
+### 2018.5.19
+
+#### 问题描述
+
+给定自然数 $n$，计算 $\sum_{k=1}^\infty 2^k\lfloor n/2^k + 1/2\rfloor^2$。
+
+#### 解决方案
+
+计算这个和的思路有点非常规，考虑递推的方法，设 $S_n$ 为上面的和式。考虑到任意自然数 $n$ 均可被唯一分解为 $2^p \cdot q$（$q$ 是奇数），当 $k = p + 1$ 时：
+$$
+\begin{aligned}
+\left\lfloor {n \over 2^k} + \frac12 \right\rfloor & = \left\lfloor {q + 1 \over 2} \right\rfloor = {q + 1 \over 2} \\
+\left\lfloor {n - 1 \over 2^k} + \frac12 \right\rfloor & =  \left\lfloor {q + 1 \over 2} \right\rfloor - 1 = {q - 1 \over 2}
+\end{aligned}
+$$
+所以 $S_n$ 和 $S_{n - 1}$ 中第 $k$ 项之差为 $2^k \cdot q = 2n$，而其余项中 $n / 2^k$ 得不到像上面 $q$ 这样的奇数，两者结果相同。所以 $S_n = S_{n - 1} + 2n = n^2 + n$。
