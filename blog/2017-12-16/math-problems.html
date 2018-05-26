@@ -364,9 +364,10 @@ $$</mathjax><br />
 最后一行最左边的小于等于号是通过分 <mathjax>$(2n - 1) / 5$</mathjax> 是否为整数的两种情况讨论得来的：当它是整数时取等，否则其小数部分不大于 <mathjax>$4/5$</mathjax>，所以不等式成立。综上，答案就是 <mathjax>$\lceil (2n - 5) / 5 \rceil = \lfloor (2n - 1) / 5 \rfloor$</mathjax>。</p>
 <h3 id="2018519">2018.5.19</h3>
 <h4 id="_16">问题描述</h4>
-<p>给定自然数 <mathjax>$n$</mathjax>，计算 <mathjax>$\sum_{k=1}^\infty 2^k\lfloor n/2^k + 1/2\rfloor^2$</mathjax>。</p>
+<p>(1) 给定自然数 <mathjax>$n$</mathjax>，计算 <mathjax>$\newcommand{up}[1]{\left\lceil #1 \right\rceil}\newcommand{dw}[1]{\left\lfloor #1 \right\rfloor} \sum_{k=1}^\infty 2^k\lfloor n/2^k + 1/2\rfloor^2$</mathjax>。</p>
+<p>(2) 给定实数 <mathjax>$x$</mathjax>，定义 <mathjax>$\newcommand{\dis}[1]{\lVert #1 \rVert} \dis{x} = \min\{\up{x} - x,\ x - \dw{x}\}$</mathjax> 即 <mathjax>$x$</mathjax> 离最近的整数的距离，计算 <mathjax>$\sum_{k \in \mathbf{Z}} 2^k \lVert x / 2^k \rVert^2$</mathjax>。</p>
 <h4 id="_17">解决方案</h4>
-<p>计算这个和的思路有点非常规，考虑递推的方法，设 <mathjax>$S_n$</mathjax> 为上面的和式。考虑到任意自然数 <mathjax>$n$</mathjax> 均可被唯一分解为 <mathjax>$2^p \cdot q$</mathjax>（<mathjax>$q$</mathjax> 是奇数），当 <mathjax>$k = p + 1$</mathjax> 时：<br />
+<p>(1) 计算这个和的思路有点非常规，考虑递推的方法，设 <mathjax>$S_n$</mathjax> 为上面的和式。考虑到任意自然数 <mathjax>$n$</mathjax> 均可被唯一分解为 <mathjax>$2^p \cdot q$</mathjax>（<mathjax>$q$</mathjax> 是奇数），当 <mathjax>$k = p + 1$</mathjax> 时：<br />
 <mathjax>$$
 \begin{aligned}
 \left\lfloor {n \over 2^k} + \frac12 \right\rfloor &amp; = \left\lfloor {q + 1 \over 2} \right\rfloor = {q + 1 \over 2} \\
@@ -374,6 +375,28 @@ $$</mathjax><br />
 \end{aligned}
 $$</mathjax><br />
 所以 <mathjax>$S_n$</mathjax> 和 <mathjax>$S_{n - 1}$</mathjax> 中第 <mathjax>$k$</mathjax> 项之差为 <mathjax>$2^k \cdot q = 2n$</mathjax>，而其余项中 <mathjax>$n / 2^k$</mathjax> 得不到像上面 <mathjax>$q$</mathjax> 这样的奇数，两者结果相同。所以 <mathjax>$S_n = S_{n - 1} + 2n = n^2 + n$</mathjax>。</p>
+<p>(2) 第二问实际上除了形式与第一问类似，其实没有多少关联......</p>
+<p>为了方便书写和探究，记函数 <mathjax>$f(x)$</mathjax> 为我们需要计算的式子。写个程序瞎试一下其实会发现 <mathjax>$f(x) = x \ (x \geqslant 0)$</mathjax>。此外由于平方的原因，<mathjax>$f(-x) = f(x)$</mathjax>，不难推测 <mathjax>$f(x) = \lvert x \rvert$</mathjax>。</p>
+<p>难的是如何证明猜出来的结论。首先无论 <mathjax>$k$</mathjax> 趋向于正无穷还是负无穷，级数总是收敛的，故对于所有的 <mathjax>$x$</mathjax>，<mathjax>$f(x)$</mathjax> 总存在。由于 <mathjax>$f(-x) = f(x)$</mathjax>，因此我们可以只用考虑 <mathjax>$x \geqslant 0$</mathjax> 的情况。另外可以注意到 <mathjax>$f(2x) = 2f(x)$</mathjax>。令 <mathjax>$f(x) = l (x) + r(x)$</mathjax>，将 <mathjax>$f(x)$</mathjax> 中 <mathjax>$k \leqslant 0$</mathjax> 的项放入 <mathjax>$l(x)$</mathjax> 中，其余的放入 <mathjax>$r(x)$</mathjax> 中，分开处理这两部分。</p>
+<p>对于 <mathjax>$l(x)$</mathjax>，由于 <mathjax>$1/2^k$</mathjax> 当 <mathjax>$k \leqslant 0$</mathjax> 时均为整数，所以 <mathjax>$\lVert x / 2^k \rVert = \lVert (x + 1) /2^k \rVert$</mathjax>，即 <mathjax>$l(x + 1) = l(x)$</mathjax>。因为 <mathjax>$\lVert x \rVert \leqslant 1/2$</mathjax>，所以 <mathjax>$l(x) \leqslant \sum_{k = 0}^\infty 2^k / 4 = 1/2$</mathjax>。</p>
+<p>对于 <mathjax>$r(x)$</mathjax>，<mathjax>$k &gt; 0 \Rightarrow 2^k \geqslant 2$</mathjax>，<mathjax>$0 \leqslant x &lt; 1$</mathjax> 时，<mathjax>$\lVert x / 2^k \rVert$</mathjax> 和 <mathjax>$\dis{(x+1)/2^k}$</mathjax> 都可以简单地化简出来。此时 <mathjax>$r(x) = \sum_{k=1}^\infty x^2/2^k = x^2 &lt; 1$</mathjax>，而 <mathjax>$r(x + 1) = (1-x)^2/2 + \sum_{k=2}^\infty (x+1)^2/2^k = x^2 + 1$</mathjax>。即 <mathjax>$r(x + 1) = r(x) + 1$</mathjax>。综上，当 <mathjax>$0 \leqslant x &lt; 1$</mathjax> 时 <mathjax>$f(x + 1) = f(x) + 1$</mathjax>。</p>
+<p>是否有更一般的结论呢？对于任意自然数 <mathjax>$n$</mathjax>，<mathjax>$f(x + n) = f(x) + n$</mathjax> 能否被证明？考虑到 <mathjax>$f(2x) = 2f(x)$</mathjax>，因此尝试将 <mathjax>$n$</mathjax> 设为 <mathjax>$2^mq + r$</mathjax> 的形式，其中 <mathjax>$m \geqslant 1$</mathjax>，<mathjax>$r$</mathjax> 为 <mathjax>$0$</mathjax> 或 <mathjax>$1$</mathjax> 从而使得 <mathjax>$m$</mathjax> 的条件可以满足。对 <mathjax>$n$</mathjax> 使用归纳法，当 <mathjax>$n = 0,\ 1$</mathjax> 时显然，之后 <mathjax>$f(x + n) = 2^mf((x+r)/2^m + q)$</mathjax>，由于 <mathjax>$q &lt; n$</mathjax> 且 <mathjax>$x + r &lt; 2 \leqslant 2^m$</mathjax> 根据归纳假设，之前的式子等于 <mathjax>$2^mf((x+r)/2^m) + 2^mq = f(x + r) + n - r = f(x) + n$</mathjax>。</p>
+<p>根据以上结论，再结合 <mathjax>$f(0) = 0$</mathjax>，我们已经可以得到对于任意整数 <mathjax>$n$</mathjax>，<mathjax>$f(n) = \lvert n \rvert$</mathjax>。接下来的步骤非常巧妙的利用了夹逼原理：还是假设 <mathjax>$x \geqslant 0$</mathjax>，对于任意正整数 <mathjax>$m$</mathjax>，我们有：<br />
+<mathjax>$$
+\begin{aligned}
+f(x) &amp; = 2^{-m}f(2^mx) \\
+&amp; = 2^{-m}\dw{2^mx} + 2^{-m}f(\{2^mx\})
+\end{aligned}
+$$</mathjax><br />
+现在是时候来证明我们的猜想了：<br />
+<mathjax>$$
+\begin{aligned}
+0 \leqslant \lvert f(x) - x \rvert &amp; = \lvert 2^{-m}\dw{2^mx} - x + 2^{-m}f(\{2^mx\}) \rvert \\
+&amp; \leqslant 2^{-m}\lvert \dw{2^mx} - 2^mx \rvert + 2^{-m}f(\{2^mx\}) \\
+&amp; &lt; 1\cdot 2^{-m} + (1/2 + 1) \cdot 2^{-m} = 5/2 \times 2^{-m}
+\end{aligned}
+$$</mathjax><br />
+当 <mathjax>$m$</mathjax> 趋近于无穷大时，右式趋近于 <mathjax>$0$</mathjax>。因此不难得到 <mathjax>$f(x) = \lvert x \rvert$</mathjax> 的结论。</p>
           <hr/>
           <div id="comments"></div>
           <script type="text/javascript">
@@ -398,8 +421,8 @@ $$</mathjax><br />
           <div class="mdl-card__supporting-text">
             标签: <a href="/search.html?q=数学"><span class="label">数学</span></a><br/>
             创建时间: 2017.12.16<br/>
-            上次修改: 2018.02.17<br />
-            统计: 14192 字 / 约 56 分钟
+            上次修改: 2018.05.26<br />
+            统计: 16468 字 / 约 1 小时 5 分钟
           </div>
         </div>
         <br />

@@ -1,7 +1,7 @@
 ---
 title: 数学问题杂记
 create: 2017.12.16
-modified: 2018.2.17
+modified: 2018.5.26
 tags: 数学
 ---
 
@@ -393,11 +393,13 @@ $$
 
 #### 问题描述
 
-给定自然数 $n$，计算 $\sum_{k=1}^\infty 2^k\lfloor n/2^k + 1/2\rfloor^2$。
+(1) 给定自然数 $n​$，计算 $\newcommand{up}[1]{\left\lceil #1 \right\rceil}\newcommand{dw}[1]{\left\lfloor #1 \right\rfloor} \sum_{k=1}^\infty 2^k\lfloor n/2^k + 1/2\rfloor^2​$。
+
+(2) 给定实数 $x$，定义 $\newcommand{\dis}[1]{\lVert #1 \rVert} \dis{x} = \min\{\up{x} - x,\ x - \dw{x}\}$ 即 $x$ 离最近的整数的距离，计算 $\sum_{k \in \mathbf{Z}} 2^k \lVert x / 2^k \rVert^2$。
 
 #### 解决方案
 
-计算这个和的思路有点非常规，考虑递推的方法，设 $S_n$ 为上面的和式。考虑到任意自然数 $n$ 均可被唯一分解为 $2^p \cdot q$（$q$ 是奇数），当 $k = p + 1$ 时：
+(1) 计算这个和的思路有点非常规，考虑递推的方法，设 $S_n$ 为上面的和式。考虑到任意自然数 $n$ 均可被唯一分解为 $2^p \cdot q$（$q$ 是奇数），当 $k = p + 1$ 时：
 $$
 \begin{aligned}
 \left\lfloor {n \over 2^k} + \frac12 \right\rfloor & = \left\lfloor {q + 1 \over 2} \right\rfloor = {q + 1 \over 2} \\
@@ -405,3 +407,32 @@ $$
 \end{aligned}
 $$
 所以 $S_n$ 和 $S_{n - 1}$ 中第 $k$ 项之差为 $2^k \cdot q = 2n$，而其余项中 $n / 2^k$ 得不到像上面 $q$ 这样的奇数，两者结果相同。所以 $S_n = S_{n - 1} + 2n = n^2 + n$。
+
+(2) 第二问实际上除了形式与第一问类似，其实没有多少关联......
+
+为了方便书写和探究，记函数 $f(x)$ 为我们需要计算的式子。写个程序瞎试一下其实会发现 $f(x) = x \ (x \geqslant 0)$。此外由于平方的原因，$f(-x) = f(x)$，不难推测 $f(x) = \lvert x \rvert$。
+
+难的是如何证明猜出来的结论。首先无论 $k$ 趋向于正无穷还是负无穷，级数总是收敛的，故对于所有的 $x$，$f(x)$ 总存在。由于 $f(-x) = f(x)$，因此我们可以只用考虑 $x \geqslant 0$ 的情况。另外可以注意到 $f(2x) = 2f(x)$。令 $f(x) = l (x) + r(x)$，将 $f(x)$ 中 $k \leqslant 0$ 的项放入 $l(x)$ 中，其余的放入 $r(x)$ 中，分开处理这两部分。
+
+对于 $l(x)$，由于 $1/2^k$ 当 $k \leqslant 0$ 时均为整数，所以 $\lVert x / 2^k \rVert = \lVert (x + 1) /2^k \rVert$，即 $l(x + 1) = l(x)$。因为 $\lVert x \rVert \leqslant 1/2$，所以 $l(x) \leqslant \sum_{k = 0}^\infty 2^k / 4 = 1/2$。
+
+对于 $r(x)$，$k > 0 \Rightarrow 2^k \geqslant 2$，$0 \leqslant x < 1$ 时，$\lVert x / 2^k \rVert$ 和 $\dis{(x+1)/2^k}$ 都可以简单地化简出来。此时 $r(x) = \sum_{k=1}^\infty x^2/2^k = x^2 < 1$，而 $r(x + 1) = (1-x)^2/2 + \sum_{k=2}^\infty (x+1)^2/2^k = x^2 + 1$。即 $r(x + 1) = r(x) + 1$。综上，当 $0 \leqslant x < 1$ 时 $f(x + 1) = f(x) + 1$。
+
+是否有更一般的结论呢？对于任意自然数 $n$，$f(x + n) = f(x) + n$ 能否被证明？考虑到 $f(2x) = 2f(x)$，因此尝试将 $n$ 设为 $2^mq + r$ 的形式，其中 $m \geqslant 1$，$r$ 为 $0$ 或 $1$ 从而使得 $m$ 的条件可以满足。对 $n$ 使用归纳法，当 $n = 0,\ 1$ 时显然，之后 $f(x + n) = 2^mf((x+r)/2^m + q)$，由于 $q < n$ 且 $x + r < 2 \leqslant 2^m$ 根据归纳假设，之前的式子等于 $2^mf((x+r)/2^m) + 2^mq = f(x + r) + n - r = f(x) + n$。
+
+根据以上结论，再结合 $f(0) = 0$，我们已经可以得到对于任意整数 $n$，$f(n) = \lvert n \rvert$。接下来的步骤非常巧妙的利用了夹逼原理：还是假设 $x \geqslant 0$，对于任意正整数 $m$，我们有：
+$$
+\begin{aligned}
+f(x) & = 2^{-m}f(2^mx) \\
+& = 2^{-m}\dw{2^mx} + 2^{-m}f(\{2^mx\})
+\end{aligned}
+$$
+现在是时候来证明我们的猜想了：
+$$
+\begin{aligned}
+0 \leqslant \lvert f(x) - x \rvert & = \lvert 2^{-m}\dw{2^mx} - x + 2^{-m}f(\{2^mx\}) \rvert \\
+& \leqslant 2^{-m}\lvert \dw{2^mx} - 2^mx \rvert + 2^{-m}f(\{2^mx\}) \\
+& < 1\cdot 2^{-m} + (1/2 + 1) \cdot 2^{-m} = 5/2 \times 2^{-m}
+\end{aligned}
+$$
+当 $m$ 趋近于无穷大时，右式趋近于 $0$。因此不难得到 $f(x) = \lvert x \rvert$ 的结论。
