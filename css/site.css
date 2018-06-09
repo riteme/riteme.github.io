@@ -13,6 +13,14 @@ body {
     margin: 40px 20px;
 }
 
+.article * {
+    font-size: 16px;
+}
+
+.article * * {
+    font-size: inherit;
+}
+
 .article h1, h2, h3, h4, h5, h6 {
     font-family: inherit;
 }
@@ -23,19 +31,19 @@ body {
 }
 
 .article h2 {
-    font-size: 33px;
+    font-size: 28px;
 }
 
 .article h3 {
-    font-size: 27px;
+    font-size: 25px;
 }
 
 .article h4 {
-    font-size: 24px;
+    font-size: 22px;
 }
 
-.article p, ul, ol {
-    font-size: 16px;
+.article h2, h3, h4, h5, h6 {
+    margin: 0 0 8px 0;
 }
 
 .article img {
@@ -89,12 +97,11 @@ body {
 
 .article blockquote {
     background: #eeeeee;
-    color: #666666;
+    color: #272727;;
     border-left: 10px solid #cccccc;
     margin: 0 0 24px 0;
     padding: 1px 4px 1px 10px;
     font-style: normal;
-    font-size: 14px;
     font-family: inherit;
 }
 
@@ -122,6 +129,8 @@ body {
 .article center {
     max-width: 90%;
     margin: auto;
+    font-size: 15px;
+    color: #383838;
 }
 
 /*pre, code {
