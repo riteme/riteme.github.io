@@ -397,6 +397,23 @@ $$</mathjax><br />
 \end{aligned}
 $$</mathjax><br />
 当 <mathjax>$m$</mathjax> 趋近于无穷大时，右式趋近于 <mathjax>$0$</mathjax>。因此不难得到 <mathjax>$f(x) = \lvert x \rvert$</mathjax> 的结论。</p>
+<h3 id="2018610">2018.6.10</h3>
+<h4 id="_18">问题描述</h4>
+<p>已知 <mathjax>$0 \leqslant a &lt; 1$</mathjax>，<mathjax>$b \geqslant 0$</mathjax>，找出关于 <mathjax>$a$</mathjax> 和 <mathjax>$b$</mathjax> 的充要条件使得我们能够根据多重集合 <mathjax>$S(a,\ b)$</mathjax>：<br />
+<mathjax>$$
+S(a,\ b) = \{\dw{na} + \dw{nb}:\ n \in \mathbf{N}^+\}
+$$</mathjax></p>
+<p><strong>唯一确定</strong> <mathjax>$a$</mathjax> 和 <mathjax>$b$</mathjax> 的值。</p>
+<h4 id="_19">解决方案</h4>
+<p>对于这个题，关键的一个处理步骤就是令 <mathjax>$\newcommand{fa}[1]{\{ #1 \}}b = \dw{b} + \fa{b}$</mathjax>。考虑到 <mathjax>$\dw{b}$</mathjax> 是整数，且 <mathjax>$0 \leqslant \fa{b} &lt; 1$</mathjax>，可以尝试做出以下转化：<br />
+<mathjax>$$
+\begin{aligned}
+\dw{na} + \dw{nb} &amp; = \dw{na} + \dw{n\dw{b} + n\fa{b}} \\
+&amp; = \dw{n(a + \dw{b})} + \dw{n\fa{b}}
+\end{aligned}
+$$</mathjax></p>
+<p>换句话讲，<mathjax>$S(a,\ b) = S(\fa{b},\ a + \dw{b})$</mathjax>。因此可以得出其<strong>必要条件</strong>为 <mathjax>$a = \fa{b}$</mathjax>。</p>
+<p>得到这个后证明它同时也是充分条件也就不难了。令 <mathjax>$n = 1$</mathjax>，可以得到 <mathjax>$\dw{b}$</mathjax>。之后将所有的 <mathjax>$n\dw{b}$</mathjax> 从 <mathjax>$S(a,\ b)$</mathjax> 中减去，得到 <mathjax>$S(a,\ \fa{b})$</mathjax>。由于 <mathjax>$a = \fa{b}$</mathjax>，所以将 <mathjax>$S(a,\ \fa{b})$</mathjax> 中每个元素除以 <mathjax>$2$</mathjax> 就是 <mathjax>$\{\dw{na}:\ n \in \mathbf{N}^+\}$</mathjax>，由此可以唯一确定 <mathjax>$a$</mathjax>。</p>
           <hr/>
           <div id="comments"></div>
           <script type="text/javascript">
@@ -422,7 +439,7 @@ $$</mathjax><br />
             标签: <a href="/search.html?q=数学"><span class="label">数学</span></a><br/>
             创建时间: 2017.12.16<br/>
             上次修改: 2018.05.26<br />
-            统计: 16468 字 / 约 1 小时 5 分钟
+            统计: 17295 字 / 约 1 小时 9 分钟
           </div>
         </div>
         <br />
@@ -473,6 +490,11 @@ $$</mathjax><br />
 <li><a href="#2018519">2018.5.19</a><ul>
 <li><a href="#_16">问题描述</a></li>
 <li><a href="#_17">解决方案</a></li>
+</ul>
+</li>
+<li><a href="#2018610">2018.6.10</a><ul>
+<li><a href="#_18">问题描述</a></li>
+<li><a href="#_19">解决方案</a></li>
 </ul>
 </li>
 </ul>
