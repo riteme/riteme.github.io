@@ -143,14 +143,14 @@
 </td></tr></table>
 
 <div class="panel panel-info"><div class="panel-heading"><h3 class="panel-title">注意</h3></div><div class="panel-body">
-当你不需要再使用图片对象时，应及时使用<code>ilDeleteImage</code>删除：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>ilDeleteImage(image);       // 删除单个图片对象
-ilDeleteImages(1, &amp;image);  // 当然也可以批量删除
-</pre></div>
-</td></tr></table>
+当你不需要再使用图片对象时，应及时使用`ilDeleteImage`删除：
 
-</div></div>
+wzxhzdk:9
+
+</div>
+
+</div>
+
 <h2 id="_5">创建材质</h2>
 <p>加载完图片后，还只是将数据托管在DevIL内部。为了能够将数据提供给OpenGL或DirectX来创建材质，我们使用<code>ilGetData()</code>。</p>
 <p>同时，我们还需获取图片的相关的信息，如宽度、高度、图片存储格式等等，这些都可以使用<code>ilGetInteger</code>来获取。</p>
@@ -176,16 +176,18 @@ ilDeleteImages(1, &amp;image);  // 当然也可以批量删除
 </td></tr></table>
 
 <div class="panel panel-info"><div class="panel-heading"><h3 class="panel-title">提示</h3></div><div class="panel-body">
-DevIL中可以获取很多图片的信息，除了宽度、高度和像素格式外，还可以获取色深（<code>IL_IMAGE_DEPTH</code>）、<br />
-图片数据的大小（<code>IL_IMAGE_SIZE_OF_DATA</code>）、BPP（”Bytes Per Pixel“，每个像素所占字节数，<code>IL_IMAGE_BPP</code>或<code>IL_IMAGE_BYTES_PER_PIXEL</code>）、<br />
-Bit Per Pixel（每个像素所占位数，<code>IL_IMAGE_BITS_PER_PIXEL</code>）、图片格式（<code>IL_IMAGE_TYPE</code>）、<br />
-水平/竖直平移量（<code>IL_IMAGE_OFFX</code>和<code>IL_IMAGE_OFFY</code>）、图片原点（<code>IL_IMAGE_ORIGIN</code>）、<br />
-颜色通道数（<code>IL_IMAGE_CHANNELS</code>）等。<br />
+DevIL中可以获取很多图片的信息，除了宽度、高度和像素格式外，还可以获取色深（<code>IL_IMAGE_DEPTH</code>）、
+图片数据的大小（<code>IL_IMAGE_SIZE_OF_DATA</code>）、BPP（”Bytes Per Pixel“，每个像素所占字节数，<code>IL_IMAGE_BPP</code>或<code>IL_IMAGE_BYTES_PER_PIXEL</code>）、
+Bit Per Pixel（每个像素所占位数，<code>IL_IMAGE_BITS_PER_PIXEL</code>）、图片格式（<code>IL_IMAGE_TYPE</code>）、
+水平/竖直平移量（<code>IL_IMAGE_OFFX</code>和<code>IL_IMAGE_OFFY</code>）、图片原点（<code>IL_IMAGE_ORIGIN</code>）、
+颜色通道数（<code>IL_IMAGE_CHANNELS</code>）等。
 </div></div>
+
 <div class="panel panel-info"><div class="panel-heading"><h3 class="panel-title">提示</h3></div><div class="panel-body">
-在上面的示例中，图片的像素格式被直接传到OpenGL的函数中是可以的，因为DevIL对应的值和OpenGL规定的是一样的，不会有问题。<br/><br />
-对于DirectX，需要手写<code>switch</code>来切换。<br />
+在上面的示例中，图片的像素格式被直接传到OpenGL的函数中是可以的，因为DevIL对应的值和OpenGL规定的是一样的，不会有问题。<br/>
+对于DirectX，需要手写<code>switch</code>来切换。
 </div></div>
+
 <h2 id="_6">保存图片</h2>
 <p>DevIL中保存图片很简单，只需要先绑定图片对象，指定保存路径就可直接保存。DevIL会自动通过文件后缀名来确定图片格式。</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
@@ -379,7 +381,7 @@ Bit Per Pixel（每个像素所占位数，<code>IL_IMAGE_BITS_PER_PIXEL</code>�
             标签: <a href="/search.html?q=C/C++"><span class="label">C/C++</span></a> <a href="/search.html?q=DevIL"><span class="label">DevIL</span></a> <a href="/search.html?q=OpenGL"><span class="label">OpenGL</span></a><br/>
             创建时间: 2016.02.05<br/>
             上次修改: 2016.02.05<br />
-            统计: 6061 字 / 约 24 分钟
+            统计: 5986 字 / 约 23 分钟
           </div>
         </div>
         <br />

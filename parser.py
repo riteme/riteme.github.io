@@ -1,4 +1,4 @@
-# parser.py用于处理以下信息
+# parser.py 用于处理以下信息
 # content
 
 import re
@@ -6,7 +6,7 @@ import re
 
 class Syntax(object):
 
-    """表示Markdown中特殊语法"""
+    """表示 Markdown 中特殊语法"""
 
     def __init__(self, syntax):
         super(Syntax, self).__init__()
@@ -20,7 +20,7 @@ class Syntax(object):
         """用于解析语法
         @param source (str) 表示源代码
         @return:
-            (str) 返回解析后的HTML代码
+            (str) 返回解析后的 HTML 代码
         @remark:
             作为基类不提供实现
         """
@@ -29,7 +29,7 @@ class Syntax(object):
 
 class PanelBeginSyntax(Syntax):
 
-    """表示Panel语法的声明部分: [[[Title]]]"""
+    """表示 Panel 语法的声明部分: [[[Title]]]"""
 
     def __init__(self):
         super(PanelBeginSyntax, self).__init__(".*\[\[\[[^#]*\]\]\].*")
@@ -47,24 +47,42 @@ class PanelBeginSyntax(Syntax):
         # 获取标题
         title = self._catcher.match(source).group(1)
 
-        return self._template.format(text=title)
+        return [self._template.format(text=title)]
 
 
 class PanelEndSyntax(Syntax):
 
-    """表示Panel语法的结束部分: [[[#]]]"""
+    """表示 Panel 语法的结束部分: [[[#]]]"""
 
     def __init__(self):
         super(PanelEndSyntax, self).__init__(".*\[\[\[#\]\]\].*")
         self._template = "</div></div>"
 
     def parse(self, source):
-        return self._template
+        return [self._template]
+
+
+class IncludeSyntax(Syntax):
+
+    """外部文件 include 语法（![markdown: include](url))
+       注意
+        1. 没有实现递归 include
+        2. 不能自动触发父文件的重新生成
+    """
+
+    def __init__(self):
+        super(IncludeSyntax, self).__init__("\s*!\[markdown\:include\]\(.*\)")
+        self._catcher = re.compile("\s*!\[markdown\:include\]\((.*)\)")
+
+    def parse(self, source):
+        url = self._catcher.match(source).group(1)
+        with open(url, "r") as reader:
+            return [x.rstrip("\n\r") for x in reader]
 
 
 class Parser(object):
 
-    """表示Markdown的定制解析器
+    """表示 Markdown 的定制解析器
     remark:
         只解析自定语法，其他均保留
     """
@@ -95,8 +113,7 @@ class Parser(object):
                 for matcher in self._matcher:
                     if matcher.is_match(line):
                         is_parsed = True
-                        content.append(matcher.parse(line))
-
+                        content += matcher.parse(line)
                         break
 
                 if not is_parsed:

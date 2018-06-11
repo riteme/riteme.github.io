@@ -221,25 +221,34 @@ def generate(filepath):
     if not os.path.exists(filepath):
         raise ValueError("File not found")
 
+    reader = parser.Parser()
+    reader.load_syntax(parser.PanelBeginSyntax)
+    reader.load_syntax(parser.PanelEndSyntax)
+    reader.load_syntax(parser.IncludeSyntax)
     converter = markdown.Markdown(
         extensions=MARKDOWN_EXT,
         extension_configs=MARKDOWN_CONFIG
     )
     with open(filepath) as md:
-        content = md.read()
+        content, temp = reader.process(md.read())
+        if temp:
+            print("(warn) This is a temporary post. Stopped.")
+            return
+
         content = content.replace(chr(8203), '')
         content = converter.convert(content)
-    mdinfo = converter.Meta
 
-    reader = parser.Parser()
-    reader.load_syntax(parser.PanelBeginSyntax)
-    reader.load_syntax(parser.PanelEndSyntax)
-    content, temp = reader.process(content)
-    toc, content = tocer.cut(content)
+    metalost = False
+    try:
+        mdinfo = converter.Meta
+    except AttributeError:
+        metalost = True
 
-    if temp:
-        print("(warn) This is a temporary post. Stopped.")
+    if metalost or len(mdinfo) == 0:
+        print("(info) No metadata. Skipped.")
         return
+
+    toc, content = tocer.cut(content)
 
     title = info.generate_title(mdinfo["title"][0])
 
