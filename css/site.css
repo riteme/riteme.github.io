@@ -133,21 +133,30 @@ body {
     color: #383838;
 }
 
+.article .label {
+    margin-bottom: 2px;
+    display: inline-block;
+}
+
 /*pre, code {
     word-wrap: break-word;
     word-break: break-all;
     white-space: pre-wrap;
 }*/
 
-.footnote-ref:before {
+.article .footnote-ref {
+    font-size: 80%;
+}
+
+.article .footnote-ref:before {
     content: '[';
 }
 
-.footnote-ref:after {
+.article .footnote-ref:after {
     content: ']';
 }
 
-.footnote li > p {
+.article .footnote li > p {
     margin: 0 auto;
     color: #666;
     font-size: 90%;
