@@ -16,3 +16,11 @@ tags: Friend Links
 | Mr.Rabbit | [www.ianime.co](http://www.ianime.co/) |
 | Linyxus | [blog.linyxus.xyz](http://blog.linyxus.xyz/) |
 | memset0 | [memset0.cf](http://memset0.cf/) |
+
+另外这里是几个本校神犇：
+
+| Nickname | Address |
+|:-:|:-:|
+| remoon | [CSDN/remoon](http://www.cnblogs.com/reverymoon/) |
+| Creeper_LKF | [CSDN/Creeper_LKF](http://www.cnblogs.com/CreeperLKF/) |
+| Twilight_ | [CSDN/Twilight_Sx](https://www.cnblogs.com/twilight-sx/) |
