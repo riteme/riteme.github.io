@@ -23,7 +23,7 @@
   <script src="/math-renderer/selector.js"></script>
   <script src="/math-renderer/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   <script src="/math-renderer/katex/katex.min.js"></script>
-  <script src="/math-renderer/katex/auto-render.js"></script>
+  <script src="/math-renderer/katex/auto-render.min.js"></script>
 </head>
 
 <body>
@@ -813,7 +813,7 @@ function REMOVE(h, key):
           </div>
         </div>
         <div class="mdl-tooltip" data-mdl-for="tip-1">
-        KaTeX 渲染效率很高，但是由于部分 LaTeX 命令无法使用（如 <code>\tag</code>），并且目前 KaTeX 容错性不强，因此使用 KaTeX 时可能会存在一些数学公式无法渲染的情况
+        KaTeX 渲染效率很高，但是目前 KaTeX 容错性不强，因此使用 KaTeX 时可能会存在一些数学公式无法渲染的情况
         </div>
         <div class="mdl-tooltip" data-mdl-for="tip-2">
         先使用 KaTeX 渲染，再使用 MathJax 渲染

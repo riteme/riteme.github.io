@@ -69,6 +69,7 @@ def setup():
     print("(info) Copying new files...")
 
     shutil.copytree(os.getcwd(), INSTALL_TO)
+    os.system("chmod 755 /var/www/html -R")
 
 if __name__ == "__main__":
     handler = setup

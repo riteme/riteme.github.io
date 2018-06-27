@@ -23,7 +23,7 @@
   <script src="/math-renderer/selector.js"></script>
   <script src="/math-renderer/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   <script src="/math-renderer/katex/katex.min.js"></script>
-  <script src="/math-renderer/katex/auto-render.js"></script>
+  <script src="/math-renderer/katex/auto-render.min.js"></script>
 </head>
 
 <body>
@@ -94,7 +94,7 @@
 <p>使用 <a href="http://www.mathjax.org/">MathJax</a> 和 <a href="http://khan.github.io/KaTeX/">KaTeX</a>。</p>
 <p><del>以后计划抛弃笨重的 MathJax，换用清真的 KaTeX。</del><br />
 正在尝试 KaTeX......但现实很残酷，KaTeX 容错性实在不行，因此变成了浏览者可在 MathJax 和 KaTeX 之间二选一。<br />
-实际上 KaTeX 能够无错渲染的文章真的不多......</p>
+<del>实际上 KaTeX 能够无错渲染的文章真的不多......</del> <strong>KaTeX 0.10.0 版本大赞！</strong></p>
 <h3 id="_3">站内搜索</h3>
 <p>使用 <a href="http://www.tipue.com/search/">Tipuesearch</a>。</p>
 <p>Tipuesearch 有个缺点就是需要浏览器将搜索数据下载下来。而这个文件通常很大。以后可能会考虑换成其它的东西。</p>
@@ -131,7 +131,7 @@
             标签: <a href="/search.html?q=About"><span class="label">About</span></a><br/>
             创建时间: 2016.12.13<br/>
             上次修改: 2017.06.20<br />
-            统计: 969 字 / 约 3 分钟
+            统计: 988 字 / 约 3 分钟
           </div>
         </div>
         <br />
@@ -161,7 +161,7 @@
           </div>
         </div>
         <div class="mdl-tooltip" data-mdl-for="tip-1">
-        KaTeX 渲染效率很高，但是由于部分 LaTeX 命令无法使用（如 <code>\tag</code>），并且目前 KaTeX 容错性不强，因此使用 KaTeX 时可能会存在一些数学公式无法渲染的情况
+        KaTeX 渲染效率很高，但是目前 KaTeX 容错性不强，因此使用 KaTeX 时可能会存在一些数学公式无法渲染的情况
         </div>
         <div class="mdl-tooltip" data-mdl-for="tip-2">
         先使用 KaTeX 渲染，再使用 MathJax 渲染
