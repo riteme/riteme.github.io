@@ -1,12 +1,5 @@
-@font-face {
-    font-family: SC;
-    font-weight: lighter;
-    src: local('Source Han Sans'), local('Source Han Sans CN'),
-         local('Source Han Sans SC'), local("Microsoft Yahei");
-}
-
 body {
-    font-family: "Segoe UI", Ubuntu, SC, sans-serif;
+    font-family: "Segoe UI", Ubuntu, "Microsoft YaHei UI", "Microsoft YaHei", sans-serif;
 }
 
 .article {
@@ -181,7 +174,7 @@ div.toc a {
 }
 
 .drawer-title {
-    font-family: Ubuntu, "Segoe UI", Merriweather, "Times New Roman", serif;
+    font-family: Ubuntu, "Segoe UI", Georgia, Merriweather, "Times New Roman", serif;
     font-style: italic;
     color: #0077bb;
 }
@@ -299,7 +292,7 @@ mathjax + br {
 }
 
 .mdl-layout-title {
-    font-family: "Segoe UI", Ubuntu, SC, sans-serif;
+    font-family: "Segoe UI", Ubuntu, "Microsoft YaHei UI", "Microsoft YaHei", sans-serif;
 }
 
 .codehilite .hll { background-color: #ffffcc }
