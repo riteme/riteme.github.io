@@ -161,8 +161,7 @@ div.toc ul {
 }
 
 div.toc li {
-    font-size: 75%;
-    line-height: 18px;
+    line-height: 140%;
 }
 
 div.toc a {
