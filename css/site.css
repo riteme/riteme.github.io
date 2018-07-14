@@ -117,7 +117,7 @@ body {
     border-radius: 3px;
     background-color: rgb(62, 169, 243);
     color: white;
-    font-size: 60%;
+    font-size: 80%;
 }
 
 .article center {
@@ -157,6 +157,7 @@ body {
 }
 
 div.toc ul {
+    padding-left: 1.35em;
     margin: 0;
 }
 

@@ -1,7 +1,7 @@
 ---
 title: 最近公共祖先(LCA)
 create: 2016.2.1
-modified: 2016.2.1
+modified: 2018.7.14
 tags: 算法
       LCA
 ---
@@ -117,26 +117,26 @@ Tarjan-LCA算法比较难理解，最好的理解方法是手动模拟一下。
 ```python
 def Tarjan_LCA(u):
     # ancestor数组表示一个集合的公共祖先
-    # 如anscestor[i]表示标号为i的集合中所有结点的公共祖先。
+    # 如ancestor[i]表示标号为i的集合中所有结点的公共祖先。
     # marked数组表示结点是否被处理过
 
-    anscestor[find(u)] = u
+    ancestor[find(u)] = u
 
     for v in u.children:  # 遍历u的儿子节点
         Tarjan_LCA(v)
         union(u, v)
-        anscestor[find(u)] = u
+        ancestor[find(u)] = u
 
     marked[u] = true
 
     # query数组表示查询操作，保存的是(x, y)，表示要计算LCA(x, y)
     for (x, y) in query:
         if y == u and marked[x] == True:
-            LCA(x, y) = LCA(y, x) = anscestor[x]
+            LCA(x, y) = LCA(y, x) = ancestor[x]
 ```
 
 这个算法的进行类似于DFS，是个递归调用的过程。
-因为DFS总是先将小的子树遍历完，因此`anscestor`数组中的祖先都是尽可能小的。
+因为DFS总是先将小的子树遍历完，因此`ancestor`数组中的祖先都是尽可能小的。
 
 拿一棵较小的子树作为示例：
 
