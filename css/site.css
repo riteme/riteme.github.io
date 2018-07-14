@@ -173,10 +173,26 @@ div.toc a {
     min-height: 10px;
 }
 
+.drawer-icon {
+    vertical-align: bottom;
+}
+
 .drawer-title {
     font-family: Ubuntu, "Segoe UI", Georgia, Merriweather, "Times New Roman", serif;
     font-style: italic;
     color: #0077bb;
+}
+
+header .material-icons {
+    vertical-align: text-bottom;
+}
+
+header .mdl-textfield {
+    margin-top: 0.6em;
+}
+
+header .mdl-layout-title {
+    margin-top: 0.3em;
 }
 
 .return-up-button {
