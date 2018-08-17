@@ -184,15 +184,11 @@ div.toc a {
 }
 
 header .material-icons {
-    vertical-align: text-bottom;
+    vertical-align: text-top;
 }
 
 header .mdl-textfield {
     margin-top: 0.6em;
-}
-
-header .mdl-layout-title {
-    margin-top: 0.3em;
 }
 
 .return-up-button {
