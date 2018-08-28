@@ -12,10 +12,11 @@ tags: Friend Links
 |:-:|:-:|
 | *ruanxingzhi* | [ruanx.pw](http://ruanx.pw/) |
 | Haogram | [haogram.hol.es](http://haogram.hol.es/) |
-| **HJWJBSR** | [hjwjbsr.is-programmer.com](http://hjwjbsr.is-programmer.com/)
+| **HJWJBSR** | [hjwjbsr.is-programmer.com](http://hjwjbsr.is-programmer.com/) |
 | Mr.Rabbit | [www.ianime.co](http://www.ianime.co/) |
 | Linyxus | [blog.linyxus.xyz](http://blog.linyxus.xyz/) |
 | memset0 | [memset0.cf](http://memset0.cf/) |
+| MicDZ | [www.micdz.cn](http://www.micdz.cn/) |
 
 另外这里是几个本校神犇：
 
