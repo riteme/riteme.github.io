@@ -49,7 +49,7 @@ f(x) \in \mathbf Z \Longrightarrow x \in \mathbf Z
 $$
 则 $\lfloor f(x) \rfloor = \lfloor f(\lfloor x \rfloor) \rfloor$，以及 $\lceil f(x) \rceil$ = $\lceil f(\lceil x \rceil) \rceil$。
 
-这个引理来自 *Conrete Mathematics* [[1]](#ref-1) 的 (3.10)，这里就不再证明。
+这个引理来自 *Concrete Mathematics* [[1]](#ref-1) 的 (3.10)，这里就不再证明。
 
 **引理 3**　令正整数 $a,\,b$ 为常数，则对于正整数 $x$，有 $\lfloor\lfloor x / a \rfloor / b \rfloor = \lfloor x / ab \rfloor$。
 
