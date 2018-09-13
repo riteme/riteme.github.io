@@ -256,6 +256,12 @@ mathjax + br {
     overflow-y: hidden;
 }
 
+.katex .tag {
+    position: initial;
+    right: initial;
+    float: right;
+}
+
 .codehilitetable {
     border-collapse: collapse;
     border-spacing: 0;
