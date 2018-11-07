@@ -257,8 +257,8 @@ mathjax + br {
 }
 
 .katex .tag {
-    position: initial;
-    right: initial;
+    position: initial !important;
+    right: initial !important;
     float: right;
 }
 
