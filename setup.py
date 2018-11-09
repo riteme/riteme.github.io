@@ -15,7 +15,7 @@ HELP_DOCUMENT = """{command_line}: Setup this site to local server.
 INSTALL_TO = "/var/www/html/"
 
 SMALLEST_UPDATE_FOLDERS = [
-    "blog"
+    "blog", "assets"
 ]
 
 SMALLEST_UPDATE_FILES = [
@@ -23,6 +23,7 @@ SMALLEST_UPDATE_FILES = [
     "posts.html",
     "about.html",
     "links.html",
+    "search.html",
     "css/site.css",
     "tipuesearch/tipuesearch_content.js"
 ]

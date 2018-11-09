@@ -17,25 +17,20 @@
   <script src="/tipuesearch/tipuesearch_set.js"></script>
   <script src="/tipuesearch/tipuesearch.min.js"></script>
   <script src="/gitment/gitment.js"></script>
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Config( { tex2jax: { inlineMath: [['$','$']] }, "HTML-CSS": { scale: 95 } } );
-  </script>
+  <script type="text/x-mathjax-config">MathJax.Hub.Config( { tex2jax: { inlineMath: [['$','$']] }, "HTML-CSS": { scale: 95 } } );</script>
   <script src="/math-renderer/selector.js"></script>
   <script src="/math-renderer/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   <script src="/math-renderer/katex/katex.min.js"></script>
   <script src="/math-renderer/katex/auto-render.min.js"></script>
 </head>
-
 <body>
   <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
     <header class="mdl-layout__header">
       <div class="mdl-layout__header-row">
         <span class="mdl-layout-title">二项式定理及其它</span>
         <div class="mdl-layout-spacer"></div>
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
-        mdl-textfield--floating-label mdl-textfield--align-right">
-        <label class="mdl-button mdl-js-button mdl-button--icon"
-        for="fixed-header-drawer-exp"><i class="material-icons">search</i></label>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right">
+        <label class="mdl-button mdl-js-button mdl-button--icon" for="fixed-header-drawer-exp"><i class="material-icons">search</i></label>
         <div class="mdl-textfield__expandable-holder">
           <form action="/search.html"><input type="text" class="mdl-textfield__input" placeholder="Search Here" name="q" id="fixed-header-drawer-exp" autocomplete="off" required></form>
         </div>
@@ -358,12 +353,16 @@ $$</mathjax></p>
             </form>
           </div>
         </div>
-        <div class="mdl-tooltip" data-mdl-for="tip-1">
-        KaTeX 渲染效率很高，但是目前 KaTeX 容错性不强，因此使用 KaTeX 时可能会存在一些数学公式无法渲染的情况
+        <div class="mdl-tooltip" data-mdl-for="tip-1">KaTeX 渲染效率很高，但是目前 KaTeX 容错性不强，因此使用 KaTeX 时可能会存在一些数学公式无法渲染的情况</div>
+        <div class="mdl-tooltip" data-mdl-for="tip-2">先使用 KaTeX 渲染，再使用 MathJax 渲染</div>
+        <br />
+        <div class="nano mdl-card mdl-shadow--3dp" id="nano">
+          <a class="nano-ref" target="_new" href="http://nichijou.wikia.com/wiki/Nano_Shinonome"></a>
+          <div class="mdl-card__actions">
+            <div class="nano-shell"><span class="shell-start">$</span> nano <a href="https://github.com/riteme/riteme.github.io/blob/master/blog/2016-8-18/binomial.md">binomial.md</a></div>
+          </div>
         </div>
-        <div class="mdl-tooltip" data-mdl-for="tip-2">
-        先使用 KaTeX 渲染，再使用 MathJax 渲染
-        </div>
+        <div class="mdl-tooltip" data-mdl-for="nano">Nano Shinonome</div>
       </div>
       <div class="return-up-button">
         <a href="javascript:$('main').animate( { scrollTop: 0 } , 'fast')">

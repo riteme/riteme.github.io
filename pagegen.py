@@ -31,6 +31,7 @@ from markdown.postprocessors import Postprocessor
 
 WORDS_PER_MINUTE = 250
 BEAUTIFUL_SOUP_PARSER = "lxml"
+GITHUB_LOCATION = "https://github.com/riteme/riteme.github.io/blob/master"
 
 # Mathjax Extension
 class MathJaxPattern(markdown.inlinepatterns.Pattern):
@@ -272,6 +273,7 @@ def generate(filepath):
     navigater.home_folder = os.path.abspath(".")
     index_url = navigater.get_path("myself")
     index_url = index_url.rsplit(".", 1)[0] + ".html"
+    filename = os.path.basename(filepath)
     words = len(index_text)
 
     # 处理特殊信息
@@ -298,7 +300,9 @@ def generate(filepath):
             content=content,
             page_key=pagekey,
             page_title=pagetitle,
-            page_url=pageurl
+            page_url=pageurl,
+            mdname=filename,
+            github_location=os.path.join(GITHUB_LOCATION, os.path.dirname(index_url), filename)
         ))
 
     # 返回索引信息
