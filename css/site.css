@@ -240,7 +240,7 @@ h3.panel-title {
 .nano.mdl-card {
     width:100%;
     height: 200px;
-    background: url('/assets/nano.jpg') center / cover;
+    background: url('https://gitee.com/riteme/blogimg/raw/master/other/nano.jpg') center / cover;
 }
 
 .nano > .mdl-card__actions {
