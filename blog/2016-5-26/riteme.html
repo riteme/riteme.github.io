@@ -154,10 +154,7 @@ ZY希望你能给出一个好方法来帮助<strong>她</strong>计算<strong>�
           <hr/>
           <div id="comments"></div>
           <script type="text/javascript">
-            const gitment = new Gitment({
-              id: 'c186581dfd9d90ec4813fb69b8955f96',
-              owner: 'riteme',
-              repo: 'riteme.github.io',
+            const gitment = new Gitment({id: 'c186581dfd9d90ec4813fb69b8955f96', owner: 'riteme', repo: 'riteme.github.io',
               oauth: {
                 client_id: 'd4fcffa25858a7a58e1a',
                 client_secret: 'e0c8e08beb95497871f8355416c69390634cec76',
@@ -166,105 +163,97 @@ ZY希望你能给出一个好方法来帮助<strong>她</strong>计算<strong>�
             })
             gitment.render('comments')
           </script>
-       </div>
-     </div>
-
-     <div class="mdl-cell mdl-cell--3-col mdl-cell--hide-tablet mdl-cell--hide-phone">
-       <div class="article">
-        <div class="mdl-card mdl-shadow--3dp" style="width: 100%">
-          <div class="mdl-card__supporting-text">
-            标签: <a href="/search.html?q=Problems"><span class="label">Problems</span></a> <a href="/search.html?q=ZY"><span class="label">ZY</span></a><br/>
-            创建时间: 2016.05.26<br/>
-            上次修改: 2016.05.26<br />
-            统计: 2414 字 / 约 9 分钟
-          </div>
         </div>
-        <br />
-        
-        <br />
-        <div class="mdl-card mdl-shadow--3dp" style="width: 100%">
-          <div class="mdl-card__supporting-text">
-            <span class="mathopt-head">数学公式渲染引擎：</span>
-            <form name="mathopt">
-              <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
-                <input type="radio" id="option-1" class="mdl-radio__button" name="sel" value="mathjax">
-                <span class="mdl-radio__label">MathJax (推荐)</span>
-              </label><br />
-              <div id="tip-1">
-                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
-                  <input type="radio" id="option-2" class="mdl-radio__button" name="sel" value="katex">
-                  <span class="mdl-radio__label">KaTeX</span>
-                </label>
-              </div>
-              <div id="tip-2">
-                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
-                  <input type="radio" id="option-3" class="mdl-radio__button" name="sel" value="katex&mathjax">
-                  <span class="mdl-radio__label">Mixed</span>
-                </label>
-              </div>
-            </form>
-          </div>
-        </div>
-        <div class="mdl-tooltip" data-mdl-for="tip-1">KaTeX 渲染效率很高，但是目前 KaTeX 容错性不强，因此使用 KaTeX 时可能会存在一些数学公式无法渲染的情况</div>
-        <div class="mdl-tooltip" data-mdl-for="tip-2">先使用 KaTeX 渲染，再使用 MathJax 渲染</div>
-        <br />
-        <div class="nano mdl-card mdl-shadow--3dp" id="nano">
-          <a class="nano-ref" target="_new" href="http://nichijou.wikia.com/wiki/Nano_Shinonome"></a>
-          <div class="mdl-card__actions">
-            <div class="nano-shell"><span class="shell-start">$</span> nano <a href="https://github.com/riteme/riteme.github.io/blob/master/blog/2016-5-26/riteme.md">riteme.md</a></div>
-          </div>
-        </div>
-        <div class="mdl-tooltip" data-mdl-for="nano">Nano Shinonome</div>
       </div>
-      <div class="return-up-button">
-        <a href="javascript:$('main').animate( { scrollTop: 0 } , 'fast')">
-          <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
-            <i class="material-icons">vertical_align_top</i>
-          </button>
-        </a>
+      <div class="mdl-cell mdl-cell--3-col mdl-cell--hide-tablet mdl-cell--hide-phone">
+        <div class="article">
+          <div class="mdl-card mdl-shadow--3dp sidebar-card">
+            <div class="mdl-card__actions sidebar-title">页面信息</div>
+            <div class="mdl-card__supporting-text">
+              标签: <a href="/search.html?q=Problems"><span class="label">Problems</span></a> <a href="/search.html?q=ZY"><span class="label">ZY</span></a><br/>
+              创建时间: 2016.05.26<br/>
+              上次修改: 2016.05.26<br/>
+              字数统计: 2414 字 / 约 9 分钟
+            </div>
+          </div>
+          <br/>
+          
+          <div class="mdl-card mdl-shadow--3dp sidebar-card">
+            <div class="mdl-card__actions sidebar-title">数学公式渲染</div>
+            <div class="mdl-card__supporting-text">
+              <form name="mathopt">
+                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
+                  <input type="radio" id="option-1" class="mdl-radio__button" name="sel" value="mathjax">
+                  <span class="mdl-radio__label">MathJax (推荐)</span>
+                </label><br/>
+                <div id="tip-1">
+                  <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+                    <input type="radio" id="option-2" class="mdl-radio__button" name="sel" value="katex">
+                    <span class="mdl-radio__label">KaTeX</span>
+                  </label>
+                </div>
+                <div id="tip-2">
+                  <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
+                    <input type="radio" id="option-3" class="mdl-radio__button" name="sel" value="katex&mathjax">
+                    <span class="mdl-radio__label">Mixed</span>
+                  </label>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="mdl-tooltip" data-mdl-for="tip-1">KaTeX 渲染效率很高，但是目前 KaTeX 容错性不强，因此使用 KaTeX 时可能会存在一些数学公式无法渲染的情况</div>
+          <div class="mdl-tooltip" data-mdl-for="tip-2">先使用 KaTeX 渲染，再使用 MathJax 渲染</div>
+          <br/>
+          <div class="nano mdl-card mdl-shadow--3dp sidebar-card" id="nano">
+            <a class="nano-ref" target="_new" href="http://nichijou.wikia.com/wiki/Nano_Shinonome"></a>
+            <div class="mdl-card__actions">
+              <div class="nano-shell"><span class="shell-start">$</span> nano <a href="https://github.com/riteme/riteme.github.io/blob/master/blog/2016-5-26/riteme.md">riteme.md</a></div>
+            </div>
+          </div>
+          <div class="mdl-tooltip" data-mdl-for="nano">Nano Shinonome</div>
+        </div>
+        <div class="return-up-button">
+          <a href="javascript:$('main').animate( { scrollTop: 0 } , 'fast')">
+            <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+              <i class="material-icons">vertical_align_top</i>
+            </button>
+          </a>
+        </div>
       </div>
     </div>
-  </div>
-
-  <footer class="mdl-mega-footer">
-    <div class="mdl-mega-footer__middle-section">
-      <div class="mdl-mega-footer__drop-down-section">
-        <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-        <h1 class="mdl-mega-footer__heading">RITEME.SITE</h1>
-        一个从不乱说话的博客...
+    <footer class="mdl-mega-footer">
+      <div class="mdl-mega-footer__middle-section">
+        <div class="mdl-mega-footer__drop-down-section">
+          <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+          <h1 class="mdl-mega-footer__heading">RITEME.SITE</h1>一个从不乱说话的博客...
+        </div>
+        <div class="mdl-mega-footer__drop-down-section">
+          <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+          <h1 class="mdl-mega-footer__heading">POWERED BY</h1>
+          <ul class="mdl-mega-footer__link-list">
+            <li><a href="http://pythonhosted.org/Markdown/">Python Markdown</a></li>
+            <li><a href="http://getmdl.io/">Material Design Lite</a></li>
+            <li><a href="http://www.tipue.com/search/">Tipuesearch</a></li>
+            <li><a href="http://www.mathjax.org/">MathJax</a> & <a href="http://khan.github.io/KaTeX/">KaTeX</a></li>
+            <li><a href="https://github.com/imsun/gitment">Gitment</a></li>
+          </ul>
+        </div>
+        <div class="mdl-mega-footer__drop-down-section">
+          <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+          <h1 class="mdl-mega-footer__heading">友情链接</h1>
+          <ul class="mdl-mega-footer__link-list">
+            <li><a href="http://ruanx.pw/">ruanxingzhi</a></li>
+            <li><a href="http://haogram.hol.es/">Haogram</a></li>
+            <li><a href="http://hjwjbsr.is-programmer.com/">HJWJBSR</a></li>
+            <li><a href="http://www.micdz.cn/">MicDZ</a></li>
+            <li><a href="http://blog.linyxus.xyz/">Linyxus</a></li>
+            <li><a href="http://memset0.cf/">memset0</a></li>
+          </ul>
+        </div>
       </div>
-
-      <div class="mdl-mega-footer__drop-down-section">
-        <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-        <h1 class="mdl-mega-footer__heading">POWERED BY</h1>
-        <ul class="mdl-mega-footer__link-list">
-          <li><a href="http://pythonhosted.org/Markdown/">Python Markdown</a></li>
-          <li><a href="http://getmdl.io/">Material Design Lite</a></li>
-          <li><a href="http://www.tipue.com/search/">Tipuesearch</a></li>
-          <li><a href="http://www.mathjax.org/">MathJax</a> & <a href="http://khan.github.io/KaTeX/">KaTeX</a></li>
-          <li><a href="https://github.com/imsun/gitment">Gitment</a></li>
-        </ul>
-      </div>
-
-      <div class="mdl-mega-footer__drop-down-section">
-        <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-        <h1 class="mdl-mega-footer__heading">友情链接</h1>
-        <ul class="mdl-mega-footer__link-list">
-          <li><a href="http://ruanx.pw/">ruanxingzhi</a></li>
-          <li><a href="http://haogram.hol.es/">Haogram</a></li>
-          <li><a href="http://hjwjbsr.is-programmer.com/">HJWJBSR</a></li>
-          <li><a href="http://www.micdz.cn/">MicDZ</a></li>
-          <li><a href="http://blog.linyxus.xyz/">Linyxus</a></li>
-          <li><a href="http://memset0.cf/">memset0</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="mdl-mega-footer__bottom-section">
-      Theme based on <a href="https://getmdl.io/">MDL</a> | Copyright © 2015-2018 riteme. All rights reserved.
-    </div>
-  </footer>
-</main>
+      <div class="mdl-mega-footer__bottom-section">Theme based on <a href="https://getmdl.io/">MDL</a> | Copyright © 2015-2018 riteme. All rights reserved.</div>
+    </footer>
+  </main>
 </div>
 </body>
 </html>

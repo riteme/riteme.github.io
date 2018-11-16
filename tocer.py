@@ -1,14 +1,13 @@
 TOC_BEGIN = "<div class=\"toc\">"
 TOC_END = "</div>"
 TOC_TEMPLATE = """
-<div class="mdl-card mdl-shadow--3dp" style="width: 100%">
-  <div class="mdl-card__title mdl-card--border">
-    <h4 class="mdl-card__title-text">目录</h4>
-  </div>
+<div class="mdl-card mdl-shadow--3dp sidebar-card">
+  <div class="mdl-card__actions sidebar-title">目录</div>
   <div class="mdl-card__supporting-text">
     {toc}
   </div>
 </div>
+<br/>
 """
 
 def cut(content):

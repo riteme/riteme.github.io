@@ -409,13 +409,42 @@ $$</mathjax></p>
 $$</mathjax></p>
 <p>换句话讲，<mathjax>$S(a,\ b) = S(\fa{b},\ a + \dw{b})$</mathjax>。因此可以得出其<strong>必要条件</strong>为 <mathjax>$a = \fa{b}$</mathjax>。</p>
 <p>得到这个后证明它同时也是充分条件也就不难了。令 <mathjax>$n = 1$</mathjax>，可以得到 <mathjax>$\dw{b}$</mathjax>。之后将所有的 <mathjax>$n\dw{b}$</mathjax> 从 <mathjax>$S(a,\ b)$</mathjax> 中减去，得到 <mathjax>$S(a,\ \fa{b})$</mathjax>。由于 <mathjax>$a = \fa{b}$</mathjax>，所以将 <mathjax>$S(a,\ \fa{b})$</mathjax> 中每个元素除以 <mathjax>$2$</mathjax> 就是 <mathjax>$\{\dw{na}:\ n \in \mathbf{N}^+\}$</mathjax>，由此可以唯一确定 <mathjax>$a$</mathjax>。</p>
+<h3 id="20181116">2018.11.16</h3>
+<h4 id="_20">问题描述</h4>
+<p>已知实数域上的 Thomae Function <mathjax>$f(x)$</mathjax> 为：<br />
+<mathjax>$$
+f(x) = \begin{cases}
+1/p &amp; x \in \mathbf Q,\ x = q/p,\ p \in \mathbf N^+,\ q \in \mathbf Z \\
+0 &amp; x \in \mathbf R \backslash \mathbf Q
+\end{cases}
+$$</mathjax><br />
+证明：<mathjax>$f(x)$</mathjax> 处处不可微。</p>
+<h4 id="_21">解决方案</h4>
+<p>对于一元函数，可导和可微是等价的。由于这个函数在有理点不连续<sup id="fnref:discontinuous-at-rationals"><a class="footnote-ref" href="#fn:discontinuous-at-rationals" rel="footnote">1</a></sup>，故只需要考虑对于<strong>无理数</strong> <mathjax>$a$</mathjax>，下面这个极限：<br />
+<mathjax>$$
+\lim_{x\rightarrow a} {f(x) - f(a) \over x - a} \xlongequal{a \text{ irrational}} \lim_{x \rightarrow a} {f(x) \over x - a}
+$$</mathjax><br />
+是否存在。不失一般性，假定 <mathjax>$a \geqslant 0$</mathjax>，小于 <mathjax>$0$</mathjax> 的情况的讨论是类似的。稍作尝试估计都会觉得不存在。首先，对于趋近于 <mathjax>$a$</mathjax> 的无理数列 <mathjax>$\{x_n\}$</mathjax>，显然：<br />
+<mathjax>$$
+\lim {f(x_n) \over x_n - a} = 0
+$$</mathjax><br />
+为了证明极限不存在，我们需要再构造一个趋近于 <mathjax>$a$</mathjax> 的实数列 <mathjax>$\{y_n\}$</mathjax>，使得类似的极限<strong>不为</strong> <mathjax>$0$</mathjax>。考虑构造一个有理数列？首先，所谓趋近于 <mathjax>$a$</mathjax> 就是对任意小的 <mathjax>$\varepsilon &gt; 0$</mathjax>，从某一项开始都有 <mathjax>$|y_n - a| &lt; \varepsilon$</mathjax>。设 <mathjax>$y_n = q/p &gt; a $</mathjax>，那么上面这个极限就可以写成：<br />
+<mathjax>$$
+\lim {1/p \over q/p - a}
+$$</mathjax><br />
+如果 <mathjax>$0 &lt; q/p - a \leqslant 1/p$</mathjax>，那么若其有极限，则极限至少不小于 <mathjax>$1$</mathjax>，我们的目的就达成了。而我们总能找到这样的 <mathjax>$p$</mathjax>，满足 <mathjax>$1/p &lt; \varepsilon$</mathjax>。同时，<mathjax>$q$</mathjax> 只需要满足 <mathjax>$ap &lt; q \leqslant ap + 1$</mathjax>。这样令 <mathjax>$q = \lceil ap \rceil$</mathjax> 就 OK 了。于是我们就构造出了这样的有理数列。所以 <mathjax>$f(x)$</mathjax> 处处不可导，同时也处处不可微。</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:discontinuous-at-rationals">
+<p>证明可以查看 Wikipedia：<a href="https://en.wikipedia.org/wiki/Thomae%27s_function#Properties">https://en.wikipedia.org/wiki/Thomae%27s_function#Properties</a> &ldquo;<mathjax>$f$</mathjax> is discontinuous at all rational numbers, dense within the real numbers&rdquo;。虽然这个命题 Wikipedia 上也证明了，但是这里稍微初等一些。&#160;<a class="footnote-backref" href="#fnref:discontinuous-at-rationals" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
           <hr/>
           <div id="comments"></div>
           <script type="text/javascript">
-            const gitment = new Gitment({
-              id: 'f842059695047628ac8521c5417089f6',
-              owner: 'riteme',
-              repo: 'riteme.github.io',
+            const gitment = new Gitment({id: 'f842059695047628ac8521c5417089f6', owner: 'riteme', repo: 'riteme.github.io',
               oauth: {
                 client_id: 'd4fcffa25858a7a58e1a',
                 client_secret: 'e0c8e08beb95497871f8355416c69390634cec76',
@@ -424,25 +453,23 @@ $$</mathjax></p>
             })
             gitment.render('comments')
           </script>
-       </div>
-     </div>
-
-     <div class="mdl-cell mdl-cell--3-col mdl-cell--hide-tablet mdl-cell--hide-phone">
-       <div class="article">
-        <div class="mdl-card mdl-shadow--3dp" style="width: 100%">
-          <div class="mdl-card__supporting-text">
-            标签: <a href="/search.html?q=数学"><span class="label">数学</span></a><br/>
-            创建时间: 2017.12.16<br/>
-            上次修改: 2018.06.11<br />
-            统计: 17293 字 / 约 1 小时 9 分钟
-          </div>
         </div>
-        <br />
-        
-<div class="mdl-card mdl-shadow--3dp" style="width: 100%">
-  <div class="mdl-card__title mdl-card--border">
-    <h4 class="mdl-card__title-text">目录</h4>
-  </div>
+      </div>
+      <div class="mdl-cell mdl-cell--3-col mdl-cell--hide-tablet mdl-cell--hide-phone">
+        <div class="article">
+          <div class="mdl-card mdl-shadow--3dp sidebar-card">
+            <div class="mdl-card__actions sidebar-title">页面信息</div>
+            <div class="mdl-card__supporting-text">
+              标签: <a href="/search.html?q=数学"><span class="label">数学</span></a><br/>
+              创建时间: 2017.12.16<br/>
+              上次修改: 2018.11.16<br/>
+              字数统计: 18629 字 / 约 1 小时 14 分钟
+            </div>
+          </div>
+          <br/>
+          
+<div class="mdl-card mdl-shadow--3dp sidebar-card">
+  <div class="mdl-card__actions sidebar-title">目录</div>
   <div class="mdl-card__supporting-text">
     <div class="toc">
 <ul>
@@ -492,97 +519,95 @@ $$</mathjax></p>
 <li><a href="#_19">解决方案</a></li>
 </ul>
 </li>
+<li><a href="#20181116">2018.11.16</a><ul>
+<li><a href="#_20">问题描述</a></li>
+<li><a href="#_21">解决方案</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </div>
   </div>
 </div>
+<br/>
 
-        <br />
-        <div class="mdl-card mdl-shadow--3dp" style="width: 100%">
-          <div class="mdl-card__supporting-text">
-            <span class="mathopt-head">数学公式渲染引擎：</span>
-            <form name="mathopt">
-              <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
-                <input type="radio" id="option-1" class="mdl-radio__button" name="sel" value="mathjax">
-                <span class="mdl-radio__label">MathJax (推荐)</span>
-              </label><br />
-              <div id="tip-1">
-                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
-                  <input type="radio" id="option-2" class="mdl-radio__button" name="sel" value="katex">
-                  <span class="mdl-radio__label">KaTeX</span>
-                </label>
-              </div>
-              <div id="tip-2">
-                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
-                  <input type="radio" id="option-3" class="mdl-radio__button" name="sel" value="katex&mathjax">
-                  <span class="mdl-radio__label">Mixed</span>
-                </label>
-              </div>
-            </form>
+          <div class="mdl-card mdl-shadow--3dp sidebar-card">
+            <div class="mdl-card__actions sidebar-title">数学公式渲染</div>
+            <div class="mdl-card__supporting-text">
+              <form name="mathopt">
+                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
+                  <input type="radio" id="option-1" class="mdl-radio__button" name="sel" value="mathjax">
+                  <span class="mdl-radio__label">MathJax (推荐)</span>
+                </label><br/>
+                <div id="tip-1">
+                  <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+                    <input type="radio" id="option-2" class="mdl-radio__button" name="sel" value="katex">
+                    <span class="mdl-radio__label">KaTeX</span>
+                  </label>
+                </div>
+                <div id="tip-2">
+                  <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
+                    <input type="radio" id="option-3" class="mdl-radio__button" name="sel" value="katex&mathjax">
+                    <span class="mdl-radio__label">Mixed</span>
+                  </label>
+                </div>
+              </form>
+            </div>
           </div>
-        </div>
-        <div class="mdl-tooltip" data-mdl-for="tip-1">KaTeX 渲染效率很高，但是目前 KaTeX 容错性不强，因此使用 KaTeX 时可能会存在一些数学公式无法渲染的情况</div>
-        <div class="mdl-tooltip" data-mdl-for="tip-2">先使用 KaTeX 渲染，再使用 MathJax 渲染</div>
-        <br />
-        <div class="nano mdl-card mdl-shadow--3dp" id="nano">
-          <a class="nano-ref" target="_new" href="http://nichijou.wikia.com/wiki/Nano_Shinonome"></a>
-          <div class="mdl-card__actions">
-            <div class="nano-shell"><span class="shell-start">$</span> nano <a href="https://github.com/riteme/riteme.github.io/blob/master/blog/2017-12-16/math-problems.md">math-problems.md</a></div>
+          <div class="mdl-tooltip" data-mdl-for="tip-1">KaTeX 渲染效率很高，但是目前 KaTeX 容错性不强，因此使用 KaTeX 时可能会存在一些数学公式无法渲染的情况</div>
+          <div class="mdl-tooltip" data-mdl-for="tip-2">先使用 KaTeX 渲染，再使用 MathJax 渲染</div>
+          <br/>
+          <div class="nano mdl-card mdl-shadow--3dp sidebar-card" id="nano">
+            <a class="nano-ref" target="_new" href="http://nichijou.wikia.com/wiki/Nano_Shinonome"></a>
+            <div class="mdl-card__actions">
+              <div class="nano-shell"><span class="shell-start">$</span> nano <a href="https://github.com/riteme/riteme.github.io/blob/master/blog/2017-12-16/math-problems.md">math-problems.md</a></div>
+            </div>
           </div>
+          <div class="mdl-tooltip" data-mdl-for="nano">Nano Shinonome</div>
         </div>
-        <div class="mdl-tooltip" data-mdl-for="nano">Nano Shinonome</div>
-      </div>
-      <div class="return-up-button">
-        <a href="javascript:$('main').animate( { scrollTop: 0 } , 'fast')">
-          <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
-            <i class="material-icons">vertical_align_top</i>
-          </button>
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <footer class="mdl-mega-footer">
-    <div class="mdl-mega-footer__middle-section">
-      <div class="mdl-mega-footer__drop-down-section">
-        <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-        <h1 class="mdl-mega-footer__heading">RITEME.SITE</h1>
-        一个从不乱说话的博客...
-      </div>
-
-      <div class="mdl-mega-footer__drop-down-section">
-        <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-        <h1 class="mdl-mega-footer__heading">POWERED BY</h1>
-        <ul class="mdl-mega-footer__link-list">
-          <li><a href="http://pythonhosted.org/Markdown/">Python Markdown</a></li>
-          <li><a href="http://getmdl.io/">Material Design Lite</a></li>
-          <li><a href="http://www.tipue.com/search/">Tipuesearch</a></li>
-          <li><a href="http://www.mathjax.org/">MathJax</a> & <a href="http://khan.github.io/KaTeX/">KaTeX</a></li>
-          <li><a href="https://github.com/imsun/gitment">Gitment</a></li>
-        </ul>
-      </div>
-
-      <div class="mdl-mega-footer__drop-down-section">
-        <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-        <h1 class="mdl-mega-footer__heading">友情链接</h1>
-        <ul class="mdl-mega-footer__link-list">
-          <li><a href="http://ruanx.pw/">ruanxingzhi</a></li>
-          <li><a href="http://haogram.hol.es/">Haogram</a></li>
-          <li><a href="http://hjwjbsr.is-programmer.com/">HJWJBSR</a></li>
-          <li><a href="http://www.micdz.cn/">MicDZ</a></li>
-          <li><a href="http://blog.linyxus.xyz/">Linyxus</a></li>
-          <li><a href="http://memset0.cf/">memset0</a></li>
-        </ul>
+        <div class="return-up-button">
+          <a href="javascript:$('main').animate( { scrollTop: 0 } , 'fast')">
+            <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+              <i class="material-icons">vertical_align_top</i>
+            </button>
+          </a>
+        </div>
       </div>
     </div>
-
-    <div class="mdl-mega-footer__bottom-section">
-      Theme based on <a href="https://getmdl.io/">MDL</a> | Copyright © 2015-2018 riteme. All rights reserved.
-    </div>
-  </footer>
-</main>
+    <footer class="mdl-mega-footer">
+      <div class="mdl-mega-footer__middle-section">
+        <div class="mdl-mega-footer__drop-down-section">
+          <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+          <h1 class="mdl-mega-footer__heading">RITEME.SITE</h1>一个从不乱说话的博客...
+        </div>
+        <div class="mdl-mega-footer__drop-down-section">
+          <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+          <h1 class="mdl-mega-footer__heading">POWERED BY</h1>
+          <ul class="mdl-mega-footer__link-list">
+            <li><a href="http://pythonhosted.org/Markdown/">Python Markdown</a></li>
+            <li><a href="http://getmdl.io/">Material Design Lite</a></li>
+            <li><a href="http://www.tipue.com/search/">Tipuesearch</a></li>
+            <li><a href="http://www.mathjax.org/">MathJax</a> & <a href="http://khan.github.io/KaTeX/">KaTeX</a></li>
+            <li><a href="https://github.com/imsun/gitment">Gitment</a></li>
+          </ul>
+        </div>
+        <div class="mdl-mega-footer__drop-down-section">
+          <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+          <h1 class="mdl-mega-footer__heading">友情链接</h1>
+          <ul class="mdl-mega-footer__link-list">
+            <li><a href="http://ruanx.pw/">ruanxingzhi</a></li>
+            <li><a href="http://haogram.hol.es/">Haogram</a></li>
+            <li><a href="http://hjwjbsr.is-programmer.com/">HJWJBSR</a></li>
+            <li><a href="http://www.micdz.cn/">MicDZ</a></li>
+            <li><a href="http://blog.linyxus.xyz/">Linyxus</a></li>
+            <li><a href="http://memset0.cf/">memset0</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="mdl-mega-footer__bottom-section">Theme based on <a href="https://getmdl.io/">MDL</a> | Copyright © 2015-2018 riteme. All rights reserved.</div>
+    </footer>
+  </main>
 </div>
 </body>
 </html>

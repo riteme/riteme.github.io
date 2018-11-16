@@ -1,7 +1,7 @@
 ---
 title: 数学问题杂记
 create: 2017.12.16
-modified: 2018.6.11
+modified: 2018.11.16
 tags: 数学
 ---
 
@@ -27,3 +27,5 @@ tags: 数学
 ![markdown:include](blog/2017-12-16/20180519.md)
 
 ![markdown:include](blog/2017-12-16/20180610-spec2.md)
+
+![markdown:include](blog/2017-12-16/20181116-thomae-function.md)
