@@ -6,7 +6,7 @@ import sys
 import json
 import hashlib
 
-import lib.tipuesearch as tipuesearch 
+import lib.tipuesearch as tipuesearch
 import pagegen
 
 
