@@ -7,11 +7,11 @@ from __future__ import unicode_literals
 import os
 import hashlib
 
-import info
-import tag
-import tocer
-import parser
-import navigater
+import lib.info as info
+import lib.tag as tag
+import lib.tocer as tocer
+import lib.parser as parser
+import lib.navigater as navigater
 
 import bs4
 
