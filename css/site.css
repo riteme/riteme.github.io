@@ -1,3 +1,27 @@
+@font-face {
+    font-family: Consolas;
+    src: url("https://gitee.com/riteme/blogimg/raw/master/fonts/consola.ttf");
+}
+
+@font-face {
+    font-family: Consolas;
+    src: url("https://gitee.com/riteme/blogimg/raw/master/fonts/consolab.ttf");
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: Consolas;
+    src: url("https://gitee.com/riteme/blogimg/raw/master/fonts/consolai.ttf");
+    font-style: italic;
+}
+
+@font-face {
+    font-family: Consolas;
+    src: url("https://gitee.com/riteme/blogimg/raw/master/fonts/consolaz.ttf");
+    font-weight: bold;
+    font-style: italic;
+}
+
 body {
     font-family: "Segoe UI", Ubuntu, "Microsoft YaHei UI", "Microsoft YaHei", sans-serif;
 }
