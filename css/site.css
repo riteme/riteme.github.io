@@ -23,7 +23,7 @@
 }
 
 body {
-    font-family: "Segoe UI", Ubuntu, "Microsoft YaHei UI", "Microsoft YaHei", sans;
+    font-family: "Segoe UI", Ubuntu, "Microsoft YaHei UI", "Microsoft YaHei", sans-serif;
 }
 
 .article {
@@ -156,11 +156,12 @@ body {
     display: inline-block;
 }
 
-/*pre, code {
-    word-wrap: break-word;
+pre, code {
+    font-family: Consolas, monospace;
+    /*word-wrap: break-word;
     word-break: break-all;
-    white-space: pre-wrap;
-}*/
+    white-space: pre-wrap;*/
+}
 
 .article .footnote-ref {
     font-size: 80%;
