@@ -23,7 +23,7 @@
 }
 
 body {
-    font-family: "Segoe UI", Ubuntu, "Microsoft YaHei UI", "Microsoft YaHei", sans-serif;
+    font-family: "Segoe UI", Ubuntu, "Microsoft YaHei UI", "Microsoft YaHei", sans;
 }
 
 .article {
@@ -290,7 +290,7 @@ h3.panel-title {
 .nano .nano-shell {
     color: white;
     font-size: 1.1em;
-    font-family: monospace;
+    font-family: Consolas, monospace;
     font-weight: bold;
     word-wrap: break-word;
     word-break: break-all;
