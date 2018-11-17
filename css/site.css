@@ -1,37 +1,38 @@
 @font-face {
     font-family: 'Ubuntu Mono';
     src: local('Ubuntu Mono'),
-         url('https://gitee.com/riteme/blogimg/raw/master/fonts/ubmonor.woff') format('woff'),
-         url('https://gitee.com/riteme/blogimg/raw/master/fonts/ubmonor.ttf') format('truetype');
+         url('https://coding.net/u/riteme/p/blogimg/git/raw/master/fonts/ubmonor.woff') format('woff'),
+         url('https://coding.net/u/riteme/p/blogimg/git/raw/master/fonts/ubmonor.ttf') format('truetype');
 }
 
 @font-face {
     font-family: 'Ubuntu Mono';
     src: local('Ubuntu Mono Bold'),
-         url('https://gitee.com/riteme/blogimg/raw/master/fonts/ubmonob.woff') format('woff'),
-         url('https://gitee.com/riteme/blogimg/raw/master/fonts/ubmonob.ttf') format('truetype');
+         url('https://coding.net/u/riteme/p/blogimg/git/raw/master/fonts/ubmonob.woff') format('woff'),
+         url('https://coding.net/u/riteme/p/blogimg/git/raw/master/fonts/ubmonob.ttf') format('truetype');
     font-weight: bold;
 }
 
 @font-face {
     font-family: 'Ubuntu Mono';
     src: local('Ubuntu Mono Italic'),
-         url('https://gitee.com/riteme/blogimg/raw/master/fonts/ubmonoi.woff') format('woff'),
-         url('https://gitee.com/riteme/blogimg/raw/master/fonts/ubmonoi.ttf') format('truetype');
+         url('https://coding.net/u/riteme/p/blogimg/git/raw/master/fonts/ubmonoi.woff') format('woff'),
+         url('https://coding.net/u/riteme/p/blogimg/git/raw/master/fonts/ubmonoi.ttf') format('truetype');
     font-style: italic;
 }
 
 @font-face {
     font-family: 'Ubuntu Mono';
     src: local('Ubuntu Mono Bold Italic'),
-         url('https://gitee.com/riteme/blogimg/raw/master/fonts/ubmonoz.woff') format('woff'),
-         url('https://gitee.com/riteme/blogimg/raw/master/fonts/ubmonoz.ttf') format('truetype');
+         url('https://coding.net/u/riteme/p/blogimg/git/raw/master/fonts/ubmonoz.woff') format('woff'),
+         url('https://coding.net/u/riteme/p/blogimg/git/raw/master/fonts/ubmonoz.ttf') format('truetype');
     font-weight: bold;
     font-style: italic;
 }
 
 body {
     font-family: "Segoe UI", Ubuntu, "Microsoft YaHei UI", "Microsoft YaHei", sans-serif;
+    background: silver;
 }
 
 .article {
@@ -228,13 +229,6 @@ header .mdl-textfield {
     margin-top: 0.6em;
 }
 
-.return-up-button {
-    z-index: 1;
-    position: fixed;
-    right: 40px;
-    bottom: 40px;
-}
-
 .panel {
     margin-bottom: 20px;
     background-color: #ffffff;
@@ -276,11 +270,18 @@ h3.panel-title {
 }
 
 main .mdl-grid {
-    padding: 0 8px;
+    padding: 0;
+    margin: 0 10px;
+    background: white;
+    box-shadow: 0 0 8px gray;
 }
 
 main .mdl-cell.sidebar {
     margin: 0 8px 0 0;
+}
+
+.mdl-mega-footer {
+    border-top: 10px solid gray;
 }
 
 .sidebar {
@@ -408,11 +409,6 @@ mathjax + br {
 .linenos {
     border-right: solid 1px black !important;
 }
-
-/*.linenodiv > pre {
-    word-wrap: normal;
-    word-break: normal;
-}*/
 
 .mathopt-head {
     color: black;
