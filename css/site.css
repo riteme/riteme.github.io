@@ -1,23 +1,31 @@
 @font-face {
-    font-family: Consolas;
-    src: url("https://gitee.com/riteme/blogimg/raw/master/fonts/consola.ttf");
+    font-family: 'Ubuntu Mono';
+    src: local('Ubuntu Mono'),
+         url('https://gitee.com/riteme/blogimg/raw/master/fonts/ubmonor.woff') format('woff'),
+         url('https://gitee.com/riteme/blogimg/raw/master/fonts/ubmonor.ttf') format('truetype');
 }
 
 @font-face {
-    font-family: Consolas;
-    src: url("https://gitee.com/riteme/blogimg/raw/master/fonts/consolab.ttf");
+    font-family: 'Ubuntu Mono';
+    src: local('Ubuntu Mono Bold'),
+         url('https://gitee.com/riteme/blogimg/raw/master/fonts/ubmonob.woff') format('woff'),
+         url('https://gitee.com/riteme/blogimg/raw/master/fonts/ubmonob.ttf') format('truetype');
     font-weight: bold;
 }
 
 @font-face {
-    font-family: Consolas;
-    src: url("https://gitee.com/riteme/blogimg/raw/master/fonts/consolai.ttf");
+    font-family: 'Ubuntu Mono';
+    src: local('Ubuntu Mono Italic'),
+         url('https://gitee.com/riteme/blogimg/raw/master/fonts/ubmonoi.woff') format('woff'),
+         url('https://gitee.com/riteme/blogimg/raw/master/fonts/ubmonoi.ttf') format('truetype');
     font-style: italic;
 }
 
 @font-face {
-    font-family: Consolas;
-    src: url("https://gitee.com/riteme/blogimg/raw/master/fonts/consolaz.ttf");
+    font-family: 'Ubuntu Mono';
+    src: local('Ubuntu Mono Bold Italic'),
+         url('https://gitee.com/riteme/blogimg/raw/master/fonts/ubmonoz.woff') format('woff'),
+         url('https://gitee.com/riteme/blogimg/raw/master/fonts/ubmonoz.ttf') format('truetype');
     font-weight: bold;
     font-style: italic;
 }
@@ -157,7 +165,7 @@ body {
 }
 
 pre, code {
-    font-family: Consolas, monospace;
+    font-family: Consolas, 'Ubuntu Mono', monospace;
     /*word-wrap: break-word;
     word-break: break-all;
     white-space: pre-wrap;*/
@@ -263,6 +271,10 @@ h3.panel-title {
     margin-bottom: 0;
 }
 
+.gitment-container, .gitment-editor-tab, .gitment-editor-submit {
+    font-family: 'Segoe UI', 'Ubuntu', 'Microsoft YaHei UI', 'Microsoft YaHei', sans-serif;
+}
+
 .sidebar-card {
     width: 100%;
 }
@@ -291,7 +303,7 @@ h3.panel-title {
 .nano .nano-shell {
     color: white;
     font-size: 1.1em;
-    font-family: Consolas, monospace;
+    font-family: Consolas, 'Ubuntu Mono', monospace;
     font-weight: bold;
     word-wrap: break-word;
     word-break: break-all;
@@ -392,10 +404,6 @@ mathjax + br {
 
 .gitment-comments-init-btn, .gitment-editor-submit, .gitment-comments-init-btn:disabled, .gitment-editor-submit:disabled {
     background-color: #2196f3;
-}
-
-.mdl-layout-title {
-    font-family: "Segoe UI", Ubuntu, "Microsoft YaHei UI", "Microsoft YaHei", sans-serif;
 }
 
 .codehilite .hll { background-color: #ffffcc }
