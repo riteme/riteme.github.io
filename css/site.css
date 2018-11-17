@@ -221,7 +221,7 @@ div.toc a {
 }
 
 header .material-icons {
-    vertical-align: text-top;
+    line-height: 48px;
 }
 
 header .mdl-textfield {
