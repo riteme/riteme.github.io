@@ -21,7 +21,6 @@ SMALLEST_UPDATE_FOLDERS = [
 SMALLEST_UPDATE_FILES = [
     "index.html",
     "posts.html",
-    "links.html",
     "css/site.css",
     "tipuesearch/tipuesearch_content.js"
 ]
