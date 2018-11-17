@@ -290,6 +290,7 @@ main .mdl-cell.sidebar {
 }
 
 .sidebar .article {
+    position: -webkit-sticky;
     position: sticky;
     top: 0;
     margin: 0;
