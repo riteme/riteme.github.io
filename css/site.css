@@ -69,7 +69,11 @@ body {
 }
 
 .article h2, h3, h4, h5, h6 {
-    margin: 0 0 8px 0;
+    margin: 0 0 0.5em;
+}
+
+.article p {
+    margin-bottom: 0.3em;
 }
 
 .article img {
@@ -269,6 +273,15 @@ h3.panel-title {
     font-family: 'Segoe UI', 'Ubuntu', 'Microsoft YaHei UI', 'Microsoft YaHei', sans-serif;
 }
 
+.gitment-editor-submit {
+    border-radius: 3px;
+}
+
+.sidebar .mdl-card__supporting-text {
+    padding: 1em;
+    width: calc(100% - 2em);
+}
+
 main .mdl-grid {
     padding: 0;
     margin: 0 10px;
@@ -376,6 +389,7 @@ mathjax + br {
     display: block;
     overflow-x: auto;
     overflow-y: hidden;
+    margin: 0 !important;
 }
 
 .katex .tag {

@@ -433,6 +433,29 @@ $$</mathjax><br />
 \lim {1/p \over q/p - a}
 $$</mathjax><br />
 如果 <mathjax>$0 &lt; q/p - a \leqslant 1/p$</mathjax>，那么若其有极限，则极限至少不小于 <mathjax>$1$</mathjax>，我们的目的就达成了。而我们总能找到这样的 <mathjax>$p$</mathjax>，满足 <mathjax>$1/p &lt; \varepsilon$</mathjax>。同时，<mathjax>$q$</mathjax> 只需要满足 <mathjax>$ap &lt; q \leqslant ap + 1$</mathjax>。这样令 <mathjax>$q = \lceil ap \rceil$</mathjax> 就 OK 了。于是我们就构造出了这样的有理数列。所以 <mathjax>$f(x)$</mathjax> 处处不可导，同时也处处不可微。</p>
+<h3 id="20181117">2018.11.17</h3>
+<h4 id="_22">问题描述</h4>
+<p>已知 <mathjax>$\varphi$</mathjax> 为任意实数，求：<br />
+<mathjax>$$
+\lim_{n\rightarrow\infty} \prod_{k = 1}^n \cos{\varphi \over 2^k}
+$$</mathjax></p>
+<h4 id="_23">解决方案</h4>
+<p>首先你需要跳出 <mathjax>$\cos$</mathjax> 的怪圈，想到 <mathjax>$\sin$</mathjax> 的倍角公式：<br />
+<mathjax>$$
+\sin x = 2\cos \frac{x}2 \sin \frac{x}2
+$$</mathjax></p>
+<p>于是你发现可以继续展开下去，得到一堆 <mathjax>$\cos$</mathjax> 相乘：<br />
+<mathjax>$$
+\sin x = 2^n\cos \frac{x}2 \cos \frac{x}4 \cdots \cos \frac{x}{2^n} \sin \frac{x}{2^n}
+$$</mathjax></p>
+<p>所以我们求的极限就是：<br />
+<mathjax>$$
+\lim_{n\rightarrow\infty} \prod_{k = 1}^n \cos{\varphi \over 2^k} = \lim_{n\rightarrow\infty} {\sin \varphi \over 2^n \sin \frac{\varphi}{2^n}}
+$$</mathjax><br />
+当然上面这里要求 <mathjax>$\varphi/2^n \neq 0$</mathjax>。首先当 <mathjax>$n$</mathjax> 足够大时，<mathjax>$|\varphi / 2^n| &lt; \pi / 2$</mathjax>，这样就只剩 <mathjax>$\varphi = 0$</mathjax> 的情况了。而若 <mathjax>$\varphi = 0$</mathjax>，原来那个极限等于 <mathjax>$1$</mathjax>，之后我们就默认其不为 <mathjax>$0$</mathjax>。由于 <mathjax>$\varphi / 2^n \rightarrow 0$</mathjax>，利用 <mathjax>$x \sim \sin x$</mathjax> (<mathjax>$x \rightarrow 0$</mathjax>)，所以：<br />
+<mathjax>$$
+\lim_{n\rightarrow\infty} {\sin \varphi \over 2^n \sin \frac{\varphi}{2^n}} = \lim_{n \rightarrow \infty} {\sin \varphi \over 2^n \frac{\varphi}{2^n}} = {\sin \varphi \over \varphi}
+$$</mathjax></p>
 <div class="footnote">
 <hr />
 <ol>
@@ -462,8 +485,8 @@ $$</mathjax><br />
             <div class="mdl-card__supporting-text">
               标签: <a href="/search.html?q=数学"><span class="label">数学</span></a><br/>
               创建时间: 2017.12.16<br/>
-              上次修改: 2018.11.16<br/>
-              字数统计: 18629 字 / 约 1 小时 14 分钟
+              上次修改: 2018.11.17<br/>
+              字数统计: 19682 字 / 约 1 小时 18 分钟
             </div>
           </div>
           <br/>
@@ -522,6 +545,11 @@ $$</mathjax><br />
 <li><a href="#20181116">2018.11.16</a><ul>
 <li><a href="#_20">问题描述</a></li>
 <li><a href="#_21">解决方案</a></li>
+</ul>
+</li>
+<li><a href="#20181117">2018.11.17</a><ul>
+<li><a href="#_22">问题描述</a></li>
+<li><a href="#_23">解决方案</a></li>
 </ul>
 </li>
 </ul>
