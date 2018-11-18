@@ -7,7 +7,7 @@
 
 @font-face {
     font-family: 'Ubuntu Mono';
-    src: /*local('Ubuntu Mono Bold'),*/
+    src: local('Ubuntu Mono Bold'),
          url('/assets/ubmonob.woff') format('woff'),
          url('/assets/ubmonob.ttf') format('truetype');
     font-weight: bold;
@@ -346,7 +346,7 @@ main .mdl-cell.sidebar {
 .nano .nano-shell {
     color: white;
     font-size: 1.1em;
-    font-family: /*Consolas,*/ 'Ubuntu Mono', monospace;
+    font-family: Consolas, 'Ubuntu Mono', monospace;
     font-weight: bold;
     word-wrap: break-word;
     word-break: break-all;
