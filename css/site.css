@@ -1,31 +1,31 @@
 @font-face {
     font-family: 'Ubuntu Mono';
     src: local('Ubuntu Mono'),
-         url('https://coding.net/u/riteme/p/blogimg/git/raw/master/fonts/ubmonor.woff') format('woff'),
-         url('https://coding.net/u/riteme/p/blogimg/git/raw/master/fonts/ubmonor.ttf') format('truetype');
+         url('/assets/ubmonor.woff') format('woff'),
+         url('/assets/ubmonor.ttf') format('truetype');
 }
 
 @font-face {
     font-family: 'Ubuntu Mono';
-    src: local('Ubuntu Mono Bold'),
-         url('https://coding.net/u/riteme/p/blogimg/git/raw/master/fonts/ubmonob.woff') format('woff'),
-         url('https://coding.net/u/riteme/p/blogimg/git/raw/master/fonts/ubmonob.ttf') format('truetype');
+    src: /*local('Ubuntu Mono Bold'),*/
+         url('/assets/ubmonob.woff') format('woff'),
+         url('/assets/ubmonob.ttf') format('truetype');
     font-weight: bold;
 }
 
 @font-face {
     font-family: 'Ubuntu Mono';
     src: local('Ubuntu Mono Italic'),
-         url('https://coding.net/u/riteme/p/blogimg/git/raw/master/fonts/ubmonoi.woff') format('woff'),
-         url('https://coding.net/u/riteme/p/blogimg/git/raw/master/fonts/ubmonoi.ttf') format('truetype');
+         url('/assets/ubmonoi.woff') format('woff'),
+         url('/assets/ubmonoi.ttf') format('truetype');
     font-style: italic;
 }
 
 @font-face {
     font-family: 'Ubuntu Mono';
     src: local('Ubuntu Mono Bold Italic'),
-         url('https://coding.net/u/riteme/p/blogimg/git/raw/master/fonts/ubmonoz.woff') format('woff'),
-         url('https://coding.net/u/riteme/p/blogimg/git/raw/master/fonts/ubmonoz.ttf') format('truetype');
+         url('/assets/ubmonoz.woff') format('woff'),
+         url('/assets/ubmonoz.ttf') format('truetype');
     font-weight: bold;
     font-style: italic;
 }
@@ -315,17 +315,22 @@ main .mdl-cell.sidebar {
 
 .sidebar-card {
     width: 100%;
+    overflow: visible;
 }
 
 .sidebar-title {
     padding: 0.5em 1em;
     font-size: 1.2em;
-    background: rgb(88, 174, 243);
+    background: rgba(32, 150, 243,0.7);
+    position: -webkit-sticky;
+    position: sticky;
+    top: -40px;
+    z-index: 3;
 }
 
 .nano.mdl-card {
     height: 200px;
-    background: url('https://coding.net/u/riteme/p/blogimg/git/raw/master/other/nano.jpg') center / cover;
+    background: url('/assets/nano.jpg') center / cover;
 }
 
 .nano > .mdl-card__actions {
@@ -341,7 +346,7 @@ main .mdl-cell.sidebar {
 .nano .nano-shell {
     color: white;
     font-size: 1.1em;
-    font-family: Consolas, 'Ubuntu Mono', monospace;
+    font-family: /*Consolas,*/ 'Ubuntu Mono', monospace;
     font-weight: bold;
     word-wrap: break-word;
     word-break: break-all;
