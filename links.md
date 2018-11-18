@@ -17,6 +17,7 @@ tags: Friend Links
 | Linyxus | [blog.linyxus.xyz](http://blog.linyxus.xyz/) |
 | memset0 | [memset0.cf](http://memset0.cf/) |
 | MicDZ | [www.micdz.cn](http://www.micdz.cn/) |
+| xehoth | [blog.xehoth.cc](https://blog.xehoth.cc/)
 
 另外这里是几个本校神犇：
 
