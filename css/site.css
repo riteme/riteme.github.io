@@ -386,9 +386,9 @@ mathjax + br {
     display: none;
 }
 
-.katex {
+/*.katex {
     font-size: 110%;
-}
+}*/
 
 .katex-display, .MathJax_SVG_Display, .MathJax_Display {
     display: block;
@@ -397,11 +397,11 @@ mathjax + br {
     margin: 0 !important;
 }
 
-.katex .tag {
+/*.katex .tag {
     position: initial !important;
     right: initial !important;
     float: right;
-}
+}*/
 
 .codehilitetable {
     border-collapse: collapse;

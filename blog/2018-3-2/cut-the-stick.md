@@ -48,7 +48,7 @@ $$
 $$
 \mathbf{E}\left[\sum_{j=1}^k \ln X_j\right] = \sum_{j = 1}^k \mathbf{E}[\ln X_j] < - \ln n
 $$
-而 $E[X_j] = \lim_{y \rightarrow 0}\int_y^1 \ln x \ \mathrm{d}x = \int_{-\infty}^0 e^x \ \mathrm{d}x = -1$，所以可知期望 $\ln n$ 次后满足不等式。因此原问题的答案就是 $\ln a/b$。
+而 $E[\ln X_j] = \lim_{y \rightarrow 0}\int_y^1 \ln x \ \mathrm{d}x = \int_{-\infty}^0 e^x \ \mathrm{d}x = -1$，所以可知期望 $\ln n$ 次后满足不等式。因此原问题的答案就是 $\ln a/b$。
 
 ## 相关的概率问题
 
