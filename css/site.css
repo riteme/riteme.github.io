@@ -52,28 +52,40 @@ body {
 }
 
 .article h1 {
-    font-size: 40px;
+    font-size: 2.8em;
     color: #0077bb;
 }
 
 .article h2 {
-    font-size: 28px;
+    font-size: 1.8em;
 }
 
 .article h3 {
-    font-size: 25px;
+    font-size: 1.6em;
 }
 
 .article h4 {
-    font-size: 22px;
+    font-size: 1.4em;
+}
+
+.article h5 {
+    font-size: 1.2em;
+}
+
+.article h6 {
+    font-size: 1.1em;
 }
 
 .article h2, h3, h4, h5, h6 {
-    margin: 0 0 0.5em;
+    margin: 0.25em 0 0.25em 0;
 }
 
 .article p {
-    margin-bottom: 0.3em;
+    margin: 0.15em 0 0.15em 0;
+}
+
+.article ol {
+    margin: 0.5em 0 0.5em 0;
 }
 
 .article img {
@@ -92,12 +104,9 @@ body {
 }
 
 .article table {
-    margin-bottom: 16px;
-}
-
-.article table {
     border-collapse: collapse;
     width: 100%;
+    margin: 0.5em 0 0.5em 0;
 }
 
 .article tr {
@@ -130,8 +139,8 @@ body {
     background: #eeeeee;
     color: #272727;;
     border-left: 10px solid #cccccc;
-    margin: 0 0 24px 0;
-    padding: 1px 4px 1px 10px;
+    margin: 0.5em 0 0.5em 0;
+    padding: 0.1em 1em 0.1em 1em;
     font-style: normal;
     font-family: inherit;
 }
@@ -150,11 +159,13 @@ body {
 }
 
 .article .label {
-    padding: 2px 4px;
     border-radius: 3px;
     background-color: rgb(62, 169, 243);
     color: white;
     font-size: 80%;
+    margin: 0.1em 0 0.1em 0;
+    padding: 2px 4px;
+    display: inline-block;
 }
 
 .article center {
@@ -162,11 +173,6 @@ body {
     margin: auto;
     font-size: 15px;
     color: #383838;
-}
-
-.article .label {
-    margin-bottom: 2px;
-    display: inline-block;
 }
 
 pre, code {
