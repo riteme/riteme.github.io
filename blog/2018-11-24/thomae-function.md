@@ -1,7 +1,7 @@
 ---
 title: 浅谈扩展 Thomae 函数的可微性
 create: 2018.11.24
-modified: 2018.11.24
+modified: 2018.12.02
 tags: 数学
       数学分析
       Thomae 函数
@@ -125,7 +125,7 @@ $$
 
 当 $p > 1$ 时，$1/p^2$ 显然小于 $1/p$，而相邻两个 $q/p$ 的差却为 $1/p$，所以对于特定的 $p$，满足条件的 $q$ 是唯一的。当然特殊情况 $p = 1$ 时，也只有 $\alpha = 1/2 + k \:\: (k \in \mathbf Z)$ 时才能有两个 $q$，不过可惜 $\alpha$ 为无理数，所以无论哪种情况都可以视作唯一的。从这一点可以得到 Dirichlet 近似定理的一个推论：
 
-> 设 $\alpha$ 为无理数[^infinity-for-irrationals]，存在**无穷多**的 $q$ 和 $p$（$q$ 是整数，$p$ 是正整数）满足：
+> **推论 1**　设 $\alpha$ 为无理数[^infinity-for-irrationals]，存在**无穷多**的 $q$ 和 $p$（$q$ 是整数，$p$ 是正整数）满足：
 > $$
 > \left|\alpha - \frac{q}p\right| < \frac1{p^2}
 > $$
@@ -134,7 +134,7 @@ $$
 
 考虑到 $q$ 的唯一性，上述定理还可以写做：
 
-> 设 $\alpha$ 为无理数，存在无穷多的正整数 $n$ 满足：
+> **推论 2**　设 $\alpha$ 为无理数，存在无穷多的正整数 $n$ 满足：
 > $$
 > \min\{\{n\alpha\},\ 1 - \{n\alpha\}\} < \frac1n \tag{3}
 > $$
@@ -162,7 +162,7 @@ $$
 ap - \frac1p \leqslant q < ap
 $$
 
-所以 $q$ 只能为 $\lfloor ap \rfloor$。由于 $ap - q = ap - \lfloor ap \rfloor = \{ap\}$，所以得到 $p$ 只需要满足 $\{ap\} \leqslant 1/p$。换言之，在不等式 $(3)$ 中，我们先可以取足够大的 $p$，使得 $\varepsilon > 1/p$ 以满足函数极限逼近的要求，然后考虑 $\min$ 的取值。若是取到左边，则存在 $q = \lfloor ap \rfloor$ 使得 $f_2(x) / (x_n - a) \leqslant -1$。反之 $q = \lceil ap \rceil$ 使得这个东西不小于 $1$。这样无论如何，极限要么不存在，要不就不等于 $0$。所以 $f_2(x)$ 在 $a$ 处不可微。<span style="float: right">$\blacksquare$</span>
+所以 $q$ 只能为 $\lfloor ap \rfloor$。由于 $ap - q = ap - \lfloor ap \rfloor = \{ap\}$，所以得到 $p$ 只需要满足 $\{ap\} \leqslant 1/p$。换言之，在不等式 $(3)$ 中，我们先可以取足够大的 $p$，使得 $\varepsilon > 1/p$ 以满足函数极限逼近的要求，然后考虑 $\min$ 的取值。若是取到左边，则存在 $q = \lfloor ap \rfloor$ 使得 $f_2(x) / (x_n - a) \leqslant -1$。反之 $q = \lceil ap \rceil$ 使得这个东西不小于 $1$。这样无论如何，极限要么不存在，要么就不等于 $0$。所以 $f_2(x)$ 在 $a$ 处不可微。<span style="float: right">$\blacksquare$</span>
 
 综上 $f_1(x)$ 和 $f_2(x)$ 都是处处不可微的。
 

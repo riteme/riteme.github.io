@@ -55,7 +55,7 @@
   <main class="mdl-layout__content">
     <div class="mdl-grid">
       <div class="mdl-cell mdl-cell--9-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
-        <div class="article">
+        <div class="article" lang="en-US">
           
 <h1 id="thomae">浅谈扩展 Thomae 函数的可微性</h1>
 <p>一般定义的 Thomae&rsquo;s Function <mathjax>$f(x)$</mathjax> 为：</p>
@@ -133,7 +133,7 @@ $$</mathjax></p>
 <p>这时把整数部分补上就可以完成证明：令 <mathjax>$p = j - i \in [1,\ n]$</mathjax>，<mathjax>$q = \lfloor j\alpha \rfloor - \lfloor i\alpha \rfloor \in \mathbf Z$</mathjax>，那么 <mathjax>$|p\alpha - q|$</mathjax> 就变成了 <mathjax>$(2)$</mathjax> 中的式子，定理证明完毕。<span style="float: right"><mathjax>$\blacksquare$</mathjax></span></p>
 <p>当 <mathjax>$p &gt; 1$</mathjax> 时，<mathjax>$1/p^2$</mathjax> 显然小于 <mathjax>$1/p$</mathjax>，而相邻两个 <mathjax>$q/p$</mathjax> 的差却为 <mathjax>$1/p$</mathjax>，所以对于特定的 <mathjax>$p$</mathjax>，满足条件的 <mathjax>$q$</mathjax> 是唯一的。当然特殊情况 <mathjax>$p = 1$</mathjax> 时，也只有 <mathjax>$\alpha = 1/2 + k \:\: (k \in \mathbf Z)$</mathjax> 时才能有两个 <mathjax>$q$</mathjax>，不过可惜 <mathjax>$\alpha$</mathjax> 为无理数，所以无论哪种情况都可以视作唯一的。从这一点可以得到 Dirichlet 近似定理的一个推论：</p>
 <blockquote>
-<p>设 <mathjax>$\alpha$</mathjax> 为无理数<sup id="fnref:infinity-for-irrationals"><a class="footnote-ref" href="#fn:infinity-for-irrationals" rel="footnote">3</a></sup>，存在<strong>无穷多</strong>的 <mathjax>$q$</mathjax> 和 <mathjax>$p$</mathjax>（<mathjax>$q$</mathjax> 是整数，<mathjax>$p$</mathjax> 是正整数）满足：<br />
+<p><strong>推论 1</strong>　设 <mathjax>$\alpha$</mathjax> 为无理数<sup id="fnref:infinity-for-irrationals"><a class="footnote-ref" href="#fn:infinity-for-irrationals" rel="footnote">3</a></sup>，存在<strong>无穷多</strong>的 <mathjax>$q$</mathjax> 和 <mathjax>$p$</mathjax>（<mathjax>$q$</mathjax> 是整数，<mathjax>$p$</mathjax> 是正整数）满足：<br />
 <mathjax>$$
 \left|\alpha - \frac{q}p\right| &lt; \frac1{p^2}
 $$</mathjax></p>
@@ -141,7 +141,7 @@ $$</mathjax></p>
 <p><strong>证明</strong>　假设这种近似数量有限，设为 <mathjax>$q_1/p_1,\ q_2/p_2,\ ...,\ q_m/p_m$</mathjax>，那么取足够大的 <mathjax>$n$</mathjax> 使得 <mathjax>$1/n &lt; \min|\alpha - p_k/q_k| \:\: (1 \leqslant k \leqslant m)$</mathjax>。由于 <mathjax>$\alpha$</mathjax> 为无理数，所以不等式右边肯定不是 <mathjax>$0$</mathjax>。于是根据 Dirichlet 定理，必定能再得到 <mathjax>$q_{m + 1}/p_{m + 1}$</mathjax> 满足 <mathjax>$|\alpha - q_{m + 1}/p_{m + 1}| &lt; 1/np_{m + 1} \leqslant 1/n$</mathjax>，这表明新的近似比之前的近似都更加优秀，不可能在前 <mathjax>$m$</mathjax> 个中出现过，与假设相矛盾。<span style="float: right"><mathjax>$\blacksquare$</mathjax></span></p>
 <p>考虑到 <mathjax>$q$</mathjax> 的唯一性，上述定理还可以写做：</p>
 <blockquote>
-<p>设 <mathjax>$\alpha$</mathjax> 为无理数，存在无穷多的正整数 <mathjax>$n$</mathjax> 满足：<br />
+<p><strong>推论 2</strong>　设 <mathjax>$\alpha$</mathjax> 为无理数，存在无穷多的正整数 <mathjax>$n$</mathjax> 满足：<br />
 <mathjax>$$
 \min\{\{n\alpha\},\ 1 - \{n\alpha\}\} &lt; \frac1n \tag{3}
 $$</mathjax></p>
@@ -159,7 +159,7 @@ $$</mathjax></p>
 <p><mathjax>$$
 ap - \frac1p \leqslant q &lt; ap
 $$</mathjax></p>
-<p>所以 <mathjax>$q$</mathjax> 只能为 <mathjax>$\lfloor ap \rfloor$</mathjax>。由于 <mathjax>$ap - q = ap - \lfloor ap \rfloor = \{ap\}$</mathjax>，所以得到 <mathjax>$p$</mathjax> 只需要满足 <mathjax>$\{ap\} \leqslant 1/p$</mathjax>。换言之，在不等式 <mathjax>$(3)$</mathjax> 中，我们先可以取足够大的 <mathjax>$p$</mathjax>，使得 <mathjax>$\varepsilon &gt; 1/p$</mathjax> 以满足函数极限逼近的要求，然后考虑 <mathjax>$\min$</mathjax> 的取值。若是取到左边，则存在 <mathjax>$q = \lfloor ap \rfloor$</mathjax> 使得 <mathjax>$f_2(x) / (x_n - a) \leqslant -1$</mathjax>。反之 <mathjax>$q = \lceil ap \rceil$</mathjax> 使得这个东西不小于 <mathjax>$1$</mathjax>。这样无论如何，极限要么不存在，要不就不等于 <mathjax>$0$</mathjax>。所以 <mathjax>$f_2(x)$</mathjax> 在 <mathjax>$a$</mathjax> 处不可微。<span style="float: right"><mathjax>$\blacksquare$</mathjax></span></p>
+<p>所以 <mathjax>$q$</mathjax> 只能为 <mathjax>$\lfloor ap \rfloor$</mathjax>。由于 <mathjax>$ap - q = ap - \lfloor ap \rfloor = \{ap\}$</mathjax>，所以得到 <mathjax>$p$</mathjax> 只需要满足 <mathjax>$\{ap\} \leqslant 1/p$</mathjax>。换言之，在不等式 <mathjax>$(3)$</mathjax> 中，我们先可以取足够大的 <mathjax>$p$</mathjax>，使得 <mathjax>$\varepsilon &gt; 1/p$</mathjax> 以满足函数极限逼近的要求，然后考虑 <mathjax>$\min$</mathjax> 的取值。若是取到左边，则存在 <mathjax>$q = \lfloor ap \rfloor$</mathjax> 使得 <mathjax>$f_2(x) / (x_n - a) \leqslant -1$</mathjax>。反之 <mathjax>$q = \lceil ap \rceil$</mathjax> 使得这个东西不小于 <mathjax>$1$</mathjax>。这样无论如何，极限要么不存在，要么就不等于 <mathjax>$0$</mathjax>。所以 <mathjax>$f_2(x)$</mathjax> 在 <mathjax>$a$</mathjax> 处不可微。<span style="float: right"><mathjax>$\blacksquare$</mathjax></span></p>
 <p>综上 <mathjax>$f_1(x)$</mathjax> 和 <mathjax>$f_2(x)$</mathjax> 都是处处不可微的。</p>
 <h2 id="f_3x"><mathjax>$f_3(x)$</mathjax> 的可微性</h2>
 <p>对于 <mathjax>$f_3(x)$</mathjax>，Dirichlet 近似定理的结论已经不够用了，继续下去可能需要动用无理测度的理论，如参考资料 <a href="#BRS09">[BRS09]</a> 所用的方法。我太菜了不懂这套理论，只能就此打住了。实际上，在这个参考资料里已经证明了：<mathjax>$f_3(x)$</mathjax> <strong>有可微点</strong>。</p>
@@ -213,8 +213,8 @@ $$</mathjax></p>
             <div class="mdl-card__supporting-text">
               标签: <a href="/search.html?q=数学"><span class="label">数学</span></a> <a href="/search.html?q=数学分析"><span class="label">数学分析</span></a> <a href="/search.html?q=Thomae 函数"><span class="label">Thomae 函数</span></a> <a href="/search.html?q=Dirichlet 近似"><span class="label">Dirichlet 近似</span></a><br/>
               创建时间: 2018.11.24<br/>
-              上次修改: 2018.11.24<br/>
-              字数统计: 8015 字 / 约 32 分钟
+              上次修改: 2018.12.02<br/>
+              字数统计: 8025 字 / 约 32 分钟
             </div>
           </div>
           <br/>

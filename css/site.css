@@ -84,6 +84,16 @@ body {
     margin: 0.15em 0 0.15em 0;
 }
 
+.article p {
+    text-align: justify;
+    text-justify: newspaper;
+    text-justify: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+
 .article ol {
     margin: 0.5em 0 0.5em 0;
 }
