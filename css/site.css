@@ -114,11 +114,10 @@ a:hover {
     display: block;
     margin: 0 auto;
     max-width: 100%;
-    border: white 1px solid;
 }
 
 .article img:hover {
-    border: silver 1px dashed;
+    outline: silver 1px dashed;
 }
 
 .article pre {
@@ -137,6 +136,10 @@ a:hover {
 
 .article tr {
     line-height: 30px;
+}
+
+.article tr:hover {
+    background: #f6f6f6;
 }
 
 .article td, th {
@@ -177,6 +180,10 @@ a:hover {
 
 .article blockquote::after {
     display: none;
+}
+
+.article blockquote:hover {
+    border-left: 10px solid rgb(32, 150, 243);
 }
 
 .article blockquote > p {
@@ -495,7 +502,7 @@ mathjax + br {
 .codehilite .kn { color: #0000ff }
 .codehilite .kp { color: #0000ff }
 .codehilite .kr { color: #0000ff }
-.codehilite .kt { color: #2b91af }
+.codehilite .kt { color: #2b91af; font-style: italic }
 .codehilite .s { color: #a31515 }
 .codehilite .nc { color: #2b91af }
 .codehilite .ow { color: #0000ff }
