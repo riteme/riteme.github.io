@@ -35,6 +35,18 @@ body {
     background: silver;
 }
 
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.mdl-navigation__link:hover {
+    text-decoration: none;
+}
+
 .article {
     margin: 40px 20px;
 }
@@ -114,12 +126,7 @@ body {
 }
 
 .article a {
-    text-decoration: none;
     color: #2195f3;
-}
-
-.article a:hover {
-    text-decoration: underline;
 }
 
 .article table {
@@ -191,7 +198,11 @@ body {
     max-width: 90%;
     margin: auto;
     font-size: 15px;
-    color: #383838;
+    color: #9a9a9a;
+}
+
+.article center:hover {
+    color: rgba(0, 0, 0, 0.87);
 }
 
 pre, code {
@@ -230,10 +241,6 @@ div.toc ul {
 
 div.toc li {
     line-height: 140%;
-}
-
-div.toc a {
-    text-decoration: none;
 }
 
 .mdl-card {
