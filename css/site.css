@@ -102,6 +102,11 @@ body {
     display: block;
     margin: 0 auto;
     max-width: 100%;
+    border: white 1px solid;
+}
+
+.article img:hover {
+    border: silver 1px dashed;
 }
 
 .article pre {
@@ -111,6 +116,10 @@ body {
 .article a {
     text-decoration: none;
     color: #2195f3;
+}
+
+.article a:hover {
+    text-decoration: underline;
 }
 
 .article table {
