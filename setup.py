@@ -22,7 +22,8 @@ SMALLEST_UPDATE_FILES = [
     "index.html",
     "posts.html",
     "css/site.css",
-    "tipuesearch/tipuesearch_content.js"
+    "tipuesearch/tipuesearch_content.js",
+    "math-renderer/selector.js"
 ]
 
 def setup_quick():
