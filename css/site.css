@@ -368,7 +368,6 @@ main .mdl-cell.sidebar {
 }
 
 .sidebar {
-    border-left: 1px dashed silver;
     margin-left: 0;
     padding-left: 8px;
 }
