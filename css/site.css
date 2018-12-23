@@ -75,6 +75,10 @@ a:hover {
     background: #f5f5f5;
 }
 
+#comments p:hover, #comments li:hover, #comments li:hover, #comments h1:hover, #comments h2:hover, #comments h3:hover, #comments h4:hover, #comments h5:hover, #comments h6:hover {
+    background: none;
+}
+
 .article {
     margin: 40px 20px;
 }
