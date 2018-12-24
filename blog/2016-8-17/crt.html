@@ -10,11 +10,12 @@
   <link rel="stylesheet" href="/gitment/gitment.css">
   <link rel="stylesheet" href="/math-renderer/katex/katex.min.css">
   <link rel="stylesheet" href="/css/site.css">
-  <script src="/jquery/jquery-2.2.4.min.js"></script>
-  <script src="/jquery/js-cookie.js"></script>
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/js-cookie.js"></script>
   <script defer src="/material/material.min.js"></script>
   <script src="/math-renderer/selector.js"></script>
   <script src="/gitment/gitment.js"></script>
+  <script src="/js/quicklink.umd.js"></script>
 </head>
 <body>
   <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
@@ -148,6 +149,7 @@ $$</mathjax></p>
           <hr/>
           <div id="comments"></div>
           <script type="text/javascript">
+            window.addEventListener('load',()=>{quicklink();})
             const gitment = new Gitment({id: 'fd39a58836918da644ab9e891fe8cc28', owner: 'riteme', repo: 'riteme.github.io',
               oauth: {
                 client_id: 'd4fcffa25858a7a58e1a',
