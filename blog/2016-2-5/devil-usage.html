@@ -18,39 +18,37 @@
   <script src="/js/quicklink.umd.js"></script>
 </head>
 <body>
-  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  <div class="mdl-layout mdl-js-layout mdl-layout--header">
     <header class="mdl-layout__header">
       <div class="mdl-layout__header-row">
         <span class="mdl-layout-title">DevIL快速入门</span>
         <div class="mdl-layout-spacer"></div>
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right">
-        <label class="mdl-button mdl-js-button mdl-button--icon" for="fixed-header-drawer-exp"><i class="material-icons">search</i></label>
-        <div class="mdl-textfield__expandable-holder">
-          <form action="/search.html"><input type="text" class="mdl-textfield__input" placeholder="Search Here" name="q" id="fixed-header-drawer-exp" autocomplete="off" required></form>
+          <label class="mdl-button mdl-js-button mdl-button--icon" for="fixed-header-drawer-exp"><i class="material-icons">search</i></label>
+          <div class="mdl-textfield__expandable-holder">
+            <form action="/search.html"><input type="text" class="mdl-textfield__input" placeholder="Search Here" name="q" id="fixed-header-drawer-exp" autocomplete="off" required></form>
+          </div>
         </div>
       </div>
+    </header>
+    <div class="mdl-layout__drawer">
+      <span class="mdl-layout-title drawer-title">
+        <a href="/index.html" style="color: inherit; font-weight: inherit;text-decoration: none;"><img src="/favicon.png" width=32 height=32> riteme.site</a>
+      </span>
+      <nav class="mdl-navigation">
+        <a class="mdl-navigation__link" href="/index.html"><i class="material-icons drawer-icon">home</i> 首页</a>
+        <a class="mdl-navigation__link" href="/posts.html"><i class="material-icons drawer-icon">library_books</i> 所有文章</a>
+        <a class="mdl-navigation__link" href="/about.html"><i class="material-icons drawer-icon">info</i> 关于</a>
+        <a class="mdl-navigation__link" href="/links.html"><i class="material-icons drawer-icon">link</i> 友链</a>
+        <a class="mdl-navigation__link" href="/search.html"><i class="material-icons drawer-icon">search</i> 搜索</a>
+        <a class="mdl-navigation__link" href="https://github.com/riteme/riteme.github.io"><i class="material-icons drawer-icon">class</i> GitHub 项目</a>
+      </nav>
     </div>
-  </header>
-  <div class="mdl-layout__drawer">
-    <span class="mdl-layout-title drawer-title">
-      <a href="/index.html" style="color: inherit; font-weight: inherit;text-decoration: none;">
-        <img src="/favicon.png" width=32 height=32> riteme.site
-      </a>
-    </span>
-    <nav class="mdl-navigation">
-      <a class="mdl-navigation__link" href="/index.html"><i class="material-icons drawer-icon">home</i> 首页</a>
-      <a class="mdl-navigation__link" href="/posts.html"><i class="material-icons drawer-icon">library_books</i> 所有文章</a>
-      <a class="mdl-navigation__link" href="/about.html"><i class="material-icons drawer-icon">info</i> 关于</a>
-      <a class="mdl-navigation__link" href="/links.html"><i class="material-icons drawer-icon">link</i> 友链</a>
-      <a class="mdl-navigation__link" href="/search.html"><i class="material-icons drawer-icon">search</i> 搜索</a>
-      <a class="mdl-navigation__link" href="https://github.com/riteme/riteme.github.io"><i class="material-icons drawer-icon">class</i> GitHub 项目</a>
-    </nav>
-  </div>
-  <main class="mdl-layout__content">
-    <div class="mdl-grid">
-      <div class="mdl-cell mdl-cell--8-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
-        <div class="article main-article" lang="en-US">
-          
+    <main class="mdl-layout__content">
+      <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--8-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+          <div class="article main-article" lang="en-US">
+            
 <h1 id="devil">DevIL快速入门</h1>
 <p><a href="http://openil.sourceforge.net/">DevIL</a>全名是“Developer&rsquo;s Image Library”，它是一个多功能的图像库，能过很方便地载入、修改和保存图片。<br />
 其原名是OpenIL，后来是因为SGI的要求才改名为DevIL<sup id="fnref:devil-rename"><a class="footnote-ref" href="#fn:devil-rename" rel="footnote">1</a></sup>。</p>
@@ -343,34 +341,34 @@ Bit Per Pixel（每个像素所占位数，<code>IL_IMAGE_BITS_PER_PIXEL</code>�
 </li>
 </ol>
 </div>
-          <hr/>
-          <div id="comments"></div>
-          <script type="text/javascript">
-            window.addEventListener('load',()=>{quicklink();})
-            const gitment = new Gitment({id: '30581953f1031de48a5195ecf0f0a1c2', owner: 'riteme', repo: 'riteme.github.io',
-              oauth: {
-                client_id: 'd4fcffa25858a7a58e1a',
-                client_secret: 'e0c8e08beb95497871f8355416c69390634cec76',
-              },
-              perPage: 10,
-            })
-            gitment.render('comments')
-          </script>
-        </div>
-      </div>
-      <div class="mdl-cell mdl-cell--4-col mdl-cell--hide-tablet mdl-cell--hide-phone sidebar">
-        <div class="article">
-          <div class="mdl-card mdl-shadow--3dp sidebar-card">
-            <div class="mdl-card__actions sidebar-title">页面信息</div>
-            <div class="mdl-card__supporting-text">
-              标签: <a href="/search.html?q=C/C++"><span class="label">C/C++</span></a> <a href="/search.html?q=DevIL"><span class="label">DevIL</span></a> <a href="/search.html?q=OpenGL"><span class="label">OpenGL</span></a><br/>
-              创建时间: 2016.02.05<br/>
-              上次修改: 2016.02.05<br/>
-              字数统计: 5981 字 / 约 23 分钟
-            </div>
+            <hr/>
+            <div id="comments"></div>
+            <script type="text/javascript">
+              window.addEventListener('load',()=>{quicklink();})
+              const gitment = new Gitment({id: '30581953f1031de48a5195ecf0f0a1c2', owner: 'riteme', repo: 'riteme.github.io',
+                oauth: {
+                  client_id: 'd4fcffa25858a7a58e1a',
+                  client_secret: 'e0c8e08beb95497871f8355416c69390634cec76',
+                },
+                perPage: 10,
+              })
+              gitment.render('comments')
+            </script>
           </div>
-          <br/>
-          
+        </div>
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--hide-tablet mdl-cell--hide-phone sidebar">
+          <div class="article">
+            <div class="mdl-card mdl-shadow--3dp sidebar-card">
+              <div class="mdl-card__actions sidebar-title">页面信息</div>
+              <div class="mdl-card__supporting-text">
+                标签: <a href="/search.html?q=C/C++"><span class="label">C/C++</span></a> <a href="/search.html?q=DevIL"><span class="label">DevIL</span></a> <a href="/search.html?q=OpenGL"><span class="label">OpenGL</span></a><br/>
+                创建时间: 2016.02.05<br/>
+                上次修改: 2016.02.05<br/>
+                字数统计: 5981 字 / 约 23 分钟
+              </div>
+            </div>
+            <br/>
+            
 <div class="mdl-card mdl-shadow--3dp sidebar-card">
   <div class="mdl-card__actions sidebar-title">目录</div>
   <div class="mdl-card__supporting-text">
@@ -392,75 +390,75 @@ Bit Per Pixel（每个像素所占位数，<code>IL_IMAGE_BITS_PER_PIXEL</code>�
 </div>
 <br/>
 
-          <div class="mdl-card mdl-shadow--3dp sidebar-card">
-            <div class="mdl-card__actions sidebar-title">数学公式渲染</div>
-            <div class="mdl-card__supporting-text">
-              <form name="mathopt">
-                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
-                  <input type="radio" id="option-1" class="mdl-radio__button" name="sel" value="mathjax">
-                  <span class="mdl-radio__label">MathJax (推荐)</span>
-                </label><br/>
-                <div id="tip-1">
-                  <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
-                    <input type="radio" id="option-2" class="mdl-radio__button" name="sel" value="katex">
-                    <span class="mdl-radio__label">KaTeX</span>
-                  </label>
-                </div>
-                <div id="tip-2">
-                  <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
-                    <input type="radio" id="option-3" class="mdl-radio__button" name="sel" value="katex&mathjax">
-                    <span class="mdl-radio__label">Mixed</span>
-                  </label>
-                </div>
-              </form>
+            <div class="mdl-card mdl-shadow--3dp sidebar-card">
+              <div class="mdl-card__actions sidebar-title">数学公式渲染</div>
+              <div class="mdl-card__supporting-text">
+                <form name="mathopt">
+                  <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
+                    <input type="radio" id="option-1" class="mdl-radio__button" name="sel" value="mathjax">
+                    <span class="mdl-radio__label">MathJax (推荐)</span>
+                  </label><br/>
+                  <div id="tip-1">
+                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+                      <input type="radio" id="option-2" class="mdl-radio__button" name="sel" value="katex">
+                      <span class="mdl-radio__label">KaTeX</span>
+                    </label>
+                  </div>
+                  <div id="tip-2">
+                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
+                      <input type="radio" id="option-3" class="mdl-radio__button" name="sel" value="katex&mathjax">
+                      <span class="mdl-radio__label">Mixed</span>
+                    </label>
+                  </div>
+                </form>
+              </div>
             </div>
-          </div>
-          <div class="mdl-tooltip" data-mdl-for="tip-1">KaTeX 渲染效率很高，但是目前 KaTeX 容错性不强，因此使用 KaTeX 时可能会存在一些数学公式无法渲染的情况</div>
-          <div class="mdl-tooltip" data-mdl-for="tip-2">先使用 KaTeX 渲染，再使用 MathJax 渲染</div>
-          <br/>
-          <div class="nano mdl-card mdl-shadow--3dp sidebar-card">
-            <a class="nano-ref" target="_new" href="http://nichijou.wikia.com/wiki/Nano_Shinonome"></a>
-            <div class="mdl-card__actions">
-              <div class="nano-shell"><span class="shell-start">$</span> nano <a href="https://github.com/riteme/riteme.github.io/blob/master/blog/2016-2-5/devil-usage.md" id="nano-link">devil-usage.md</a></div>
+            <div class="mdl-tooltip" data-mdl-for="tip-1">KaTeX 渲染效率很高，但是目前 KaTeX 容错性不强，因此使用 KaTeX 时可能会存在一些数学公式无法渲染的情况</div>
+            <div class="mdl-tooltip" data-mdl-for="tip-2">先使用 KaTeX 渲染，再使用 MathJax 渲染</div>
+            <br/>
+            <div class="nano mdl-card mdl-shadow--3dp sidebar-card">
+              <a class="nano-ref" target="_new" href="http://nichijou.wikia.com/wiki/Nano_Shinonome"></a>
+              <div class="mdl-card__actions">
+                <div class="nano-shell"><span class="shell-start">$</span> nano <a href="https://github.com/riteme/riteme.github.io/blob/master/blog/2016-2-5/devil-usage.md" id="nano-link">devil-usage.md</a></div>
+              </div>
             </div>
+            <div class="mdl-tooltip" data-mdl-for="nano-link">查看原始 Markdown 文档</div>
           </div>
-          <div class="mdl-tooltip" data-mdl-for="nano-link">查看原始 Markdown 文档</div>
         </div>
       </div>
-    </div>
-    <footer class="mdl-mega-footer">
-      <div class="mdl-mega-footer__middle-section">
-        <div class="mdl-mega-footer__drop-down-section">
-          <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-          <h1 class="mdl-mega-footer__heading">RITEME.SITE</h1>一个从不乱说话的博客...
+      <footer class="mdl-mega-footer">
+        <div class="mdl-mega-footer__middle-section">
+          <div class="mdl-mega-footer__drop-down-section">
+            <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+            <h1 class="mdl-mega-footer__heading">RITEME.SITE</h1>一个从不乱说话的博客...
+          </div>
+          <div class="mdl-mega-footer__drop-down-section">
+            <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+            <h1 class="mdl-mega-footer__heading">POWERED BY</h1>
+            <ul class="mdl-mega-footer__link-list">
+              <li><a href="http://pythonhosted.org/Markdown/">Python Markdown</a></li>
+              <li><a href="http://getmdl.io/">Material Design Lite</a></li>
+              <li><a href="http://www.tipue.com/search/">Tipuesearch</a></li>
+              <li><a href="http://www.mathjax.org/">MathJax</a> & <a href="http://khan.github.io/KaTeX/">KaTeX</a></li>
+              <li><a href="https://github.com/imsun/gitment">Gitment</a></li>
+            </ul>
+          </div>
+          <div class="mdl-mega-footer__drop-down-section">
+            <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+            <h1 class="mdl-mega-footer__heading">友情链接</h1>
+            <ul class="mdl-mega-footer__link-list">
+              <li><a href="http://ruanx.pw/">ruanxingzhi</a></li>
+              <li><a href="https://blog.xehoth.cc/">xehoth</a></li>
+              <li><a href="http://hjwjbsr.is-programmer.com/">HJWJBSR</a></li>
+              <li><a href="http://www.micdz.cn/">MicDZ</a></li>
+              <li><a href="http://blog.linyxus.xyz/">Linyxus</a></li>
+              <li><a href="http://memset0.cf/">memset0</a></li>
+            </ul>
+          </div>
         </div>
-        <div class="mdl-mega-footer__drop-down-section">
-          <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-          <h1 class="mdl-mega-footer__heading">POWERED BY</h1>
-          <ul class="mdl-mega-footer__link-list">
-            <li><a href="http://pythonhosted.org/Markdown/">Python Markdown</a></li>
-            <li><a href="http://getmdl.io/">Material Design Lite</a></li>
-            <li><a href="http://www.tipue.com/search/">Tipuesearch</a></li>
-            <li><a href="http://www.mathjax.org/">MathJax</a> & <a href="http://khan.github.io/KaTeX/">KaTeX</a></li>
-            <li><a href="https://github.com/imsun/gitment">Gitment</a></li>
-          </ul>
-        </div>
-        <div class="mdl-mega-footer__drop-down-section">
-          <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-          <h1 class="mdl-mega-footer__heading">友情链接</h1>
-          <ul class="mdl-mega-footer__link-list">
-            <li><a href="http://ruanx.pw/">ruanxingzhi</a></li>
-            <li><a href="https://blog.xehoth.cc/">xehoth</a></li>
-            <li><a href="http://hjwjbsr.is-programmer.com/">HJWJBSR</a></li>
-            <li><a href="http://www.micdz.cn/">MicDZ</a></li>
-            <li><a href="http://blog.linyxus.xyz/">Linyxus</a></li>
-            <li><a href="http://memset0.cf/">memset0</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="mdl-mega-footer__bottom-section">Theme based on <a href="https://getmdl.io/">MDL</a> | Copyright © 2015-2019 riteme. All rights reserved.</div>
-    </footer>
-  </main>
-</div>
+        <div class="mdl-mega-footer__bottom-section">Theme based on <a href="https://getmdl.io/">MDL</a> | Copyright © 2015-2019 riteme. All rights reserved.</div>
+      </footer>
+    </main>
+  </div>
 </body>
 </html>
