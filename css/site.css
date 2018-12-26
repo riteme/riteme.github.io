@@ -30,6 +30,10 @@
     font-style: italic;
 }
 
+main {
+    overflow: visible !important;
+}
+
 main .mdl-grid {
     margin: 0;
     padding: 0;
@@ -52,6 +56,11 @@ main .mdl-grid {
         background: white;
         box-shadow: 0 0 10px #a7a7a7;
     }
+}
+
+.mdl-layout__container, .mdl-layout {
+    overflow: visible;
+    height: initial;
 }
 
 body {
@@ -287,6 +296,10 @@ div.toc li {
     min-height: 10px;
 }
 
+.mdl-layout__drawer-button, .mdl-layout__drawer {
+    position: fixed;
+}
+
 .drawer-icon {
     vertical-align: bottom;
 }
@@ -295,6 +308,12 @@ div.toc li {
     font-family: Ubuntu, "Segoe UI", Georgia, Merriweather, "Times New Roman", serif;
     font-style: italic;
     color: #0077bb;
+}
+
+header {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
 }
 
 header .material-icons {
@@ -370,15 +389,16 @@ main .mdl-cell.sidebar {
 .sidebar {
     margin-left: 0;
     padding-left: 8px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 56px;
+    align-self: flex-start;
 }
 
 .sidebar .article {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
     margin: 0;
     padding: 40px 20px;
-    height: calc(100vh - 64px - 40px - 40px);
+    height: calc(100vh - 56px - 40px - 40px);
     overflow: auto;
 }
 
