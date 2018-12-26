@@ -298,6 +298,9 @@ div.toc li {
 
 .mdl-layout__drawer-button, .mdl-layout__drawer {
     position: fixed;
+}
+
+.mdl-layout__drawer-button {
     background: none !important;
 }
 
