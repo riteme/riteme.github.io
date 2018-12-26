@@ -404,6 +404,10 @@ main .mdl-cell.sidebar {
     overflow: auto;
 }
 
+.sidebar .article::-webkit-scrollbar { 
+    display: none; 
+}
+
 @media screen and (max-width: 1024px) {
     .sidebar {
         top: 56px;
