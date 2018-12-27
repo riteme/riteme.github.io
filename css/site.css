@@ -42,18 +42,14 @@ main .mdl-grid {
 
 @media screen and (min-width: 840px) and (max-width: 1099px) {
     main .mdl-grid {
-        padding: 0;
         margin: 0 10px;
-        background: white;
         box-shadow: 0 0 20px #a7a7a7;
     }
 }
 
 @media screen and (min-width: 1100px) {
     main .mdl-grid {
-        padding: 0;
         margin: 0 10%;
-        background: white;
         box-shadow: 0 0 10px #a7a7a7;
     }
 }
@@ -108,7 +104,7 @@ a:hover {
     margin: 1em 0 0.25em 0;
 }
 
-.article h1 + h2, .article h2 + h3, .article h3 + h4, .article h4 + h5, .article h5 + h6 {
+.article h1 + h2, .article h2 + h3, .article h3 + h4, .article h4 + h5, .article h5 + h6, .article h2:first-of-type .article h3:first-of-type, .article h4:first-of-type, .article h5:first-of-type, .article h6:first-of-type {
     margin-top: 0.25em;
 }
 
@@ -313,14 +309,13 @@ div.toc li {
 }
 
 .drawer-title {
-    font-family: Ubuntu, "Segoe UI", Georgia, Merriweather, "Times New Roman", serif;
+    font-family: Ubuntu, 'Open Sans', 'Segoe UI', Merriweather, Georgia, serif;
     font-style: italic;
     color: #0077bb;
 }
 
 header {
-    position: -webkit-sticky;
-    position: sticky;
+    position: fixed;
     top: 0;
     background-color: rgba(33, 150, 243, 0.9) !important;
 }
@@ -370,7 +365,7 @@ h3.panel-title {
 }
 
 .gitment-container, .gitment-editor-tab, .gitment-editor-submit {
-    font-family: 'Segoe UI', 'Ubuntu', 'Microsoft YaHei UI', 'Microsoft YaHei', sans-serif;
+    font-family: 'Segoe UI', 'Open Sans', 'Ubuntu', 'Microsoft YaHei UI', 'Microsoft YaHei', sans-serif;
 }
 
 .gitment-editor-submit {
@@ -400,13 +395,13 @@ main .mdl-cell.sidebar {
     padding-left: 8px;
     position: -webkit-sticky;
     position: sticky;
-    top: 64px;
+    top: 0;
     align-self: flex-start;
 }
 
 .sidebar .article {
     margin: 0;
-    padding: 40px 20px;
+    padding: 104px 20px 40px;  /* 104 = 64  +40 */
     height: calc(100vh - 64px - 40px - 40px);
     overflow: auto;
 }
@@ -416,11 +411,12 @@ main .mdl-cell.sidebar {
 }
 
 @media screen and (max-width: 1024px) {
-    .sidebar {
-        top: 56px;
+    .main-cell {
+        margin-top: 56px;
     }
 
     .sidebar .article {
+        padding-top: 96px;  /* 96 = 56 + 40 */
         height: calc(100vh - 56px - 40px - 40px);
     }
 }
