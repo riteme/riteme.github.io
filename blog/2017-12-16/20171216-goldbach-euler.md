@@ -25,6 +25,7 @@ $$
 #### 解决方案
 
 (1) 第一问使用几何级数即可：
+
 $$
 \begin{aligned}
 \sum_{j=2}^\infty\sum_{k=2}^\infty {1\over j^k} & = \sum_{j=2}^\infty \left({1 \over 1 - \frac1j} - 1 - \frac1j\right) \\
@@ -32,16 +33,21 @@ $$
 & = 1
 \end{aligned}
 $$
+
 (2) 考虑到 (1) 计算出的答案是 $1$，这在隐隐约约之中指引着我们去寻找 (1) 和 (2) 之间的联系。
 
 经过一番考虑，我们发现如果分子分母同除 $k$ 会有奇效：
+
 $$
 {1 \over k - 1} = \frac1k \cdot {1 \over 1 - \frac1k} = \frac1k\sum_{j=0}^\infty {1 \over k^j} = \sum_{j=1}^\infty {1 \over k^j}
 $$
+
 所以原式变身为：
+
 $$
 \sum_{k \in P}\sum_{j=1}^\infty \frac1{k^j}
 $$
+
 十分巧妙的是，我们可以找出一种一一对应的关系，满足 $p^q = k^j$，其中 $p,\;q \geqslant 2$ （即 (1) 中的下标 $j$ 和 $k$），而 $k \in P,\;j\geqslant 1$ （上面那个式子的下标）。
 
 根据 $P$ 的定义，设 $k = m^n$。在这里，我们可以要求 $m \notin P$，因为如果 $m \in P$，那么意味着 $m$ 又可以被表示成 $a^b$ 的形式，这时我们只需令 $m = a$ 并且使 $n$ 乘上 $b$ 就可以了。所以具体对应方案如下：

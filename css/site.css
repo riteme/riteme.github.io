@@ -100,8 +100,16 @@ a:hover {
     font-size: inherit;
 }
 
-.article h1, h2, h3, h4, h5, h6 {
+.article h1, .article h2, .article h3, .article h4, .article h5, .article h6 {
     font-family: inherit;
+}
+
+.article h2, .article h3, .article h4, .article h5, .article h6 {
+    margin: 1em 0 0.25em 0;
+}
+
+.article h1 + h2, .article h2 + h3, .article h3 + h4, .article h4 + h5, .article h5 + h6 {
+    margin-top: 0.25em;
 }
 
 .article h1 {
@@ -127,10 +135,6 @@ a:hover {
 
 .article h6 {
     font-size: 1.1em;
-}
-
-.article h2, h3, h4, h5, h6 {
-    margin: 0.25em 0 0.25em 0;
 }
 
 .article p {
