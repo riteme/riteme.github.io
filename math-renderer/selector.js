@@ -92,7 +92,7 @@ if (renderer == 'mathjax') {
     });
 }
 
-document.addEventListener("DOMContentLoaded", function() {
+startup = function() {
     renderer = Cookies.get('math-renderer');
     if (renderer == 'mathjax') {
         document.mathopt.sel[0].checked = true;
@@ -119,4 +119,11 @@ document.addEventListener("DOMContentLoaded", function() {
         Cookies.set('math-renderer', 'katex&mathjax', { expires: 65536 });
         location.reload();
     }
-});
+}
+
+document.addEventListener("DOMContentLoaded", );
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", startup);
+} else {
+    startup();
+}

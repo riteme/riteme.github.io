@@ -167,6 +167,7 @@ a:hover {
 
 .article a {
     color: #2195f3;
+    word-break: break-all;
 }
 
 .article table {
@@ -388,6 +389,10 @@ main .mdl-cell.sidebar {
 
 .mdl-mega-footer {
     border-top: 10px solid gray;
+}
+
+.main-cell {
+    margin-top: 64px;
 }
 
 .sidebar {

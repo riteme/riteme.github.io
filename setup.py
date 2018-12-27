@@ -15,7 +15,7 @@ HELP_DOCUMENT = """{command_line}: Setup this site to local server.
 INSTALL_TO = "/var/www/html/"
 
 SMALLEST_UPDATE_FOLDERS = [
-    "blog"
+    "blog", "js"
 ]
 
 SMALLEST_UPDATE_FILES = [
