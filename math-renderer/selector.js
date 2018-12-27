@@ -121,7 +121,6 @@ startup = function() {
     }
 }
 
-document.addEventListener("DOMContentLoaded", );
 if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", startup);
 } else {
