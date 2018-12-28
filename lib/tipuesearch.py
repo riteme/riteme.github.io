@@ -1,5 +1,6 @@
 # 用于生成tipuesearch的搜索数据
 
+import os
 import json
 
 indices = {}
@@ -14,6 +15,9 @@ def load_index(filepath):
     """
 
     global indices
+    if not os.path.exists(filepath):
+        with open(filepath, "w") as writer:
+            writer.write("{}")
     with open(filepath) as reader:
         indices = json.load(reader)
 
