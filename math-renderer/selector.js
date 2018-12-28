@@ -65,7 +65,7 @@ renderMath = function(e) {
 }
 
 if (Cookies.get('math-renderer') == null) {
-    Cookies.set('math-renderer', 'mathjax', { expires: 65536 });
+    Cookies.set('math-renderer', 'katex', { expires: 65536 });
 }
 
 renderer = Cookies.get('math-renderer');
@@ -100,7 +100,6 @@ startup = function() {
         document.mathopt.sel[1].checked = true;
     } else if (renderer == "katex&mathjax") {
         document.mathopt.sel[2].checked = true;
-        
     } else {
         console.log('No math formula renderer selected!');
     }
