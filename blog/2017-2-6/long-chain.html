@@ -52,12 +52,12 @@
             
 <h1 id="_1">长链剖分</h1>
 <blockquote>
-<p>WC听课时听到可以<mathjax>$\Theta(1)$</mathjax>查询树上祖先的算法，叫长链剖分。然而讲课人非常厉害，说网上这种资料很多就没讲了。然而我姿势不够并搜不到。打听到该算法后在这里记录一下。</p>
+<p>WC听课时听到可以<tex>$\Theta(1)$</tex>查询树上祖先的算法，叫长链剖分。然而讲课人非常厉害，说网上这种资料很多就没讲了。然而我姿势不够并搜不到。打听到该算法后在这里记录一下。</p>
 </blockquote>
 <h2 id="_2">查询树上祖先的一般算法</h2>
 <h3 id="_3">静态树</h3>
-<p>静态的树上之前我只知道<mathjax>$O(\log n)$</mathjax>的倍增算法，即先构造出这棵树的倍增表<mathjax>$f[n][k]$</mathjax>，表示<mathjax>$n$</mathjax>号节点往树根走<mathjax>$2^k$</mathjax>步走到的祖先。这个东西可以在<mathjax>$O(n \log n)$</mathjax>的时间内预处理出来，具体的这里不再介绍，网上或者本博客一篇关于LCA的文章内都有介绍。<br />
-构建出倍增表后，如果我们想往上方走<mathjax>$d$</mathjax>步，那么可以将<mathjax>$d$</mathjax>按照二进制分解成几个<mathjax>$2$</mathjax>的幂的和，那么就可以利用倍增表进行<mathjax>$O(\log n)$</mathjax>次上跳，到达距离为<mathjax>$d$</mathjax>的祖先处。</p>
+<p>静态的树上之前我只知道<tex>$O(\log n)$</tex>的倍增算法，即先构造出这棵树的倍增表<tex>$f[n][k]$</tex>，表示<tex>$n$</tex>号节点往树根走<tex>$2^k$</tex>步走到的祖先。这个东西可以在<tex>$O(n \log n)$</tex>的时间内预处理出来，具体的这里不再介绍，网上或者本博客一篇关于LCA的文章内都有介绍。<br />
+构建出倍增表后，如果我们想往上方走<tex>$d$</tex>步，那么可以将<tex>$d$</tex>按照二进制分解成几个<tex>$2$</tex>的幂的和，那么就可以利用倍增表进行<tex>$O(\log n)$</tex>次上跳，到达距离为<tex>$d$</tex>的祖先处。</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -81,12 +81,12 @@
 </td></tr></table>
 
 <h3 id="_4">动态树</h3>
-<p>当然需要LCT啦。首先<code>access</code>到<mathjax>$u$</mathjax>，然后对于LCT上的平衡树，额外记录下每个节点的大小就可在平衡树上找出对应位置的祖先。</p>
+<p>当然需要LCT啦。首先<code>access</code>到<tex>$u$</tex>，然后对于LCT上的平衡树，额外记录下每个节点的大小就可在平衡树上找出对应位置的祖先。</p>
 <h2 id="_5">长链剖分</h2>
-<p>十分出名的树链剖分是<strong>按照儿子节点的大小</strong>来挑选重儿子的，这种剖分方法保证了每个节点到根的路径上的轻边数量为<mathjax>$O(\log n)$</mathjax>条。如果我们换用其它标准，如按照<strong>儿子节点的秩</strong> (即节点到其子树内的叶子节点的最远距离) 为标准选取重儿子，称其为长链剖分，那么可以分析出轻边数量是<mathjax>$O(\sqrt n)$</mathjax>级别<sup id="fnref:sqrt-n"><a class="footnote-ref" href="#fn:sqrt-n" rel="footnote">1</a></sup>的。但这就无法体现出它的优势。</p>
-<p>但是我们考虑另外一个事情：长链剖分之后，对于每个节点<mathjax>$u$</mathjax>，其子树中其它节点<mathjax>$v$</mathjax>到<mathjax>$u$</mathjax>的距离不超过<mathjax>$u$</mathjax>所处长链的长度。假设这个距离超过了链长，那么说明按照节点的秩来剖分的时候，就会朝着<mathjax>$v$</mathjax>的方向走。除非有多个最远点距离一样，否则这个最远点会与<mathjax>$u$</mathjax>在同一条长链上。所以它的距离不会超出链长。</p>
-<p>那这有什么用？考虑另外一个事情：对于一个距离<mathjax>$d$</mathjax>，找到一个最大的<mathjax>$k$</mathjax>使得<mathjax>$2^k \leqslant d$</mathjax>，那么必定有<mathjax>$d - 2^k \lt 2^k$</mathjax>。同时，假如我们从一个点<mathjax>$u$</mathjax>往上走了<mathjax>$2^k$</mathjax>步到了<mathjax>$u^\prime$</mathjax>，那么根据之前的事实，<mathjax>$u^\prime$</mathjax>所处的长链的长度至少为<mathjax>$2^k$</mathjax>。令链长为<mathjax>$x$</mathjax>，由于剩下的步数小于<mathjax>$2^k$</mathjax>，所以我们如果有这条长链以及链顶往上走<mathjax>$x$</mathjax>步的所有顶点信息，那么就是存储<mathjax>$2x$</mathjax>个点，保存在一个数组内，然后就可以直接查找祖先了。总的时间复杂度为<mathjax>$\Theta(1)$</mathjax>。另外，由于由于所有长链的长度之和为<mathjax>$n$</mathjax>，所以最多记录<mathjax>$2n$</mathjax>个信息，即它的空间复杂度是<mathjax>$\Theta(n)$</mathjax>的。</p>
-<p>因此实现的时候，需要计算倍增表和长链，这一步可以在<mathjax>$O(n \log n)$</mathjax>的时间复杂度内解决。然后查询的实现如下面的C++代码所示：</p>
+<p>十分出名的树链剖分是<strong>按照儿子节点的大小</strong>来挑选重儿子的，这种剖分方法保证了每个节点到根的路径上的轻边数量为<tex>$O(\log n)$</tex>条。如果我们换用其它标准，如按照<strong>儿子节点的秩</strong> (即节点到其子树内的叶子节点的最远距离) 为标准选取重儿子，称其为长链剖分，那么可以分析出轻边数量是<tex>$O(\sqrt n)$</tex>级别<sup id="fnref:sqrt-n"><a class="footnote-ref" href="#fn:sqrt-n" rel="footnote">1</a></sup>的。但这就无法体现出它的优势。</p>
+<p>但是我们考虑另外一个事情：长链剖分之后，对于每个节点<tex>$u$</tex>，其子树中其它节点<tex>$v$</tex>到<tex>$u$</tex>的距离不超过<tex>$u$</tex>所处长链的长度。假设这个距离超过了链长，那么说明按照节点的秩来剖分的时候，就会朝着<tex>$v$</tex>的方向走。除非有多个最远点距离一样，否则这个最远点会与<tex>$u$</tex>在同一条长链上。所以它的距离不会超出链长。</p>
+<p>那这有什么用？考虑另外一个事情：对于一个距离<tex>$d$</tex>，找到一个最大的<tex>$k$</tex>使得<tex>$2^k \leqslant d$</tex>，那么必定有<tex>$d - 2^k \lt 2^k$</tex>。同时，假如我们从一个点<tex>$u$</tex>往上走了<tex>$2^k$</tex>步到了<tex>$u^\prime$</tex>，那么根据之前的事实，<tex>$u^\prime$</tex>所处的长链的长度至少为<tex>$2^k$</tex>。令链长为<tex>$x$</tex>，由于剩下的步数小于<tex>$2^k$</tex>，所以我们如果有这条长链以及链顶往上走<tex>$x$</tex>步的所有顶点信息，那么就是存储<tex>$2x$</tex>个点，保存在一个数组内，然后就可以直接查找祖先了。总的时间复杂度为<tex>$\Theta(1)$</tex>。另外，由于由于所有长链的长度之和为<tex>$n$</tex>，所以最多记录<tex>$2n$</tex>个信息，即它的空间复杂度是<tex>$\Theta(n)$</tex>的。</p>
+<p>因此实现的时候，需要计算倍增表和长链，这一步可以在<tex>$O(n \log n)$</tex>的时间复杂度内解决。然后查询的实现如下面的C++代码所示：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -139,13 +139,13 @@
 </pre></div>
 </td></tr></table>
 
-<p>倍增表和长度为<mathjax>$2x$</mathjax>的数组还可以存储其它信息。就以长度为<mathjax>$2x$</mathjax>的数组而言，可以记录前缀和或者利用ST表记录最大/最小值，配合快速的LCA算法从而能够<mathjax>$\Theta(1)$</mathjax>的时间复杂度回答两点间的路径上的特定信息的查询。</p>
-<p>此外，如果不考虑倍增表，我们依然可以利用事实1从而达到在<mathjax>$O(\log n)$</mathjax>步跳到根节点，即每次跳到当前链能访问到的最后一个节点的父亲处。由于每次上跳到的新的链的长度必定翻倍，所以能做到这个复杂度。因此，长链剖分也可以以同样的时间复杂度实现树链剖分的功能。</p>
+<p>倍增表和长度为<tex>$2x$</tex>的数组还可以存储其它信息。就以长度为<tex>$2x$</tex>的数组而言，可以记录前缀和或者利用ST表记录最大/最小值，配合快速的LCA算法从而能够<tex>$\Theta(1)$</tex>的时间复杂度回答两点间的路径上的特定信息的查询。</p>
+<p>此外，如果不考虑倍增表，我们依然可以利用事实1从而达到在<tex>$O(\log n)$</tex>步跳到根节点，即每次跳到当前链能访问到的最后一个节点的父亲处。由于每次上跳到的新的链的长度必定翻倍，所以能做到这个复杂度。因此，长链剖分也可以以同样的时间复杂度实现树链剖分的功能。</p>
 <div class="footnote">
 <hr />
 <ol>
 <li id="fn:sqrt-n">
-<p>考虑一个最坏情况，将长度为<mathjax>$1..n$</mathjax>的链摆成一排，将每条链的端点依次相连，那么将会有一个节点到根的路径上有<mathjax>$n - 1$</mathjax>条轻边，而此时树上有<mathjax>$n(n + 1) / 2$</mathjax>个节点。故上界至少是<mathjax>$\Omega(\sqrt n)$</mathjax>&#160;<a class="footnote-backref" href="#fnref:sqrt-n" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>考虑一个最坏情况，将长度为<tex>$1..n$</tex>的链摆成一排，将每条链的端点依次相连，那么将会有一个节点到根的路径上有<tex>$n - 1$</tex>条轻边，而此时树上有<tex>$n(n + 1) / 2$</tex>个节点。故上界至少是<tex>$\Omega(\sqrt n)$</tex>&#160;<a class="footnote-backref" href="#fnref:sqrt-n" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>

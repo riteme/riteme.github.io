@@ -3,6 +3,7 @@ title: 空袭
 create: 2016.8.25
 modified: 2016.8.25
 tags: Problems
+template: simple
 ---
 
 [TOC]

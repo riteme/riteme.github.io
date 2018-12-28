@@ -53,20 +53,20 @@
 <h1 id="_1">染色计数</h1>
 <h2 id="_2">置换</h2>
 <p>置换是一个满射，例如：<br />
-<mathjax>$$
+<tex>$$
 f(1) = 2, f(2) = 4, f(3) = 3, f(4) = 1
-$$</mathjax></p>
+$$</tex></p>
 <p>也写做：<br />
-<mathjax>$$
+<tex>$$
 f = \left(
 \begin{matrix}
 1 &amp; 2 &amp; 3 &amp; 4 \\
 2 &amp; 4 &amp; 3 &amp; 1
 \end{matrix}
 \right)
-$$</mathjax></p>
+$$</tex></p>
 <p>置换可以合成。假如我们有：<br />
-<mathjax>$$
+<tex>$$
 \begin{aligned}
 f = \left(
 \begin{matrix}
@@ -81,151 +81,151 @@ g = \left(
 \end{matrix}
 \right)
 \end{aligned}
-$$</mathjax></p>
+$$</tex></p>
 <p>那么它们按照一定顺序加合的结果是：<br />
-<mathjax>$$
+<tex>$$
 g \circ f = \left(
 \begin{matrix}
 1 &amp; 2 &amp; 3 &amp; 4 \\
 1 &amp; 2 &amp; 3 &amp; 4
 \end{matrix}
 \right)
-$$</mathjax></p>
+$$</tex></p>
 <p>即从右至左地执行这些置换。同时上面这个置换是不变元，无论什么置换与它加合都不会变化。另外，置换的加合满足结合律，但<strong>不一定满足交换律</strong>。置换的另外一种表示方式就是置换矩阵。这也可以说明为什么置换不满足交换律。</p>
 <p>由于置换具有这些性质，所以置换的加合运算和置换可以构成<strong>置换群</strong>。</p>
 <h2 id="_3">染色</h2>
-<p>首先回答一个简单的问题：给正方形四个顶点分别染成黑色或白色的方案有多少个？显然每个顶点都有两种选择，所以答案为<mathjax>$2^4 = 16$</mathjax>。</p>
-<p>现在做出一点限制，如果一个染过色的正方形通过旋转或者轴对称后与另外一个染过色的正方形相同，就说这两种染色是本质相同的。那么问你有多少种本质不同的染色方案。通过枚举，我们也可以知道答案是<mathjax>$6$</mathjax>。这<mathjax>$6$</mathjax>中方案如下 (本质相同的只画了一种)：</p>
+<p>首先回答一个简单的问题：给正方形四个顶点分别染成黑色或白色的方案有多少个？显然每个顶点都有两种选择，所以答案为<tex>$2^4 = 16$</tex>。</p>
+<p>现在做出一点限制，如果一个染过色的正方形通过旋转或者轴对称后与另外一个染过色的正方形相同，就说这两种染色是本质相同的。那么问你有多少种本质不同的染色方案。通过枚举，我们也可以知道答案是<tex>$6$</tex>。这<tex>$6$</tex>中方案如下 (本质相同的只画了一种)：</p>
 <p><img alt="rect-6" src="https://git.oschina.net/riteme/blogimg/raw/master/polya/rect-6.svg" /></p>
-<p>对我们而言，难以考虑的是同构的问题。假如我们给顶点标号，分别为<mathjax>$1$</mathjax>、<mathjax>$2$</mathjax>、<mathjax>$3$</mathjax>和<mathjax>$4$</mathjax>：</p>
+<p>对我们而言，难以考虑的是同构的问题。假如我们给顶点标号，分别为<tex>$1$</tex>、<tex>$2$</tex>、<tex>$3$</tex>和<tex>$4$</tex>：</p>
 <p><img alt="labeled" src="https://git.oschina.net/riteme/blogimg/raw/master/polya/labeled-rect-2.svg" /></p>
 <p>那么上面这个图的染色为：<br />
-<mathjax>$$
+<tex>$$
 c_1 = \left(
 \begin{matrix}
 1 &amp; 2 &amp; 3 &amp; 4 \\
 \mathrm{W} &amp; \mathrm{B} &amp; \mathrm{W} &amp; \mathrm{W}
 \end{matrix}
 \right)
-$$</mathjax></p>
+$$</tex></p>
 <p>经过对称，与之同质的染色是这样的：<br />
-<mathjax>$$
+<tex>$$
 c_2 = \left(
 \begin{matrix}
 1 &amp; 2 &amp; 3 &amp; 4 \\
 \mathrm{W} &amp; \mathrm{W} &amp; \mathrm{B} &amp; \mathrm{W}
 \end{matrix}
 \right)
-$$</mathjax></p>
-<p>事实上，这个变换可以看做是将<mathjax>$2$</mathjax>和<mathjax>$3$</mathjax>调换了一下。于是我们将这个对称定义成这样一个置换：<br />
-<mathjax>$$
+$$</tex></p>
+<p>事实上，这个变换可以看做是将<tex>$2$</tex>和<tex>$3$</tex>调换了一下。于是我们将这个对称定义成这样一个置换：<br />
+<tex>$$
 f = \left(
 \begin{matrix}
 1 &amp; 2 &amp; 3 &amp; 4 \\
 1 &amp; 3 &amp; 2 &amp; 4
 \end{matrix}
 \right)
-$$</mathjax></p>
-<p>然后定义<mathjax>$\times$</mathjax>运算，表示一个染色的顶点经过一个置换后，得到的新的染色，于是有：<br />
-<mathjax>$$
+$$</tex></p>
+<p>然后定义<tex>$\times$</tex>运算，表示一个染色的顶点经过一个置换后，得到的新的染色，于是有：<br />
+<tex>$$
 f \times c_1 = c_2
-$$</mathjax></p>
+$$</tex></p>
 <p>可以发现，置换的加合和上面的变换在一起时也满足结合律。</p>
 <p>这样，我们就将颜色的同构用置换表示出来了。我们定义正方形所有的变换为一个置换，它们构成一个集合：<br />
-<mathjax>$$
+<tex>$$
 G = \{e = p^0, p, p^2, p^3, f_1, f_2, f_3, f_4\}
-$$</mathjax></p>
-<p>其中<mathjax>$e$</mathjax>是置换的不变元。<mathjax>$p$</mathjax>是顺时针旋转<mathjax>$90^\circ$</mathjax>的置换：<br />
-<mathjax>$$
+$$</tex></p>
+<p>其中<tex>$e$</tex>是置换的不变元。<tex>$p$</tex>是顺时针旋转<tex>$90^\circ$</tex>的置换：<br />
+<tex>$$
 p = \left(
 \begin{matrix}
 1 &amp; 2 &amp; 3 &amp; 4 \\
 4 &amp; 1 &amp; 2 &amp; 3
 \end{matrix}
 \right)
-$$</mathjax></p>
-<p>而<mathjax>$p$</mathjax>的幂次就是多次旋转。<mathjax>$f_1$</mathjax>到<mathjax>$f_4$</mathjax>是沿着正方形的四条对角线的置换。可以验证这个集合和置换的加合运算构成了一个置换群。因此，对于两种染色<mathjax>$c_1$</mathjax>和<mathjax>$c_2$</mathjax>，它们本质相同当且仅当存在一个<mathjax>$f \in G$</mathjax>，满足<mathjax>$f \times c_1 = c_2$</mathjax>。</p>
-<p>另外，设图形的所有染色方案为<mathjax>$C$</mathjax>，定义<mathjax>$G(c)$</mathjax>为<mathjax>$\{f : f \times c = c, \;\forall f \in G\}$</mathjax>，即不改变染色<mathjax>$c$</mathjax>的置换的集合。以及<mathjax>$C(f)$</mathjax>为<mathjax>$\{c : f \times c = c, \; \forall c \in C\}$</mathjax>，即经过置换后不变的所有的染色方案的集合。之后的讨论中将会用到它们。</p>
+$$</tex></p>
+<p>而<tex>$p$</tex>的幂次就是多次旋转。<tex>$f_1$</tex>到<tex>$f_4$</tex>是沿着正方形的四条对角线的置换。可以验证这个集合和置换的加合运算构成了一个置换群。因此，对于两种染色<tex>$c_1$</tex>和<tex>$c_2$</tex>，它们本质相同当且仅当存在一个<tex>$f \in G$</tex>，满足<tex>$f \times c_1 = c_2$</tex>。</p>
+<p>另外，设图形的所有染色方案为<tex>$C$</tex>，定义<tex>$G(c)$</tex>为<tex>$\{f : f \times c = c, \;\forall f \in G\}$</tex>，即不改变染色<tex>$c$</tex>的置换的集合。以及<tex>$C(f)$</tex>为<tex>$\{c : f \times c = c, \; \forall c \in C\}$</tex>，即经过置换后不变的所有的染色方案的集合。之后的讨论中将会用到它们。</p>
 <h2 id="burnside">Burnside定理</h2>
-<p>首先来考虑与<mathjax>$c$</mathjax>本质相同的染色的个数：</p>
+<p>首先来考虑与<tex>$c$</tex>本质相同的染色的个数：</p>
 <blockquote>
-<p><strong>定理</strong>：与<mathjax>$c$</mathjax>本质相同的染色的个数为：<br />
-<mathjax>$$ {|G| \over |G(c)|} \tag{3.1} $$</mathjax></p>
+<p><strong>定理</strong>：与<tex>$c$</tex>本质相同的染色的个数为：<br />
+<tex>$$ {|G| \over |G(c)|} \tag{3.1} $$</tex></p>
 </blockquote>
-<p><strong>证明</strong>：考虑每个<mathjax>$f \times c, f \in G$</mathjax>，<mathjax>$G(c)$</mathjax>中都存在<mathjax>$|G(c)|$</mathjax>个<mathjax>$g$</mathjax>, 满足<mathjax>$(f \circ g) \times c = f \times (g \times c) = f \times c$</mathjax>。即对于任意染色方案，都有<mathjax>$|G(c)|$</mathjax>种置换使得染色方案不变。所以总数为<mathjax>$|G| / |G(c)| $</mathjax>。</p>
+<p><strong>证明</strong>：考虑每个<tex>$f \times c, f \in G$</tex>，<tex>$G(c)$</tex>中都存在<tex>$|G(c)|$</tex>个<tex>$g$</tex>, 满足<tex>$(f \circ g) \times c = f \times (g \times c) = f \times c$</tex>。即对于任意染色方案，都有<tex>$|G(c)|$</tex>种置换使得染色方案不变。所以总数为<tex>$|G| / |G(c)| $</tex>。</p>
 <p>接下来将采用双重计数来证明下面的<strong>Burnside定理</strong>：</p>
 <blockquote>
 <p>(Burnside定理)<br />
-设关于染色集<mathjax>$C$</mathjax>与置换群<mathjax>$G$</mathjax>上本质不同的染色方案数为<mathjax>$N(G, C)$</mathjax>，那么满足：<br />
-<mathjax>$$ N(G, C) = \frac1{|G|}\sum_{f \in G} |C(f)| \tag{3.2} $$</mathjax></p>
+设关于染色集<tex>$C$</tex>与置换群<tex>$G$</tex>上本质不同的染色方案数为<tex>$N(G, C)$</tex>，那么满足：<br />
+<tex>$$ N(G, C) = \frac1{|G|}\sum_{f \in G} |C(f)| \tag{3.2} $$</tex></p>
 </blockquote>
-<p><strong>证明</strong>：我们现在来考虑满足<mathjax>$f \times c = c$</mathjax>的二元组<mathjax>$(f, c)$</mathjax>的个数。首先我们从<mathjax>$C(f)$</mathjax>的角度考虑，可以知道答案为：<br />
-<mathjax>$$
+<p><strong>证明</strong>：我们现在来考虑满足<tex>$f \times c = c$</tex>的二元组<tex>$(f, c)$</tex>的个数。首先我们从<tex>$C(f)$</tex>的角度考虑，可以知道答案为：<br />
+<tex>$$
 \sum_{f \in G} |C(f)|
-$$</mathjax></p>
-<p>另外，从<mathjax>$G(c)$</mathjax>的角度考虑，也可以知道答案为：<br />
-<mathjax>$$
+$$</tex></p>
+<p>另外，从<tex>$G(c)$</tex>的角度考虑，也可以知道答案为：<br />
+<tex>$$
 \sum_{c \in C} |G(c)|
-$$</mathjax></p>
-<p>为了方便，我们设<mathjax>$A(c) = \{f \times c, \; \forall f \in G\}$</mathjax>，即与<mathjax>$c$</mathjax>本质相同的染色的集合。根据<mathjax>$(3.1)$</mathjax>，我们知道：<br />
-<mathjax>$$
+$$</tex></p>
+<p>为了方便，我们设<tex>$A(c) = \{f \times c, \; \forall f \in G\}$</tex>，即与<tex>$c$</tex>本质相同的染色的集合。根据<tex>$(3.1)$</tex>，我们知道：<br />
+<tex>$$
 |G(c)| = {|G| \over |A(c)|}
-$$</mathjax></p>
+$$</tex></p>
 <p>那么可以得到：<br />
-<mathjax>$$
+<tex>$$
 \sum_{f \in G} |C(f)| = |G|\sum_{c \in C} \frac1{|A(c)|}
-$$</mathjax></p>
-<p>对右边的和式做如下的考虑：假设每个等价的集合的贡献是<mathjax>$1$</mathjax>，那么每个染色的贡献就是<mathjax>$1/|A(c)|$</mathjax>，所以上式可以改写为：<br />
-<mathjax>$$
+$$</tex></p>
+<p>对右边的和式做如下的考虑：假设每个等价的集合的贡献是<tex>$1$</tex>，那么每个染色的贡献就是<tex>$1/|A(c)|$</tex>，所以上式可以改写为：<br />
+<tex>$$
 \sum_{f \in G} |C(f)| = |G|N(G, C)
-$$</mathjax></p>
+$$</tex></p>
 <p>所以：<br />
-<mathjax>$$ N(G, C) = \frac1{|G|}\sum_{f \in G} |C(f)| $$</mathjax></p>
+<tex>$$ N(G, C) = \frac1{|G|}\sum_{f \in G} |C(f)| $$</tex></p>
 <p>回到之前正方形染色的例子，我们对于每一个置换这样考虑：</p>
 <ol>
-<li>对于不变元<mathjax>$e$</mathjax>，总共有<mathjax>$2^4 = 16$</mathjax>中染色不变。</li>
-<li>对于<mathjax>$2$</mathjax>个顺时针旋转 (除了旋转<mathjax>$180^\circ$</mathjax>)，它们都只有全是黑或者全是白的染色不变，贡献为<mathjax>$2 \times 2 = 4$</mathjax>。</li>
-<li>对于旋转<mathjax>$180^\circ$</mathjax>，只需要满足两个相邻的顶点颜色相同即可，所以贡献为<mathjax>$2^2 = 4$</mathjax>。</li>
-<li>对于<mathjax>$2$</mathjax>个对角线对称，只要满足对角颜色相同即可，贡献为<mathjax>$2^3 \times 2 = 16$</mathjax>。</li>
-<li>对于另外<mathjax>$2$</mathjax>个对称，需要满足两边颜色相同，贡献为<mathjax>$2^2 \times 2 = 8$</mathjax>。</li>
+<li>对于不变元<tex>$e$</tex>，总共有<tex>$2^4 = 16$</tex>中染色不变。</li>
+<li>对于<tex>$2$</tex>个顺时针旋转 (除了旋转<tex>$180^\circ$</tex>)，它们都只有全是黑或者全是白的染色不变，贡献为<tex>$2 \times 2 = 4$</tex>。</li>
+<li>对于旋转<tex>$180^\circ$</tex>，只需要满足两个相邻的顶点颜色相同即可，所以贡献为<tex>$2^2 = 4$</tex>。</li>
+<li>对于<tex>$2$</tex>个对角线对称，只要满足对角颜色相同即可，贡献为<tex>$2^3 \times 2 = 16$</tex>。</li>
+<li>对于另外<tex>$2$</tex>个对称，需要满足两边颜色相同，贡献为<tex>$2^2 \times 2 = 8$</tex>。</li>
 </ol>
-<p>所以答案为<mathjax>$(16 + 4 + 4 + 16 + 8) / 8 = 6$</mathjax>。</p>
-<p>进一步考虑计算<mathjax>$C(f)$</mathjax>。假如我们将置换写成置换环的形式，例如：<br />
-<mathjax>$$
+<p>所以答案为<tex>$(16 + 4 + 4 + 16 + 8) / 8 = 6$</tex>。</p>
+<p>进一步考虑计算<tex>$C(f)$</tex>。假如我们将置换写成置换环的形式，例如：<br />
+<tex>$$
 f = \left(
 \begin{matrix}
 1 &amp; 2 &amp; 3 &amp; 4 \\
 2 &amp; 1 &amp; 4 &amp; 3
 \end{matrix}
 \right)
-$$</mathjax></p>
+$$</tex></p>
 <p>可以写成：<br />
-<mathjax>$$
+<tex>$$
 f = [2\;1][4\;3]
-$$</mathjax></p>
-<p>可以发现，如果要满足经过置换后染色不变，那么<strong>每一个置换环内的颜色必须相同</strong>。于是，对于这一个置换环而言，计算就可以直接简便为<mathjax>$2^2 = 4$</mathjax>，而不需要去做讨论。</p>
+$$</tex></p>
+<p>可以发现，如果要满足经过置换后染色不变，那么<strong>每一个置换环内的颜色必须相同</strong>。于是，对于这一个置换环而言，计算就可以直接简便为<tex>$2^2 = 4$</tex>，而不需要去做讨论。</p>
 <h2 id="_4">简单图计数</h2>
 <p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=1488">【HNOI 2009】图的同构</a></p>
-<p>现在来讨论一个更加复杂的问题，就是<mathjax>$n$</mathjax>个点的本质不同的<strong>简单无向图</strong>的数量<sup id="fnref:oeis"><a class="footnote-ref" href="#fn:oeis" rel="footnote">1</a></sup><sup id="fnref:connected"><a class="footnote-ref" href="#fn:connected" rel="footnote">2</a></sup>。简单图是没有重边和自环的图。记为<mathjax>$a(n)$</mathjax>。</p>
+<p>现在来讨论一个更加复杂的问题，就是<tex>$n$</tex>个点的本质不同的<strong>简单无向图</strong>的数量<sup id="fnref:oeis"><a class="footnote-ref" href="#fn:oeis" rel="footnote">1</a></sup><sup id="fnref:connected"><a class="footnote-ref" href="#fn:connected" rel="footnote">2</a></sup>。简单图是没有重边和自环的图。记为<tex>$a(n)$</tex>。</p>
 <p>首先，我们可以直接列举可以得知：<br />
-<mathjax>$$
+<tex>$$
 a(0) = 1, a(1) = 1, a(2) = 2, a(3) = 4
-$$</mathjax></p>
-<p>更大的<mathjax>$n$</mathjax>如果采用列举的方法实在无法想象。为了能够利用Burnside定理，我们考虑将其转为一个染色问题。注意到大小为<mathjax>$n$</mathjax>的简单图的边已经全部确定，只是存在选或不选的问题。所以可以视为是这些边是染成黑色还是染成白色的问题。此外我们要将本质相同的计数去掉。如果两个图相同，那么存在一个与点编号相关的置换，使得两张图的边集是一样的。所以我们考虑所有的点的置换，总数为<mathjax>$n!$</mathjax>个，每一个将会对应到一个边的置换，即用于判定同构的置换。可以证明从点的置换转来的边的置换是一个置换群。</p>
-<p>现在来考虑点的置换是如何转成边的置换的。由于我们已经可以根据置换环的数量来计算<mathjax>$C(f)$</mathjax>了，所以我们不需要关注置换到底长什么样，只需要知道有多少个置换环即可。对于一个边的置换，里面的每一条边的两个端点要么在点置换的一个置换环内，要么在不同的置换环内。</p>
+$$</tex></p>
+<p>更大的<tex>$n$</tex>如果采用列举的方法实在无法想象。为了能够利用Burnside定理，我们考虑将其转为一个染色问题。注意到大小为<tex>$n$</tex>的简单图的边已经全部确定，只是存在选或不选的问题。所以可以视为是这些边是染成黑色还是染成白色的问题。此外我们要将本质相同的计数去掉。如果两个图相同，那么存在一个与点编号相关的置换，使得两张图的边集是一样的。所以我们考虑所有的点的置换，总数为<tex>$n!$</tex>个，每一个将会对应到一个边的置换，即用于判定同构的置换。可以证明从点的置换转来的边的置换是一个置换群。</p>
+<p>现在来考虑点的置换是如何转成边的置换的。由于我们已经可以根据置换环的数量来计算<tex>$C(f)$</tex>了，所以我们不需要关注置换到底长什么样，只需要知道有多少个置换环即可。对于一个边的置换，里面的每一条边的两个端点要么在点置换的一个置换环内，要么在不同的置换环内。</p>
 <p>首先观察一下在同一个置换环内的情况：</p>
 <p><img alt="one-circle" src="https://git.oschina.net/riteme/blogimg/raw/master/polya/one-circle.svg" /></p>
-<p>黄色的边是置换环上的边，而红色的就是边置换中的边。由于将整条边随着置换环旋转，会得到许多一样的边，所以我们将一个点固定，来考虑另外一个点。可以发现实线的边是不同的，而虚线的边则是和实线的边是同构的。所以，对于长度为<mathjax>$L$</mathjax>的置换环，在边的置换中对应了<mathjax>$\lfloor L / 2 \rfloor$</mathjax>个置换环。</p>
+<p>黄色的边是置换环上的边，而红色的就是边置换中的边。由于将整条边随着置换环旋转，会得到许多一样的边，所以我们将一个点固定，来考虑另外一个点。可以发现实线的边是不同的，而虚线的边则是和实线的边是同构的。所以，对于长度为<tex>$L$</tex>的置换环，在边的置换中对应了<tex>$\lfloor L / 2 \rfloor$</tex>个置换环。</p>
 <p>然后考虑不在同一个置换环的情况：</p>
 <p><img alt="two-circle" src="https://git.oschina.net/riteme/blogimg/raw/master/polya/two-circle.svg" /></p>
-<p>设两个置换环的长度分别为<mathjax>$A$</mathjax>和<mathjax>$B$</mathjax>，可以发现，每一条连接两个置换环的边，都会有<mathjax>$\mathrm{lcm}(A, B)$</mathjax>条边与它同构。而总边数为<mathjax>$AB$</mathjax>，所以这个点置换的置换环就对应了边置换中的<mathjax>$\gcd(A, B)$</mathjax>个置换环。</p>
-<p>考虑完点置换和边置换的一一对应关系后，我们考虑来计数点置换集中有多少个置换环长度分别为<mathjax>$L_1, L_2, L_3, \dots$</mathjax>的置换。设长度为<mathjax>$i$</mathjax>的置换环的个数为<mathjax>$S_i$</mathjax>，那么这个数量是：<br />
-<mathjax>$$
+<p>设两个置换环的长度分别为<tex>$A$</tex>和<tex>$B$</tex>，可以发现，每一条连接两个置换环的边，都会有<tex>$\mathrm{lcm}(A, B)$</tex>条边与它同构。而总边数为<tex>$AB$</tex>，所以这个点置换的置换环就对应了边置换中的<tex>$\gcd(A, B)$</tex>个置换环。</p>
+<p>考虑完点置换和边置换的一一对应关系后，我们考虑来计数点置换集中有多少个置换环长度分别为<tex>$L_1, L_2, L_3, \dots$</tex>的置换。设长度为<tex>$i$</tex>的置换环的个数为<tex>$S_i$</tex>，那么这个数量是：<br />
+<tex>$$
 {n! \over L_1 L_2 L_3 \cdots S_1!S_2!S_3!\cdots}
-$$</mathjax></p>
+$$</tex></p>
 <p>因为对于每个置换环，随意循环旋转都是同构的，而大小相同的置换环互相之间也是一样的，所以需要除去上面那个分母。</p>
-<p>所以我们就可以算出所有置换的贡献，然后除以置换的总个数<mathjax>$n!$</mathjax>，就是我们的答案。</p>
-<p>最后，我们只需要枚举置换中置换环的情况，这个其实就是<mathjax>$n$</mathjax>的分拆。利用这个方法，我们可以计算更大的<mathjax>$n$</mathjax>的方案 (但是还是难以计算近百的级别)。</p>
+<p>所以我们就可以算出所有置换的贡献，然后除以置换的总个数<tex>$n!$</tex>，就是我们的答案。</p>
+<p>最后，我们只需要枚举置换中置换环的情况，这个其实就是<tex>$n$</tex>的分拆。利用这个方法，我们可以计算更大的<tex>$n$</tex>的方案 (但是还是难以计算近百的级别)。</p>
 <div class="footnote">
 <hr />
 <ol>

@@ -81,7 +81,7 @@
 <p>例如我们要查找<code>8</code>,首先和根节点<code>5</code>做比较，发现比<code>5</code>大，于是在其右子树中查找。<br />
 接下来<code>7-9</code>这个3-节点中，我们先和<code>9</code>比较，发现比<code>9</code>小，于是<strong>向左移一位</strong>，与<code>7</code>比较，发现比<code>7</code>大，因此查找的节点应当在中间的子树中。<br />
 继续深入下去，我们发现2-节点<code>8</code>就是我们要找的。</p>
-<p>由于2-3树的完美平衡性质，因此所有查询操作均可在<mathjax>$ \Theta(\text{log}N) $</mathjax>的时间复杂度内完成。</p>
+<p>由于2-3树的完美平衡性质，因此所有查询操作均可在<tex>$ \Theta(\text{log}N) $</tex>的时间复杂度内完成。</p>
 <p>那么问题来了，为什么2-3树具有完美平衡的性质？</p>
 <h3 id="_5">插入操作</h3>
 <p>2-3树之所以完美平衡，关键在于插入时的维护。<br />
@@ -116,7 +116,7 @@
 <h4 id="_8">插入示例</h4>
 <p>下面是一个完整的插入示例，依次向一棵空的2-3树中插入<code>1</code>到<code>7</code>：</p>
 <p><img alt="2-3-tree-insert" src="https://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/23-tree-insert-example.png" /></p>
-<p>在插入节点中，找到其正确的位置需要访问<mathjax>$ \Theta(\text{log}N) $</mathjax>个节点。回溯向上调整2-3树时，每个节点处的调整时间为<mathjax>$ \Theta(1) $</mathjax>。因此，2-3树的插入操作的时间复杂度为<mathjax>$ \Theta(\text{log}N) $</mathjax>。</p>
+<p>在插入节点中，找到其正确的位置需要访问<tex>$ \Theta(\text{log}N) $</tex>个节点。回溯向上调整2-3树时，每个节点处的调整时间为<tex>$ \Theta(1) $</tex>。因此，2-3树的插入操作的时间复杂度为<tex>$ \Theta(\text{log}N) $</tex>。</p>
 <h3 id="_9">删除操作</h3>
 <p>可以看出，2-3树的插入操作是有点复杂的，然而删除操作更加麻烦。我们首先从简单的情况开始讨论。</p>
 <p>首先，我们确定一点：<strong>2-3树中的节点的儿子，要么都是空儿子，要么都不是空儿子</strong>。<br />
@@ -163,7 +163,7 @@
 <p>删除完成，我们沿着递归向下的顺序向上回溯。回溯到根节点时，我们发现是一个4-节点，于是我们将其分解：</p>
 <p><img alt="2-3-tree-delete-example-5" src="https://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/23-tree-delete-example-5.png" /></p>
 <p>至此。删除操作就完成了。</p>
-<p>对于所有的删除操作，2-3树需要<mathjax>$ \Theta(\text{log}N) $</mathjax>的时间查找节点，并且以<mathjax>$ \Theta(1) $</mathjax>的时间在每个回溯的节点处来作出适当的调整。故2-3树的删除操作是<mathjax>$ \Theta(\text{log}N) $</mathjax>的。</p>
+<p>对于所有的删除操作，2-3树需要<tex>$ \Theta(\text{log}N) $</tex>的时间查找节点，并且以<tex>$ \Theta(1) $</tex>的时间在每个回溯的节点处来作出适当的调整。故2-3树的删除操作是<tex>$ \Theta(\text{log}N) $</tex>的。</p>
 <h2 id="2-3_3">2-3树到红黑树</h2>
 <p>上面讲了那么多关于2-3树的操作，却从不提及其具体实现，是因为2-3树在实际中很少使用。<br />
 由于其需要大量的节点变换（从2-节点到3-节点到4-节点甚至到5-节点&hellip;），这些变换在实际代码中是很复杂的。所以现在几乎没有2-3树的具体实现。<br />
@@ -192,7 +192,7 @@
 <li><strong>空节点（NULL/None）为黑色</strong>。这样方便将方便我们识别没有儿子的2-节点。</li>
 </ul>
 <h3 id="_14">查询操作</h3>
-<p>由于红黑树是二叉搜索树，因此查询操作就是二叉搜索树的查询操作。时间复杂度为<mathjax>$ \Theta(\text{log}N) $</mathjax>。</p>
+<p>由于红黑树是二叉搜索树，因此查询操作就是二叉搜索树的查询操作。时间复杂度为<tex>$ \Theta(\text{log}N) $</tex>。</p>
 <h3 id="_15">基本操作</h3>
 <p>在介绍红黑树的插入和删除操作前，首先介绍红黑树的一些基本操作。</p>
 <h4 id="_16">旋转</h4>
@@ -341,7 +341,7 @@
 </td></tr></table>
 
 <p>这里需要注意一点，当所有操作完成以后，根节点可能变为红色，这是需要我们手动将根节点设置为黑色。<br />
-由于<code>balance</code>操作是<mathjax>$ \Theta(1) $</mathjax>的时间复杂度，故红黑树的插入操作是<mathjax>$ \Theta(\text{log}N) $</mathjax>的时间复杂度。</p>
+由于<code>balance</code>操作是<tex>$ \Theta(1) $</tex>的时间复杂度，故红黑树的插入操作是<tex>$ \Theta(\text{log}N) $</tex>的时间复杂度。</p>
 <h3 id="_22">删除操作</h3>
 <p>正如你所见，红黑树的插入写起来也并不是那么难。然而删除操作就未必。根据我们在2-3树中所讨论的，红黑树删除节点也要保证一路上都有一个3-节点或4-节点。</p>
 <h4 id="_23">红节点的转移</h4>
@@ -411,8 +411,8 @@
 <h4 id="_24">处理根节点</h4>
 <p>和2-3树一样，根节点可能为2-节点。为了方便处理，我们可以把根节点也看作是一个3-节点：</p>
 <p><img alt="rbtree-root-1" src="https://git.oschina.net/riteme/blogimg/raw/master/rbtree-and-2-3-tree/rbtree-root-1-2.png" /></p>
-<p>上图中，<code>a</code>是真正的根节点，而<mathjax>$ \infty $</mathjax>是一个想象的节点，实际上不存在。这样根节点就变成了一个3-节点。<br />
-并且，对于这个3-节点，无论红色左移和红色右移都不会关系到<mathjax>$ \infty $</mathjax>，因此这样不会导致问题。<br />
+<p>上图中，<code>a</code>是真正的根节点，而<tex>$ \infty $</tex>是一个想象的节点，实际上不存在。这样根节点就变成了一个3-节点。<br />
+并且，对于这个3-节点，无论红色左移和红色右移都不会关系到<tex>$ \infty $</tex>，因此这样不会导致问题。<br />
 实际中，我们直接<strong>将根节点设为红色即可</strong>。当删除操作完成后，<strong>再把根节点设为黑色</strong>。</p>
 <h4 id="_25">真正的删除</h4>
 <p>解决了红色节点的转移的工作，删除操作也就变得清晰了。下面将介绍删除操作该如何进行。</p>

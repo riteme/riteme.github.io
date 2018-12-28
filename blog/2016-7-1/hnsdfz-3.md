@@ -3,6 +3,7 @@ title: HNSDFZ #3
 create: 2016.7.1
 modified: 2016.7.1
 tags: Contests
+template: simple
 ---
 
 [TOC]

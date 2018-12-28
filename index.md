@@ -3,6 +3,8 @@ title: Home Page
 create: 2016.1.31
 modified: 2018.12.27
 tags: Home
+index: false
+template: template
 ---
 
 ### 欢迎来到 riteme's site！

@@ -52,58 +52,58 @@
             
 <h1 id="_1">杜教筛的时空复杂度分析</h1>
 <h2 id="_2">背景</h2>
-<p>杜教筛是 OI 界中一种常用的计算积性函数前缀和的技巧：对于积性函数 <mathjax>$f(n)$</mathjax>，设其前缀和为 <mathjax>$F(n) = \sum_{k = 1}^n f(k)$</mathjax>。选定辅助函数 <mathjax>$g(n)$</mathjax>，尝试计算 <mathjax>$f \times g$</mathjax> 的前缀和：<br />
-<mathjax>$$
+<p>杜教筛是 OI 界中一种常用的计算积性函数前缀和的技巧：对于积性函数 <tex>$f(n)$</tex>，设其前缀和为 <tex>$F(n) = \sum_{k = 1}^n f(k)$</tex>。选定辅助函数 <tex>$g(n)$</tex>，尝试计算 <tex>$f \times g$</tex> 的前缀和：<br />
+<tex>$$
 \begin{aligned}
 \sum_{k = 1}^n (f \times g)(k) &amp;= \sum_{k = 1}^n \sum_{d \mid k} f\left({k \over d}\right)g(d) \\
 &amp;= \sum_{d = 1}^n g(d) \sum_{k = 1}^{\lfloor n / d \rfloor} f(k) = \sum_{k = 1}^n g(k)F\left(\left\lfloor{n \over k}\right\rfloor\right)
 \end{aligned}
-$$</mathjax><br />
-将 <mathjax>$g(1)F(n)$</mathjax> 移出来，得到：<br />
-<mathjax>$$
+$$</tex><br />
+将 <tex>$g(1)F(n)$</tex> 移出来，得到：<br />
+<tex>$$
 F(n) = \frac1{g(1)}\left(\sum_{k = 1}^n(f \times g)(k) - \sum_{k = 2}^ng(k)F\left(\left\lfloor{n \over k}\right\rfloor\right)\right)
-$$</mathjax></p>
-<p>关键在于 <mathjax>$\lfloor n / k \rfloor$</mathjax> 的不同取值只有 <mathjax>$\Theta(\sqrt n)$</mathjax> 个。如果我们可以：</p>
+$$</tex></p>
+<p>关键在于 <tex>$\lfloor n / k \rfloor$</tex> 的不同取值只有 <tex>$\Theta(\sqrt n)$</tex> 个。如果我们可以：</p>
 <ol>
-<li>快速计算 <mathjax>$\sum_{k = 1}^n (f \times g)(k)$</mathjax>。</li>
-<li>快速计算 <mathjax>$\sum_{k = 1}^n g(k)$</mathjax>。</li>
+<li>快速计算 <tex>$\sum_{k = 1}^n (f \times g)(k)$</tex>。</li>
+<li>快速计算 <tex>$\sum_{k = 1}^n g(k)$</tex>。</li>
 </ol>
-<p>那么利用哈希表，我们就可以以比较低的时空复杂度计算 <mathjax>$F(n)$</mathjax>。</p>
+<p>那么利用哈希表，我们就可以以比较低的时空复杂度计算 <tex>$F(n)$</tex>。</p>
 <h2 id="_3">具体分析</h2>
-<p>考虑一个具体的例子：计算欧拉函数 <mathjax>$\varphi(n)$</mathjax> 的前缀和。因为 <mathjax>$\sum_{d \mid n} \varphi(d) = n$</mathjax>，所以选取 <mathjax>$g(n) = 1$</mathjax> 作为辅助函数。那么可以得到 <mathjax>$\varphi(n)$</mathjax> 的前缀和 <mathjax>$\Phi(n) = \sum_{k = 1}^n \varphi(k)$</mathjax> 为：<br />
-<mathjax>$$
+<p>考虑一个具体的例子：计算欧拉函数 <tex>$\varphi(n)$</tex> 的前缀和。因为 <tex>$\sum_{d \mid n} \varphi(d) = n$</tex>，所以选取 <tex>$g(n) = 1$</tex> 作为辅助函数。那么可以得到 <tex>$\varphi(n)$</tex> 的前缀和 <tex>$\Phi(n) = \sum_{k = 1}^n \varphi(k)$</tex> 为：<br />
+<tex>$$
 \Phi(n) = {n(n + 1) \over 2} - \sum_{k = 2}^n \Phi\left(\left\lfloor {n \over k} \right\rfloor\right)
-$$</mathjax><br />
-定义 <mathjax>$R(n) = \{\lfloor n / k \rfloor: 2 \leqslant k \leqslant n,\,k \in \mathbf N\}$</mathjax>，即对于 <mathjax>$x \in R(n)$</mathjax>，<mathjax>$\Phi(x)$</mathjax> 是需要递归计算的前缀和。</p>
-<p><strong>引理 1</strong>　<mathjax>$\forall n,\,m \in \mathbf N \geqslant 1$</mathjax>，若 <mathjax>$m \leqslant \sqrt n$</mathjax>，则 <mathjax>$\lfloor n / \lfloor n / m \rfloor \rfloor = m$</mathjax>。</p>
-<p><strong>证明</strong>　令 <mathjax>$k = \lfloor n / m \rfloor$</mathjax>，则 <mathjax>$mk \leqslant n &lt; m(k + 1)$</mathjax>，那么 <mathjax>$m \leqslant n / k &lt; m(k + 1) / k$</mathjax>，若要 <mathjax>$\lfloor n / k \rfloor = m$</mathjax>，则需要 <mathjax>$m(k + 1) / k \leqslant m + 1$</mathjax>，因此 <mathjax>$m + m / k \leqslant m + 1$</mathjax> 即 <mathjax>$m \leqslant \lfloor n / m \rfloor$</mathjax>，这等价于 <mathjax>$m^2 \leqslant n$</mathjax>，即 <mathjax>$m \leqslant \sqrt n$</mathjax>。<span style="float: right"><mathjax>$\blacksquare$</mathjax></span></p>
-<p><strong>引理 2</strong>　对于任意<strong>连续单增</strong>函数 <mathjax>$f(x)$</mathjax>，并且满足：<br />
-<mathjax>$$
+$$</tex><br />
+定义 <tex>$R(n) = \{\lfloor n / k \rfloor: 2 \leqslant k \leqslant n,\,k \in \mathbf N\}$</tex>，即对于 <tex>$x \in R(n)$</tex>，<tex>$\Phi(x)$</tex> 是需要递归计算的前缀和。</p>
+<p><strong>引理 1</strong>　<tex>$\forall n,\,m \in \mathbf N \geqslant 1$</tex>，若 <tex>$m \leqslant \sqrt n$</tex>，则 <tex>$\lfloor n / \lfloor n / m \rfloor \rfloor = m$</tex>。</p>
+<p><strong>证明</strong>　令 <tex>$k = \lfloor n / m \rfloor$</tex>，则 <tex>$mk \leqslant n &lt; m(k + 1)$</tex>，那么 <tex>$m \leqslant n / k &lt; m(k + 1) / k$</tex>，若要 <tex>$\lfloor n / k \rfloor = m$</tex>，则需要 <tex>$m(k + 1) / k \leqslant m + 1$</tex>，因此 <tex>$m + m / k \leqslant m + 1$</tex> 即 <tex>$m \leqslant \lfloor n / m \rfloor$</tex>，这等价于 <tex>$m^2 \leqslant n$</tex>，即 <tex>$m \leqslant \sqrt n$</tex>。<span style="float: right"><tex>$\blacksquare$</tex></span></p>
+<p><strong>引理 2</strong>　对于任意<strong>连续单增</strong>函数 <tex>$f(x)$</tex>，并且满足：<br />
+<tex>$$
 f(x) \in \mathbf Z \Longrightarrow x \in \mathbf Z
-$$</mathjax><br />
-则 <mathjax>$\lfloor f(x) \rfloor = \lfloor f(\lfloor x \rfloor) \rfloor$</mathjax>，以及 <mathjax>$\lceil f(x) \rceil$</mathjax> = <mathjax>$\lceil f(\lceil x \rceil) \rceil$</mathjax>。</p>
+$$</tex><br />
+则 <tex>$\lfloor f(x) \rfloor = \lfloor f(\lfloor x \rfloor) \rfloor$</tex>，以及 <tex>$\lceil f(x) \rceil$</tex> = <tex>$\lceil f(\lceil x \rceil) \rceil$</tex>。</p>
 <p>这个引理来自 <em>Concrete Mathematics</em> <a href="#ref-1">[1]</a> 的 (3.10)，这里就不再证明。</p>
-<p><strong>引理 3</strong>　令正整数 <mathjax>$a,\,b$</mathjax> 为常数，则对于正整数 <mathjax>$x$</mathjax>，有 <mathjax>$\lfloor\lfloor x / a \rfloor / b \rfloor = \lfloor x / ab \rfloor$</mathjax>。</p>
-<p><strong>证明</strong>　令 <mathjax>$f(x) = \lfloor x / b \rfloor$</mathjax>，运用引理 2 即可。<span style="float: right"><mathjax>$\blacksquare$</mathjax></span></p>
-<p><strong>定理 1</strong>　<mathjax>$\forall n \in \mathbf N \geqslant 1$</mathjax>，记 <mathjax>$s = \lfloor \sqrt n \rfloor$</mathjax>，<mathjax>$A = \{1,\,2,\,3,\,...,\,s\}$</mathjax>，<mathjax>$B = \{\lfloor n / 2 \rfloor,\,...,\,\lfloor n / s \rfloor\}$</mathjax>，则 <mathjax>$R(n) = A \cup B$</mathjax> 并且 <mathjax>$|R(n)| = 2\sqrt n + \Theta(1)$</mathjax>。</p>
-<p><strong>证明</strong>　对于 <mathjax>$x \in A$</mathjax>，根据引理 1，<mathjax>$\lfloor n / \lfloor n / x \rfloor \rfloor = x$</mathjax>，所以 <mathjax>$x \in R(n)$</mathjax>。</p>
-<p>对于 <mathjax>$x \in R(n)$</mathjax> 并且 <mathjax>$x &gt; s$</mathjax>，<mathjax>$n / x \leqslant s$</mathjax>，意思是在 <mathjax>$R(n)$</mathjax> 的定义中能够得到 <mathjax>$x$</mathjax> 的 <mathjax>$k \in [2,\,s]$</mathjax>，所以 <mathjax>$S \ \backslash\ A \subseteq B$</mathjax>。根据 <mathjax>$B$</mathjax> 的定义，<mathjax>$B \subseteq S$</mathjax>，由此可得出 <mathjax>$S = A \cup B$</mathjax>。</p>
-<p>对于 <mathjax>$1 \leqslant x &lt; y \leqslant s$</mathjax>，<mathjax>$n / x - n / y \geqslant n/(y - 1) - n / y &gt; 1$</mathjax>，所以 <mathjax>$\lfloor n / x \rfloor \neq \lfloor n / y \rfloor$</mathjax>，所以 <mathjax>$|R(n)| = 2\sqrt n + \Theta(1)$</mathjax>。<span style="float: right"><mathjax>$\blacksquare$</mathjax></span></p>
-<p><strong>定理 2</strong>　对于任意正整数 <mathjax>$n$</mathjax>，<mathjax>$\forall m \in R(n)$</mathjax>，有 <mathjax>$R(m) \subseteq R(n)$</mathjax>。</p>
-<p><strong>证明</strong>　因为 <mathjax>$m \in R(n)$</mathjax>，所以可设 <mathjax>$m = \lfloor n / a \rfloor$</mathjax>。对于 <mathjax>$z \in R(m)$</mathjax>，有 <mathjax>$z = \lfloor m / b \rfloor$</mathjax>，根据引理 3，可知 <mathjax>$z = \lfloor  n / ab \rfloor$</mathjax>。因为 <mathjax>$a,\,b &gt; 1$</mathjax>，且 <mathjax>$a \leqslant n$</mathjax>，<mathjax>$b \leqslant n / a$</mathjax>，所以 <mathjax>$1 &lt; ab \leqslant n$</mathjax>，所以 <mathjax>$z \in R(n)$</mathjax>。<span style="float: right"><mathjax>$\blacksquare$</mathjax></span></p>
-<p>定理 2 揭示了这个技巧的巧妙所在：只需要对每个 <mathjax>$m \in R(n)$</mathjax> 和 <mathjax>$m = n$</mathjax> 计算 <mathjax>$\Phi(m)$</mathjax> 即可。此外，计算 <mathjax>$\Phi(n)$</mathjax> 时单独还需要 <mathjax>$\Theta(\sqrt n)$</mathjax> 的枚举，因此总的枚举次数为：<br />
-<mathjax>$$
+<p><strong>引理 3</strong>　令正整数 <tex>$a,\,b$</tex> 为常数，则对于正整数 <tex>$x$</tex>，有 <tex>$\lfloor\lfloor x / a \rfloor / b \rfloor = \lfloor x / ab \rfloor$</tex>。</p>
+<p><strong>证明</strong>　令 <tex>$f(x) = \lfloor x / b \rfloor$</tex>，运用引理 2 即可。<span style="float: right"><tex>$\blacksquare$</tex></span></p>
+<p><strong>定理 1</strong>　<tex>$\forall n \in \mathbf N \geqslant 1$</tex>，记 <tex>$s = \lfloor \sqrt n \rfloor$</tex>，<tex>$A = \{1,\,2,\,3,\,...,\,s\}$</tex>，<tex>$B = \{\lfloor n / 2 \rfloor,\,...,\,\lfloor n / s \rfloor\}$</tex>，则 <tex>$R(n) = A \cup B$</tex> 并且 <tex>$|R(n)| = 2\sqrt n + \Theta(1)$</tex>。</p>
+<p><strong>证明</strong>　对于 <tex>$x \in A$</tex>，根据引理 1，<tex>$\lfloor n / \lfloor n / x \rfloor \rfloor = x$</tex>，所以 <tex>$x \in R(n)$</tex>。</p>
+<p>对于 <tex>$x \in R(n)$</tex> 并且 <tex>$x &gt; s$</tex>，<tex>$n / x \leqslant s$</tex>，意思是在 <tex>$R(n)$</tex> 的定义中能够得到 <tex>$x$</tex> 的 <tex>$k \in [2,\,s]$</tex>，所以 <tex>$S \ \backslash\ A \subseteq B$</tex>。根据 <tex>$B$</tex> 的定义，<tex>$B \subseteq S$</tex>，由此可得出 <tex>$S = A \cup B$</tex>。</p>
+<p>对于 <tex>$1 \leqslant x &lt; y \leqslant s$</tex>，<tex>$n / x - n / y \geqslant n/(y - 1) - n / y &gt; 1$</tex>，所以 <tex>$\lfloor n / x \rfloor \neq \lfloor n / y \rfloor$</tex>，所以 <tex>$|R(n)| = 2\sqrt n + \Theta(1)$</tex>。<span style="float: right"><tex>$\blacksquare$</tex></span></p>
+<p><strong>定理 2</strong>　对于任意正整数 <tex>$n$</tex>，<tex>$\forall m \in R(n)$</tex>，有 <tex>$R(m) \subseteq R(n)$</tex>。</p>
+<p><strong>证明</strong>　因为 <tex>$m \in R(n)$</tex>，所以可设 <tex>$m = \lfloor n / a \rfloor$</tex>。对于 <tex>$z \in R(m)$</tex>，有 <tex>$z = \lfloor m / b \rfloor$</tex>，根据引理 3，可知 <tex>$z = \lfloor  n / ab \rfloor$</tex>。因为 <tex>$a,\,b &gt; 1$</tex>，且 <tex>$a \leqslant n$</tex>，<tex>$b \leqslant n / a$</tex>，所以 <tex>$1 &lt; ab \leqslant n$</tex>，所以 <tex>$z \in R(n)$</tex>。<span style="float: right"><tex>$\blacksquare$</tex></span></p>
+<p>定理 2 揭示了这个技巧的巧妙所在：只需要对每个 <tex>$m \in R(n)$</tex> 和 <tex>$m = n$</tex> 计算 <tex>$\Phi(m)$</tex> 即可。此外，计算 <tex>$\Phi(n)$</tex> 时单独还需要 <tex>$\Theta(\sqrt n)$</tex> 的枚举，因此总的枚举次数为：<br />
+<tex>$$
 \begin{aligned}
 \sum_{k = 1}^{\lfloor \sqrt n \rfloor} \sqrt k + \sum_{k = 1}^{\lfloor \sqrt n \rfloor} \sqrt{n \over k} = \Theta\left( \int_1^{\sqrt n} \left(\sqrt x + \sqrt{n \over x}\right) \mathrm dx \right) = \Theta(n^{3/4})
 \end{aligned}
-$$</mathjax><br />
-当然空间复杂度是 <mathjax>$\Theta(\sqrt n)$</mathjax>。一般都还会采取预处理的方法来继续优化这个算法：利用线性筛算出前 <mathjax>$S &gt; \sqrt n$</mathjax> 个前缀和，那么时间复杂度变为：<br />
-<mathjax>$$
+$$</tex><br />
+当然空间复杂度是 <tex>$\Theta(\sqrt n)$</tex>。一般都还会采取预处理的方法来继续优化这个算法：利用线性筛算出前 <tex>$S &gt; \sqrt n$</tex> 个前缀和，那么时间复杂度变为：<br />
+<tex>$$
 S + \sum_{k = 1}^{\lfloor n / S\rfloor} \sqrt{n \over k} = \Theta\left( S + \int_1^{n/S} \sqrt{n \over x} \mathrm{d}x \right) = \Theta\left(S + {n \over \sqrt S}\right)
-$$</mathjax><br />
-取 <mathjax>$S = n^{2/3}$</mathjax> 可以得到最优时间复杂度 <mathjax>$\Theta(n^{2/3})$</mathjax>。注意此时空复杂度相同。</p>
+$$</tex><br />
+取 <tex>$S = n^{2/3}$</tex> 可以得到最优时间复杂度 <tex>$\Theta(n^{2/3})$</tex>。注意此时空复杂度相同。</p>
 <h2 id="_4">后记</h2>
-<p>之所以会写这篇博客，主要是我第二次看杜教筛的资料的时候，终于想通了它的时间复杂度分析，也就上面这一堆东西。但实际上和任之洲的集训队论文 <a href="#ref-2">[2]</a> 相比，只多出了一个简单的定理 2。没有意识到这一点之前，我一直无法理解为什么那两个和式就可以代表杜教筛的时间复杂度。另外，更重要的一点就是看到了 tangjz 的<a href="https://blog.csdn.net/skywalkert/article/details/50500009">《浅谈一类积性函数的前缀和》</a>中的分析，个人认为那是在自欺欺人，稍有用心的人就会发现其中描述时间复杂度的 <mathjax>$T(n)$</mathjax> 忽略了记忆化这个操作。所以我才想写一个详细一点的分析，希望对大家有帮助。</p>
+<p>之所以会写这篇博客，主要是我第二次看杜教筛的资料的时候，终于想通了它的时间复杂度分析，也就上面这一堆东西。但实际上和任之洲的集训队论文 <a href="#ref-2">[2]</a> 相比，只多出了一个简单的定理 2。没有意识到这一点之前，我一直无法理解为什么那两个和式就可以代表杜教筛的时间复杂度。另外，更重要的一点就是看到了 tangjz 的<a href="https://blog.csdn.net/skywalkert/article/details/50500009">《浅谈一类积性函数的前缀和》</a>中的分析，个人认为那是在自欺欺人，稍有用心的人就会发现其中描述时间复杂度的 <tex>$T(n)$</tex> 忽略了记忆化这个操作。所以我才想写一个详细一点的分析，希望对大家有帮助。</p>
 <h2 id="_5">参考资料</h2>
 <p><span id="ref-1">[1]</span>. Ronald L. Graham, Donald E. Kunth, Oren Patashnik, 2002, <em>Concrete Mathematics</em> (2th edition), 978-7-111-10576-3<br />
 [2]. 任之洲，2016，《积性函数求和的几种方法》，2016 年信息学奥林匹克中国国家队候选队员论文</p>

@@ -55,45 +55,45 @@
 <h2 id="_2">用抛物线拟合</h2>
 <p>假设我们有三个不重合的点，那么可以唯一确定一个抛物线经过这三个点。如下图所示：</p>
 <p><img alt="quadratic" src="https://git.oschina.net/riteme/blogimg/raw/master/simpson/simpson1.svg" /></p>
-<p>辛普森积分法就是在积分区间<mathjax>$[a,\;b]$</mathjax>上去三个点<mathjax>$a$</mathjax>、<mathjax>$b$</mathjax>和<mathjax>$m = (a + b) / 2$</mathjax>，计算其原函数的在此处的值，然后用抛物线来拟合原函数，即使用该二次函数的积分值代替原函数的积分值，达到近似积分的效果。</p>
+<p>辛普森积分法就是在积分区间<tex>$[a,\;b]$</tex>上去三个点<tex>$a$</tex>、<tex>$b$</tex>和<tex>$m = (a + b) / 2$</tex>，计算其原函数的在此处的值，然后用抛物线来拟合原函数，即使用该二次函数的积分值代替原函数的积分值，达到近似积分的效果。</p>
 <p>如何计算这个二次函数？我们自然可以解三元三次方程组，但更方便的方法是拉格朗日差值公式：<br />
-<mathjax>$$
+<tex>$$
 g(x) = {(x - m)(x - b) \over (a - m)(a - b)}f(a) + {(x - a)(a - b) \over (m - a)(m - b)}f(m) + {(x - a)(x - m) \over (b - a)(b - m)}f(b)
-$$</mathjax></p>
-<p>其中<mathjax>$f(x)$</mathjax>是原函数，<mathjax>$g(x)$</mathjax>是拟合后的函数。下文中<mathjax>$f$</mathjax>和<mathjax>$g$</mathjax>也表示同样的意义，不再复述。</p>
+$$</tex></p>
+<p>其中<tex>$f(x)$</tex>是原函数，<tex>$g(x)$</tex>是拟合后的函数。下文中<tex>$f$</tex>和<tex>$g$</tex>也表示同样的意义，不再复述。</p>
 <h2 id="_3">二次函数的积分</h2>
 <p>有了二次函数后，计算其积分是十分简单的事，但是这一切还不够完美。下面我们将推导出一个更简单的公式。</p>
 <p>设：<br />
-<mathjax>$$
+<tex>$$
 g(x) = Ax^2 + Bx + C \\
 m = \frac{(a + b)}2 \\
 f(a) = g(a), \; f(m) = g(m), \; f(b) = g(b)
-$$</mathjax></p>
+$$</tex></p>
 <p>那么：<br />
-<mathjax>$$
+<tex>$$
 \int_a^b f(x) \;\mathrm{d}x \approx \int_a^b (Ax^2 + Bx + C)\;\mathrm{d}x
-$$</mathjax></p>
+$$</tex></p>
 <p>所以：<br />
-<mathjax>$$
+<tex>$$
 \int_a^b (Ax^2 + Bx + C)\;\mathrm{d}x = \frac{A}3(b^3-a^3) + \frac{B}2(b^2-a^2) + C(b-a)
-$$</mathjax></p>
+$$</tex></p>
 <p>因为：<br />
-<mathjax>$$
+<tex>$$
 b^3 - a^3 = (b^2 + ab + a^2)(b-a)\\
 b^2 - a^2 = (b+a)(b-a)
-$$</mathjax></p>
+$$</tex></p>
 <p>所以之前的式子可变为：<br />
-<mathjax>$$
+<tex>$$
 {b-a \over 6}[2A(b^2 + ab + a^2) + 3B(b+a) + 6C]
-$$</mathjax></p>
+$$</tex></p>
 <p>调整可得：<br />
-<mathjax>$$
+<tex>$$
 {b-a \over 6}\left[(Aa^2 + Ba + C) + (Ab^2 + Bb + C) + 4A\left({b+a \over 2}\right)^2 + 4B\left({b+a \over 2}\right) + 4C\right]
-$$</mathjax></p>
+$$</tex></p>
 <p>于是就是：<br />
-<mathjax>$$
+<tex>$$
 \int_a^b f(x) \;\mathrm{d}x = {b - a \over 6}(f(a) + 4f(m) + f(b))
-$$</mathjax></p>
+$$</tex></p>
 <p>这就是辛普森法则。</p>
 <h2 id="_4">辛普森积分</h2>
 <p>下面将用Python简单实现一下辛普森积分，首先我们需要一个计算积分的函数：</p>
@@ -159,10 +159,10 @@ $$</mathjax></p>
 </pre></div>
 </td></tr></table>
 
-<p>可以发现分为<mathjax>$100000$</mathjax>个区间就获得了<mathjax>$7$</mathjax>位的精度。事实上，如果你将<code>sample</code>换为直线的拟合，你将只能得到<mathjax>$6$</mathjax>位的精度。</p>
+<p>可以发现分为<tex>$100000$</tex>个区间就获得了<tex>$7$</tex>位的精度。事实上，如果你将<code>sample</code>换为直线的拟合，你将只能得到<tex>$6$</tex>位的精度。</p>
 <h2 id="_5">自适应辛普森积分</h2>
-<p>然而控制区间个数不是一个控制答案精度的好办法，通常我们将使用特定的<mathjax>$\varepsilon$</mathjax>来控制精度误差。</p>
-<p>如何让算法知道应当继续细分来达到特定精度呢？通常的方法就是将当前区间分为两半，用这两半的拟合值与当前计算的值做差。如果小于<mathjax>$\varepsilon$</mathjax>，那么我们就认为精度达到了要求。否则我们就递归下去，计算两个子区间的积分。注意，此时<mathjax>$\varepsilon$</mathjax>也应当缩小，从而避免累积的误差超过了<mathjax>$\varepsilon$</mathjax>。</p>
+<p>然而控制区间个数不是一个控制答案精度的好办法，通常我们将使用特定的<tex>$\varepsilon$</tex>来控制精度误差。</p>
+<p>如何让算法知道应当继续细分来达到特定精度呢？通常的方法就是将当前区间分为两半，用这两半的拟合值与当前计算的值做差。如果小于<tex>$\varepsilon$</tex>，那么我们就认为精度达到了要求。否则我们就递归下去，计算两个子区间的积分。注意，此时<tex>$\varepsilon$</tex>也应当缩小，从而避免累积的误差超过了<tex>$\varepsilon$</tex>。</p>
 <p>这样我们就将得到一个递归算法，具体实现如下：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -249,8 +249,8 @@ $$</mathjax></p>
 <h2 id="_6">异常情况</h2>
 <p>由于是使用二次函数拟合，所以辛普森积分法对光滑的函数效果较好。但下面几种情况需要谨慎考虑：</p>
 <ul>
-<li>上下震荡十分剧烈的函数（如<mathjax>$y = \sin(1/x)$</mathjax>）不适用，事实上这种函数一般都不好积。</li>
-<li>突变的函数（如<mathjax>$y = |x|$</mathjax>，在<mathjax>$x = 0$</mathjax>处无导数）不适用。</li>
+<li>上下震荡十分剧烈的函数（如<tex>$y = \sin(1/x)$</tex>）不适用，事实上这种函数一般都不好积。</li>
+<li>突变的函数（如<tex>$y = |x|$</tex>，在<tex>$x = 0$</tex>处无导数）不适用。</li>
 </ul>
 <p>对于存在没有导数的点的函数，通常的解决方法就是从这些点分开，然后就可以分段计算了。</p>
             <hr/>

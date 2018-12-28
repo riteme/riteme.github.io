@@ -53,28 +53,28 @@
 <h1 id="gcd">二进制GCD</h1>
 <p>在算导上发现了一个有趣的算法，有氧环境下可以拿来卡卡常.....</p>
 <h2 id="_1">算法原理</h2>
-<p>下面将考虑计算<mathjax>$\gcd(a,\;b)$</mathjax>，假定<mathjax>$a \ge b$</mathjax>：</p>
+<p>下面将考虑计算<tex>$\gcd(a,\;b)$</tex>，假定<tex>$a \ge b$</tex>：</p>
 <ol>
-<li>如果<mathjax>$a$</mathjax>、<mathjax>$b$</mathjax>都是<strong>偶数</strong>，那么易知：<br />
-<mathjax>$$
+<li>如果<tex>$a$</tex>、<tex>$b$</tex>都是<strong>偶数</strong>，那么易知：<br />
+<tex>$$
 \gcd(a,\;b) = 2\gcd(a / 2,\;b / 2)
-$$</mathjax></li>
-<li>如果<mathjax>$a$</mathjax>是<strong>偶数</strong>，<mathjax>$b$</mathjax>是<strong>奇数</strong>，那么有：<br />
-<mathjax>$$
+$$</tex></li>
+<li>如果<tex>$a$</tex>是<strong>偶数</strong>，<tex>$b$</tex>是<strong>奇数</strong>，那么有：<br />
+<tex>$$
 \gcd(a,\;b) = \gcd(a / 2, b)
-$$</mathjax></li>
-<li>如果<mathjax>$a$</mathjax>是<strong>奇数</strong>，<mathjax>$b$</mathjax>是<strong>偶数</strong>，那么有：<br />
-<mathjax>$$
+$$</tex></li>
+<li>如果<tex>$a$</tex>是<strong>奇数</strong>，<tex>$b$</tex>是<strong>偶数</strong>，那么有：<br />
+<tex>$$
 \gcd(a,\;b) = \gcd(a,\;b / 2)
-$$</mathjax></li>
-<li>如果<mathjax>$a$</mathjax>、<mathjax>$b$</mathjax>都是<strong>奇数</strong>，那么有：<br />
-<mathjax>$$
+$$</tex></li>
+<li>如果<tex>$a$</tex>、<tex>$b$</tex>都是<strong>奇数</strong>，那么有：<br />
+<tex>$$
 \gcd(a,\;b) = \gcd((a - b) / 2, b)
-$$</mathjax></li>
+$$</tex></li>
 </ol>
 <p>这些结论都是比较容易证明的，这里就略去了。<br />
-由于<strong>减法的速度比取模快</strong> (减法速度基本与加法一致)，同时除以<mathjax>$2$</mathjax>和乘以<mathjax>$2$</mathjax>可以使用<strong>位运算</strong>来代替，并且每次折半可以保证复杂度，所以理论上这个算法是非常快的。<br />
-但是需要注意，欧几里德算法是上界<mathjax>$O(\log(\min\{a,\;b\}))$</mathjax>，而此算法类似于快速幂，是<strong>上下界</strong><mathjax>$\Theta(\log(\min\{a,\;b\}))$</mathjax>。<br />
+由于<strong>减法的速度比取模快</strong> (减法速度基本与加法一致)，同时除以<tex>$2$</tex>和乘以<tex>$2$</tex>可以使用<strong>位运算</strong>来代替，并且每次折半可以保证复杂度，所以理论上这个算法是非常快的。<br />
+但是需要注意，欧几里德算法是上界<tex>$O(\log(\min\{a,\;b\}))$</tex>，而此算法类似于快速幂，是<strong>上下界</strong><tex>$\Theta(\log(\min\{a,\;b\}))$</tex>。<br />
 但这并不影响它的效率。在我的机子上 (使用Clang 3.6.0) 实测，在编译器打开<code>-O2</code>优化下比欧几里德算法快。<br />
 但是在没有开<code>-O2</code>优化时，因为<strong>常数问题速度变慢</strong>许多。</p>
 <h2 id="_2">算法实现</h2>

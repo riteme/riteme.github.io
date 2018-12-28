@@ -7,7 +7,6 @@
   <link rel="shortcut icon" href="/favicon.png" type="image/png">
   <link rel="stylesheet" href="/material/material-icons.css">
   <link rel="stylesheet" href="/material/material.min.css" >
-  <link rel="stylesheet" href="/gitment/gitment.css">
   <link rel="stylesheet" href="/math-renderer/katex/katex.min.css">
   <link rel="stylesheet" href="/css/site.css">
   <script src="/js/jquery.min.js"></script>
@@ -15,23 +14,10 @@
   <script src="/js/js-cookie.js"></script>
   <script defer src="/material/material.min.js"></script>
   <script src="/math-renderer/selector.js"></script>
-  <script src="/gitment/gitment.js"></script>
   <script src="/js/quicklink.umd.js"></script>
 </head>
 <body>
-  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-    <header class="mdl-layout__header">
-      <div class="mdl-layout__header-row">
-        <span class="mdl-layout-title">$k$-SBK变换</span>
-        <div class="mdl-layout-spacer"></div>
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right">
-          <label class="mdl-button mdl-js-button mdl-button--icon" for="fixed-header-drawer-exp"><i class="material-icons">search</i></label>
-          <div class="mdl-textfield__expandable-holder">
-            <form action="/search.html"><input type="text" class="mdl-textfield__input" placeholder="Search Here" name="q" id="fixed-header-drawer-exp" autocomplete="off" required></form>
-          </div>
-        </div>
-      </div>
-    </header>
+  <div class="mdl-layout mdl-js-layout">
     <div class="mdl-layout__drawer">
       <span class="mdl-layout-title drawer-title">
         <a href="/index.html" style="color: inherit; font-weight: inherit;text-decoration: none;"><img src="/favicon.png" width=32 height=32> riteme.site</a>
@@ -47,24 +33,23 @@
     </div>
     <main class="mdl-layout__content">
       <div class="mdl-grid">
-        <div class="mdl-cell mdl-cell--8-col mdl-cell--12-col-tablet mdl-cell--12-col-phone main-cell">
+        <div class="mdl-cell mdl-cell--12-col">
           <div class="article main-article" lang="en-US">
-            
-<h1 id="k-sbk-ksbkinoutcpp"><mathjax>$k$</mathjax>-SBK变换 (ksbk.in/out/cpp)</h1>
+<h1 id="k-sbk-ksbkinoutcpp"><tex>$k$</tex>-SBK变换 (ksbk.in/out/cpp)</h1>
 <p>时间限制: 1 s / 内存限制: 512 MB / 打开O2优化</p>
 <h2 id="_1">题目描述</h2>
 <p>数学家Lunk最近发现了一种逗逼的<strong>SBK变换</strong>。在Lunk眼里，SBK变换是这样的：</p>
 <blockquote>
-<p>给你一个<mathjax>$1$</mathjax>至<mathjax>$n$</mathjax>的排列<mathjax>$A$</mathjax>和一个<mathjax>$1$</mathjax>至<mathjax>$n$</mathjax>的排列<mathjax>$P$</mathjax>，<mathjax>$P$</mathjax>对<mathjax>$A$</mathjax>做一次SBK变换后将得到一个新的排列<mathjax>$B$</mathjax>，其中：<br />
-<mathjax>$$ B_{P_i} = A_i \tag{SBK Transformation}$$</mathjax></p>
+<p>给你一个<tex>$1$</tex>至<tex>$n$</tex>的排列<tex>$A$</tex>和一个<tex>$1$</tex>至<tex>$n$</tex>的排列<tex>$P$</tex>，<tex>$P$</tex>对<tex>$A$</tex>做一次SBK变换后将得到一个新的排列<tex>$B$</tex>，其中：<br />
+<tex>$$ B_{P_i} = A_i \tag{SBK Transformation}$$</tex></p>
 </blockquote>
-<p>然而做一次SBK变换太过无聊，于是Lunk决定连续做多次SBK变换。即将每次变换后的结果<mathjax>$B$</mathjax>变为<mathjax>$A$</mathjax>，然后继续用<mathjax>$P$</mathjax>对<mathjax>$A$</mathjax>做SBK变换。Lunk想知道连续对<mathjax>$A$</mathjax>做<mathjax>$k$</mathjax>次SBK变换后的结果。</p>
+<p>然而做一次SBK变换太过无聊，于是Lunk决定连续做多次SBK变换。即将每次变换后的结果<tex>$B$</tex>变为<tex>$A$</tex>，然后继续用<tex>$P$</tex>对<tex>$A$</tex>做SBK变换。Lunk想知道连续对<tex>$A$</tex>做<tex>$k$</tex>次SBK变换后的结果。</p>
 <h2 id="_2">输入格式</h2>
-<p>第一行输入两个整数<mathjax>$n$</mathjax>和<mathjax>$k$</mathjax>，表示排列的长度和连续做SBK变换的次数。<br />
-第二行输入<mathjax>$n$</mathjax>个整数表示排列<mathjax>$A$</mathjax>。<br />
-第三行输入<mathjax>$n$</mathjax>个整数表示排列<mathjax>$P$</mathjax>。</p>
+<p>第一行输入两个整数<tex>$n$</tex>和<tex>$k$</tex>，表示排列的长度和连续做SBK变换的次数。<br />
+第二行输入<tex>$n$</tex>个整数表示排列<tex>$A$</tex>。<br />
+第三行输入<tex>$n$</tex>个整数表示排列<tex>$P$</tex>。</p>
 <h2 id="_3">输出格式</h2>
-<p>一行输出<mathjax>$n$</mathjax>个整数，表示<mathjax>$k$</mathjax>次SBK变换后的结果。</p>
+<p>一行输出<tex>$n$</tex>个整数，表示<tex>$k$</tex>次SBK变换后的结果。</p>
 <h2 id="_4">样例输入</h2>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -83,183 +68,71 @@
 <p>做完第一次SBK变换后： <code>5 1 2 3 4</code><br />
 做完第二次SBK变换后： <code>4 5 1 2 3</code></p>
 <h2 id="_7">数据范围及约定</h2>
-<p>共<mathjax>$10$</mathjax>个测试点，每个测试点的数据范围如下表所示：</p>
+<p>共<tex>$10$</tex>个测试点，每个测试点的数据范围如下表所示：</p>
 <table>
 <thead>
 <tr>
 <th align="center">数据点</th>
-<th align="center"><mathjax>$n$</mathjax>的规模</th>
-<th align="center"><mathjax>$k$</mathjax>的规模</th>
+<th align="center"><tex>$n$</tex>的规模</th>
+<th align="center"><tex>$k$</tex>的规模</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td align="center">1</td>
-<td align="center"><mathjax>$\le10^3$</mathjax></td>
-<td align="center"><mathjax>$\le10^3$</mathjax></td>
+<td align="center"><tex>$\le10^3$</tex></td>
+<td align="center"><tex>$\le10^3$</tex></td>
 </tr>
 <tr>
 <td align="center">2</td>
-<td align="center"><mathjax>$\le10^3$</mathjax></td>
-<td align="center"><mathjax>$\le10^3$</mathjax></td>
+<td align="center"><tex>$\le10^3$</tex></td>
+<td align="center"><tex>$\le10^3$</tex></td>
 </tr>
 <tr>
 <td align="center">3</td>
-<td align="center"><mathjax>$\le10^4$</mathjax></td>
-<td align="center"><mathjax>$\le10^5$</mathjax></td>
+<td align="center"><tex>$\le10^4$</tex></td>
+<td align="center"><tex>$\le10^5$</tex></td>
 </tr>
 <tr>
 <td align="center">4</td>
-<td align="center"><mathjax>$\le10^4$</mathjax></td>
-<td align="center"><mathjax>$\le2\times10^5$</mathjax></td>
+<td align="center"><tex>$\le10^4$</tex></td>
+<td align="center"><tex>$\le2\times10^5$</tex></td>
 </tr>
 <tr>
 <td align="center">5</td>
-<td align="center"><mathjax>$\le4\times10^5$</mathjax></td>
-<td align="center"><mathjax>$\le2^{30}$</mathjax></td>
+<td align="center"><tex>$\le4\times10^5$</tex></td>
+<td align="center"><tex>$\le2^{30}$</tex></td>
 </tr>
 <tr>
 <td align="center">6</td>
-<td align="center"><mathjax>$\le4\times10^5$</mathjax></td>
-<td align="center"><mathjax>$\le2^{33}$</mathjax></td>
+<td align="center"><tex>$\le4\times10^5$</tex></td>
+<td align="center"><tex>$\le2^{33}$</tex></td>
 </tr>
 <tr>
 <td align="center">7</td>
-<td align="center"><mathjax>$\le6\times10^5$</mathjax></td>
-<td align="center"><mathjax>$\le2^{63}$</mathjax></td>
+<td align="center"><tex>$\le6\times10^5$</tex></td>
+<td align="center"><tex>$\le2^{63}$</tex></td>
 </tr>
 <tr>
 <td align="center">8</td>
-<td align="center"><mathjax>$\le6\times10^5$</mathjax></td>
-<td align="center"><mathjax>$\le2^{63}$</mathjax></td>
+<td align="center"><tex>$\le6\times10^5$</tex></td>
+<td align="center"><tex>$\le2^{63}$</tex></td>
 </tr>
 <tr>
 <td align="center">9</td>
-<td align="center"><mathjax>$\le10^6$</mathjax></td>
-<td align="center"><mathjax>$\le2^{63}$</mathjax></td>
+<td align="center"><tex>$\le10^6$</tex></td>
+<td align="center"><tex>$\le2^{63}$</tex></td>
 </tr>
 <tr>
 <td align="center">10</td>
-<td align="center"><mathjax>$\le2.3\times10^6$</mathjax></td>
-<td align="center"><mathjax>$\le2^{63}$</mathjax></td>
+<td align="center"><tex>$\le2.3\times10^6$</tex></td>
+<td align="center"><tex>$\le2^{63}$</tex></td>
 </tr>
 </tbody>
-</table>
-            <hr/>
-            <div id="comments"></div>
-            <script type="text/javascript">
-              window.addEventListener('load',()=>{quicklink();})
-              const gitment = new Gitment({id: 'e96feec8ff37df71802f05d89c181764', owner: 'riteme', repo: 'riteme.github.io',
-                oauth: {
-                  client_id: 'd4fcffa25858a7a58e1a',
-                  client_secret: 'e0c8e08beb95497871f8355416c69390634cec76',
-                },
-                perPage: 10,
-              })
-              gitment.render('comments')
-            </script>
-          </div>
-        </div>
-        <div class="mdl-cell mdl-cell--4-col mdl-cell--hide-tablet mdl-cell--hide-phone sidebar">
-          <div class="article">
-            <div class="mdl-card mdl-shadow--3dp sidebar-card">
-              <div class="mdl-card__actions sidebar-title">页面信息</div>
-              <div class="mdl-card__supporting-text">
-                标签: <a href="/search.html?q=Problems"><span class="label">Problems</span></a><br/>
-                创建时间: 2016.07.28<br/>
-                上次修改: 2016.07.28<br/>
-                字数统计: 1296 字 / 约 5 分钟
-              </div>
-            </div>
-            <br/>
-            
-<div class="mdl-card mdl-shadow--3dp sidebar-card">
-  <div class="mdl-card__actions sidebar-title">目录</div>
-  <div class="mdl-card__supporting-text">
-    <div class="toc">
-<ul>
-<li><a href="#k-sbk-ksbkinoutcpp">$k$-SBK变换 (ksbk.in/out/cpp)</a><ul>
-<li><a href="#_1">题目描述</a></li>
-<li><a href="#_2">输入格式</a></li>
-<li><a href="#_3">输出格式</a></li>
-<li><a href="#_4">样例输入</a></li>
-<li><a href="#_5">样例输出</a></li>
-<li><a href="#_6">样例解释</a></li>
-<li><a href="#_7">数据范围及约定</a></li>
-</ul>
-</li>
-</ul>
-</div>
-  </div>
-</div>
-<br/>
-
-            <div class="mdl-card mdl-shadow--3dp sidebar-card">
-              <div class="mdl-card__actions sidebar-title">数学公式渲染</div>
-              <div class="mdl-card__supporting-text">
-                <form name="mathopt">
-                  <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
-                    <input type="radio" id="option-1" class="mdl-radio__button" name="sel" value="mathjax">
-                    <span class="mdl-radio__label">MathJax (推荐)</span>
-                  </label><br/>
-                  <div id="tip-1">
-                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
-                      <input type="radio" id="option-2" class="mdl-radio__button" name="sel" value="katex">
-                      <span class="mdl-radio__label">KaTeX</span>
-                    </label>
-                  </div>
-                  <div id="tip-2">
-                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
-                      <input type="radio" id="option-3" class="mdl-radio__button" name="sel" value="katex&mathjax">
-                      <span class="mdl-radio__label">Mixed</span>
-                    </label>
-                  </div>
-                </form>
-              </div>
-            </div>
-            <div class="mdl-tooltip" data-mdl-for="tip-1">KaTeX 渲染效率很高，但是目前 KaTeX 容错性不强，因此使用 KaTeX 时可能会存在一些数学公式无法渲染的情况</div>
-            <div class="mdl-tooltip" data-mdl-for="tip-2">先使用 KaTeX 渲染，再使用 MathJax 渲染</div>
-            <br/>
-            <div class="nano mdl-card mdl-shadow--3dp sidebar-card">
-              <a class="nano-ref" target="_new" href="http://nichijou.wikia.com/wiki/Nano_Shinonome"></a>
-              <div class="mdl-card__actions">
-                <div class="nano-shell"><span class="shell-start">$</span> nano <a href="https://github.com/riteme/riteme.github.io/blob/master/blog/2016-7-28/ksbk.md" id="nano-link">ksbk.md</a></div>
-              </div>
-            </div>
-            <div class="mdl-tooltip" data-mdl-for="nano-link">查看原始 Markdown 文档</div>
-          </div>
+</table></div>
         </div>
       </div>
       <footer class="mdl-mega-footer">
-        <div class="mdl-mega-footer__middle-section">
-          <div class="mdl-mega-footer__drop-down-section">
-            <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-            <h1 class="mdl-mega-footer__heading">RITEME.SITE</h1>一个从不乱说话的博客...
-          </div>
-          <div class="mdl-mega-footer__drop-down-section">
-            <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-            <h1 class="mdl-mega-footer__heading">POWERED BY</h1>
-            <ul class="mdl-mega-footer__link-list">
-              <li><a href="http://pythonhosted.org/Markdown/">Python Markdown</a></li>
-              <li><a href="http://getmdl.io/">Material Design Lite</a></li>
-              <li><a href="http://www.tipue.com/search/">Tipuesearch</a></li>
-              <li><a href="http://www.mathjax.org/">MathJax</a> & <a href="http://khan.github.io/KaTeX/">KaTeX</a></li>
-              <li><a href="https://github.com/imsun/gitment">Gitment</a></li>
-            </ul>
-          </div>
-          <div class="mdl-mega-footer__drop-down-section">
-            <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-            <h1 class="mdl-mega-footer__heading">友情链接</h1>
-            <ul class="mdl-mega-footer__link-list">
-              <li><a href="http://ruanx.pw/">ruanxingzhi</a></li>
-              <li><a href="https://blog.xehoth.cc/">xehoth</a></li>
-              <li><a href="http://hjwjbsr.is-programmer.com/">HJWJBSR</a></li>
-              <li><a href="http://www.micdz.cn/">MicDZ</a></li>
-              <li><a href="http://blog.linyxus.xyz/">Linyxus</a></li>
-              <li><a href="http://memset0.cf/">memset0</a></li>
-            </ul>
-          </div>
-        </div>
         <div class="mdl-mega-footer__bottom-section">Theme based on <a href="https://getmdl.io/">MDL</a> | Copyright © 2015-2019 riteme. All rights reserved.</div>
       </footer>
     </main>

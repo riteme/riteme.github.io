@@ -67,8 +67,8 @@
 <h3 id="jarvis-gift-wrapping">Jarvis步进法 (Gift Wrapping)</h3>
 <p>Jarvis步进法可以看作是给点集包上包装纸，最后算出凸包的。算法过程非常简单：</p>
 <ol>
-<li>找出最左下和最右上的两个点，记为<mathjax>$p_1$</mathjax>、<mathjax>$p_2$</mathjax>，它们一定是凸包上的点。</li>
-<li>设<mathjax>$p_1$</mathjax>为当前点，每次从剩下的点中找出以当前点为原点极角最小的点，将其加入凸包，并设为当前点。重复这一步骤，直到遇到<mathjax>$p_2$</mathjax>。这样完成了凸包右边的构造。</li>
+<li>找出最左下和最右上的两个点，记为<tex>$p_1$</tex>、<tex>$p_2$</tex>，它们一定是凸包上的点。</li>
+<li>设<tex>$p_1$</tex>为当前点，每次从剩下的点中找出以当前点为原点极角最小的点，将其加入凸包，并设为当前点。重复这一步骤，直到遇到<tex>$p_2$</tex>。这样完成了凸包右边的构造。</li>
 <li>与第二步相似，构造凸包的左边（每一步寻找极角最大的点）。</li>
 </ol>
 <p>以下面的点集为例：</p>
@@ -83,7 +83,7 @@
 <img alt="jarvis-6" src="https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/jarvis-6.svg" /><br />
 <img alt="jarvis-7" src="https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/jarvis-7.svg" /></p>
 <p>至此，凸包构建完毕。</p>
-<p>由于Jarvis步进法中凸包每一个点都需要对剩下的点进行处理，所以该算法的时间复杂度为<mathjax>$\Theta(nh)$</mathjax>，其中<mathjax>$h$</mathjax>是凸包的规模。最坏情况下为<mathjax>$\Theta(n^2)$</mathjax>。由于当点在一个有限矩形内随机分布时凸包的期望规模为<mathjax>$O(\log n)$</mathjax>，所以在这种情况下，该算法的时间复杂度为<mathjax>$O(n\log n)$</mathjax>。</p>
+<p>由于Jarvis步进法中凸包每一个点都需要对剩下的点进行处理，所以该算法的时间复杂度为<tex>$\Theta(nh)$</tex>，其中<tex>$h$</tex>是凸包的规模。最坏情况下为<tex>$\Theta(n^2)$</tex>。由于当点在一个有限矩形内随机分布时凸包的期望规模为<tex>$O(\log n)$</tex>，所以在这种情况下，该算法的时间复杂度为<tex>$O(n\log n)$</tex>。</p>
 <p>下面是其伪代码：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -188,8 +188,8 @@
 我们可以从左至右扫描每一个点来更新凸包。可以确定，最左边和最右边的点都是凸包上的点。因此利用扫描线来分别计算上下凸包。<br />
 算法步骤如下：</p>
 <ol>
-<li>将所有点按照<mathjax>$x$</mathjax>排序。</li>
-<li>对于每一组<mathjax>$x$</mathjax>相同的点，仅保留<mathjax>$y$</mathjax>值最大和最小的点。</li>
+<li>将所有点按照<tex>$x$</tex>排序。</li>
+<li>对于每一组<tex>$x$</tex>相同的点，仅保留<tex>$y$</tex>值最大和最小的点。</li>
 <li>取出最左和最右作为基点，用于判断其它的点是在上凸包还是下凸包。</li>
 <li>从左至右扫描每一个点，根据基点利用叉积计算该点是应插入上凸包还下凸包，将其插入对应的凸包中。然后从这个点开始向前访问，如果和之前的点形成内凹的形状（可以利用叉积判断），就将之前的点删除。直到不存在这样的形状为止。</li>
 </ol>
@@ -212,7 +212,7 @@
 <img alt="scanline-15" src="https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-15.svg" /><br />
 <img alt="scanline-16" src="https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-16.svg" /><br />
 <img alt="scanline-17" src="https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-17.svg" /></p>
-<p>由于每个点只会被访问1次，点在栈中只会被弹出一次，所以扫描线的部分是<mathjax>$\Theta(n)$</mathjax>的。但排序需要<mathjax>$O(n\log n)$</mathjax>的时间，所以总复杂度是<mathjax>$O(n\log n)$</mathjax>的。是一个非常不错的算法。</p>
+<p>由于每个点只会被访问1次，点在栈中只会被弹出一次，所以扫描线的部分是<tex>$\Theta(n)$</tex>的。但排序需要<tex>$O(n\log n)$</tex>的时间，所以总复杂度是<tex>$O(n\log n)$</tex>的。是一个非常不错的算法。</p>
 <p>伪代码如下：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -296,7 +296,7 @@ Graham算法有一个好处，就是最终得到的凸包还是按照极角序�
 <img alt="graham-11" src="https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/graham-11.svg" /></p>
 <p>图上依次连接的线表示栈中的元素。</p>
 <p>对于Graham扫描法的时间复杂度，与水平扫描线的分析一致，关键在于排序的时间复杂度。<br />
-该算法总体复杂度为<mathjax>$O(n\log n)$</mathjax>。</p>
+该算法总体复杂度为<tex>$O(n\log n)$</tex>。</p>
 <p>下面是该算法的伪代码：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -342,11 +342,11 @@ Graham算法有一个好处，就是最终得到的凸包还是按照极角序�
 <p>动态凸包是指要求实现动态插入点并维护点集凸包的问题，目前好像还没有支持<strong>在线</strong><sup id="fnref:online-delete"><a class="footnote-ref" href="#fn:online-delete" rel="footnote">2</a></sup>删除点的高效算法。<br />
 目前流行的两种动态凸包算法来源于之前的两种凸包算法：水平扫描线法和Graham扫描法。</p>
 <h4 id="_8">水平序</h4>
-<p>第一种是来源于水平扫描线的算法。我们用两棵平衡树来维护上下<strong>两个凸包</strong>，均按照<mathjax>$x$</mathjax>排序。<br />
+<p>第一种是来源于水平扫描线的算法。我们用两棵平衡树来维护上下<strong>两个凸包</strong>，均按照<tex>$x$</tex>排序。<br />
 每次插入点之前，先要判断点是否在凸包内部。首先二分出该点<strong>所在的上凸包或下凸包</strong>的左右两个点，然后利用<strong>叉积</strong>来判断是否在凸包外。注意这里有几个边界情况：</p>
 <ol>
 <li>点超出了凸包的<strong>最左边和最右边</strong>时要单独处理。</li>
-<li>点的<mathjax>$x$</mathjax>与最左边或最右边相同时需要考虑一下。</li>
+<li>点的<tex>$x$</tex>与最左边或最右边相同时需要考虑一下。</li>
 </ol>
 <p>如果点在凸包内，那么凸包将不会被更新。否则就要考虑更新凸包。<br />
 按照同样的方法，在平衡树上查找出该点在凸包上左边和右边的点，然后向左向右检查是否有违反凸包性质的凹陷形状，如果有，则删除对应的点。直到凸包性质得到维护。然后将该点插入即可。<br />
@@ -369,9 +369,9 @@ Graham算法有一个好处，就是最终得到的凸包还是按照极角序�
 <p>旋转卡壳是一类应用于凸多边形上的算法。由于凸包也是凸多边形，所以也可以用在凸包上。<br />
 为了解释什么是旋转卡壳，首先来看一个经典的问题：</p>
 <blockquote>
-<p>给你一个点集<mathjax>$Q$</mathjax>，求这个点集中<strong>最远</strong><sup id="fnref:furthest"><a class="footnote-ref" href="#fn:furthest" rel="footnote">4</a></sup>的两个点的距离。</p>
+<p>给你一个点集<tex>$Q$</tex>，求这个点集中<strong>最远</strong><sup id="fnref:furthest"><a class="footnote-ref" href="#fn:furthest" rel="footnote">4</a></sup>的两个点的距离。</p>
 </blockquote>
-<p>该问题最为直接的方法是枚举这两个点对，然后计算距离。这样做的时间复杂度为<mathjax>$\Theta(n^2)$</mathjax>。<br />
+<p>该问题最为直接的方法是枚举这两个点对，然后计算距离。这样做的时间复杂度为<tex>$\Theta(n^2)$</tex>。<br />
 有没有一种更快的算法呢？首先可以注意到，最远的两个点一定在凸包上，因为如果它们不在凸包上，那么凸包实际上可以被扩大。<br />
 这样我们就只用考虑凸包上的点了。对于凸包上的一个点，很直观的想法就是找到凸包<strong>另一边</strong>最远的点。<br />
 这是就要用到旋转卡壳，我们用一对平行线&rdquo;夹紧&rdquo;这个凸包，这样被两条直线所压住的点之间就可能有最远点对。</p>
@@ -383,38 +383,38 @@ Graham算法有一个好处，就是最终得到的凸包还是按照极角序�
 <p>第一条直线的事情好办，关键在于第二条。由于凸包上的点到第一条直线的距离具有单调性，所以第二条直线可以沿着一个方向移动，从而到达合适的位置。<br />
 当然需要注意一种边界情况：如果有两条平行的边，那么第二条直线<strong>可能卡中两个点</strong><sup id="fnref:two-points"><a class="footnote-ref" href="#fn:two-points" rel="footnote">5</a></sup>，这样就需要多枚举一些情况。</p>
 <p>按照这样的方法旋转一周，就可以对所有可能的点对完成枚举，极大地减少了枚举量。<br />
-对于凸多边形的每一条边我们都要计算一次答案。如果计算答案的复杂度为<mathjax>$O(g(n))$</mathjax>，那么旋转卡壳的复杂度就是<mathjax>$O(ng(n))$</mathjax>。对于最远点对问题，我们可以在<mathjax>$\Theta(n)$</mathjax>的时间内解决。</p>
+对于凸多边形的每一条边我们都要计算一次答案。如果计算答案的复杂度为<tex>$O(g(n))$</tex>，那么旋转卡壳的复杂度就是<tex>$O(ng(n))$</tex>。对于最远点对问题，我们可以在<tex>$\Theta(n)$</tex>的时间内解决。</p>
 <p>旋转卡壳还有许多有趣的应用，很多情况下是用于解决点集和凸多边形上的问题。</p>
 <h3 id="_12">斜率优化</h3>
 <p>斜率优化是一类应用在递推优化上的算法，它巧妙在于将看似没有规律的递推关系转为了二维平面上的线性规划问题。下面举一个简单的例子：</p>
 <blockquote>
-<p>给你一个数组<mathjax>$A[1\dots n]$</mathjax>和<mathjax>$B[1\dots n]$</mathjax>　<mathjax>$(A[i],\;B[i] &gt; 0,\;i\in[1.\;n])$</mathjax>，并给出<mathjax>$f(1)$</mathjax>和<mathjax>$f(2)$</mathjax>，已知<mathjax>$f$</mathjax>具有以下递推关系：<br />
-<mathjax>$$ f(x) = \max\{A[x]f(i) + B[x]f(i - 1) \mid i \in [2,\;x)\} $$</mathjax></p>
-<p>求<mathjax>$\sum_{i=1}^nf(i)$</mathjax>。</p>
+<p>给你一个数组<tex>$A[1\dots n]$</tex>和<tex>$B[1\dots n]$</tex>　<tex>$(A[i],\;B[i] &gt; 0,\;i\in[1.\;n])$</tex>，并给出<tex>$f(1)$</tex>和<tex>$f(2)$</tex>，已知<tex>$f$</tex>具有以下递推关系：<br />
+<tex>$$ f(x) = \max\{A[x]f(i) + B[x]f(i - 1) \mid i \in [2,\;x)\} $$</tex></p>
+<p>求<tex>$\sum_{i=1}^nf(i)$</tex>。</p>
 </blockquote>
-<p>首先，直接枚举的时间复杂度为<mathjax>$\Theta(n^2)$</mathjax>，并不是很优。<br />
-如果单纯是取最大值，这个问题就可以用线段树来解决。然而<mathjax>$\max$</mathjax>中的东西简直莫名其妙，令人摸不着头脑。<br />
-不妨从另外一个角度来考虑问题。对于当前的<mathjax>$x$</mathjax>而言，考虑之前的两个位置<mathjax>$j,\;k \in [2,\;x)$</mathjax> (假定<mathjax>$j \lt k$</mathjax>)，什么时候<mathjax>$j$</mathjax>会比<mathjax>$k$</mathjax>更优（即可能取到最大值）。<br />
-我们发现。只有下面的不等式成立时，<mathjax>$j$</mathjax>会比<mathjax>$k$</mathjax>更优：<br />
-<mathjax>$$ A[x]f(j) + B[x]f(j - 1) \gt A[x]f(k) + B[x]f(k - 1) $$</mathjax></p>
-<p>由于<mathjax>$f(x)$</mathjax>是递增的，所以我们可以尝试对上式进行一些等价变形：<br />
-<mathjax>$$ A[x](f(j) - f(k)) \gt B[x](f(k - 1) - f(j - 1)) $$</mathjax></p>
-<p><mathjax>$$ {f(j) - f(k) \over f(k-1) - f(j-1)} \gt {B[x] \over A[x]} \tag{1} $$</mathjax></p>
-<p><mathjax>$$ {f(j) - f(k) \over f(j-1) - f(k-1)} \lt -{B[x] \over A[x]} \tag{2} $$</mathjax></p>
-<p>回想一下直线斜率的计算公式，不难发现<mathjax>$(2)$</mathjax>式左边是一个计算斜率的形式，而右边是一个常量（对特定的<mathjax>$x$</mathjax>而言）。<br />
-因此<mathjax>$(2)$</mathjax>式左边可以视为是两个点<mathjax>$(f(j-1),\;f(j))$</mathjax>和<mathjax>$(f(k-1),\;f(k))$</mathjax>的直线的斜率与<mathjax>$-B[x] / A[x]$</mathjax>的关系。</p>
+<p>首先，直接枚举的时间复杂度为<tex>$\Theta(n^2)$</tex>，并不是很优。<br />
+如果单纯是取最大值，这个问题就可以用线段树来解决。然而<tex>$\max$</tex>中的东西简直莫名其妙，令人摸不着头脑。<br />
+不妨从另外一个角度来考虑问题。对于当前的<tex>$x$</tex>而言，考虑之前的两个位置<tex>$j,\;k \in [2,\;x)$</tex> (假定<tex>$j \lt k$</tex>)，什么时候<tex>$j$</tex>会比<tex>$k$</tex>更优（即可能取到最大值）。<br />
+我们发现。只有下面的不等式成立时，<tex>$j$</tex>会比<tex>$k$</tex>更优：<br />
+<tex>$$ A[x]f(j) + B[x]f(j - 1) \gt A[x]f(k) + B[x]f(k - 1) $$</tex></p>
+<p>由于<tex>$f(x)$</tex>是递增的，所以我们可以尝试对上式进行一些等价变形：<br />
+<tex>$$ A[x](f(j) - f(k)) \gt B[x](f(k - 1) - f(j - 1)) $$</tex></p>
+<p><tex>$$ {f(j) - f(k) \over f(k-1) - f(j-1)} \gt {B[x] \over A[x]} \tag{1} $$</tex></p>
+<p><tex>$$ {f(j) - f(k) \over f(j-1) - f(k-1)} \lt -{B[x] \over A[x]} \tag{2} $$</tex></p>
+<p>回想一下直线斜率的计算公式，不难发现<tex>$(2)$</tex>式左边是一个计算斜率的形式，而右边是一个常量（对特定的<tex>$x$</tex>而言）。<br />
+因此<tex>$(2)$</tex>式左边可以视为是两个点<tex>$(f(j-1),\;f(j))$</tex>和<tex>$(f(k-1),\;f(k))$</tex>的直线的斜率与<tex>$-B[x] / A[x]$</tex>的关系。</p>
 <p><img alt="slope-opt-1" src="https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/slope-opt-1.png" /></p>
 <p>如上图所示，这个时候：<br />
-<mathjax>$$ {f(j) - f(k) \over f(j-1) - f(k-1)} \gt -{B[x] \over A[x]} $$</mathjax></p>
-<p>故此时<mathjax>$j$</mathjax>不比<mathjax>$k$</mathjax>更优。</p>
-<p>可以注意到，对于这个问题，查询的斜率都是负数，所以只要两点间的斜率大于<mathjax>$0$</mathjax>，就可以有更优的调整。<br />
+<tex>$$ {f(j) - f(k) \over f(j-1) - f(k-1)} \gt -{B[x] \over A[x]} $$</tex></p>
+<p>故此时<tex>$j$</tex>不比<tex>$k$</tex>更优。</p>
+<p>可以注意到，对于这个问题，查询的斜率都是负数，所以只要两点间的斜率大于<tex>$0$</tex>，就可以有更优的调整。<br />
 因此所有非<strong>上凸包</strong>的点都不比<strong>上凸包</strong>的点更优。<br />
 于是我们就只用考虑上凸包的点了。<br />
-由于上凸包的相邻两点间斜率是递减的，而我们的目标是查找到第一个小于<mathjax>$-B[x] / A[x]$</mathjax>的边，所以我们可以采用<strong>二分</strong>的方法！<br />
+由于上凸包的相邻两点间斜率是递减的，而我们的目标是查找到第一个小于<tex>$-B[x] / A[x]$</tex>的边，所以我们可以采用<strong>二分</strong>的方法！<br />
 到此整个算法已经很妙了，只剩下一个问题，就是这些点并不是一开始就知道的。<br />
 所以我们需要<strong>动态插入点并维护凸包</strong>，这就需要之前所提及的动态凸包。<br />
 由于只需要上凸包，所以这里最好选用<strong>水平序</strong>，并且只需要维护一棵平衡树。</p>
-<p>这样这个问题我们就做到的<mathjax>$O(n\log n)$</mathjax>的时间复杂度。</p>
+<p>这样这个问题我们就做到的<tex>$O(n\log n)$</tex>的时间复杂度。</p>
 <p>事实上，机智的人可能发现这个问题并不需要这种高级的方法，然而这里只是为了解释什么是斜率优化。在真正复杂的地方，斜率优化还是有很大用处，并且形式也多变。</p>
 <div class="footnote">
 <hr />

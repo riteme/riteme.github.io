@@ -3,6 +3,7 @@ title: 无尽的黄金
 create: 2016.10.3
 modified: 2016.10.3
 tags: Problems
+template: simple
 ---
 
 [TOC]

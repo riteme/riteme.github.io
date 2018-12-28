@@ -54,50 +54,50 @@
 <p>几行代码里隐藏数学真是高深莫测，只有勇者才能够发现这绝妙的规律。</p>
 <h2 id="_1">位运算卷积</h2>
 <p>普通的卷积 (即多项式乘法) 是这个样子：</p>
-<p><mathjax>$$
+<p><tex>$$
 C_i = \sum_{j + k = i} A_j \cdot B_k \;\;\;\;\forall \; j, k \in [0, n)
 \tag{1.1}
-$$</mathjax></p>
+$$</tex></p>
 <p>而位运算卷积就是将加号变为了<strong>二元位运算</strong>，就是这样：</p>
-<p><mathjax>$$
+<p><tex>$$
 C_i = \sum_{j \oplus k = i} A_j \cdot B_k \;\;\;\;\forall \; j, k \in [0, n)
 \tag{1.2}
-$$</mathjax></p>
-<p>其中 <mathjax>$\oplus$</mathjax> 指代任意二元位运算符号，如异或 (就是记做 <mathjax>$\oplus$</mathjax>)、与运算 (<mathjax>$\land$</mathjax>) 和或运算 (<mathjax>$\lor$</mathjax>) 等等。</p>
-<p>注意到，在多项式乘法中，如果两个多项式的界为 <mathjax>$A$</mathjax> 和 <mathjax>$B$</mathjax>，那么答案的界就是 <mathjax>$A + B - 1$</mathjax>。而在位运算卷积中，却是 <mathjax>$2^{\left\lceil\log_2\max\{A,B\}\right\rceil}$</mathjax>。而且对于两个输入向量而言，末尾添加几个 <mathjax>$0$</mathjax> 是不会对答案产生影响的<sup id="fnref:tailing-zero"><a class="footnote-ref" href="#fn:tailing-zero" rel="footnote">1</a></sup>。因此，像在快速傅里叶变换中一样，假定输入的向量大小一致且均为 <mathjax>$2$</mathjax> 的幂，设这个大小为 <mathjax>$n$</mathjax>。</p>
-<p>在下文中，向量 <mathjax>$A = (a_0, a_1, ..., a_k)$</mathjax> 的倒置 <mathjax>$A^T$</mathjax> 为：<br />
-<mathjax>$$
+$$</tex></p>
+<p>其中 <tex>$\oplus$</tex> 指代任意二元位运算符号，如异或 (就是记做 <tex>$\oplus$</tex>)、与运算 (<tex>$\land$</tex>) 和或运算 (<tex>$\lor$</tex>) 等等。</p>
+<p>注意到，在多项式乘法中，如果两个多项式的界为 <tex>$A$</tex> 和 <tex>$B$</tex>，那么答案的界就是 <tex>$A + B - 1$</tex>。而在位运算卷积中，却是 <tex>$2^{\left\lceil\log_2\max\{A,B\}\right\rceil}$</tex>。而且对于两个输入向量而言，末尾添加几个 <tex>$0$</tex> 是不会对答案产生影响的<sup id="fnref:tailing-zero"><a class="footnote-ref" href="#fn:tailing-zero" rel="footnote">1</a></sup>。因此，像在快速傅里叶变换中一样，假定输入的向量大小一致且均为 <tex>$2$</tex> 的幂，设这个大小为 <tex>$n$</tex>。</p>
+<p>在下文中，向量 <tex>$A = (a_0, a_1, ..., a_k)$</tex> 的倒置 <tex>$A^T$</tex> 为：<br />
+<tex>$$
 A^T = \left[\begin{matrix}
 a_0 \\
 a_1 \\
 \vdots \\
 a_k
 \end{matrix}\right] \tag{1.3}
-$$</mathjax></p>
-<p>为了方便，矩阵 <mathjax>$M$</mathjax> 与向量 <mathjax>$A = (a_0, a_1, ..., a_k)$</mathjax> 相乘表示线性变换时，简写为 <mathjax>$MA$</mathjax>，代表 <mathjax>$(MA^T)^T$</mathjax>。</p>
+$$</tex></p>
+<p>为了方便，矩阵 <tex>$M$</tex> 与向量 <tex>$A = (a_0, a_1, ..., a_k)$</tex> 相乘表示线性变换时，简写为 <tex>$MA$</tex>，代表 <tex>$(MA^T)^T$</tex>。</p>
 <h2 id="_2">特殊情况</h2>
-<p>为了探寻规律，我们以<strong>异或</strong>为例，手动计算一下 <mathjax>$n$</mathjax> 很小时的情况。</p>
-<h3 id="n-20"><mathjax>$n = 2^0$</mathjax></h3>
-<p>当输入两个数时，结果会是一个数。由于 <mathjax>$0 \oplus 0 = 0$</mathjax>，所以：</p>
-<p><mathjax>$$
+<p>为了探寻规律，我们以<strong>异或</strong>为例，手动计算一下 <tex>$n$</tex> 很小时的情况。</p>
+<h3 id="n-20"><tex>$n = 2^0$</tex></h3>
+<p>当输入两个数时，结果会是一个数。由于 <tex>$0 \oplus 0 = 0$</tex>，所以：</p>
+<p><tex>$$
 C_0 = A_0 \cdot B_0
 \tag{2.1}
-$$</mathjax></p>
+$$</tex></p>
 <p>So easy, 也没什么意思。</p>
-<h3 id="n-21"><mathjax>$n = 2^1$</mathjax></h3>
-<p>输入两个向量 <mathjax>$A = (a_0, a_1)$</mathjax> 和 <mathjax>$B = (b_0, b_1)$</mathjax>。得到的结果 <mathjax>$C$</mathjax> 是：</p>
-<p><mathjax>$$
+<h3 id="n-21"><tex>$n = 2^1$</tex></h3>
+<p>输入两个向量 <tex>$A = (a_0, a_1)$</tex> 和 <tex>$B = (b_0, b_1)$</tex>。得到的结果 <tex>$C$</tex> 是：</p>
+<p><tex>$$
 C = (a_0 b_0 + a_1 b_1, a_0 b_1 + a_1 b_0)
 \tag{2.2}
-$$</mathjax></p>
+$$</tex></p>
 <p>不如大胆的尝试一下，能否通过某种变换，从而能够使用更简单的点积来计算呢，就像下面这个样子：</p>
-<p><mathjax>$$
+<p><tex>$$
 TA \cdot TB = TC
 \tag{2.3}
-$$</mathjax></p>
-<p>这里 <mathjax>$T$</mathjax> 表示变换，同时他还需要一个逆变换从而使得我们能够得到 <mathjax>$C$</mathjax>。我们可以从线性代数的角度来考虑这个问题，那么我们希望 <mathjax>$T$</mathjax> 能够是一个线性变换，这样我们就可以用矩阵来表示之。</p>
-<p>那么意味着我们要找到一个矩阵 <mathjax>$T$</mathjax>，满足：</p>
-<p><mathjax>$$
+$$</tex></p>
+<p>这里 <tex>$T$</tex> 表示变换，同时他还需要一个逆变换从而使得我们能够得到 <tex>$C$</tex>。我们可以从线性代数的角度来考虑这个问题，那么我们希望 <tex>$T$</tex> 能够是一个线性变换，这样我们就可以用矩阵来表示之。</p>
+<p>那么意味着我们要找到一个矩阵 <tex>$T$</tex>，满足：</p>
+<p><tex>$$
 T
 \left[
 \begin{matrix}
@@ -122,9 +122,9 @@ a_0 b_1 + a_1 b_0
 \end{matrix}
 \right]
 \tag{2.4}
-$$</mathjax></p>
-<p>首先这个线性变换只在二维向量空间上进行的，所以 <mathjax>$T$</mathjax> 应该是一个 <mathjax>$2 \times 2$</mathjax> 的矩阵，于是设：</p>
-<p><mathjax>$$
+$$</tex></p>
+<p>首先这个线性变换只在二维向量空间上进行的，所以 <tex>$T$</tex> 应该是一个 <tex>$2 \times 2$</tex> 的矩阵，于是设：</p>
+<p><tex>$$
 T =
 \left[
 \begin{matrix}
@@ -133,9 +133,9 @@ p &amp; q
 \end{matrix}
 \right]
 \tag{2.5}
-$$</mathjax></p>
+$$</tex></p>
 <p>那么之前是一个两个向量的点积式，于是我们可以列出两个方程来表示：</p>
-<p><mathjax>$$
+<p><tex>$$
 \begin{cases}
 \begin{aligned}
 (ma_0 + na_1)(mb_0 + nb_1) &amp; = m(a_0 b_0 + a_1 b_1) + n(a_0 b_1 + a_1 b_0) \\
@@ -143,25 +143,25 @@ $$</mathjax></p>
 \end{aligned}
 \end{cases}
 \tag{2.6}
-$$</mathjax></p>
+$$</tex></p>
 <p>于是你发现第一个方程和第二方程没有区别......好吧，那就只研究第一个方程，将其暴力拆开是这样的：</p>
-<p><mathjax>$$
+<p><tex>$$
 m^2a_0 b_0 + mna_0 b_1 + mna_1 b_0 + n^2a_1 b_1 = ma_0 b_0 + na_0 b_1 + na_1 b_0 + ma_1 b_1
 \tag{2.7}
-$$</mathjax></p>
+$$</tex></p>
 <p>一个二元二次方程，有很多解了啦，但是我们只需要一个。最简单的解法<sup id="fnref:zero"><a class="footnote-ref" href="#fn:zero" rel="footnote">2</a></sup>就是对应的项的系数相同。</p>
 <p>也就是说：</p>
-<p><mathjax>$$
+<p><tex>$$
 m^2 = m \Longrightarrow m = 1
 \tag{2.8}
-$$</mathjax></p>
+$$</tex></p>
 <p>然后就是：</p>
-<p><mathjax>$$
+<p><tex>$$
 n^2 = 1 \Longrightarrow n = \pm 1
 \tag{2.9}
-$$</mathjax></p>
-<p>然后发现 <mathjax>$n$</mathjax> 的这两个取值都可以满足 <mathjax>$mn = n$</mathjax>。那么对于 <mathjax>$p$</mathjax> 和 <mathjax>$q$</mathjax> 是同理的，因此 <mathjax>$T$</mathjax> 的一种形式是这样的：</p>
-<p><mathjax>$$
+$$</tex></p>
+<p>然后发现 <tex>$n$</tex> 的这两个取值都可以满足 <tex>$mn = n$</tex>。那么对于 <tex>$p$</tex> 和 <tex>$q$</tex> 是同理的，因此 <tex>$T$</tex> 的一种形式是这样的：</p>
+<p><tex>$$
 \left[
 \begin{matrix}
 1 &amp; \pm 1 \\
@@ -169,10 +169,10 @@ $$</mathjax></p>
 \end{matrix}
 \right]
 \tag{2.10}
-$$</mathjax></p>
-<p>不过我们不能够全部填 <mathjax>$1$</mathjax>，因为我们在一开始的要求是 <mathjax>$T$</mathjax> 要有逆变换，但是全是 <mathjax>$n = q$</mathjax> 的矩阵不满秩，所以没有逆矩阵。因此，我们只有两种选择。</p>
+$$</tex></p>
+<p>不过我们不能够全部填 <tex>$1$</tex>，因为我们在一开始的要求是 <tex>$T$</tex> 要有逆变换，但是全是 <tex>$n = q$</tex> 的矩阵不满秩，所以没有逆矩阵。因此，我们只有两种选择。</p>
 <p>对于其逆矩阵，我在这里帮你们算出来了：</p>
-<p><mathjax>$$
+<p><tex>$$
 \left[
 \begin{matrix}
 1 &amp; -1 \\
@@ -200,33 +200,33 @@ $$</mathjax></p>
 \end{matrix}
 \right]
 \tag{2.11}
-$$</mathjax></p>
-<p>实在记不住就爆枚一下矩阵吧，这样的 <mathjax>$\pm 1$</mathjax> 矩阵没几个，试一试就好......</p>
-<h3 id="n-2m-m-geqslant-2"><mathjax>$n = 2^m \;\; (m \geqslant 2)$</mathjax></h3>
+$$</tex></p>
+<p>实在记不住就爆枚一下矩阵吧，这样的 <tex>$\pm 1$</tex> 矩阵没几个，试一试就好......</p>
+<h3 id="n-2m-m-geqslant-2"><tex>$n = 2^m \;\; (m \geqslant 2)$</tex></h3>
 <p>现在来考虑更复杂的情况。</p>
-<p>跟前面一样的思想，我们企图找到 <mathjax>$T_m$</mathjax>，满足：</p>
-<p><mathjax>$$
+<p>跟前面一样的思想，我们企图找到 <tex>$T_m$</tex>，满足：</p>
+<p><tex>$$
 T_mA \cdot T_mB = T_mC
 \tag{2.12}
-$$</mathjax></p>
-<p>我们已经知道 <mathjax>$T_0 = 1$</mathjax> 并且求出了 <mathjax>$T_1$</mathjax>。</p>
+$$</tex></p>
+<p>我们已经知道 <tex>$T_0 = 1$</tex> 并且求出了 <tex>$T_1$</tex>。</p>
 <p>基于这样一个事实：</p>
-<p><mathjax>$$
+<p><tex>$$
 a \oplus b = c \Longrightarrow
 a[i] \oplus b[i] = c[i]
 \tag{2.13}
-$$</mathjax></p>
-<p>这里 <mathjax>$a[i]$</mathjax> 表示 <mathjax>$a$</mathjax> 的二进制表示中的第 <mathjax>$i$</mathjax> 位。这说明二进制运算有一个重要的性质就是其每一位可以分开运算。</p>
+$$</tex></p>
+<p>这里 <tex>$a[i]$</tex> 表示 <tex>$a$</tex> 的二进制表示中的第 <tex>$i$</tex> 位。这说明二进制运算有一个重要的性质就是其每一位可以分开运算。</p>
 <p>这有什么好处呢？我们先考虑最高位，这样将输入向量分为两部分：</p>
-<p><mathjax>$$
+<p><tex>$$
 A = (A_0, A_1) \\
 B = (B_0, B_1)
 \tag{2.14}
-$$</mathjax></p>
-<p>下标为 <mathjax>$0$</mathjax> 的表示最高位为 <mathjax>$0$</mathjax>，下标为 <mathjax>$1$</mathjax> 的表示最高位为 <mathjax>$1$</mathjax>。实际上，就是将向量切成了两半。</p>
-<p>对于结果 <mathjax>$C = (C_0, C_1)$</mathjax> 而言，在不考虑最高位的情况下，<mathjax>$A_0$</mathjax>、<mathjax>$A_1$</mathjax>、<mathjax>$B_0$</mathjax> 和 <mathjax>$B_1$</mathjax> 任意求卷积都是可以对 <mathjax>$C_0$</mathjax> 和 <mathjax>$C_1$</mathjax> 有贡献的 (卷积后一个向量加法累计贡献)。但是此处我们需要考虑最高位，那么就会有一定的限制，也就是下标的运算结果的限制。</p>
-<p>不难发现，这实际上退化为了 <mathjax>$n = 2$</mathjax> 的情况，这里用之前的方法来表示：</p>
-<p><mathjax>$$
+$$</tex></p>
+<p>下标为 <tex>$0$</tex> 的表示最高位为 <tex>$0$</tex>，下标为 <tex>$1$</tex> 的表示最高位为 <tex>$1$</tex>。实际上，就是将向量切成了两半。</p>
+<p>对于结果 <tex>$C = (C_0, C_1)$</tex> 而言，在不考虑最高位的情况下，<tex>$A_0$</tex>、<tex>$A_1$</tex>、<tex>$B_0$</tex> 和 <tex>$B_1$</tex> 任意求卷积都是可以对 <tex>$C_0$</tex> 和 <tex>$C_1$</tex> 有贡献的 (卷积后一个向量加法累计贡献)。但是此处我们需要考虑最高位，那么就会有一定的限制，也就是下标的运算结果的限制。</p>
+<p>不难发现，这实际上退化为了 <tex>$n = 2$</tex> 的情况，这里用之前的方法来表示：</p>
+<p><tex>$$
 T_1
 \left[
 \begin{matrix}
@@ -251,10 +251,10 @@ T_{m-1}C_1
 \end{matrix}
 \right]
 \tag{2.15}
-$$</mathjax></p>
+$$</tex></p>
 <p>对于逆变换也是一样。</p>
 <p>于是可以得知：</p>
-<p><mathjax>$$
+<p><tex>$$
 T_m = T_1
 \left[
 \begin{matrix}
@@ -263,22 +263,22 @@ T_{m-1}
 \end{matrix}
 \right]
 \tag{2.16}
-$$</mathjax></p>
-<p>但实际上已经没有意义啦！因为 <mathjax>$(2.15)$</mathjax> 就是一个分治计算的过程，并且它的复杂度是：</p>
-<p><mathjax>$$
+$$</tex></p>
+<p>但实际上已经没有意义啦！因为 <tex>$(2.15)$</tex> 就是一个分治计算的过程，并且它的复杂度是：</p>
+<p><tex>$$
 T(n) = 2T(n / 2) + \Theta(n) = \Theta(n\log n)
 \tag{2.17}
-$$</mathjax></p>
+$$</tex></p>
 <p>于是我们获得了 FWT 算法<sup id="fnref:fwt-name"><a class="footnote-ref" href="#fn:fwt-name" rel="footnote">3</a></sup>！</p>
 <h2 id="fwt_1">FWT 算法</h2>
 <p>前面 BB 了一大段，现在来梳理一下：</p>
 <ol>
-<li>我们计算 <mathjax>$TA$</mathjax> 和 <mathjax>$TB$</mathjax>。</li>
-<li>然后答案就是 <mathjax>$T^{-1}(TA \cdot TB)$</mathjax>。</li>
+<li>我们计算 <tex>$TA$</tex> 和 <tex>$TB$</tex>。</li>
+<li>然后答案就是 <tex>$T^{-1}(TA \cdot TB)$</tex>。</li>
 </ol>
-<p>如何计算 <mathjax>$TA$</mathjax> 和 <mathjax>$T^{-1}A$</mathjax>？根据 <mathjax>$(2.15)$</mathjax> 式，我们先要按最高位分成两个向量，对于每一个子向量，递归计算其经过变换后的结果。然后根据 <mathjax>$T_1$</mathjax> 来合并结果。</p>
+<p>如何计算 <tex>$TA$</tex> 和 <tex>$T^{-1}A$</tex>？根据 <tex>$(2.15)$</tex> 式，我们先要按最高位分成两个向量，对于每一个子向量，递归计算其经过变换后的结果。然后根据 <tex>$T_1$</tex> 来合并结果。</p>
 <p>以异或运算为例，假设我们钦定了使用这个矩阵作为我们的变换：</p>
-<p><mathjax>$$
+<p><tex>$$
 T =
 \left[
 \begin{matrix}
@@ -287,18 +287,18 @@ T =
 \end{matrix}
 \right]
 \tag{3.1}
-$$</mathjax></p>
+$$</tex></p>
 <p>那么合并的过程就是这样<sup id="fnref:other-forms"><a class="footnote-ref" href="#fn:other-forms" rel="footnote">4</a></sup>：</p>
-<p><mathjax>$$
+<p><tex>$$
 TA = (TA_0 + TA_1, TA_0 - TA_1)
 \tag{3.2}
-$$</mathjax></p>
+$$</tex></p>
 <p>你只用按照矩阵的形式来计算就可以了。<br />
 对于逆变换，就是这样合并：</p>
-<p><mathjax>$$
+<p><tex>$$
 T^{-1} A = \left({T^{-1}A_0 + T^{-1}A_1 \over 2}, {T^{-1}A_0 - T^{-1}A_1 \over 2}\right)
 \tag{3.3}
-$$</mathjax></p>
+$$</tex></p>
 <h2 id="_3">具体实现</h2>
 <p>为了方便理解，在这里给出用 Python 编写的 FWT 算法，依然是异或的例子。</p>
 <h3 id="_4">递归形式</h3>
@@ -455,7 +455,7 @@ $$</mathjax></p>
 <h2 id="_6">其他的位运算</h2>
 <p>之前一直在讨论异或，没有关注与运算和或运算。因为它们的推导过程是一样的。这里就不重复其过程了。</p>
 <p>对于与运算而言：<br />
-<mathjax>$$
+<tex>$$
 T =
 \left[
 \begin{matrix}
@@ -471,9 +471,9 @@ T^{-1} =
 \end{matrix}
 \right]
 \tag{5.1}
-$$</mathjax></p>
+$$</tex></p>
 <p>对于或运算而言：<br />
-<mathjax>$$
+<tex>$$
 T =
 \left[
 \begin{matrix}
@@ -489,44 +489,44 @@ T^{-1} =
 \end{matrix}
 \right]
 \tag{5.2}
-$$</mathjax></p>
+$$</tex></p>
 <p>实现它们的位运算卷积就只用修改合并的过程即可。</p>
 <h2 id="_7">其他运用</h2>
 <h3 id="_8">子集和</h3>
-<p>现在是时候来看一下<strong>或卷积</strong>了，按照之前方法，求出或卷积变换的一种形式。这里我们关注的是 <mathjax>$(5.2)$</mathjax> 中的变换。FWT 算法运行过程中，是从低位到高位的顺序进行合并的。我们还是按照某一位来划分序列 <mathjax>$A = (A_0, A_1)$</mathjax>，那么 <mathjax>$TA$</mathjax> 就是 <mathjax>$(A_0, A_0 + A_1)$</mathjax>，不难发现，原来的 <mathjax>$A_1$</mathjax> 部分加上了 <mathjax>$A_0$</mathjax>，也就是相当于一个集合里面少了一个元素的集合的值被加了过来，这些集合都是自己的子集。因此，这样的 FWT 算法实际上计算的是下面这个东西：<br />
-<mathjax>$$
+<p>现在是时候来看一下<strong>或卷积</strong>了，按照之前方法，求出或卷积变换的一种形式。这里我们关注的是 <tex>$(5.2)$</tex> 中的变换。FWT 算法运行过程中，是从低位到高位的顺序进行合并的。我们还是按照某一位来划分序列 <tex>$A = (A_0, A_1)$</tex>，那么 <tex>$TA$</tex> 就是 <tex>$(A_0, A_0 + A_1)$</tex>，不难发现，原来的 <tex>$A_1$</tex> 部分加上了 <tex>$A_0$</tex>，也就是相当于一个集合里面少了一个元素的集合的值被加了过来，这些集合都是自己的子集。因此，这样的 FWT 算法实际上计算的是下面这个东西：<br />
+<tex>$$
 H(S) = \sum_{T \subseteq S} A(T) \tag{6.1}
-$$</mathjax><br />
-这就是<strong>子集和变换</strong>。同时利用 <mathjax>$T^{-1}$</mathjax>，我们可以根据 <mathjax>$H$</mathjax> 来算出 <mathjax>$A$</mathjax>。关系运算符 &ldquo;<mathjax>$\subseteq$</mathjax>&rdquo; 是偏序，根据莫比乌斯反演<sup id="fnref:mobius"><a class="footnote-ref" href="#fn:mobius" rel="footnote">5</a></sup>，我们得知逆 FWT 算的是：<br />
-<mathjax>$$
+$$</tex><br />
+这就是<strong>子集和变换</strong>。同时利用 <tex>$T^{-1}$</tex>，我们可以根据 <tex>$H$</tex> 来算出 <tex>$A$</tex>。关系运算符 &ldquo;<tex>$\subseteq$</tex>&rdquo; 是偏序，根据莫比乌斯反演<sup id="fnref:mobius"><a class="footnote-ref" href="#fn:mobius" rel="footnote">5</a></sup>，我们得知逆 FWT 算的是：<br />
+<tex>$$
 \begin{aligned}
 A(S) &amp; = \sum_{T \subseteq S} \mu(T)H(S - T) \\
 &amp; = \sum_{T \subseteq S} (-1)^{|T|}H(S - T)
 \end{aligned} \tag{6.2}
-$$</mathjax><br />
-即<strong>逆子集和变换</strong>。计算它们的时间复杂度都是 <mathjax>$\Theta(n \log n)$</mathjax>。</p>
+$$</tex><br />
+即<strong>逆子集和变换</strong>。计算它们的时间复杂度都是 <tex>$\Theta(n \log n)$</tex>。</p>
 <h3 id="_9">子集卷积</h3>
-<p>利用或卷积，我们可以干些更有趣的事情，那就是子集卷积：对于两个向量 <mathjax>$F= (f_0, f_1, ..., f_{n-1})$</mathjax> 和 <mathjax>$G = (g_0, g_1, ..., g_{n-1})$</mathjax>，它们的子集卷积 <mathjax>$H = F \times G$</mathjax> 为：<br />
-<mathjax>$$
+<p>利用或卷积，我们可以干些更有趣的事情，那就是子集卷积：对于两个向量 <tex>$F= (f_0, f_1, ..., f_{n-1})$</tex> 和 <tex>$G = (g_0, g_1, ..., g_{n-1})$</tex>，它们的子集卷积 <tex>$H = F \times G$</tex> 为：<br />
+<tex>$$
 H(S) = \sum_{T \subseteq S} F(T)G(S - T) \tag{7.1}
-$$</mathjax><br />
-记 <mathjax>$k = \Theta(\log n)$</mathjax>，如果直接两边同时枚举计算，其复杂度为 <mathjax>$\Theta(n^2)$</mathjax>。如果先枚举 <mathjax>$S$</mathjax>，再枚举 <mathjax>$S$</mathjax> 的子集 <mathjax>$T$</mathjax>，那么实际上我们只枚举了 <mathjax>$\sum_{j = 0}^k \binom{k}j 2^j = (1 + 2)^k = 3^k$</mathjax> 次。为了能够降低复杂度，我们可以尝试使用 FWT 算法。容易看出，或卷积与子集卷积最为相似。我们可以把子集卷积等价地写成下面的形式：<br />
-<mathjax>$$
+$$</tex><br />
+记 <tex>$k = \Theta(\log n)$</tex>，如果直接两边同时枚举计算，其复杂度为 <tex>$\Theta(n^2)$</tex>。如果先枚举 <tex>$S$</tex>，再枚举 <tex>$S$</tex> 的子集 <tex>$T$</tex>，那么实际上我们只枚举了 <tex>$\sum_{j = 0}^k \binom{k}j 2^j = (1 + 2)^k = 3^k$</tex> 次。为了能够降低复杂度，我们可以尝试使用 FWT 算法。容易看出，或卷积与子集卷积最为相似。我们可以把子集卷积等价地写成下面的形式：<br />
+<tex>$$
 H(S) = \sum_{X \subseteq S} \sum_{Y \subseteq S} [X \cup Y = S][X \cap Y = \varnothing] F(X)G(Y) \tag{7.2}
-$$</mathjax><br />
+$$</tex><br />
 而或卷积可以等价地写成这样的形式：<br />
-<mathjax>$$
+<tex>$$
 H(S) = \sum_{X \subseteq S} \sum_{Y \subseteq S} [X \cup Y = S] F(X)G(Y) \tag{7.3}
-$$</mathjax><br />
-与子集卷积相比，只是少了一个交集为空的条件。为了能够解决这个条件，我们可以从集合的大小下手。主要原因是大小只有 <mathjax>$\Theta(\log n)$</mathjax> 种，并且 <mathjax>$|A \cup B| \leqslant |A| + |B|$</mathjax>（当且仅当 <mathjax>$A$</mathjax> 与 <mathjax>$B$</mathjax> 无交集时取等），这样一来就可以按照大小分类进行 FWT。</p>
+$$</tex><br />
+与子集卷积相比，只是少了一个交集为空的条件。为了能够解决这个条件，我们可以从集合的大小下手。主要原因是大小只有 <tex>$\Theta(\log n)$</tex> 种，并且 <tex>$|A \cup B| \leqslant |A| + |B|$</tex>（当且仅当 <tex>$A$</tex> 与 <tex>$B$</tex> 无交集时取等），这样一来就可以按照大小分类进行 FWT。</p>
 <p>具体的做法如下，首先令：<br />
-<mathjax>$$
+<tex>$$
 F_k(S) = \begin{cases}
 F(S) &amp; (|S| = k) \\
 0 &amp; (\text{otherwise})
 \end{cases} \tag{7.4}
-$$</mathjax><br />
-类似的方法定义 <mathjax>$G_k$</mathjax>、<mathjax>$H_k$</mathjax>。令元素个数为 <mathjax>$k = \Theta(\log n)$</mathjax>，枚举 <mathjax>$i$</mathjax> 和 <mathjax>$j$</mathjax> 满足 <mathjax>$i + j = l$</mathjax>，将 <mathjax>$F_i$</mathjax> 和 <mathjax>$G_j$</mathjax> 进行或卷积后贡献给 <mathjax>$H_l$</mathjax>，最后将 <mathjax>$H_0$</mathjax> 到 <mathjax>$H_k$</mathjax> 全部加起来就是子集卷积后的 <mathjax>$H$</mathjax>。这里需要注意的是，<mathjax>$F_i$</mathjax> 和 <mathjax>$G_j$</mathjax> 的卷积不必每次都做 FWT 和逆 FWT 变换，就像多项式乘法一样，经过 FWT 之后的序列之间的点积就是原序列的卷积，序列之间的加法还是原序列的加法。因此最终的复杂度是 <mathjax>$\Theta(2^k k^2) = \Theta(n \log^2 n)$</mathjax>。</p>
+$$</tex><br />
+类似的方法定义 <tex>$G_k$</tex>、<tex>$H_k$</tex>。令元素个数为 <tex>$k = \Theta(\log n)$</tex>，枚举 <tex>$i$</tex> 和 <tex>$j$</tex> 满足 <tex>$i + j = l$</tex>，将 <tex>$F_i$</tex> 和 <tex>$G_j$</tex> 进行或卷积后贡献给 <tex>$H_l$</tex>，最后将 <tex>$H_0$</tex> 到 <tex>$H_k$</tex> 全部加起来就是子集卷积后的 <tex>$H$</tex>。这里需要注意的是，<tex>$F_i$</tex> 和 <tex>$G_j$</tex> 的卷积不必每次都做 FWT 和逆 FWT 变换，就像多项式乘法一样，经过 FWT 之后的序列之间的点积就是原序列的卷积，序列之间的加法还是原序列的加法。因此最终的复杂度是 <tex>$\Theta(2^k k^2) = \Theta(n \log^2 n)$</tex>。</p>
 <p>下面是我的 Python 2 实现：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -682,10 +682,10 @@ $$</mathjax><br />
 <hr />
 <ol>
 <li id="fn:tailing-zero">
-<p>当然需要保证添加完 <mathjax>$0$</mathjax> 后结果的界不变。数值上不会有影响。&#160;<a class="footnote-backref" href="#fnref:tailing-zero" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>当然需要保证添加完 <tex>$0$</tex> 后结果的界不变。数值上不会有影响。&#160;<a class="footnote-backref" href="#fnref:tailing-zero" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 <li id="fn:zero">
-<p>为什么不直接将<mathjax>$m$</mathjax>和<mathjax>$n$</mathjax>设为<mathjax>$0$</mathjax>？因为那样太naïve了，你得到的<mathjax>$T$</mathjax>是零矩阵。&#160;<a class="footnote-backref" href="#fnref:zero" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<p>为什么不直接将<tex>$m$</tex>和<tex>$n$</tex>设为<tex>$0$</tex>？因为那样太naïve了，你得到的<tex>$T$</tex>是零矩阵。&#160;<a class="footnote-backref" href="#fnref:zero" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 <li id="fn:fwt-name">
 <p>有时也称 FWHT。&#160;<a class="footnote-backref" href="#fnref:fwt-name" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>

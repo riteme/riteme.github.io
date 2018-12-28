@@ -52,33 +52,33 @@
             
 <h1 id="noi2016">【NOI2016】“循环之美” 无脑解法</h1>
 <h2 id="_1">题意</h2>
-<p>给定<mathjax>$n, m, k$</mathjax>，求出所有满足<mathjax>$1 \leqslant x \leqslant n,\; 1 \leqslant y \leqslant m$</mathjax>的正整数中，<mathjax>$x / y$</mathjax>是纯循环小数的个数。<strong>数值相同的只算一次</strong>。</p>
-<p><mathjax>$n,\;m$</mathjax>均不超过<mathjax>$10^9$</mathjax>，<mathjax>$k$</mathjax>不超过<mathjax>$2000$</mathjax>。</p>
+<p>给定<tex>$n, m, k$</tex>，求出所有满足<tex>$1 \leqslant x \leqslant n,\; 1 \leqslant y \leqslant m$</tex>的正整数中，<tex>$x / y$</tex>是纯循环小数的个数。<strong>数值相同的只算一次</strong>。</p>
+<p><tex>$n,\;m$</tex>均不超过<tex>$10^9$</tex>，<tex>$k$</tex>不超过<tex>$2000$</tex>。</p>
 <h2 id="_2">题解</h2>
 <p>网上一般的解法都是推一大堆式子，然后经过一些讨论最后得出使用杜教筛的做法。<br />
 接下来要给的是一个xjb算法，各位听听就好。</p>
 <h3 id="_3">初步转化</h3>
-<p>首先，如果<mathjax>$x / y$</mathjax>是纯循环小数，那么<mathjax>$1 / y$</mathjax>也是纯循环小数。<br />
-考虑小数循环节的计算方式，实际上和<mathjax>$k^x \pmod{y}$</mathjax>的循环节是一样的。由于我们知道<mathjax>$k^0 \equiv 1 \pmod{y}$</mathjax>，所以一定存在一个<mathjax>$L &gt; 0$</mathjax>满足<mathjax>$k^L \equiv 1 \pmod{y}$</mathjax>。这样就可得知<mathjax>$k \cdot k^{L - 1} = 1 + cy$</mathjax>。利用扩展欧几里得算法我们可以知道当<mathjax>$k$</mathjax>和<mathjax>$y$</mathjax>不互质时，是不会有解的。<br />
+<p>首先，如果<tex>$x / y$</tex>是纯循环小数，那么<tex>$1 / y$</tex>也是纯循环小数。<br />
+考虑小数循环节的计算方式，实际上和<tex>$k^x \pmod{y}$</tex>的循环节是一样的。由于我们知道<tex>$k^0 \equiv 1 \pmod{y}$</tex>，所以一定存在一个<tex>$L &gt; 0$</tex>满足<tex>$k^L \equiv 1 \pmod{y}$</tex>。这样就可得知<tex>$k \cdot k^{L - 1} = 1 + cy$</tex>。利用扩展欧几里得算法我们可以知道当<tex>$k$</tex>和<tex>$y$</tex>不互质时，是不会有解的。<br />
 综上，我们要求的就是：<br />
-<mathjax>$$
+<tex>$$
 \sum_{i = 1}^n \sum_{j = 1}^m [\gcd(i, j) = 1][\gcd(j, k) = 1]
-$$</mathjax></p>
+$$</tex></p>
 <h3 id="_4">具体分析</h3>
-<p>看到之后，我发现如果没有后面那个<mathjax>$j$</mathjax>和<mathjax>$k$</mathjax>的互质条件，则是一个简单的莫比乌斯函数前缀和的计算，可以使用杜教筛，这里就不多讲。现在考虑<mathjax>$j$</mathjax>要和<mathjax>$k$</mathjax>互质，看到计数想容斥，我们自然去找不与<mathjax>$k$</mathjax>互质的<mathjax>$j$</mathjax>，那么设<mathjax>$\gcd(j, k) = d$</mathjax>。首先<mathjax>$d &gt; 2$</mathjax>，其次<mathjax>$d$</mathjax>是<mathjax>$j$</mathjax>和<mathjax>$k$</mathjax>的一个公因子，所以我们枚举<mathjax>$d$</mathjax>的倍数即可。同时注意一个<mathjax>$j$</mathjax>可能被多个因子所减去，所以需要使用莫比乌斯函数作为容斥系数。因此<strong>需要减去的部分</strong>为：<br />
-<mathjax>$$
+<p>看到之后，我发现如果没有后面那个<tex>$j$</tex>和<tex>$k$</tex>的互质条件，则是一个简单的莫比乌斯函数前缀和的计算，可以使用杜教筛，这里就不多讲。现在考虑<tex>$j$</tex>要和<tex>$k$</tex>互质，看到计数想容斥，我们自然去找不与<tex>$k$</tex>互质的<tex>$j$</tex>，那么设<tex>$\gcd(j, k) = d$</tex>。首先<tex>$d &gt; 2$</tex>，其次<tex>$d$</tex>是<tex>$j$</tex>和<tex>$k$</tex>的一个公因子，所以我们枚举<tex>$d$</tex>的倍数即可。同时注意一个<tex>$j$</tex>可能被多个因子所减去，所以需要使用莫比乌斯函数作为容斥系数。因此<strong>需要减去的部分</strong>为：<br />
+<tex>$$
 \sum_{d \mid k} \mu(d) \sum_{j = 1}^{\lfloor m / d \rfloor} \sum_{i = 1}^n [\gcd(dj, i) = 1]
-$$</mathjax></p>
-<p>由于<mathjax>$\gcd(dj, i) = 1$</mathjax>等价于<mathjax>$\gcd(j, i) = 1$</mathjax>并且<mathjax>$\gcd(d, i) = 1$</mathjax>，所以上式变为：<br />
-<mathjax>$$
+$$</tex></p>
+<p>由于<tex>$\gcd(dj, i) = 1$</tex>等价于<tex>$\gcd(j, i) = 1$</tex>并且<tex>$\gcd(d, i) = 1$</tex>，所以上式变为：<br />
+<tex>$$
 \sum_{d \mid k, d &gt; 1} \mu(d) \sum_{j = 1}^{\lfloor m / d \rfloor} \sum_{i = 1}^n [\gcd(j, i) = 1][\gcd(i, d) = 1]
-$$</mathjax></p>
+$$</tex></p>
 <p>我们机智的发现后面那两个求和就是原问题的“<strong>数据规模减小版</strong>”......<br />
-所以设<mathjax>$f(n, m, k)$</mathjax>表示我们的答案，那么可以得到DP转移式：<br />
-<mathjax>$$
+所以设<tex>$f(n, m, k)$</tex>表示我们的答案，那么可以得到DP转移式：<br />
+<tex>$$
 f(n, m, k) = \sum_{i = 1}^n\sum_{j = 1}^m [\gcd(i, j) = 1] - \sum_{d \mid k, d &gt; 1} \mu(d) f\left(\left\lfloor \frac{m}d \right\rfloor, n, d\right)
-$$</mathjax></p>
-<p>很像杜教筛？我直接拿去用个哈希表来记忆化搜一下，好像最坏的数据也只访问了<mathjax>$30000$</mathjax>左右个状态......这么优美的一道题就这样过了......<br />
+$$</tex></p>
+<p>很像杜教筛？我直接拿去用个哈希表来记忆化搜一下，好像最坏的数据也只访问了<tex>$30000$</tex>左右个状态......这么优美的一道题就这样过了......<br />
 复杂度不会算......</p>
 <h3 id="_5">具体实现</h3>
 <p><a href="http://uoj.ac/submission/159233">UOJ Submission #159233</a></p>

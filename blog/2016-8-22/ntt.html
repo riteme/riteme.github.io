@@ -54,60 +54,60 @@
 <p><a href="../2016-7-21/fft.html#_4">之前</a>写了一篇关于多项式算法的博客，提到了快速傅立叶变换 (FFT)。<br />
 快速傅立叶变换中使用了<strong>单位复数根</strong>来进行采样与插值，快速数论变换和这是类似的，只不过使用的是<strong>原根</strong>。</p>
 <h2 id="_1">原根的性质</h2>
-<p>为了方便，假设下面所有的 <mathjax>$n$</mathjax> 都是大于 <mathjax>$1$</mathjax> 的 <mathjax>$2$</mathjax> 的幂，我们设：</p>
-<p><mathjax>$$
+<p>为了方便，假设下面所有的 <tex>$n$</tex> 都是大于 <tex>$1$</tex> 的 <tex>$2$</tex> 的幂，我们设：</p>
+<p><tex>$$
 g_n = g^{(p-1) / n}
-$$</mathjax></p>
-<p>其中 <mathjax>$p$</mathjax> 是素数并且 <mathjax>$n \mid (p-1)$</mathjax>，另外 <mathjax>$g$</mathjax> 是模 <mathjax>$p$</mathjax> 意义下的原根。<br />
-考虑下单位复数根为什能做到 <mathjax>$\Theta(n \log n)$</mathjax> 的时间复杂度，是因为它具有下面的性质：</p>
+$$</tex></p>
+<p>其中 <tex>$p$</tex> 是素数并且 <tex>$n \mid (p-1)$</tex>，另外 <tex>$g$</tex> 是模 <tex>$p$</tex> 意义下的原根。<br />
+考虑下单位复数根为什能做到 <tex>$\Theta(n \log n)$</tex> 的时间复杂度，是因为它具有下面的性质：</p>
 <blockquote>
-<p><mathjax>$$ \omega_n^n = 1 \\ \omega_n^{n/2} = -1$$</mathjax></p>
+<p><tex>$$ \omega_n^n = 1 \\ \omega_n^{n/2} = -1$$</tex></p>
 </blockquote>
 <p>对原根而言：</p>
-<p><mathjax>$$
+<p><tex>$$
 g_n^n = g^{n(p-1) / n} = g^{p-1} = g^{\varphi(p)} \equiv 1 \pmod p \\
 g_n^{n/2} = g^{(p - 1)/2}
-$$</mathjax></p>
+$$</tex></p>
 <p>而：</p>
-<p><mathjax>$$
+<p><tex>$$
 (g^{(p - 1)/2})^2 \equiv g^{p - 1} \equiv 1 \pmod{p}
-$$</mathjax></p>
-<p>方程 <mathjax>$x^2 \equiv 1 \pmod p$</mathjax> 在 <mathjax>$p$</mathjax> 为素数时只有 <mathjax>$\pm 1$</mathjax> 这两种取值<sup id="fnref:roots"><a class="footnote-ref" href="#fn:roots" rel="footnote">1</a></sup>。但是由于 <mathjax>$g$</mathjax> 是原根，所以 <mathjax>$g^{(p-1) / 2} \not\equiv g^{p-1} \equiv 1$</mathjax>，故其为 <mathjax>$-1$</mathjax>。</p>
+$$</tex></p>
+<p>方程 <tex>$x^2 \equiv 1 \pmod p$</tex> 在 <tex>$p$</tex> 为素数时只有 <tex>$\pm 1$</tex> 这两种取值<sup id="fnref:roots"><a class="footnote-ref" href="#fn:roots" rel="footnote">1</a></sup>。但是由于 <tex>$g$</tex> 是原根，所以 <tex>$g^{(p-1) / 2} \not\equiv g^{p-1} \equiv 1$</tex>，故其为 <tex>$-1$</tex>。</p>
 <blockquote>
-<p><mathjax>$$ \omega_{dn}^{dk} = \omega_n^k $$</mathjax></p>
+<p><tex>$$ \omega_{dn}^{dk} = \omega_n^k $$</tex></p>
 </blockquote>
 <p>原根也可以：</p>
-<p><mathjax>$$
+<p><tex>$$
 g_{dn}^{dk} = g^{dk(p-1) / dn} = g^{k(p-1) / n} = g_n^k
-$$</mathjax></p>
+$$</tex></p>
 <blockquote>
 <p>(折半引理)</p>
-<p><mathjax>$$ \{(\omega_n^k)^2\} = \{\omega_{n/2}^k\} $$</mathjax></p>
+<p><tex>$$ \{(\omega_n^k)^2\} = \{\omega_{n/2}^k\} $$</tex></p>
 </blockquote>
 <p>原根依然可以。根据上面的结论，我们有：</p>
-<p><mathjax>$$
+<p><tex>$$
 (g_n^{k})^2 = g_{n}^{2k} = g_{n/2}^k \\
 (g_n^{k+n/2})^2 = g_n^{2k+n} \equiv g_n^{2k} = g_{n/2}^k
-$$</mathjax></p>
+$$</tex></p>
 <p>因此，单位复数根该有的性质原根居然都有！</p>
 <h2 id="ntt_1">NTT 算法</h2>
-<p>从上面的讨论中我们知道，将你的 FFT 代码中的单位复数根换成 <mathjax>$g_n^k$</mathjax>，就是 NTT。注意<strong>到处取模</strong>。<br />
-逆 FFT 变换时需要除以 <mathjax>$n$</mathjax>，在模 <mathjax>$p$</mathjax> 意义下记住是<strong>使用逆元</strong>。<br />
-NTT 的总复杂度与 FFT 一致，是 <mathjax>$\Theta(n \log n)$</mathjax>。</p>
-<p>最后还剩下一个问题：<mathjax>$p$</mathjax> 和 <mathjax>$g$</mathjax> 该怎么办。<br />
-在 FFT 中，为了方便处理，<mathjax>$n$</mathjax> 一般都是选定了一个 <mathjax>$2$</mathjax> 的幂。因此，对于 <mathjax>$p$</mathjax>，我们只需要选出一个 <mathjax>$p-1$</mathjax> 中含有 <mathjax>$2$</mathjax> 的幂的因子的素数，并且这个 <mathjax>$2$</mathjax> 的幂要大于 <mathjax>$n$</mathjax>。通常选择形如 <mathjax>$a\cdot 2^k + 1$</mathjax> 的素数。<br />
+<p>从上面的讨论中我们知道，将你的 FFT 代码中的单位复数根换成 <tex>$g_n^k$</tex>，就是 NTT。注意<strong>到处取模</strong>。<br />
+逆 FFT 变换时需要除以 <tex>$n$</tex>，在模 <tex>$p$</tex> 意义下记住是<strong>使用逆元</strong>。<br />
+NTT 的总复杂度与 FFT 一致，是 <tex>$\Theta(n \log n)$</tex>。</p>
+<p>最后还剩下一个问题：<tex>$p$</tex> 和 <tex>$g$</tex> 该怎么办。<br />
+在 FFT 中，为了方便处理，<tex>$n$</tex> 一般都是选定了一个 <tex>$2$</tex> 的幂。因此，对于 <tex>$p$</tex>，我们只需要选出一个 <tex>$p-1$</tex> 中含有 <tex>$2$</tex> 的幂的因子的素数，并且这个 <tex>$2$</tex> 的幂要大于 <tex>$n$</tex>。通常选择形如 <tex>$a\cdot 2^k + 1$</tex> 的素数。<br />
 为了方便，通常选定：</p>
-<p><mathjax>$$
+<p><tex>$$
 p = 1004535809 = 479 \times 2^{21} + 1
-$$</mathjax></p>
-<p>它的最小正原根是 <mathjax>$3$</mathjax>。</p>
-<p>另外一个是著名的 UOJ 模数 <mathjax>$998244353 = 2^{23} \times 7 \times 17 + 1$</mathjax>，最小正原根也是 <mathjax>$3$</mathjax>。<br />
+$$</tex></p>
+<p>它的最小正原根是 <tex>$3$</tex>。</p>
+<p>另外一个是著名的 UOJ 模数 <tex>$998244353 = 2^{23} \times 7 \times 17 + 1$</tex>，最小正原根也是 <tex>$3$</tex>。<br />
 使用快速数论变换的好处就是避免了浮点数精度误差。当输入系数都是整型的时候最好优先考虑 NTT。</p>
 <div class="footnote">
 <hr />
 <ol>
 <li id="fn:roots">
-<p><mathjax>$x^2 \equiv 1 \Leftrightarrow x^2 - 1 \equiv 0 \Leftrightarrow (x + 1)(x - 1) \equiv 0 \pmod p$</mathjax>，所以 <mathjax>$p \mid (x + 1)(x - 1)$</mathjax>。由于 <mathjax>$p$</mathjax> 是质数，所以要么 <mathjax>$p | (x + 1)$</mathjax>，要么 <mathjax>$p | (x - 1)$</mathjax>，分别对应 <mathjax>$x \equiv -1$</mathjax> 和 <mathjax>$x \equiv 1$</mathjax> 的情况。&#160;<a class="footnote-backref" href="#fnref:roots" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p><tex>$x^2 \equiv 1 \Leftrightarrow x^2 - 1 \equiv 0 \Leftrightarrow (x + 1)(x - 1) \equiv 0 \pmod p$</tex>，所以 <tex>$p \mid (x + 1)(x - 1)$</tex>。由于 <tex>$p$</tex> 是质数，所以要么 <tex>$p | (x + 1)$</tex>，要么 <tex>$p | (x - 1)$</tex>，分别对应 <tex>$x \equiv -1$</tex> 和 <tex>$x \equiv 1$</tex> 的情况。&#160;<a class="footnote-backref" href="#fnref:roots" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>

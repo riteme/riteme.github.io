@@ -135,7 +135,7 @@
 </pre></div>
 </td></tr></table>
 
-<p>至于到底该怎么写，这都是个人的习惯和爱好。这里只是建议每个函数不宜过长，最好不要有超过 <mathjax>$20$</mathjax> 行的函数，因为这种很长的函数不利于代码调试。</p>
+<p>至于到底该怎么写，这都是个人的习惯和爱好。这里只是建议每个函数不宜过长，最好不要有超过 <tex>$20$</tex> 行的函数，因为这种很长的函数不利于代码调试。</p>
 <h3 id="_3">空格与空行</h3>
 <p>通常，很多表达式的中间我们都会打上一个空格，用来凸显运算符的位置。一个很长的表达式没有空间，都是比较难以阅读的。如下面这个表达式：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">x1</span><span class="o">=-</span><span class="n">b</span><span class="o">+</span><span class="n">sqrt</span><span class="p">(</span><span class="n">b</span><span class="o">*</span><span class="n">b</span><span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">a</span><span class="o">*</span><span class="n">c</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="o">/</span><span class="n">a</span><span class="p">;</span><span class="n">x2</span><span class="o">=-</span><span class="n">b</span><span class="o">-</span><span class="n">sqrt</span><span class="p">(</span><span class="n">b</span><span class="o">*</span><span class="n">b</span><span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">a</span><span class="o">*</span><span class="n">c</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">a</span><span class="p">);</span><span class="c1">// 解方程</span>
@@ -149,7 +149,7 @@
 </pre></div>
 </td></tr></table>
 
-<p>相比之下，下面这个在代码中就清晰很多。当然，如果你觉得像 <code>4 * a * c</code> 这种可以写的和数学公式 <mathjax>$4ac$</mathjax> 一样紧凑，<code>4*a*c</code> 也是可以接受的。打这种空格并不需要花费什么时间，只要多试几次，自然就熟悉了。我们的目的在于希望通过这种习惯性的空格来减少自己检查错误的时间。</p>
+<p>相比之下，下面这个在代码中就清晰很多。当然，如果你觉得像 <code>4 * a * c</code> 这种可以写的和数学公式 <tex>$4ac$</tex> 一样紧凑，<code>4*a*c</code> 也是可以接受的。打这种空格并不需要花费什么时间，只要多试几次，自然就熟悉了。我们的目的在于希望通过这种习惯性的空格来减少自己检查错误的时间。</p>
 <p>空行通常用于分隔两段作用有明显差异的代码块，如两个函数之间、同一个函数的不同步骤之间。这个时候写点注释也是可以的，但是上了考场，由于时间原因，大家普遍不会写注释......</p>
 <p>下面这段代码我是随便从 UOJ 上截的一段改的，体会一下就好。</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
@@ -205,7 +205,7 @@
 <p>如果您是一个热衷于缩行的青少年，上面的话您可以无视......</p>
 <h3 id="_4">命名习惯</h3>
 <p>通常普遍为大家所接受的就是使用英文（或简写），而不是拼音乃至拼音简写。我见过一个比较极端的例子就是 <code>ksm</code>。乍一看不知道是个什么东西，直到看了代码才知道是 “快速幂” 的意思......一般这种函数通常都会写做 <code>quick_pow</code> 或者是 <code>qpow</code>。当然，上面的结论是基于方便他人理解你的代码而得出的。在 OI 中，基本没人会在意你是怎么写的。所以如果你更熟悉我们的国语，使用拼音命名法也无妨。</p>
-<p>兼顾阅读效率和编码效率，我的推荐是名称最好 <mathjax>$2$</mathjax>-<mathjax>$4$</mathjax> 个字符，超过 <mathjax>$6$</mathjax> 个字符是不太适合的。之所以不推荐 <mathjax>$1$</mathjax> 个字符，是因为容易产生命名冲突，也就意味着容易写错代码。</p>
+<p>兼顾阅读效率和编码效率，我的推荐是名称最好 <tex>$2$</tex>-<tex>$4$</tex> 个字符，超过 <tex>$6$</tex> 个字符是不太适合的。之所以不推荐 <tex>$1$</tex> 个字符，是因为容易产生命名冲突，也就意味着容易写错代码。</p>
 <p>下面列举了一些在 OI 中常见的写法及其含义：</p>
 <table>
 <thead>
@@ -293,12 +293,12 @@
 </tr>
 <tr>
 <td align="center"><code>e</code>, <code>E</code></td>
-<td align="center"><mathjax>$\mathrm{e} = 2.71828...$</mathjax></td>
+<td align="center"><tex>$\mathrm{e} = 2.71828...$</tex></td>
 <td align="center">自然对数函数的底数</td>
 </tr>
 <tr>
 <td align="center"><code>eps</code>, <code>EPS</code></td>
-<td align="center"><mathjax>$\varepsilon$</mathjax> (epsilon)</td>
+<td align="center"><tex>$\varepsilon$</tex> (epsilon)</td>
 <td align="center">通常表示精度设定（浮点数中）</td>
 </tr>
 <tr>
@@ -364,7 +364,7 @@
 <tr>
 <td align="center"><code>interp</code></td>
 <td align="center">interpolate</td>
-<td align="center">线性插值，<mathjax>$\vec c = (1-t)\vec a + t \vec b$</mathjax></td>
+<td align="center">线性插值，<tex>$\vec c = (1-t)\vec a + t \vec b$</tex></td>
 </tr>
 <tr>
 <td align="center"><code>inv</code></td>
@@ -414,7 +414,7 @@
 <tr>
 <td align="center"><code>mod</code>, <code>MOD</code></td>
 <td align="center">modulo</td>
-<td align="center"><mathjax>$10^9 + 7,\;998244353$</mathjax>, your best friends</td>
+<td align="center"><tex>$10^9 + 7,\;998244353$</tex>, your best friends</td>
 </tr>
 <tr>
 <td align="center"><code>mul</code></td>
@@ -433,7 +433,7 @@
 </tr>
 <tr>
 <td align="center"><code>pi</code>, <code>PI</code></td>
-<td align="center"><mathjax>$\pi = 3.14159...$</mathjax></td>
+<td align="center"><tex>$\pi = 3.14159...$</tex></td>
 <td align="center"></td>
 </tr>
 <tr>
@@ -514,12 +514,12 @@
 <tr>
 <td align="center"><code>sqr</code></td>
 <td align="center">square</td>
-<td align="center"><mathjax>$x^2$</mathjax></td>
+<td align="center"><tex>$x^2$</tex></td>
 </tr>
 <tr>
 <td align="center"><code>sqrt</code></td>
 <td align="center">square root</td>
-<td align="center"><mathjax>$\sqrt x$</mathjax></td>
+<td align="center"><tex>$\sqrt x$</tex></td>
 </tr>
 <tr>
 <td align="center"><code>stk</code></td>
@@ -646,8 +646,8 @@ call printf
 </pre></div>
 </td></tr></table>
 
-<p>上面的过程在不开优化的情况下是不会进行的，这里我是通过强制 GCC 执行内联才得到的结果。此外，对于递归函数，编译器是不会进行内联优化的，也就是说递归函数前面加上 <code>inline</code> 没有任何用处。如果一个函数很长或者很复杂，编译器也通常不会进行优化。我的推荐是如果行数不超过 <mathjax>$7$</mathjax> 行，就写一个 <code>inline</code>，否则就没有必要浪费时间。</p>
-<p><code>static</code> 可以用于函数和变量前。在函数前写个 <code>static</code> 纯属画蛇填足，因为 OI 中没有任何用处，但在变量前写个 <code>static</code>，可以使你少写一个清零。被声明为 <code>static</code> 的原始类型变量初始默认都是 <mathjax>$0$</mathjax>，而不是一个随机的值。</p>
+<p>上面的过程在不开优化的情况下是不会进行的，这里我是通过强制 GCC 执行内联才得到的结果。此外，对于递归函数，编译器是不会进行内联优化的，也就是说递归函数前面加上 <code>inline</code> 没有任何用处。如果一个函数很长或者很复杂，编译器也通常不会进行优化。我的推荐是如果行数不超过 <tex>$7$</tex> 行，就写一个 <code>inline</code>，否则就没有必要浪费时间。</p>
+<p><code>static</code> 可以用于函数和变量前。在函数前写个 <code>static</code> 纯属画蛇填足，因为 OI 中没有任何用处，但在变量前写个 <code>static</code>，可以使你少写一个清零。被声明为 <code>static</code> 的原始类型变量初始默认都是 <tex>$0$</tex>，而不是一个随机的值。</p>
 <p>在函数中的静态变量相当于是一个全局变量，只是函数外部不可以访问到它。这个特性通常被拿来做计数器：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -738,7 +738,7 @@ call printf
 </pre></div>
 </td></tr></table>
 
-<p>这样做相比于所有算法都写在全局的好处在于它首先避免了算法之间的命名冲突。其次，如果一个算法将不会被使用，那么它所需要的内存也不会被申请，避免了全部开在全局而导致超出内存限制的隐患。请注意，在 NOI 的评测机中，你开了多大的数组就会计入多少的内存，而不是某些评测机，即使开了 <mathjax>$512\mathrm{MB}$</mathjax> 的数组，但是如果只用了 <mathjax>$32\mathrm{MB}$</mathjax>，就只会记你 <mathjax>$32\mathrm{MB}$</mathjax>。</p>
+<p>这样做相比于所有算法都写在全局的好处在于它首先避免了算法之间的命名冲突。其次，如果一个算法将不会被使用，那么它所需要的内存也不会被申请，避免了全部开在全局而导致超出内存限制的隐患。请注意，在 NOI 的评测机中，你开了多大的数组就会计入多少的内存，而不是某些评测机，即使开了 <tex>$512\mathrm{MB}$</tex> 的数组，但是如果只用了 <tex>$32\mathrm{MB}$</tex>，就只会记你 <tex>$32\mathrm{MB}$</tex>。</p>
 <p>除了使用 <code>class</code>/<code>struct</code> 这种方法之外，一些人还会使用 <code>namespace</code>。虽然我个人觉得 <code>namespace</code> 在 OI 中没什么用，因为它的作用可以说只是把命名空间中的所有名字全部加了个前缀。比如 STL 中的所有东西全部被放在了一个叫做 <code>std</code> 的命名空间，所以，如果程序前面不用 <code>using namespace std</code>，那么使用 STL 中的函数就都需要加上一个 <code>std::</code>，如 <code>std::sort</code>。</p>
 <h3 id="class-struct"><code>class</code> 与 <code>struct</code></h3>
 <p>在 C++ 中，<code>class</code> 与 <code>struct</code> 的唯一区别在于：<code>class</code> 的成员默认使用 <code>private</code> 修饰，而 <code>struct</code> 中默认使用 <code>public</code>。换句话说，下面的这个定义：</p>
@@ -776,7 +776,7 @@ call printf
 </pre></div>
 </td></tr></table>
 
-<p>如果执行 <code>new Aha(1000)</code>，将意味着会有 <mathjax>$1000$</mathjax> 个 <code>Aha</code> 会被创建，意味着 <mathjax>$10^6 \times 10^3 = 10^9$</mathjax> 个 <code>int</code> 被创建，意味着你会获得 Memory Limit Exceeded 或者 Runtime Error。意思是，每一次 <code>Aha</code> 构造函数的递归，都是在一个新的 <code>Aha</code> 上进行的，而不是在同一个上。所以，像线段树这种普遍使用递归来构造的数据结构，一般会新定义一个函数来构建。</p>
+<p>如果执行 <code>new Aha(1000)</code>，将意味着会有 <tex>$1000$</tex> 个 <code>Aha</code> 会被创建，意味着 <tex>$10^6 \times 10^3 = 10^9$</tex> 个 <code>int</code> 被创建，意味着你会获得 Memory Limit Exceeded 或者 Runtime Error。意思是，每一次 <code>Aha</code> 构造函数的递归，都是在一个新的 <code>Aha</code> 上进行的，而不是在同一个上。所以，像线段树这种普遍使用递归来构造的数据结构，一般会新定义一个函数来构建。</p>
 <p>此外，构造函数在 OI 中更普遍的应用是简单数据的声明，如 <code>Point</code>、<code>Vector</code> 和 <code>Line</code> 之类的东西。例如在需要计算几何的代码中，通常会有：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -794,7 +794,7 @@ call printf
 </pre></div>
 </td></tr></table>
 
-<p>那么，使用 <code>Point()</code> 将会得到一个位于原点的点，而使用 <code>Point(2, 3)</code> 将会得到一个坐标在 <mathjax>$(2,\;3)$</mathjax> 的点。</p>
+<p>那么，使用 <code>Point()</code> 将会得到一个位于原点的点，而使用 <code>Point(2, 3)</code> 将会得到一个坐标在 <tex>$(2,\;3)$</tex> 的点。</p>
 <p>OIer 普遍不会关心内存回收的问题，除非是确实不回收会导致超内存。所以大家的代码中都鲜有析构函数的出现。一般析构函数的作用就是删除一些用 <code>new</code> 或者 <code>malloc</code> 申请出的空间，一个典型的例子就是线段树和平衡树的删除：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -957,7 +957,7 @@ call printf
 <li>逻辑与 (<code>&amp;&amp;</code>)</li>
 <li>逻辑或 (<code>||</code>)</li>
 </ol>
-<p>比较容易写错的是有按位左移、右移的，要注意加法减法的优先级比按位左移右移高，因此 <code>1 &lt;&lt; 3 + 7</code> 的结果不是 <mathjax>$2^3 + 7$</mathjax>，而是 <mathjax>$2^{10}$</mathjax>。此外由于比较运算符的优先级没有按位左移、右移高，所以如果比较符两边的按位平移要用括号包起来。另外，与的优先级高于或的优先级。如果考试时忘记了，那你最好还是多写几个括号以免出错。</p>
+<p>比较容易写错的是有按位左移、右移的，要注意加法减法的优先级比按位左移右移高，因此 <code>1 &lt;&lt; 3 + 7</code> 的结果不是 <tex>$2^3 + 7$</tex>，而是 <tex>$2^{10}$</tex>。此外由于比较运算符的优先级没有按位左移、右移高，所以如果比较符两边的按位平移要用括号包起来。另外，与的优先级高于或的优先级。如果考试时忘记了，那你最好还是多写几个括号以免出错。</p>
 <p>详细的运算符优先级也可以在 cppreference  (<a href="http://en.cppreference.com/w/cpp/language/operator_precedence">http://en.cppreference.com/w/cpp/language/operator_precedence</a>) 上看到。</p>
 <h3 id="_8">模板</h3>
 <p>这里将介绍一些简单的模板（<code>template</code>）的使用。一般是用于一些简单的函数，如 <code>max</code>：</p>
@@ -1181,7 +1181,7 @@ call printf
 </td></tr></table>
 
 <p>善用 <code>assert</code> 是一个良好的习惯。在比较复杂的数据结构中，一些地方可以添加几个断言，比如在访问一个指针前 <code>assert</code> 一下看指针是否为空。从而在调试的时候，如果出现异常，可以很快的发现错误的位置。最后提交文件的时候在开头声明一下 <code>NDEBUG</code>，就可以关掉所有的调试信息和断言。</p>
-<p>作为一个简单的文本替换，宏的弊端在于容易使人犯错。首先就是运算符优先级的问题。一个典型的例子就是开一个大小为 <mathjax>$2n$</mathjax> 的数组。OI 中由于不是很关心浪费的一点点空间，所以有人可能会写出这样的代码：</p>
+<p>作为一个简单的文本替换，宏的弊端在于容易使人犯错。首先就是运算符优先级的问题。一个典型的例子就是开一个大小为 <tex>$2n$</tex> 的数组。OI 中由于不是很关心浪费的一点点空间，所以有人可能会写出这样的代码：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">#define NMAX 100000 + 5</span>
 <span class="kt">int</span> <span class="n">arr</span><span class="p">[</span><span class="n">NMAX</span> <span class="o">*</span> <span class="mi">2</span><span class="p">];</span>  <span class="c1">// arr 的大小为 100010 而不是所期望的 200010</span>
@@ -1309,7 +1309,7 @@ call printf
 <li><code>stack</code> 栈，类似于 <code>queue</code>，只不过是用 <code>top</code> 查看栈顶。</li>
 <li><code>set</code> 和 <code>map</code>，这是 STL 良心为大家提供的红黑树，可以快速查找和使用与 <code>algorithm</code> 中类似的 <code>lower_bound</code> 以及 <code>upper_bound</code>。</li>
 <li><code>priority_queue</code> 优先队列，也就是大根堆，接口和 <code>stack</code> 差不多。</li>
-<li><code>bitset</code> 卡常神器，用于存储二进制序列，可以进行位运算，时空复杂度基本都是 <mathjax>$O(n / w)$</mathjax>。</li>
+<li><code>bitset</code> 卡常神器，用于存储二进制序列，可以进行位运算，时空复杂度基本都是 <tex>$O(n / w)$</tex>。</li>
 <li><code>string</code> 字符串，其实就是 <code>vector&lt;char&gt;</code>，一般不怎么用。</li>
 <li>* <code>unordered_set</code> 和 <code>unordered_map</code>，功能与 <code>set</code> 和 <code>map</code> 对应，但是是哈希表实现的，复杂度更优秀，但不支持二分查找。可以在头文件 <code>tr1/unordered_set</code> 和 <code>tr1/unordered_map</code> 中找到。</li>
 </ul>
@@ -1511,7 +1511,7 @@ Breakpoint 1, main () at a.cpp:7
 </pre></div>
 </td></tr></table>
 
-<p>注意，到了第 <mathjax>$10$</mathjax> 如果继续使用 <code>n</code>，将不会进入 <code>fac</code> 函数。如果想进入 <code>fac</code> 函数一探究竟，就需要使用 <code>s</code>：</p>
+<p>注意，到了第 <tex>$10$</tex> 如果继续使用 <code>n</code>，将不会进入 <code>fac</code> 函数。如果想进入 <code>fac</code> 函数一探究竟，就需要使用 <code>s</code>：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>(gdb) s
@@ -1543,7 +1543,7 @@ fac (n=0) at a.cpp:4
 </td></tr></table>
 
 <p>没错，你会发现 <code>n</code> 的值会在每一步指令结束后展示给你。注意到左边的那个标号 <code>1</code>，你可以使用 <code>undisp 1</code> 来取消这个显示。</p>
-<p>当然你不会一直使用 <code>n</code> 和 <code>s</code> 让程序跑下去，有时候是希望让程序先自由的跑一跑。这里我们先给第 <mathjax>$4$</mathjax> 行加个断点，并使用 <code>c</code> 命令继续运行程序：</p>
+<p>当然你不会一直使用 <code>n</code> 和 <code>s</code> 让程序跑下去，有时候是希望让程序先自由的跑一跑。这里我们先给第 <tex>$4$</tex> 行加个断点，并使用 <code>c</code> 命令继续运行程序：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -1560,7 +1560,7 @@ Breakpoint 2, fac (n=-1) at a.cpp:4
 </pre></div>
 </td></tr></table>
 
-<p>由于在继续执行的过程中遇上了断点 <mathjax>$2$</mathjax>，所以程序又一次暂停。现在可以来看看函数的调用栈了：</p>
+<p>由于在继续执行的过程中遇上了断点 <tex>$2$</tex>，所以程序又一次暂停。现在可以来看看函数的调用栈了：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -1669,7 +1669,7 @@ Program received signal SIGINT, Interrupt.
 </pre></div>
 </td></tr></table>
 
-<p>然后这个程序就暂停了。<code>gdb</code> 告诉你现在在一个奇怪的文件里面，其实是因为在执行 <code>puts</code> 时暂停了。现在我们想回到 <code>a.cpp</code> 函数的第 <mathjax>$15$</mathjax> 行，因此可以设一个断点：</p>
+<p>然后这个程序就暂停了。<code>gdb</code> 告诉你现在在一个奇怪的文件里面，其实是因为在执行 <code>puts</code> 时暂停了。现在我们想回到 <code>a.cpp</code> 函数的第 <tex>$15$</tex> 行，因此可以设一个断点：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3

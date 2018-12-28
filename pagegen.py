@@ -32,9 +32,10 @@ from markdown.postprocessors import Postprocessor
 WORDS_PER_MINUTE = 250
 BEAUTIFUL_SOUP_PARSER = "lxml"
 GITHUB_LOCATION = "https://github.com/riteme/riteme.github.io/blob/master"
+SITE_DOMAIN = "https://riteme.github.io/"
 
-# Mathjax Extension
-class MathJaxPattern(markdown.inlinepatterns.Pattern):
+# LaTeX Extension
+class LaTeXPattern(markdown.inlinepatterns.Pattern):
 
     def __init__(self):
         markdown.inlinepatterns.Pattern.__init__(
@@ -43,22 +44,22 @@ class MathJaxPattern(markdown.inlinepatterns.Pattern):
         )
 
     def handleMatch(self, m):
-        node = markdown.util.etree.Element('mathjax')
+        node = markdown.util.etree.Element('tex')
         node.text = markdown.util.AtomicString(
             m.group(2) + m.group(3) + m.group(2))
         return node
 
 
-class MathJaxExtension(markdown.Extension):
+class LaTeXExtension(markdown.Extension):
 
     def extendMarkdown(self, md, md_globals):
         # Needs to come before escape matching because \ is pretty important in
         # LaTeX
-        md.inlinePatterns.add('mathjax', MathJaxPattern(), '<escape')
+        md.inlinePatterns.add('tex', LaTeXPattern(), '<escape')
 
 
 def latex_friendly(configs=[]):
-    return MathJaxExtension(configs)
+    return LaTeXExtension(configs)
 
 # New Tab Extension
 # pylint: disable=invalid-name, too-few-public-methods
@@ -233,7 +234,7 @@ def generate(filepath):
     with open(filepath) as md:
         content, temp = reader.process(md.read())
         if temp:
-            print("(warn) This is a temporary post. Stopped.")
+            print("(warn) This is a temporary post. Skipped.")
             return
 
         content = content.replace(chr(8203), '')
@@ -279,12 +280,16 @@ def generate(filepath):
     # 处理特殊信息
     pagetitle = mdinfo["title"][0].strip().replace("\"", " ")
     pagekey = hashlib.md5(pagetitle.encode("utf8")).hexdigest()
-    pageurl = "http://riteme.github.io/" + os.path.relpath(
+    pageurl = SITE_DOMAIN + os.path.relpath(
         os.path.abspath(filepath), start=os.path.abspath("."))[
         :-3] + ".html"
 
     # 写入文件
-    with open("template.html") as ftemplate:
+
+    template_file = "templates/template.html"
+    if "template" in mdinfo:
+        template_file = "templates/%s.html" % mdinfo["template"][0]
+    with open(template_file) as ftemplate:
         template = ftemplate.read()
 
     new_file = os.path.splitext(filepath)[0] + ".html"
@@ -306,7 +311,9 @@ def generate(filepath):
         ))
 
     # 返回索引信息
-    return (index_title, index_text, index_tags, index_url)
+    if "index" not in mdinfo or mdinfo["index"][0] in ['true', 'True', '1']:
+        return (index_title, index_text, index_tags, index_url)
+    return index_title
 
 if __name__ == "__main__":
     import sys

@@ -52,59 +52,59 @@
             
 <h1 id="_1">砍木棍问题</h1>
 <h2 id="_2">问题描述</h2>
-<p>初始时有一根长为 <mathjax>$a$</mathjax> 的木棍，每次会随机砍掉木棍的一段，问期望多少次后木棍的长度小于 <mathjax>$b$</mathjax> ？</p>
-<p>还有一种离散的版本：初始时有一个数字 <mathjax>$n$</mathjax>，每次可以随机减去一个 <mathjax>$[0, n]$</mathjax> 内的整数，问期望多少次后变为 <mathjax>$0$</mathjax> ？</p>
+<p>初始时有一根长为 <tex>$a$</tex> 的木棍，每次会随机砍掉木棍的一段，问期望多少次后木棍的长度小于 <tex>$b$</tex> ？</p>
+<p>还有一种离散的版本：初始时有一个数字 <tex>$n$</tex>，每次可以随机减去一个 <tex>$[0, n]$</tex> 内的整数，问期望多少次后变为 <tex>$0$</tex> ？</p>
 <h2 id="_3">离散版本</h2>
-<p>首先考虑一下我们可以手算的问题，记 <mathjax>$F(n)$</mathjax> 表示初始时为 <mathjax>$n$</mathjax> 的期望次数，不难得到下面的递推式：<br />
-<mathjax>$$
+<p>首先考虑一下我们可以手算的问题，记 <tex>$F(n)$</tex> 表示初始时为 <tex>$n$</tex> 的期望次数，不难得到下面的递推式：<br />
+<tex>$$
 \begin{cases}
 F(0) = 0 \\
 F(n) = {n + 1 \over n} + \frac1n\sum_{k = 0}^{n - 1} F(k) &amp; (n &gt; 0)
 \end{cases}
-$$</mathjax><br />
-上面的 <mathjax>$(n + 1) / n$</mathjax> 是停留在 <mathjax>$n$</mathjax> 的期望次数，也就是 <mathjax>$\sum_{k = 0}^\infty (1/(n + 1))^k$</mathjax>，因为每次都有 <mathjax>$1/(n + 1)$</mathjax> 的概率不减小。通过差分不难解得：<br />
-<mathjax>$$
+$$</tex><br />
+上面的 <tex>$(n + 1) / n$</tex> 是停留在 <tex>$n$</tex> 的期望次数，也就是 <tex>$\sum_{k = 0}^\infty (1/(n + 1))^k$</tex>，因为每次都有 <tex>$1/(n + 1)$</tex> 的概率不减小。通过差分不难解得：<br />
+<tex>$$
 F(n) = 1 + H_n = 1 + \ln n + \mathrm{O}(1)
-$$</mathjax><br />
-其中 <mathjax>$H_n$</mathjax> 表示调和级数。</p>
+$$</tex><br />
+其中 <tex>$H_n$</tex> 表示调和级数。</p>
 <h2 id="_4">原始问题</h2>
-<p>从离散版本中我们可以估计出答案应该是对数级别的。为了解决这个问题，首先将模型转化一下：每次砍掉随机的长度，可以视为随机一个 <mathjax>$X \in (0, 1)$</mathjax>，将原长度 <mathjax>$a$</mathjax> 变为 <mathjax>$Xa$</mathjax>，问期望多少次后小于 <mathjax>$b$</mathjax>。假设是 <mathjax>$k$</mathjax> 次后满足要求，那么可以得到 <mathjax>$k$</mathjax> 个独立随机变量 <mathjax>$X_1, X_2, ..., X_k$</mathjax> 与 <mathjax>$a$</mathjax> 和 <mathjax>$b$</mathjax> 的关系：<br />
-<mathjax>$$
+<p>从离散版本中我们可以估计出答案应该是对数级别的。为了解决这个问题，首先将模型转化一下：每次砍掉随机的长度，可以视为随机一个 <tex>$X \in (0, 1)$</tex>，将原长度 <tex>$a$</tex> 变为 <tex>$Xa$</tex>，问期望多少次后小于 <tex>$b$</tex>。假设是 <tex>$k$</tex> 次后满足要求，那么可以得到 <tex>$k$</tex> 个独立随机变量 <tex>$X_1, X_2, ..., X_k$</tex> 与 <tex>$a$</tex> 和 <tex>$b$</tex> 的关系：<br />
+<tex>$$
 a \prod_{j = 1}^k X_j &lt; b
-$$</mathjax><br />
+$$</tex><br />
 也就是：<br />
-<mathjax>$$
+<tex>$$
 \prod_{j = 1}^k X_j &lt; \frac{b}a
-$$</mathjax><br />
-为了方便，令 <mathjax>$n = a / b$</mathjax>，那么上式右边变为 <mathjax>$&lt; 1/n$</mathjax>。现在来考虑左边那个乘积，处理乘积的一个好方法就是取对数，即：<br />
-<mathjax>$$
+$$</tex><br />
+为了方便，令 <tex>$n = a / b$</tex>，那么上式右边变为 <tex>$&lt; 1/n$</tex>。现在来考虑左边那个乘积，处理乘积的一个好方法就是取对数，即：<br />
+<tex>$$
 \ln \prod_{j=1}^k X_j = \sum_{j=1}^k \ln Xj &lt; -\ln n
-$$</mathjax><br />
+$$</tex><br />
 不等式两边同时算期望：<br />
-<mathjax>$$
+<tex>$$
 \mathbf{E}\left[\sum_{j=1}^k \ln X_j\right] = \sum_{j = 1}^k \mathbf{E}[\ln X_j] &lt; - \ln n
-$$</mathjax><br />
-而 <mathjax>$E[\ln X_j] = \lim_{y \rightarrow 0}\int_y^1 \ln x \ \mathrm{d}x = \int_{-\infty}^0 e^x \ \mathrm{d}x = -1$</mathjax>，所以可知期望 <mathjax>$\ln n$</mathjax> 次后满足不等式。因此原问题的答案就是 <mathjax>$\ln a/b$</mathjax>。</p>
+$$</tex><br />
+而 <tex>$E[\ln X_j] = \lim_{y \rightarrow 0}\int_y^1 \ln x \ \mathrm{d}x = \int_{-\infty}^0 e^x \ \mathrm{d}x = -1$</tex>，所以可知期望 <tex>$\ln n$</tex> 次后满足不等式。因此原问题的答案就是 <tex>$\ln a/b$</tex>。</p>
 <h2 id="_5">相关的概率问题</h2>
-<p>现在来考虑一个扩展的问题：<mathjax>$n$</mathjax> 个独立随机变量 <mathjax>$X_1, X_2, ..., X_n \in [0, 1]$</mathjax> 的乘积 <mathjax>$X = \prod_{k = 1}^n X_k$</mathjax> 小于一个常数 <mathjax>$a \in (0, 1]$</mathjax> 的概率？</p>
+<p>现在来考虑一个扩展的问题：<tex>$n$</tex> 个独立随机变量 <tex>$X_1, X_2, ..., X_n \in [0, 1]$</tex> 的乘积 <tex>$X = \prod_{k = 1}^n X_k$</tex> 小于一个常数 <tex>$a \in (0, 1]$</tex> 的概率？</p>
 <p>首先考虑一些特殊的情况：</p>
 <ol>
-<li><mathjax>$n = 1$</mathjax> 时，显然概率就是 <mathjax>$a$</mathjax>。</li>
-<li><mathjax>$n = 2$</mathjax> 时，设这两个随机变量分别为 <mathjax>$x$</mathjax> 和 <mathjax>$y$</mathjax>，那么可以看做在以原点为左下角，坐标 <mathjax>$(1, 1)$</mathjax> 为右上角的正方形中随机投点，问这个点处于 <mathjax>$xy = a$</mathjax> 的图像（即反比例函数）的左下方的概率。由于这个正方形的面积为 <mathjax>$1$</mathjax>，所以概率就是围出的面积，关于 <mathjax>$x$</mathjax> 积分，即 <mathjax>$a + \int_a^1 a / x \ \mathrm{d}x = a - a\ln a$</mathjax>。</li>
+<li><tex>$n = 1$</tex> 时，显然概率就是 <tex>$a$</tex>。</li>
+<li><tex>$n = 2$</tex> 时，设这两个随机变量分别为 <tex>$x$</tex> 和 <tex>$y$</tex>，那么可以看做在以原点为左下角，坐标 <tex>$(1, 1)$</tex> 为右上角的正方形中随机投点，问这个点处于 <tex>$xy = a$</tex> 的图像（即反比例函数）的左下方的概率。由于这个正方形的面积为 <tex>$1$</tex>，所以概率就是围出的面积，关于 <tex>$x$</tex> 积分，即 <tex>$a + \int_a^1 a / x \ \mathrm{d}x = a - a\ln a$</tex>。</li>
 </ol>
-<p>当 <mathjax>$n \geqslant 3$</mathjax> 时没有那么好想了，但是我们可以考虑一下递推：设 <mathjax>$P(n, a)$</mathjax> 表示这个概率（可以是关于 <mathjax>$a$</mathjax> 的函数），仿照 <mathjax>$n = 2$</mathjax> 的情况，我们要求的是函数 <mathjax>$X = a$</mathjax> 在超立方体内围出的超体积。设这 <mathjax>$n$</mathjax> 个变量中的任意一个为 <mathjax>$z$</mathjax>，考虑下面两种情况：</p>
+<p>当 <tex>$n \geqslant 3$</tex> 时没有那么好想了，但是我们可以考虑一下递推：设 <tex>$P(n, a)$</tex> 表示这个概率（可以是关于 <tex>$a$</tex> 的函数），仿照 <tex>$n = 2$</tex> 的情况，我们要求的是函数 <tex>$X = a$</tex> 在超立方体内围出的超体积。设这 <tex>$n$</tex> 个变量中的任意一个为 <tex>$z$</tex>，考虑下面两种情况：</p>
 <ol>
-<li>若 <mathjax>$z &lt; a$</mathjax>，那么 <mathjax>$X$</mathjax> 一定小于 <mathjax>$a$</mathjax>，这种情况发生的概率为 <mathjax>$a$</mathjax>。</li>
-<li>若 <mathjax>$z \geqslant a$</mathjax>，那么 <mathjax>$X &lt; a \Leftrightarrow X/z &lt; a/z$</mathjax>，注意这里 <mathjax>$a \leqslant a/z \leqslant 1$</mathjax>，并且 <mathjax>$X/z$</mathjax> 是 <mathjax>$n - 1$</mathjax> 个独立随机变量的乘积。依此，我们可以将问题规模缩减。通过关于 <mathjax>$z$</mathjax> 求积分，我们可以求出这种情况的概率为 <mathjax>$\int_a^1 P(n - 1, a/z) \ \mathrm{d}z$</mathjax>。</li>
+<li>若 <tex>$z &lt; a$</tex>，那么 <tex>$X$</tex> 一定小于 <tex>$a$</tex>，这种情况发生的概率为 <tex>$a$</tex>。</li>
+<li>若 <tex>$z \geqslant a$</tex>，那么 <tex>$X &lt; a \Leftrightarrow X/z &lt; a/z$</tex>，注意这里 <tex>$a \leqslant a/z \leqslant 1$</tex>，并且 <tex>$X/z$</tex> 是 <tex>$n - 1$</tex> 个独立随机变量的乘积。依此，我们可以将问题规模缩减。通过关于 <tex>$z$</tex> 求积分，我们可以求出这种情况的概率为 <tex>$\int_a^1 P(n - 1, a/z) \ \mathrm{d}z$</tex>。</li>
 </ol>
-<p>综上所述，我们可以归纳出 <mathjax>$P(n, a)$</mathjax> 的递推式（假设 <mathjax>$0$</mathjax> 个元素的乘积为 <mathjax>$1$</mathjax>）：<br />
-<mathjax>$$
+<p>综上所述，我们可以归纳出 <tex>$P(n, a)$</tex> 的递推式（假设 <tex>$0$</tex> 个元素的乘积为 <tex>$1$</tex>）：<br />
+<tex>$$
 \begin{cases}
 P(0, a) = 0 \\
 P(n, a) = a + \int_a^1 P(n - 1, a / z) \ \mathrm{d} z &amp; (n &gt; 0)
 \end{cases}
-$$</mathjax><br />
-看上去并不好直接得出 <mathjax>$P(n, a)$</mathjax> 的表达式，所以我尝试用 Mathematica 算了一下 <mathjax>$n \leqslant 6$</mathjax> 的情况<sup id="fnref:subscript"><a class="footnote-ref" href="#fn:subscript" rel="footnote">1</a></sup>：</p>
+$$</tex><br />
+看上去并不好直接得出 <tex>$P(n, a)$</tex> 的表达式，所以我尝试用 Mathematica 算了一下 <tex>$n \leqslant 6$</tex> 的情况<sup id="fnref:subscript"><a class="footnote-ref" href="#fn:subscript" rel="footnote">1</a></sup>：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -125,51 +125,51 @@ $$</mathjax><br />
 </pre></div>
 </td></tr></table>
 
-<p>Wow! <mathjax>$P(n, a)$</mathjax> 看上去可以表示成 <mathjax>$a \cdot Q(\ln a)$</mathjax> 的形式，并且 <mathjax>$Q(x)$</mathjax> 是个多项式。进一步的，我们把这个多项式的系数写出来：<br />
-<mathjax>$$
+<p>Wow! <tex>$P(n, a)$</tex> 看上去可以表示成 <tex>$a \cdot Q(\ln a)$</tex> 的形式，并且 <tex>$Q(x)$</tex> 是个多项式。进一步的，我们把这个多项式的系数写出来：<br />
+<tex>$$
 +1, -1, +\frac12, -\frac16,+\frac1{24},-\frac1{120},...
-$$</mathjax><br />
-如果对阶乘比较熟悉，不难发现 <mathjax>$Q(x)$</mathjax> 中 <mathjax>$x^k$</mathjax> 的系数就是 <mathjax>$(-1)^k / k!$</mathjax>。于是我们可以猜想：</p>
-<p><mathjax>$$
+$$</tex><br />
+如果对阶乘比较熟悉，不难发现 <tex>$Q(x)$</tex> 中 <tex>$x^k$</tex> 的系数就是 <tex>$(-1)^k / k!$</tex>。于是我们可以猜想：</p>
+<p><tex>$$
 P(n, a) = a\sum_{k = 0}^{n - 1} \frac{(-1)^k}{k!} \ln^k a \:\:\:\: (n &gt; 0) \tag{1}
-$$</mathjax><br />
-为了确认这个结论，数学归纳法应该是个比较好的选择：上面已经验证了 <mathjax>$1 \leqslant n \leqslant 6$</mathjax> 的情况。现在假设对于任意的 <mathjax>$1 \leqslant k \leqslant n - 1$</mathjax>，<mathjax>$P(k, a)$</mathjax> 均满足 <mathjax>$(1)$</mathjax> 式，现在证明 <mathjax>$P(n, a)$</mathjax> 也满足 <mathjax>$(1)$</mathjax> 式。首先利用 <mathjax>$P(n, a)$</mathjax> 的递推式：<br />
-<mathjax>$$
+$$</tex><br />
+为了确认这个结论，数学归纳法应该是个比较好的选择：上面已经验证了 <tex>$1 \leqslant n \leqslant 6$</tex> 的情况。现在假设对于任意的 <tex>$1 \leqslant k \leqslant n - 1$</tex>，<tex>$P(k, a)$</tex> 均满足 <tex>$(1)$</tex> 式，现在证明 <tex>$P(n, a)$</tex> 也满足 <tex>$(1)$</tex> 式。首先利用 <tex>$P(n, a)$</tex> 的递推式：<br />
+<tex>$$
 \begin{aligned}
 P(n, a) &amp; = a + \int_a^1 P(n - 1, a / x) \ \mathrm{d}x \\
 &amp; = a + \int_a^1 \frac{a}x\sum_{k = 0}^{n - 2} {(-1)^k \over k!} \ln^k \frac{a}x \ \mathrm{d} x \\
 &amp; = {a + \sum_{k = 0}^{n - 2} {(-1)^k \over k!} \int_a^1 \frac{a}x\ln^k \frac{a}x \ \mathrm{d}x \:\:\:\:\:\:\:\: (2)}
 \end{aligned}
-$$</mathjax><br />
+$$</tex><br />
 单独考虑积分：<br />
-<mathjax>$$
+<tex>$$
 \int \frac{a}x \ln^k \frac{a}x \ \mathrm{d} x
-$$</mathjax><br />
-进行换元：令 <mathjax>$u = \ln(a/x)$</mathjax>，那么可知 <mathjax>$\mathrm{d}u = \mathrm{d}\ln(a/x) = {\mathrm{d}(a/x) \over a/x} = -{\mathrm{d}x \over x}$</mathjax>，即 <mathjax>$-x\mathrm{d} u = \mathrm{d}x$</mathjax>，所以上述积分为：<br />
-<mathjax>$$
+$$</tex><br />
+进行换元：令 <tex>$u = \ln(a/x)$</tex>，那么可知 <tex>$\mathrm{d}u = \mathrm{d}\ln(a/x) = {\mathrm{d}(a/x) \over a/x} = -{\mathrm{d}x \over x}$</tex>，即 <tex>$-x\mathrm{d} u = \mathrm{d}x$</tex>，所以上述积分为：<br />
+<tex>$$
 \begin{aligned}
 \int \frac{a}x \ln^k \frac{a}x \ \mathrm{d} x &amp; = a\int\frac1x u^k (-x \mathrm{d}u) \\
 &amp; = -a \int u^k \ \mathrm{d}u \\
 &amp; = -{au^{k + 1} \over k + 1} + C \\
 &amp; = -{a\ln^{k  + 1} (a/x) \over k + 1} + C
 \end{aligned}
-$$</mathjax><br />
-将结果代回到 <mathjax>$(2)$</mathjax> 中，得到：<br />
-<mathjax>$$
+$$</tex><br />
+将结果代回到 <tex>$(2)$</tex> 中，得到：<br />
+<tex>$$
 \begin{aligned}
 P(n, a) &amp; = a + \sum_{k = 0}^{n - 2} {(-1)^k \over k!} \left(- {a \ln^{k + 1} a \over k + 1}\right) \\
 &amp; = a + a\sum_{k = 0}^{n - 2} {(-1)^{k + 1} \over (k + 1)!} \ln^{k  + 1}a \\
 &amp; = a\sum_{k = 0}^{n - 1} {(-1)^k \over k!} \ln^k a
 \end{aligned}
-$$</mathjax><br />
-所以归纳假设成立。<span style="float: right"><mathjax>$\blacksquare$</mathjax></span></p>
-<p>非常有趣的事情是，这个多项式 <mathjax>$Q(x)$</mathjax> 实际上就是 <mathjax>$\mathrm{e}^{-x}$</mathjax> 的前 <mathjax>$n$</mathjax> 项泰勒展开。这里我们回忆一下：<br />
-<mathjax>$$
+$$</tex><br />
+所以归纳假设成立。<span style="float: right"><tex>$\blacksquare$</tex></span></p>
+<p>非常有趣的事情是，这个多项式 <tex>$Q(x)$</tex> 实际上就是 <tex>$\mathrm{e}^{-x}$</tex> 的前 <tex>$n$</tex> 项泰勒展开。这里我们回忆一下：<br />
+<tex>$$
 \begin{aligned}
 \mathrm{e}^x &amp; = \sum_{k = 0}^\infty {x^k \over k!} \\
 \mathrm{e}^{-x} &amp; = \sum_{k = 0}^\infty {(-1)^k x^k \over k!}
 \end{aligned}
-$$</mathjax><br />
+$$</tex><br />
 又一次与自然常数美妙的邂逅，也难怪它值得配上一个专用符号在各种场合大显身手。</p>
 <div class="footnote">
 <hr />

@@ -5,6 +5,7 @@ import os
 import sys
 import json
 import hashlib
+import traceback
 
 import lib.tipuesearch as tipuesearch
 import pagegen
@@ -15,7 +16,7 @@ if __name__ != "__main__":
 
 
 UPDATE_MAP_FILE = "./map.json"
-TEMPLATE_FILE = "./template.html"
+TEMPLATES = "templates/"
 
 update_map = {}
 update_all = False
@@ -42,10 +43,10 @@ def hash(obj):
     obj = str(obj).encode("ascii")
     return hashlib.md5(obj).hexdigest()
 
-check_template_update(
-    hash(TEMPLATE_FILE),
-    hash(int(os.path.getmtime(TEMPLATE_FILE)))
-)
+for root, dirs, files in os.walk(TEMPLATES):
+    for file in files:
+        path = os.path.join(root, file)
+        check_template_update(hash(path), hash(int(os.path.getmtime(path))))
 
 
 def real_generate(filepath):
@@ -53,9 +54,8 @@ def real_generate(filepath):
         print("(info) Generating {}...".format(filepath))
         return pagegen.generate(filepath)
     except Exception as e:
-        print("(error) Failed to generate {}.\n{}".format(
-            filepath, str(e)
-        ))
+        print("(error) Failed to generate {}.\n{}".format(filepath, str(e)))
+        print('Python traceback:\n' + ''.join(traceback.format_tb(e.__traceback__)))
 
 
 def generate(root, name):
@@ -79,13 +79,11 @@ def generate(root, name):
     data = real_generate(path)
     update_map[path_token] = time_token
 
-    if data is None:
-        return
-
-    title, text, tags, url = data
-    tipuesearch.add_index_info(
-        title, text, tags, url
-    )
+    if data:
+        if type(data) == str:
+            tipuesearch.del_index_info(data)
+        else:
+            tipuesearch.add_index_info(*data)
 
 
 if __name__ == "__main__":

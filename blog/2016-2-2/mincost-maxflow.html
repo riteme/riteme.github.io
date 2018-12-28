@@ -53,29 +53,29 @@
 <h1 id="_1">最小费用最大流</h1>
 <p>之前一直想不明白最小费用流，今天翻了很多资料才理解了，在此做点记录。</p>
 <h2 id="_2">最小费用流</h2>
-<p>我们首先定义流<mathjax>$f$</mathjax>的费用<mathjax>$w(f)$</mathjax>为：<br />
-<mathjax>$$
+<p>我们首先定义流<tex>$f$</tex>的费用<tex>$w(f)$</tex>为：<br />
+<tex>$$
 w(f) = \sum_{(u,v)\in f} w(u,v)f(u,v)
-$$</mathjax></p>
+$$</tex></p>
 <p>那么最小费用（可行）流就是指一个在所有同流量的流中费用最小的流。</p>
 <h2 id="_3">最小费用最大流问题</h2>
-<p>在给定的流网络<mathjax>$G$</mathjax>中，若<mathjax>$(u,v)\in E$</mathjax>，则<mathjax>$c(u,v)$</mathjax>表示其容量，<mathjax>$w(u,v)$</mathjax>表示其<strong>单位流费用</strong>。设<mathjax>$f$</mathjax>为其中的可行流，最小费用最大流问题就是要求在使<mathjax>$f$</mathjax>为最大流的情况下，其总费用<mathjax>$w(f)$</mathjax>最小。</p>
+<p>在给定的流网络<tex>$G$</tex>中，若<tex>$(u,v)\in E$</tex>，则<tex>$c(u,v)$</tex>表示其容量，<tex>$w(u,v)$</tex>表示其<strong>单位流费用</strong>。设<tex>$f$</tex>为其中的可行流，最小费用最大流问题就是要求在使<tex>$f$</tex>为最大流的情况下，其总费用<tex>$w(f)$</tex>最小。</p>
 <h2 id="_4">增广路算法</h2>
 <p>本文中我们只讨论增广路算法。最小费用流还有消圈法和神奇的ZKW算法。</p>
-<p>增广路算法有一个贪心的基本思想：已知一个最小费用流<mathjax>$f$</mathjax>，在流网络中找出一条费用最小的增广路对其增广得到<mathjax>$f^,$</mathjax>，那么<mathjax>$f^,$</mathjax>也是最小费用流。<br />
+<p>增广路算法有一个贪心的基本思想：已知一个最小费用流<tex>$f$</tex>，在流网络中找出一条费用最小的增广路对其增广得到<tex>$f^,$</tex>，那么<tex>$f^,$</tex>也是最小费用流。<br />
 这个结论是显而易见的，因为原流费用最小，增广出来的新流费用也最小，那么总费用也是最小的。</p>
 <p>因此，寻找最小费用最大流的思路就出来了：</p>
 <ol>
-<li>初始化零流<mathjax>$f$</mathjax>  </li>
-<li>寻找费用最小的增广路，如果没有则表明<mathjax>$f$</mathjax>已为最大流  </li>
-<li>增广流<mathjax>$f$</mathjax>，跳至第二步</li>
+<li>初始化零流<tex>$f$</tex>  </li>
+<li>寻找费用最小的增广路，如果没有则表明<tex>$f$</tex>已为最大流  </li>
+<li>增广流<tex>$f$</tex>，跳至第二步</li>
 </ol>
 <p>在上面的步骤中，第二步是关键。</p>
 <p>我们首先要确定费用最小的衡量标准。首先考虑一条增广路会对流增加多少的费用。</p>
-<p>假设<mathjax>$p$</mathjax>是一条增广路，其瓶颈边（即剩余容量最小的边）的容量为<mathjax>$c_{min}$</mathjax>，那么增加的费用就是所有边所产生的费用之和：</p>
-<p><mathjax>$$w(p) = \sum_{(u,v)\in p} w(u,v)c_{min} = c_{min}\sum_{(u,v)\in p} w(u,v)$$</mathjax></p>
+<p>假设<tex>$p$</tex>是一条增广路，其瓶颈边（即剩余容量最小的边）的容量为<tex>$c_{min}$</tex>，那么增加的费用就是所有边所产生的费用之和：</p>
+<p><tex>$$w(p) = \sum_{(u,v)\in p} w(u,v)c_{min} = c_{min}\sum_{(u,v)\in p} w(u,v)$$</tex></p>
 <p>由于我们要保证每一步都是最小费用流，而流的大小并不在意，因为最后肯定能达到最大流。<br />
-故我们不在乎每次流的增量<mathjax>$c_{min}$</mathjax>，而只要使单位费用之和最小即可。</p>
+故我们不在乎每次流的增量<tex>$c_{min}$</tex>，而只要使单位费用之和最小即可。</p>
 <p>因此我们把每条弧的单位费用作为其边权，然后寻找一条从源点到汇点的最短路，这样就能使单位费用之和最小。</p>
 <h2 id="_5">实现细节</h2>
 <p>现在我们来尝试实现增广路算法，首先我们定义边的结构体：</p>

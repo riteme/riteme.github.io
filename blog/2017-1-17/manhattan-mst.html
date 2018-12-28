@@ -52,65 +52,65 @@
             
 <h1 id="_1">曼哈顿距离最小生成树</h1>
 <h2 id="_2">问题</h2>
-<p>给你平面上的<mathjax>$n$</mathjax>个点，<mathjax>$n$</mathjax>个点之间两两连边，边权为两点间的曼哈顿距离，构成一张完全图。求这张完全图的最小生成树。</p>
+<p>给你平面上的<tex>$n$</tex>个点，<tex>$n$</tex>个点之间两两连边，边权为两点间的曼哈顿距离，构成一张完全图。求这张完全图的最小生成树。</p>
 <h2 id="_3">朴素算法</h2>
-<p>由于完全图的边数是<mathjax>$\Theta(n^2)$</mathjax>级别的，所以直接使用稀疏图的最小生成树算法将会得到<mathjax>$\Omega(n^2)$</mathjax>级别的算法。这是比较难以接受的。</p>
+<p>由于完全图的边数是<tex>$\Theta(n^2)$</tex>级别的，所以直接使用稀疏图的最小生成树算法将会得到<tex>$\Omega(n^2)$</tex>级别的算法。这是比较难以接受的。</p>
 <h2 id="_4">平面划分</h2>
-<p>鉴于完全图边数十分之多，然而生成树上的边却只有<mathjax>$n - 1$</mathjax>条，是不是真正有用的边数也是<mathjax>$O(n)$</mathjax>级别的？</p>
-<p>事实上确实如此，如果我们随意选择一个点作为中心<mathjax>$O$</mathjax>，用四条直线将平面划为八个对称的区域，如下图所示：</p>
+<p>鉴于完全图边数十分之多，然而生成树上的边却只有<tex>$n - 1$</tex>条，是不是真正有用的边数也是<tex>$O(n)$</tex>级别的？</p>
+<p>事实上确实如此，如果我们随意选择一个点作为中心<tex>$O$</tex>，用四条直线将平面划为八个对称的区域，如下图所示：</p>
 <p><img alt="r8" src="https://git.oschina.net/riteme/blogimg/raw/master/manhattan-mst/r8.svg" /></p>
-<p>上图中<mathjax>$R_1$</mathjax>到<mathjax>$R_8$</mathjax>就是被八等分出来的区域。</p>
-<p>接下来我们将证明，对于每一个区域，只需要留下离<mathjax>$O$</mathjax>最近的点的连边，最后形成的图的最小生成树就是原图的最小生成树。</p>
-<p>假设现在在区域<mathjax>$R_1$</mathjax>有两个点<mathjax>$A$</mathjax>和<mathjax>$B$</mathjax>，并且满足<mathjax>$|OA| \leqslant |OB|$</mathjax>。那么根据最小生成树的环切性质<sup id="fnref:cut"><a class="footnote-ref" href="#fn:cut" rel="footnote">1</a></sup>，我们只需要证明<mathjax>$|OB| \geqslant |AB|$</mathjax>就可以了。在这里，<mathjax>$|AB|$</mathjax>表示<mathjax>$A$</mathjax>到<mathjax>$B$</mathjax>的曼哈顿距离。</p>
-<p>设<mathjax>$A(x_1, y_1)$</mathjax>和<mathjax>$B(x_2, y_2)$</mathjax>，我们需要考虑<mathjax>$4$</mathjax>种情况：</p>
-<p><strong>情况2：</strong><mathjax>$x_1 \leqslant x_2, \;y_1 \leqslant y_2$</mathjax></p>
+<p>上图中<tex>$R_1$</tex>到<tex>$R_8$</tex>就是被八等分出来的区域。</p>
+<p>接下来我们将证明，对于每一个区域，只需要留下离<tex>$O$</tex>最近的点的连边，最后形成的图的最小生成树就是原图的最小生成树。</p>
+<p>假设现在在区域<tex>$R_1$</tex>有两个点<tex>$A$</tex>和<tex>$B$</tex>，并且满足<tex>$|OA| \leqslant |OB|$</tex>。那么根据最小生成树的环切性质<sup id="fnref:cut"><a class="footnote-ref" href="#fn:cut" rel="footnote">1</a></sup>，我们只需要证明<tex>$|OB| \geqslant |AB|$</tex>就可以了。在这里，<tex>$|AB|$</tex>表示<tex>$A$</tex>到<tex>$B$</tex>的曼哈顿距离。</p>
+<p>设<tex>$A(x_1, y_1)$</tex>和<tex>$B(x_2, y_2)$</tex>，我们需要考虑<tex>$4$</tex>种情况：</p>
+<p><strong>情况2：</strong><tex>$x_1 \leqslant x_2, \;y_1 \leqslant y_2$</tex></p>
 <p><img alt="situation-1" src="https://git.oschina.net/riteme/blogimg/raw/master/manhattan-mst/s1.svg" /></p>
 <p>此时有：<br />
-<mathjax>$$
+<tex>$$
 |AB| = x_2 - x_1 + y_2 - y_1 \leqslant x_2 + y_2 = |OB|
-$$</mathjax></p>
-<p><strong>情况2：</strong><mathjax>$x_2 \leqslant x_1, \;y_1 \leqslant y_2$</mathjax></p>
+$$</tex></p>
+<p><strong>情况2：</strong><tex>$x_2 \leqslant x_1, \;y_1 \leqslant y_2$</tex></p>
 <p><img alt="situation-2" src="https://git.oschina.net/riteme/blogimg/raw/master/manhattan-mst/s2.svg" /></p>
 <p>此时有：<br />
-<mathjax>$$
+<tex>$$
 |AB| = x_1 - x_2 + y_2 - y_1
-$$</mathjax></p>
-<p>如果<mathjax>$|OB| \geqslant |AB|$</mathjax>，那么也就有<mathjax>$|OB| - |AB| \geqslant 0$</mathjax>，于是：<br />
-<mathjax>$$
+$$</tex></p>
+<p>如果<tex>$|OB| \geqslant |AB|$</tex>，那么也就有<tex>$|OB| - |AB| \geqslant 0$</tex>，于是：<br />
+<tex>$$
 \begin{aligned}
 |OB| - |AB| &amp; = x_2 + y_2 - x_1 + x_2 - y_2 + y_1 \\
 &amp; = 2x_2 - x_1 + y_1
 \end{aligned}
-$$</mathjax></p>
-<p>由于在区域<mathjax>$R_1$</mathjax>满足<mathjax>$x_1 \leqslant y_1$</mathjax>，所以上式大于等于<mathjax>$0$</mathjax>，即满足<mathjax>$|OB| \geqslant |AB|$</mathjax>。</p>
-<p><strong>情况3：</strong><mathjax>$x_1 \leqslant x_2, \;y_2 \leqslant y_1$</mathjax></p>
+$$</tex></p>
+<p>由于在区域<tex>$R_1$</tex>满足<tex>$x_1 \leqslant y_1$</tex>，所以上式大于等于<tex>$0$</tex>，即满足<tex>$|OB| \geqslant |AB|$</tex>。</p>
+<p><strong>情况3：</strong><tex>$x_1 \leqslant x_2, \;y_2 \leqslant y_1$</tex></p>
 <p><img alt="situation-3" src="https://git.oschina.net/riteme/blogimg/raw/master/manhattan-mst/s3.svg" /></p>
 <p>此时有：<br />
-<mathjax>$$
+<tex>$$
 \begin{aligned}
 |AB| &amp; = x_2 - x_1 + y_1 - y_2 \\
 |OB| - |AB| &amp; = x_2 + y_2 - x_2 + x_1 - y_1 + y_2 \\
 &amp; = 2y_2 + x_1 - y_1
 \end{aligned}
-$$</mathjax></p>
-<p>由于<mathjax>$|OA| \leqslant |OB|$</mathjax>和<mathjax>$x_2 \leqslant y_2$</mathjax>，那么我们知道：<br />
-<mathjax>$$
+$$</tex></p>
+<p>由于<tex>$|OA| \leqslant |OB|$</tex>和<tex>$x_2 \leqslant y_2$</tex>，那么我们知道：<br />
+<tex>$$
 x_1 + y_1 \leqslant x_2 + y_2 \Longrightarrow y_1 \leqslant x_2 + y_2 \leqslant 2y_2
-$$</mathjax></p>
-<p>所以<mathjax>$|OB| \geqslant |AB|$</mathjax>。</p>
-<p><strong>情况4：</strong><mathjax>$x_2 \leqslant x_1, \;y_2 \leqslant y_1$</mathjax><br />
+$$</tex></p>
+<p>所以<tex>$|OB| \geqslant |AB|$</tex>。</p>
+<p><strong>情况4：</strong><tex>$x_2 \leqslant x_1, \;y_2 \leqslant y_1$</tex><br />
 <img alt="situation-4" src="https://git.oschina.net/riteme/blogimg/raw/master/manhattan-mst/s4.svg" /></p>
-<p>这种情况违反了<mathjax>$|OA| \leqslant |OB|$</mathjax>这个条件，故不考虑。</p>
-<p>综上，在区域<mathjax>$R_1$</mathjax>内，只用保留离<mathjax>$O$</mathjax>最近的点的连边就可以了。</p>
-<p>对于其它的区域，都可以通过对称或者旋转，从而变成<mathjax>$R_1$</mathjax>的情况。因此<mathjax>$8$</mathjax>个区域均满足这一性质。</p>
-<p>这样一来，每个点只用连出<mathjax>$8$</mathjax>条边，然后在得到的图上使用稀疏图的最小生成树算法，就可得到原图的最小生成树。由于这张图的边数是<mathjax>$O(n)$</mathjax>的，所以如果我们使用Kruskal算法，我们的算法也就是<mathjax>$O(n \log n)$</mathjax>的。</p>
-<p>一条边在上面的图中被两个端点都被计数了一次，所以最终的边数是不超过<mathjax>$4n$</mathjax>的。</p>
+<p>这种情况违反了<tex>$|OA| \leqslant |OB|$</tex>这个条件，故不考虑。</p>
+<p>综上，在区域<tex>$R_1$</tex>内，只用保留离<tex>$O$</tex>最近的点的连边就可以了。</p>
+<p>对于其它的区域，都可以通过对称或者旋转，从而变成<tex>$R_1$</tex>的情况。因此<tex>$8$</tex>个区域均满足这一性质。</p>
+<p>这样一来，每个点只用连出<tex>$8$</tex>条边，然后在得到的图上使用稀疏图的最小生成树算法，就可得到原图的最小生成树。由于这张图的边数是<tex>$O(n)$</tex>的，所以如果我们使用Kruskal算法，我们的算法也就是<tex>$O(n \log n)$</tex>的。</p>
+<p>一条边在上面的图中被两个端点都被计数了一次，所以最终的边数是不超过<tex>$4n$</tex>的。</p>
 <h2 id="_5">求出最近点</h2>
-<p>上面的性质中还留下一个问题：如何求出每个区域内离<mathjax>$O$</mathjax>最近的点？</p>
-<p>从之前的关于边数的讨论中可知，我们只用求<mathjax>$R_1$</mathjax>到<mathjax>$R_4$</mathjax>的最近点即可。此外，利用对称的性质，我们可以全部归结到在<mathjax>$R_1$</mathjax>求最近点的算法中，只需要提前做一个坐标的变换。下面也将只考虑<mathjax>$R_1$</mathjax>的算法。</p>
-<p>考虑使用扫描线算法：将所有点按照<mathjax>$x$</mathjax>坐标升序排好序，<mathjax>$x$</mathjax>坐标相同的就按照<mathjax>$y$</mathjax>降序排序。然后从前往后扫描。我们将每个点按照<mathjax>$y - x$</mathjax>进行离散化（也就是经过该点的斜率为<mathjax>$1$</mathjax>的直线的纵截距）。对于某个点<mathjax>$i$</mathjax>而言，在以<mathjax>$i$</mathjax>为原点的<mathjax>$R_1$</mathjax>区域内点<mathjax>$j$</mathjax>满足<mathjax>$y_j - x_j \geqslant y_i - x_i$</mathjax>。而<mathjax>$R_1$</mathjax>内离<mathjax>$i$</mathjax>最近的点<mathjax>$j$</mathjax>满足<mathjax>$y_j + x_j$</mathjax>最小。因此我们可以使用简单的数据结构，如线段树或者树状数组，就可维护<mathjax>$[y - x, \;\infty]$</mathjax>内<mathjax>$y + x$</mathjax>最小的是谁，从而求得每一个点的最近点。</p>
-<p>这个算法是<mathjax>$O(n \log n)$</mathjax>的。因此，<mathjax>$n$</mathjax>个点的最小曼哈顿生成树可以在<mathjax>$O(n \log n)$</mathjax>计算出来。</p>
-<p>至于坐标变换，一个比较方便的顺序就是先关于<mathjax>$y = x$</mathjax>对称，也就是交换<mathjax>$x$</mathjax>和<mathjax>$y$</mathjax>。然后关于<mathjax>$y = 0$</mathjax>对称，也就是将<mathjax>$y$</mathjax>取反，然后再关于<mathjax>$y = x$</mathjax>对称。这样执行<mathjax>$4$</mathjax>次扫描线算法就可以完成构图。</p>
+<p>上面的性质中还留下一个问题：如何求出每个区域内离<tex>$O$</tex>最近的点？</p>
+<p>从之前的关于边数的讨论中可知，我们只用求<tex>$R_1$</tex>到<tex>$R_4$</tex>的最近点即可。此外，利用对称的性质，我们可以全部归结到在<tex>$R_1$</tex>求最近点的算法中，只需要提前做一个坐标的变换。下面也将只考虑<tex>$R_1$</tex>的算法。</p>
+<p>考虑使用扫描线算法：将所有点按照<tex>$x$</tex>坐标升序排好序，<tex>$x$</tex>坐标相同的就按照<tex>$y$</tex>降序排序。然后从前往后扫描。我们将每个点按照<tex>$y - x$</tex>进行离散化（也就是经过该点的斜率为<tex>$1$</tex>的直线的纵截距）。对于某个点<tex>$i$</tex>而言，在以<tex>$i$</tex>为原点的<tex>$R_1$</tex>区域内点<tex>$j$</tex>满足<tex>$y_j - x_j \geqslant y_i - x_i$</tex>。而<tex>$R_1$</tex>内离<tex>$i$</tex>最近的点<tex>$j$</tex>满足<tex>$y_j + x_j$</tex>最小。因此我们可以使用简单的数据结构，如线段树或者树状数组，就可维护<tex>$[y - x, \;\infty]$</tex>内<tex>$y + x$</tex>最小的是谁，从而求得每一个点的最近点。</p>
+<p>这个算法是<tex>$O(n \log n)$</tex>的。因此，<tex>$n$</tex>个点的最小曼哈顿生成树可以在<tex>$O(n \log n)$</tex>计算出来。</p>
+<p>至于坐标变换，一个比较方便的顺序就是先关于<tex>$y = x$</tex>对称，也就是交换<tex>$x$</tex>和<tex>$y$</tex>。然后关于<tex>$y = 0$</tex>对称，也就是将<tex>$y$</tex>取反，然后再关于<tex>$y = x$</tex>对称。这样执行<tex>$4$</tex>次扫描线算法就可以完成构图。</p>
 <div class="footnote">
 <hr />
 <ol>

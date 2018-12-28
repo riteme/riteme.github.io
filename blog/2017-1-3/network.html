@@ -52,7 +52,7 @@
             
 <h1 id="hnsdfz-7">监听计划 (HNSDFZ #7)</h1>
 <h2 id="_1">题目描述</h2>
-<p>黑猫警长Lunk最近发现了<mathjax>$n$</mathjax>个MHA集团，从<mathjax>$1$</mathjax>到<mathjax>$n$</mathjax>编号。鉴于MHA集团数量庞大，Lunk需要先对他们进行全面了解后才可以动手。</p>
+<p>黑猫警长Lunk最近发现了<tex>$n$</tex>个MHA集团，从<tex>$1$</tex>到<tex>$n$</tex>编号。鉴于MHA集团数量庞大，Lunk需要先对他们进行全面了解后才可以动手。</p>
 <p>Lunk决定派遣间谍渗入MHA集团的通信网络中来监听他们。MHA集团的通信网络是依靠两两集团之间的通信线路构成的。消息可以通过多条通信线路到达其他集团。Lunk的间谍十分强大，他们也可以通过这些通信线路来监听每一个能到达的集团。</p>
 <p>然而Lunk是资本家，他不希望花费太多资本用于雇佣间谍。他只想<strong>用最少的间谍来监听所有的MHA集团</strong>。很不幸的是，这些集团间的通信线路质量不好，有一定的寿命，MHA集团每天都会添加一些新的通信线路来确保通信畅通。因此Lunk希望知道每天通信网络稳定后，最少需要多少个间谍才可以监听所有的集团。</p>
 <h2 id="_2">实现</h2>
@@ -60,18 +60,18 @@
 <p>样例交互库包含<code>network.h</code>和<code>implementer.cpp</code>两个文件。选手源程序需要包含<code>network.h</code>这个头文件。</p>
 <p>你需要实现以下四个函数：</p>
 <ul>
-<li><mathjax>$\text{initialize}(n, \;q)$</mathjax>：在交互库初始化时会调用该函数，用于初始化你的程序。<ul>
-<li><mathjax>$n$</mathjax>表示MHA集团的数量。</li>
-<li><mathjax>$q$</mathjax>表示天数，意思是Lunk将只关注第<mathjax>$1$</mathjax>到第<mathjax>$q$</mathjax>天的情况。</li>
+<li><tex>$\text{initialize}(n, \;q)$</tex>：在交互库初始化时会调用该函数，用于初始化你的程序。<ul>
+<li><tex>$n$</tex>表示MHA集团的数量。</li>
+<li><tex>$q$</tex>表示天数，意思是Lunk将只关注第<tex>$1$</tex>到第<tex>$q$</tex>天的情况。</li>
 </ul>
 </li>
-<li><mathjax>$\text{add-connection}(u, \;v, \;t)$</mathjax>：单个数据点中将会被调用<mathjax>$q$</mathjax>次，表示每天MHA集团加入的新的通信线路。<ul>
-<li><mathjax>$u$</mathjax>、<mathjax>$v$</mathjax>表示在编号为<mathjax>$u$</mathjax>和<mathjax>$v$</mathjax>的两个MHA集团间架设通信线路。</li>
-<li><mathjax>$t$</mathjax>表示通信线路的寿命。如果该线路是第<mathjax>$i$</mathjax>天加入的，那么这条线路只会在<mathjax>$[i, \;i + t)$</mathjax>这段时间内有效。</li>
+<li><tex>$\text{add-connection}(u, \;v, \;t)$</tex>：单个数据点中将会被调用<tex>$q$</tex>次，表示每天MHA集团加入的新的通信线路。<ul>
+<li><tex>$u$</tex>、<tex>$v$</tex>表示在编号为<tex>$u$</tex>和<tex>$v$</tex>的两个MHA集团间架设通信线路。</li>
+<li><tex>$t$</tex>表示通信线路的寿命。如果该线路是第<tex>$i$</tex>天加入的，那么这条线路只会在<tex>$[i, \;i + t)$</tex>这段时间内有效。</li>
 </ul>
 </li>
-<li><mathjax>$\text{query}()$</mathjax>：每次调用完<mathjax>$\text{add-connection}$</mathjax>之后会被调用，用于回答Lunk的询问。</li>
-<li><mathjax>$\text{finalize}()$</mathjax>：交互库结束时将调用该函数，用于释放你程序所使用的资源。</li>
+<li><tex>$\text{query}()$</tex>：每次调用完<tex>$\text{add-connection}$</tex>之后会被调用，用于回答Lunk的询问。</li>
+<li><tex>$\text{finalize}()$</tex>：交互库结束时将调用该函数，用于释放你程序所使用的资源。</li>
 </ul>
 <p><code>network.h</code>中也有对这四个函数的注释文档。</p>
 <p><code>implementer.cpp</code>是样例交互库。假设你编写的源文件为<code>network.cpp</code>，那么使用以下命令编译：</p>
@@ -81,11 +81,11 @@
 
 <p><code>exec</code>是可执行文件。</p>
 <h2 id="_3">输入格式</h2>
-<p>第一行输入两个正整数<mathjax>$n$</mathjax>、<mathjax>$q$</mathjax>，表示集团的个数和总共的天数。</p>
-<p>接下来<mathjax>$q$</mathjax>行每行输入三个正整数<mathjax>$u$</mathjax>、<mathjax>$v$</mathjax>和<mathjax>$t$</mathjax>，表示每天通信网络中集团<mathjax>$u$</mathjax>和集团<mathjax>$v$</mathjax>之间添加了一条寿命为<mathjax>$t$</mathjax>的通信网络。</p>
+<p>第一行输入两个正整数<tex>$n$</tex>、<tex>$q$</tex>，表示集团的个数和总共的天数。</p>
+<p>接下来<tex>$q$</tex>行每行输入三个正整数<tex>$u$</tex>、<tex>$v$</tex>和<tex>$t$</tex>，表示每天通信网络中集团<tex>$u$</tex>和集团<tex>$v$</tex>之间添加了一条寿命为<tex>$t$</tex>的通信网络。</p>
 <p>最开始MHA集团之间没有通信线路。</p>
 <h2 id="_4">输出格式</h2>
-<p>输出<mathjax>$q$</mathjax>行，每行一个正整数，表示每天通信网络<strong>变动完毕后</strong>最少需要派遣的间谍的人数。</p>
+<p>输出<tex>$q$</tex>行，每行一个正整数，表示每天通信网络<strong>变动完毕后</strong>最少需要派遣的间谍的人数。</p>
 <h2 id="_5">样例输入</h2>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -111,72 +111,72 @@
 </td></tr></table>
 
 <h2 id="_7">限制</h2>
-<p>本题共<mathjax>$10$</mathjax>个测试点，其限制如下：</p>
+<p>本题共<tex>$10$</tex>个测试点，其限制如下：</p>
 <table>
 <thead>
 <tr>
 <th align="center">数据编号</th>
-<th align="center"><mathjax>$n$</mathjax></th>
-<th align="center"><mathjax>$q$</mathjax></th>
+<th align="center"><tex>$n$</tex></th>
+<th align="center"><tex>$q$</tex></th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td align="center">1</td>
-<td align="center"><mathjax>$10$</mathjax></td>
-<td align="center"><mathjax>$40$</mathjax></td>
+<td align="center"><tex>$10$</tex></td>
+<td align="center"><tex>$40$</tex></td>
 </tr>
 <tr>
 <td align="center">2</td>
-<td align="center"><mathjax>$2 \times 10^3$</mathjax></td>
-<td align="center"><mathjax>$7 \times 10^3$</mathjax></td>
+<td align="center"><tex>$2 \times 10^3$</tex></td>
+<td align="center"><tex>$7 \times 10^3$</tex></td>
 </tr>
 <tr>
 <td align="center">3</td>
-<td align="center"><mathjax>$3 \times 10^3$</mathjax></td>
-<td align="center"><mathjax>$7 \times 10^3$</mathjax></td>
+<td align="center"><tex>$3 \times 10^3$</tex></td>
+<td align="center"><tex>$7 \times 10^3$</tex></td>
 </tr>
 <tr>
 <td align="center">4</td>
-<td align="center"><mathjax>$5 \times 10^3$</mathjax></td>
-<td align="center"><mathjax>$2 \times 10^4$</mathjax></td>
+<td align="center"><tex>$5 \times 10^3$</tex></td>
+<td align="center"><tex>$2 \times 10^4$</tex></td>
 </tr>
 <tr>
 <td align="center">5</td>
-<td align="center"><mathjax>$5 \times 10^3$</mathjax></td>
-<td align="center"><mathjax>$10^5$</mathjax></td>
+<td align="center"><tex>$5 \times 10^3$</tex></td>
+<td align="center"><tex>$10^5$</tex></td>
 </tr>
 <tr>
 <td align="center">6</td>
-<td align="center"><mathjax>$5 \times 10^3$</mathjax></td>
-<td align="center"><mathjax>$2 \times 10^5$</mathjax></td>
+<td align="center"><tex>$5 \times 10^3$</tex></td>
+<td align="center"><tex>$2 \times 10^5$</tex></td>
 </tr>
 <tr>
 <td align="center">7</td>
-<td align="center"><mathjax>$5 \times 10^3$</mathjax></td>
-<td align="center"><mathjax>$2 \times 10^5$</mathjax></td>
+<td align="center"><tex>$5 \times 10^3$</tex></td>
+<td align="center"><tex>$2 \times 10^5$</tex></td>
 </tr>
 <tr>
 <td align="center">8</td>
-<td align="center"><mathjax>$10^5$</mathjax></td>
-<td align="center"><mathjax>$10^5$</mathjax></td>
+<td align="center"><tex>$10^5$</tex></td>
+<td align="center"><tex>$10^5$</tex></td>
 </tr>
 <tr>
 <td align="center">9</td>
-<td align="center"><mathjax>$10^5$</mathjax></td>
-<td align="center"><mathjax>$2 \times 10^5$</mathjax></td>
+<td align="center"><tex>$10^5$</tex></td>
+<td align="center"><tex>$2 \times 10^5$</tex></td>
 </tr>
 <tr>
 <td align="center">10</td>
-<td align="center"><mathjax>$10^5$</mathjax></td>
-<td align="center"><mathjax>$2 \times 10^5$</mathjax></td>
+<td align="center"><tex>$10^5$</tex></td>
+<td align="center"><tex>$2 \times 10^5$</tex></td>
 </tr>
 </tbody>
 </table>
-<p>对于所有数据，满足<mathjax>$1 \leqslant t \leqslant 2 \times 10^5$</mathjax>。</p>
-<p><strong>时间限制</strong>：<mathjax>$1\mathrm{s}$</mathjax></p>
-<p><strong>空间限制</strong>：<mathjax>$512\mathrm{MB}$</mathjax></p>
-<p><strong>注意</strong>：交互库本身的运行所用时间不会超过<mathjax>$0.1\mathrm{s}$</mathjax>，所用内存不会多于<mathjax>$32\mathrm{MB}$</mathjax>。</p>
+<p>对于所有数据，满足<tex>$1 \leqslant t \leqslant 2 \times 10^5$</tex>。</p>
+<p><strong>时间限制</strong>：<tex>$1\mathrm{s}$</tex></p>
+<p><strong>空间限制</strong>：<tex>$512\mathrm{MB}$</tex></p>
+<p><strong>注意</strong>：交互库本身的运行所用时间不会超过<tex>$0.1\mathrm{s}$</tex>，所用内存不会多于<tex>$32\mathrm{MB}$</tex>。</p>
             <hr/>
             <div id="comments"></div>
             <script type="text/javascript">

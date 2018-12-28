@@ -59,10 +59,10 @@ ruanxz: “ZY！”</p>
 <h2 id="1">1 秩</h2>
 <h3 id="11">1.1 树的秩高</h3>
 <p>这里先介绍<strong>&ldquo;秩&rdquo;</strong>的概念。我们定义一棵<strong>二叉树</strong>的秩为从为<strong>从根节点开始</strong>到<strong>其叶节点</strong>中<strong>最长的一条树链</strong>上结点的个数。<br />
-对于空结点<mathjax>$nil$</mathjax>，它的秩为<mathjax>$0$</mathjax>。<br />
-<mathjax>$$ nil.\text{rank} = 0 \tag{1.1} $$</mathjax></p>
-<p>那么对于任意非空节点<mathjax>$x$</mathjax>，它的秩可以如下定义：<br />
-<mathjax>$$ x.\text{rank} = \max\{x.\text{left}.\text{rank}, x.\text{right}.\text{rank}\} + 1 \tag{1.2}$$</mathjax></p>
+对于空结点<tex>$nil$</tex>，它的秩为<tex>$0$</tex>。<br />
+<tex>$$ nil.\text{rank} = 0 \tag{1.1} $$</tex></p>
+<p>那么对于任意非空节点<tex>$x$</tex>，它的秩可以如下定义：<br />
+<tex>$$ x.\text{rank} = \max\{x.\text{left}.\text{rank}, x.\text{right}.\text{rank}\} + 1 \tag{1.2}$$</tex></p>
 <p>树的秩我们使用<code>UPDATE</code>函数来维护：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>function UPDATE(h):
@@ -72,13 +72,13 @@ ruanxz: “ZY！”</p>
 
 <p>现在我们来看一棵二叉搜索树。</p>
 <p><img alt="tree-example" src="https://git.oschina.net/riteme/blogimg/raw/master/rank-tree/binary-tree.png" /></p>
-<p>上图中，<code>a</code>的秩为<mathjax>$1$</mathjax>，<code>e</code>的秩为<mathjax>$2$</mathjax>，<code>c</code>的秩为<mathjax>$3$</mathjax>，根节点<code>j</code>的秩为<mathjax>$6$</mathjax>。</p>
+<p>上图中，<code>a</code>的秩为<tex>$1$</tex>，<code>e</code>的秩为<tex>$2$</tex>，<code>c</code>的秩为<tex>$3$</tex>，根节点<code>j</code>的秩为<tex>$6$</tex>。</p>
 <h3 id="12">1.2 按秩合并</h3>
 <p>在并查集的优化方法中有一个是<strong>启发式按秩合并</strong>。做法是将秩小的树接在秩大的树下面，这样就可以尽可能避免树的高度的暴涨。同样，在秩平衡树中，也要利用到这种思想。</p>
 <h2 id="2">2 旋转</h2>
 <p>众所周知，二叉搜索树的旋转操作可以保持树的有序性，同时可以通过旋转的组合来实现许多操作。因此我们先实现左旋(<code>LEFT-ROATE</code>)和右旋(<code>RIGHT-ROTATE</code>)。<br />
 左旋是将左子树旋转上来顶替自己的位置，右旋类似。<br />
-旋转时要确保左子树或右子树不是<mathjax>$nil$</mathjax>。</p>
+旋转时要确保左子树或右子树不是<tex>$nil$</tex>。</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -167,13 +167,13 @@ function RIGHT-ROTATE(h):
 <h3 id="32">3.2 平衡</h3>
 <p>准确的说，这个操作并<strong>不能维护平衡</strong>，而只是能使树向平衡的方向发展。<br />
 进行平衡的依据就是<strong>树的秩</strong>。当左右子树的秩差距太大，我们就要采取行动来使其减小差距。</p>
-<p>首先我们设定一个秩的差距的最大容忍值<mathjax>$t$</mathjax>。这个值是一个正整数，并且值选取的愈小树就会变得愈平衡。当<mathjax>$t=1$</mathjax>时，秩平衡树大多数情况下就是完全平衡的二叉树。<br />
-在普通的秩平衡树中，我们一般选定为<mathjax>$1$</mathjax>：</p>
+<p>首先我们设定一个秩的差距的最大容忍值<tex>$t$</tex>。这个值是一个正整数，并且值选取的愈小树就会变得愈平衡。当<tex>$t=1$</tex>时，秩平衡树大多数情况下就是完全平衡的二叉树。<br />
+在普通的秩平衡树中，我们一般选定为<tex>$1$</tex>：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>TOLERANCE = 1
 </pre></div>
 </td></tr></table>
 
-<p>设定这个值的意义在于定义了平衡的触发标准。如果左右子树的秩的差距大于<mathjax>$t$</mathjax>，那么就要减小差距。<br />
+<p>设定这个值的意义在于定义了平衡的触发标准。如果左右子树的秩的差距大于<tex>$t$</tex>，那么就要减小差距。<br />
 减小差距的方法就是将树根通过旋转的方式进入秩较小的子树中，这样使得秩较小的子树的秩增加，秩较大的子树的秩减小。<br />
 于是我们得到了一个大致的平衡代码：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
@@ -206,7 +206,7 @@ function RIGHT-ROTATE(h):
 <p>呃&hellip;你会发现并没有什么变化。<br />
 其原因在于左子树的右儿子的秩太大，导致旋转过去之后没有太大效果。<br />
 这样导致中间的子树的<strong>深度下移一位</strong>。加之它本来就秩比较大，如此一来这个平衡就毫无作用。<br />
-然而，如果左子树的连个儿子如果秩是一样的，就不会有太大的影响，因为这样就只会导致秩的差距为<mathjax>$1$</mathjax>。倘若右儿子的秩更小，就不会有这样的问题。</p>
+然而，如果左子树的连个儿子如果秩是一样的，就不会有太大的影响，因为这样就只会导致秩的差距为<tex>$1$</tex>。倘若右儿子的秩更小，就不会有这样的问题。</p>
 <p>为了解决这个问题，我们考虑使左子树右儿子的秩<strong>减小</strong>，这样就不会因为中间的子树而导致无用的平衡。</p>
 <p>首先我们将左子树的右儿子通过<strong>右旋</strong>上移，这样使得右儿子的秩减小：</p>
 <p><img alt="balance-situation-3" src="https://git.oschina.net/riteme/blogimg/raw/master/rank-tree/rank-tree-balance-3.png" /></p>
@@ -351,7 +351,7 @@ function REMOVE(h, key):
 </td></tr></table>
 
 <h3 id="35">3.5 时间复杂度</h3>
-<p>如果<mathjax>$t$</mathjax>选取得当，秩平衡树将是非常平衡的。因此操作都是<mathjax>$O(\log n)$</mathjax>的：</p>
+<p>如果<tex>$t$</tex>选取得当，秩平衡树将是非常平衡的。因此操作都是<tex>$O(\log n)$</tex>的：</p>
 <table>
 <thead>
 <tr>
@@ -362,19 +362,19 @@ function REMOVE(h, key):
 <tbody>
 <tr>
 <td align="center">平衡</td>
-<td align="center"><mathjax>$\Theta(1)$</mathjax></td>
+<td align="center"><tex>$\Theta(1)$</tex></td>
 </tr>
 <tr>
 <td align="center">查询</td>
-<td align="center"><mathjax>$O(\log n)$</mathjax></td>
+<td align="center"><tex>$O(\log n)$</tex></td>
 </tr>
 <tr>
 <td align="center">插入</td>
-<td align="center"><mathjax>$O(\log n)$</mathjax></td>
+<td align="center"><tex>$O(\log n)$</tex></td>
 </tr>
 <tr>
 <td align="center">删除</td>
-<td align="center"><mathjax>$O(\log n)$</mathjax></td>
+<td align="center"><tex>$O(\log n)$</tex></td>
 </tr>
 </tbody>
 </table>
@@ -392,19 +392,19 @@ function REMOVE(h, key):
 <ul>
 <li>又要增加上浮和下沉操作，并且这两个操作并不简单，<strong>代码量</strong>急剧增长。  </li>
 <li>如果有<strong>懒惰标记</strong>之类的东西，难以正确处理。  </li>
-<li><strong>常数</strong>变大，尽管理论上时间复杂度都是<mathjax>$O(\log n)$</mathjax>。</li>
+<li><strong>常数</strong>变大，尽管理论上时间复杂度都是<tex>$O(\log n)$</tex>。</li>
 </ul>
 <p>但是&hellip;又不是不能写，毕竟我是写过的，所以我才会知道这些。<br />
 这样写出来的秩平衡树能比可持久化Treap快，但与伸展树相比差距较大。</p>
-<p>另一种思路就是类似于可持久化Treap的做法：将树从第<mathjax>$k$</mathjax>小的位置拆开，然后又合并......<br />
+<p>另一种思路就是类似于可持久化Treap的做法：将树从第<tex>$k$</tex>小的位置拆开，然后又合并......<br />
 可合并秩平衡树就是这种做法。</p>
-<p>接下来我们会继续用到秩平衡树的<code>BALANCE</code>操作，同时将增加两个基本操作：<code>SPLIT</code>和<code>MERGE</code>，表示拆分和合并。以及一个辅助操作<code>RANK</code><sup id="fnref:rank"><a class="footnote-ref" href="#fn:rank" rel="footnote">1</a></sup>来查找第<mathjax>$k$</mathjax>小的节点，这样我们就可以利用这些操作来实现各种各样的操作。</p>
+<p>接下来我们会继续用到秩平衡树的<code>BALANCE</code>操作，同时将增加两个基本操作：<code>SPLIT</code>和<code>MERGE</code>，表示拆分和合并。以及一个辅助操作<code>RANK</code><sup id="fnref:rank"><a class="footnote-ref" href="#fn:rank" rel="footnote">1</a></sup>来查找第<tex>$k$</tex>小的节点，这样我们就可以利用这些操作来实现各种各样的操作。</p>
 <h3 id="41">4.1 拆分</h3>
-<p>拆分操作是将树从第<mathjax>$k$</mathjax>小的节点处拆成<mathjax>$[1, k]$</mathjax>和<mathjax>$[k+1, n]$</mathjax>的两棵子树。<br />
-因为需要计算排名，所以每个节点都要记录一个<mathjax>$\text{size}$</mathjax>，表示子树中节点的个数，即子树的大小。同样，空节点的大小为<mathjax>$0$</mathjax>：<br />
-<mathjax>$$ nil.\text{size} = 0 \tag{4.1} $$</mathjax></p>
-<p>对于每个节点<mathjax>$x$</mathjax>，它的大小定义如下：<br />
-<mathjax>$$ x.\text{size} = x.\text{left}.\text{size} + x.\text{right}.\text{size} + 1 \tag{4.2} $$</mathjax></p>
+<p>拆分操作是将树从第<tex>$k$</tex>小的节点处拆成<tex>$[1, k]$</tex>和<tex>$[k+1, n]$</tex>的两棵子树。<br />
+因为需要计算排名，所以每个节点都要记录一个<tex>$\text{size}$</tex>，表示子树中节点的个数，即子树的大小。同样，空节点的大小为<tex>$0$</tex>：<br />
+<tex>$$ nil.\text{size} = 0 \tag{4.1} $$</tex></p>
+<p>对于每个节点<tex>$x$</tex>，它的大小定义如下：<br />
+<tex>$$ x.\text{size} = x.\text{left}.\text{size} + x.\text{right}.\text{size} + 1 \tag{4.2} $$</tex></p>
 <p>此时我们将在<code>UPDATE</code>函数中维护树的大小：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -414,11 +414,11 @@ function REMOVE(h, key):
 </pre></div>
 </td></tr></table>
 
-<p>拆分操作时先沿着寻找第<mathjax>$k$</mathjax>小的树链不断的将树切开，然后在回溯的时候进行拼装。这是一个递归的过程。<br />
-假设我们在对子树<mathjax>$x$</mathjax>进行拆分，我们考虑下面两种情况：</p>
+<p>拆分操作时先沿着寻找第<tex>$k$</tex>小的树链不断的将树切开，然后在回溯的时候进行拼装。这是一个递归的过程。<br />
+假设我们在对子树<tex>$x$</tex>进行拆分，我们考虑下面两种情况：</p>
 <ul>
-<li>如果<mathjax>$k \le x.\text{left}.\text{size}$</mathjax>，那么说明第<mathjax>$k$</mathjax>小的节点<strong>在左子树中</strong>，因此只需要将左子树拆开，拆开后的左边是<mathjax>$[1, k]$</mathjax>的子树，右边是大于<mathjax>$k$</mathjax>的子树。  </li>
-<li>如果<mathjax>$k \ge x.\text{left}.\text{size}$</mathjax>，那么说明左子树<strong>完全小于<mathjax>$k$</mathjax></strong>，<strong>子树的根必定不大于<mathjax>$k$</mathjax></strong>，因此可以确定左子树和树根都在<mathjax>$[1,k]$</mathjax>的范围内。但我们不确定右子树中是否有在这个范围内的。如果有，则它在右子树中的排名为<mathjax>$k-x.\text{left}.\text{size} - 1$</mathjax>，因此我们将右子树按照这个值进行拆分，那么<strong>拆开的左边属于<mathjax>$[1,k]$</mathjax></strong>。</li>
+<li>如果<tex>$k \le x.\text{left}.\text{size}$</tex>，那么说明第<tex>$k$</tex>小的节点<strong>在左子树中</strong>，因此只需要将左子树拆开，拆开后的左边是<tex>$[1, k]$</tex>的子树，右边是大于<tex>$k$</tex>的子树。  </li>
+<li>如果<tex>$k \ge x.\text{left}.\text{size}$</tex>，那么说明左子树<strong>完全小于<tex>$k$</tex></strong>，<strong>子树的根必定不大于<tex>$k$</tex></strong>，因此可以确定左子树和树根都在<tex>$[1,k]$</tex>的范围内。但我们不确定右子树中是否有在这个范围内的。如果有，则它在右子树中的排名为<tex>$k-x.\text{left}.\text{size} - 1$</tex>，因此我们将右子树按照这个值进行拆分，那么<strong>拆开的左边属于<tex>$[1,k]$</tex></strong>。</li>
 </ul>
 <p>这个过程非常简单，代码实现也是如此：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
@@ -461,12 +461,12 @@ function REMOVE(h, key):
 <p>进行合并时，我们必须保证合并的左子树必须<strong>完全小于</strong>合并的右子树，即左子树的最大值必须小于右子树的最小值。<br />
 合并时要遵循按秩合并的思想，始终选取秩较大的子树作为树根。然后将另一棵子树与树根的对应儿子继续进行合并。<br />
 这是一个递归向下的过程。在回溯的时候，使用<code>BALANCE</code>操作进行平衡。<br />
-如果我们在合并两棵子树<mathjax>$a$</mathjax>和<mathjax>$b$</mathjax>，其中<mathjax>$a$</mathjax>完全小于<mathjax>$b$</mathjax>。由于二叉搜索树的有序性，合并只会出现两种情况：</p>
+如果我们在合并两棵子树<tex>$a$</tex>和<tex>$b$</tex>，其中<tex>$a$</tex>完全小于<tex>$b$</tex>。由于二叉搜索树的有序性，合并只会出现两种情况：</p>
 <ul>
-<li><mathjax>$a$</mathjax>作为树根，<mathjax>$a.\text{right}$</mathjax>与<mathjax>$b$</mathjax>继续合并。  </li>
-<li><mathjax>$b$</mathjax>作为树根，<mathjax>$a$</mathjax>和<mathjax>$b.\text{left}$</mathjax>继续合并。</li>
+<li><tex>$a$</tex>作为树根，<tex>$a.\text{right}$</tex>与<tex>$b$</tex>继续合并。  </li>
+<li><tex>$b$</tex>作为树根，<tex>$a$</tex>和<tex>$b.\text{left}$</tex>继续合并。</li>
 </ul>
-<p>作为特例，如果<mathjax>$a$</mathjax>和<mathjax>$b$</mathjax>中有一个是空树，那么就没有必要合并了。</p>
+<p>作为特例，如果<tex>$a$</tex>和<tex>$b$</tex>中有一个是空树，那么就没有必要合并了。</p>
 <p>合并的伪代码如下：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -505,15 +505,15 @@ function REMOVE(h, key):
 </td></tr></table>
 
 <h3 id="43">4.3 排名</h3>
-<p>由于<code>SPLIT</code>操作需要排名<mathjax>$k$</mathjax>，而一般的调用是给定节点的键，因此我们需要一个能将节点在树中的排名计算出来的算法。<br />
+<p>由于<code>SPLIT</code>操作需要排名<tex>$k$</tex>，而一般的调用是给定节点的键，因此我们需要一个能将节点在树中的排名计算出来的算法。<br />
 因此<code>RANK</code>操作也成为了非常重要的操作之一。</p>
 <p>利用节点储存的子树大小值，我们可以快速算出一个节点的排名。</p>
 <p>这个操作也是一个递归操作的过程：</p>
 <ul>
 <li>如果指定的节点在<strong>左子树</strong>，我们直接在左子树中继续查询。  </li>
 <li>如果指定的节点在<strong>右子树</strong>，我们查询它在右子树中的排名，然后加上左子树和树根的大小。  </li>
-<li>如果<strong>直接命中</strong>，那么直接计算排名，其排名为左子树的大小加<mathjax>$1$</mathjax>。  </li>
-<li>对于没有命中的空节点，排名的意义在于查询一个新节点插入树后的排名。为此，对于空节点，我们视为它的排名为<mathjax>$1$</mathjax>。</li>
+<li>如果<strong>直接命中</strong>，那么直接计算排名，其排名为左子树的大小加<tex>$1$</tex>。  </li>
+<li>对于没有命中的空节点，排名的意义在于查询一个新节点插入树后的排名。为此，对于空节点，我们视为它的排名为<tex>$1$</tex>。</li>
 </ul>
 <p>根据上面的讨论，我们可以写出查询排名的操作：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
@@ -592,7 +592,7 @@ function REMOVE(h, key):
 
 <h3 id="44">4.4 时间复杂度</h3>
 <p>显然时间复杂度是我们最关心的。通过<code>BALANCE</code>操作，秩平衡树在合并过程中能够维持很好的平衡。<br />
-因此对于所有的操作，递归深度不会超过<mathjax>$O(\log n)$</mathjax>。因此时间复杂度都是<mathjax>$O(\log n)$</mathjax>的。</p>
+因此对于所有的操作，递归深度不会超过<tex>$O(\log n)$</tex>。因此时间复杂度都是<tex>$O(\log n)$</tex>的。</p>
 <table>
 <thead>
 <tr>
@@ -603,15 +603,15 @@ function REMOVE(h, key):
 <tbody>
 <tr>
 <td align="center">拆分</td>
-<td align="center"><mathjax>$O(\log n)$</mathjax></td>
+<td align="center"><tex>$O(\log n)$</tex></td>
 </tr>
 <tr>
 <td align="center">合并</td>
-<td align="center"><mathjax>$O(\log n)$</mathjax></td>
+<td align="center"><tex>$O(\log n)$</tex></td>
 </tr>
 <tr>
 <td align="center">排名</td>
-<td align="center"><mathjax>$O(\log n)$</mathjax></td>
+<td align="center"><tex>$O(\log n)$</tex></td>
 </tr>
 </tbody>
 </table>
@@ -620,7 +620,7 @@ function REMOVE(h, key):
 <h4 id="451">4.5.1 查询</h4>
 <p>这个实际上没有必要动用拆分和合并，直接查就好。</p>
 <h4 id="452">4.5.2 插入</h4>
-<p>设要插入的节点的排名为<mathjax>$k$</mathjax>，那么先将树拆分为<mathjax>$[1, k-1]$</mathjax>和<mathjax>$[k, n]$</mathjax>两部分，然后依次合并。</p>
+<p>设要插入的节点的排名为<tex>$k$</tex>，那么先将树拆分为<tex>$[1, k-1]$</tex>和<tex>$[k, n]$</tex>两部分，然后依次合并。</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -638,7 +638,7 @@ function REMOVE(h, key):
 </td></tr></table>
 
 <h4 id="453">4.5.3 删除</h4>
-<p>设要删除的节点的排名为<mathjax>$k$</mathjax>，那么将树拆分为<mathjax>$[1,k-1]$</mathjax>、<mathjax>$[k+1,n]$</mathjax>和被删除的节点三部分，然后只将左右合并即可。</p>
+<p>设要删除的节点的排名为<tex>$k$</tex>，那么将树拆分为<tex>$[1,k-1]$</tex>、<tex>$[k+1,n]$</tex>和被删除的节点三部分，然后只将左右合并即可。</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -692,7 +692,7 @@ function REMOVE(h, key):
 <h3 id="46">4.6 总结</h3>
 <p>在实际的测试中，秩平衡树的表现非常不错，比可持久化Treap快了很多，并且在区间操作上能和伸展树不相上下。<br />
 但是，与可持久化Treap相比，因为依赖于<code>BALANCE</code>操作，所以就<strong>无法进行可持久化</strong>了。</p>
-<p>最后我们重新来考虑<mathjax>$t$</mathjax>这个容忍值的选取。在之前普通的秩平衡树中，我们认为<mathjax>$1$</mathjax>是最好的。而现在就未必。如果数据完全随机，我们其实并不需要平衡。但这样在极端数据的情况下，不平衡容易退化为一条链。但是过多的平衡会影响常数。因此，<mathjax>$t$</mathjax>可以稍微取大一点，但不能太大。一般情况下，最好选择<mathjax>$2$</mathjax>到<mathjax>$6$</mathjax>中的值。</p>
+<p>最后我们重新来考虑<tex>$t$</tex>这个容忍值的选取。在之前普通的秩平衡树中，我们认为<tex>$1$</tex>是最好的。而现在就未必。如果数据完全随机，我们其实并不需要平衡。但这样在极端数据的情况下，不平衡容易退化为一条链。但是过多的平衡会影响常数。因此，<tex>$t$</tex>可以稍微取大一点，但不能太大。一般情况下，最好选择<tex>$2$</tex>到<tex>$6$</tex>中的值。</p>
 <div class="footnote">
 <hr />
 <ol>

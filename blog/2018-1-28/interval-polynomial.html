@@ -52,47 +52,47 @@
             
 <h1 id="_1">区间加多项式问题的研究</h1>
 <h2 id="_2">问题描述</h2>
-<p>给定一个长度为 <mathjax>$n$</mathjax>，初始值全为 <mathjax>$0$</mathjax> 的序列 <mathjax>$A[1..n]$</mathjax>，要求支持以下两种操作：</p>
+<p>给定一个长度为 <tex>$n$</tex>，初始值全为 <tex>$0$</tex> 的序列 <tex>$A[1..n]$</tex>，要求支持以下两种操作：</p>
 <ul>
-<li>修改操作：每次给定一个区间 <mathjax>$[l, r]$</mathjax> 以及一个 <mathjax>$K$</mathjax> 次多项式 <mathjax>$P(x)$</mathjax>，要求将 <mathjax>$[l, r]$</mathjax> 的第 <mathjax>$k$</mathjax> 项加上 <mathjax>$P(k)$</mathjax>。也就是 <mathjax>$A[l + k - 1]$</mathjax> 加上 <mathjax>$P(k)$</mathjax>，对于所有的 <mathjax>$1 \leqslant k \leqslant r - l + 1$</mathjax>。</li>
-<li>查询操作：查询操作分为两种 (i) 给定位置 <mathjax>$k$</mathjax>，要求输出 <mathjax>$A[k]$</mathjax> 的值 （单点查询）; (ii) 给定区间 <mathjax>$[l, r]$</mathjax>，要求输出区间 <mathjax>$[l, r]$</mathjax> 内所有数之和，即 <mathjax>$\sum_{k = l}^r A[k]$</mathjax>（区间查询）。</li>
+<li>修改操作：每次给定一个区间 <tex>$[l, r]$</tex> 以及一个 <tex>$K$</tex> 次多项式 <tex>$P(x)$</tex>，要求将 <tex>$[l, r]$</tex> 的第 <tex>$k$</tex> 项加上 <tex>$P(k)$</tex>。也就是 <tex>$A[l + k - 1]$</tex> 加上 <tex>$P(k)$</tex>，对于所有的 <tex>$1 \leqslant k \leqslant r - l + 1$</tex>。</li>
+<li>查询操作：查询操作分为两种 (i) 给定位置 <tex>$k$</tex>，要求输出 <tex>$A[k]$</tex> 的值 （单点查询）; (ii) 给定区间 <tex>$[l, r]$</tex>，要求输出区间 <tex>$[l, r]$</tex> 内所有数之和，即 <tex>$\sum_{k = l}^r A[k]$</tex>（区间查询）。</li>
 </ul>
-<p>记操作总数为 <mathjax>$q$</mathjax>，修改操作中多项式的最高次数为 <mathjax>$K$</mathjax>，并且 <mathjax>$K$</mathjax> 与 <mathjax>$n$</mathjax> 和 <mathjax>$q$</mathjax> 相比较小。本文的目的是针对修改操作和区间查询给出一个 <mathjax>$O((n + q)K \log n)$</mathjax> 的<strong>在线算法</strong>以及一个 <mathjax>$O(qK \log q)$</mathjax> 的<strong>离线算法</strong>。</p>
+<p>记操作总数为 <tex>$q$</tex>，修改操作中多项式的最高次数为 <tex>$K$</tex>，并且 <tex>$K$</tex> 与 <tex>$n$</tex> 和 <tex>$q$</tex> 相比较小。本文的目的是针对修改操作和区间查询给出一个 <tex>$O((n + q)K \log n)$</tex> 的<strong>在线算法</strong>以及一个 <tex>$O(qK \log q)$</tex> 的<strong>离线算法</strong>。</p>
 <h2 id="_3">解决方案</h2>
 <h3 id="_4">在线算法</h3>
-<p>我们可以首先考虑一个简化的修改操作：每次指定区间为 <mathjax>$[1..n]$</mathjax>，也就是整个序列。实际上我们只用保存一个多项式 <mathjax>$Q(x)$</mathjax>，每次修改操作就将 <mathjax>$P(x)$</mathjax> 加到 <mathjax>$Q(x)$</mathjax> 上，修改后的序列中 <mathjax>$A[k]$</mathjax> 实际上就是 <mathjax>$Q(k)$</mathjax>。如果我们花费 <mathjax>$\Theta(nK)$</mathjax> 的时间来计算一个表 <mathjax>$F(n, k) = \sum_{x = 1}^n x^k$</mathjax>，即 <mathjax>$x^k$</mathjax> 的前缀和，就可以在单次 <mathjax>$\Theta(K)$</mathjax> 的时间内计算出 <mathjax>$A$</mathjax> 的区间和。</p>
-<p>回到原先的问题，发现 <mathjax>$P(x)$</mathjax> 不仅在序列中的起始位置变了，而且管辖范围也缩减到 <mathjax>$[l, r]$</mathjax>。为了尽可能简化问题，我们尝试对多项式进行处理。我们希望 <mathjax>$P(k)  = A[k]$</mathjax> 而不是 <mathjax>$P(k) = A[l + k - 1]$</mathjax>，不难发现我们所需要做的，就是函数的平移：<mathjax>$P'(x) = P(x - l + 1)$</mathjax>。这样做的好处在于，修改操作变为了对整个序列的修改，但是只在指定的区间有作用。经过平移之后，不同的多项式可以按照之前的方式累加并且正确地计算结果，因此，只要配合平衡树或线段树之类的数据结构即可快速解决区间问题。具体而言，就是对序列的每一个位置维护一个多项式，修改时，将平移后的多项式 <mathjax>$P'(x)$</mathjax> 加到区间 <mathjax>$[l, r]$</mathjax> 上的每一个位置，并利用线段树上的节点来存储必要的信息用于计算区间和。这一部分的时间复杂度是 <mathjax>$O(qK \log n)$</mathjax>，至于使用数据结构处理区间加的过程这里就不详细讨论了。</p>
-<p>现在的问题是我们需要得到 <mathjax>$P'(x)$</mathjax> 的系数表达形式才能方便地加减。设 <mathjax>$P(x) = \sum_{k = 0}^K a_k x^k$</mathjax>，以及平移量 <mathjax>$c$</mathjax>，那么 <mathjax>$P'(x) = P(x + c) = \sum_{k = 0}^K a_k (x + c)^k$</mathjax>。这显然可以直接用二项式定理在 <mathjax>$\Theta(K^2)$</mathjax> 的时间复杂度内展开。但是这种形式的式子普遍可以转化为卷积<sup id="fnref:product"><a class="footnote-ref" href="#fn:product" rel="footnote">1</a></sup>，从而能够利用 FFT 算法来加速。为了达到这一点，考虑利用二项式定理展开并进行整理：<br />
-<mathjax>$$
+<p>我们可以首先考虑一个简化的修改操作：每次指定区间为 <tex>$[1..n]$</tex>，也就是整个序列。实际上我们只用保存一个多项式 <tex>$Q(x)$</tex>，每次修改操作就将 <tex>$P(x)$</tex> 加到 <tex>$Q(x)$</tex> 上，修改后的序列中 <tex>$A[k]$</tex> 实际上就是 <tex>$Q(k)$</tex>。如果我们花费 <tex>$\Theta(nK)$</tex> 的时间来计算一个表 <tex>$F(n, k) = \sum_{x = 1}^n x^k$</tex>，即 <tex>$x^k$</tex> 的前缀和，就可以在单次 <tex>$\Theta(K)$</tex> 的时间内计算出 <tex>$A$</tex> 的区间和。</p>
+<p>回到原先的问题，发现 <tex>$P(x)$</tex> 不仅在序列中的起始位置变了，而且管辖范围也缩减到 <tex>$[l, r]$</tex>。为了尽可能简化问题，我们尝试对多项式进行处理。我们希望 <tex>$P(k)  = A[k]$</tex> 而不是 <tex>$P(k) = A[l + k - 1]$</tex>，不难发现我们所需要做的，就是函数的平移：<tex>$P'(x) = P(x - l + 1)$</tex>。这样做的好处在于，修改操作变为了对整个序列的修改，但是只在指定的区间有作用。经过平移之后，不同的多项式可以按照之前的方式累加并且正确地计算结果，因此，只要配合平衡树或线段树之类的数据结构即可快速解决区间问题。具体而言，就是对序列的每一个位置维护一个多项式，修改时，将平移后的多项式 <tex>$P'(x)$</tex> 加到区间 <tex>$[l, r]$</tex> 上的每一个位置，并利用线段树上的节点来存储必要的信息用于计算区间和。这一部分的时间复杂度是 <tex>$O(qK \log n)$</tex>，至于使用数据结构处理区间加的过程这里就不详细讨论了。</p>
+<p>现在的问题是我们需要得到 <tex>$P'(x)$</tex> 的系数表达形式才能方便地加减。设 <tex>$P(x) = \sum_{k = 0}^K a_k x^k$</tex>，以及平移量 <tex>$c$</tex>，那么 <tex>$P'(x) = P(x + c) = \sum_{k = 0}^K a_k (x + c)^k$</tex>。这显然可以直接用二项式定理在 <tex>$\Theta(K^2)$</tex> 的时间复杂度内展开。但是这种形式的式子普遍可以转化为卷积<sup id="fnref:product"><a class="footnote-ref" href="#fn:product" rel="footnote">1</a></sup>，从而能够利用 FFT 算法来加速。为了达到这一点，考虑利用二项式定理展开并进行整理：<br />
+<tex>$$
 \begin{aligned}
 \sum_{k = 0}^K a_k(x + c) ^k &amp; = \sum_{k = 0}^K a_k \sum_{j = 0}^k \binom{k}{j} x^j c^{k - j} = \sum_{j = 0}^K x^j \sum_{k = j}^K \binom{k}{j}a_k c^{k - j} \\
 &amp; = \sum_{j = 0}^K {x^j \over j!} \sum_{k = j}^K k!\  a_k \cdot {c^{k - j} \over (k - j)!} \\
 &amp; = \sum_{j = 0}^K {x^j \over j!} \sum_{t = 0}^{K - j} (j + t)!\  a_{j + t} \cdot {c^t \over t!} ~~~~ (t = k - j)\\
 \end{aligned}
-$$</mathjax><br />
-此时右边的式子已经变成了一个卷积的形式。令 <mathjax>$B_k = (K - k)! \ a_{K - k}$</mathjax>、<mathjax>$C_k = c^k / k!$</mathjax>，那么：<br />
-<mathjax>$$
+$$</tex><br />
+此时右边的式子已经变成了一个卷积的形式。令 <tex>$B_k = (K - k)! \ a_{K - k}$</tex>、<tex>$C_k = c^k / k!$</tex>，那么：<br />
+<tex>$$
 P'(x) = \sum_{j = 0}^K {x^j \over j!} \sum_{t = 0}^{K - j}B_{K - j - t} \cdot C_t
-$$</mathjax><br />
-令 <mathjax>$F(n) = \sum_{k = 0}^n B_k \cdot C_{n - k}$</mathjax>，<mathjax>$F(n)$</mathjax> 可以用 FFT 算法在 <mathjax>$\Theta(K \log K)$</mathjax> 的时间内计算出来，此时：<br />
-<mathjax>$$
+$$</tex><br />
+令 <tex>$F(n) = \sum_{k = 0}^n B_k \cdot C_{n - k}$</tex>，<tex>$F(n)$</tex> 可以用 FFT 算法在 <tex>$\Theta(K \log K)$</tex> 的时间内计算出来，此时：<br />
+<tex>$$
 P'(x) = \sum_{j = 0}^K {F(K - j) \over j!} x^j
-$$</mathjax></p>
-<p>因此，我们可以在 <mathjax>$\Theta(K \log K)$</mathjax> 的时间复杂度内完成多项式平移。结合数据结构，我们可以在 <mathjax>$O(nK + qK(\log n + \log K)) = O((n + q)K \log n)$</mathjax> 的时间复杂度解决区间加多项式问题。</p>
+$$</tex></p>
+<p>因此，我们可以在 <tex>$\Theta(K \log K)$</tex> 的时间复杂度内完成多项式平移。结合数据结构，我们可以在 <tex>$O(nK + qK(\log n + \log K)) = O((n + q)K \log n)$</tex> 的时间复杂度解决区间加多项式问题。</p>
 <h3 id="_5">离线算法</h3>
-<p>接下来的目标是让时间复杂度变得与序列长度 <mathjax>$n$</mathjax> 无关。考虑求区间和的一种离线算法：扫描线算法。</p>
+<p>接下来的目标是让时间复杂度变得与序列长度 <tex>$n$</tex> 无关。考虑求区间和的一种离线算法：扫描线算法。</p>
 <p><img alt="scanline-example" src="https://gitee.com/riteme/blogimg/raw/master/interval-polynomial/scanline-example.svg" /></p>
-<p><center>(<strong>Fig.1.</strong> 扫描线算法的一个示例。<mathjax>$6$</mathjax> 个方格代表序列 <mathjax>$X[1..6]$</mathjax>。上面的操作是将区间 <mathjax>$[2, 4]$</mathjax> 都加上 <mathjax>$3$</mathjax>；下面的是扫描线的过程，首先将原序列视为差分序列，在位置 <mathjax>$2$</mathjax> 加上 <mathjax>$3$</mathjax>，位置 <mathjax>$4$</mathjax> 减去 <mathjax>$3$</mathjax>，模拟一根扫描线从 <mathjax>$1$</mathjax> 一直扫描到 <mathjax>$6$</mathjax>，其中遇到正数就给 <mathjax>$A$</mathjax> 加上，遇到负数则相应地减去，这样扫描线扫到哪里，<mathjax>$A$</mathjax> 的值就是那个位置的值)</center></p>
-<p>为了方便，我们先只考虑单点查询。由于需要支持修改过程中的查询，所以对每个操作记录一个时间戳 <mathjax>$t$</mathjax>，特别的，第一个操作的时间戳是 <mathjax>$1$</mathjax>。如果是修改操作，则当前时间加 <mathjax>$1$</mathjax>，而查询操作不必增加时间。这样对于每一个单点查询以及它的时间戳 <mathjax>$t$</mathjax>，只需要将所有时间戳不大于 <mathjax>$t$</mathjax> 的区间覆盖了当前位置的修改操作的多项式加起来，就可得到当前位置的多项式，从而可以计算这个位置的值。因此我们在扫描线的过程中维护一个数据结构（平衡树/线段树），按照时间戳的顺序来维护所有的修改操作的多项式。对于每个修改操作，在区间开始的位置加一个“添加”事件，区间末尾加一个“删除”事件，执行相应的事件时就将数据结构中的对应多项式插入或删除；而对于查询操作，就只需查询前缀和即可。实际上，如果某个位置没有任何事件，那么<strong>这个位置就可以直接跳过</strong>，因为它不会对我们的数据结构产生任何影响，从而可以在 <mathjax>$O(qK \log q)$</mathjax> 的时间复杂度下完成区间修改/单点查询问题。</p>
-<p>现在来考虑区间查询。我们知道，利用前缀和，可以将区间和变为两个单点值之差。利用这一点，不难想到我们可以直接将多项式 <mathjax>$P(x)$</mathjax> 变成自己的前缀和多项式，即 <mathjax>$P'(x) = \sum_{k = 1}^x P(k)$</mathjax>，这样我们维护的实际上就是原序列的前缀和序列，成功地将区间查询问题转化为了单点查询问题。我们知道，<mathjax>$K$</mathjax> 次多项式的前缀和是 <mathjax>$K + 1$</mathjax> 次多项式，而计算多项式前缀和有很多公式或方法：伯努利公式（又称 Faulhaber&rsquo;s formula）、离散微积分、子集反演或者多项式插值。但它们都是针对 <mathjax>$k$</mathjax> 次单项式（即 <mathjax>$x^k$</mathjax>）的公式，并且计算复杂度都是 <mathjax>$\Theta(k)$</mathjax>，如果运用到任意 <mathjax>$K$</mathjax> 次多项式，就又需要 <mathjax>$\Theta(K^2)$</mathjax> 的时间。</p>
+<p><center>(<strong>Fig.1.</strong> 扫描线算法的一个示例。<tex>$6$</tex> 个方格代表序列 <tex>$X[1..6]$</tex>。上面的操作是将区间 <tex>$[2, 4]$</tex> 都加上 <tex>$3$</tex>；下面的是扫描线的过程，首先将原序列视为差分序列，在位置 <tex>$2$</tex> 加上 <tex>$3$</tex>，位置 <tex>$4$</tex> 减去 <tex>$3$</tex>，模拟一根扫描线从 <tex>$1$</tex> 一直扫描到 <tex>$6$</tex>，其中遇到正数就给 <tex>$A$</tex> 加上，遇到负数则相应地减去，这样扫描线扫到哪里，<tex>$A$</tex> 的值就是那个位置的值)</center></p>
+<p>为了方便，我们先只考虑单点查询。由于需要支持修改过程中的查询，所以对每个操作记录一个时间戳 <tex>$t$</tex>，特别的，第一个操作的时间戳是 <tex>$1$</tex>。如果是修改操作，则当前时间加 <tex>$1$</tex>，而查询操作不必增加时间。这样对于每一个单点查询以及它的时间戳 <tex>$t$</tex>，只需要将所有时间戳不大于 <tex>$t$</tex> 的区间覆盖了当前位置的修改操作的多项式加起来，就可得到当前位置的多项式，从而可以计算这个位置的值。因此我们在扫描线的过程中维护一个数据结构（平衡树/线段树），按照时间戳的顺序来维护所有的修改操作的多项式。对于每个修改操作，在区间开始的位置加一个“添加”事件，区间末尾加一个“删除”事件，执行相应的事件时就将数据结构中的对应多项式插入或删除；而对于查询操作，就只需查询前缀和即可。实际上，如果某个位置没有任何事件，那么<strong>这个位置就可以直接跳过</strong>，因为它不会对我们的数据结构产生任何影响，从而可以在 <tex>$O(qK \log q)$</tex> 的时间复杂度下完成区间修改/单点查询问题。</p>
+<p>现在来考虑区间查询。我们知道，利用前缀和，可以将区间和变为两个单点值之差。利用这一点，不难想到我们可以直接将多项式 <tex>$P(x)$</tex> 变成自己的前缀和多项式，即 <tex>$P'(x) = \sum_{k = 1}^x P(k)$</tex>，这样我们维护的实际上就是原序列的前缀和序列，成功地将区间查询问题转化为了单点查询问题。我们知道，<tex>$K$</tex> 次多项式的前缀和是 <tex>$K + 1$</tex> 次多项式，而计算多项式前缀和有很多公式或方法：伯努利公式（又称 Faulhaber&rsquo;s formula）、离散微积分、子集反演或者多项式插值。但它们都是针对 <tex>$k$</tex> 次单项式（即 <tex>$x^k$</tex>）的公式，并且计算复杂度都是 <tex>$\Theta(k)$</tex>，如果运用到任意 <tex>$K$</tex> 次多项式，就又需要 <tex>$\Theta(K^2)$</tex> 的时间。</p>
 <p>到了这种时候，我们可能又会想要 FFT 出场了。在此之前，我们需要选择一个便于变形的公式。我经过一番挑选，发现还是伯努利公式形式最优秀：<br />
-<mathjax>$$
+<tex>$$
 \sum_{k = 1}^x k^n = 1^n + 2^n + \cdots + x^n = \frac1{n+1}\sum_{k = 0}^n \binom{n + 1}{k} B_k x^{n + 1 - k}
 \tag{Bernoulli's Formula}
-$$</mathjax><br />
-其中 <mathjax>$B_k$</mathjax> 表示伯努利数，并且 <mathjax>$B_1 = +1/2$</mathjax><sup id="fnref:bernoulli-number"><a class="footnote-ref" href="#fn:bernoulli-number" rel="footnote">2</a></sup>。伯努利数可以通过多项式逆元快速计算，具体可以查看<a href="http://blog.miskcoo.com/2015/05/polynomial-inverse#_Bernoulli">这里</a>。或者当 <mathjax>$K$</mathjax> 足够小时，我们可以直接将需要的伯努利数存入程序。</p>
+$$</tex><br />
+其中 <tex>$B_k$</tex> 表示伯努利数，并且 <tex>$B_1 = +1/2$</tex><sup id="fnref:bernoulli-number"><a class="footnote-ref" href="#fn:bernoulli-number" rel="footnote">2</a></sup>。伯努利数可以通过多项式逆元快速计算，具体可以查看<a href="http://blog.miskcoo.com/2015/05/polynomial-inverse#_Bernoulli">这里</a>。或者当 <tex>$K$</tex> 足够小时，我们可以直接将需要的伯努利数存入程序。</p>
 <p>接下来又要经过一番套路变形：<br />
-<mathjax>$$
+<tex>$$
 \begin{aligned}
 \sum_{k = 1}^x P(k) &amp; = \sum_{k = 1}^x \sum_{j = 0}^K a_j k^j = \sum_{j = 0}^K a_j \sum_{k = 1}^x k^j \\
 &amp; = \sum_{j = 0}^K {a_j \over j + 1} \sum_{k = 0}^j \binom{j + 1}{k} B_k x^{j + 1 - k} \\
@@ -101,17 +101,17 @@ $$</mathjax><br />
 &amp; = \sum_{t = 0}^K {x^{t + 1} \over (t + 1)!} \sum_{j = t}^K j!\ a_j \cdot {B_{j - t} \over (j - t)!} \\
 &amp; = \sum_{t = 0}^K {x^{t + 1} \over (t + 1)!} \sum_{j = 0}^{K - t} (j + t)!\ a_{j + t} \cdot {B_j \over j!}
 \end{aligned}
-$$</mathjax><br />
-Alright！<sup id="fnref:alright"><a class="footnote-ref" href="#fn:alright" rel="footnote">3</a></sup>又是熟悉的面孔。故技重施，令 <mathjax>$C_k = (K - k)!\ a_{K - k}$</mathjax>、<mathjax>$D_k = B_k / k!$</mathjax>，右边就变成了卷积的形式。因此我们可以在 <mathjax>$\Theta(K \log K)$</mathjax> 的时间复杂度内计算多项式前缀和的表达式。结合之前单点查询的算法，如果允许离线操作，区间加多项式问题可以在 <mathjax>$O(qK \log q)$</mathjax> 的时间复杂度内解决。另外，将区间和转化为单点差之后，实际上还可以使用动态开点的数据结构来实现在线算法，时间复杂度是 <mathjax>$O(qK \log n)$</mathjax> 的。</p>
+$$</tex><br />
+Alright！<sup id="fnref:alright"><a class="footnote-ref" href="#fn:alright" rel="footnote">3</a></sup>又是熟悉的面孔。故技重施，令 <tex>$C_k = (K - k)!\ a_{K - k}$</tex>、<tex>$D_k = B_k / k!$</tex>，右边就变成了卷积的形式。因此我们可以在 <tex>$\Theta(K \log K)$</tex> 的时间复杂度内计算多项式前缀和的表达式。结合之前单点查询的算法，如果允许离线操作，区间加多项式问题可以在 <tex>$O(qK \log q)$</tex> 的时间复杂度内解决。另外，将区间和转化为单点差之后，实际上还可以使用动态开点的数据结构来实现在线算法，时间复杂度是 <tex>$O(qK \log n)$</tex> 的。</p>
 <p>最后，我自己使用 C++ 实现了离线算法，如果想要查看可以前往 <a href="https://github.com/riteme/toys/tree/master/oi-ideas/180120-interval-polynomial">我的 GitHub</a>。</p>
 <div class="footnote">
 <hr />
 <ol>
 <li id="fn:product">
-<p>卷积是针对两个序列 <mathjax>$A[0..n]$</mathjax> 和 <mathjax>$B[0..n]$</mathjax> 而言的。定义卷积 <mathjax>$C = A \times B$</mathjax>，则 <mathjax>$C(n) = \sum_{k = 0}^n A(k) \cdot B(n - k)$</mathjax>，这一过程可以视为多项式乘法，故可以使用 FFT（快速傅里叶变换）来实现，时间复杂度为 <mathjax>$\Theta(n \log n)$</mathjax>。&#160;<a class="footnote-backref" href="#fnref:product" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>卷积是针对两个序列 <tex>$A[0..n]$</tex> 和 <tex>$B[0..n]$</tex> 而言的。定义卷积 <tex>$C = A \times B$</tex>，则 <tex>$C(n) = \sum_{k = 0}^n A(k) \cdot B(n - k)$</tex>，这一过程可以视为多项式乘法，故可以使用 FFT（快速傅里叶变换）来实现，时间复杂度为 <tex>$\Theta(n \log n)$</tex>。&#160;<a class="footnote-backref" href="#fnref:product" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 <li id="fn:bernoulli-number">
-<p>有一些地方的会使用 <mathjax>$B_1 = -1/2$</mathjax> 的伯努利数。&#160;<a class="footnote-backref" href="#fnref:bernoulli-number" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<p>有一些地方的会使用 <tex>$B_1 = -1/2$</tex> 的伯努利数。&#160;<a class="footnote-backref" href="#fnref:bernoulli-number" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 <li id="fn:alright">
 <p>&ldquo;But your spelling is alwrong.&rdquo; —— <em>Concrete Mathematics</em>&#160;<a class="footnote-backref" href="#fnref:alright" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>

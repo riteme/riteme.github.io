@@ -3,6 +3,7 @@ title: $k$-SBK变换
 create: 2016.7.28
 modified: 2016.7.28
 tags: Problems
+template: simple
 ---
 
 [TOC]

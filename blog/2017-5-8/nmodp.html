@@ -50,23 +50,23 @@
         <div class="mdl-cell mdl-cell--8-col mdl-cell--12-col-tablet mdl-cell--12-col-phone main-cell">
           <div class="article main-article" lang="en-US">
             
-<h1 id="n-p-mathrmmod-n"><mathjax>$n = p \mathrm{\;mod\;} n$</mathjax>递推次数的上界？</h1>
+<h1 id="n-p-mathrmmod-n"><tex>$n = p \mathrm{\;mod\;} n$</tex>递推次数的上界？</h1>
 <h2 id="_1">原问题</h2>
 <p>这个问题我最开始是从知乎<sup id="fnref:zhihu"><a class="footnote-ref" href="#fn:zhihu" rel="footnote">1</a></sup>上看到的，里面提到了一种求逆元的方法，但是现在暂时没有方法能证明其复杂度。</p>
-<p>众所周知，当我们选取一个质数<mathjax>$p$</mathjax>作为模数时，<mathjax>$1..n$</mathjax>的每个数都存在一个模<mathjax>$p$</mathjax>意义下的逆元。如何求出这些逆元呢？最简单粗暴的方法就是使用单个数求逆元的方法对<mathjax>$1..n$</mathjax>都用一遍。自然这种方法现在无法做到线性复杂度。但是我们有一种直接递推的办法来求出<mathjax>$1..n$</mathjax>的所有逆元。具体的，我们先考虑下<mathjax>$n$</mathjax>和<mathjax>$r = p \mathrm{\;mod\;} n$</mathjax>的关系。<br />
+<p>众所周知，当我们选取一个质数<tex>$p$</tex>作为模数时，<tex>$1..n$</tex>的每个数都存在一个模<tex>$p$</tex>意义下的逆元。如何求出这些逆元呢？最简单粗暴的方法就是使用单个数求逆元的方法对<tex>$1..n$</tex>都用一遍。自然这种方法现在无法做到线性复杂度。但是我们有一种直接递推的办法来求出<tex>$1..n$</tex>的所有逆元。具体的，我们先考虑下<tex>$n$</tex>和<tex>$r = p \mathrm{\;mod\;} n$</tex>的关系。<br />
 首先，根据余数的定义，我们有：<br />
-<mathjax>$$
+<tex>$$
 r = p - \left\lfloor \frac{p}n \right\rfloor n
-$$</mathjax></p>
-<p>将其放在模<mathjax>$p$</mathjax>意义下：<br />
-<mathjax>$$
+$$</tex></p>
+<p>将其放在模<tex>$p$</tex>意义下：<br />
+<tex>$$
 r \equiv -\left\lfloor \frac{p}n \right\rfloor n \pmod{p}
-$$</mathjax></p>
-<p>如果<mathjax>$r^{-1}$</mathjax>和<mathjax>$n^{-1}$</mathjax>都存在（如果<mathjax>$p$</mathjax>是质数则显然成立），那么上式可以变为：<br />
-<mathjax>$$
+$$</tex></p>
+<p>如果<tex>$r^{-1}$</tex>和<tex>$n^{-1}$</tex>都存在（如果<tex>$p$</tex>是质数则显然成立），那么上式可以变为：<br />
+<tex>$$
 n^{-1} \equiv -\left\lfloor \frac{p}n \right\rfloor r^{-1} \pmod{p}
-$$</mathjax></p>
-<p>又因为我们知道<mathjax>$1^{-1} = 1$</mathjax>并且<mathjax>$r &lt; n$</mathjax>，所以我们可以以<mathjax>$1..n$</mathjax>的顺序递推出所有的逆元，时空复杂度均为<mathjax>$\Theta(n)$</mathjax>。</p>
+$$</tex></p>
+<p>又因为我们知道<tex>$1^{-1} = 1$</tex>并且<tex>$r &lt; n$</tex>，所以我们可以以<tex>$1..n$</tex>的顺序递推出所有的逆元，时空复杂度均为<tex>$\Theta(n)$</tex>。</p>
 <p>如果直接使用递推式来计算逆元，也就变成了下面的算法：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -78,177 +78,177 @@ $$</mathjax></p>
 </pre></div>
 </td></tr></table>
 
-<p>需要注意一点，以上方法在<mathjax>$p$</mathjax>不是质数的时候很多情况下是无法使用的，即便<mathjax>$n$</mathjax>和<mathjax>$p$</mathjax>互质。一个反例就是当<mathjax>$n = 3$</mathjax>并且<mathjax>$p = 8$</mathjax>的时候。</p>
+<p>需要注意一点，以上方法在<tex>$p$</tex>不是质数的时候很多情况下是无法使用的，即便<tex>$n$</tex>和<tex>$p$</tex>互质。一个反例就是当<tex>$n = 3$</tex>并且<tex>$p = 8$</tex>的时候。</p>
 <h2 id="_2">算法复杂度</h2>
-<p>该算法的递归次数实际上就是<mathjax>$n = p \mathrm{\;mod\;} n$</mathjax>这个递推式要达到<mathjax>$n \leqslant 1$</mathjax>的次数，所以下面的分析都按照这个来。</p>
+<p>该算法的递归次数实际上就是<tex>$n = p \mathrm{\;mod\;} n$</tex>这个递推式要达到<tex>$n \leqslant 1$</tex>的次数，所以下面的分析都按照这个来。</p>
 <h3 id="_3">实验数据</h3>
-<p>这个算法似乎并不能直接从表面上简单地看出它的迭代次数。通过对一个著名的质数<mathjax>$p = 10^9 + 7$</mathjax>做了一些测试后，得到了一些数据。</p>
-<p>随机<mathjax>$10^6$</mathjax>个数来计算逆元的平均递归次数是<mathjax>$21.9734742$</mathjax>次。<br />
-强行计算出<mathjax>$1..p - 1$</mathjax>中每个数的递归次数，得到以下数据：</p>
+<p>这个算法似乎并不能直接从表面上简单地看出它的迭代次数。通过对一个著名的质数<tex>$p = 10^9 + 7$</tex>做了一些测试后，得到了一些数据。</p>
+<p>随机<tex>$10^6$</tex>个数来计算逆元的平均递归次数是<tex>$21.9734742$</tex>次。<br />
+强行计算出<tex>$1..p - 1$</tex>中每个数的递归次数，得到以下数据：</p>
 <table>
 <thead>
 <tr>
 <th align="center">递归次数</th>
-<th align="center">最小满足的<mathjax>$n$</mathjax></th>
+<th align="center">最小满足的<tex>$n$</tex></th>
 <th align="center">递归次数</th>
-<th align="center">最小满足的<mathjax>$n$</mathjax></th>
+<th align="center">最小满足的<tex>$n$</tex></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center"><mathjax>$1$</mathjax></td>
-<td align="center"><mathjax>$1$</mathjax></td>
-<td align="center"><mathjax>$26$</mathjax></td>
-<td align="center"><mathjax>$114378$</mathjax></td>
+<td align="center"><tex>$1$</tex></td>
+<td align="center"><tex>$1$</tex></td>
+<td align="center"><tex>$26$</tex></td>
+<td align="center"><tex>$114378$</tex></td>
 </tr>
 <tr>
-<td align="center"><mathjax>$2$</mathjax></td>
-<td align="center"><mathjax>$2$</mathjax></td>
-<td align="center"><mathjax>$27$</mathjax></td>
-<td align="center"><mathjax>$207512$</mathjax></td>
+<td align="center"><tex>$2$</tex></td>
+<td align="center"><tex>$2$</tex></td>
+<td align="center"><tex>$27$</tex></td>
+<td align="center"><tex>$207512$</tex></td>
 </tr>
 <tr>
-<td align="center"><mathjax>$3$</mathjax></td>
-<td align="center"><mathjax>$3$</mathjax></td>
-<td align="center"><mathjax>$28$</mathjax></td>
-<td align="center"><mathjax>$276557$</mathjax></td>
+<td align="center"><tex>$3$</tex></td>
+<td align="center"><tex>$3$</tex></td>
+<td align="center"><tex>$28$</tex></td>
+<td align="center"><tex>$276557$</tex></td>
 </tr>
 <tr>
-<td align="center"><mathjax>$4$</mathjax></td>
-<td align="center"><mathjax>$4$</mathjax></td>
-<td align="center"><mathjax>$29$</mathjax></td>
-<td align="center"><mathjax>$434606$</mathjax></td>
+<td align="center"><tex>$4$</tex></td>
+<td align="center"><tex>$4$</tex></td>
+<td align="center"><tex>$29$</tex></td>
+<td align="center"><tex>$434606$</tex></td>
 </tr>
 <tr>
-<td align="center"><mathjax>$5$</mathjax></td>
-<td align="center"><mathjax>$7$</mathjax></td>
-<td align="center"><mathjax>$30$</mathjax></td>
-<td align="center"><mathjax>$591809$</mathjax></td>
+<td align="center"><tex>$5$</tex></td>
+<td align="center"><tex>$7$</tex></td>
+<td align="center"><tex>$30$</tex></td>
+<td align="center"><tex>$591809$</tex></td>
 </tr>
 <tr>
-<td align="center"><mathjax>$6$</mathjax></td>
-<td align="center"><mathjax>$8$</mathjax></td>
-<td align="center"><mathjax>$31$</mathjax></td>
-<td align="center"><mathjax>$871900$</mathjax></td>
+<td align="center"><tex>$6$</tex></td>
+<td align="center"><tex>$8$</tex></td>
+<td align="center"><tex>$31$</tex></td>
+<td align="center"><tex>$871900$</tex></td>
 </tr>
 <tr>
-<td align="center"><mathjax>$7$</mathjax></td>
-<td align="center"><mathjax>$9$</mathjax></td>
-<td align="center"><mathjax>$32$</mathjax></td>
-<td align="center"><mathjax>$1381645$</mathjax></td>
+<td align="center"><tex>$7$</tex></td>
+<td align="center"><tex>$9$</tex></td>
+<td align="center"><tex>$32$</tex></td>
+<td align="center"><tex>$1381645$</tex></td>
 </tr>
 <tr>
-<td align="center"><mathjax>$8$</mathjax></td>
-<td align="center"><mathjax>$18$</mathjax></td>
-<td align="center"><mathjax>$33$</mathjax></td>
-<td align="center"><mathjax>$1595237$</mathjax></td>
+<td align="center"><tex>$8$</tex></td>
+<td align="center"><tex>$18$</tex></td>
+<td align="center"><tex>$33$</tex></td>
+<td align="center"><tex>$1595237$</tex></td>
 </tr>
 <tr>
-<td align="center"><mathjax>$9$</mathjax></td>
-<td align="center"><mathjax>$36$</mathjax></td>
-<td align="center"><mathjax>$34$</mathjax></td>
-<td align="center"><mathjax>$2661365$</mathjax></td>
+<td align="center"><tex>$9$</tex></td>
+<td align="center"><tex>$36$</tex></td>
+<td align="center"><tex>$34$</tex></td>
+<td align="center"><tex>$2661365$</tex></td>
 </tr>
 <tr>
-<td align="center"><mathjax>$10$</mathjax></td>
-<td align="center"><mathjax>$79$</mathjax></td>
-<td align="center"><mathjax>$35$</mathjax></td>
-<td align="center"><mathjax>$4510426$</mathjax></td>
+<td align="center"><tex>$10$</tex></td>
+<td align="center"><tex>$79$</tex></td>
+<td align="center"><tex>$35$</tex></td>
+<td align="center"><tex>$4510426$</tex></td>
 </tr>
 <tr>
-<td align="center"><mathjax>$11$</mathjax></td>
-<td align="center"><mathjax>$158$</mathjax></td>
-<td align="center"><mathjax>$36$</mathjax></td>
-<td align="center"><mathjax>$5525194$</mathjax></td>
+<td align="center"><tex>$11$</tex></td>
+<td align="center"><tex>$158$</tex></td>
+<td align="center"><tex>$36$</tex></td>
+<td align="center"><tex>$5525194$</tex></td>
 </tr>
 <tr>
-<td align="center"><mathjax>$12$</mathjax></td>
-<td align="center"><mathjax>$207$</mathjax></td>
-<td align="center"><mathjax>$37$</mathjax></td>
-<td align="center"><mathjax>$5954939$</mathjax></td>
+<td align="center"><tex>$12$</tex></td>
+<td align="center"><tex>$207$</tex></td>
+<td align="center"><tex>$37$</tex></td>
+<td align="center"><tex>$5954939$</tex></td>
 </tr>
 <tr>
-<td align="center"><mathjax>$13$</mathjax></td>
-<td align="center"><mathjax>$327$</mathjax></td>
-<td align="center"><mathjax>$38$</mathjax></td>
-<td align="center"><mathjax>$6098436$</mathjax></td>
+<td align="center"><tex>$13$</tex></td>
+<td align="center"><tex>$327$</tex></td>
+<td align="center"><tex>$38$</tex></td>
+<td align="center"><tex>$6098436$</tex></td>
 </tr>
 <tr>
-<td align="center"><mathjax>$14$</mathjax></td>
-<td align="center"><mathjax>$1063$</mathjax></td>
-<td align="center"><mathjax>$39$</mathjax></td>
-<td align="center"><mathjax>$9347131$</mathjax></td>
+<td align="center"><tex>$14$</tex></td>
+<td align="center"><tex>$1063$</tex></td>
+<td align="center"><tex>$39$</tex></td>
+<td align="center"><tex>$9347131$</tex></td>
 </tr>
 <tr>
-<td align="center"><mathjax>$15$</mathjax></td>
-<td align="center"><mathjax>$1530$</mathjax></td>
-<td align="center"><mathjax>$40$</mathjax></td>
-<td align="center"><mathjax>$17080222$</mathjax></td>
+<td align="center"><tex>$15$</tex></td>
+<td align="center"><tex>$1530$</tex></td>
+<td align="center"><tex>$40$</tex></td>
+<td align="center"><tex>$17080222$</tex></td>
 </tr>
 <tr>
-<td align="center"><mathjax>$16$</mathjax></td>
-<td align="center"><mathjax>$1675$</mathjax></td>
-<td align="center"><mathjax>$41$</mathjax></td>
-<td align="center"><mathjax>$38878508$</mathjax></td>
+<td align="center"><tex>$16$</tex></td>
+<td align="center"><tex>$1675$</tex></td>
+<td align="center"><tex>$41$</tex></td>
+<td align="center"><tex>$38878508$</tex></td>
 </tr>
 <tr>
-<td align="center"><mathjax>$17$</mathjax></td>
-<td align="center"><mathjax>$3418$</mathjax></td>
-<td align="center"><mathjax>$42$</mathjax></td>
-<td align="center"><mathjax>$43540116$</mathjax></td>
+<td align="center"><tex>$17$</tex></td>
+<td align="center"><tex>$3418$</tex></td>
+<td align="center"><tex>$42$</tex></td>
+<td align="center"><tex>$43540116$</tex></td>
 </tr>
 <tr>
-<td align="center"><mathjax>$18$</mathjax></td>
-<td align="center"><mathjax>$5935$</mathjax></td>
-<td align="center"><mathjax>$43$</mathjax></td>
-<td align="center"><mathjax>$72349030$</mathjax></td>
+<td align="center"><tex>$18$</tex></td>
+<td align="center"><tex>$5935$</tex></td>
+<td align="center"><tex>$43$</tex></td>
+<td align="center"><tex>$72349030$</tex></td>
 </tr>
 <tr>
-<td align="center"><mathjax>$19$</mathjax></td>
-<td align="center"><mathjax>$10159$</mathjax></td>
-<td align="center"><mathjax>$44$</mathjax></td>
-<td align="center"><mathjax>$84331907$</mathjax></td>
+<td align="center"><tex>$19$</tex></td>
+<td align="center"><tex>$10159$</tex></td>
+<td align="center"><tex>$44$</tex></td>
+<td align="center"><tex>$84331907$</tex></td>
 </tr>
 <tr>
-<td align="center"><mathjax>$20$</mathjax></td>
-<td align="center"><mathjax>$20343$</mathjax></td>
-<td align="center"><mathjax>$45$</mathjax></td>
-<td align="center"><mathjax>$91566810$</mathjax></td>
+<td align="center"><tex>$20$</tex></td>
+<td align="center"><tex>$20343$</tex></td>
+<td align="center"><tex>$45$</tex></td>
+<td align="center"><tex>$91566810$</tex></td>
 </tr>
 <tr>
-<td align="center"><mathjax>$21$</mathjax></td>
-<td align="center"><mathjax>$21368$</mathjax></td>
-<td align="center"><mathjax>$46$</mathjax></td>
-<td align="center"><mathjax>$129776171$</mathjax></td>
+<td align="center"><tex>$21$</tex></td>
+<td align="center"><tex>$21368$</tex></td>
+<td align="center"><tex>$46$</tex></td>
+<td align="center"><tex>$129776171$</tex></td>
 </tr>
 <tr>
-<td align="center"><mathjax>$22$</mathjax></td>
-<td align="center"><mathjax>$28592$</mathjax></td>
-<td align="center"><mathjax>$47$</mathjax></td>
-<td align="center"><mathjax>$145037306$</mathjax></td>
+<td align="center"><tex>$22$</tex></td>
+<td align="center"><tex>$28592$</tex></td>
+<td align="center"><tex>$47$</tex></td>
+<td align="center"><tex>$145037306$</tex></td>
 </tr>
 <tr>
-<td align="center"><mathjax>$23$</mathjax></td>
-<td align="center"><mathjax>$40540$</mathjax></td>
-<td align="center"><mathjax>$48$</mathjax></td>
-<td align="center"><mathjax>$284987567$</mathjax></td>
+<td align="center"><tex>$23$</tex></td>
+<td align="center"><tex>$40540$</tex></td>
+<td align="center"><tex>$48$</tex></td>
+<td align="center"><tex>$284987567$</tex></td>
 </tr>
 <tr>
-<td align="center"><mathjax>$24$</mathjax></td>
-<td align="center"><mathjax>$56017$</mathjax></td>
-<td align="center"><mathjax>$49$</mathjax></td>
-<td align="center"><mathjax>$357506220$</mathjax></td>
+<td align="center"><tex>$24$</tex></td>
+<td align="center"><tex>$56017$</tex></td>
+<td align="center"><tex>$49$</tex></td>
+<td align="center"><tex>$357506220$</tex></td>
 </tr>
 <tr>
-<td align="center"><mathjax>$25$</mathjax></td>
-<td align="center"><mathjax>$96241$</mathjax></td>
-<td align="center"><mathjax>$50$</mathjax></td>
-<td align="center"><mathjax>$642493787$</mathjax></td>
+<td align="center"><tex>$25$</tex></td>
+<td align="center"><tex>$96241$</tex></td>
+<td align="center"><tex>$50$</tex></td>
+<td align="center"><tex>$642493787$</tex></td>
 </tr>
 </tbody>
 </table>
-<p>可以看出似乎递归次数<mathjax>$ \leqslant 2\log n$</mathjax>？尝试了其它的一些质数发现也满足这个上界。<strong>但是我并不会证明</strong>。如果有知道证明方法或者相关资料的可以与我联系，或者直接去回答知乎上的那个问题。</p>
-<p>对于百度出来的一些答案，都是直接默认它每次<mathjax>$n \mathrm{\;mod\;} p$</mathjax>都会减半。但是实际上并非如此。如果真的达到了每次操作完<mathjax>$n$</mathjax>都会减半，那么上面的数据中也就不会出现<mathjax>$50$</mathjax>次的情况。并且就以上面最大的数字<mathjax>$642493787$</mathjax>为例，它的迭代过程中出现了这样的东西：</p>
+<p>可以看出似乎递归次数<tex>$ \leqslant 2\log n$</tex>？尝试了其它的一些质数发现也满足这个上界。<strong>但是我并不会证明</strong>。如果有知道证明方法或者相关资料的可以与我联系，或者直接去回答知乎上的那个问题。</p>
+<p>对于百度出来的一些答案，都是直接默认它每次<tex>$n \mathrm{\;mod\;} p$</tex>都会减半。但是实际上并非如此。如果真的达到了每次操作完<tex>$n$</tex>都会减半，那么上面的数据中也就不会出现<tex>$50$</tex>次的情况。并且就以上面最大的数字<tex>$642493787$</tex>为例，它的迭代过程中出现了这样的东西：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -265,29 +265,29 @@ $$</mathjax></p>
 </pre></div>
 </td></tr></table>
 
-<p>当<mathjax>$n = 188$</mathjax>并且<mathjax>$p = 10^9 + 7$</mathjax>时，经过<mathjax>$3$</mathjax>次迭代才使得<mathjax>$n$</mathjax>的规模减半。</p>
+<p>当<tex>$n = 188$</tex>并且<tex>$p = 10^9 + 7$</tex>时，经过<tex>$3$</tex>次迭代才使得<tex>$n$</tex>的规模减半。</p>
 <h3 id="_4">根号上界</h3>
-<p>根据知乎上<a href="https://www.zhihu.com/question/59033693/answer/162274002">@徐老丝</a>的回答，我们有一个证明其递归次数<mathjax>$\leqslant 2\sqrt{p}$</mathjax>的方法。</p>
+<p>根据知乎上<a href="https://www.zhihu.com/question/59033693/answer/162274002">@徐老丝</a>的回答，我们有一个证明其递归次数<tex>$\leqslant 2\sqrt{p}$</tex>的方法。</p>
 <p>首先需要确定一个基本定理：</p>
 <blockquote>
-<p>如果满足<mathjax>$\frac1m p \lt n \leqslant \frac1{m-1} p$</mathjax>，那么<mathjax>$p \mathrm{\;mod\;} n \lt \frac1m p$</mathjax>。</p>
+<p>如果满足<tex>$\frac1m p \lt n \leqslant \frac1{m-1} p$</tex>，那么<tex>$p \mathrm{\;mod\;} n \lt \frac1m p$</tex>。</p>
 </blockquote>
-<p><strong>证明</strong> 证明过程比较简单，只用确认<mathjax>$p - (m - 1)n$</mathjax>的范围即可：<br />
-<mathjax>$$
+<p><strong>证明</strong> 证明过程比较简单，只用确认<tex>$p - (m - 1)n$</tex>的范围即可：<br />
+<tex>$$
 p - \frac1m p \lt (m - 1)n \leqslant p \\
 \frac1m p \gt p - (m - 1)n \geqslant 0
-$$</mathjax></p>
-<p>由于<mathjax>$n \gt \frac1m p$</mathjax>，所以<mathjax>$p \mathrm{\;mod\;} n = p - (m - 1)n \lt \frac1m p$</mathjax>。</p>
-<p>根据以上定理，我们可以得到，如果一开始<mathjax>$\frac1m p \lt n \leqslant \frac1{m-1} p$</mathjax>，那么经过<mathjax>$\sqrt{p}$</mathjax>次迭代后，就有<mathjax>$n \lt \frac1{m + \sqrt{p}} p$</mathjax>。所以对于任意的<mathjax>$1 \leqslant n \lt p$</mathjax>，经过<mathjax>$\sqrt{p}$</mathjax>次迭代后都有<mathjax>$n \lt \frac1{\sqrt{p}} p = \sqrt{p}$</mathjax>。由于每次取模<mathjax>$n$</mathjax>至少减<mathjax>$1$</mathjax>，所以之后最多<mathjax>$\sqrt{p}$</mathjax>步使得<mathjax>$n \leqslant 1$</mathjax>。所以该算法的一个上界是<mathjax>$2\sqrt{p}$</mathjax>的。</p>
+$$</tex></p>
+<p>由于<tex>$n \gt \frac1m p$</tex>，所以<tex>$p \mathrm{\;mod\;} n = p - (m - 1)n \lt \frac1m p$</tex>。</p>
+<p>根据以上定理，我们可以得到，如果一开始<tex>$\frac1m p \lt n \leqslant \frac1{m-1} p$</tex>，那么经过<tex>$\sqrt{p}$</tex>次迭代后，就有<tex>$n \lt \frac1{m + \sqrt{p}} p$</tex>。所以对于任意的<tex>$1 \leqslant n \lt p$</tex>，经过<tex>$\sqrt{p}$</tex>次迭代后都有<tex>$n \lt \frac1{\sqrt{p}} p = \sqrt{p}$</tex>。由于每次取模<tex>$n$</tex>至少减<tex>$1$</tex>，所以之后最多<tex>$\sqrt{p}$</tex>步使得<tex>$n \leqslant 1$</tex>。所以该算法的一个上界是<tex>$2\sqrt{p}$</tex>的。</p>
 <h3 id="_5">期望次数分析</h3>
 <p>我自己思考了一种思路，似乎可以提供一种为什么该算法的递归次数非常少的解释。</p>
-<p>首先注意到对于任意的<mathjax>$0 \lt n \lt p$</mathjax>，设<mathjax>$r = p \mathrm{\;mod\;} n$</mathjax>，那么有<mathjax>$n \mid (p - r)$</mathjax>。<br />
-同时，对于任意的<mathjax>$0 \leqslant r \lt p$</mathjax>，所有满足<mathjax>$p \mathrm{\;mod\;} n = r$</mathjax>的<mathjax>$n$</mathjax>是<mathjax>$p - r$</mathjax>中所有<strong>大于</strong><mathjax>$r$</mathjax>的因子。<br />
-更进一步，我们比较关注那种<mathjax>$r \leqslant n / 2$</mathjax>的<mathjax>$n$</mathjax>，从<mathjax>$r$</mathjax>的角度而言，这样的<mathjax>$n$</mathjax>都是<mathjax>$p - r$</mathjax>的<strong>大于等于</strong><mathjax>$2r$</mathjax>的因子。</p>
-<p>现在用一张图来划分这两种<mathjax>$n$</mathjax>：</p>
+<p>首先注意到对于任意的<tex>$0 \lt n \lt p$</tex>，设<tex>$r = p \mathrm{\;mod\;} n$</tex>，那么有<tex>$n \mid (p - r)$</tex>。<br />
+同时，对于任意的<tex>$0 \leqslant r \lt p$</tex>，所有满足<tex>$p \mathrm{\;mod\;} n = r$</tex>的<tex>$n$</tex>是<tex>$p - r$</tex>中所有<strong>大于</strong><tex>$r$</tex>的因子。<br />
+更进一步，我们比较关注那种<tex>$r \leqslant n / 2$</tex>的<tex>$n$</tex>，从<tex>$r$</tex>的角度而言，这样的<tex>$n$</tex>都是<tex>$p - r$</tex>的<strong>大于等于</strong><tex>$2r$</tex>的因子。</p>
+<p>现在用一张图来划分这两种<tex>$n$</tex>：</p>
 <p><img alt="p11" src="https://git.oschina.net/riteme/blogimg/raw/master/nmodp/example-with-p11.svg" /></p>
-<p>上图是<mathjax>$p = 11$</mathjax>时的情况。图上的每一个黑点<mathjax>$(x,y)$</mathjax>表示<mathjax>$y \mid x$</mathjax>。这样每一个横坐标上方的点的纵坐标就是它的因子。图中并没有画出<mathjax>$1$</mathjax>的所有倍数。红色的直线是<mathjax>$y = 11 - x$</mathjax>，蓝色的直线是<mathjax>$y = 2 \times 11 - 2x$</mathjax>。此时红色直线和蓝色直线之间所夹的一片绿色区域（不包含蓝色直线和红色直线）中的点的纵坐标<mathjax>$n$</mathjax>满足<mathjax>$p \mathrm{\;mod\;} n &gt; n / 2$</mathjax>，而剩余的黄色区域（包括蓝色直线）中的点的纵坐标<mathjax>$n$</mathjax>则满足<mathjax>$p \mathrm{\;mod\;} n \leqslant n / 2$</mathjax>。<br />
-从一个给定的<mathjax>$n$</mathjax>开始迭代，每次只能向下走到另外一个纵坐标。如果走到了黄色区域，那么此时<mathjax>$n$</mathjax>的规模减半。注意到对于固定的<mathjax>$n$</mathjax>，纵坐标为<mathjax>$n$</mathjax>的点之间的间距是相同的，而红线和蓝线之间的距离和蓝线到直线<mathjax>$y = p$</mathjax>的距离也是相同的。那么<mathjax>$p$</mathjax>随机的情况下，<mathjax>$p \mathrm{\;mod\;} n \leqslant n / 2$</mathjax>的概率可以近似为<mathjax>$1/2$</mathjax>。意思是在<mathjax>$n$</mathjax>和<mathjax>$p$</mathjax>都随机的情况下，期望<mathjax>$\sum_{k = 1}^\infty k/2^k = 2$</mathjax>步就可以使<mathjax>$n$</mathjax>规模减半。如果不那么严谨的话，可以认为期望步数是<mathjax>$O(\log n)$</mathjax>的。</p>
+<p>上图是<tex>$p = 11$</tex>时的情况。图上的每一个黑点<tex>$(x,y)$</tex>表示<tex>$y \mid x$</tex>。这样每一个横坐标上方的点的纵坐标就是它的因子。图中并没有画出<tex>$1$</tex>的所有倍数。红色的直线是<tex>$y = 11 - x$</tex>，蓝色的直线是<tex>$y = 2 \times 11 - 2x$</tex>。此时红色直线和蓝色直线之间所夹的一片绿色区域（不包含蓝色直线和红色直线）中的点的纵坐标<tex>$n$</tex>满足<tex>$p \mathrm{\;mod\;} n &gt; n / 2$</tex>，而剩余的黄色区域（包括蓝色直线）中的点的纵坐标<tex>$n$</tex>则满足<tex>$p \mathrm{\;mod\;} n \leqslant n / 2$</tex>。<br />
+从一个给定的<tex>$n$</tex>开始迭代，每次只能向下走到另外一个纵坐标。如果走到了黄色区域，那么此时<tex>$n$</tex>的规模减半。注意到对于固定的<tex>$n$</tex>，纵坐标为<tex>$n$</tex>的点之间的间距是相同的，而红线和蓝线之间的距离和蓝线到直线<tex>$y = p$</tex>的距离也是相同的。那么<tex>$p$</tex>随机的情况下，<tex>$p \mathrm{\;mod\;} n \leqslant n / 2$</tex>的概率可以近似为<tex>$1/2$</tex>。意思是在<tex>$n$</tex>和<tex>$p$</tex>都随机的情况下，期望<tex>$\sum_{k = 1}^\infty k/2^k = 2$</tex>步就可以使<tex>$n$</tex>规模减半。如果不那么严谨的话，可以认为期望步数是<tex>$O(\log n)$</tex>的。</p>
 <div class="footnote">
 <hr />
 <ol>

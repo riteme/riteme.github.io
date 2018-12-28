@@ -56,26 +56,26 @@
 </blockquote>
 <h2 id="_2">基本概念</h2>
 <p><img alt="network-1" src="https://gitee.com/riteme/blogimg/raw/master/resist/network-1.svg" /></p>
-<p>上图是电阻网络的一个示意图。其中矩形表示纯电阻，上面可能会标注它的阻值。粗线表示导线，导线的交点通常会是接线柱之类的东西，称之为节点，可以连入外部电路。我们的目标是，给出这个网络的结构、每个电阻的阻值以及接入外电路的两个节点（一个是电流流入的位置，另一个是电流流出的位置，如上图中的左边和右边两个不闭合的导线），计算出它的等效电阻，即电流经过电阻网络时的电压 <mathjax>$U$</mathjax> 与流入电流 <mathjax>$I$</mathjax> 之比。例如，上图表示的电阻网络的等效电阻为 <mathjax>$159/71\;\Omega \approx 2.239\;\Omega$</mathjax>。</p>
-<p>为了方便表示，这里将电阻网络转为图论的模型。图中一共有 <mathjax>$n$</mathjax> 个节点和 <mathjax>$m$</mathjax> 个电阻，每个节点对应图中的点，每个电阻对应图中的一条边，用边权表示电阻的阻值。例如，上面展示的电阻网络可以表示为下面的形式：</p>
+<p>上图是电阻网络的一个示意图。其中矩形表示纯电阻，上面可能会标注它的阻值。粗线表示导线，导线的交点通常会是接线柱之类的东西，称之为节点，可以连入外部电路。我们的目标是，给出这个网络的结构、每个电阻的阻值以及接入外电路的两个节点（一个是电流流入的位置，另一个是电流流出的位置，如上图中的左边和右边两个不闭合的导线），计算出它的等效电阻，即电流经过电阻网络时的电压 <tex>$U$</tex> 与流入电流 <tex>$I$</tex> 之比。例如，上图表示的电阻网络的等效电阻为 <tex>$159/71\;\Omega \approx 2.239\;\Omega$</tex>。</p>
+<p>为了方便表示，这里将电阻网络转为图论的模型。图中一共有 <tex>$n$</tex> 个节点和 <tex>$m$</tex> 个电阻，每个节点对应图中的点，每个电阻对应图中的一条边，用边权表示电阻的阻值。例如，上面展示的电阻网络可以表示为下面的形式：</p>
 <p><img alt="network-2" src="https://gitee.com/riteme/blogimg/raw/master/resist/network-2.svg" /></p>
-<p>接入电路后，每个电阻上都会通有电流，记为 <mathjax>$I$</mathjax>。电流有方向之分，如果某条边 <mathjax>$(u,\;v)$</mathjax> 上的的电流是从 <mathjax>$u$</mathjax> 流向 <mathjax>$v$</mathjax> 的，那么 <mathjax>$I_{uv} = -I_{vu} \geqslant 0$</mathjax>。设这条边的电阻为 <mathjax>$R_{uv} = R_{vu}$</mathjax>，那么它的电压为 <mathjax>$U_{uv} = -U_{vu} = I_{uv}R_{uv}$</mathjax>。</p>
-<p>为了方便，我们称外部电流流入网络的节点为源点 <mathjax>$s$</mathjax>，从网络流出到外部电路的节点为汇点 <mathjax>$t$</mathjax>，<mathjax>$(s,\;t)$</mathjax> 称作一个点对。显然不同的源点和汇点计算出来的等效电阻会是不同的。</p>
+<p>接入电路后，每个电阻上都会通有电流，记为 <tex>$I$</tex>。电流有方向之分，如果某条边 <tex>$(u,\;v)$</tex> 上的的电流是从 <tex>$u$</tex> 流向 <tex>$v$</tex> 的，那么 <tex>$I_{uv} = -I_{vu} \geqslant 0$</tex>。设这条边的电阻为 <tex>$R_{uv} = R_{vu}$</tex>，那么它的电压为 <tex>$U_{uv} = -U_{vu} = I_{uv}R_{uv}$</tex>。</p>
+<p>为了方便，我们称外部电流流入网络的节点为源点 <tex>$s$</tex>，从网络流出到外部电路的节点为汇点 <tex>$t$</tex>，<tex>$(s,\;t)$</tex> 称作一个点对。显然不同的源点和汇点计算出来的等效电阻会是不同的。</p>
 <h2 id="_3">计算一个点对</h2>
 <p>首先我们需要知道比较直观的基尔霍夫定律：</p>
 <blockquote>
 <p><strong>基尔霍夫电流定律</strong>：所有进入某节点的电流的总和等于所有离开该节点的电流的总和。</p>
 <p><strong>基尔霍夫电压定律</strong>：沿着闭合回路所有元件两端的电压的代数和等于零。</p>
 </blockquote>
-<p>根据这两点，如何求出等效电阻呢？首先可以假定流入的电流为 <mathjax>$1\;\mathrm{A}$</mathjax>，然后就只需求出源点到汇点的电压即可。根据电压定律，我们可以知道从源点到汇点的任意一条路径的电压是定值。原因非常简单，对于两条不同的路径：</p>
+<p>根据这两点，如何求出等效电阻呢？首先可以假定流入的电流为 <tex>$1\;\mathrm{A}$</tex>，然后就只需求出源点到汇点的电压即可。根据电压定律，我们可以知道从源点到汇点的任意一条路径的电压是定值。原因非常简单，对于两条不同的路径：</p>
 <p><img alt="network-3" src="https://gitee.com/riteme/blogimg/raw/master/resist/network-3.svg" /></p>
-<p>如果存在不重合的部分，我们对这个部分进行调整，在电压不变的情况下，将一条路径变为另外一条路径。如上图，设左边的分岔点为 <mathjax>$A$</mathjax>，右边的分岔点为 <mathjax>$B$</mathjax>，由于回路电压为 <mathjax>$0$</mathjax>，所以下面那一条从 <mathjax>$A$</mathjax> 到 <mathjax>$B$</mathjax> 的路径的电压 <mathjax>$U_1$</mathjax> 与从 <mathjax>$B$</mathjax> 到 <mathjax>$A$</mathjax> 的电压 <mathjax>$U_2$</mathjax> 的代数和为 <mathjax>$0$</mathjax>，即 <mathjax>$U_1 + U_2 = 0$</mathjax>，而靠上面的从 <mathjax>$A$</mathjax> 到 <mathjax>$B$</mathjax> 的电压 <mathjax>$U_3 = -U_2$</mathjax>，因此 <mathjax>$U_1 = U_3$</mathjax>，从而发现上述规律。由于假定流入的电流是 <mathjax>$1\;\mathrm{A}$</mathjax>，所以等效电阻等于电压的绝对值。</p>
-<p>为了求出电压，我们可以考虑求出每个电阻上的电流的情况。根据电流定律，对于每个节点，我们可以列出 <mathjax>$n$</mathjax> 个方程。不过很不幸，这 <mathjax>$n$</mathjax> 个方程中任意一个都可以被剩下 <mathjax>$n - 1$</mathjax> 个方程表示出来，意思是我们只有 <mathjax>$n - 1$</mathjax> 个方程是真正有用的。边数一共有 <mathjax>$m$</mathjax> 条，也就是 <mathjax>$m$</mathjax> 个未知数，还需要找出 <mathjax>$m - n + 1$</mathjax> 个线性独立的方程才可以解出具体情况。碰巧的是，如果网络是连通的，那么对于它的任意一棵生成树，刚好有 <mathjax>$m - n + 1$</mathjax> 条非树边，每条非树边均对应了一个环，可以依此和电压定律列出剩下的方程。</p>
-<p>得到了 <mathjax>$m$</mathjax> 个方程，就可以直接使用高斯消元在 <mathjax>$\Theta(m^3)$</mathjax> 的时间复杂度内求出电流的分配情况了。得到每个电阻上经过的电流后，从源点到汇点任意找一条路径计算电压，就可以知道等效电阻。一般我们会选取 DFS 生成树来列出电压的方程，主要的原因就是 DFS 生成树上的非树边都是返祖边，方便遍历对应的环上的所有的边。</p>
+<p>如果存在不重合的部分，我们对这个部分进行调整，在电压不变的情况下，将一条路径变为另外一条路径。如上图，设左边的分岔点为 <tex>$A$</tex>，右边的分岔点为 <tex>$B$</tex>，由于回路电压为 <tex>$0$</tex>，所以下面那一条从 <tex>$A$</tex> 到 <tex>$B$</tex> 的路径的电压 <tex>$U_1$</tex> 与从 <tex>$B$</tex> 到 <tex>$A$</tex> 的电压 <tex>$U_2$</tex> 的代数和为 <tex>$0$</tex>，即 <tex>$U_1 + U_2 = 0$</tex>，而靠上面的从 <tex>$A$</tex> 到 <tex>$B$</tex> 的电压 <tex>$U_3 = -U_2$</tex>，因此 <tex>$U_1 = U_3$</tex>，从而发现上述规律。由于假定流入的电流是 <tex>$1\;\mathrm{A}$</tex>，所以等效电阻等于电压的绝对值。</p>
+<p>为了求出电压，我们可以考虑求出每个电阻上的电流的情况。根据电流定律，对于每个节点，我们可以列出 <tex>$n$</tex> 个方程。不过很不幸，这 <tex>$n$</tex> 个方程中任意一个都可以被剩下 <tex>$n - 1$</tex> 个方程表示出来，意思是我们只有 <tex>$n - 1$</tex> 个方程是真正有用的。边数一共有 <tex>$m$</tex> 条，也就是 <tex>$m$</tex> 个未知数，还需要找出 <tex>$m - n + 1$</tex> 个线性独立的方程才可以解出具体情况。碰巧的是，如果网络是连通的，那么对于它的任意一棵生成树，刚好有 <tex>$m - n + 1$</tex> 条非树边，每条非树边均对应了一个环，可以依此和电压定律列出剩下的方程。</p>
+<p>得到了 <tex>$m$</tex> 个方程，就可以直接使用高斯消元在 <tex>$\Theta(m^3)$</tex> 的时间复杂度内求出电流的分配情况了。得到每个电阻上经过的电流后，从源点到汇点任意找一条路径计算电压，就可以知道等效电阻。一般我们会选取 DFS 生成树来列出电压的方程，主要的原因就是 DFS 生成树上的非树边都是返祖边，方便遍历对应的环上的所有的边。</p>
 <p>我使用 Python 实现了上面所说的过程。不过偷了懒，是用 SymPy 解的方程......所以算的不是很快。具体的代码可以<a href="https://github.com/riteme/toys/blob/master/resistance-calcuator/resist.py">查看这里</a>。</p>
 <h2 id="_4">计算所有点对</h2>
-<p>想到可以计算所有点对等效电阻的初衷是由于计算不同点对时的列出方程组其实没有多大差别，只有源点和汇点列出的电流方程存在着一个常数。根据这一点，我们不妨多写几个变量 <mathjax>$x_1,\;x_2,\;...,\;x_{n - 1}$</mathjax>，表示每个节点从外部电路得到的电流。之所以只到 <mathjax>$x_{n - 1}$</mathjax>，是因为电流方程只列出了 <mathjax>$n - 1$</mathjax> 个。如果 <mathjax>$x_i = 0$</mathjax> 表示节点 <mathjax>$i$</mathjax> 没有直接与外部电路相连，而 <mathjax>$x_i = 1$</mathjax> 和 <mathjax>$x_i = -1$</mathjax> 分别表示从外部电路流入和流出到外部电路。在不预先指定源点和汇点的情况下把它们当做已知量写入方程。虽然现在有 <mathjax>$m + n - 1$</mathjax> 个未知数却只有 <mathjax>$m$</mathjax> 个方程，但是这个时候执行高斯消元可以得到每个电流与 <mathjax>$x_1,\;...,\;x_{n-1}$</mathjax> 的关系（如 <mathjax>$I_1 = 2x_1 + 0.3x_3$</mathjax>）。如果再给出 <mathjax>$x_1,\;...,\;x_{n - 1}$</mathjax> 的值，就可以直接算出每个电流的具体值。</p>
-<p>现在来指定源点 <mathjax>$s$</mathjax> 和汇点 <mathjax>$t$</mathjax>。相当于之前新设的变量中，令 <mathjax>$x_s = 1$</mathjax> 和 <mathjax>$x_t = -1$</mathjax>，其它的均为 <mathjax>$0$</mathjax>。因此只用 <mathjax>$\Theta(n)$</mathjax> 的时间就可以计算出所有电流值，也就可以算出电阻。由于点对总数只有 <mathjax>$\Theta(n^2)$</mathjax> 对，因此高斯消元后只需要 <mathjax>$\Theta(n^3)$</mathjax> 的时间就可以计算所有的等效电阻。在连通图中，存在 <mathjax>$m \geqslant n - 1$</mathjax>，因此总的复杂度依然为 <mathjax>$\Theta(m^3)$</mathjax>。</p>
+<p>想到可以计算所有点对等效电阻的初衷是由于计算不同点对时的列出方程组其实没有多大差别，只有源点和汇点列出的电流方程存在着一个常数。根据这一点，我们不妨多写几个变量 <tex>$x_1,\;x_2,\;...,\;x_{n - 1}$</tex>，表示每个节点从外部电路得到的电流。之所以只到 <tex>$x_{n - 1}$</tex>，是因为电流方程只列出了 <tex>$n - 1$</tex> 个。如果 <tex>$x_i = 0$</tex> 表示节点 <tex>$i$</tex> 没有直接与外部电路相连，而 <tex>$x_i = 1$</tex> 和 <tex>$x_i = -1$</tex> 分别表示从外部电路流入和流出到外部电路。在不预先指定源点和汇点的情况下把它们当做已知量写入方程。虽然现在有 <tex>$m + n - 1$</tex> 个未知数却只有 <tex>$m$</tex> 个方程，但是这个时候执行高斯消元可以得到每个电流与 <tex>$x_1,\;...,\;x_{n-1}$</tex> 的关系（如 <tex>$I_1 = 2x_1 + 0.3x_3$</tex>）。如果再给出 <tex>$x_1,\;...,\;x_{n - 1}$</tex> 的值，就可以直接算出每个电流的具体值。</p>
+<p>现在来指定源点 <tex>$s$</tex> 和汇点 <tex>$t$</tex>。相当于之前新设的变量中，令 <tex>$x_s = 1$</tex> 和 <tex>$x_t = -1$</tex>，其它的均为 <tex>$0$</tex>。因此只用 <tex>$\Theta(n)$</tex> 的时间就可以计算出所有电流值，也就可以算出电阻。由于点对总数只有 <tex>$\Theta(n^2)$</tex> 对，因此高斯消元后只需要 <tex>$\Theta(n^3)$</tex> 的时间就可以计算所有的等效电阻。在连通图中，存在 <tex>$m \geqslant n - 1$</tex>，因此总的复杂度依然为 <tex>$\Theta(m^3)$</tex>。</p>
 <p>我的 C++ 实现可以在<a href="https://github.com/riteme/toys/blob/master/resistance-calcuator/resistances-of-all-pairs.cpp">这里</a>查看。</p>
             <hr/>
             <div id="comments"></div>

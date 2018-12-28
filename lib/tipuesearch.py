@@ -55,6 +55,18 @@ def add_index_info(title, text, tags, url):
     indices[title]["url"] = url
 
 
+def del_index_info(title):
+    """删除索引数据
+    title (str): 标题
+    remark: 如果原本就没有索引数据，则无操作
+    """
+
+    global indices
+
+    if title in indices:
+        indices.pop(title)
+
+
 def generate_index():
     """生成索引数据
     """

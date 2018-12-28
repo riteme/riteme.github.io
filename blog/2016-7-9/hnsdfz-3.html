@@ -61,10 +61,10 @@
 </pre></div>
 </td></tr></table>
 
-<p>其中，每一个由小写字母组成的单词是一个变量，对应着密码锁上的一个按钮。由于按钮只能按下或不按下，于是你可以认为每个变量是一个布尔类型的（即只有<mathjax>$\text{true}$</mathjax>和<mathjax>$\text{false}$</mathjax>之分）<br />
-其余的字符就只有<code>&amp;</code>、<code>|</code>、<code>^</code>、<code>!</code>和左右小括号。dyx发现括号是用来优先运算的，意思是这是一个会将所有变量进行计算的表达式，并且优先计算括号中的子表达式。同时，<code>&amp;</code>、<code>|</code>、<code>^</code>、<code>!</code>都是运算符，它们分别对应的是<strong>逻辑与</strong>、<strong>逻辑或</strong>、<strong>逻辑异或</strong>和<strong>逻辑非</strong>。其中前三者运算优先级一致，当它们在同一级出现时会从左至右运算，逻辑非的优先级比它们高。当每一个变量都有相应的值时，整个表达式就会就会进行计算，并给出一个布尔值。dyx还发现，当整个表达式的值为<mathjax>$\text{true}$</mathjax>时，密码锁就会打开。<br />
-很明显，整个密码锁的输入方案共有<mathjax>$2^n$</mathjax>种，其中<mathjax>$n$</mathjax>是表达式中变量的数量。于是dyx瞬间明白为什么他一次就可以将这个密码锁解开了。然而dyx是一个勇于探究的人，他想知道到底有多少中方法可以解开一个密码锁。<br />
-不知为何，dyx又发现了一火车的密码锁。坚持不懈的dyx不停的计算着每一个密码锁能解开的方案数......由于密码锁的表达式越来越长并且人脑计算量是<mathjax>$\Theta(1)$</mathjax>的，dyx不得不需要一个程序来帮助他计算这个方案数。</p>
+<p>其中，每一个由小写字母组成的单词是一个变量，对应着密码锁上的一个按钮。由于按钮只能按下或不按下，于是你可以认为每个变量是一个布尔类型的（即只有<tex>$\text{true}$</tex>和<tex>$\text{false}$</tex>之分）<br />
+其余的字符就只有<code>&amp;</code>、<code>|</code>、<code>^</code>、<code>!</code>和左右小括号。dyx发现括号是用来优先运算的，意思是这是一个会将所有变量进行计算的表达式，并且优先计算括号中的子表达式。同时，<code>&amp;</code>、<code>|</code>、<code>^</code>、<code>!</code>都是运算符，它们分别对应的是<strong>逻辑与</strong>、<strong>逻辑或</strong>、<strong>逻辑异或</strong>和<strong>逻辑非</strong>。其中前三者运算优先级一致，当它们在同一级出现时会从左至右运算，逻辑非的优先级比它们高。当每一个变量都有相应的值时，整个表达式就会就会进行计算，并给出一个布尔值。dyx还发现，当整个表达式的值为<tex>$\text{true}$</tex>时，密码锁就会打开。<br />
+很明显，整个密码锁的输入方案共有<tex>$2^n$</tex>种，其中<tex>$n$</tex>是表达式中变量的数量。于是dyx瞬间明白为什么他一次就可以将这个密码锁解开了。然而dyx是一个勇于探究的人，他想知道到底有多少中方法可以解开一个密码锁。<br />
+不知为何，dyx又发现了一火车的密码锁。坚持不懈的dyx不停的计算着每一个密码锁能解开的方案数......由于密码锁的表达式越来越长并且人脑计算量是<tex>$\Theta(1)$</tex>的，dyx不得不需要一个程序来帮助他计算这个方案数。</p>
 <h3 id="_2">输入格式</h3>
 <p>每个测试数据点有多个表达式。文件以<code>EOF</code>结束。<br />
 每一个表达式占一行，且中间只有小写字母和<code>&amp;</code>、<code>|</code>、<code>^</code>、<code>!</code>、<code>(</code>、<code>)</code>。<br />
@@ -72,93 +72,93 @@
 <table>
 <thead>
 <tr>
-<th align="center"><mathjax>$a$</mathjax></th>
-<th align="center"><mathjax>$b$</mathjax></th>
-<th align="center"><mathjax>$a$</mathjax> <code>&amp;</code> <mathjax>$b$</mathjax> (<mathjax>$a \land b$</mathjax>)</th>
+<th align="center"><tex>$a$</tex></th>
+<th align="center"><tex>$b$</tex></th>
+<th align="center"><tex>$a$</tex> <code>&amp;</code> <tex>$b$</tex> (<tex>$a \land b$</tex>)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center"><mathjax>$\text{true}$</mathjax></td>
-<td align="center"><mathjax>$\text{true}$</mathjax></td>
-<td align="center"><mathjax>$\text{true}$</mathjax></td>
+<td align="center"><tex>$\text{true}$</tex></td>
+<td align="center"><tex>$\text{true}$</tex></td>
+<td align="center"><tex>$\text{true}$</tex></td>
 </tr>
 <tr>
-<td align="center"><mathjax>$\text{true}$</mathjax></td>
-<td align="center"><mathjax>$\text{false}$</mathjax></td>
-<td align="center"><mathjax>$\text{false}$</mathjax></td>
+<td align="center"><tex>$\text{true}$</tex></td>
+<td align="center"><tex>$\text{false}$</tex></td>
+<td align="center"><tex>$\text{false}$</tex></td>
 </tr>
 <tr>
-<td align="center"><mathjax>$\text{false}$</mathjax></td>
-<td align="center"><mathjax>$\text{true}$</mathjax></td>
-<td align="center"><mathjax>$\text{false}$</mathjax></td>
+<td align="center"><tex>$\text{false}$</tex></td>
+<td align="center"><tex>$\text{true}$</tex></td>
+<td align="center"><tex>$\text{false}$</tex></td>
 </tr>
 <tr>
-<td align="center"><mathjax>$\text{false}$</mathjax></td>
-<td align="center"><mathjax>$\text{false}$</mathjax></td>
-<td align="center"><mathjax>$\text{false}$</mathjax></td>
+<td align="center"><tex>$\text{false}$</tex></td>
+<td align="center"><tex>$\text{false}$</tex></td>
+<td align="center"><tex>$\text{false}$</tex></td>
 </tr>
 </tbody>
 </table>
 <table>
 <thead>
 <tr>
-<th align="center"><mathjax>$a$</mathjax></th>
-<th align="center"><mathjax>$b$</mathjax></th>
-<th align="center"><mathjax>$a$</mathjax> <code>|</code> <mathjax>$b$</mathjax> (<mathjax>$a \lor b$</mathjax>)</th>
+<th align="center"><tex>$a$</tex></th>
+<th align="center"><tex>$b$</tex></th>
+<th align="center"><tex>$a$</tex> <code>|</code> <tex>$b$</tex> (<tex>$a \lor b$</tex>)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center"><mathjax>$\text{true}$</mathjax></td>
-<td align="center"><mathjax>$\text{true}$</mathjax></td>
-<td align="center"><mathjax>$\text{true}$</mathjax></td>
+<td align="center"><tex>$\text{true}$</tex></td>
+<td align="center"><tex>$\text{true}$</tex></td>
+<td align="center"><tex>$\text{true}$</tex></td>
 </tr>
 <tr>
-<td align="center"><mathjax>$\text{true}$</mathjax></td>
-<td align="center"><mathjax>$\text{false}$</mathjax></td>
-<td align="center"><mathjax>$\text{true}$</mathjax></td>
+<td align="center"><tex>$\text{true}$</tex></td>
+<td align="center"><tex>$\text{false}$</tex></td>
+<td align="center"><tex>$\text{true}$</tex></td>
 </tr>
 <tr>
-<td align="center"><mathjax>$\text{false}$</mathjax></td>
-<td align="center"><mathjax>$\text{true}$</mathjax></td>
-<td align="center"><mathjax>$\text{true}$</mathjax></td>
+<td align="center"><tex>$\text{false}$</tex></td>
+<td align="center"><tex>$\text{true}$</tex></td>
+<td align="center"><tex>$\text{true}$</tex></td>
 </tr>
 <tr>
-<td align="center"><mathjax>$\text{false}$</mathjax></td>
-<td align="center"><mathjax>$\text{false}$</mathjax></td>
-<td align="center"><mathjax>$\text{false}$</mathjax></td>
+<td align="center"><tex>$\text{false}$</tex></td>
+<td align="center"><tex>$\text{false}$</tex></td>
+<td align="center"><tex>$\text{false}$</tex></td>
 </tr>
 </tbody>
 </table>
 <table>
 <thead>
 <tr>
-<th align="center"><mathjax>$a$</mathjax></th>
-<th align="center"><mathjax>$b$</mathjax></th>
-<th align="center"><mathjax>$a$</mathjax> <code>^</code> <mathjax>$b$</mathjax> (<mathjax>$a \oplus b$</mathjax>)</th>
+<th align="center"><tex>$a$</tex></th>
+<th align="center"><tex>$b$</tex></th>
+<th align="center"><tex>$a$</tex> <code>^</code> <tex>$b$</tex> (<tex>$a \oplus b$</tex>)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center"><mathjax>$\text{true}$</mathjax></td>
-<td align="center"><mathjax>$\text{true}$</mathjax></td>
-<td align="center"><mathjax>$\text{false}$</mathjax></td>
+<td align="center"><tex>$\text{true}$</tex></td>
+<td align="center"><tex>$\text{true}$</tex></td>
+<td align="center"><tex>$\text{false}$</tex></td>
 </tr>
 <tr>
-<td align="center"><mathjax>$\text{true}$</mathjax></td>
-<td align="center"><mathjax>$\text{false}$</mathjax></td>
-<td align="center"><mathjax>$\text{true}$</mathjax></td>
+<td align="center"><tex>$\text{true}$</tex></td>
+<td align="center"><tex>$\text{false}$</tex></td>
+<td align="center"><tex>$\text{true}$</tex></td>
 </tr>
 <tr>
-<td align="center"><mathjax>$\text{false}$</mathjax></td>
-<td align="center"><mathjax>$\text{true}$</mathjax></td>
-<td align="center"><mathjax>$\text{true}$</mathjax></td>
+<td align="center"><tex>$\text{false}$</tex></td>
+<td align="center"><tex>$\text{true}$</tex></td>
+<td align="center"><tex>$\text{true}$</tex></td>
 </tr>
 <tr>
-<td align="center"><mathjax>$\text{false}$</mathjax></td>
-<td align="center"><mathjax>$\text{false}$</mathjax></td>
-<td align="center"><mathjax>$\text{false}$</mathjax></td>
+<td align="center"><tex>$\text{false}$</tex></td>
+<td align="center"><tex>$\text{false}$</tex></td>
+<td align="center"><tex>$\text{false}$</tex></td>
 </tr>
 </tbody>
 </table>
@@ -166,25 +166,25 @@
 <table>
 <thead>
 <tr>
-<th align="center"><mathjax>$a$</mathjax></th>
-<th align="center">!<mathjax>$a$</mathjax> (<mathjax>$\lnot a$</mathjax>)</th>
+<th align="center"><tex>$a$</tex></th>
+<th align="center">!<tex>$a$</tex> (<tex>$\lnot a$</tex>)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center"><mathjax>$\text{true}$</mathjax></td>
-<td align="center"><mathjax>$\text{false}$</mathjax></td>
+<td align="center"><tex>$\text{true}$</tex></td>
+<td align="center"><tex>$\text{false}$</tex></td>
 </tr>
 <tr>
-<td align="center"><mathjax>$\text{false}$</mathjax></td>
-<td align="center"><mathjax>$\text{true}$</mathjax></td>
+<td align="center"><tex>$\text{false}$</tex></td>
+<td align="center"><tex>$\text{true}$</tex></td>
 </tr>
 </tbody>
 </table>
 <p>输入保证表达式是有效的，且表达式中不存在缺少参数的运算符和空的括号。<br />
 为了防止此题变成不可做的NP-hard问题，输入保证表达式中每一个变量名只出现一次。</p>
 <h3 id="_3">输出格式</h3>
-<p>对于每一个表达式，输出能够解开它的方案总数。由于答案可能过大，因此将答案对<mathjax>$10^9 + 7$</mathjax>取模后输出。<br />
+<p>对于每一个表达式，输出能够解开它的方案总数。由于答案可能过大，因此将答案对<tex>$10^9 + 7$</tex>取模后输出。<br />
 一种方案即指对每一个变量给定一个值。<br />
 两种方案不同当且仅当至少一个变量所给定的值不同。</p>
 <h3 id="_4">样例输入</h3>
@@ -206,17 +206,17 @@ a|!(b|c)
 </td></tr></table>
 
 <h3 id="_6">数据范围及提示</h3>
-<p>对于第一个表达式，只有<mathjax>$a = \text{true}, b = \text{true}$</mathjax>才为<mathjax>$\text{true}$</mathjax>。<br />
-对于第二个表达式，只要三者有一个变量为<mathjax>$\text{true}$</mathjax>就是<mathjax>$\text{true}$</mathjax>。<br />
-对于第三个表达式，先运算<code>b|c</code>，然后对其取反，最后与<mathjax>$a$</mathjax>做逻辑与。</p>
-<p>以下<mathjax>$n$</mathjax>表示变量数量，<mathjax>$T$</mathjax>表示测试数据组数，<mathjax>$L$</mathjax>表示表达式的总长度。<br />
-对于<mathjax>$10\%$</mathjax>的数据，<mathjax>$n \le 10,\; T = 15$</mathjax>。<br />
-对于另外<mathjax>$10\%$</mathjax>的数据，只有逻辑或运算，没有括号。<br />
-对于另外<mathjax>$10\%$</mathjax>的数据，不存在逻辑非和括号。<br />
-对于另外<mathjax>$20\%$</mathjax>的数据，不存在括号。<br />
-对于另外<mathjax>$20\%$</mathjax>的数据，<mathjax>$n \le 500$</mathjax>。<br />
-对于<mathjax>$100\%$</mathjax>的数据，变量名长度<mathjax>$\le 4$</mathjax>，<mathjax>$L \le 10^6$</mathjax>，<mathjax>$n \le 3\times10^5$</mathjax>。<br />
-其中<mathjax>$90\%$</mathjax>的数据，<mathjax>$T \le 5$</mathjax>。</p>
+<p>对于第一个表达式，只有<tex>$a = \text{true}, b = \text{true}$</tex>才为<tex>$\text{true}$</tex>。<br />
+对于第二个表达式，只要三者有一个变量为<tex>$\text{true}$</tex>就是<tex>$\text{true}$</tex>。<br />
+对于第三个表达式，先运算<code>b|c</code>，然后对其取反，最后与<tex>$a$</tex>做逻辑与。</p>
+<p>以下<tex>$n$</tex>表示变量数量，<tex>$T$</tex>表示测试数据组数，<tex>$L$</tex>表示表达式的总长度。<br />
+对于<tex>$10\%$</tex>的数据，<tex>$n \le 10,\; T = 15$</tex>。<br />
+对于另外<tex>$10\%$</tex>的数据，只有逻辑或运算，没有括号。<br />
+对于另外<tex>$10\%$</tex>的数据，不存在逻辑非和括号。<br />
+对于另外<tex>$20\%$</tex>的数据，不存在括号。<br />
+对于另外<tex>$20\%$</tex>的数据，<tex>$n \le 500$</tex>。<br />
+对于<tex>$100\%$</tex>的数据，变量名长度<tex>$\le 4$</tex>，<tex>$L \le 10^6$</tex>，<tex>$n \le 3\times10^5$</tex>。<br />
+其中<tex>$90\%$</tex>的数据，<tex>$T \le 5$</tex>。</p>
 <h2 id="b-unstring-link">B. UnString (Link)</h2>
 <h3 id="_7">题目描述</h3>
 <p>ZY很累。<br />
@@ -227,11 +227,11 @@ a|!(b|c)
 还有Blue傻逼丢博客的字符对照表，如果地址和博客的字符对照表相似<br />
 那么ZY就知道他得到的地址是对的，虽然他仍然不能知道地址是啥。</p>
 <h3 id="_8">输入格式</h3>
-<p>第一行一个字符串<mathjax>$S$</mathjax>，字符串<mathjax>$S$</mathjax>是由<code>a-b</code>组成的字符串<br />
-第二行一个字符串<mathjax>$C$</mathjax>，字符串<mathjax>$C$</mathjax>是由<code>a-b</code>和<code>?</code>组成的字符串<br />
+<p>第一行一个字符串<tex>$S$</tex>，字符串<tex>$S$</tex>是由<code>a-b</code>组成的字符串<br />
+第二行一个字符串<tex>$C$</tex>，字符串<tex>$C$</tex>是由<code>a-b</code>和<code>?</code>组成的字符串<br />
 <strong>多组数据输入</strong> (<strong>Link这货坑爹</strong>)</p>
 <h3 id="_9">输出格式</h3>
-<p>我们将<code>?</code>认为是任何字符，询问<mathjax>$C$</mathjax>是否是<mathjax>$S$</mathjax>的子串<br />
+<p>我们将<code>?</code>认为是任何字符，询问<tex>$C$</tex>是否是<tex>$S$</tex>的子串<br />
 输出<code>YES</code>或者<code>NO</code></p>
 <h3 id="_10">样例输入</h3>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
@@ -246,18 +246,18 @@ a?c
 </td></tr></table>
 
 <h3 id="_12">数据范围及提示</h3>
-<p><mathjax>$30\%$</mathjax> <mathjax>$S$</mathjax>长度小于<mathjax>$2000$</mathjax>，<mathjax>$C$</mathjax>长度小于<mathjax>$20$</mathjax><br />
-<mathjax>$60\%$</mathjax> <mathjax>$S$</mathjax>长度小于<mathjax>$100000$</mathjax>，<mathjax>$C$</mathjax>长度小于<mathjax>$500$</mathjax><br />
-<mathjax>$100\%$</mathjax> <mathjax>$S$</mathjax>长度不超过<mathjax>$200000$</mathjax>,<mathjax>$C$</mathjax>长度不超过<mathjax>$2000$</mathjax></p>
+<p><tex>$30\%$</tex> <tex>$S$</tex>长度小于<tex>$2000$</tex>，<tex>$C$</tex>长度小于<tex>$20$</tex><br />
+<tex>$60\%$</tex> <tex>$S$</tex>长度小于<tex>$100000$</tex>，<tex>$C$</tex>长度小于<tex>$500$</tex><br />
+<tex>$100\%$</tex> <tex>$S$</tex>长度不超过<tex>$200000$</tex>,<tex>$C$</tex>长度不超过<tex>$2000$</tex></p>
 <h2 id="c-ruanxingzhi">C. 赌徒 (ruanxingzhi)</h2>
 <h3 id="_13">题目描述</h3>
 <p>HNSDFZ有一大批赌徒。他们分布在化学组、生物组、机房……这些赌场有道路相连，形成一棵<strong>树</strong>的结构。</p>
-<p>赌场里的人越来越多。如果记某个赌场第<mathjax>$n$</mathjax>天的人数为<mathjax>$F_n$</mathjax>，则有<mathjax>$F_n=2F_{n-2}+3F_{n-1}$</mathjax>。每个赌场的<mathjax>$F_1$</mathjax>和<mathjax>$F_2$</mathjax>是预先知道的。当然，赌徒的数量不能太多。每个赌场都会不停地清理人员，做法是把每天的人数<strong>模<mathjax>$2333$</mathjax></strong>。</p>
-<p>现在是第<mathjax>$m$</mathjax>天，3班的某个英语老师要打击赌徒。她准备打击一条链上的所有赌徒。但是她并不知道自己最多能打到多少个赌徒，所以把你捆过来算一算。</p>
+<p>赌场里的人越来越多。如果记某个赌场第<tex>$n$</tex>天的人数为<tex>$F_n$</tex>，则有<tex>$F_n=2F_{n-2}+3F_{n-1}$</tex>。每个赌场的<tex>$F_1$</tex>和<tex>$F_2$</tex>是预先知道的。当然，赌徒的数量不能太多。每个赌场都会不停地清理人员，做法是把每天的人数<strong>模<tex>$2333$</tex></strong>。</p>
+<p>现在是第<tex>$m$</tex>天，3班的某个英语老师要打击赌徒。她准备打击一条链上的所有赌徒。但是她并不知道自己最多能打到多少个赌徒，所以把你捆过来算一算。</p>
 <h3 id="_14">输入格式</h3>
-<p>第一行一个正整数，<mathjax>$n$</mathjax>表示赌场个数，<mathjax>$m$</mathjax>表示在第几天动手。<br />
-接下来<mathjax>$n$</mathjax>行，每行两个整数<mathjax>$F_1,F_2$</mathjax>。<br />
-接下来<mathjax>$n-1$</mathjax>行，每行两个整数<mathjax>$u,v$</mathjax>表示<mathjax>$u$</mathjax>和<mathjax>$v$</mathjax>有边相连。</p>
+<p>第一行一个正整数，<tex>$n$</tex>表示赌场个数，<tex>$m$</tex>表示在第几天动手。<br />
+接下来<tex>$n$</tex>行，每行两个整数<tex>$F_1,F_2$</tex>。<br />
+接下来<tex>$n-1$</tex>行，每行两个整数<tex>$u,v$</tex>表示<tex>$u$</tex>和<tex>$v$</tex>有边相连。</p>
 <h3 id="_15">输出格式</h3>
 <p>一行，一个正整数，表示能打击到的赌徒个数。</p>
 <h3 id="_16">样例输入</h3>
@@ -293,8 +293,8 @@ a?c
 <h3 id="_18">数据范围及提示</h3>
 <p>输入数据中：<br />
 在第一天，所有的赌场都只有1个人。<br />
-在这时打击，最多能打击到4个人。这条链是<mathjax>$4-2-1-3$</mathjax>。</p>
-<p><mathjax>$n \le 5 \times 10^5$</mathjax>, <mathjax>$m \le 2\times 10^9$</mathjax></p>
+在这时打击，最多能打击到4个人。这条链是<tex>$4-2-1-3$</tex>。</p>
+<p><tex>$n \le 5 \times 10^5$</tex>, <tex>$m \le 2\times 10^9$</tex></p>
 <h2 id="d-haogram">D. 星际争霸 (Haogram)</h2>
 <h3 id="_19">题目描述</h3>
 <p>虽然二十世纪的科技和文化进步神速，但是和後世科技和文明的跳跃式进步相比起来， 也只能甘拜下风。在二十一世纪的末，人类的文明经历了巨大而且难以想像的进步。崭新的科技以难以想像的速度窜起，即使是地球上最为落後的国家也开始拥有越来越先进的电脑和资料库。在东欧共产主义解体的同时，核子武器开始变得随手可得。原来国际势力的兴衰是以资产和军事强权来作为依据，第三世界的国家却利用这个机会猛然窜起，挑战这些强权，打破国际间局势的均衡。 <br />
@@ -314,13 +314,13 @@ a?c
 有时会有一些宇宙生物（比如卡拉兽）会爬行至采矿路径上的一些点导致该路径不通。增加采矿难度。出于某种原因，地图会不断更新，矿物就会恢复原状，卡拉兽也会被更新至一个新的节点。<br />
 Zerg和Protoss的进攻已经很近了，你需要尽快采更多的资源......</p>
 <h3 id="_20">输入格式</h3>
-<p>第一行有<mathjax>$2$</mathjax>个正整数<mathjax>$n$</mathjax>，<mathjax>$m$</mathjax>，表示图上有<mathjax>$n$</mathjax>个点，地图更新<mathjax>$m$</mathjax>次。<br />
-接下来<mathjax>$n-1$</mathjax>行，每行<mathjax>$3$</mathjax>个正整数<mathjax>$p$</mathjax>，<mathjax>$f$</mathjax>，<mathjax>$l$</mathjax>，代表描述第<mathjax>$p$</mathjax>个点，其父节点为<mathjax>$f$</mathjax>，与父节点的连边长为<mathjax>$l$</mathjax>。<br />
-接下来<mathjax>$x$</mathjax>行，有<mathjax>$2$</mathjax>个正整数<mathjax>$p$</mathjax>，<mathjax>$w$</mathjax>，表示第<mathjax>$p$</mathjax>号节点有<mathjax>$w$</mathjax>水晶矿。<mathjax>$x$</mathjax>为叶节点个数。<br />
-接下来<mathjax>$m$</mathjax>行，每行一个正整数<mathjax>$p$</mathjax>，<mathjax>$t$</mathjax>，表示地图更新后，有一只卡拉兽在<mathjax>$p$</mathjax>号节点位置上，Zerg和Protoss的进攻将在<mathjax>$t$</mathjax>秒后来临。如果<mathjax>$p$</mathjax>为<mathjax>$0$</mathjax>，表示没有卡拉兽在地图上。</p>
+<p>第一行有<tex>$2$</tex>个正整数<tex>$n$</tex>，<tex>$m$</tex>，表示图上有<tex>$n$</tex>个点，地图更新<tex>$m$</tex>次。<br />
+接下来<tex>$n-1$</tex>行，每行<tex>$3$</tex>个正整数<tex>$p$</tex>，<tex>$f$</tex>，<tex>$l$</tex>，代表描述第<tex>$p$</tex>个点，其父节点为<tex>$f$</tex>，与父节点的连边长为<tex>$l$</tex>。<br />
+接下来<tex>$x$</tex>行，有<tex>$2$</tex>个正整数<tex>$p$</tex>，<tex>$w$</tex>，表示第<tex>$p$</tex>号节点有<tex>$w$</tex>水晶矿。<tex>$x$</tex>为叶节点个数。<br />
+接下来<tex>$m$</tex>行，每行一个正整数<tex>$p$</tex>，<tex>$t$</tex>，表示地图更新后，有一只卡拉兽在<tex>$p$</tex>号节点位置上，Zerg和Protoss的进攻将在<tex>$t$</tex>秒后来临。如果<tex>$p$</tex>为<tex>$0$</tex>，表示没有卡拉兽在地图上。</p>
 <h3 id="_21">输出格式</h3>
 <p>地图每次更新会将采完的矿回复原状。<br />
-输出共<mathjax>$m$</mathjax>行，每行对于一次地图更新，输出在进攻来临前采集到的最多矿物数量。</p>
+输出共<tex>$m$</tex>行，每行对于一次地图更新，输出在进攻来临前采集到的最多矿物数量。</p>
 <h3 id="1">样例输入1</h3>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -400,12 +400,12 @@ Zerg和Protoss的进攻已经很近了，你需要尽快采更多的资源......
 </td></tr></table>
 
 <h3 id="_22">数据范围及提示</h3>
-<p>对于<mathjax>$10\%$</mathjax>的数据: <mathjax>$n \le 20, m \le 5$</mathjax><br />
-对于<mathjax>$20\%$</mathjax>的数据: <mathjax>$n \le 20, m \le 500$</mathjax><br />
-对于另外<mathjax>$20\%$</mathjax>的数据，地图没有卡拉兽<br />
-对于另外<mathjax>$20\%$</mathjax>的数据，<mathjax>$n \le 1000, m \le 50$</mathjax><br />
-对于<mathjax>$100\%$</mathjax>的数据，<mathjax>$n \le 1000, m \le 500, t \le 50000$</mathjax><br />
-指挥中心的编号始终为<mathjax>$1$</mathjax>，地图至多有一只卡拉兽</p>
+<p>对于<tex>$10\%$</tex>的数据: <tex>$n \le 20, m \le 5$</tex><br />
+对于<tex>$20\%$</tex>的数据: <tex>$n \le 20, m \le 500$</tex><br />
+对于另外<tex>$20\%$</tex>的数据，地图没有卡拉兽<br />
+对于另外<tex>$20\%$</tex>的数据，<tex>$n \le 1000, m \le 50$</tex><br />
+对于<tex>$100\%$</tex>的数据，<tex>$n \le 1000, m \le 500, t \le 50000$</tex><br />
+指挥中心的编号始终为<tex>$1$</tex>，地图至多有一只卡拉兽</p>
 <h2 id="_23">题解</h2>
 <h3 id="a">A</h3>
 <p>任选一种方法建立AST，标程使用的是递归下降式解析器。<br />
@@ -416,7 +416,7 @@ Zerg和Protoss的进攻已经很近了，你需要尽快采更多的资源......
 AC自动机搞法纯属暴力！<br />
 此题正解是<strong>FFT</strong>，不知道HJWJBSR究竟是怎么搞的。<br />
 正则表达式的时间复杂度未知......<br />
-此外还可以用<code>bitset</code>水过去，时间复杂度是<mathjax>$O({nm \over T})$</mathjax>，<mathjax>$T$</mathjax>是机器的整型长度。具体做法是用所有字符到原串中匹配，匹配上就填<mathjax>$1$</mathjax>否则填<mathjax>$0$</mathjax>，得到不同的布尔数组。对于问号，就全部填<mathjax>$1$</mathjax>。目标就是按照模式串的每个字符顺序排放，找到一个斜列全是<mathjax>$1$</mathjax>即可。因此可以使用<code>bitset</code>，每次先左移一定的位置然后按位与。如果最后得到的<code>bitset</code>中有<mathjax>$1$</mathjax>则表示匹配成功。<br />
+此外还可以用<code>bitset</code>水过去，时间复杂度是<tex>$O({nm \over T})$</tex>，<tex>$T$</tex>是机器的整型长度。具体做法是用所有字符到原串中匹配，匹配上就填<tex>$1$</tex>否则填<tex>$0$</tex>，得到不同的布尔数组。对于问号，就全部填<tex>$1$</tex>。目标就是按照模式串的每个字符顺序排放，找到一个斜列全是<tex>$1$</tex>即可。因此可以使用<code>bitset</code>，每次先左移一定的位置然后按位与。如果最后得到的<code>bitset</code>中有<tex>$1$</tex>则表示匹配成功。<br />
 最后，<code>bitset</code>跑得比标解FFT快很多......</p>
 <h3 id="c">C</h3>
 <p>每个点用矩阵快速计算点权，然后DFS找加权直径。</p>
@@ -424,7 +424,7 @@ AC自动机搞法纯属暴力！<br />
 <p>可以将每一个叶节点视为一个有代价有价值的物品，然后做01背包。<br />
 对于能够删除一些物品后再计算好像没有什么好办法，标程就是每次询问暴力......<br />
 <del>坐等HJWJBSR给出牛逼搞法。</del><br />
-HJWJBSR说可以用前缀和就可以做到<mathjax>$O(nt)$</mathjax>。</p>
+HJWJBSR说可以用前缀和就可以做到<tex>$O(nt)$</tex>。</p>
             <hr/>
             <div id="comments"></div>
             <script type="text/javascript">

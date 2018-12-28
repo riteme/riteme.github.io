@@ -71,7 +71,7 @@ if (Cookies.get('math-renderer') == null) {
 renderer = Cookies.get('math-renderer');
 if (renderer == 'mathjax') {
     loadJS("/math-renderer/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML", function() {
-        MathJax.Hub.Config( { tex2jax: { inlineMath: [['$','$']] }, "HTML-CSS": { scale: 95 } } );
+        MathJax.Hub.Config( { tex2jax: { inlineMath: [['$','$']] }, "HTML-CSS": { scale: 95, fonts: ["TeX"] }, CommonHTML: { scale: 95, fonts: ["TeX"] }, SVG: { scale: 95, fonts: ["TeX"] } } );
         MathJax.Hub.Configured();
     });
 } else if (renderer == 'katex') {

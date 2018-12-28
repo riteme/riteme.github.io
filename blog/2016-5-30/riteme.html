@@ -63,8 +63,8 @@
 ZY写个程序来构建BST。然而Link并不屑于写这个程序，于是这个任务莫名其妙地传到了你手上......<br />
 当然XL不会就这样放手不管，XL会随时来检查这棵BST是否是正确的，以防你在乱造BST。</p>
 <h2 id="_2">输入格式</h2>
-<p>第一行输入一个正整数<mathjax>$n$</mathjax>，表示订单中数列的长度。<br />
-接下来<mathjax>$n$</mathjax>行，每行输入两个正整数<mathjax>$x$</mathjax>和<mathjax>$k$</mathjax>。表示将<mathjax>$x$</mathjax>插入到当前的BST中。初始时是空树。<mathjax>$k$</mathjax>则表示XL的检查。他会问你根节点到新插入的节点<mathjax>$x$</mathjax>的链上第<mathjax>$k$</mathjax>个节点是谁。默认从<mathjax>$1$</mathjax>开始数。</p>
+<p>第一行输入一个正整数<tex>$n$</tex>，表示订单中数列的长度。<br />
+接下来<tex>$n$</tex>行，每行输入两个正整数<tex>$x$</tex>和<tex>$k$</tex>。表示将<tex>$x$</tex>插入到当前的BST中。初始时是空树。<tex>$k$</tex>则表示XL的检查。他会问你根节点到新插入的节点<tex>$x$</tex>的链上第<tex>$k$</tex>个节点是谁。默认从<tex>$1$</tex>开始数。</p>
 <h2 id="_3">输出格式</h2>
 <p>对于每一次XL的检查，输出对应的答案。</p>
 <h2 id="_4">样例输入</h2>
@@ -88,14 +88,14 @@ ZY写个程序来构建BST。然而Link并不屑于写这个程序，于是这�
 </td></tr></table>
 
 <h2 id="_6">提示及数据约定</h2>
-<p>对于第一次插入<mathjax>$2$</mathjax>，树的根节点为<mathjax>$2$</mathjax>，故答案为<mathjax>$2$</mathjax>。<br />
-对于第二次插入<mathjax>$1$</mathjax>，因为<mathjax>$1 \lt 2$</mathjax>，所以<mathjax>$1$</mathjax>是<mathjax>$2$</mathjax>的左儿子。<mathjax>$2$</mathjax>到<mathjax>$1$</mathjax>的链上的第一个节点为<mathjax>$2$</mathjax><br />
-对于最后一次插入<mathjax>$3$</mathjax>，因为<mathjax>$3 \gt 2$</mathjax>，所以<mathjax>$3$</mathjax>是<mathjax>$2$</mathjax>的右儿子。<mathjax>$2$</mathjax>到<mathjax>$3$</mathjax>的链上的第二个节点是<mathjax>$3$</mathjax>。</p>
-<p>对于<mathjax>$10\%$</mathjax>的数据，<mathjax>$n \le 20,000$</mathjax>。<br />
-对于<mathjax>$10\%$</mathjax>的数据，<mathjax>$n \le 90,000$</mathjax>。<br />
-对于<mathjax>$20\%$</mathjax>的数据，<mathjax>$n \le 100,000$</mathjax>。<br />
-对于另外<mathjax>$10\%$</mathjax>的数据，<strong>数列完全随机</strong>。<br />
-对于<mathjax>$100\%$</mathjax>的数据，<mathjax>$n \le 200,000$</mathjax>，<mathjax>$1 \le x \le n$</mathjax>，保证每次检查的节点存在。</p>
+<p>对于第一次插入<tex>$2$</tex>，树的根节点为<tex>$2$</tex>，故答案为<tex>$2$</tex>。<br />
+对于第二次插入<tex>$1$</tex>，因为<tex>$1 \lt 2$</tex>，所以<tex>$1$</tex>是<tex>$2$</tex>的左儿子。<tex>$2$</tex>到<tex>$1$</tex>的链上的第一个节点为<tex>$2$</tex><br />
+对于最后一次插入<tex>$3$</tex>，因为<tex>$3 \gt 2$</tex>，所以<tex>$3$</tex>是<tex>$2$</tex>的右儿子。<tex>$2$</tex>到<tex>$3$</tex>的链上的第二个节点是<tex>$3$</tex>。</p>
+<p>对于<tex>$10\%$</tex>的数据，<tex>$n \le 20,000$</tex>。<br />
+对于<tex>$10\%$</tex>的数据，<tex>$n \le 90,000$</tex>。<br />
+对于<tex>$20\%$</tex>的数据，<tex>$n \le 100,000$</tex>。<br />
+对于另外<tex>$10\%$</tex>的数据，<strong>数列完全随机</strong>。<br />
+对于<tex>$100\%$</tex>的数据，<tex>$n \le 200,000$</tex>，<tex>$1 \le x \le n$</tex>，保证每次检查的节点存在。</p>
             <hr/>
             <div id="comments"></div>
             <script type="text/javascript">

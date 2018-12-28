@@ -57,8 +57,8 @@
 </blockquote>
 <p>有时候我们希望能够在一个序列上快速遍历，然而这个序列却又是动态的，因此会考虑到平衡树来维护序列。<br />
 然而普通平衡树查找前趋后继是比较麻烦的，除了Splay有一个很简单直观的方法<sup id="fnref:splay-way"><a class="footnote-ref" href="#fn:splay-way" rel="footnote">1</a></sup>，其它平衡树都要与父亲节点纠缠一番。<br />
-然而最关键的是，它们查询前趋后继还不是<mathjax>$\Theta(1)$</mathjax>的时间，最坏情况下是<mathjax>$O(\log n)$</mathjax>的。</p>
-<p>因此考虑将链表&rdquo;挂载&rdquo;在平衡树上，可以将查找前趋后继的时间复杂度降为<mathjax>$\Theta(1)$</mathjax>，并且只需要在插入和删除时每个节点付出<mathjax>$\Theta(1)$</mathjax>的代价。同时顺序遍历节点的代码将与普通链表一样。这样在动态维护凸包等一些复杂的平衡树应用中做到一些优化。</p>
+然而最关键的是，它们查询前趋后继还不是<tex>$\Theta(1)$</tex>的时间，最坏情况下是<tex>$O(\log n)$</tex>的。</p>
+<p>因此考虑将链表&rdquo;挂载&rdquo;在平衡树上，可以将查找前趋后继的时间复杂度降为<tex>$\Theta(1)$</tex>，并且只需要在插入和删除时每个节点付出<tex>$\Theta(1)$</tex>的代价。同时顺序遍历节点的代码将与普通链表一样。这样在动态维护凸包等一些复杂的平衡树应用中做到一些优化。</p>
 <p>想必强者<sup id="fnref:sbk"><a class="footnote-ref" href="#fn:sbk" rel="footnote">2</a></sup>看完前言已经脑补出这玩意了。</p>
 <h2 id="_3">插入</h2>
 <p>实际上我们就是需要在插入节点时同时记录一个节点的前趋和后继。<br />
@@ -68,7 +68,7 @@
 <p>那么新插入的节点必定是其父亲的前趋。这个过程可以看作是往链表中插入一个元素。</p>
 <p>同样，对于插入到右儿子，情况也是类似的：</p>
 <p><img alt="right-node" src="https://git.oschina.net/riteme/blogimg/raw/master/bst-with-list/insert-2.png" /></p>
-<p>因此，对于每个新插入的节点，只需要花费<mathjax>$\Theta(1)$</mathjax>的时间来记录前趋后继。</p>
+<p>因此，对于每个新插入的节点，只需要花费<tex>$\Theta(1)$</tex>的时间来记录前趋后继。</p>
 <h2 id="_4">旋转</h2>
 <p>许多平衡树 (Treap、Splay等) 都是以旋转操作来进行平衡的。然而平衡的时候是否要维护链表信息呢？<br />
 实际上根本不需要，因为旋转操作不会影响平衡树的有序性，所以对于每个节点而言，它的前趋后继是不会变化的，所以没有必要改动信息。</p>
