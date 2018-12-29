@@ -15,6 +15,11 @@ import lib.navigater as navigater
 
 import bs4
 
+try:
+    from css_html_js_minify import html_minify
+except:
+    html_minify = None
+
 import markdown
 import markdown.extensions.codehilite
 
@@ -295,7 +300,7 @@ def generate(filepath):
     new_file = os.path.splitext(filepath)[0] + ".html"
 
     with open(new_file, "w") as writer:
-        writer.write(template.format(
+        html_dom = template.format(
             title=title,
             create=create_time,
             modified=modified_time,
@@ -308,7 +313,11 @@ def generate(filepath):
             page_url=pageurl,
             mdname=filename,
             github_location=os.path.join(GITHUB_LOCATION, os.path.dirname(index_url), filename)
-        ))
+        )
+        if html_minify:
+            writer.write(html_minify(html_dom))
+        else:
+            writer.write(html_dom)
 
     # 返回索引信息
     if "index" not in mdinfo or mdinfo["index"][0] in ['true', 'True', '1']:

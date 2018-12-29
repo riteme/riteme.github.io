@@ -331,12 +331,16 @@ header .mdl-textfield {
 }
 
 .panel {
-    margin-bottom: 20px;
+    margin: 20px 0;
     background-color: #ffffff;
     border: 1px solid transparent;
     border-radius: 4px;
     -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.panel h3:hover {
+    background: none;
 }
 
 .panel-info {
@@ -374,7 +378,34 @@ h3.panel-title {
     border-radius: 3px;
 }
 
+.main-cell {
+    margin-top: 64px;
+}
+
+:target {
+    padding-top: 80px;
+}
+
+.sidebar {
+    width: unset;
+    max-width: calc(35% - 16px);
+    margin: 0 8px 0 8px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    align-self: flex-start;
+    flex-shrink: 1;
+}
+
+.sidebar .article {
+    margin: 0;
+    padding: 104px 20px 40px 15px;  /* 104 = 64 + 40 */
+    height: calc(100vh - 64px - 40px - 40px);
+    overflow: auto;
+}
+
 .sidebar .mdl-card {
+    min-width: 16vw;
     max-width: 20em;
     margin: 0 auto;
 }
@@ -384,36 +415,33 @@ h3.panel-title {
     width: calc(100% - 2em);
 }
 
-main .mdl-cell.sidebar {
-    margin: 0 8px 0 0;
-}
-
-.mdl-mega-footer {
-    border-top: 10px solid gray;
-}
-
-.main-cell {
-    margin-top: 64px;
-}
-
-.sidebar {
-    margin-left: 0;
-    padding-left: 8px;
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
-    align-self: flex-start;
-}
-
-.sidebar .article {
-    margin: 0;
-    padding: 104px 20px 40px;  /* 104 = 64  +40 */
-    height: calc(100vh - 64px - 40px - 40px);
-    overflow: auto;
-}
-
 .sidebar .article::-webkit-scrollbar { 
     display: none; 
+}
+
+@media screen and (min-width: 840px) {
+    .main-cell {
+        flex-grow: 1;
+        width: 0;
+    }
+
+    .main-article {
+        margin-right: 0;
+    }
+
+    .main-article-simple {
+        margin-right: 20px;
+    }
+}
+
+@media screen and (max-width: 839px) {
+    .sidebar {
+        display: none !important;
+    }
+
+    .main-cell {
+        width: calc(100% - 16px);
+    }
 }
 
 @media screen and (max-width: 1024px) {
@@ -482,10 +510,6 @@ main .mdl-cell.sidebar {
 
 .nano .nano-shell .shell-start {
     color: #2196f3;
-}
-
-.mdl-mega-footer__bottom-section {
-    text-align: right;
 }
 
 mathjax:before {
@@ -557,6 +581,14 @@ mathjax + br {
 
 .gitment-comments-init-btn, .gitment-editor-submit, .gitment-comments-init-btn:disabled, .gitment-editor-submit:disabled {
     background-color: #2196f3;
+}
+
+.mdl-mega-footer {
+    border-top: 10px solid gray;
+}
+
+.mdl-mega-footer__bottom-section {
+    text-align: right;
 }
 
 .codehilite .hll { background-color: #ffffcc }

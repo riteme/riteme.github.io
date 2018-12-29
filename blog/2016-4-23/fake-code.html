@@ -1,131 +1,32 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>伪代码规定 - riteme.site</title>
-  <link rel="shortcut icon" href="/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/material/material-icons.css">
-  <link rel="stylesheet" href="/material/material.min.css" >
-  <link rel="stylesheet" href="/gitment/gitment.css">
-  <link rel="stylesheet" href="/math-renderer/katex/katex.min.css">
-  <link rel="stylesheet" href="/css/site.css">
-  <script src="/js/jquery.min.js"></script>
-  <script src="/js/jump.js"></script>
-  <script src="/js/js-cookie.js"></script>
-  <script defer src="/material/material.min.js"></script>
-  <script src="/math-renderer/selector.js"></script>
-  <script src="/gitment/gitment.js"></script>
-  <script src="/js/quicklink.umd.js"></script>
-</head>
-<body>
-  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-    <header class="mdl-layout__header">
-      <div class="mdl-layout__header-row">
-        <span class="mdl-layout-title">伪代码规定</span>
-        <div class="mdl-layout-spacer"></div>
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right">
-          <label class="mdl-button mdl-js-button mdl-button--icon" for="fixed-header-drawer-exp"><i class="material-icons">search</i></label>
-          <div class="mdl-textfield__expandable-holder">
-            <form action="/search.html"><input type="text" class="mdl-textfield__input" placeholder="Search Here" name="q" id="fixed-header-drawer-exp" autocomplete="off" required></form>
-          </div>
-        </div>
-      </div>
-    </header>
-    <div class="mdl-layout__drawer">
-      <span class="mdl-layout-title drawer-title">
-        <a href="/index.html" style="color: inherit; font-weight: inherit;text-decoration: none;"><img src="/favicon.png" width=32 height=32> riteme.site</a>
-      </span>
-      <nav class="mdl-navigation">
-        <a class="mdl-navigation__link" href="/index.html"><i class="material-icons drawer-icon">home</i> 首页</a>
-        <a class="mdl-navigation__link" href="/posts.html"><i class="material-icons drawer-icon">library_books</i> 所有文章</a>
-        <a class="mdl-navigation__link" href="/about.html"><i class="material-icons drawer-icon">info</i> 关于</a>
-        <a class="mdl-navigation__link" href="/links.html"><i class="material-icons drawer-icon">link</i> 友链</a>
-        <a class="mdl-navigation__link" href="/search.html"><i class="material-icons drawer-icon">search</i> 搜索</a>
-        <a class="mdl-navigation__link" href="https://github.com/riteme/riteme.github.io"><i class="material-icons drawer-icon">class</i> GitHub 项目</a>
-      </nav>
-    </div>
-    <main class="mdl-layout__content">
-      <div class="mdl-grid">
-        <div class="mdl-cell mdl-cell--8-col mdl-cell--12-col-tablet mdl-cell--12-col-phone main-cell">
-          <div class="article main-article" lang="en-US">
-            
-<h1 id="_1">伪代码规定</h1>
-<p>最近博客上的伪代码越写越乱了，是时候好好定一下了。<br />
-参考了《算法导论》的伪代码风格，杂揉一些Python的写法。</p>
-<h2 id="_2">注释</h2>
-<p><code>//</code>后的所有内容都是注释。</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>// 这是注释
-</pre></div>
-</td></tr></table>
-
-<h2 id="_3">变量</h2>
-<p>以单个字符为主，小写字母可以有多个，大写字母最好只有1个。<br />
-变量的属性用<code>.</code>操作符来访问。<br />
-这里的变量实际上都是对实体的一个引用，类似于C++中的指针。</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<!DOCTYPE html> <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1.0"> <title>伪代码规定 - riteme.site</title> <link rel="shortcut icon" href="/favicon.png" type="image/png"> <link rel=stylesheet  href="/material/material-icons.css"> <link rel=stylesheet  href="/material/material.min.css" > <link rel=stylesheet  href="/gitment/gitment.css"> <link rel=stylesheet  href="/math-renderer/katex/katex.min.css"> <link rel=stylesheet  href="/css/site.css"> <script src="/js/jquery.min.js"></script> <script src="/js/jump.js"></script> <script src="/js/js-cookie.js"></script> <script src="/js/quicklink.umd.js"></script> <script defer src="/material/material.min.js"></script> <script src="/math-renderer/selector.js"></script> <script src="/gitment/gitment.js"></script> <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header"> <header class=mdl-layout__header > <div class=mdl-layout__header-row > <span class=mdl-layout-title >伪代码规定</span> <div class=mdl-layout-spacer ></div> <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right"> <label class="mdl-button mdl-js-button mdl-button--icon" for=fixed-header-drawer-exp ><i class=material-icons >search</i></label> <div class=mdl-textfield__expandable-holder > <form action="/search.html"><input type=text  class=mdl-textfield__input  placeholder="Search Here" name=q  id=fixed-header-drawer-exp  autocomplete=off  required></form> </div> </div> </div> </header> <div class=mdl-layout__drawer > <span class="mdl-layout-title drawer-title"> <a href="/index.html" style="color: inherit; font-weight: inherit;text-decoration: none;"><img src="/favicon.png" width=32 height=32> riteme.site</a> </span> <nav class=mdl-navigation > <a class=mdl-navigation__link  href="/index.html"><i class="material-icons drawer-icon">home</i> 首页</a> <a class=mdl-navigation__link  href="/posts.html"><i class="material-icons drawer-icon">library_books</i> 所有文章</a> <a class=mdl-navigation__link  href="/about.html"><i class="material-icons drawer-icon">info</i> 关于</a> <a class=mdl-navigation__link  href="/links.html"><i class="material-icons drawer-icon">link</i> 友链</a> <a class=mdl-navigation__link  href="/search.html"><i class="material-icons drawer-icon">search</i> 搜索</a> <a class=mdl-navigation__link  href="https://github.com/riteme/riteme.github.io"><i class="material-icons drawer-icon">class</i> GitHub 项目</a> </nav> </div> <main class=mdl-layout__content > <div class=mdl-grid > <div class="mdl-cell main-cell"> <div class="article main-article" lang=en-US > <h1 id=_1 >伪代码规定</h1> <p>最近博客上的伪代码越写越乱了，是时候好好定一下了。<br /> 参考了《算法导论》的伪代码风格，杂揉一些Python的写法。</p> <h2 id=_2 >注释</h2> <p><code>//</code>后的所有内容都是注释。</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre>1</pre></div><td class=code ><div class=codehilite ><pre><span></span>// 这是注释
+</pre></div> </table> <h2 id=_3 >变量</h2> <p>以单个字符为主，小写字母可以有多个，大写字母最好只有1个。<br /> 变量的属性用<code>.</code>操作符来访问。<br /> 这里的变量实际上都是对实体的一个引用，类似于C++中的指针。</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre>1
 2
 3
 4
 5
 6
-7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>a = 1  // 第一次声明a
+7</pre></div><td class=code ><div class=codehilite ><pre><span></span>a = 1  // 第一次声明a
 b = 2  // 第一次声明b
 a = b  // a绑定到b上，即a和b指向同一实体
 a = COPY(b)  // 将b的值复制到a
 a = DEEPCOPY(b)  // 深度复制，将b中所有的引用全部复制。
 a.name = &quot;233&quot;  // 属性的设定
 b.name = a.name  // 属性的访问与设定
-</pre></div>
-</td></tr></table>
-
-<h2 id="_4">函数</h2>
-<p>函数的声明以<code>function</code>开始。<br />
-函数名称最好全部大写，如果有多个词语用<code>-</code>分开。<br />
-函数名后面带一个元组，表示参数。<br />
-<code>return</code>语句用来返回函数值。如果没有<code>return</code>，那么实际返回<code>nil</code>。</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+</pre></div> </table> <h2 id=_4 >函数</h2> <p>函数的声明以<code>function</code>开始。<br /> 函数名称最好全部大写，如果有多个词语用<code>-</code>分开。<br /> 函数名后面带一个元组，表示参数。<br /> <code>return</code>语句用来返回函数值。如果没有<code>return</code>，那么实际返回<code>nil</code>。</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre>1
 2
 3
-4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>function ADD-TWO-NUMBERS(a, b):
+4</pre></div><td class=code ><div class=codehilite ><pre><span></span>function ADD-TWO-NUMBERS(a, b):
     return a + b
 
 c = ADD-TWO-NUMBERS(1, 2)  // c = 3
-</pre></div>
-</td></tr></table>
-
-<h2 id="_5">操作符</h2>
-<p><code>=</code>: 赋值，在<code>if</code>中表示判断是否相等<br />
-<code>&lt;</code>: 小于<br />
-<code>&gt;</code>: 大于<br />
-<code>&lt;=</code>: 不大于<br />
-<code>&gt;=</code>: 不小于<br />
-<code>+</code>: 加号<br />
-<code>-</code>: 减号<br />
-<code>*</code>: 乘号<br />
-<code>**</code>: 幂运算<br />
-<code>/</code>: 除号<br />
-<code>mod</code>: 取模<br />
-<code>~</code>: 按位取反<br />
-<code>&amp;</code>: 按位与<br />
-<code>|</code>: 按位或<br />
-<code>^</code>: 按位异或<br />
-<code>&lt;&lt;</code>: 按位左移<br />
-<code>&gt;&gt;</code>: 按位右移<br />
-<code>not</code>: 逻辑反<br />
-<code>and</code>: 逻辑且<br />
-<code>or</code>: 逻辑或<br />
-<code>xor</code>: 逻辑异或</p>
-<h2 id="_6">条件控制语句</h2>
-<h3 id="if">if</h3>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+</pre></div> </table> <h2 id=_5 >操作符</h2> <p><code>=</code>: 赋值，在<code>if</code>中表示判断是否相等<br /> <code>&lt;</code>: 小于<br /> <code>&gt;</code>: 大于<br /> <code>&lt;=</code>: 不大于<br /> <code>&gt;=</code>: 不小于<br /> <code>+</code>: 加号<br /> <code>-</code>: 减号<br /> <code>*</code>: 乘号<br /> <code>**</code>: 幂运算<br /> <code>/</code>: 除号<br /> <code>mod</code>: 取模<br /> <code>~</code>: 按位取反<br /> <code>&amp;</code>: 按位与<br /> <code>|</code>: 按位或<br /> <code>^</code>: 按位异或<br /> <code>&lt;&lt;</code>: 按位左移<br /> <code>&gt;&gt;</code>: 按位右移<br /> <code>not</code>: 逻辑反<br /> <code>and</code>: 逻辑且<br /> <code>or</code>: 逻辑或<br /> <code>xor</code>: 逻辑异或</p> <h2 id=_6 >条件控制语句</h2> <h3 id=if >if</h3> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre>1
 2
 3
 4
 5
 6
 7
-8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>if statement:
+8</pre></div><td class=code ><div class=codehilite ><pre><span></span>if statement:
     // 如果为真
 else if statement2:
     // ...
@@ -133,202 +34,21 @@ else if statement3:
     // ...
 else:
     // ...
-</pre></div>
-</td></tr></table>
-
-<h3 id="while">while</h3>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>while condition:
+</pre></div> </table> <h3 id=while >while</h3> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre>1
+2</pre></div><td class=code ><div class=codehilite ><pre><span></span>while condition:
     // ...
-</pre></div>
-</td></tr></table>
-
-<h3 id="for">for</h3>
-<p><code>for</code>的形式可以多样。条件可以用陈述句。</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>for i = 0 to 100 step 2:  // i从0到100，每次加2。
+</pre></div> </table> <h3 id=for >for</h3> <p><code>for</code>的形式可以多样。条件可以用陈述句。</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre>1
+2</pre></div><td class=code ><div class=codehilite ><pre><span></span>for i = 0 to 100 step 2:  // i从0到100，每次加2。
     // ...
-</pre></div>
-</td></tr></table>
-
-<p><code>foreach</code>可以以不定的顺序遍历集合内的所有元素。</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>foreach a in A:
+</pre></div> </table> <p><code>foreach</code>可以以不定的顺序遍历集合内的所有元素。</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre>1
+2</pre></div><td class=code ><div class=codehilite ><pre><span></span>foreach a in A:
     // ...
-</pre></div>
-</td></tr></table>
-
-<p>对于诸如1到100的遍历，可以使用定义域。</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>foreach i in [1, 100]:
+</pre></div> </table> <p>对于诸如1到100的遍历，可以使用定义域。</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre>1
+2</pre></div><td class=code ><div class=codehilite ><pre><span></span>foreach i in [1, 100]:
     // ...
-</pre></div>
-</td></tr></table>
-
-<h2 id="_7">内置类型</h2>
-<p><code>nil</code>: 表示不存在的值<br />
-<code>Number</code>: 表示实数<br />
-<code>String</code>: 表示字符串，用<code>""</code>表示<br />
-<code>Boolean</code>: 表示布尔值，只有<code>true</code>和<code>false</code><br />
-<code>Byte</code>: 表示一个字节(通常为8bit)，允许使用16进制和2进制，16进制以<code>#</code>开始。<br />
-<code>Set</code>: 表示集合，用<code>{}</code>表示。<br />
-所有的类型后加上<code>[]</code>表示该类型的数组类型。<br />
-对于元组，使用<code>()</code>来表示。</p>
-<h2 id="_8">内置函数或语句</h2>
-<p><code>ASSERT statement</code>: 断言，如果不为真则报错。<br />
-<code>SWAP(a, b)</code>: 交换两者的引用。<br />
-<code>delete a</code>: 删除<code>a</code>这一引用<br />
-以及各种数学函数</p>
-<h2 id="_9">元组</h2>
-<p>使用小括号来声明元组。</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>(a, )  // 如果只有一个元素，则需要带上一个额外的逗号。
+</pre></div> </table> <h2 id=_7 >内置类型</h2> <p><code>nil</code>: 表示不存在的值<br /> <code>Number</code>: 表示实数<br /> <code>String</code>: 表示字符串，用<code>""</code>表示<br /> <code>Boolean</code>: 表示布尔值，只有<code>true</code>和<code>false</code><br /> <code>Byte</code>: 表示一个字节(通常为8bit)，允许使用16进制和2进制，16进制以<code>#</code>开始。<br /> <code>Set</code>: 表示集合，用<code>{}</code>表示。<br /> 所有的类型后加上<code>[]</code>表示该类型的数组类型。<br /> 对于元组，使用<code>()</code>来表示。</p> <h2 id=_8 >内置函数或语句</h2> <p><code>ASSERT statement</code>: 断言，如果不为真则报错。<br /> <code>SWAP(a, b)</code>: 交换两者的引用。<br /> <code>delete a</code>: 删除<code>a</code>这一引用<br /> 以及各种数学函数</p> <h2 id=_9 >元组</h2> <p>使用小括号来声明元组。</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre>1
+2</pre></div><td class=code ><div class=codehilite ><pre><span></span>(a, )  // 如果只有一个元素，则需要带上一个额外的逗号。
 (a, b, c)  // 三元组
-</pre></div>
-</td></tr></table>
-
-<p>元组可以裂解。</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>a, b = (1, 2)  // a = 1, b = 2
-</pre></div>
-</td></tr></table>
-
-<p>构成元组的方式也可以随意。</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>a, b = b, a  // 此乃SWAP的实现
-</pre></div>
-</td></tr></table>
-
-<h2 id="_10">如果遇到极端情况&hellip;</h2>
-<p>如果上面的规定不能满足表达算法的需要，那么有两种解决方法：</p>
-<ul>
-<li>从其它的语言借点语法过来，<strong>别人看得懂就行</strong>。</li>
-<li>使用<strong>陈述句</strong>。</li>
-</ul>
-<p>记住，如果解决不了时，就用<strong>陈述句</strong>。</p>
-            <hr/>
-            <div id="comments"></div>
-            <script type="text/javascript">
-              window.addEventListener('load',()=>{quicklink();})
-              const gitment = new Gitment({id: '8fe45685993834c75c5c3a69e01e9559', owner: 'riteme', repo: 'riteme.github.io',
-                oauth: {
-                  client_id: 'd4fcffa25858a7a58e1a',
-                  client_secret: 'e0c8e08beb95497871f8355416c69390634cec76',
-                },
-                perPage: 10,
-              })
-              gitment.render('comments')
-            </script>
-          </div>
-        </div>
-        <div class="mdl-cell mdl-cell--4-col mdl-cell--hide-tablet mdl-cell--hide-phone sidebar">
-          <div class="article">
-            <div class="mdl-card mdl-shadow--3dp sidebar-card">
-              <div class="mdl-card__actions sidebar-title">页面信息</div>
-              <div class="mdl-card__supporting-text">
-                标签: <a href="/search.html?q=伪代码"><span class="label">伪代码</span></a><br/>
-                创建时间: 2016.04.23<br/>
-                上次修改: 2016.04.23<br/>
-                字数统计: 2190 字 / 约 8 分钟
-              </div>
-            </div>
-            <br/>
-            
-<div class="mdl-card mdl-shadow--3dp sidebar-card">
-  <div class="mdl-card__actions sidebar-title">目录</div>
-  <div class="mdl-card__supporting-text">
-    <div class="toc">
-<ul>
-<li><a href="#_1">伪代码规定</a><ul>
-<li><a href="#_2">注释</a></li>
-<li><a href="#_3">变量</a></li>
-<li><a href="#_4">函数</a></li>
-<li><a href="#_5">操作符</a></li>
-<li><a href="#_6">条件控制语句</a><ul>
-<li><a href="#if">if</a></li>
-<li><a href="#while">while</a></li>
-<li><a href="#for">for</a></li>
-</ul>
-</li>
-<li><a href="#_7">内置类型</a></li>
-<li><a href="#_8">内置函数或语句</a></li>
-<li><a href="#_9">元组</a></li>
-<li><a href="#_10">如果遇到极端情况&hellip;</a></li>
-</ul>
-</li>
-</ul>
-</div>
-  </div>
-</div>
-<br/>
-
-            <div class="mdl-card mdl-shadow--3dp sidebar-card">
-              <div class="mdl-card__actions sidebar-title">数学公式渲染</div>
-              <div class="mdl-card__supporting-text">
-                <form name="mathopt">
-                  <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
-                    <input type="radio" id="option-1" class="mdl-radio__button" name="sel" value="mathjax">
-                    <span class="mdl-radio__label">MathJax (推荐)</span>
-                  </label><br/>
-                  <div id="tip-1">
-                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
-                      <input type="radio" id="option-2" class="mdl-radio__button" name="sel" value="katex">
-                      <span class="mdl-radio__label">KaTeX</span>
-                    </label>
-                  </div>
-                  <div id="tip-2">
-                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
-                      <input type="radio" id="option-3" class="mdl-radio__button" name="sel" value="katex&mathjax">
-                      <span class="mdl-radio__label">Mixed</span>
-                    </label>
-                  </div>
-                </form>
-              </div>
-            </div>
-            <div class="mdl-tooltip" data-mdl-for="tip-1">KaTeX 渲染效率很高，但是目前 KaTeX 容错性不强，因此使用 KaTeX 时可能会存在一些数学公式无法渲染的情况</div>
-            <div class="mdl-tooltip" data-mdl-for="tip-2">先使用 KaTeX 渲染，再使用 MathJax 渲染</div>
-            <br/>
-            <div class="nano mdl-card mdl-shadow--3dp sidebar-card">
-              <a class="nano-ref" target="_new" href="http://nichijou.wikia.com/wiki/Nano_Shinonome"></a>
-              <div class="mdl-card__actions">
-                <div class="nano-shell"><span class="shell-start">$</span> nano <a href="https://github.com/riteme/riteme.github.io/blob/master/blog/2016-4-23/fake-code.md" id="nano-link">fake-code.md</a></div>
-              </div>
-            </div>
-            <div class="mdl-tooltip" data-mdl-for="nano-link">查看原始 Markdown 文档</div>
-          </div>
-        </div>
-      </div>
-      <footer class="mdl-mega-footer">
-        <div class="mdl-mega-footer__middle-section">
-          <div class="mdl-mega-footer__drop-down-section">
-            <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-            <h1 class="mdl-mega-footer__heading">RITEME.SITE</h1>一个从不乱说话的博客...
-          </div>
-          <div class="mdl-mega-footer__drop-down-section">
-            <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-            <h1 class="mdl-mega-footer__heading">POWERED BY</h1>
-            <ul class="mdl-mega-footer__link-list">
-              <li><a href="http://pythonhosted.org/Markdown/">Python Markdown</a></li>
-              <li><a href="http://getmdl.io/">Material Design Lite</a></li>
-              <li><a href="http://www.tipue.com/search/">Tipuesearch</a></li>
-              <li><a href="http://www.mathjax.org/">MathJax</a> & <a href="http://khan.github.io/KaTeX/">KaTeX</a></li>
-              <li><a href="https://github.com/imsun/gitment">Gitment</a></li>
-            </ul>
-          </div>
-          <div class="mdl-mega-footer__drop-down-section">
-            <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-            <h1 class="mdl-mega-footer__heading">友情链接</h1>
-            <ul class="mdl-mega-footer__link-list">
-              <li><a href="http://ruanx.pw/">ruanxingzhi</a></li>
-              <li><a href="https://blog.xehoth.cc/">xehoth</a></li>
-              <li><a href="http://hjwjbsr.is-programmer.com/">HJWJBSR</a></li>
-              <li><a href="http://www.micdz.cn/">MicDZ</a></li>
-              <li><a href="http://blog.linyxus.xyz/">Linyxus</a></li>
-              <li><a href="http://memset0.cf/">memset0</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="mdl-mega-footer__bottom-section">Theme based on <a href="https://getmdl.io/">MDL</a> | Copyright © 2015-2019 riteme. All rights reserved.</div>
-      </footer>
-    </main>
-  </div>
-</body>
-</html>
+</pre></div> </table> <p>元组可以裂解。</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre>1</pre></div><td class=code ><div class=codehilite ><pre><span></span>a, b = (1, 2)  // a = 1, b = 2
+</pre></div> </table> <p>构成元组的方式也可以随意。</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre>1</pre></div><td class=code ><div class=codehilite ><pre><span></span>a, b = b, a  // 此乃SWAP的实现
+</pre></div> </table> <h2 id=_10 >如果遇到极端情况&hellip;</h2> <p>如果上面的规定不能满足表达算法的需要，那么有两种解决方法：</p> <ul> <li>从其它的语言借点语法过来，<strong>别人看得懂就行</strong>。 <li>使用<strong>陈述句</strong>。 </ul> <p>记住，如果解决不了时，就用<strong>陈述句</strong>。</p> <hr/> <div id=comments ></div> <script> window.addEventListener('load', () => { quicklink(); }); const gitment = new Gitment({id: '8fe45685993834c75c5c3a69e01e9559', owner: 'riteme', repo: 'riteme.github.io', oauth: { client_id: 'd4fcffa25858a7a58e1a', client_secret: 'e0c8e08beb95497871f8355416c69390634cec76', }, perPage: 10, }); gitment.render('comments'); </script> </div> </div> <div class="mdl-cell sidebar"> <div class=article > <div class="mdl-card mdl-shadow--3dp sidebar-card"> <div class="mdl-card__actions sidebar-title">页面信息</div> <div class=mdl-card__supporting-text > 标签: <a href="/search.html?q=伪代码"><span class=label >伪代码</span></a><br/> 创建时间: 2016.04.23<br/> 上次修改: 2016.04.23<br/> 字数统计: 2190 字 / 约 8 分钟 </div> </div> <br/> <div class="mdl-card mdl-shadow--3dp sidebar-card"> <div class="mdl-card__actions sidebar-title">目录</div> <div class=mdl-card__supporting-text > <div class=toc > <ul> <li><a href="#_1">伪代码规定</a><ul> <li><a href="#_2">注释</a> <li><a href="#_3">变量</a> <li><a href="#_4">函数</a> <li><a href="#_5">操作符</a> <li><a href="#_6">条件控制语句</a><ul> <li><a href="#if">if</a> <li><a href="#while">while</a> <li><a href="#for">for</a> </ul> <li><a href="#_7">内置类型</a> <li><a href="#_8">内置函数或语句</a> <li><a href="#_9">元组</a> <li><a href="#_10">如果遇到极端情况&hellip;</a> </ul> </ul> </div> </div> </div> <br/> <div class="mdl-card mdl-shadow--3dp sidebar-card"> <div class="mdl-card__actions sidebar-title">数学公式渲染</div> <div class=mdl-card__supporting-text > <form name=mathopt > <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for=option-1 > <input type=radio  id=option-1  class=mdl-radio__button  name=sel  value=mathjax > <span class=mdl-radio__label >MathJax (推荐)</span> </label><br/> <div id=tip-1 > <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for=option-2 > <input type=radio  id=option-2  class=mdl-radio__button  name=sel  value=katex > <span class=mdl-radio__label >KaTeX</span> </label> </div> <div id=tip-2 > <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for=option-3 > <input type=radio  id=option-3  class=mdl-radio__button  name=sel  value="katex&mathjax"> <span class=mdl-radio__label >Mixed</span> </label> </div> </form> </div> </div> <div class=mdl-tooltip  data-mdl-for=tip-1 >KaTeX 渲染效率很高，但是目前 KaTeX 容错性不强，因此使用 KaTeX 时可能会存在一些数学公式无法渲染的情况</div> <div class=mdl-tooltip  data-mdl-for=tip-2 >先使用 KaTeX 渲染，再使用 MathJax 渲染</div> <br/> <div class="nano mdl-card mdl-shadow--3dp sidebar-card"> <a class=nano-ref  target=_new  href="http://nichijou.wikia.com/wiki/Nano_Shinonome"></a> <div class=mdl-card__actions > <div class=nano-shell ><span class=shell-start >$</span> nano <a href="https://github.com/riteme/riteme.github.io/blob/master/blog/2016-4-23/fake-code.md" id=nano-link >fake-code.md</a></div> </div> </div> <div class=mdl-tooltip  data-mdl-for=nano-link >查看原始 Markdown 文档</div> </div> </div> </div> <footer class=mdl-mega-footer > <div class=mdl-mega-footer__middle-section > <div class=mdl-mega-footer__drop-down-section > <input class=mdl-mega-footer__heading-checkbox  type=checkbox  checked> <h1 class=mdl-mega-footer__heading >RITEME.SITE</h1>一个从不乱说话的博客... </div> <div class=mdl-mega-footer__drop-down-section > <input class=mdl-mega-footer__heading-checkbox  type=checkbox  checked> <h1 class=mdl-mega-footer__heading >POWERED BY</h1> <ul class=mdl-mega-footer__link-list > <li><a href="http://pythonhosted.org/Markdown/">Python Markdown</a> <li><a href="http://getmdl.io/">Material Design Lite</a> <li><a href="http://www.tipue.com/search/">Tipuesearch</a> <li><a href="http://www.mathjax.org/">MathJax</a> & <a href="http://khan.github.io/KaTeX/">KaTeX</a> <li><a href="https://github.com/imsun/gitment">Gitment</a> </ul> </div> <div class=mdl-mega-footer__drop-down-section > <input class=mdl-mega-footer__heading-checkbox  type=checkbox  checked> <h1 class=mdl-mega-footer__heading >友情链接</h1> <ul class=mdl-mega-footer__link-list > <li><a href="http://ruanx.pw/">ruanxingzhi</a> <li><a href="https://blog.xehoth.cc/">xehoth</a> <li><a href="http://hjwjbsr.is-programmer.com/">HJWJBSR</a> <li><a href="http://www.micdz.cn/">MicDZ</a> <li><a href="http://blog.linyxus.xyz/">Linyxus</a> <li><a href="http://memset0.cf/">memset0</a> </ul> </div> </div> <div class=mdl-mega-footer__bottom-section >Theme based on <a href="https://getmdl.io/">MDL</a> | Copyright © 2015-2019 riteme. All rights reserved.</div> </footer> </main> </div>

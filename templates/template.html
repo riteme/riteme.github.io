@@ -13,10 +13,10 @@
   <script src="/js/jquery.min.js"></script>
   <script src="/js/jump.js"></script>
   <script src="/js/js-cookie.js"></script>
+  <script src="/js/quicklink.umd.js"></script>
   <script defer src="/material/material.min.js"></script>
   <script src="/math-renderer/selector.js"></script>
   <script src="/gitment/gitment.js"></script>
-  <script src="/js/quicklink.umd.js"></script>
 </head>
 <body>
   <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
@@ -47,25 +47,25 @@
     </div>
     <main class="mdl-layout__content">
       <div class="mdl-grid">
-        <div class="mdl-cell mdl-cell--8-col mdl-cell--12-col-tablet mdl-cell--12-col-phone main-cell">
+        <div class="mdl-cell main-cell">
           <div class="article main-article" lang="en-US">
             {content}
             <hr/>
             <div id="comments"></div>
             <script type="text/javascript">
-              window.addEventListener('load',()=>{{quicklink();}})
+              window.addEventListener('load', () => {{ quicklink(); }});
               const gitment = new Gitment({{id: '{page_key}', owner: 'riteme', repo: 'riteme.github.io',
                 oauth: {{
                   client_id: 'd4fcffa25858a7a58e1a',
                   client_secret: 'e0c8e08beb95497871f8355416c69390634cec76',
                 }},
                 perPage: 10,
-              }})
-              gitment.render('comments')
+              }});
+              gitment.render('comments');
             </script>
           </div>
         </div>
-        <div class="mdl-cell mdl-cell--4-col mdl-cell--hide-tablet mdl-cell--hide-phone sidebar">
+        <div class="mdl-cell sidebar">
           <div class="article">
             <div class="mdl-card mdl-shadow--3dp sidebar-card">
               <div class="mdl-card__actions sidebar-title">页面信息</div>

@@ -1,88 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>【NOI2016】“循环之美” 无脑解法 - riteme.site</title>
-  <link rel="shortcut icon" href="/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/material/material-icons.css">
-  <link rel="stylesheet" href="/material/material.min.css" >
-  <link rel="stylesheet" href="/gitment/gitment.css">
-  <link rel="stylesheet" href="/math-renderer/katex/katex.min.css">
-  <link rel="stylesheet" href="/css/site.css">
-  <script src="/js/jquery.min.js"></script>
-  <script src="/js/jump.js"></script>
-  <script src="/js/js-cookie.js"></script>
-  <script defer src="/material/material.min.js"></script>
-  <script src="/math-renderer/selector.js"></script>
-  <script src="/gitment/gitment.js"></script>
-  <script src="/js/quicklink.umd.js"></script>
-</head>
-<body>
-  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-    <header class="mdl-layout__header">
-      <div class="mdl-layout__header-row">
-        <span class="mdl-layout-title">【NOI2016】“循环之美” 无脑解法</span>
-        <div class="mdl-layout-spacer"></div>
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right">
-          <label class="mdl-button mdl-js-button mdl-button--icon" for="fixed-header-drawer-exp"><i class="material-icons">search</i></label>
-          <div class="mdl-textfield__expandable-holder">
-            <form action="/search.html"><input type="text" class="mdl-textfield__input" placeholder="Search Here" name="q" id="fixed-header-drawer-exp" autocomplete="off" required></form>
-          </div>
-        </div>
-      </div>
-    </header>
-    <div class="mdl-layout__drawer">
-      <span class="mdl-layout-title drawer-title">
-        <a href="/index.html" style="color: inherit; font-weight: inherit;text-decoration: none;"><img src="/favicon.png" width=32 height=32> riteme.site</a>
-      </span>
-      <nav class="mdl-navigation">
-        <a class="mdl-navigation__link" href="/index.html"><i class="material-icons drawer-icon">home</i> 首页</a>
-        <a class="mdl-navigation__link" href="/posts.html"><i class="material-icons drawer-icon">library_books</i> 所有文章</a>
-        <a class="mdl-navigation__link" href="/about.html"><i class="material-icons drawer-icon">info</i> 关于</a>
-        <a class="mdl-navigation__link" href="/links.html"><i class="material-icons drawer-icon">link</i> 友链</a>
-        <a class="mdl-navigation__link" href="/search.html"><i class="material-icons drawer-icon">search</i> 搜索</a>
-        <a class="mdl-navigation__link" href="https://github.com/riteme/riteme.github.io"><i class="material-icons drawer-icon">class</i> GitHub 项目</a>
-      </nav>
-    </div>
-    <main class="mdl-layout__content">
-      <div class="mdl-grid">
-        <div class="mdl-cell mdl-cell--8-col mdl-cell--12-col-tablet mdl-cell--12-col-phone main-cell">
-          <div class="article main-article" lang="en-US">
-            
-<h1 id="noi2016">【NOI2016】“循环之美” 无脑解法</h1>
-<h2 id="_1">题意</h2>
-<p>给定<tex>$n, m, k$</tex>，求出所有满足<tex>$1 \leqslant x \leqslant n,\; 1 \leqslant y \leqslant m$</tex>的正整数中，<tex>$x / y$</tex>是纯循环小数的个数。<strong>数值相同的只算一次</strong>。</p>
-<p><tex>$n,\;m$</tex>均不超过<tex>$10^9$</tex>，<tex>$k$</tex>不超过<tex>$2000$</tex>。</p>
-<h2 id="_2">题解</h2>
-<p>网上一般的解法都是推一大堆式子，然后经过一些讨论最后得出使用杜教筛的做法。<br />
-接下来要给的是一个xjb算法，各位听听就好。</p>
-<h3 id="_3">初步转化</h3>
-<p>首先，如果<tex>$x / y$</tex>是纯循环小数，那么<tex>$1 / y$</tex>也是纯循环小数。<br />
-考虑小数循环节的计算方式，实际上和<tex>$k^x \pmod{y}$</tex>的循环节是一样的。由于我们知道<tex>$k^0 \equiv 1 \pmod{y}$</tex>，所以一定存在一个<tex>$L &gt; 0$</tex>满足<tex>$k^L \equiv 1 \pmod{y}$</tex>。这样就可得知<tex>$k \cdot k^{L - 1} = 1 + cy$</tex>。利用扩展欧几里得算法我们可以知道当<tex>$k$</tex>和<tex>$y$</tex>不互质时，是不会有解的。<br />
-综上，我们要求的就是：<br />
-<tex>$$
-\sum_{i = 1}^n \sum_{j = 1}^m [\gcd(i, j) = 1][\gcd(j, k) = 1]
-$$</tex></p>
-<h3 id="_4">具体分析</h3>
-<p>看到之后，我发现如果没有后面那个<tex>$j$</tex>和<tex>$k$</tex>的互质条件，则是一个简单的莫比乌斯函数前缀和的计算，可以使用杜教筛，这里就不多讲。现在考虑<tex>$j$</tex>要和<tex>$k$</tex>互质，看到计数想容斥，我们自然去找不与<tex>$k$</tex>互质的<tex>$j$</tex>，那么设<tex>$\gcd(j, k) = d$</tex>。首先<tex>$d &gt; 2$</tex>，其次<tex>$d$</tex>是<tex>$j$</tex>和<tex>$k$</tex>的一个公因子，所以我们枚举<tex>$d$</tex>的倍数即可。同时注意一个<tex>$j$</tex>可能被多个因子所减去，所以需要使用莫比乌斯函数作为容斥系数。因此<strong>需要减去的部分</strong>为：<br />
-<tex>$$
-\sum_{d \mid k} \mu(d) \sum_{j = 1}^{\lfloor m / d \rfloor} \sum_{i = 1}^n [\gcd(dj, i) = 1]
-$$</tex></p>
-<p>由于<tex>$\gcd(dj, i) = 1$</tex>等价于<tex>$\gcd(j, i) = 1$</tex>并且<tex>$\gcd(d, i) = 1$</tex>，所以上式变为：<br />
-<tex>$$
-\sum_{d \mid k, d &gt; 1} \mu(d) \sum_{j = 1}^{\lfloor m / d \rfloor} \sum_{i = 1}^n [\gcd(j, i) = 1][\gcd(i, d) = 1]
-$$</tex></p>
-<p>我们机智的发现后面那两个求和就是原问题的“<strong>数据规模减小版</strong>”......<br />
-所以设<tex>$f(n, m, k)$</tex>表示我们的答案，那么可以得到DP转移式：<br />
-<tex>$$
-f(n, m, k) = \sum_{i = 1}^n\sum_{j = 1}^m [\gcd(i, j) = 1] - \sum_{d \mid k, d &gt; 1} \mu(d) f\left(\left\lfloor \frac{m}d \right\rfloor, n, d\right)
-$$</tex></p>
-<p>很像杜教筛？我直接拿去用个哈希表来记忆化搜一下，好像最坏的数据也只访问了<tex>$30000$</tex>左右个状态......这么优美的一道题就这样过了......<br />
-复杂度不会算......</p>
-<h3 id="_5">具体实现</h3>
-<p><a href="http://uoj.ac/submission/159233">UOJ Submission #159233</a></p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
+<!DOCTYPE html> <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1.0"> <title>【NOI2016】“循环之美” 无脑解法 - riteme.site</title> <link rel="shortcut icon" href="/favicon.png" type="image/png"> <link rel=stylesheet  href="/material/material-icons.css"> <link rel=stylesheet  href="/material/material.min.css" > <link rel=stylesheet  href="/gitment/gitment.css"> <link rel=stylesheet  href="/math-renderer/katex/katex.min.css"> <link rel=stylesheet  href="/css/site.css"> <script src="/js/jquery.min.js"></script> <script src="/js/jump.js"></script> <script src="/js/js-cookie.js"></script> <script src="/js/quicklink.umd.js"></script> <script defer src="/material/material.min.js"></script> <script src="/math-renderer/selector.js"></script> <script src="/gitment/gitment.js"></script> <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header"> <header class=mdl-layout__header > <div class=mdl-layout__header-row > <span class=mdl-layout-title >【NOI2016】“循环之美” 无脑解法</span> <div class=mdl-layout-spacer ></div> <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right"> <label class="mdl-button mdl-js-button mdl-button--icon" for=fixed-header-drawer-exp ><i class=material-icons >search</i></label> <div class=mdl-textfield__expandable-holder > <form action="/search.html"><input type=text  class=mdl-textfield__input  placeholder="Search Here" name=q  id=fixed-header-drawer-exp  autocomplete=off  required></form> </div> </div> </div> </header> <div class=mdl-layout__drawer > <span class="mdl-layout-title drawer-title"> <a href="/index.html" style="color: inherit; font-weight: inherit;text-decoration: none;"><img src="/favicon.png" width=32 height=32> riteme.site</a> </span> <nav class=mdl-navigation > <a class=mdl-navigation__link  href="/index.html"><i class="material-icons drawer-icon">home</i> 首页</a> <a class=mdl-navigation__link  href="/posts.html"><i class="material-icons drawer-icon">library_books</i> 所有文章</a> <a class=mdl-navigation__link  href="/about.html"><i class="material-icons drawer-icon">info</i> 关于</a> <a class=mdl-navigation__link  href="/links.html"><i class="material-icons drawer-icon">link</i> 友链</a> <a class=mdl-navigation__link  href="/search.html"><i class="material-icons drawer-icon">search</i> 搜索</a> <a class=mdl-navigation__link  href="https://github.com/riteme/riteme.github.io"><i class="material-icons drawer-icon">class</i> GitHub 项目</a> </nav> </div> <main class=mdl-layout__content > <div class=mdl-grid > <div class="mdl-cell main-cell"> <div class="article main-article" lang=en-US > <h1 id=noi2016 >【NOI2016】“循环之美” 无脑解法</h1> <h2 id=_1 >题意</h2> <p>给定<tex>$n, m, k$</tex>，求出所有满足<tex>$1 \leqslant x \leqslant n,\; 1 \leqslant y \leqslant m$</tex>的正整数中，<tex>$x / y$</tex>是纯循环小数的个数。<strong>数值相同的只算一次</strong>。</p> <p><tex>$n,\;m$</tex>均不超过<tex>$10^9$</tex>，<tex>$k$</tex>不超过<tex>$2000$</tex>。</p> <h2 id=_2 >题解</h2> <p>网上一般的解法都是推一大堆式子，然后经过一些讨论最后得出使用杜教筛的做法。<br /> 接下来要给的是一个xjb算法，各位听听就好。</p> <h3 id=_3 >初步转化</h3> <p>首先，如果<tex>$x / y$</tex>是纯循环小数，那么<tex>$1 / y$</tex>也是纯循环小数。<br /> 考虑小数循环节的计算方式，实际上和<tex>$k^x \pmod{y}$</tex>的循环节是一样的。由于我们知道<tex>$k^0 \equiv 1 \pmod{y}$</tex>，所以一定存在一个<tex>$L &gt; 0$</tex>满足<tex>$k^L \equiv 1 \pmod{y}$</tex>。这样就可得知<tex>$k \cdot k^{L - 1} = 1 + cy$</tex>。利用扩展欧几里得算法我们可以知道当<tex>$k$</tex>和<tex>$y$</tex>不互质时，是不会有解的。<br /> 综上，我们要求的就是：<br /> <tex>$$ \sum_{i = 1}^n \sum_{j = 1}^m [\gcd(i, j) = 1][\gcd(j, k) = 1] $$</tex></p> <h3 id=_4 >具体分析</h3> <p>看到之后，我发现如果没有后面那个<tex>$j$</tex>和<tex>$k$</tex>的互质条件，则是一个简单的莫比乌斯函数前缀和的计算，可以使用杜教筛，这里就不多讲。现在考虑<tex>$j$</tex>要和<tex>$k$</tex>互质，看到计数想容斥，我们自然去找不与<tex>$k$</tex>互质的<tex>$j$</tex>，那么设<tex>$\gcd(j, k) = d$</tex>。首先<tex>$d &gt; 2$</tex>，其次<tex>$d$</tex>是<tex>$j$</tex>和<tex>$k$</tex>的一个公因子，所以我们枚举<tex>$d$</tex>的倍数即可。同时注意一个<tex>$j$</tex>可能被多个因子所减去，所以需要使用莫比乌斯函数作为容斥系数。因此<strong>需要减去的部分</strong>为：<br /> <tex>$$ \sum_{d \mid k} \mu(d) \sum_{j = 1}^{\lfloor m / d \rfloor} \sum_{i = 1}^n [\gcd(dj, i) = 1] $$</tex></p> <p>由于<tex>$\gcd(dj, i) = 1$</tex>等价于<tex>$\gcd(j, i) = 1$</tex>并且<tex>$\gcd(d, i) = 1$</tex>，所以上式变为：<br /> <tex>$$ \sum_{d \mid k, d &gt; 1} \mu(d) \sum_{j = 1}^{\lfloor m / d \rfloor} \sum_{i = 1}^n [\gcd(j, i) = 1][\gcd(i, d) = 1] $$</tex></p> <p>我们机智的发现后面那两个求和就是原问题的“<strong>数据规模减小版</strong>”......<br /> 所以设<tex>$f(n, m, k)$</tex>表示我们的答案，那么可以得到DP转移式：<br /> <tex>$$ f(n, m, k) = \sum_{i = 1}^n\sum_{j = 1}^m [\gcd(i, j) = 1] - \sum_{d \mid k, d &gt; 1} \mu(d) f\left(\left\lfloor \frac{m}d \right\rfloor, n, d\right) $$</tex></p> <p>很像杜教筛？我直接拿去用个哈希表来记忆化搜一下，好像最坏的数据也只访问了<tex>$30000$</tex>左右个状态......这么优美的一道题就这样过了......<br /> 复杂度不会算......</p> <h3 id=_5 >具体实现</h3> <p><a href="http://uoj.ac/submission/159233">UOJ Submission #159233</a></p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre>  1
   2
   3
   4
@@ -245,290 +161,168 @@ $$</tex></p>
 161
 162
 163
-164</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="c1">// #define NDEBUG</span>
+164</pre></div><td class=code ><div class=codehilite ><pre><span></span><span class=c1 >// #define NDEBUG</span>
 
-<span class="cp">#include</span> <span class="cpf">&lt;cassert&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;cstring&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;climits&gt;</span><span class="cp"></span>
+<span class=cp >#include</span> <span class=cpf >&lt;cassert&gt;</span><span class=cp ></span>
+<span class=cp >#include</span> <span class=cpf >&lt;cstdio&gt;</span><span class=cp ></span>
+<span class=cp >#include</span> <span class=cpf >&lt;cstring&gt;</span><span class=cp ></span>
+<span class=cp >#include</span> <span class=cpf >&lt;climits&gt;</span><span class=cp ></span>
 
-<span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp"></span>
+<span class=cp >#include</span> <span class=cpf >&lt;vector&gt;</span><span class=cp ></span>
+<span class=cp >#include</span> <span class=cpf >&lt;algorithm&gt;</span><span class=cp ></span>
 
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class=k >using</span> <span class=k >namespace</span> <span class=n >std</span><span class=p >;</span>
 
-<span class="cp">#define KMAX 2000</span>
-<span class="cp">#define S 5000000</span>
-<span class="cp">#define MOD 116099</span>
+<span class=cp >#define KMAX 2000</span>
+<span class=cp >#define S 5000000</span>
+<span class=cp >#define MOD 116099</span>
 
-<span class="k">typedef</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">i64</span><span class="p">;</span>
+<span class=k >typedef</span> <span class=kt >long</span> <span class=kt >long</span> <span class=n >i64</span><span class=p >;</span>
 
-<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">TPolicy</span><span class="o">&gt;</span>
-<span class="k">struct</span> <span class="n">HashTable</span> <span class="p">{</span>
-    <span class="k">typedef</span> <span class="k">typename</span> <span class="n">TPolicy</span><span class="o">::</span><span class="n">TKey</span> <span class="n">TKey</span><span class="p">;</span>
-    <span class="k">typedef</span> <span class="k">typename</span> <span class="n">TPolicy</span><span class="o">::</span><span class="n">TVal</span> <span class="n">TVal</span><span class="p">;</span>
-    <span class="k">typedef</span> <span class="n">pair</span><span class="o">&lt;</span><span class="n">TKey</span><span class="p">,</span> <span class="n">TVal</span><span class="o">&gt;</span> <span class="n">Data</span><span class="p">;</span>
+<span class=k >template</span> <span class=o >&lt;</span><span class=k >typename</span> <span class=n >TPolicy</span><span class=o >&gt;</span>
+<span class=k >struct</span> <span class=n >HashTable</span> <span class=p >{</span>
+    <span class=k >typedef</span> <span class=k >typename</span> <span class=n >TPolicy</span><span class=o >::</span><span class=n >TKey</span> <span class=n >TKey</span><span class=p >;</span>
+    <span class=k >typedef</span> <span class=k >typename</span> <span class=n >TPolicy</span><span class=o >::</span><span class=n >TVal</span> <span class=n >TVal</span><span class=p >;</span>
+    <span class=k >typedef</span> <span class=n >pair</span><span class=o >&lt;</span><span class=n >TKey</span><span class=p >,</span> <span class=n >TVal</span><span class=o >&gt;</span> <span class=n >Data</span><span class=p >;</span>
 
-    <span class="n">vector</span><span class="o">&lt;</span><span class="n">Data</span><span class="o">&gt;</span> <span class="n">bucket</span><span class="p">[</span><span class="n">MOD</span><span class="p">];</span>
+    <span class=n >vector</span><span class=o >&lt;</span><span class=n >Data</span><span class=o >&gt;</span> <span class=n >bucket</span><span class=p >[</span><span class=n >MOD</span><span class=p >];</span>
 
-    <span class="kt">int</span> <span class="nf">get_pos</span><span class="p">(</span><span class="kt">int</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kt">int</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">key</span> <span class="o">%</span> <span class="n">MOD</span><span class="p">;</span>
-        <span class="k">return</span> <span class="n">pos</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">?</span> <span class="n">pos</span> <span class="o">+</span> <span class="nl">MOD</span> <span class="p">:</span> <span class="n">pos</span><span class="p">;</span>
-    <span class="p">}</span>
+    <span class=kt >int</span> <span class=nf >get_pos</span><span class=p >(</span><span class=kt >int</span> <span class=n >key</span><span class=p >)</span> <span class=p >{</span>
+        <span class=kt >int</span> <span class=n >pos</span> <span class=o >=</span> <span class=n >key</span> <span class=o >%</span> <span class=n >MOD</span><span class=p >;</span>
+        <span class=k >return</span> <span class=n >pos</span> <span class=o >&lt;</span> <span class=mi >0</span> <span class=o >?</span> <span class=n >pos</span> <span class=o >+</span> <span class=nl >MOD</span> <span class=p >:</span> <span class=n >pos</span><span class=p >;</span>
+    <span class=p >}</span>
 
-    <span class="kt">void</span> <span class="nf">insert</span><span class="p">(</span><span class="n">TKey</span> <span class="n">key</span><span class="p">,</span> <span class="n">TVal</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">bucket</span><span class="p">[</span><span class="n">get_pos</span><span class="p">(</span><span class="n">TPolicy</span><span class="o">::</span><span class="n">hash</span><span class="p">(</span><span class="n">key</span><span class="p">))].</span><span class="n">push_back</span><span class="p">(</span><span class="n">Data</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">val</span><span class="p">));</span>
-    <span class="p">}</span>
+    <span class=kt >void</span> <span class=nf >insert</span><span class=p >(</span><span class=n >TKey</span> <span class=n >key</span><span class=p >,</span> <span class=n >TVal</span> <span class=n >val</span><span class=p >)</span> <span class=p >{</span>
+        <span class=n >bucket</span><span class=p >[</span><span class=n >get_pos</span><span class=p >(</span><span class=n >TPolicy</span><span class=o >::</span><span class=n >hash</span><span class=p >(</span><span class=n >key</span><span class=p >))].</span><span class=n >push_back</span><span class=p >(</span><span class=n >Data</span><span class=p >(</span><span class=n >key</span><span class=p >,</span> <span class=n >val</span><span class=p >));</span>
+    <span class=p >}</span>
 
-    <span class="kt">bool</span> <span class="nf">query</span><span class="p">(</span><span class="n">TKey</span> <span class="n">key</span><span class="p">,</span> <span class="n">TVal</span> <span class="o">&amp;</span><span class="n">val</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kt">int</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">get_pos</span><span class="p">(</span><span class="n">TPolicy</span><span class="o">::</span><span class="n">hash</span><span class="p">(</span><span class="n">key</span><span class="p">));</span>
+    <span class=kt >bool</span> <span class=nf >query</span><span class=p >(</span><span class=n >TKey</span> <span class=n >key</span><span class=p >,</span> <span class=n >TVal</span> <span class=o >&amp;</span><span class=n >val</span><span class=p >)</span> <span class=p >{</span>
+        <span class=kt >int</span> <span class=n >pos</span> <span class=o >=</span> <span class=n >get_pos</span><span class=p >(</span><span class=n >TPolicy</span><span class=o >::</span><span class=n >hash</span><span class=p >(</span><span class=n >key</span><span class=p >));</span>
 
-        <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="nl">e</span> <span class="p">:</span> <span class="n">bucket</span><span class="p">[</span><span class="n">pos</span><span class="p">])</span> <span class="p">{</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">first</span> <span class="o">==</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
-                <span class="n">val</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">second</span><span class="p">;</span>
-                <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
+        <span class=k >for</span> <span class=p >(</span><span class=k >auto</span> <span class=nl >e</span> <span class=p >:</span> <span class=n >bucket</span><span class=p >[</span><span class=n >pos</span><span class=p >])</span> <span class=p >{</span>
+            <span class=k >if</span> <span class=p >(</span><span class=n >e</span><span class=p >.</span><span class=n >first</span> <span class=o >==</span> <span class=n >key</span><span class=p >)</span> <span class=p >{</span>
+                <span class=n >val</span> <span class=o >=</span> <span class=n >e</span><span class=p >.</span><span class=n >second</span><span class=p >;</span>
+                <span class=k >return</span> <span class=nb >true</span><span class=p >;</span>
+            <span class=p >}</span>
+        <span class=p >}</span>
 
-        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">};</span>
+        <span class=k >return</span> <span class=nb >false</span><span class=p >;</span>
+    <span class=p >}</span>
+<span class=p >};</span>
 
-<span class="k">struct</span> <span class="n">PrePolicy</span> <span class="p">{</span>
-    <span class="k">typedef</span> <span class="kt">int</span> <span class="n">TKey</span><span class="p">;</span>
-    <span class="k">typedef</span> <span class="kt">int</span> <span class="n">TVal</span><span class="p">;</span>
+<span class=k >struct</span> <span class=n >PrePolicy</span> <span class=p >{</span>
+    <span class=k >typedef</span> <span class=kt >int</span> <span class=n >TKey</span><span class=p >;</span>
+    <span class=k >typedef</span> <span class=kt >int</span> <span class=n >TVal</span><span class=p >;</span>
 
-    <span class="k">static</span> <span class="kt">int</span> <span class="nf">hash</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="n">x</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">};</span>
+    <span class=k >static</span> <span class=kt >int</span> <span class=nf >hash</span><span class=p >(</span><span class=kt >int</span> <span class=n >x</span><span class=p >)</span> <span class=p >{</span>
+        <span class=k >return</span> <span class=n >x</span><span class=p >;</span>
+    <span class=p >}</span>
+<span class=p >};</span>
 
-<span class="k">static</span> <span class="kt">int</span> <span class="n">c</span><span class="p">[</span><span class="n">S</span> <span class="o">+</span> <span class="mi">10</span><span class="p">];</span>
-<span class="k">static</span> <span class="kt">int</span> <span class="n">p</span><span class="p">[</span><span class="n">S</span> <span class="o">+</span> <span class="mi">10</span><span class="p">];</span>
-<span class="k">static</span> <span class="n">HashTable</span><span class="o">&lt;</span><span class="n">PrePolicy</span><span class="o">&gt;</span> <span class="n">mu</span><span class="p">;</span>
+<span class=k >static</span> <span class=kt >int</span> <span class=n >c</span><span class=p >[</span><span class=n >S</span> <span class=o >+</span> <span class=mi >10</span><span class=p >];</span>
+<span class=k >static</span> <span class=kt >int</span> <span class=n >p</span><span class=p >[</span><span class=n >S</span> <span class=o >+</span> <span class=mi >10</span><span class=p >];</span>
+<span class=k >static</span> <span class=n >HashTable</span><span class=o >&lt;</span><span class=n >PrePolicy</span><span class=o >&gt;</span> <span class=n >mu</span><span class=p >;</span>
 
-<span class="kt">int</span> <span class="nf">pre</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;=</span> <span class="n">S</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">p</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
+<span class=kt >int</span> <span class=nf >pre</span><span class=p >(</span><span class=kt >int</span> <span class=n >n</span><span class=p >)</span> <span class=p >{</span>
+    <span class=k >if</span> <span class=p >(</span><span class=n >n</span> <span class=o >&lt;=</span> <span class=n >S</span><span class=p >)</span>
+        <span class=k >return</span> <span class=n >p</span><span class=p >[</span><span class=n >n</span><span class=p >];</span>
 
-    <span class="kt">int</span> <span class="n">ret</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">mu</span><span class="p">.</span><span class="n">query</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">ret</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+    <span class=kt >int</span> <span class=n >ret</span> <span class=o >=</span> <span class=mi >1</span><span class=p >;</span>
+    <span class=k >if</span> <span class=p >(</span><span class=n >mu</span><span class=p >.</span><span class=n >query</span><span class=p >(</span><span class=n >n</span><span class=p >,</span> <span class=n >ret</span><span class=p >))</span>
+        <span class=k >return</span> <span class=n >ret</span><span class=p >;</span>
 
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">last</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">=</span> <span class="n">last</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">last</span> <span class="o">=</span> <span class="n">n</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">/</span> <span class="n">i</span><span class="p">);</span>
-        <span class="n">ret</span> <span class="o">-=</span> <span class="p">(</span><span class="n">last</span> <span class="o">-</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">pre</span><span class="p">(</span><span class="n">n</span> <span class="o">/</span> <span class="n">i</span><span class="p">);</span>
-    <span class="p">}</span>
+    <span class=k >for</span> <span class=p >(</span><span class=kt >int</span> <span class=n >i</span> <span class=o >=</span> <span class=mi >2</span><span class=p >,</span> <span class=n >last</span> <span class=o >=</span> <span class=mi >2</span><span class=p >;</span> <span class=n >i</span> <span class=o >&lt;=</span> <span class=n >n</span><span class=p >;</span> <span class=n >i</span> <span class=o >=</span> <span class=n >last</span> <span class=o >+</span> <span class=mi >1</span><span class=p >)</span> <span class=p >{</span>
+        <span class=n >last</span> <span class=o >=</span> <span class=n >n</span> <span class=o >/</span> <span class=p >(</span><span class=n >n</span> <span class=o >/</span> <span class=n >i</span><span class=p >);</span>
+        <span class=n >ret</span> <span class=o >-=</span> <span class=p >(</span><span class=n >last</span> <span class=o >-</span> <span class=n >i</span> <span class=o >+</span> <span class=mi >1</span><span class=p >)</span> <span class=o >*</span> <span class=n >pre</span><span class=p >(</span><span class=n >n</span> <span class=o >/</span> <span class=n >i</span><span class=p >);</span>
+    <span class=p >}</span>
 
-    <span class="n">mu</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">ret</span><span class="p">);</span>
-    <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
-<span class="p">}</span>
+    <span class=n >mu</span><span class=p >.</span><span class=n >insert</span><span class=p >(</span><span class=n >n</span><span class=p >,</span> <span class=n >ret</span><span class=p >);</span>
+    <span class=k >return</span> <span class=n >ret</span><span class=p >;</span>
+<span class=p >}</span>
 
-<span class="k">struct</span> <span class="n">Key</span> <span class="p">{</span>
-    <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">k</span><span class="p">;</span>
+<span class=k >struct</span> <span class=n >Key</span> <span class=p >{</span>
+    <span class=kt >int</span> <span class=n >n</span><span class=p >,</span> <span class=n >m</span><span class=p >,</span> <span class=n >k</span><span class=p >;</span>
 
-    <span class="kt">bool</span> <span class="k">operator</span><span class="o">==</span><span class="p">(</span><span class="k">const</span> <span class="n">Key</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="n">n</span> <span class="o">==</span> <span class="n">b</span><span class="p">.</span><span class="n">n</span> <span class="o">&amp;&amp;</span> <span class="n">m</span> <span class="o">==</span> <span class="n">b</span><span class="p">.</span><span class="n">m</span> <span class="o">&amp;&amp;</span> <span class="n">k</span> <span class="o">==</span> <span class="n">b</span><span class="p">.</span><span class="n">k</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">};</span>
+    <span class=kt >bool</span> <span class=k >operator</span><span class=o >==</span><span class=p >(</span><span class=k >const</span> <span class=n >Key</span> <span class=o >&amp;</span><span class=n >b</span><span class=p >)</span> <span class=k >const</span> <span class=p >{</span>
+        <span class=k >return</span> <span class=n >n</span> <span class=o >==</span> <span class=n >b</span><span class=p >.</span><span class=n >n</span> <span class=o >&amp;&amp;</span> <span class=n >m</span> <span class=o >==</span> <span class=n >b</span><span class=p >.</span><span class=n >m</span> <span class=o >&amp;&amp;</span> <span class=n >k</span> <span class=o >==</span> <span class=n >b</span><span class=p >.</span><span class=n >k</span><span class=p >;</span>
+    <span class=p >}</span>
+<span class=p >};</span>
 
-<span class="k">struct</span> <span class="n">DpPolicy</span> <span class="p">{</span>
-    <span class="k">typedef</span> <span class="n">Key</span> <span class="n">TKey</span><span class="p">;</span>
-    <span class="k">typedef</span> <span class="n">i64</span> <span class="n">TVal</span><span class="p">;</span>
+<span class=k >struct</span> <span class=n >DpPolicy</span> <span class=p >{</span>
+    <span class=k >typedef</span> <span class=n >Key</span> <span class=n >TKey</span><span class=p >;</span>
+    <span class=k >typedef</span> <span class=n >i64</span> <span class=n >TVal</span><span class=p >;</span>
 
-    <span class="k">static</span> <span class="kt">int</span> <span class="nf">hash</span><span class="p">(</span><span class="k">const</span> <span class="n">TKey</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">n</span> <span class="o">^</span> <span class="n">x</span><span class="p">.</span><span class="n">m</span><span class="p">)</span> <span class="o">*</span> <span class="n">x</span><span class="p">.</span><span class="n">k</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">};</span>
+    <span class=k >static</span> <span class=kt >int</span> <span class=nf >hash</span><span class=p >(</span><span class=k >const</span> <span class=n >TKey</span> <span class=o >&amp;</span><span class=n >x</span><span class=p >)</span> <span class=p >{</span>
+        <span class=k >return</span> <span class=p >(</span><span class=n >x</span><span class=p >.</span><span class=n >n</span> <span class=o >^</span> <span class=n >x</span><span class=p >.</span><span class=n >m</span><span class=p >)</span> <span class=o >*</span> <span class=n >x</span><span class=p >.</span><span class=n >k</span><span class=p >;</span>
+    <span class=p >}</span>
+<span class=p >};</span>
 
-<span class="k">static</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">d</span><span class="p">[</span><span class="n">KMAX</span> <span class="o">+</span> <span class="mi">10</span><span class="p">];</span>
-<span class="k">static</span> <span class="n">HashTable</span><span class="o">&lt;</span><span class="n">DpPolicy</span><span class="o">&gt;</span> <span class="n">mem</span><span class="p">;</span>
+<span class=k >static</span> <span class=n >vector</span><span class=o >&lt;</span><span class=kt >int</span><span class=o >&gt;</span> <span class=n >d</span><span class=p >[</span><span class=n >KMAX</span> <span class=o >+</span> <span class=mi >10</span><span class=p >];</span>
+<span class=k >static</span> <span class=n >HashTable</span><span class=o >&lt;</span><span class=n >DpPolicy</span><span class=o >&gt;</span> <span class=n >mem</span><span class=p >;</span>
 
-<span class="n">i64</span> <span class="nf">dp</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">m</span><span class="p">,</span> <span class="kt">int</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">m</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
-        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class=n >i64</span> <span class=nf >dp</span><span class=p >(</span><span class=kt >int</span> <span class=n >n</span><span class=p >,</span> <span class=kt >int</span> <span class=n >m</span><span class=p >,</span> <span class=kt >int</span> <span class=n >k</span><span class=p >)</span> <span class=p >{</span>
+    <span class=k >if</span> <span class=p >(</span><span class=n >n</span> <span class=o >==</span> <span class=mi >0</span> <span class=o >||</span> <span class=n >m</span> <span class=o >==</span> <span class=mi >0</span><span class=p >)</span>
+        <span class=k >return</span> <span class=mi >0</span><span class=p >;</span>
 
-    <span class="n">Key</span> <span class="n">key</span> <span class="o">=</span> <span class="p">{</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">k</span><span class="p">};</span>
-    <span class="n">i64</span> <span class="n">ret</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">mem</span><span class="p">.</span><span class="n">query</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">ret</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+    <span class=n >Key</span> <span class=n >key</span> <span class=o >=</span> <span class=p >{</span><span class=n >n</span><span class=p >,</span> <span class=n >m</span><span class=p >,</span> <span class=n >k</span><span class=p >};</span>
+    <span class=n >i64</span> <span class=n >ret</span> <span class=o >=</span> <span class=mi >0</span><span class=p >;</span>
+    <span class=k >if</span> <span class=p >(</span><span class=n >mem</span><span class=p >.</span><span class=n >query</span><span class=p >(</span><span class=n >key</span><span class=p >,</span> <span class=n >ret</span><span class=p >))</span>
+        <span class=k >return</span> <span class=n >ret</span><span class=p >;</span>
 
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">last</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">m</span><span class="p">;</span> <span class="n">i</span> <span class="o">=</span> <span class="n">last</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">last</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">n</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">/</span> <span class="n">i</span><span class="p">),</span> <span class="n">m</span> <span class="o">/</span> <span class="p">(</span><span class="n">m</span> <span class="o">/</span> <span class="n">i</span><span class="p">));</span>
-        <span class="n">i64</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">pre</span><span class="p">(</span><span class="n">last</span><span class="p">)</span> <span class="o">-</span> <span class="n">pre</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span> 
-        <span class="n">ret</span> <span class="o">+=</span> <span class="n">sum</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">/</span> <span class="n">i</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">m</span> <span class="o">/</span> <span class="n">i</span><span class="p">);</span>
-    <span class="p">}</span>
+    <span class=k >for</span> <span class=p >(</span><span class=kt >int</span> <span class=n >i</span> <span class=o >=</span> <span class=mi >1</span><span class=p >,</span> <span class=n >last</span> <span class=o >=</span> <span class=mi >1</span><span class=p >;</span> <span class=n >i</span> <span class=o >&lt;=</span> <span class=n >n</span> <span class=o >&amp;&amp;</span> <span class=n >i</span> <span class=o >&lt;=</span> <span class=n >m</span><span class=p >;</span> <span class=n >i</span> <span class=o >=</span> <span class=n >last</span> <span class=o >+</span> <span class=mi >1</span><span class=p >)</span> <span class=p >{</span>
+        <span class=n >last</span> <span class=o >=</span> <span class=n >min</span><span class=p >(</span><span class=n >n</span> <span class=o >/</span> <span class=p >(</span><span class=n >n</span> <span class=o >/</span> <span class=n >i</span><span class=p >),</span> <span class=n >m</span> <span class=o >/</span> <span class=p >(</span><span class=n >m</span> <span class=o >/</span> <span class=n >i</span><span class=p >));</span>
+        <span class=n >i64</span> <span class=n >sum</span> <span class=o >=</span> <span class=n >pre</span><span class=p >(</span><span class=n >last</span><span class=p >)</span> <span class=o >-</span> <span class=n >pre</span><span class=p >(</span><span class=n >i</span> <span class=o >-</span> <span class=mi >1</span><span class=p >);</span> 
+        <span class=n >ret</span> <span class=o >+=</span> <span class=n >sum</span> <span class=o >*</span> <span class=p >(</span><span class=n >n</span> <span class=o >/</span> <span class=n >i</span><span class=p >)</span> <span class=o >*</span> <span class=p >(</span><span class=n >m</span> <span class=o >/</span> <span class=n >i</span><span class=p >);</span>
+    <span class=p >}</span>
 
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="nl">i</span> <span class="p">:</span> <span class="n">d</span><span class="p">[</span><span class="n">k</span><span class="p">])</span> <span class="p">{</span>
-        <span class="n">ret</span> <span class="o">+=</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">dp</span><span class="p">(</span><span class="n">m</span> <span class="o">/</span> <span class="n">i</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
-    <span class="p">}</span>
+    <span class=k >for</span> <span class=p >(</span><span class=kt >int</span> <span class=nl >i</span> <span class=p >:</span> <span class=n >d</span><span class=p >[</span><span class=n >k</span><span class=p >])</span> <span class=p >{</span>
+        <span class=n >ret</span> <span class=o >+=</span> <span class=n >c</span><span class=p >[</span><span class=n >i</span><span class=p >]</span> <span class=o >*</span> <span class=n >dp</span><span class=p >(</span><span class=n >m</span> <span class=o >/</span> <span class=n >i</span><span class=p >,</span> <span class=n >n</span><span class=p >,</span> <span class=n >i</span><span class=p >);</span>
+    <span class=p >}</span>
 
-    <span class="n">mem</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">ret</span><span class="p">);</span>
-    <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
-<span class="p">}</span>
+    <span class=n >mem</span><span class=p >.</span><span class=n >insert</span><span class=p >(</span><span class=n >key</span><span class=p >,</span> <span class=n >ret</span><span class=p >);</span>
+    <span class=k >return</span> <span class=n >ret</span><span class=p >;</span>
+<span class=p >}</span>
 
-<span class="k">static</span> <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">k</span><span class="p">;</span>
-<span class="k">static</span> <span class="kt">bool</span> <span class="n">marked</span><span class="p">[</span><span class="n">S</span> <span class="o">+</span> <span class="mi">10</span><span class="p">];</span>
-<span class="k">static</span> <span class="kt">int</span> <span class="n">prime</span><span class="p">[</span><span class="n">S</span> <span class="o">+</span> <span class="mi">10</span><span class="p">],</span> <span class="n">cnt</span><span class="p">;</span>
+<span class=k >static</span> <span class=kt >int</span> <span class=n >n</span><span class=p >,</span> <span class=n >m</span><span class=p >,</span> <span class=n >k</span><span class=p >;</span>
+<span class=k >static</span> <span class=kt >bool</span> <span class=n >marked</span><span class=p >[</span><span class=n >S</span> <span class=o >+</span> <span class=mi >10</span><span class=p >];</span>
+<span class=k >static</span> <span class=kt >int</span> <span class=n >prime</span><span class=p >[</span><span class=n >S</span> <span class=o >+</span> <span class=mi >10</span><span class=p >],</span> <span class=n >cnt</span><span class=p >;</span>
 
-<span class="kt">void</span> <span class="nf">initialize</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d%d%d&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">m</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">k</span><span class="p">);</span>
+<span class=kt >void</span> <span class=nf >initialize</span><span class=p >()</span> <span class=p >{</span>
+    <span class=n >scanf</span><span class=p >(</span><span class=s >&quot;%d%d%d&quot;</span><span class=p >,</span> <span class=o >&amp;</span><span class=n >n</span><span class=p >,</span> <span class=o >&amp;</span><span class=n >m</span><span class=p >,</span> <span class=o >&amp;</span><span class=n >k</span><span class=p >);</span>
 
-    <span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">S</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">marked</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="p">{</span>
-            <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-            <span class="n">prime</span><span class="p">[</span><span class="o">++</span><span class="n">cnt</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
-        <span class="p">}</span>
+    <span class=n >c</span><span class=p >[</span><span class=mi >1</span><span class=p >]</span> <span class=o >=</span> <span class=n >p</span><span class=p >[</span><span class=mi >1</span><span class=p >]</span> <span class=o >=</span> <span class=mi >1</span><span class=p >;</span>
+    <span class=k >for</span> <span class=p >(</span><span class=kt >int</span> <span class=n >i</span> <span class=o >=</span> <span class=mi >2</span><span class=p >;</span> <span class=n >i</span> <span class=o >&lt;=</span> <span class=n >S</span><span class=p >;</span> <span class=n >i</span><span class=o >++</span><span class=p >)</span> <span class=p >{</span>
+        <span class=k >if</span> <span class=p >(</span><span class=o >!</span><span class=n >marked</span><span class=p >[</span><span class=n >i</span><span class=p >])</span> <span class=p >{</span>
+            <span class=n >c</span><span class=p >[</span><span class=n >i</span><span class=p >]</span> <span class=o >=</span> <span class=o >-</span><span class=mi >1</span><span class=p >;</span>
+            <span class=n >prime</span><span class=p >[</span><span class=o >++</span><span class=n >cnt</span><span class=p >]</span> <span class=o >=</span> <span class=n >i</span><span class=p >;</span>
+        <span class=p >}</span>
 
-        <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">*</span> <span class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">S</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-            <span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
-            <span class="n">marked</span><span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+        <span class=n >p</span><span class=p >[</span><span class=n >i</span><span class=p >]</span> <span class=o >=</span> <span class=n >p</span><span class=p >[</span><span class=n >i</span> <span class=o >-</span> <span class=mi >1</span><span class=p >]</span> <span class=o >+</span> <span class=n >c</span><span class=p >[</span><span class=n >i</span><span class=p >];</span>
+        <span class=k >for</span> <span class=p >(</span><span class=kt >int</span> <span class=n >j</span> <span class=o >=</span> <span class=mi >1</span><span class=p >;</span> <span class=n >i</span> <span class=o >*</span> <span class=n >prime</span><span class=p >[</span><span class=n >j</span><span class=p >]</span> <span class=o >&lt;=</span> <span class=n >S</span><span class=p >;</span> <span class=n >j</span><span class=o >++</span><span class=p >)</span> <span class=p >{</span>
+            <span class=kt >int</span> <span class=n >p</span> <span class=o >=</span> <span class=n >prime</span><span class=p >[</span><span class=n >j</span><span class=p >];</span>
+            <span class=n >marked</span><span class=p >[</span><span class=n >i</span> <span class=o >*</span> <span class=n >p</span><span class=p >]</span> <span class=o >=</span> <span class=nb >true</span><span class=p >;</span>
 
-            <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">%</span> <span class="n">p</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-                <span class="n">c</span><span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-                <span class="k">break</span><span class="p">;</span>
-            <span class="p">}</span> <span class="k">else</span>
-                <span class="n">c</span><span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
+            <span class=k >if</span> <span class=p >(</span><span class=n >i</span> <span class=o >%</span> <span class=n >p</span> <span class=o >==</span> <span class=mi >0</span><span class=p >)</span> <span class=p >{</span>
+                <span class=n >c</span><span class=p >[</span><span class=n >i</span> <span class=o >*</span> <span class=n >p</span><span class=p >]</span> <span class=o >=</span> <span class=mi >0</span><span class=p >;</span>
+                <span class=k >break</span><span class=p >;</span>
+            <span class=p >}</span> <span class=k >else</span>
+                <span class=n >c</span><span class=p >[</span><span class=n >i</span> <span class=o >*</span> <span class=n >p</span><span class=p >]</span> <span class=o >=</span> <span class=o >-</span><span class=n >c</span><span class=p >[</span><span class=n >i</span><span class=p >];</span>
+        <span class=p >}</span>
+    <span class=p >}</span>
 
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">k</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">i</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">%</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
-                <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">j</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+    <span class=k >for</span> <span class=p >(</span><span class=kt >int</span> <span class=n >i</span> <span class=o >=</span> <span class=mi >2</span><span class=p >;</span> <span class=n >i</span> <span class=o >&lt;=</span> <span class=n >k</span><span class=p >;</span> <span class=n >i</span><span class=o >++</span><span class=p >)</span> <span class=p >{</span>
+        <span class=k >for</span> <span class=p >(</span><span class=kt >int</span> <span class=n >j</span> <span class=o >=</span> <span class=mi >2</span><span class=p >;</span> <span class=n >j</span> <span class=o >&lt;=</span> <span class=n >i</span><span class=p >;</span> <span class=n >j</span><span class=o >++</span><span class=p >)</span> <span class=p >{</span>
+            <span class=k >if</span> <span class=p >(</span><span class=n >c</span><span class=p >[</span><span class=n >j</span><span class=p >]</span> <span class=o >&amp;&amp;</span> <span class=n >i</span> <span class=o >%</span> <span class=n >j</span> <span class=o >==</span> <span class=mi >0</span><span class=p >)</span>
+                <span class=n >d</span><span class=p >[</span><span class=n >i</span><span class=p >].</span><span class=n >push_back</span><span class=p >(</span><span class=n >j</span><span class=p >);</span>
+        <span class=p >}</span>
+    <span class=p >}</span>
+<span class=p >}</span>
 
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// freopen(&quot;cyclic.in&quot;, &quot;r&quot;, stdin);</span>
-    <span class="n">initialize</span><span class="p">();</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%lld</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">dp</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">k</span><span class="p">));</span>
+<span class=kt >int</span> <span class=nf >main</span><span class=p >()</span> <span class=p >{</span>
+    <span class=c1 >// freopen(&quot;cyclic.in&quot;, &quot;r&quot;, stdin);</span>
+    <span class=n >initialize</span><span class=p >();</span>
+    <span class=n >printf</span><span class=p >(</span><span class=s >&quot;%lld</span><span class=se >\n</span><span class=s >&quot;</span><span class=p >,</span> <span class=n >dp</span><span class=p >(</span><span class=n >n</span><span class=p >,</span> <span class=n >m</span><span class=p >,</span> <span class=n >k</span><span class=p >));</span>
 
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-</td></tr></table>
-            <hr/>
-            <div id="comments"></div>
-            <script type="text/javascript">
-              window.addEventListener('load',()=>{quicklink();})
-              const gitment = new Gitment({id: 'b52c65b97f727d5b20d79e1ac1617f18', owner: 'riteme', repo: 'riteme.github.io',
-                oauth: {
-                  client_id: 'd4fcffa25858a7a58e1a',
-                  client_secret: 'e0c8e08beb95497871f8355416c69390634cec76',
-                },
-                perPage: 10,
-              })
-              gitment.render('comments')
-            </script>
-          </div>
-        </div>
-        <div class="mdl-cell mdl-cell--4-col mdl-cell--hide-tablet mdl-cell--hide-phone sidebar">
-          <div class="article">
-            <div class="mdl-card mdl-shadow--3dp sidebar-card">
-              <div class="mdl-card__actions sidebar-title">页面信息</div>
-              <div class="mdl-card__supporting-text">
-                标签: <a href="/search.html?q=NOI"><span class="label">NOI</span></a> <a href="/search.html?q=数论"><span class="label">数论</span></a> <a href="/search.html?q=题解"><span class="label">题解</span></a><br/>
-                创建时间: 2017.05.18<br/>
-                上次修改: 2017.05.18<br/>
-                字数统计: 6662 字 / 约 26 分钟
-              </div>
-            </div>
-            <br/>
-            
-<div class="mdl-card mdl-shadow--3dp sidebar-card">
-  <div class="mdl-card__actions sidebar-title">目录</div>
-  <div class="mdl-card__supporting-text">
-    <div class="toc">
-<ul>
-<li><a href="#noi2016">【NOI2016】“循环之美” 无脑解法</a><ul>
-<li><a href="#_1">题意</a></li>
-<li><a href="#_2">题解</a><ul>
-<li><a href="#_3">初步转化</a></li>
-<li><a href="#_4">具体分析</a></li>
-<li><a href="#_5">具体实现</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</div>
-  </div>
-</div>
-<br/>
-
-            <div class="mdl-card mdl-shadow--3dp sidebar-card">
-              <div class="mdl-card__actions sidebar-title">数学公式渲染</div>
-              <div class="mdl-card__supporting-text">
-                <form name="mathopt">
-                  <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
-                    <input type="radio" id="option-1" class="mdl-radio__button" name="sel" value="mathjax">
-                    <span class="mdl-radio__label">MathJax (推荐)</span>
-                  </label><br/>
-                  <div id="tip-1">
-                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
-                      <input type="radio" id="option-2" class="mdl-radio__button" name="sel" value="katex">
-                      <span class="mdl-radio__label">KaTeX</span>
-                    </label>
-                  </div>
-                  <div id="tip-2">
-                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
-                      <input type="radio" id="option-3" class="mdl-radio__button" name="sel" value="katex&mathjax">
-                      <span class="mdl-radio__label">Mixed</span>
-                    </label>
-                  </div>
-                </form>
-              </div>
-            </div>
-            <div class="mdl-tooltip" data-mdl-for="tip-1">KaTeX 渲染效率很高，但是目前 KaTeX 容错性不强，因此使用 KaTeX 时可能会存在一些数学公式无法渲染的情况</div>
-            <div class="mdl-tooltip" data-mdl-for="tip-2">先使用 KaTeX 渲染，再使用 MathJax 渲染</div>
-            <br/>
-            <div class="nano mdl-card mdl-shadow--3dp sidebar-card">
-              <a class="nano-ref" target="_new" href="http://nichijou.wikia.com/wiki/Nano_Shinonome"></a>
-              <div class="mdl-card__actions">
-                <div class="nano-shell"><span class="shell-start">$</span> nano <a href="https://github.com/riteme/riteme.github.io/blob/master/blog/2017-5-18/cyclic.md" id="nano-link">cyclic.md</a></div>
-              </div>
-            </div>
-            <div class="mdl-tooltip" data-mdl-for="nano-link">查看原始 Markdown 文档</div>
-          </div>
-        </div>
-      </div>
-      <footer class="mdl-mega-footer">
-        <div class="mdl-mega-footer__middle-section">
-          <div class="mdl-mega-footer__drop-down-section">
-            <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-            <h1 class="mdl-mega-footer__heading">RITEME.SITE</h1>一个从不乱说话的博客...
-          </div>
-          <div class="mdl-mega-footer__drop-down-section">
-            <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-            <h1 class="mdl-mega-footer__heading">POWERED BY</h1>
-            <ul class="mdl-mega-footer__link-list">
-              <li><a href="http://pythonhosted.org/Markdown/">Python Markdown</a></li>
-              <li><a href="http://getmdl.io/">Material Design Lite</a></li>
-              <li><a href="http://www.tipue.com/search/">Tipuesearch</a></li>
-              <li><a href="http://www.mathjax.org/">MathJax</a> & <a href="http://khan.github.io/KaTeX/">KaTeX</a></li>
-              <li><a href="https://github.com/imsun/gitment">Gitment</a></li>
-            </ul>
-          </div>
-          <div class="mdl-mega-footer__drop-down-section">
-            <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-            <h1 class="mdl-mega-footer__heading">友情链接</h1>
-            <ul class="mdl-mega-footer__link-list">
-              <li><a href="http://ruanx.pw/">ruanxingzhi</a></li>
-              <li><a href="https://blog.xehoth.cc/">xehoth</a></li>
-              <li><a href="http://hjwjbsr.is-programmer.com/">HJWJBSR</a></li>
-              <li><a href="http://www.micdz.cn/">MicDZ</a></li>
-              <li><a href="http://blog.linyxus.xyz/">Linyxus</a></li>
-              <li><a href="http://memset0.cf/">memset0</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="mdl-mega-footer__bottom-section">Theme based on <a href="https://getmdl.io/">MDL</a> | Copyright © 2015-2019 riteme. All rights reserved.</div>
-      </footer>
-    </main>
-  </div>
-</body>
-</html>
+    <span class=k >return</span> <span class=mi >0</span><span class=p >;</span>
+<span class=p >}</span>
+</pre></div> </table> <hr/> <div id=comments ></div> <script> window.addEventListener('load', () => { quicklink(); }); const gitment = new Gitment({id: 'b52c65b97f727d5b20d79e1ac1617f18', owner: 'riteme', repo: 'riteme.github.io', oauth: { client_id: 'd4fcffa25858a7a58e1a', client_secret: 'e0c8e08beb95497871f8355416c69390634cec76', }, perPage: 10, }); gitment.render('comments'); </script> </div> </div> <div class="mdl-cell sidebar"> <div class=article > <div class="mdl-card mdl-shadow--3dp sidebar-card"> <div class="mdl-card__actions sidebar-title">页面信息</div> <div class=mdl-card__supporting-text > 标签: <a href="/search.html?q=NOI"><span class=label >NOI</span></a> <a href="/search.html?q=数论"><span class=label >数论</span></a> <a href="/search.html?q=题解"><span class=label >题解</span></a><br/> 创建时间: 2017.05.18<br/> 上次修改: 2017.05.18<br/> 字数统计: 6662 字 / 约 26 分钟 </div> </div> <br/> <div class="mdl-card mdl-shadow--3dp sidebar-card"> <div class="mdl-card__actions sidebar-title">目录</div> <div class=mdl-card__supporting-text > <div class=toc > <ul> <li><a href="#noi2016">【NOI2016】“循环之美” 无脑解法</a><ul> <li><a href="#_1">题意</a> <li><a href="#_2">题解</a><ul> <li><a href="#_3">初步转化</a> <li><a href="#_4">具体分析</a> <li><a href="#_5">具体实现</a> </ul> </ul> </ul> </div> </div> </div> <br/> <div class="mdl-card mdl-shadow--3dp sidebar-card"> <div class="mdl-card__actions sidebar-title">数学公式渲染</div> <div class=mdl-card__supporting-text > <form name=mathopt > <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for=option-1 > <input type=radio  id=option-1  class=mdl-radio__button  name=sel  value=mathjax > <span class=mdl-radio__label >MathJax (推荐)</span> </label><br/> <div id=tip-1 > <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for=option-2 > <input type=radio  id=option-2  class=mdl-radio__button  name=sel  value=katex > <span class=mdl-radio__label >KaTeX</span> </label> </div> <div id=tip-2 > <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for=option-3 > <input type=radio  id=option-3  class=mdl-radio__button  name=sel  value="katex&mathjax"> <span class=mdl-radio__label >Mixed</span> </label> </div> </form> </div> </div> <div class=mdl-tooltip  data-mdl-for=tip-1 >KaTeX 渲染效率很高，但是目前 KaTeX 容错性不强，因此使用 KaTeX 时可能会存在一些数学公式无法渲染的情况</div> <div class=mdl-tooltip  data-mdl-for=tip-2 >先使用 KaTeX 渲染，再使用 MathJax 渲染</div> <br/> <div class="nano mdl-card mdl-shadow--3dp sidebar-card"> <a class=nano-ref  target=_new  href="http://nichijou.wikia.com/wiki/Nano_Shinonome"></a> <div class=mdl-card__actions > <div class=nano-shell ><span class=shell-start >$</span> nano <a href="https://github.com/riteme/riteme.github.io/blob/master/blog/2017-5-18/cyclic.md" id=nano-link >cyclic.md</a></div> </div> </div> <div class=mdl-tooltip  data-mdl-for=nano-link >查看原始 Markdown 文档</div> </div> </div> </div> <footer class=mdl-mega-footer > <div class=mdl-mega-footer__middle-section > <div class=mdl-mega-footer__drop-down-section > <input class=mdl-mega-footer__heading-checkbox  type=checkbox  checked> <h1 class=mdl-mega-footer__heading >RITEME.SITE</h1>一个从不乱说话的博客... </div> <div class=mdl-mega-footer__drop-down-section > <input class=mdl-mega-footer__heading-checkbox  type=checkbox  checked> <h1 class=mdl-mega-footer__heading >POWERED BY</h1> <ul class=mdl-mega-footer__link-list > <li><a href="http://pythonhosted.org/Markdown/">Python Markdown</a> <li><a href="http://getmdl.io/">Material Design Lite</a> <li><a href="http://www.tipue.com/search/">Tipuesearch</a> <li><a href="http://www.mathjax.org/">MathJax</a> & <a href="http://khan.github.io/KaTeX/">KaTeX</a> <li><a href="https://github.com/imsun/gitment">Gitment</a> </ul> </div> <div class=mdl-mega-footer__drop-down-section > <input class=mdl-mega-footer__heading-checkbox  type=checkbox  checked> <h1 class=mdl-mega-footer__heading >友情链接</h1> <ul class=mdl-mega-footer__link-list > <li><a href="http://ruanx.pw/">ruanxingzhi</a> <li><a href="https://blog.xehoth.cc/">xehoth</a> <li><a href="http://hjwjbsr.is-programmer.com/">HJWJBSR</a> <li><a href="http://www.micdz.cn/">MicDZ</a> <li><a href="http://blog.linyxus.xyz/">Linyxus</a> <li><a href="http://memset0.cf/">memset0</a> </ul> </div> </div> <div class=mdl-mega-footer__bottom-section >Theme based on <a href="https://getmdl.io/">MDL</a> | Copyright © 2015-2019 riteme. All rights reserved.</div> </footer> </main> </div>

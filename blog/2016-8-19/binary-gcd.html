@@ -1,85 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>二进制GCD - riteme.site</title>
-  <link rel="shortcut icon" href="/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/material/material-icons.css">
-  <link rel="stylesheet" href="/material/material.min.css" >
-  <link rel="stylesheet" href="/gitment/gitment.css">
-  <link rel="stylesheet" href="/math-renderer/katex/katex.min.css">
-  <link rel="stylesheet" href="/css/site.css">
-  <script src="/js/jquery.min.js"></script>
-  <script src="/js/jump.js"></script>
-  <script src="/js/js-cookie.js"></script>
-  <script defer src="/material/material.min.js"></script>
-  <script src="/math-renderer/selector.js"></script>
-  <script src="/gitment/gitment.js"></script>
-  <script src="/js/quicklink.umd.js"></script>
-</head>
-<body>
-  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-    <header class="mdl-layout__header">
-      <div class="mdl-layout__header-row">
-        <span class="mdl-layout-title">二进制GCD</span>
-        <div class="mdl-layout-spacer"></div>
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right">
-          <label class="mdl-button mdl-js-button mdl-button--icon" for="fixed-header-drawer-exp"><i class="material-icons">search</i></label>
-          <div class="mdl-textfield__expandable-holder">
-            <form action="/search.html"><input type="text" class="mdl-textfield__input" placeholder="Search Here" name="q" id="fixed-header-drawer-exp" autocomplete="off" required></form>
-          </div>
-        </div>
-      </div>
-    </header>
-    <div class="mdl-layout__drawer">
-      <span class="mdl-layout-title drawer-title">
-        <a href="/index.html" style="color: inherit; font-weight: inherit;text-decoration: none;"><img src="/favicon.png" width=32 height=32> riteme.site</a>
-      </span>
-      <nav class="mdl-navigation">
-        <a class="mdl-navigation__link" href="/index.html"><i class="material-icons drawer-icon">home</i> 首页</a>
-        <a class="mdl-navigation__link" href="/posts.html"><i class="material-icons drawer-icon">library_books</i> 所有文章</a>
-        <a class="mdl-navigation__link" href="/about.html"><i class="material-icons drawer-icon">info</i> 关于</a>
-        <a class="mdl-navigation__link" href="/links.html"><i class="material-icons drawer-icon">link</i> 友链</a>
-        <a class="mdl-navigation__link" href="/search.html"><i class="material-icons drawer-icon">search</i> 搜索</a>
-        <a class="mdl-navigation__link" href="https://github.com/riteme/riteme.github.io"><i class="material-icons drawer-icon">class</i> GitHub 项目</a>
-      </nav>
-    </div>
-    <main class="mdl-layout__content">
-      <div class="mdl-grid">
-        <div class="mdl-cell mdl-cell--8-col mdl-cell--12-col-tablet mdl-cell--12-col-phone main-cell">
-          <div class="article main-article" lang="en-US">
-            
-<h1 id="gcd">二进制GCD</h1>
-<p>在算导上发现了一个有趣的算法，有氧环境下可以拿来卡卡常.....</p>
-<h2 id="_1">算法原理</h2>
-<p>下面将考虑计算<tex>$\gcd(a,\;b)$</tex>，假定<tex>$a \ge b$</tex>：</p>
-<ol>
-<li>如果<tex>$a$</tex>、<tex>$b$</tex>都是<strong>偶数</strong>，那么易知：<br />
-<tex>$$
-\gcd(a,\;b) = 2\gcd(a / 2,\;b / 2)
-$$</tex></li>
-<li>如果<tex>$a$</tex>是<strong>偶数</strong>，<tex>$b$</tex>是<strong>奇数</strong>，那么有：<br />
-<tex>$$
-\gcd(a,\;b) = \gcd(a / 2, b)
-$$</tex></li>
-<li>如果<tex>$a$</tex>是<strong>奇数</strong>，<tex>$b$</tex>是<strong>偶数</strong>，那么有：<br />
-<tex>$$
-\gcd(a,\;b) = \gcd(a,\;b / 2)
-$$</tex></li>
-<li>如果<tex>$a$</tex>、<tex>$b$</tex>都是<strong>奇数</strong>，那么有：<br />
-<tex>$$
-\gcd(a,\;b) = \gcd((a - b) / 2, b)
-$$</tex></li>
-</ol>
-<p>这些结论都是比较容易证明的，这里就略去了。<br />
-由于<strong>减法的速度比取模快</strong> (减法速度基本与加法一致)，同时除以<tex>$2$</tex>和乘以<tex>$2$</tex>可以使用<strong>位运算</strong>来代替，并且每次折半可以保证复杂度，所以理论上这个算法是非常快的。<br />
-但是需要注意，欧几里德算法是上界<tex>$O(\log(\min\{a,\;b\}))$</tex>，而此算法类似于快速幂，是<strong>上下界</strong><tex>$\Theta(\log(\min\{a,\;b\}))$</tex>。<br />
-但这并不影响它的效率。在我的机子上 (使用Clang 3.6.0) 实测，在编译器打开<code>-O2</code>优化下比欧几里德算法快。<br />
-但是在没有开<code>-O2</code>优化时，因为<strong>常数问题速度变慢</strong>许多。</p>
-<h2 id="_2">算法实现</h2>
-<p>下面展示一个基本实现：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<!DOCTYPE html> <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1.0"> <title>二进制GCD - riteme.site</title> <link rel="shortcut icon" href="/favicon.png" type="image/png"> <link rel=stylesheet  href="/material/material-icons.css"> <link rel=stylesheet  href="/material/material.min.css" > <link rel=stylesheet  href="/gitment/gitment.css"> <link rel=stylesheet  href="/math-renderer/katex/katex.min.css"> <link rel=stylesheet  href="/css/site.css"> <script src="/js/jquery.min.js"></script> <script src="/js/jump.js"></script> <script src="/js/js-cookie.js"></script> <script src="/js/quicklink.umd.js"></script> <script defer src="/material/material.min.js"></script> <script src="/math-renderer/selector.js"></script> <script src="/gitment/gitment.js"></script> <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header"> <header class=mdl-layout__header > <div class=mdl-layout__header-row > <span class=mdl-layout-title >二进制GCD</span> <div class=mdl-layout-spacer ></div> <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right"> <label class="mdl-button mdl-js-button mdl-button--icon" for=fixed-header-drawer-exp ><i class=material-icons >search</i></label> <div class=mdl-textfield__expandable-holder > <form action="/search.html"><input type=text  class=mdl-textfield__input  placeholder="Search Here" name=q  id=fixed-header-drawer-exp  autocomplete=off  required></form> </div> </div> </div> </header> <div class=mdl-layout__drawer > <span class="mdl-layout-title drawer-title"> <a href="/index.html" style="color: inherit; font-weight: inherit;text-decoration: none;"><img src="/favicon.png" width=32 height=32> riteme.site</a> </span> <nav class=mdl-navigation > <a class=mdl-navigation__link  href="/index.html"><i class="material-icons drawer-icon">home</i> 首页</a> <a class=mdl-navigation__link  href="/posts.html"><i class="material-icons drawer-icon">library_books</i> 所有文章</a> <a class=mdl-navigation__link  href="/about.html"><i class="material-icons drawer-icon">info</i> 关于</a> <a class=mdl-navigation__link  href="/links.html"><i class="material-icons drawer-icon">link</i> 友链</a> <a class=mdl-navigation__link  href="/search.html"><i class="material-icons drawer-icon">search</i> 搜索</a> <a class=mdl-navigation__link  href="https://github.com/riteme/riteme.github.io"><i class="material-icons drawer-icon">class</i> GitHub 项目</a> </nav> </div> <main class=mdl-layout__content > <div class=mdl-grid > <div class="mdl-cell main-cell"> <div class="article main-article" lang=en-US > <h1 id=gcd >二进制GCD</h1> <p>在算导上发现了一个有趣的算法，有氧环境下可以拿来卡卡常.....</p> <h2 id=_1 >算法原理</h2> <p>下面将考虑计算<tex>$\gcd(a,\;b)$</tex>，假定<tex>$a \ge b$</tex>：</p> <ol> <li>如果<tex>$a$</tex>、<tex>$b$</tex>都是<strong>偶数</strong>，那么易知：<br /> <tex>$$ \gcd(a,\;b) = 2\gcd(a / 2,\;b / 2) $$</tex> <li>如果<tex>$a$</tex>是<strong>偶数</strong>，<tex>$b$</tex>是<strong>奇数</strong>，那么有：<br /> <tex>$$ \gcd(a,\;b) = \gcd(a / 2, b) $$</tex> <li>如果<tex>$a$</tex>是<strong>奇数</strong>，<tex>$b$</tex>是<strong>偶数</strong>，那么有：<br /> <tex>$$ \gcd(a,\;b) = \gcd(a,\;b / 2) $$</tex> <li>如果<tex>$a$</tex>、<tex>$b$</tex>都是<strong>奇数</strong>，那么有：<br /> <tex>$$ \gcd(a,\;b) = \gcd((a - b) / 2, b) $$</tex> </ol> <p>这些结论都是比较容易证明的，这里就略去了。<br /> 由于<strong>减法的速度比取模快</strong> (减法速度基本与加法一致)，同时除以<tex>$2$</tex>和乘以<tex>$2$</tex>可以使用<strong>位运算</strong>来代替，并且每次折半可以保证复杂度，所以理论上这个算法是非常快的。<br /> 但是需要注意，欧几里德算法是上界<tex>$O(\log(\min\{a,\;b\}))$</tex>，而此算法类似于快速幂，是<strong>上下界</strong><tex>$\Theta(\log(\min\{a,\;b\}))$</tex>。<br /> 但这并不影响它的效率。在我的机子上 (使用Clang 3.6.0) 实测，在编译器打开<code>-O2</code>优化下比欧几里德算法快。<br /> 但是在没有开<code>-O2</code>优化时，因为<strong>常数问题速度变慢</strong>许多。</p> <h2 id=_2 >算法实现</h2> <p>下面展示一个基本实现：</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre> 1
  2
  3
  4
@@ -93,7 +12,7 @@ $$</tex></li>
 12
 13
 14
-15</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>function BINARY-GCD(a, b):
+15</pre></div><td class=code ><div class=codehilite ><pre><span></span>function BINARY-GCD(a, b):
     if a &lt; b:  # 要保证 a &gt;= b
         SWAP(a, b)
     if b == 0:
@@ -108,13 +27,7 @@ $$</tex></li>
             return BINARY-GCD(a &gt;&gt; 1, b)
         else:
             return BINARY-GCD(a &gt;&gt; 1, b &gt;&gt; 1) &lt;&lt; 1
-</pre></div>
-</td></tr></table>
-
-<p>注意到欧几里德算法里面是<strong>尾递归</strong>，编译器可以依此做优化。<br />
-而上面给出的代码里面并不是这种形式。<br />
-但是我们可以稍微修改一下，就可以将其改为尾递归形式：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+</pre></div> </table> <p>注意到欧几里德算法里面是<strong>尾递归</strong>，编译器可以依此做优化。<br /> 而上面给出的代码里面并不是这种形式。<br /> 但是我们可以稍微修改一下，就可以将其改为尾递归形式：</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre> 1
  2
  3
  4
@@ -128,7 +41,7 @@ $$</tex></li>
 12
 13
 14
-15</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>function TAIL-BINARY-GCD(a, b, shift = 0):  # 记录一个shift表示答案乘了几个2
+15</pre></div><td class=code ><div class=codehilite ><pre><span></span>function TAIL-BINARY-GCD(a, b, shift = 0):  # 记录一个shift表示答案乘了几个2
     if a &lt; b:
         SWAP(a, b)
     if b == 0:
@@ -143,124 +56,4 @@ $$</tex></li>
             return TAIL-BINARY-GCD(a &gt;&gt; 1, b, shift)
         else:
             return TAIL-BINARY-GCD(a &gt;&gt; 1, b &gt;&gt; 1, shift + 1)  # 计数器加1
-</pre></div>
-</td></tr></table>
-
-<p>在编译器优化的帮助下，这份代码跑得更快。</p>
-<p>此外，二进制GCD另一个巨大的优势就是在需要<strong>高精度</strong>的场合下，不但降低时间复杂度也减低了编程难度 (毕竟<strong>不需要高精度取模</strong>)，所以在这种情况下是一个非常好的算法。</p>
-            <hr/>
-            <div id="comments"></div>
-            <script type="text/javascript">
-              window.addEventListener('load',()=>{quicklink();})
-              const gitment = new Gitment({id: 'bb4a6182fc189ef45ec48773a29f267a', owner: 'riteme', repo: 'riteme.github.io',
-                oauth: {
-                  client_id: 'd4fcffa25858a7a58e1a',
-                  client_secret: 'e0c8e08beb95497871f8355416c69390634cec76',
-                },
-                perPage: 10,
-              })
-              gitment.render('comments')
-            </script>
-          </div>
-        </div>
-        <div class="mdl-cell mdl-cell--4-col mdl-cell--hide-tablet mdl-cell--hide-phone sidebar">
-          <div class="article">
-            <div class="mdl-card mdl-shadow--3dp sidebar-card">
-              <div class="mdl-card__actions sidebar-title">页面信息</div>
-              <div class="mdl-card__supporting-text">
-                标签: <a href="/search.html?q=数学"><span class="label">数学</span></a> <a href="/search.html?q=GCD"><span class="label">GCD</span></a><br/>
-                创建时间: 2016.08.19<br/>
-                上次修改: 2016.08.19<br/>
-                字数统计: 2137 字 / 约 8 分钟
-              </div>
-            </div>
-            <br/>
-            
-<div class="mdl-card mdl-shadow--3dp sidebar-card">
-  <div class="mdl-card__actions sidebar-title">目录</div>
-  <div class="mdl-card__supporting-text">
-    <div class="toc">
-<ul>
-<li><a href="#gcd">二进制GCD</a><ul>
-<li><a href="#_1">算法原理</a></li>
-<li><a href="#_2">算法实现</a></li>
-</ul>
-</li>
-</ul>
-</div>
-  </div>
-</div>
-<br/>
-
-            <div class="mdl-card mdl-shadow--3dp sidebar-card">
-              <div class="mdl-card__actions sidebar-title">数学公式渲染</div>
-              <div class="mdl-card__supporting-text">
-                <form name="mathopt">
-                  <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
-                    <input type="radio" id="option-1" class="mdl-radio__button" name="sel" value="mathjax">
-                    <span class="mdl-radio__label">MathJax (推荐)</span>
-                  </label><br/>
-                  <div id="tip-1">
-                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
-                      <input type="radio" id="option-2" class="mdl-radio__button" name="sel" value="katex">
-                      <span class="mdl-radio__label">KaTeX</span>
-                    </label>
-                  </div>
-                  <div id="tip-2">
-                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
-                      <input type="radio" id="option-3" class="mdl-radio__button" name="sel" value="katex&mathjax">
-                      <span class="mdl-radio__label">Mixed</span>
-                    </label>
-                  </div>
-                </form>
-              </div>
-            </div>
-            <div class="mdl-tooltip" data-mdl-for="tip-1">KaTeX 渲染效率很高，但是目前 KaTeX 容错性不强，因此使用 KaTeX 时可能会存在一些数学公式无法渲染的情况</div>
-            <div class="mdl-tooltip" data-mdl-for="tip-2">先使用 KaTeX 渲染，再使用 MathJax 渲染</div>
-            <br/>
-            <div class="nano mdl-card mdl-shadow--3dp sidebar-card">
-              <a class="nano-ref" target="_new" href="http://nichijou.wikia.com/wiki/Nano_Shinonome"></a>
-              <div class="mdl-card__actions">
-                <div class="nano-shell"><span class="shell-start">$</span> nano <a href="https://github.com/riteme/riteme.github.io/blob/master/blog/2016-8-19/binary-gcd.md" id="nano-link">binary-gcd.md</a></div>
-              </div>
-            </div>
-            <div class="mdl-tooltip" data-mdl-for="nano-link">查看原始 Markdown 文档</div>
-          </div>
-        </div>
-      </div>
-      <footer class="mdl-mega-footer">
-        <div class="mdl-mega-footer__middle-section">
-          <div class="mdl-mega-footer__drop-down-section">
-            <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-            <h1 class="mdl-mega-footer__heading">RITEME.SITE</h1>一个从不乱说话的博客...
-          </div>
-          <div class="mdl-mega-footer__drop-down-section">
-            <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-            <h1 class="mdl-mega-footer__heading">POWERED BY</h1>
-            <ul class="mdl-mega-footer__link-list">
-              <li><a href="http://pythonhosted.org/Markdown/">Python Markdown</a></li>
-              <li><a href="http://getmdl.io/">Material Design Lite</a></li>
-              <li><a href="http://www.tipue.com/search/">Tipuesearch</a></li>
-              <li><a href="http://www.mathjax.org/">MathJax</a> & <a href="http://khan.github.io/KaTeX/">KaTeX</a></li>
-              <li><a href="https://github.com/imsun/gitment">Gitment</a></li>
-            </ul>
-          </div>
-          <div class="mdl-mega-footer__drop-down-section">
-            <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-            <h1 class="mdl-mega-footer__heading">友情链接</h1>
-            <ul class="mdl-mega-footer__link-list">
-              <li><a href="http://ruanx.pw/">ruanxingzhi</a></li>
-              <li><a href="https://blog.xehoth.cc/">xehoth</a></li>
-              <li><a href="http://hjwjbsr.is-programmer.com/">HJWJBSR</a></li>
-              <li><a href="http://www.micdz.cn/">MicDZ</a></li>
-              <li><a href="http://blog.linyxus.xyz/">Linyxus</a></li>
-              <li><a href="http://memset0.cf/">memset0</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="mdl-mega-footer__bottom-section">Theme based on <a href="https://getmdl.io/">MDL</a> | Copyright © 2015-2019 riteme. All rights reserved.</div>
-      </footer>
-    </main>
-  </div>
-</body>
-</html>
+</pre></div> </table> <p>在编译器优化的帮助下，这份代码跑得更快。</p> <p>此外，二进制GCD另一个巨大的优势就是在需要<strong>高精度</strong>的场合下，不但降低时间复杂度也减低了编程难度 (毕竟<strong>不需要高精度取模</strong>)，所以在这种情况下是一个非常好的算法。</p> <hr/> <div id=comments ></div> <script> window.addEventListener('load', () => { quicklink(); }); const gitment = new Gitment({id: 'bb4a6182fc189ef45ec48773a29f267a', owner: 'riteme', repo: 'riteme.github.io', oauth: { client_id: 'd4fcffa25858a7a58e1a', client_secret: 'e0c8e08beb95497871f8355416c69390634cec76', }, perPage: 10, }); gitment.render('comments'); </script> </div> </div> <div class="mdl-cell sidebar"> <div class=article > <div class="mdl-card mdl-shadow--3dp sidebar-card"> <div class="mdl-card__actions sidebar-title">页面信息</div> <div class=mdl-card__supporting-text > 标签: <a href="/search.html?q=数学"><span class=label >数学</span></a> <a href="/search.html?q=GCD"><span class=label >GCD</span></a><br/> 创建时间: 2016.08.19<br/> 上次修改: 2016.08.19<br/> 字数统计: 2137 字 / 约 8 分钟 </div> </div> <br/> <div class="mdl-card mdl-shadow--3dp sidebar-card"> <div class="mdl-card__actions sidebar-title">目录</div> <div class=mdl-card__supporting-text > <div class=toc > <ul> <li><a href="#gcd">二进制GCD</a><ul> <li><a href="#_1">算法原理</a> <li><a href="#_2">算法实现</a> </ul> </ul> </div> </div> </div> <br/> <div class="mdl-card mdl-shadow--3dp sidebar-card"> <div class="mdl-card__actions sidebar-title">数学公式渲染</div> <div class=mdl-card__supporting-text > <form name=mathopt > <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for=option-1 > <input type=radio  id=option-1  class=mdl-radio__button  name=sel  value=mathjax > <span class=mdl-radio__label >MathJax (推荐)</span> </label><br/> <div id=tip-1 > <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for=option-2 > <input type=radio  id=option-2  class=mdl-radio__button  name=sel  value=katex > <span class=mdl-radio__label >KaTeX</span> </label> </div> <div id=tip-2 > <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for=option-3 > <input type=radio  id=option-3  class=mdl-radio__button  name=sel  value="katex&mathjax"> <span class=mdl-radio__label >Mixed</span> </label> </div> </form> </div> </div> <div class=mdl-tooltip  data-mdl-for=tip-1 >KaTeX 渲染效率很高，但是目前 KaTeX 容错性不强，因此使用 KaTeX 时可能会存在一些数学公式无法渲染的情况</div> <div class=mdl-tooltip  data-mdl-for=tip-2 >先使用 KaTeX 渲染，再使用 MathJax 渲染</div> <br/> <div class="nano mdl-card mdl-shadow--3dp sidebar-card"> <a class=nano-ref  target=_new  href="http://nichijou.wikia.com/wiki/Nano_Shinonome"></a> <div class=mdl-card__actions > <div class=nano-shell ><span class=shell-start >$</span> nano <a href="https://github.com/riteme/riteme.github.io/blob/master/blog/2016-8-19/binary-gcd.md" id=nano-link >binary-gcd.md</a></div> </div> </div> <div class=mdl-tooltip  data-mdl-for=nano-link >查看原始 Markdown 文档</div> </div> </div> </div> <footer class=mdl-mega-footer > <div class=mdl-mega-footer__middle-section > <div class=mdl-mega-footer__drop-down-section > <input class=mdl-mega-footer__heading-checkbox  type=checkbox  checked> <h1 class=mdl-mega-footer__heading >RITEME.SITE</h1>一个从不乱说话的博客... </div> <div class=mdl-mega-footer__drop-down-section > <input class=mdl-mega-footer__heading-checkbox  type=checkbox  checked> <h1 class=mdl-mega-footer__heading >POWERED BY</h1> <ul class=mdl-mega-footer__link-list > <li><a href="http://pythonhosted.org/Markdown/">Python Markdown</a> <li><a href="http://getmdl.io/">Material Design Lite</a> <li><a href="http://www.tipue.com/search/">Tipuesearch</a> <li><a href="http://www.mathjax.org/">MathJax</a> & <a href="http://khan.github.io/KaTeX/">KaTeX</a> <li><a href="https://github.com/imsun/gitment">Gitment</a> </ul> </div> <div class=mdl-mega-footer__drop-down-section > <input class=mdl-mega-footer__heading-checkbox  type=checkbox  checked> <h1 class=mdl-mega-footer__heading >友情链接</h1> <ul class=mdl-mega-footer__link-list > <li><a href="http://ruanx.pw/">ruanxingzhi</a> <li><a href="https://blog.xehoth.cc/">xehoth</a> <li><a href="http://hjwjbsr.is-programmer.com/">HJWJBSR</a> <li><a href="http://www.micdz.cn/">MicDZ</a> <li><a href="http://blog.linyxus.xyz/">Linyxus</a> <li><a href="http://memset0.cf/">memset0</a> </ul> </div> </div> <div class=mdl-mega-footer__bottom-section >Theme based on <a href="https://getmdl.io/">MDL</a> | Copyright © 2015-2019 riteme. All rights reserved.</div> </footer> </main> </div>

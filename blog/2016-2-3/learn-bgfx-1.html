@@ -1,117 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>编译并使用bgfx - riteme.site</title>
-  <link rel="shortcut icon" href="/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/material/material-icons.css">
-  <link rel="stylesheet" href="/material/material.min.css" >
-  <link rel="stylesheet" href="/gitment/gitment.css">
-  <link rel="stylesheet" href="/math-renderer/katex/katex.min.css">
-  <link rel="stylesheet" href="/css/site.css">
-  <script src="/js/jquery.min.js"></script>
-  <script src="/js/jump.js"></script>
-  <script src="/js/js-cookie.js"></script>
-  <script defer src="/material/material.min.js"></script>
-  <script src="/math-renderer/selector.js"></script>
-  <script src="/gitment/gitment.js"></script>
-  <script src="/js/quicklink.umd.js"></script>
-</head>
-<body>
-  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-    <header class="mdl-layout__header">
-      <div class="mdl-layout__header-row">
-        <span class="mdl-layout-title">编译并使用bgfx</span>
-        <div class="mdl-layout-spacer"></div>
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right">
-          <label class="mdl-button mdl-js-button mdl-button--icon" for="fixed-header-drawer-exp"><i class="material-icons">search</i></label>
-          <div class="mdl-textfield__expandable-holder">
-            <form action="/search.html"><input type="text" class="mdl-textfield__input" placeholder="Search Here" name="q" id="fixed-header-drawer-exp" autocomplete="off" required></form>
-          </div>
-        </div>
-      </div>
-    </header>
-    <div class="mdl-layout__drawer">
-      <span class="mdl-layout-title drawer-title">
-        <a href="/index.html" style="color: inherit; font-weight: inherit;text-decoration: none;"><img src="/favicon.png" width=32 height=32> riteme.site</a>
-      </span>
-      <nav class="mdl-navigation">
-        <a class="mdl-navigation__link" href="/index.html"><i class="material-icons drawer-icon">home</i> 首页</a>
-        <a class="mdl-navigation__link" href="/posts.html"><i class="material-icons drawer-icon">library_books</i> 所有文章</a>
-        <a class="mdl-navigation__link" href="/about.html"><i class="material-icons drawer-icon">info</i> 关于</a>
-        <a class="mdl-navigation__link" href="/links.html"><i class="material-icons drawer-icon">link</i> 友链</a>
-        <a class="mdl-navigation__link" href="/search.html"><i class="material-icons drawer-icon">search</i> 搜索</a>
-        <a class="mdl-navigation__link" href="https://github.com/riteme/riteme.github.io"><i class="material-icons drawer-icon">class</i> GitHub 项目</a>
-      </nav>
-    </div>
-    <main class="mdl-layout__content">
-      <div class="mdl-grid">
-        <div class="mdl-cell mdl-cell--8-col mdl-cell--12-col-tablet mdl-cell--12-col-phone main-cell">
-          <div class="article main-article" lang="en-US">
-            
-<h1 id="bgfx">编译并使用bgfx</h1>
-<p>最近发现了一个似乎很好的图形引擎<a href="https://github.com/bkaradzic/bgfx">bgfx</a>。<br />
-它是使用C++进行编写的，也有C99的接口，功能还比较丰富，支持DirectX 9/11和OpenGL 2.1+。<br />
-这是一个跨平台的库，我在Ubuntu 14.04上编译了成功了。<br />
-编译过程十分简单。本文就介绍<strong>Linux下</strong>的编译过程。</p>
-<h2 id="_1">编译</h2>
-<p>这里我只写了Linux的编译过程，其他平台我还没试过，具体参见<a href="https://bkaradzic.github.io/bgfx/build.html">bgfx&rsquo;s document</a>。<br />
-首先需要编译器支持，确保你的编译器满足下列要求：</p>
-<ul>
-<li>Clang 3.3及以上  </li>
-<li>GCC 4.6及以上</li>
-</ul>
-<p>同时准备依赖库：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>sudo apt-get install libgl1-mesa-dev x11proto-core-dev libx11-dev
-</pre></div>
-</td></tr></table>
-
-<p>然后从GitHub上下载源码。因为bgfx依赖于bx，因此我们还要下载bx：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<!DOCTYPE html> <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1.0"> <title>编译并使用bgfx - riteme.site</title> <link rel="shortcut icon" href="/favicon.png" type="image/png"> <link rel=stylesheet  href="/material/material-icons.css"> <link rel=stylesheet  href="/material/material.min.css" > <link rel=stylesheet  href="/gitment/gitment.css"> <link rel=stylesheet  href="/math-renderer/katex/katex.min.css"> <link rel=stylesheet  href="/css/site.css"> <script src="/js/jquery.min.js"></script> <script src="/js/jump.js"></script> <script src="/js/js-cookie.js"></script> <script src="/js/quicklink.umd.js"></script> <script defer src="/material/material.min.js"></script> <script src="/math-renderer/selector.js"></script> <script src="/gitment/gitment.js"></script> <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header"> <header class=mdl-layout__header > <div class=mdl-layout__header-row > <span class=mdl-layout-title >编译并使用bgfx</span> <div class=mdl-layout-spacer ></div> <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right"> <label class="mdl-button mdl-js-button mdl-button--icon" for=fixed-header-drawer-exp ><i class=material-icons >search</i></label> <div class=mdl-textfield__expandable-holder > <form action="/search.html"><input type=text  class=mdl-textfield__input  placeholder="Search Here" name=q  id=fixed-header-drawer-exp  autocomplete=off  required></form> </div> </div> </div> </header> <div class=mdl-layout__drawer > <span class="mdl-layout-title drawer-title"> <a href="/index.html" style="color: inherit; font-weight: inherit;text-decoration: none;"><img src="/favicon.png" width=32 height=32> riteme.site</a> </span> <nav class=mdl-navigation > <a class=mdl-navigation__link  href="/index.html"><i class="material-icons drawer-icon">home</i> 首页</a> <a class=mdl-navigation__link  href="/posts.html"><i class="material-icons drawer-icon">library_books</i> 所有文章</a> <a class=mdl-navigation__link  href="/about.html"><i class="material-icons drawer-icon">info</i> 关于</a> <a class=mdl-navigation__link  href="/links.html"><i class="material-icons drawer-icon">link</i> 友链</a> <a class=mdl-navigation__link  href="/search.html"><i class="material-icons drawer-icon">search</i> 搜索</a> <a class=mdl-navigation__link  href="https://github.com/riteme/riteme.github.io"><i class="material-icons drawer-icon">class</i> GitHub 项目</a> </nav> </div> <main class=mdl-layout__content > <div class=mdl-grid > <div class="mdl-cell main-cell"> <div class="article main-article" lang=en-US > <h1 id=bgfx >编译并使用bgfx</h1> <p>最近发现了一个似乎很好的图形引擎<a href="https://github.com/bkaradzic/bgfx">bgfx</a>。<br /> 它是使用C++进行编写的，也有C99的接口，功能还比较丰富，支持DirectX 9/11和OpenGL 2.1+。<br /> 这是一个跨平台的库，我在Ubuntu 14.04上编译了成功了。<br /> 编译过程十分简单。本文就介绍<strong>Linux下</strong>的编译过程。</p> <h2 id=_1 >编译</h2> <p>这里我只写了Linux的编译过程，其他平台我还没试过，具体参见<a href="https://bkaradzic.github.io/bgfx/build.html">bgfx&rsquo;s document</a>。<br /> 首先需要编译器支持，确保你的编译器满足下列要求：</p> <ul> <li>Clang 3.3及以上 <li>GCC 4.6及以上 </ul> <p>同时准备依赖库：</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre>1</pre></div><td class=code ><div class=codehilite ><pre><span></span>sudo apt-get install libgl1-mesa-dev x11proto-core-dev libx11-dev
+</pre></div> </table> <p>然后从GitHub上下载源码。因为bgfx依赖于bx，因此我们还要下载bx：</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre>1
 2
 3
-4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nb">cd</span> ~/Downloads  <span class="c1"># 下载到Downloads目录</span>
+4</pre></div><td class=code ><div class=codehilite ><pre><span></span><span class=nb >cd</span> ~/Downloads  <span class=c1 ># 下载到Downloads目录</span>
 git clone git://github.com/bkaradzic/bx.git
 git clone git://github.com/bkaradzic/bgfx.git
-<span class="nb">cd</span> bgfx  <span class="c1"># 进入源码目录，准备编译</span>
-</pre></div>
-</td></tr></table>
-
-<p>使用<code>make</code>生成工程：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>make
-</pre></div>
-</td></tr></table>
-
-<p>接下来进行编译：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>make linux-release64
-</pre></div>
-</td></tr></table>
-
-<div class="panel panel-info"><div class="panel-heading"><h3 class="panel-title">提示</h3></div><div class="panel-body">
-使用<code>make</code>还可以生成其他版本的，其格式是：
-
-wzxhzdk:4
-
-例如，如果要生成32位的bgfx，使用以下命令：
-
-wzxhzdk:5
-
-</div></div>
-
-<p>如果编译过程中没有报错，那么在<code>.build/</code>文件夹下会有对应的编译后的文件。</p>
-<h2 id="_2">运行样例</h2>
-<p>bgfx提供了很多样例，编译后的样例在<code>.build/</code>对应的文件夹下(我的就在<code>.build/linux64_gcc/bin/</code>下），在目前bgfx没有什么教程的情况下是很好的学习资料。<br />
-由于样例需要很多资源文件（如着色器、材质之类的），而它们都在<code>exmaples/runtime</code>目录下，<br />
-因此需要在<code>exmaples/runtime</code>目录下用相对路径来运行。</p>
-<p>首先我们切换到样例的目录。对我而言，使用以下命令：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nb">cd</span> .build/linux64_gcc/bin/
-</pre></div>
-</td></tr></table>
-
-<p>如果你编译的是32位，将上面的64改成32即可。</p>
-<p>然后使用<code>ls</code>命令查看样例，可以看到目前有28个样例（包括<code>Hello, world!</code>）：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<span class=nb >cd</span> bgfx  <span class=c1 ># 进入源码目录，准备编译</span>
+</pre></div> </table> <p>使用<code>make</code>生成工程：</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre>1</pre></div><td class=code ><div class=codehilite ><pre><span></span>make
+</pre></div> </table> <p>接下来进行编译：</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre>1</pre></div><td class=code ><div class=codehilite ><pre><span></span>make linux-release64
+</pre></div> </table> <div class="panel panel-info"><div class=panel-heading ><h3 class=panel-title >提示</h3></div><div class=panel-body > 使用<code>make</code>还可以生成其他版本的，其格式是： wzxhzdk:4 例如，如果要生成32位的bgfx，使用以下命令： wzxhzdk:5 </div></div> <p>如果编译过程中没有报错，那么在<code>.build/</code>文件夹下会有对应的编译后的文件。</p> <h2 id=_2 >运行样例</h2> <p>bgfx提供了很多样例，编译后的样例在<code>.build/</code>对应的文件夹下(我的就在<code>.build/linux64_gcc/bin/</code>下），在目前bgfx没有什么教程的情况下是很好的学习资料。<br /> 由于样例需要很多资源文件（如着色器、材质之类的），而它们都在<code>exmaples/runtime</code>目录下，<br /> 因此需要在<code>exmaples/runtime</code>目录下用相对路径来运行。</p> <p>首先我们切换到样例的目录。对我而言，使用以下命令：</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre>1</pre></div><td class=code ><div class=codehilite ><pre><span></span><span class=nb >cd</span> .build/linux64_gcc/bin/
+</pre></div> </table> <p>如果你编译的是32位，将上面的64改成32即可。</p> <p>然后使用<code>ls</code>命令查看样例，可以看到目前有28个样例（包括<code>Hello, world!</code>）：</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre> 1
  2
  3
  4
@@ -127,7 +25,7 @@ git clone git://github.com/bkaradzic/bgfx.git
 14
 15
 16
-17</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>example-00-helloworldRelease         example-17-drawstressRelease
+17</pre></div><td class=code ><div class=codehilite ><pre><span></span>example-00-helloworldRelease         example-17-drawstressRelease
 example-01-cubesRelease              example-18-iblRelease
 example-02-metaballsRelease          example-19-oitRelease
 example-03-raymarchRelease           example-20-nanovgRelease
@@ -144,100 +42,40 @@ example-13-stencilRelease            libbgfx-shared-libRelease.so
 example-14-shadowvolumesRelease      libexample-commonRelease.a
 example-15-shadowmaps-simpleRelease  shadercRelease
 example-16-shadowmapsRelease         texturecRelease
-</pre></div>
-</td></tr></table>
-
-<p>可以看到每个样例都十分具有代表性，今后的学习就从它们开始。</p>
-<p>同时注意到，有两个<code>.a</code>的静态库和一个<code>.so</code>的动态库，我们可以用它们来编译程序。</p>
-<p>然而并不是在这里运行样例，我们要回到<code>runtime</code>目录来运行：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nb">cd</span> ../../../examples/runtime
-</pre></div>
-</td></tr></table>
-
-<p>假如要运行<code>00-helloworld</code>，使用以下命令：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>../../.build/linux64_gcc/bin/example-00-helloworldRelease
-</pre></div>
-</td></tr></table>
-
-<p>如果不出意外，能看到以下窗口（图片来自<code>bgfx document</code>）：</p>
-<p><img alt="bgfx helloworld" src="https://github.com/bkaradzic/bgfx/raw/master/examples/00-helloworld/screenshot.png" /></p>
-<p><a href="https://bkaradzic.github.io/bgfx/examples.html">bgfx的文档</a>也给出了样例的列表。</p>
-<h2 id="bgfx_1">编译我们自己的bgfx程序</h2>
-<p>为了通用性，这里使用最基础的终端编译的方法，我们直接用<code>g++</code>进行编译。</p>
-<p>首先，我们创建一个目录来存放我们的程序：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>mkdir my-first-bgfx
-<span class="nb">cd</span> my-first-bgfx
-</pre></div>
-</td></tr></table>
-
-<p>然后将bgfx的静态库复制过来：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>cp <span class="o">[</span>bgfx的目录<span class="o">]</span>/.build/linux64_gcc/bin/*.a .
-</pre></div>
-</td></tr></table>
-
-<p>这时目录下会多出两个<code>.a</code>文件： <code>libbgfxRelease.a</code>和<code>libexample-commonRelease.a</code><br />
-<div class="panel panel-info"><div class="panel-heading"><h3 class="panel-title">静态库 vs 动态库</h3></div><div class="panel-body"><br />
-我们在这里选用了静态库，而不是动态库，是考虑了用户的原因。<br />
-因为bgfx没有什么很方便的安装方法，使用静态库就可以避免安装的过程，尽可能少的对用户的系统进行修改。<br />
-当然，使用静态库会增大程序体积。静态链接后，我们的bgfx程序会有3MB多&hellip;<br />
-</div></div></p>
-<p>然后需要将bgfx及其依赖库的bx的头文件给复制进来。为了方便，我们还将bgfx用于样例的common库也复制进来：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+</pre></div> </table> <p>可以看到每个样例都十分具有代表性，今后的学习就从它们开始。</p> <p>同时注意到，有两个<code>.a</code>的静态库和一个<code>.so</code>的动态库，我们可以用它们来编译程序。</p> <p>然而并不是在这里运行样例，我们要回到<code>runtime</code>目录来运行：</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre>1</pre></div><td class=code ><div class=codehilite ><pre><span></span><span class=nb >cd</span> ../../../examples/runtime
+</pre></div> </table> <p>假如要运行<code>00-helloworld</code>，使用以下命令：</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre>1</pre></div><td class=code ><div class=codehilite ><pre><span></span>../../.build/linux64_gcc/bin/example-00-helloworldRelease
+</pre></div> </table> <p>如果不出意外，能看到以下窗口（图片来自<code>bgfx document</code>）：</p> <p><img alt="bgfx helloworld" src="https://github.com/bkaradzic/bgfx/raw/master/examples/00-helloworld/screenshot.png" /></p> <p><a href="https://bkaradzic.github.io/bgfx/examples.html">bgfx的文档</a>也给出了样例的列表。</p> <h2 id=bgfx_1 >编译我们自己的bgfx程序</h2> <p>为了通用性，这里使用最基础的终端编译的方法，我们直接用<code>g++</code>进行编译。</p> <p>首先，我们创建一个目录来存放我们的程序：</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre>1
+2</pre></div><td class=code ><div class=codehilite ><pre><span></span>mkdir my-first-bgfx
+<span class=nb >cd</span> my-first-bgfx
+</pre></div> </table> <p>然后将bgfx的静态库复制过来：</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre>1</pre></div><td class=code ><div class=codehilite ><pre><span></span>cp <span class=o >[</span>bgfx的目录<span class=o >]</span>/.build/linux64_gcc/bin/*.a .
+</pre></div> </table> <p>这时目录下会多出两个<code>.a</code>文件： <code>libbgfxRelease.a</code>和<code>libexample-commonRelease.a</code><br /> <div class="panel panel-info"><div class=panel-heading ><h3 class=panel-title >静态库 vs 动态库</h3></div><div class=panel-body ><br /> 我们在这里选用了静态库，而不是动态库，是考虑了用户的原因。<br /> 因为bgfx没有什么很方便的安装方法，使用静态库就可以避免安装的过程，尽可能少的对用户的系统进行修改。<br /> 当然，使用静态库会增大程序体积。静态链接后，我们的bgfx程序会有3MB多&hellip;<br /> </div></div></p> <p>然后需要将bgfx及其依赖库的bx的头文件给复制进来。为了方便，我们还将bgfx用于样例的common库也复制进来：</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre>1
 2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>cp -rf <span class="o">[</span>bgfx的目录<span class="o">]</span>/include/* .         <span class="c1"># bgfx</span>
-cp -rf <span class="o">[</span>bgfx的目录<span class="o">]</span>/examples/common/ .  <span class="c1"># bgfx-common</span>
-cp -rf <span class="o">[</span>bx的目录<span class="o">]</span>/include/* .           <span class="c1"># bx</span>
-</pre></div>
-</td></tr></table>
-
-<p>下面我们来照着bgfx的<code>hello, world</code>来写第一个程序。我们将会在窗口的左上角打出<code>Hello, world!</code>的字样：</p>
-<p>创建程序<code>main.cpp</code>：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>touch main.cpp
-<span class="o">[</span>使用你的编辑器<span class="o">]</span> main.cpp
-</pre></div>
-</td></tr></table>
-
-<p>首先添加头文件：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+3</pre></div><td class=code ><div class=codehilite ><pre><span></span>cp -rf <span class=o >[</span>bgfx的目录<span class=o >]</span>/include/* .         <span class=c1 ># bgfx</span>
+cp -rf <span class=o >[</span>bgfx的目录<span class=o >]</span>/examples/common/ .  <span class=c1 ># bgfx-common</span>
+cp -rf <span class=o >[</span>bx的目录<span class=o >]</span>/include/* .           <span class=c1 ># bx</span>
+</pre></div> </table> <p>下面我们来照着bgfx的<code>hello, world</code>来写第一个程序。我们将会在窗口的左上角打出<code>Hello, world!</code>的字样：</p> <p>创建程序<code>main.cpp</code>：</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre>1
+2</pre></div><td class=code ><div class=codehilite ><pre><span></span>touch main.cpp
+<span class=o >[</span>使用你的编辑器<span class=o >]</span> main.cpp
+</pre></div> </table> <p>首先添加头文件：</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre>1
 2
 3
-4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;cstdint&gt;  // uint32_t</span><span class="cp"></span>
+4</pre></div><td class=code ><div class=codehilite ><pre><span></span><span class=cp >#include</span> <span class=cpf >&lt;cstdint&gt;  // uint32_t</span><span class=cp ></span>
 
-<span class="cp">#include</span> <span class="cpf">&quot;bgfx/bgfx.h&quot;      // bgfx</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;common/common.h&quot;  // bgfx-common</span><span class="cp"></span>
-</pre></div>
-</td></tr></table>
-
-<p>然后添加<code>_main_</code>函数。注意之所以是<code>_main_</code>而不是<code>main</code>，是因为bgfx的common库为了更好的处理以已经将<code>main</code>实现了，<br />
-于是设置<code>_main_</code>作为程序入口。</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<span class=cp >#include</span> <span class=cpf >&quot;bgfx/bgfx.h&quot;      // bgfx</span><span class=cp ></span>
+<span class=cp >#include</span> <span class=cpf >&quot;common/common.h&quot;  // bgfx-common</span><span class=cp ></span>
+</pre></div> </table> <p>然后添加<code>_main_</code>函数。注意之所以是<code>_main_</code>而不是<code>main</code>，是因为bgfx的common库为了更好的处理以已经将<code>main</code>实现了，<br /> 于是设置<code>_main_</code>作为程序入口。</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre>1
 2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kt">int</span> <span class="nf">_main_</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
-    <span class="cm">/* 代码 */</span>
-<span class="p">}</span>
-</pre></div>
-</td></tr></table>
-
-<p>在<code>_main_</code>函数内，我们先做一些设定：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+3</pre></div><td class=code ><div class=codehilite ><pre><span></span><span class=kt >int</span> <span class=nf >_main_</span><span class=p >(</span><span class=kt >int</span> <span class=n >argc</span><span class=p >,</span> <span class=kt >char</span> <span class=o >*</span><span class=n >argv</span><span class=p >[])</span> <span class=p >{</span>
+    <span class=cm >/* 代码 */</span>
+<span class=p >}</span>
+</pre></div> </table> <p>在<code>_main_</code>函数内，我们先做一些设定：</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre>1
 2
 3
-4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kt">uint32_t</span> <span class="n">width</span>  <span class="o">=</span> <span class="mi">1280</span><span class="p">;</span>              <span class="c1">// 窗口宽度</span>
-<span class="kt">uint32_t</span> <span class="n">height</span> <span class="o">=</span> <span class="mi">720</span><span class="p">;</span>               <span class="c1">// 窗口高度</span>
-<span class="kt">uint32_t</span> <span class="n">debug</span>  <span class="o">=</span> <span class="n">BGFX_DEBUG_TEXT</span><span class="p">;</span>   <span class="c1">// debug模式开启，可以直接在窗口输出文字</span>
-<span class="kt">uint32_t</span> <span class="n">reset</span>  <span class="o">=</span> <span class="n">BGFX_RESET_VSYNC</span><span class="p">;</span>  <span class="c1">// 设置垂直同步</span>
-</pre></div>
-</td></tr></table>
-
-<div class="panel panel-info"><div class="panel-heading"><h3 class="panel-title">注意</h3></div><div class="panel-body">
-似乎<code>width</code>和<code>height</code>的设置是没有用的，似乎无论设为多少，打开后都会变成<code>1280x720</code>，我也不知道是为什么...</br>
-如果你也出现了这种情况，不要惊慌，不要害怕...
-</div></div>
-
-<p>下面是加载bgfx：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+4</pre></div><td class=code ><div class=codehilite ><pre><span></span><span class=kt >uint32_t</span> <span class=n >width</span>  <span class=o >=</span> <span class=mi >1280</span><span class=p >;</span>              <span class=c1 >// 窗口宽度</span>
+<span class=kt >uint32_t</span> <span class=n >height</span> <span class=o >=</span> <span class=mi >720</span><span class=p >;</span>               <span class=c1 >// 窗口高度</span>
+<span class=kt >uint32_t</span> <span class=n >debug</span>  <span class=o >=</span> <span class=n >BGFX_DEBUG_TEXT</span><span class=p >;</span>   <span class=c1 >// debug模式开启，可以直接在窗口输出文字</span>
+<span class=kt >uint32_t</span> <span class=n >reset</span>  <span class=o >=</span> <span class=n >BGFX_RESET_VSYNC</span><span class=p >;</span>  <span class=c1 >// 设置垂直同步</span>
+</pre></div> </table> <div class="panel panel-info"><div class=panel-heading ><h3 class=panel-title >注意</h3></div><div class=panel-body > 似乎<code>width</code>和<code>height</code>的设置是没有用的，似乎无论设为多少，打开后都会变成<code>1280x720</code>，我也不知道是为什么... 如果你也出现了这种情况，不要惊慌，不要害怕... </div></div> <p>下面是加载bgfx：</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre> 1
  2
  3
  4
@@ -246,21 +84,17 @@ cp -rf <span class="o">[</span>bx的目录<span class="o">]</span>/include/* .  
  7
  8
  9
-10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">bgfx</span><span class="o">::</span><span class="n">init</span><span class="p">();</span>                             <span class="c1">// 载入</span>
-<span class="n">bgfx</span><span class="o">::</span><span class="n">reset</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">reset</span><span class="p">);</span>        <span class="c1">// 设置</span>
-<span class="n">bgfx</span><span class="o">::</span><span class="n">setDebug</span><span class="p">(</span><span class="n">debug</span><span class="p">);</span>                    <span class="c1">// 启用调试</span>
-<span class="n">bgfx</span><span class="o">::</span><span class="n">setViewClear</span><span class="p">(</span>                       <span class="c1">// 设置清空的状态</span>
-    <span class="mi">0</span><span class="p">,</span>                                    <span class="c1">// bgfx中有View的概念，默认情况下是View 0</span>
-    <span class="n">BGFX_CLEAR_COLOR</span> <span class="o">|</span> <span class="n">BGFX_CLEAR_DEPTH</span><span class="p">,</span>  <span class="c1">// 表示要清空颜色缓冲和深度缓冲</span>
-    <span class="mh">0xFFFFFFFF</span><span class="p">,</span>                           <span class="c1">// 颜色缓冲的清空值，0xFFFFFFFF是白色</span>
-    <span class="mf">1.0f</span><span class="p">,</span>                                 <span class="c1">// 深度缓冲的清空值，默认为1.0f</span>
-    <span class="mi">0</span>                                     <span class="c1">// 模板缓冲的清空值，默认为0</span>
-<span class="p">);</span>
-</pre></div>
-</td></tr></table>
-
-<p>接下来就是渲染了，我们使用一个循环同时处理事件和渲染：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+10</pre></div><td class=code ><div class=codehilite ><pre><span></span><span class=n >bgfx</span><span class=o >::</span><span class=n >init</span><span class=p >();</span>                             <span class=c1 >// 载入</span>
+<span class=n >bgfx</span><span class=o >::</span><span class=n >reset</span><span class=p >(</span><span class=n >width</span><span class=p >,</span> <span class=n >height</span><span class=p >,</span> <span class=n >reset</span><span class=p >);</span>        <span class=c1 >// 设置</span>
+<span class=n >bgfx</span><span class=o >::</span><span class=n >setDebug</span><span class=p >(</span><span class=n >debug</span><span class=p >);</span>                    <span class=c1 >// 启用调试</span>
+<span class=n >bgfx</span><span class=o >::</span><span class=n >setViewClear</span><span class=p >(</span>                       <span class=c1 >// 设置清空的状态</span>
+    <span class=mi >0</span><span class=p >,</span>                                    <span class=c1 >// bgfx中有View的概念，默认情况下是View 0</span>
+    <span class=n >BGFX_CLEAR_COLOR</span> <span class=o >|</span> <span class=n >BGFX_CLEAR_DEPTH</span><span class=p >,</span>  <span class=c1 >// 表示要清空颜色缓冲和深度缓冲</span>
+    <span class=mh >0xFFFFFFFF</span><span class=p >,</span>                           <span class=c1 >// 颜色缓冲的清空值，0xFFFFFFFF是白色</span>
+    <span class=mf >1.0f</span><span class=p >,</span>                                 <span class=c1 >// 深度缓冲的清空值，默认为1.0f</span>
+    <span class=mi >0</span>                                     <span class=c1 >// 模板缓冲的清空值，默认为0</span>
+<span class=p >);</span>
+</pre></div> </table> <p>接下来就是渲染了，我们使用一个循环同时处理事件和渲染：</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre> 1
  2
  3
  4
@@ -274,56 +108,25 @@ cp -rf <span class="o">[</span>bx的目录<span class="o">]</span>/include/* .  
 12
 13
 14
-15</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="c1">// entry::processEvents是common库一个很方便的函数</span>
-<span class="c1">// 它能帮我们处理几乎所有的窗口事件。</span>
-<span class="c1">// 如果窗口大小有变化，width和height的值就会变化</span>
-<span class="c1">// 如果窗口被关闭，就会返回true</span>
-<span class="k">while</span> <span class="p">(</span><span class="n">not</span> <span class="n">entry</span><span class="o">::</span><span class="n">processEvents</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">debug</span><span class="p">,</span> <span class="n">reset</span><span class="p">))</span> <span class="p">{</span>
-    <span class="n">bgfx</span><span class="o">::</span><span class="n">setViewRect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">);</span>  <span class="c1">// 由于窗口大小会变化，因此这里要重新设置</span>
+15</pre></div><td class=code ><div class=codehilite ><pre><span></span><span class=c1 >// entry::processEvents是common库一个很方便的函数</span>
+<span class=c1 >// 它能帮我们处理几乎所有的窗口事件。</span>
+<span class=c1 >// 如果窗口大小有变化，width和height的值就会变化</span>
+<span class=c1 >// 如果窗口被关闭，就会返回true</span>
+<span class=k >while</span> <span class=p >(</span><span class=n >not</span> <span class=n >entry</span><span class=o >::</span><span class=n >processEvents</span><span class=p >(</span><span class=n >width</span><span class=p >,</span> <span class=n >height</span><span class=p >,</span> <span class=n >debug</span><span class=p >,</span> <span class=n >reset</span><span class=p >))</span> <span class=p >{</span>
+    <span class=n >bgfx</span><span class=o >::</span><span class=n >setViewRect</span><span class=p >(</span><span class=mi >0</span><span class=p >,</span> <span class=mi >0</span><span class=p >,</span> <span class=mi >0</span><span class=p >,</span> <span class=n >width</span><span class=p >,</span> <span class=n >height</span><span class=p >);</span>  <span class=c1 >// 由于窗口大小会变化，因此这里要重新设置</span>
 
-    <span class="n">bgfx</span><span class="o">::</span><span class="n">touch</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>  <span class="c1">// 切换到View 0</span>
+    <span class=n >bgfx</span><span class=o >::</span><span class=n >touch</span><span class=p >(</span><span class=mi >0</span><span class=p >);</span>  <span class=c1 >// 切换到View 0</span>
 
-    <span class="n">bgfx</span><span class="o">::</span><span class="n">dbgTextClear</span><span class="p">();</span>                                                      <span class="c1">// 清空调试输出的文字</span>
-    <span class="n">bgfx</span><span class="o">::</span><span class="n">dbgTextPrintf</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mh">0x4F</span><span class="p">,</span> <span class="s">&quot;Hello, world!&quot;</span><span class="p">);</span>                          <span class="c1">// 打印&quot;Hello, world!&quot;</span>
-    <span class="n">bgfx</span><span class="o">::</span><span class="n">dbgTextPrintf</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mh">0x4F</span><span class="p">,</span> <span class="s">&quot;width = %d, height = %d&quot;</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">);</span> <span class="c1">// 输出窗口大小</span>
+    <span class=n >bgfx</span><span class=o >::</span><span class=n >dbgTextClear</span><span class=p >();</span>                                                      <span class=c1 >// 清空调试输出的文字</span>
+    <span class=n >bgfx</span><span class=o >::</span><span class=n >dbgTextPrintf</span><span class=p >(</span><span class=mi >0</span><span class=p >,</span> <span class=mi >0</span><span class=p >,</span> <span class=mh >0x4F</span><span class=p >,</span> <span class=s >&quot;Hello, world!&quot;</span><span class=p >);</span>                          <span class=c1 >// 打印&quot;Hello, world!&quot;</span>
+    <span class=n >bgfx</span><span class=o >::</span><span class=n >dbgTextPrintf</span><span class=p >(</span><span class=mi >0</span><span class=p >,</span> <span class=mi >1</span><span class=p >,</span> <span class=mh >0x4F</span><span class=p >,</span> <span class=s >&quot;width = %d, height = %d&quot;</span><span class=p >,</span> <span class=n >width</span><span class=p >,</span> <span class=n >height</span><span class=p >);</span> <span class=c1 >// 输出窗口大小</span>
 
-    <span class="n">bgfx</span><span class="o">::</span><span class="n">frame</span><span class="p">();</span>  <span class="c1">// 提交所有的渲染操作，准备切换到下一帧</span>
-<span class="p">}</span>
-</pre></div>
-</td></tr></table>
-
-<div class="panel panel-info"><div class="panel-heading"><h3 class="panel-title">注意</h3></div><div class="panel-body">
-在函数<code>bgfx::dbgTextPrintf</code>中，第三个参数是设置文字的前景色和背景色。
-其中，bgfx用<code>0-F</code>作为颜色的标记。在上面两位的十六进制数中，第一个指定背景色，第二个制定前景色。
-这里将这些颜色标记列出来：
-0: 无色
-1: <font style="color: #CC0000">暗红色</font>  2: <font style="color: #4E9A06">暗绿色</font>  3: <font style="color: #C4A000">黄色<font style="color: #FFFFFF">，</font></font>
-4: <font style="color: #3465A4">蓝色<font style="color: #FFFFFF">，</font></font>  5: <font style="color: #75507B">紫色<font style="color: #FFFFFF">，</font></font>  6: <font style="color: #06989A">深蓝色</font>
-7: <font style="color: #D3D7CF; background: #000000;">灰色</font><font style="color: #FFFFFF">，</font>  8: <font style="color: #555753">深灰色</font>  9: <font style="color: #EF2929">红色<font style="color: #FFFFFF">，</font></font>
-A: <font style="color: #8AE234">嫩绿色</font>  B: <font style="color: #FCE94F">米黄色</font>  C: <font style="color: #729FCF">浅蓝色</font>
-D: <font style="color: #AD7FA8">浅紫色</font>  E: <font style="color: #34E2E2">天蓝色</font>  F: <font style="color: #FFFFFF; background: #000000;">白色</font>
-</div></div>
-
-<p>最后，当窗口关闭时，<code>entry::processEvents</code>就会返回<code>true</code>，于是退出循环，最后要退出bgfx：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">bgfx</span><span class="o">::</span><span class="n">shutdown</span><span class="p">();</span>
-</pre></div>
-</td></tr></table>
-
-<p>现在来编译<code>main.cpp</code>：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>g++ -std<span class="o">=</span>c++11 main.cpp -o <span class="nb">exec</span> -L. -lbgfxRelease -lexample-commonRelease -lpthread -lGL -lX11
-</pre></div>
-</td></tr></table>
-
-<p>注意编译器要打开C++11支持，如果你的编译器不支持C++11，那我很好奇你是怎么把bgfx编译成功的。<br />
-<code>-lpthread</code>、<code>-lGL</code>和<code>-lX11</code>是bgfx依赖的库，分别是POSIX线程库、OpenGL库和X11库。</p>
-<p>如果没有错误报出，运行<code>exec</code>就能看到以下窗口：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>./exec
-</pre></div>
-</td></tr></table>
-
-<p><img alt="helloworld" src="https://git.oschina.net/riteme/blogimg/raw/master/learn-bgfx/learn-bgfx-1.png" /></p>
-<p>如果你出现了什么意外，下面贴出了完整的程序用于对照：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+    <span class=n >bgfx</span><span class=o >::</span><span class=n >frame</span><span class=p >();</span>  <span class=c1 >// 提交所有的渲染操作，准备切换到下一帧</span>
+<span class=p >}</span>
+</pre></div> </table> <div class="panel panel-info"><div class=panel-heading ><h3 class=panel-title >注意</h3></div><div class=panel-body > 在函数<code>bgfx::dbgTextPrintf</code>中，第三个参数是设置文字的前景色和背景色。 其中，bgfx用<code>0-F</code>作为颜色的标记。在上面两位的十六进制数中，第一个指定背景色，第二个制定前景色。 这里将这些颜色标记列出来： 0: 无色 1: <font style="color: #CC0000">暗红色</font> 2: <font style="color: #4E9A06">暗绿色</font> 3: <font style="color: #C4A000">黄色<font style="color: #FFFFFF">，</font></font> 4: <font style="color: #3465A4">蓝色<font style="color: #FFFFFF">，</font></font> 5: <font style="color: #75507B">紫色<font style="color: #FFFFFF">，</font></font> 6: <font style="color: #06989A">深蓝色</font> 7: <font style="color: #D3D7CF; background: #000000;">灰色</font><font style="color: #FFFFFF">，</font> 8: <font style="color: #555753">深灰色</font> 9: <font style="color: #EF2929">红色<font style="color: #FFFFFF">，</font></font> A: <font style="color: #8AE234">嫩绿色</font> B: <font style="color: #FCE94F">米黄色</font> C: <font style="color: #729FCF">浅蓝色</font> D: <font style="color: #AD7FA8">浅紫色</font> E: <font style="color: #34E2E2">天蓝色</font> F: <font style="color: #FFFFFF; background: #000000;">白色</font> </div></div> <p>最后，当窗口关闭时，<code>entry::processEvents</code>就会返回<code>true</code>，于是退出循环，最后要退出bgfx：</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre>1</pre></div><td class=code ><div class=codehilite ><pre><span></span><span class=n >bgfx</span><span class=o >::</span><span class=n >shutdown</span><span class=p >();</span>
+</pre></div> </table> <p>现在来编译<code>main.cpp</code>：</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre>1</pre></div><td class=code ><div class=codehilite ><pre><span></span>g++ -std<span class=o >=</span>c++11 main.cpp -o <span class=nb >exec</span> -L. -lbgfxRelease -lexample-commonRelease -lpthread -lGL -lX11
+</pre></div> </table> <p>注意编译器要打开C++11支持，如果你的编译器不支持C++11，那我很好奇你是怎么把bgfx编译成功的。<br /> <code>-lpthread</code>、<code>-lGL</code>和<code>-lX11</code>是bgfx依赖的库，分别是POSIX线程库、OpenGL库和X11库。</p> <p>如果没有错误报出，运行<code>exec</code>就能看到以下窗口：</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre>1</pre></div><td class=code ><div class=codehilite ><pre><span></span>./exec
+</pre></div> </table> <p><img alt=helloworld  src="https://git.oschina.net/riteme/blogimg/raw/master/learn-bgfx/learn-bgfx-1.png" /></p> <p>如果你出现了什么意外，下面贴出了完整的程序用于对照：</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre> 1
  2
  3
  4
@@ -358,160 +161,40 @@ D: <font style="color: #AD7FA8">浅紫色</font>  E: <font style="color: #34E2E2
 33
 34
 35
-36</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;cstdint&gt;  // uint32_t</span><span class="cp"></span>
+36</pre></div><td class=code ><div class=codehilite ><pre><span></span><span class=cp >#include</span> <span class=cpf >&lt;cstdint&gt;  // uint32_t</span><span class=cp ></span>
 
-<span class="cp">#include</span> <span class="cpf">&quot;bgfx/bgfx.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;common/common.h&quot;</span><span class="cp"></span>
+<span class=cp >#include</span> <span class=cpf >&quot;bgfx/bgfx.h&quot;</span><span class=cp ></span>
+<span class=cp >#include</span> <span class=cpf >&quot;common/common.h&quot;</span><span class=cp ></span>
 
-<span class="kt">int</span> <span class="nf">_main_</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
-    <span class="kt">uint32_t</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">1280</span><span class="p">;</span>
-    <span class="kt">uint32_t</span> <span class="n">height</span> <span class="o">=</span> <span class="mi">720</span><span class="p">;</span>
-    <span class="kt">uint32_t</span> <span class="n">debug</span> <span class="o">=</span> <span class="n">BGFX_DEBUG_TEXT</span><span class="p">;</span>
-    <span class="kt">uint32_t</span> <span class="n">reset</span> <span class="o">=</span> <span class="n">BGFX_RESET_VSYNC</span><span class="p">;</span>
+<span class=kt >int</span> <span class=nf >_main_</span><span class=p >(</span><span class=kt >int</span> <span class=n >argc</span><span class=p >,</span> <span class=kt >char</span> <span class=o >*</span><span class=n >argv</span><span class=p >[])</span> <span class=p >{</span>
+    <span class=kt >uint32_t</span> <span class=n >width</span> <span class=o >=</span> <span class=mi >1280</span><span class=p >;</span>
+    <span class=kt >uint32_t</span> <span class=n >height</span> <span class=o >=</span> <span class=mi >720</span><span class=p >;</span>
+    <span class=kt >uint32_t</span> <span class=n >debug</span> <span class=o >=</span> <span class=n >BGFX_DEBUG_TEXT</span><span class=p >;</span>
+    <span class=kt >uint32_t</span> <span class=n >reset</span> <span class=o >=</span> <span class=n >BGFX_RESET_VSYNC</span><span class=p >;</span>
 
-    <span class="n">bgfx</span><span class="o">::</span><span class="n">init</span><span class="p">();</span>
-    <span class="n">bgfx</span><span class="o">::</span><span class="n">reset</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">reset</span><span class="p">);</span>
-    <span class="n">bgfx</span><span class="o">::</span><span class="n">setDebug</span><span class="p">(</span><span class="n">debug</span><span class="p">);</span>
-    <span class="n">bgfx</span><span class="o">::</span><span class="n">setViewClear</span><span class="p">(</span>
-        <span class="mi">0</span><span class="p">,</span>
-        <span class="n">BGFX_CLEAR_COLOR</span> <span class="o">|</span> <span class="n">BGFX_CLEAR_DEPTH</span><span class="p">,</span>
-        <span class="mh">0xFFFFFFFF</span><span class="p">,</span>
-        <span class="mf">1.0f</span><span class="p">,</span>
-        <span class="mi">0</span>
-    <span class="p">);</span>
+    <span class=n >bgfx</span><span class=o >::</span><span class=n >init</span><span class=p >();</span>
+    <span class=n >bgfx</span><span class=o >::</span><span class=n >reset</span><span class=p >(</span><span class=n >width</span><span class=p >,</span> <span class=n >height</span><span class=p >,</span> <span class=n >reset</span><span class=p >);</span>
+    <span class=n >bgfx</span><span class=o >::</span><span class=n >setDebug</span><span class=p >(</span><span class=n >debug</span><span class=p >);</span>
+    <span class=n >bgfx</span><span class=o >::</span><span class=n >setViewClear</span><span class=p >(</span>
+        <span class=mi >0</span><span class=p >,</span>
+        <span class=n >BGFX_CLEAR_COLOR</span> <span class=o >|</span> <span class=n >BGFX_CLEAR_DEPTH</span><span class=p >,</span>
+        <span class=mh >0xFFFFFFFF</span><span class=p >,</span>
+        <span class=mf >1.0f</span><span class=p >,</span>
+        <span class=mi >0</span>
+    <span class=p >);</span>
 
-    <span class="k">while</span> <span class="p">(</span><span class="n">not</span> <span class="n">entry</span><span class="o">::</span><span class="n">processEvents</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">debug</span><span class="p">,</span> <span class="n">reset</span><span class="p">))</span> <span class="p">{</span>
-        <span class="n">bgfx</span><span class="o">::</span><span class="n">setViewRect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">);</span>
+    <span class=k >while</span> <span class=p >(</span><span class=n >not</span> <span class=n >entry</span><span class=o >::</span><span class=n >processEvents</span><span class=p >(</span><span class=n >width</span><span class=p >,</span> <span class=n >height</span><span class=p >,</span> <span class=n >debug</span><span class=p >,</span> <span class=n >reset</span><span class=p >))</span> <span class=p >{</span>
+        <span class=n >bgfx</span><span class=o >::</span><span class=n >setViewRect</span><span class=p >(</span><span class=mi >0</span><span class=p >,</span> <span class=mi >0</span><span class=p >,</span> <span class=mi >0</span><span class=p >,</span> <span class=n >width</span><span class=p >,</span> <span class=n >height</span><span class=p >);</span>
 
-        <span class="n">bgfx</span><span class="o">::</span><span class="n">touch</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+        <span class=n >bgfx</span><span class=o >::</span><span class=n >touch</span><span class=p >(</span><span class=mi >0</span><span class=p >);</span>
 
-        <span class="n">bgfx</span><span class="o">::</span><span class="n">dbgTextClear</span><span class="p">();</span>
-        <span class="n">bgfx</span><span class="o">::</span><span class="n">dbgTextPrintf</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mh">0x4F</span><span class="p">,</span> <span class="s">&quot;Hello, world!&quot;</span><span class="p">);</span>
-        <span class="n">bgfx</span><span class="o">::</span><span class="n">dbgTextPrintf</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mh">0x4F</span><span class="p">,</span> <span class="s">&quot;width = %d, height = %d&quot;</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">);</span>
+        <span class=n >bgfx</span><span class=o >::</span><span class=n >dbgTextClear</span><span class=p >();</span>
+        <span class=n >bgfx</span><span class=o >::</span><span class=n >dbgTextPrintf</span><span class=p >(</span><span class=mi >0</span><span class=p >,</span> <span class=mi >0</span><span class=p >,</span> <span class=mh >0x4F</span><span class=p >,</span> <span class=s >&quot;Hello, world!&quot;</span><span class=p >);</span>
+        <span class=n >bgfx</span><span class=o >::</span><span class=n >dbgTextPrintf</span><span class=p >(</span><span class=mi >0</span><span class=p >,</span> <span class=mi >1</span><span class=p >,</span> <span class=mh >0x4F</span><span class=p >,</span> <span class=s >&quot;width = %d, height = %d&quot;</span><span class=p >,</span> <span class=n >width</span><span class=p >,</span> <span class=n >height</span><span class=p >);</span>
 
-        <span class="n">bgfx</span><span class="o">::</span><span class="n">frame</span><span class="p">();</span>
-    <span class="p">}</span>
+        <span class=n >bgfx</span><span class=o >::</span><span class=n >frame</span><span class=p >();</span>
+    <span class=p >}</span>
 
-    <span class="n">bgfx</span><span class="o">::</span><span class="n">shutdown</span><span class="p">();</span>
-<span class="p">}</span>
-</pre></div>
-</td></tr></table>
-
-<p>至此，我们的第一个bgfx程序就完成了。解决了编译的问题，就可以继续学习使用bgfx了。</p>
-            <hr/>
-            <div id="comments"></div>
-            <script type="text/javascript">
-              window.addEventListener('load',()=>{quicklink();})
-              const gitment = new Gitment({id: '97a45ed03aef8e651b4975bcdfb12cff', owner: 'riteme', repo: 'riteme.github.io',
-                oauth: {
-                  client_id: 'd4fcffa25858a7a58e1a',
-                  client_secret: 'e0c8e08beb95497871f8355416c69390634cec76',
-                },
-                perPage: 10,
-              })
-              gitment.render('comments')
-            </script>
-          </div>
-        </div>
-        <div class="mdl-cell mdl-cell--4-col mdl-cell--hide-tablet mdl-cell--hide-phone sidebar">
-          <div class="article">
-            <div class="mdl-card mdl-shadow--3dp sidebar-card">
-              <div class="mdl-card__actions sidebar-title">页面信息</div>
-              <div class="mdl-card__supporting-text">
-                标签: <a href="/search.html?q=C/C++"><span class="label">C/C++</span></a> <a href="/search.html?q=图形"><span class="label">图形</span></a> <a href="/search.html?q=引擎"><span class="label">引擎</span></a> <a href="/search.html?q=bgfx"><span class="label">bgfx</span></a><br/>
-                创建时间: 2016.02.03<br/>
-                上次修改: 2016.02.04<br/>
-                字数统计: 7794 字 / 约 31 分钟
-              </div>
-            </div>
-            <br/>
-            
-<div class="mdl-card mdl-shadow--3dp sidebar-card">
-  <div class="mdl-card__actions sidebar-title">目录</div>
-  <div class="mdl-card__supporting-text">
-    <div class="toc">
-<ul>
-<li><a href="#bgfx">编译并使用bgfx</a><ul>
-<li><a href="#_1">编译</a></li>
-<li><a href="#_2">运行样例</a></li>
-<li><a href="#bgfx_1">编译我们自己的bgfx程序</a></li>
-</ul>
-</li>
-</ul>
-</div>
-  </div>
-</div>
-<br/>
-
-            <div class="mdl-card mdl-shadow--3dp sidebar-card">
-              <div class="mdl-card__actions sidebar-title">数学公式渲染</div>
-              <div class="mdl-card__supporting-text">
-                <form name="mathopt">
-                  <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
-                    <input type="radio" id="option-1" class="mdl-radio__button" name="sel" value="mathjax">
-                    <span class="mdl-radio__label">MathJax (推荐)</span>
-                  </label><br/>
-                  <div id="tip-1">
-                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
-                      <input type="radio" id="option-2" class="mdl-radio__button" name="sel" value="katex">
-                      <span class="mdl-radio__label">KaTeX</span>
-                    </label>
-                  </div>
-                  <div id="tip-2">
-                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
-                      <input type="radio" id="option-3" class="mdl-radio__button" name="sel" value="katex&mathjax">
-                      <span class="mdl-radio__label">Mixed</span>
-                    </label>
-                  </div>
-                </form>
-              </div>
-            </div>
-            <div class="mdl-tooltip" data-mdl-for="tip-1">KaTeX 渲染效率很高，但是目前 KaTeX 容错性不强，因此使用 KaTeX 时可能会存在一些数学公式无法渲染的情况</div>
-            <div class="mdl-tooltip" data-mdl-for="tip-2">先使用 KaTeX 渲染，再使用 MathJax 渲染</div>
-            <br/>
-            <div class="nano mdl-card mdl-shadow--3dp sidebar-card">
-              <a class="nano-ref" target="_new" href="http://nichijou.wikia.com/wiki/Nano_Shinonome"></a>
-              <div class="mdl-card__actions">
-                <div class="nano-shell"><span class="shell-start">$</span> nano <a href="https://github.com/riteme/riteme.github.io/blob/master/blog/2016-2-3/learn-bgfx-1.md" id="nano-link">learn-bgfx-1.md</a></div>
-              </div>
-            </div>
-            <div class="mdl-tooltip" data-mdl-for="nano-link">查看原始 Markdown 文档</div>
-          </div>
-        </div>
-      </div>
-      <footer class="mdl-mega-footer">
-        <div class="mdl-mega-footer__middle-section">
-          <div class="mdl-mega-footer__drop-down-section">
-            <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-            <h1 class="mdl-mega-footer__heading">RITEME.SITE</h1>一个从不乱说话的博客...
-          </div>
-          <div class="mdl-mega-footer__drop-down-section">
-            <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-            <h1 class="mdl-mega-footer__heading">POWERED BY</h1>
-            <ul class="mdl-mega-footer__link-list">
-              <li><a href="http://pythonhosted.org/Markdown/">Python Markdown</a></li>
-              <li><a href="http://getmdl.io/">Material Design Lite</a></li>
-              <li><a href="http://www.tipue.com/search/">Tipuesearch</a></li>
-              <li><a href="http://www.mathjax.org/">MathJax</a> & <a href="http://khan.github.io/KaTeX/">KaTeX</a></li>
-              <li><a href="https://github.com/imsun/gitment">Gitment</a></li>
-            </ul>
-          </div>
-          <div class="mdl-mega-footer__drop-down-section">
-            <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-            <h1 class="mdl-mega-footer__heading">友情链接</h1>
-            <ul class="mdl-mega-footer__link-list">
-              <li><a href="http://ruanx.pw/">ruanxingzhi</a></li>
-              <li><a href="https://blog.xehoth.cc/">xehoth</a></li>
-              <li><a href="http://hjwjbsr.is-programmer.com/">HJWJBSR</a></li>
-              <li><a href="http://www.micdz.cn/">MicDZ</a></li>
-              <li><a href="http://blog.linyxus.xyz/">Linyxus</a></li>
-              <li><a href="http://memset0.cf/">memset0</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="mdl-mega-footer__bottom-section">Theme based on <a href="https://getmdl.io/">MDL</a> | Copyright © 2015-2019 riteme. All rights reserved.</div>
-      </footer>
-    </main>
-  </div>
-</body>
-</html>
+    <span class=n >bgfx</span><span class=o >::</span><span class=n >shutdown</span><span class=p >();</span>
+<span class=p >}</span>
+</pre></div> </table> <p>至此，我们的第一个bgfx程序就完成了。解决了编译的问题，就可以继续学习使用bgfx了。</p> <hr/> <div id=comments ></div> <script> window.addEventListener('load', () => { quicklink(); }); const gitment = new Gitment({id: '97a45ed03aef8e651b4975bcdfb12cff', owner: 'riteme', repo: 'riteme.github.io', oauth: { client_id: 'd4fcffa25858a7a58e1a', client_secret: 'e0c8e08beb95497871f8355416c69390634cec76', }, perPage: 10, }); gitment.render('comments'); </script> </div> </div> <div class="mdl-cell sidebar"> <div class=article > <div class="mdl-card mdl-shadow--3dp sidebar-card"> <div class="mdl-card__actions sidebar-title">页面信息</div> <div class=mdl-card__supporting-text > 标签: <a href="/search.html?q=C/C++"><span class=label >C/C++</span></a> <a href="/search.html?q=图形"><span class=label >图形</span></a> <a href="/search.html?q=引擎"><span class=label >引擎</span></a> <a href="/search.html?q=bgfx"><span class=label >bgfx</span></a><br/> 创建时间: 2016.02.03<br/> 上次修改: 2016.02.04<br/> 字数统计: 7794 字 / 约 31 分钟 </div> </div> <br/> <div class="mdl-card mdl-shadow--3dp sidebar-card"> <div class="mdl-card__actions sidebar-title">目录</div> <div class=mdl-card__supporting-text > <div class=toc > <ul> <li><a href="#bgfx">编译并使用bgfx</a><ul> <li><a href="#_1">编译</a> <li><a href="#_2">运行样例</a> <li><a href="#bgfx_1">编译我们自己的bgfx程序</a> </ul> </ul> </div> </div> </div> <br/> <div class="mdl-card mdl-shadow--3dp sidebar-card"> <div class="mdl-card__actions sidebar-title">数学公式渲染</div> <div class=mdl-card__supporting-text > <form name=mathopt > <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for=option-1 > <input type=radio  id=option-1  class=mdl-radio__button  name=sel  value=mathjax > <span class=mdl-radio__label >MathJax (推荐)</span> </label><br/> <div id=tip-1 > <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for=option-2 > <input type=radio  id=option-2  class=mdl-radio__button  name=sel  value=katex > <span class=mdl-radio__label >KaTeX</span> </label> </div> <div id=tip-2 > <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for=option-3 > <input type=radio  id=option-3  class=mdl-radio__button  name=sel  value="katex&mathjax"> <span class=mdl-radio__label >Mixed</span> </label> </div> </form> </div> </div> <div class=mdl-tooltip  data-mdl-for=tip-1 >KaTeX 渲染效率很高，但是目前 KaTeX 容错性不强，因此使用 KaTeX 时可能会存在一些数学公式无法渲染的情况</div> <div class=mdl-tooltip  data-mdl-for=tip-2 >先使用 KaTeX 渲染，再使用 MathJax 渲染</div> <br/> <div class="nano mdl-card mdl-shadow--3dp sidebar-card"> <a class=nano-ref  target=_new  href="http://nichijou.wikia.com/wiki/Nano_Shinonome"></a> <div class=mdl-card__actions > <div class=nano-shell ><span class=shell-start >$</span> nano <a href="https://github.com/riteme/riteme.github.io/blob/master/blog/2016-2-3/learn-bgfx-1.md" id=nano-link >learn-bgfx-1.md</a></div> </div> </div> <div class=mdl-tooltip  data-mdl-for=nano-link >查看原始 Markdown 文档</div> </div> </div> </div> <footer class=mdl-mega-footer > <div class=mdl-mega-footer__middle-section > <div class=mdl-mega-footer__drop-down-section > <input class=mdl-mega-footer__heading-checkbox  type=checkbox  checked> <h1 class=mdl-mega-footer__heading >RITEME.SITE</h1>一个从不乱说话的博客... </div> <div class=mdl-mega-footer__drop-down-section > <input class=mdl-mega-footer__heading-checkbox  type=checkbox  checked> <h1 class=mdl-mega-footer__heading >POWERED BY</h1> <ul class=mdl-mega-footer__link-list > <li><a href="http://pythonhosted.org/Markdown/">Python Markdown</a> <li><a href="http://getmdl.io/">Material Design Lite</a> <li><a href="http://www.tipue.com/search/">Tipuesearch</a> <li><a href="http://www.mathjax.org/">MathJax</a> & <a href="http://khan.github.io/KaTeX/">KaTeX</a> <li><a href="https://github.com/imsun/gitment">Gitment</a> </ul> </div> <div class=mdl-mega-footer__drop-down-section > <input class=mdl-mega-footer__heading-checkbox  type=checkbox  checked> <h1 class=mdl-mega-footer__heading >友情链接</h1> <ul class=mdl-mega-footer__link-list > <li><a href="http://ruanx.pw/">ruanxingzhi</a> <li><a href="https://blog.xehoth.cc/">xehoth</a> <li><a href="http://hjwjbsr.is-programmer.com/">HJWJBSR</a> <li><a href="http://www.micdz.cn/">MicDZ</a> <li><a href="http://blog.linyxus.xyz/">Linyxus</a> <li><a href="http://memset0.cf/">memset0</a> </ul> </div> </div> <div class=mdl-mega-footer__bottom-section >Theme based on <a href="https://getmdl.io/">MDL</a> | Copyright © 2015-2019 riteme. All rights reserved.</div> </footer> </main> </div>

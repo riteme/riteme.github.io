@@ -13,8 +13,11 @@ Powered by `sitegen.py`.
 ### Requirements
 * Python3
 * Python Markdown
-* Pygments (If not exist, code highlight will be disabled)
 * Beautiful Soup 4
+
+### Optional packages
+* Pygments (for code highlight)
+* css-html-js-minify
 
 ### Basic Usage
 Write blogs in `blog` folder.

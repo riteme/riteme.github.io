@@ -1,68 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>静态树上的最近公共祖先问题 - riteme.site</title>
-  <link rel="shortcut icon" href="/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/material/material-icons.css">
-  <link rel="stylesheet" href="/material/material.min.css" >
-  <link rel="stylesheet" href="/gitment/gitment.css">
-  <link rel="stylesheet" href="/math-renderer/katex/katex.min.css">
-  <link rel="stylesheet" href="/css/site.css">
-  <script src="/js/jquery.min.js"></script>
-  <script src="/js/jump.js"></script>
-  <script src="/js/js-cookie.js"></script>
-  <script defer src="/material/material.min.js"></script>
-  <script src="/math-renderer/selector.js"></script>
-  <script src="/gitment/gitment.js"></script>
-  <script src="/js/quicklink.umd.js"></script>
-</head>
-<body>
-  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-    <header class="mdl-layout__header">
-      <div class="mdl-layout__header-row">
-        <span class="mdl-layout-title">静态树上的最近公共祖先问题</span>
-        <div class="mdl-layout-spacer"></div>
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right">
-          <label class="mdl-button mdl-js-button mdl-button--icon" for="fixed-header-drawer-exp"><i class="material-icons">search</i></label>
-          <div class="mdl-textfield__expandable-holder">
-            <form action="/search.html"><input type="text" class="mdl-textfield__input" placeholder="Search Here" name="q" id="fixed-header-drawer-exp" autocomplete="off" required></form>
-          </div>
-        </div>
-      </div>
-    </header>
-    <div class="mdl-layout__drawer">
-      <span class="mdl-layout-title drawer-title">
-        <a href="/index.html" style="color: inherit; font-weight: inherit;text-decoration: none;"><img src="/favicon.png" width=32 height=32> riteme.site</a>
-      </span>
-      <nav class="mdl-navigation">
-        <a class="mdl-navigation__link" href="/index.html"><i class="material-icons drawer-icon">home</i> 首页</a>
-        <a class="mdl-navigation__link" href="/posts.html"><i class="material-icons drawer-icon">library_books</i> 所有文章</a>
-        <a class="mdl-navigation__link" href="/about.html"><i class="material-icons drawer-icon">info</i> 关于</a>
-        <a class="mdl-navigation__link" href="/links.html"><i class="material-icons drawer-icon">link</i> 友链</a>
-        <a class="mdl-navigation__link" href="/search.html"><i class="material-icons drawer-icon">search</i> 搜索</a>
-        <a class="mdl-navigation__link" href="https://github.com/riteme/riteme.github.io"><i class="material-icons drawer-icon">class</i> GitHub 项目</a>
-      </nav>
-    </div>
-    <main class="mdl-layout__content">
-      <div class="mdl-grid">
-        <div class="mdl-cell mdl-cell--8-col mdl-cell--12-col-tablet mdl-cell--12-col-phone main-cell">
-          <div class="article main-article" lang="en-US">
-            
-<h1 id="_1">静态树上的最近公共祖先问题</h1>
-<h2 id="_2">基本概念</h2>
-<p><strong>树</strong> <tex>$T = (V,\;f,\;r)$</tex> 是一张无向图，其中 <tex>$V$</tex> 是点的集合，<tex>$f(u)$</tex> 表示点 <tex>$u$</tex> 的<strong>父亲</strong>，<tex>$r$</tex> 是树的<strong>根</strong>，并且 <tex>$f(r) = \varnothing$</tex>，即根不存在父亲。下文中通常用正整数表示点，为了方便，令 <tex>$f(r) = 0$</tex>，点 <tex>$0$</tex> 是一个不存在的点。树中除 <tex>$r$</tex> 外，每个点都与它的父亲连边构成边集。记录 <tex>$\mathrm{ch}(u)$</tex> 表示 <tex>$u$</tex> 的<strong>儿子</strong>的集合，定义为 <tex>$\mathrm{ch}(u) = \{v:\;f(v) = u,\;v \in V\}$</tex><br />
-。定义 <tex>$d(u)$</tex> 表示点 <tex>$u$</tex> 到根 <tex>$r$</tex> 的简单路径上边的数量，即到根的<strong>距离</strong>，也称<strong>深度</strong>，因此有 <tex>$d(r) = 0$</tex>。令 <tex>$\max\{d(u):\;u \in V\}$</tex> 表示树的<strong>高度</strong>，通常记为字母 <tex>$h$</tex>。</p>
-<p>一个点 <tex>$u$</tex> 到根 <tex>$r$</tex> 的简单路径上的所有点都称为 <tex>$u$</tex> 的<strong>祖先</strong>，构成的集合记做 <tex>$C(u)$</tex>（为了方便，自己可以是自己的祖先）。而两个点 <tex>$u$</tex> 和 <tex>$v$</tex> 的<strong>最近公共祖先</strong>（Least Common Ancestors，LCA）为 <tex>$C(u) \cap C(v)$</tex> 中深度最大的点，记为 <tex>$\mathrm{lca}(u,\;v)$</tex>。所有祖先中有 <tex>$u$</tex> 的点的导出子图同样也构成一棵树，记为 <tex>$T_u$</tex>，称作以 <tex>$u$</tex> 为根的<strong>子树</strong>。</p>
-<p>接下来，为了方便，通常记 <tex>$n = |V|$</tex>，表示树中的点数。此外，由于下面介绍的算法都要处理多组询问（通常记作 <tex>$q$</tex> 组），所以在讨论到某个算法时空复杂度的时候，用 <tex>$O(f(n))$</tex>-<tex>$O(g(n))$</tex> 表示该算法的空间复杂度为 <tex>$O(f(n))$</tex>，以及<strong>单次询问</strong>的时间复杂度为 <tex>$O(g(n))$</tex>。</p>
-<h2 id="_3">解决方案</h2>
-<h3 id="_4">朴素算法</h3>
-<p>既然是要求公共祖先，那么我们一个直接的想法就是现将一个点 <tex>$u$</tex> 的祖先全部标记出来，然后 <tex>$v$</tex> 在从最深的祖先开始（也就是 <tex>$v$</tex> 自己），一个一个检查是不是已经被标记过。如果找到了一个被标记的点，那么这个点就是最近公共祖先。</p>
-<p><img alt="brute-1" src="https://git.oschina.net/riteme/blogimg/raw/master/lca-2/brute-1.svg" /></p>
-<p><center>（<strong>Fig. 1.</strong> 蓝色代表 <tex>$u$</tex> 的祖先，橙色代表 <tex>$v$</tex> 检查过的祖先，红色是最近公共祖先）</center></p>
-<p>一般的实现如下：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<!DOCTYPE html> <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1.0"> <title>静态树上的最近公共祖先问题 - riteme.site</title> <link rel="shortcut icon" href="/favicon.png" type="image/png"> <link rel=stylesheet  href="/material/material-icons.css"> <link rel=stylesheet  href="/material/material.min.css" > <link rel=stylesheet  href="/gitment/gitment.css"> <link rel=stylesheet  href="/math-renderer/katex/katex.min.css"> <link rel=stylesheet  href="/css/site.css"> <script src="/js/jquery.min.js"></script> <script src="/js/jump.js"></script> <script src="/js/js-cookie.js"></script> <script src="/js/quicklink.umd.js"></script> <script defer src="/material/material.min.js"></script> <script src="/math-renderer/selector.js"></script> <script src="/gitment/gitment.js"></script> <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header"> <header class=mdl-layout__header > <div class=mdl-layout__header-row > <span class=mdl-layout-title >静态树上的最近公共祖先问题</span> <div class=mdl-layout-spacer ></div> <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right"> <label class="mdl-button mdl-js-button mdl-button--icon" for=fixed-header-drawer-exp ><i class=material-icons >search</i></label> <div class=mdl-textfield__expandable-holder > <form action="/search.html"><input type=text  class=mdl-textfield__input  placeholder="Search Here" name=q  id=fixed-header-drawer-exp  autocomplete=off  required></form> </div> </div> </div> </header> <div class=mdl-layout__drawer > <span class="mdl-layout-title drawer-title"> <a href="/index.html" style="color: inherit; font-weight: inherit;text-decoration: none;"><img src="/favicon.png" width=32 height=32> riteme.site</a> </span> <nav class=mdl-navigation > <a class=mdl-navigation__link  href="/index.html"><i class="material-icons drawer-icon">home</i> 首页</a> <a class=mdl-navigation__link  href="/posts.html"><i class="material-icons drawer-icon">library_books</i> 所有文章</a> <a class=mdl-navigation__link  href="/about.html"><i class="material-icons drawer-icon">info</i> 关于</a> <a class=mdl-navigation__link  href="/links.html"><i class="material-icons drawer-icon">link</i> 友链</a> <a class=mdl-navigation__link  href="/search.html"><i class="material-icons drawer-icon">search</i> 搜索</a> <a class=mdl-navigation__link  href="https://github.com/riteme/riteme.github.io"><i class="material-icons drawer-icon">class</i> GitHub 项目</a> </nav> </div> <main class=mdl-layout__content > <div class=mdl-grid > <div class="mdl-cell main-cell"> <div class="article main-article" lang=en-US > <h1 id=_1 >静态树上的最近公共祖先问题</h1> <h2 id=_2 >基本概念</h2> <p><strong>树</strong> <tex>$T = (V,\;f,\;r)$</tex> 是一张无向图，其中 <tex>$V$</tex> 是点的集合，<tex>$f(u)$</tex> 表示点 <tex>$u$</tex> 的<strong>父亲</strong>，<tex>$r$</tex> 是树的<strong>根</strong>，并且 <tex>$f(r) = \varnothing$</tex>，即根不存在父亲。下文中通常用正整数表示点，为了方便，令 <tex>$f(r) = 0$</tex>，点 <tex>$0$</tex> 是一个不存在的点。树中除 <tex>$r$</tex> 外，每个点都与它的父亲连边构成边集。记录 <tex>$\mathrm{ch}(u)$</tex> 表示 <tex>$u$</tex> 的<strong>儿子</strong>的集合，定义为 <tex>$\mathrm{ch}(u) = \{v:\;f(v) = u,\;v \in V\}$</tex><br /> 。定义 <tex>$d(u)$</tex> 表示点 <tex>$u$</tex> 到根 <tex>$r$</tex> 的简单路径上边的数量，即到根的<strong>距离</strong>，也称<strong>深度</strong>，因此有 <tex>$d(r) = 0$</tex>。令 <tex>$\max\{d(u):\;u \in V\}$</tex> 表示树的<strong>高度</strong>，通常记为字母 <tex>$h$</tex>。</p> <p>一个点 <tex>$u$</tex> 到根 <tex>$r$</tex> 的简单路径上的所有点都称为 <tex>$u$</tex> 的<strong>祖先</strong>，构成的集合记做 <tex>$C(u)$</tex>（为了方便，自己可以是自己的祖先）。而两个点 <tex>$u$</tex> 和 <tex>$v$</tex> 的<strong>最近公共祖先</strong>（Least Common Ancestors，LCA）为 <tex>$C(u) \cap C(v)$</tex> 中深度最大的点，记为 <tex>$\mathrm{lca}(u,\;v)$</tex>。所有祖先中有 <tex>$u$</tex> 的点的导出子图同样也构成一棵树，记为 <tex>$T_u$</tex>，称作以 <tex>$u$</tex> 为根的<strong>子树</strong>。</p> <p>接下来，为了方便，通常记 <tex>$n = |V|$</tex>，表示树中的点数。此外，由于下面介绍的算法都要处理多组询问（通常记作 <tex>$q$</tex> 组），所以在讨论到某个算法时空复杂度的时候，用 <tex>$O(f(n))$</tex>-<tex>$O(g(n))$</tex> 表示该算法的空间复杂度为 <tex>$O(f(n))$</tex>，以及<strong>单次询问</strong>的时间复杂度为 <tex>$O(g(n))$</tex>。</p> <h2 id=_3 >解决方案</h2> <h3 id=_4 >朴素算法</h3> <p>既然是要求公共祖先，那么我们一个直接的想法就是现将一个点 <tex>$u$</tex> 的祖先全部标记出来，然后 <tex>$v$</tex> 在从最深的祖先开始（也就是 <tex>$v$</tex> 自己），一个一个检查是不是已经被标记过。如果找到了一个被标记的点，那么这个点就是最近公共祖先。</p> <p><img alt=brute-1  src="https://git.oschina.net/riteme/blogimg/raw/master/lca-2/brute-1.svg" /></p> <p><center>（<strong>Fig. 1.</strong> 蓝色代表 <tex>$u$</tex> 的祖先，橙色代表 <tex>$v$</tex> 检查过的祖先，红色是最近公共祖先）</center></p> <p>一般的实现如下：</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre> 1
  2
  3
  4
@@ -71,7 +7,7 @@
  7
  8
  9
-10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>function LCA(u, v):
+10</pre></div><td class=code ><div class=codehilite ><pre><span></span>function LCA(u, v):
     // mark: 大小为 n 的整数数组
     // cur: 一个整型，记录该函数被调用了多少次
     cur += 1
@@ -81,41 +17,18 @@
     while mark[v] != cur:
         v = f(v)
     return v
-</pre></div>
-</td></tr></table>
-
-<p>这样的算法的复杂度为 <tex>$\Theta(n)$</tex>-<tex>$O(h)$</tex>。也就是说最坏情况下可能需要 <tex>$O(n)$</tex> 的代价来找到最近公共祖先。由于随机一棵树的树高期望为 <tex>$O(\log n)$</tex>，所以该算法在一般情况下比较高效。</p>
-<p>另外值得一提的是，在一般图最大匹配的带花树算法中，由于有 “缩花” 这种操作，并且本身对求最近公共祖先的复杂度要求不高，所以很多带花树算法的实现中使用朴素算法。</p>
-<h3 id="_5">倍增算法</h3>
-<p>通过进一步观察，可以发现到达某个深度之后，继续往上走都会是公共祖先，而最近公共祖先就是它们中深度最深的。利用这一点，就可以使用二分这一技巧。二分一个向上走的距离 <tex>$x$</tex>，找到 <tex>$v$</tex> 向上走 <tex>$x$</tex> 步的点 <tex>$p$</tex>，并检查 <tex>$p$</tex> 是否是 <tex>$u$</tex> 的祖先。如果 <tex>$p$</tex> 是 <tex>$u$</tex> 的祖先，则 <tex>$d(\mathrm{lca}(u,\;v)) \geqslant d(p)$</tex>，所以需要减小 <tex>$x$</tex>，反之则需要增大 <tex>$x$</tex>。</p>
-<p>现在就需要解决两个问题：</p>
-<ol>
-<li>找到 <tex>$v$</tex> 向上走 <tex>$x$</tex> 步的点 <tex>$p$</tex>。</li>
-<li>确认 <tex>$p$</tex> 是否是 <tex>$u$</tex> 的祖先。</li>
-</ol>
-<p>对于第一个问题，我们有一个 <tex>$O(n\log h)$</tex>-<tex>$\Theta(1)$</tex> 的长链剖分算法，但是这里暂不讨论这个算法。考虑到二分实际上可以转变为倍增的形式，即可以将目标 <tex>$x$</tex> 转为二进制位，并且从高位向低位试位：如果某一位赋为 <tex>$1$</tex> 导致找到的 <tex>$p$</tex> 是 <tex>$u$</tex> 的祖先，则将其赋为 <tex>$0$</tex>，否则赋为 <tex>$1$</tex>。这样就保证试位过程中的 <tex>$p$</tex> 始终不是 <tex>$u$</tex> 的祖先，最后 <tex>$f(p)$</tex> 就正好是 <tex>$\mathrm{lca}(u,\;v)$</tex>。</p>
-<p>转为倍增的好处在于现在只用关心每个点 <tex>$v$</tex> 向上走 <tex>$2^k$</tex> 步的点 <tex>$p$</tex> 了，而这样的点对于每个 <tex>$v$</tex> 而言只有 <tex>$O(\log h)$</tex> 个，因此总共只用记录 <tex>$O(n \log h)$</tex> 这么多的信息。现在令 <tex>$g(u,\;k)$</tex> 表示点 <tex>$u$</tex> 向上走 <tex>$2^k$</tex> 步的点 <tex>$p$</tex>，然后之前的倍增的过程就是这样：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+</pre></div> </table> <p>这样的算法的复杂度为 <tex>$\Theta(n)$</tex>-<tex>$O(h)$</tex>。也就是说最坏情况下可能需要 <tex>$O(n)$</tex> 的代价来找到最近公共祖先。由于随机一棵树的树高期望为 <tex>$O(\log n)$</tex>，所以该算法在一般情况下比较高效。</p> <p>另外值得一提的是，在一般图最大匹配的带花树算法中，由于有 “缩花” 这种操作，并且本身对求最近公共祖先的复杂度要求不高，所以很多带花树算法的实现中使用朴素算法。</p> <h3 id=_5 >倍增算法</h3> <p>通过进一步观察，可以发现到达某个深度之后，继续往上走都会是公共祖先，而最近公共祖先就是它们中深度最深的。利用这一点，就可以使用二分这一技巧。二分一个向上走的距离 <tex>$x$</tex>，找到 <tex>$v$</tex> 向上走 <tex>$x$</tex> 步的点 <tex>$p$</tex>，并检查 <tex>$p$</tex> 是否是 <tex>$u$</tex> 的祖先。如果 <tex>$p$</tex> 是 <tex>$u$</tex> 的祖先，则 <tex>$d(\mathrm{lca}(u,\;v)) \geqslant d(p)$</tex>，所以需要减小 <tex>$x$</tex>，反之则需要增大 <tex>$x$</tex>。</p> <p>现在就需要解决两个问题：</p> <ol> <li>找到 <tex>$v$</tex> 向上走 <tex>$x$</tex> 步的点 <tex>$p$</tex>。 <li>确认 <tex>$p$</tex> 是否是 <tex>$u$</tex> 的祖先。 </ol> <p>对于第一个问题，我们有一个 <tex>$O(n\log h)$</tex>-<tex>$\Theta(1)$</tex> 的长链剖分算法，但是这里暂不讨论这个算法。考虑到二分实际上可以转变为倍增的形式，即可以将目标 <tex>$x$</tex> 转为二进制位，并且从高位向低位试位：如果某一位赋为 <tex>$1$</tex> 导致找到的 <tex>$p$</tex> 是 <tex>$u$</tex> 的祖先，则将其赋为 <tex>$0$</tex>，否则赋为 <tex>$1$</tex>。这样就保证试位过程中的 <tex>$p$</tex> 始终不是 <tex>$u$</tex> 的祖先，最后 <tex>$f(p)$</tex> 就正好是 <tex>$\mathrm{lca}(u,\;v)$</tex>。</p> <p>转为倍增的好处在于现在只用关心每个点 <tex>$v$</tex> 向上走 <tex>$2^k$</tex> 步的点 <tex>$p$</tex> 了，而这样的点对于每个 <tex>$v$</tex> 而言只有 <tex>$O(\log h)$</tex> 个，因此总共只用记录 <tex>$O(n \log h)$</tex> 这么多的信息。现在令 <tex>$g(u,\;k)$</tex> 表示点 <tex>$u$</tex> 向上走 <tex>$2^k$</tex> 步的点 <tex>$p$</tex>，然后之前的倍增的过程就是这样：</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre>1
 2
 3
 4
 5
-6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>function LCA(u, v):
+6</pre></div><td class=code ><div class=codehilite ><pre><span></span>function LCA(u, v):
     for k = int(log(h)) to 0:
         p = g(v, k)
         if p is not an ancestor of u:
             v = p
     return f(v)
-</pre></div>
-</td></tr></table>
-
-<p>现在需要求出 <tex>$g(u,\;k)$</tex> 中的值。首先关注到 <tex>$g(u,\;0) = f(u)$</tex>，这一部分可以直接得到。接下来，对于向上走 <tex>$2^k$</tex> 步，相当于是走两次 <tex>$2^{k-1}$</tex> 步，所以我们得到：</p>
-<p><tex>$$ g(u,\;k) = g(g(u,\;k - 1),\;k - 1)  \;\;\;\; \forall k \gt 0 $$</tex></p>
-<p>所以 <tex>$g$</tex> 可以在 <tex>$O(n \log h)$</tex> 的时间内计算出来。</p>
-<p>接下来对于第二个问题，我们可以使用 DFS 序来解决这个判定问题。也就是记录每个点在以 <tex>$r$</tex> 为起点的 DFS 过程中入栈和出栈的时间。由于 DFS 的性质，<tex>$T_u$</tex> 中的所有点的入栈时间是一个连续的区间，所以就可以利用这一点在 <tex>$\Theta(n)$</tex>-<tex>$\Theta(1)$</tex> 的复杂度完成判定任务。</p>
-<p>当然，我们可以不用 DFS 序。想象一下，如果 <tex>$u$</tex> 和 <tex>$v$</tex> 所处的深度相同，那么可以将 <tex>$u$</tex> 和 <tex>$v$</tex> 同时向上面走同样的步数 <tex>$x$</tex>。如果走到了同一个点上，则说明 <tex>$x$</tex> 需要减小，否则说明需要增大。那么在此之前，就需要将 <tex>$u$</tex> 和 <tex>$v$</tex> 调到同一个深度。</p>
-<p>这里将再次利用二进制和我们的 <tex>$g$</tex> 函数。如果现在 <tex>$u$</tex> 所处的深度比 <tex>$v$</tex> 深，则 <tex>$u$</tex> 需要向上走 <tex>$x = d(u) - d(v)$</tex> 步。例如，如果 <tex>$x = 1011_{(2)}$</tex>，就是相当于分别走 <tex>$2^0$</tex>、<tex>$2^1$</tex> 和 <tex>$2^3$</tex> 步。而这都可以利用 <tex>$g$</tex> 函数实现。最后的实现一般是下面这样：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+</pre></div> </table> <p>现在需要求出 <tex>$g(u,\;k)$</tex> 中的值。首先关注到 <tex>$g(u,\;0) = f(u)$</tex>，这一部分可以直接得到。接下来，对于向上走 <tex>$2^k$</tex> 步，相当于是走两次 <tex>$2^{k-1}$</tex> 步，所以我们得到：</p> <p><tex>$$ g(u,\;k) = g(g(u,\;k - 1),\;k - 1) \;\;\;\; \forall k \gt 0 $$</tex></p> <p>所以 <tex>$g$</tex> 可以在 <tex>$O(n \log h)$</tex> 的时间内计算出来。</p> <p>接下来对于第二个问题，我们可以使用 DFS 序来解决这个判定问题。也就是记录每个点在以 <tex>$r$</tex> 为起点的 DFS 过程中入栈和出栈的时间。由于 DFS 的性质，<tex>$T_u$</tex> 中的所有点的入栈时间是一个连续的区间，所以就可以利用这一点在 <tex>$\Theta(n)$</tex>-<tex>$\Theta(1)$</tex> 的复杂度完成判定任务。</p> <p>当然，我们可以不用 DFS 序。想象一下，如果 <tex>$u$</tex> 和 <tex>$v$</tex> 所处的深度相同，那么可以将 <tex>$u$</tex> 和 <tex>$v$</tex> 同时向上面走同样的步数 <tex>$x$</tex>。如果走到了同一个点上，则说明 <tex>$x$</tex> 需要减小，否则说明需要增大。那么在此之前，就需要将 <tex>$u$</tex> 和 <tex>$v$</tex> 调到同一个深度。</p> <p>这里将再次利用二进制和我们的 <tex>$g$</tex> 函数。如果现在 <tex>$u$</tex> 所处的深度比 <tex>$v$</tex> 深，则 <tex>$u$</tex> 需要向上走 <tex>$x = d(u) - d(v)$</tex> 步。例如，如果 <tex>$x = 1011_{(2)}$</tex>，就是相当于分别走 <tex>$2^0$</tex>、<tex>$2^1$</tex> 和 <tex>$2^3$</tex> 步。而这都可以利用 <tex>$g$</tex> 函数实现。最后的实现一般是下面这样：</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre> 1
  2
  3
  4
@@ -139,7 +52,7 @@
 22
 23
 24
-25</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>// 计算 g 函数
+25</pre></div><td class=code ><div class=codehilite ><pre><span></span>// 计算 g 函数
 for u = 1 to n:
     g(u, 0) = f(u)
 for k = 1 to int(log(h)):
@@ -164,25 +77,10 @@ function LCA(u, v):
             v = g(v, k)
 
     return f(u)
-</pre></div>
-</td></tr></table>
-
-<p>最后，倍增算法的复杂度为 <tex>$O(n\log h)$</tex>-<tex>$O(\log h)$</tex>。相对于朴素算法而言，虽然花费了更多的空间，但是获得了时间复杂度的巨大提升，是一个非常不错的改进。另外，值得注意的是，如果实现良好，倍增法在随机树的情况下期望复杂度为 <tex>$O(\log \log n)$</tex>。</p>
-<p>倍增的思想可以扩展到更多的问题上，例如，我们可以仿照 <tex>$g$</tex> 数组记录一些其它的信息，如最大 / 最小值，就可以用来求树上两点间最短路径的边权最大 / 最小值。在后缀数组构建算法中，也有一个运用了倍增思想的时间复杂度为 <tex>$\Theta(n\log n)$</tex> 的简单算法。</p>
-<h3 id="_6">链剖分</h3>
-<p>看到这里的时候：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>if u == v:  // 需要特判 v 是 u 的祖先的情况
+</pre></div> </table> <p>最后，倍增算法的复杂度为 <tex>$O(n\log h)$</tex>-<tex>$O(\log h)$</tex>。相对于朴素算法而言，虽然花费了更多的空间，但是获得了时间复杂度的巨大提升，是一个非常不错的改进。另外，值得注意的是，如果实现良好，倍增法在随机树的情况下期望复杂度为 <tex>$O(\log \log n)$</tex>。</p> <p>倍增的思想可以扩展到更多的问题上，例如，我们可以仿照 <tex>$g$</tex> 数组记录一些其它的信息，如最大 / 最小值，就可以用来求树上两点间最短路径的边权最大 / 最小值。在后缀数组构建算法中，也有一个运用了倍增思想的时间复杂度为 <tex>$\Theta(n\log n)$</tex> 的简单算法。</p> <h3 id=_6 >链剖分</h3> <p>看到这里的时候：</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre>1
+2</pre></div><td class=code ><div class=codehilite ><pre><span></span>if u == v:  // 需要特判 v 是 u 的祖先的情况
     return u
-</pre></div>
-</td></tr></table>
-
-<p>不知道是否会想到，既然我们可以 <tex>$\Theta(1)$</tex> 判定 <tex>$v$</tex> 是否是 <tex>$u$</tex> 的祖先，那为什么还要浪费时间来上跳呢？因为即使利用这一点可以减少计算量，却没有改进复杂度。但是并不意味着这种想法没有什么用，我们可以发现一个更深刻的道理：如果树是链状的，那么最近公共祖先问题就十分的 naïve 了，只需要比较 <tex>$d(u)$</tex> 和 <tex>$d(v)$</tex> 的大小即可。</p>
-<p>现在我们要对付的树并不能如我们所愿的是链状，但是可不可以把 <tex>$u$</tex> 和 <tex>$v$</tex> 上跳，从而调到 <tex>$u$</tex> 是 <tex>$v$</tex> 的祖先呢？不妨尝试将树划分成许多长链，更形式化的说，就是用两两不相交的简单路径覆盖整棵树，从而使得每个点都在唯一的一条路径上：</p>
-<p><img alt="long-chain-1" src="https://git.oschina.net/riteme/blogimg/raw/master/lca-2/long-chain-1.svg" /></p>
-<p><center>（<strong>Fig. 2.</strong> 上图表示了一种划分方案，注意蓝色的路径只有一个点）</center></p>
-<p>当然，为了方便，简单路径上的点的深度是单调的（即不会出现先上行后下行的情况）。这些简单路径也称为<strong>链</strong>。这样一来在同一条链上的的情况就十分简单了。为了方便称呼，链中深度最小的点叫做<strong>链顶</strong>，如果一条树边不存在于任何一条链上，则称为<strong>轻边</strong>，否则称为<strong>重边</strong>。当 <tex>$u$</tex> 和 <tex>$v$</tex> 不在同一条链上时，可以让 <tex>$u$</tex> 或者 <tex>$v$</tex> 沿着链顶的轻边走上去，就会到达另外一条链。例如，如果 <tex>$u$</tex> 在上图中的绿色点中，而 <tex>$v$</tex> 在橙色点中，我们可以让 <tex>$u$</tex> 沿着绿色和橙色之间的轻边走上去。到达橙色链，从而变成了一条链上的情况。具体的实现就大概就是这样：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+</pre></div> </table> <p>不知道是否会想到，既然我们可以 <tex>$\Theta(1)$</tex> 判定 <tex>$v$</tex> 是否是 <tex>$u$</tex> 的祖先，那为什么还要浪费时间来上跳呢？因为即使利用这一点可以减少计算量，却没有改进复杂度。但是并不意味着这种想法没有什么用，我们可以发现一个更深刻的道理：如果树是链状的，那么最近公共祖先问题就十分的 naïve 了，只需要比较 <tex>$d(u)$</tex> 和 <tex>$d(v)$</tex> 的大小即可。</p> <p>现在我们要对付的树并不能如我们所愿的是链状，但是可不可以把 <tex>$u$</tex> 和 <tex>$v$</tex> 上跳，从而调到 <tex>$u$</tex> 是 <tex>$v$</tex> 的祖先呢？不妨尝试将树划分成许多长链，更形式化的说，就是用两两不相交的简单路径覆盖整棵树，从而使得每个点都在唯一的一条路径上：</p> <p><img alt=long-chain-1  src="https://git.oschina.net/riteme/blogimg/raw/master/lca-2/long-chain-1.svg" /></p> <p><center>（<strong>Fig. 2.</strong> 上图表示了一种划分方案，注意蓝色的路径只有一个点）</center></p> <p>当然，为了方便，简单路径上的点的深度是单调的（即不会出现先上行后下行的情况）。这些简单路径也称为<strong>链</strong>。这样一来在同一条链上的的情况就十分简单了。为了方便称呼，链中深度最小的点叫做<strong>链顶</strong>，如果一条树边不存在于任何一条链上，则称为<strong>轻边</strong>，否则称为<strong>重边</strong>。当 <tex>$u$</tex> 和 <tex>$v$</tex> 不在同一条链上时，可以让 <tex>$u$</tex> 或者 <tex>$v$</tex> 沿着链顶的轻边走上去，就会到达另外一条链。例如，如果 <tex>$u$</tex> 在上图中的绿色点中，而 <tex>$v$</tex> 在橙色点中，我们可以让 <tex>$u$</tex> 沿着绿色和橙色之间的轻边走上去。到达橙色链，从而变成了一条链上的情况。具体的实现就大概就是这样：</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre> 1
  2
  3
  4
@@ -195,7 +93,7 @@ function LCA(u, v):
 11
 12
 13
-14</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>function LCA(u, v):
+14</pre></div><td class=code ><div class=codehilite ><pre><span></span>function LCA(u, v):
     // top: 一个整型数组，top[u] 表示 u 所处的链的链顶
     while top[u] != top[v]:
         // 挑选链顶深度较深的一个点向上跳
@@ -209,90 +107,20 @@ function LCA(u, v):
         return u
     else:
         return v
-</pre></div>
-</td></tr></table>
-
-<p>现在的目标就是找出一种链剖分的方案，使得这种 “走轻边” 的情况尽量少。由于我们链剖分的方法所决定的，每个点沿着链向下走最多能走到一个儿子处，姑且称这个儿子为<strong>重儿子</strong>。当我们为每个点选取好重儿子后，链剖分的方案也就出来了。当然，随便选取重儿子是不可取的，就像在下面这棵树中：</p>
-<p><img alt="long-chain-2" src="https://git.oschina.net/riteme/blogimg/raw/master/lca-2/long-chain-2.svg" /></p>
-<p><center>（<strong>Fig. 3.</strong> 一条长链的每个点都多挂了一个点）</center></p>
-<p>如果随机选取，那么长链上的每条边就有 <tex>$1/2$</tex> 的概率成为轻边，如果从底端走到根节点，期望要走 <tex>$h / 2$</tex> 条轻边。</p>
-<p>所以需要换一种思路，我们希望树上划分出的链尽量少，一种思路就是每次挑出最长的一条链。显然对于一个点 <tex>$u$</tex>，它的重儿子 <tex>$v \in \mathrm{ch}(u)$</tex> 应当满足 <tex>$T_v$</tex> 的树高最高。如果按照此标准选取重儿子，最多又会走多少条轻边呢？</p>
-<p><img alt="long-chain-3" src="https://git.oschina.net/riteme/blogimg/raw/master/lca-2/long-chain-3.svg" /></p>
-<p><center>（<strong>Fig. 4.</strong> 这只是一种可能的情况）</center></p>
-<p>不妨来分析一下如果已经走过了 <tex>$x$</tex> 条轻边后，树中至少有多少个点。如上图所示，从最左下角的蓝色点 <tex>$u$</tex> 开始走轻边，那么 <tex>$u$</tex> 所经过的路径上至少有 <tex>$x + 1$</tex> 个点。假设现在走到了 <tex>$p$</tex>，那么 <tex>$T_p$</tex> 中的最长链至少为 <tex>$x + 1$</tex>，因为 <tex>$p$</tex> 所在的长链是最长的，所以 <tex>$p$</tex> 所处的长链的长度也至少为 <tex>$x + 1$</tex>。由此可以分析出：</p>
-<p><tex>$$ n \geqslant \sum_{k = 1}^{x + 1} k = {(x + 1)(x + 2) \over 2} \geqslant x^2 $$</tex></p>
-<p>换句话讲就是 <tex>$ x = O(\sqrt{n}) $</tex>。即任意一个点开始只要走 <tex>$O(\sqrt{n})$</tex> 条轻边就可以到达根节点。最后这种方法的复杂度为 <tex>$\Theta(n)$</tex>-<tex>$O(\sqrt{n})$</tex>。实际上这种方法在之前提到过，通常称作长链剖分，它使用较少的空间和不是很坏的时间复杂度完成了最近公共祖先的计算任务。</p>
-<p>但是这还没有结束，<tex>$O(\sqrt{n})$</tex> 的时间复杂度相比之于倍增算法，还不是一个很理想的结果。回忆一下之前的分析过程中发现了什么：</p>
-<blockquote>
-<p>如果 <tex>$T_u$</tex> 中存在一条长度 <tex>$l$</tex> 的链，那么 <tex>$u$</tex> 所处的长链的长度至少为 <tex>$l$</tex>。</p>
-</blockquote>
-<p>因为这一点，上述分析中每次到达的新的长链的长度至少加 <tex>$1$</tex>。由此，我们可以提出一个大胆的想法：每次向上走链长 <tex>$l$</tex> 步，那么新到达的长链的长度就会翻倍，从而可以达到 <tex>$O(\log h)$</tex> 的时间复杂度。</p>
-<p>为了实现这一点，我们需要对于每一条长链记录它的长度 <tex>$l$</tex>，以及从链顶向上走 <tex>$l$</tex> 步到达的点 <tex>$p$</tex>（如果链顶的深度不足 <tex>$l$</tex> 则为根节点 <tex>$r$</tex>）。然后固定 <tex>$v$</tex>，不断上跳 <tex>$u$</tex>，直到 <tex>$p$</tex> 是 <tex>$v$</tex> 的祖先。这个时候发现仅这样做无法知道最近公共祖先，因为我们可能过头了，但是可以得知最近公共祖先一定在 <tex>$u$</tex> 到 <tex>$p$</tex> 的长链上，并且它满足二分性质。因此稍加改动，对于每条链，存储这条链本身的所有点，以及从链顶向上走至多 <tex>$l$</tex> 步的所有点（总长最多为 <tex>$2l$</tex>），就可以完成最后一个二分过程了。</p>
-<p>虽然每条链花费了 <tex>$2l$</tex> 的空间来存储这些点，但是由于所有链长加起来只有 <tex>$n$</tex>，故最后的复杂度为 <tex>$\Theta(n)$</tex>-<tex>$O(\log h)$</tex>。我们成功实现了在倍增算法的基础上，减小空间开销的任务。</p>
-<p>看到上面啰哩吧嗦一大堆，有的人可能一开始想法就不一样。可能会想尝试将重儿子 <tex>$v$</tex> 选取为 <tex>$T_v$</tex> 的大小最大的那一个。按照这个标准，之前长链剖分的最坏情况的那棵树，应该被划分成这样：</p>
-<p><img alt="hld-1" src="https://git.oschina.net/riteme/blogimg/raw/master/lca-2/hld-1.svg" /></p>
-<p><center>（<strong>Fig. 5.</strong> 实际上，除了最左下角，其它部分一定会被划分成这样）</center></p>
-<p>Aha！EXCITED！我们发现这样无论什么询问，最多走一次轻边了，显然科学了很多。在这种剖分中，如果使用之前长链剖分的 <tex>$O(\sqrt{n})$</tex> 算法，现在的时间复杂度会变成什么了呢？</p>
-<p>套用之前的分析过程，当一个点 <tex>$v$</tex> 每走一条轻边到 <tex>$u$</tex>，我们就会知道 <tex>$u$</tex> 的重儿子 <tex>$x$</tex> 一定满足 <tex>$T_x$</tex> 的大小不小于 <tex>$T_v$</tex> 的大小，也就是说 <tex>$T_u$</tex> 的大小相对于 <tex>$T_v$</tex> 而言至少翻了一倍。最后得出结论，任意一个点走到根节点只会经过 <tex>$O(\log n)$</tex> 条轻边。通过简单的调整选取重儿子的策略，我们直接获得了更加优秀的时间复杂度。实际上，这种剖分方法称为轻重链路径剖分（Heavy-Light Decomposition，HLD，又称树链剖分），这种思想在动态树（LCT、Toptree 之类）上发挥了极大的作用。</p>
-<p>接下来又是一个老生常谈的问题，有了这种剖分方法，长链剖分就没有用处了吗？并不。之前提到了用长链剖分在 <tex>$O(n\log h)$</tex>-<tex>$\Theta(1)$</tex> 的复杂度完成求一个点向上走 <tex>$k$</tex> 步的点，这是一般算法无法做到的。经过之前对长链剖分的分析，相信你一定能想出具体方法。作为一个提示，那 <tex>$O(n \log h)$</tex> 的空间实际上是被倍增算法中的 <tex>$g$</tex> 函数吃掉了。</p>
-<p>与倍增算法类似，链剖分方法实质上完成了对树上任意简单路径划分为少量链的目标，从而使得线性数据结构可以在树上大显身手。由于本文只讨论最近公共祖先问题，对于链剖分的其他扩展可以去寻找其他资料。</p>
-<h3 id="rmq">转化为 RMQ</h3>
-<p>就目前为止，我们一直在考虑直接在树上处理问题。有的时候，将一个问题转换为另外一个等价的问题，不失为一种奇妙的思路。</p>
-<p>现在退回到一种十分朴素的实现方法：从点 <tex>$u$</tex> 开始，搜索 <tex>$T_u$</tex>，如果 <tex>$v$</tex> 在 <tex>$T_u$</tex> 中，则最近公共祖先为 <tex>$u$</tex>。否则令 <tex>$u = f(u)$</tex>，继续执行以上过程。当然，如果某些点已经被遍历过了，则不需要再次访问。或者可以换一个角度：将树上的每条无向边拆为两条有向边。对于属于同一条无向边的两条有向边，我们优先走向下走的边。每进入一个点的时候，就记录一下，最后会构成一个序列。这实际上就是 DFS 序。</p>
-<p><img alt="euler-1" src="https://git.oschina.net/riteme/blogimg/raw/master/lca-2/euler-1.svg" /></p>
-<p><center>（<strong>Fig. 6.</strong> 这棵树的 DFS 序是 <code>1 2 4 2 5 6 5 2 1 3 1</code>）</center></p>
-<p>假设 <tex>$u$</tex> 的 DFS 入栈时间早于 <tex>$v$</tex> ，那么之前的朴素方法相当于从 <tex>$u$</tex> 开始沿着这些边来搜索，直到到达 <tex>$v$</tex>。搜索过程中访问到的深度最小的点就是 <tex>$u$</tex> 和 <tex>$v$</tex> 的最近公共祖先。</p>
-<p><img alt="euler-2" src="https://git.oschina.net/riteme/blogimg/raw/master/lca-2/euler-2.svg" /></p>
-<p><center>（<strong>Fig. 7.</strong> 几个小例子，分别为查询 <tex>$\mathrm{lca}(4,\;6)$</tex>、<tex>$\mathrm{lca}(4,\;3)$</tex> 和 <tex>$\mathrm{lca}(1,\;4)$</tex>）</center></p>
-<p>现在情况就十分清楚了，由于这个 DFS 序是固定的，而且因为每条无向边都被拆成了两条有向边，加上进入根节点的一次记录，所以序列的长度为 <tex>$2n - 1$</tex>。现在我们将 DFS 序上每个位置的点 <tex>$u$</tex> 换为 <tex>$u$</tex> 的深度，称之为<strong>深度序列</strong>。这样相当于在一个长为 <tex>$2n - 1$</tex> 的序列上，查询一个区间内的最小值。也就是静态区间最值问题（Range Minimum / Maximum Query，RMQ）。使用平衡树和线段树均可以做到 <tex>$\Theta(n)$</tex>-<tex>$O(\log n)$</tex> 的复杂度，但这里不会讨论它们。接下来将会转为讨论专门用于解决静态 RMQ 问题的稀疏表算法（Sparse Table，又称 ST 表）。</p>
-<h3 id="_7">稀疏表</h3>
-<p>首先注意到区间 <tex>$[l,\;r]$</tex> 的最值可以由多个区间 <tex>$[l_1,\;r_1],\;[l_2,\;r_2],\;...,\;[l_k,\;r_k]$</tex> 的最值得来，只要满足这些区间的并集是 <tex>$[l,\;r]$</tex>。基于这种思想，我们可以先预处理一些区间的最值，然后对于每一个询问，只要确保能找出一些已经处理过的区间并起来满足询问的要求，就可以回答询问。一个简单的想法就是拆成两个区间，一个是前缀一个是后缀：</p>
-<p><img alt="st-1" src="https://git.oschina.net/riteme/blogimg/raw/master/lca-2/st-1.svg" /></p>
-<p><center>（<strong>Fig. 8.</strong> 一个区间被拆为两个子区间）</center></p>
-<p>嗯，分成两个区间，不难想到 <tex>$2^k + 2^k = 2^{k + 1}$</tex>。也就是说只用计算所有长度为 <tex>$2^k$</tex> 的区间的最值，就可以在 <tex>$\Theta(1)$</tex> 的时间内计算任意区间的最值。记 <tex>$f(i,\;j)$</tex> 表示以 <tex>$i$</tex> 为左端点，长度为 <tex>$2^j$</tex> 的区间最值，然后令 <tex>$\mathrm{highbit}(n) = \lfloor \log n \rfloor$</tex>，即最大的 <tex>$k$</tex> 满足 <tex>$2^k \leqslant n$</tex>。这个东西可以简单的在 <tex>$\Theta(n)$</tex> 的时间内预处理出来。之后，每次查询就是这样的：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+</pre></div> </table> <p>现在的目标就是找出一种链剖分的方案，使得这种 “走轻边” 的情况尽量少。由于我们链剖分的方法所决定的，每个点沿着链向下走最多能走到一个儿子处，姑且称这个儿子为<strong>重儿子</strong>。当我们为每个点选取好重儿子后，链剖分的方案也就出来了。当然，随便选取重儿子是不可取的，就像在下面这棵树中：</p> <p><img alt=long-chain-2  src="https://git.oschina.net/riteme/blogimg/raw/master/lca-2/long-chain-2.svg" /></p> <p><center>（<strong>Fig. 3.</strong> 一条长链的每个点都多挂了一个点）</center></p> <p>如果随机选取，那么长链上的每条边就有 <tex>$1/2$</tex> 的概率成为轻边，如果从底端走到根节点，期望要走 <tex>$h / 2$</tex> 条轻边。</p> <p>所以需要换一种思路，我们希望树上划分出的链尽量少，一种思路就是每次挑出最长的一条链。显然对于一个点 <tex>$u$</tex>，它的重儿子 <tex>$v \in \mathrm{ch}(u)$</tex> 应当满足 <tex>$T_v$</tex> 的树高最高。如果按照此标准选取重儿子，最多又会走多少条轻边呢？</p> <p><img alt=long-chain-3  src="https://git.oschina.net/riteme/blogimg/raw/master/lca-2/long-chain-3.svg" /></p> <p><center>（<strong>Fig. 4.</strong> 这只是一种可能的情况）</center></p> <p>不妨来分析一下如果已经走过了 <tex>$x$</tex> 条轻边后，树中至少有多少个点。如上图所示，从最左下角的蓝色点 <tex>$u$</tex> 开始走轻边，那么 <tex>$u$</tex> 所经过的路径上至少有 <tex>$x + 1$</tex> 个点。假设现在走到了 <tex>$p$</tex>，那么 <tex>$T_p$</tex> 中的最长链至少为 <tex>$x + 1$</tex>，因为 <tex>$p$</tex> 所在的长链是最长的，所以 <tex>$p$</tex> 所处的长链的长度也至少为 <tex>$x + 1$</tex>。由此可以分析出：</p> <p><tex>$$ n \geqslant \sum_{k = 1}^{x + 1} k = {(x + 1)(x + 2) \over 2} \geqslant x^2 $$</tex></p> <p>换句话讲就是 <tex>$ x = O(\sqrt{n}) $</tex>。即任意一个点开始只要走 <tex>$O(\sqrt{n})$</tex> 条轻边就可以到达根节点。最后这种方法的复杂度为 <tex>$\Theta(n)$</tex>-<tex>$O(\sqrt{n})$</tex>。实际上这种方法在之前提到过，通常称作长链剖分，它使用较少的空间和不是很坏的时间复杂度完成了最近公共祖先的计算任务。</p> <p>但是这还没有结束，<tex>$O(\sqrt{n})$</tex> 的时间复杂度相比之于倍增算法，还不是一个很理想的结果。回忆一下之前的分析过程中发现了什么：</p> <blockquote> <p>如果 <tex>$T_u$</tex> 中存在一条长度 <tex>$l$</tex> 的链，那么 <tex>$u$</tex> 所处的长链的长度至少为 <tex>$l$</tex>。</p> </blockquote> <p>因为这一点，上述分析中每次到达的新的长链的长度至少加 <tex>$1$</tex>。由此，我们可以提出一个大胆的想法：每次向上走链长 <tex>$l$</tex> 步，那么新到达的长链的长度就会翻倍，从而可以达到 <tex>$O(\log h)$</tex> 的时间复杂度。</p> <p>为了实现这一点，我们需要对于每一条长链记录它的长度 <tex>$l$</tex>，以及从链顶向上走 <tex>$l$</tex> 步到达的点 <tex>$p$</tex>（如果链顶的深度不足 <tex>$l$</tex> 则为根节点 <tex>$r$</tex>）。然后固定 <tex>$v$</tex>，不断上跳 <tex>$u$</tex>，直到 <tex>$p$</tex> 是 <tex>$v$</tex> 的祖先。这个时候发现仅这样做无法知道最近公共祖先，因为我们可能过头了，但是可以得知最近公共祖先一定在 <tex>$u$</tex> 到 <tex>$p$</tex> 的长链上，并且它满足二分性质。因此稍加改动，对于每条链，存储这条链本身的所有点，以及从链顶向上走至多 <tex>$l$</tex> 步的所有点（总长最多为 <tex>$2l$</tex>），就可以完成最后一个二分过程了。</p> <p>虽然每条链花费了 <tex>$2l$</tex> 的空间来存储这些点，但是由于所有链长加起来只有 <tex>$n$</tex>，故最后的复杂度为 <tex>$\Theta(n)$</tex>-<tex>$O(\log h)$</tex>。我们成功实现了在倍增算法的基础上，减小空间开销的任务。</p> <p>看到上面啰哩吧嗦一大堆，有的人可能一开始想法就不一样。可能会想尝试将重儿子 <tex>$v$</tex> 选取为 <tex>$T_v$</tex> 的大小最大的那一个。按照这个标准，之前长链剖分的最坏情况的那棵树，应该被划分成这样：</p> <p><img alt=hld-1  src="https://git.oschina.net/riteme/blogimg/raw/master/lca-2/hld-1.svg" /></p> <p><center>（<strong>Fig. 5.</strong> 实际上，除了最左下角，其它部分一定会被划分成这样）</center></p> <p>Aha！EXCITED！我们发现这样无论什么询问，最多走一次轻边了，显然科学了很多。在这种剖分中，如果使用之前长链剖分的 <tex>$O(\sqrt{n})$</tex> 算法，现在的时间复杂度会变成什么了呢？</p> <p>套用之前的分析过程，当一个点 <tex>$v$</tex> 每走一条轻边到 <tex>$u$</tex>，我们就会知道 <tex>$u$</tex> 的重儿子 <tex>$x$</tex> 一定满足 <tex>$T_x$</tex> 的大小不小于 <tex>$T_v$</tex> 的大小，也就是说 <tex>$T_u$</tex> 的大小相对于 <tex>$T_v$</tex> 而言至少翻了一倍。最后得出结论，任意一个点走到根节点只会经过 <tex>$O(\log n)$</tex> 条轻边。通过简单的调整选取重儿子的策略，我们直接获得了更加优秀的时间复杂度。实际上，这种剖分方法称为轻重链路径剖分（Heavy-Light Decomposition，HLD，又称树链剖分），这种思想在动态树（LCT、Toptree 之类）上发挥了极大的作用。</p> <p>接下来又是一个老生常谈的问题，有了这种剖分方法，长链剖分就没有用处了吗？并不。之前提到了用长链剖分在 <tex>$O(n\log h)$</tex>-<tex>$\Theta(1)$</tex> 的复杂度完成求一个点向上走 <tex>$k$</tex> 步的点，这是一般算法无法做到的。经过之前对长链剖分的分析，相信你一定能想出具体方法。作为一个提示，那 <tex>$O(n \log h)$</tex> 的空间实际上是被倍增算法中的 <tex>$g$</tex> 函数吃掉了。</p> <p>与倍增算法类似，链剖分方法实质上完成了对树上任意简单路径划分为少量链的目标，从而使得线性数据结构可以在树上大显身手。由于本文只讨论最近公共祖先问题，对于链剖分的其他扩展可以去寻找其他资料。</p> <h3 id=rmq >转化为 RMQ</h3> <p>就目前为止，我们一直在考虑直接在树上处理问题。有的时候，将一个问题转换为另外一个等价的问题，不失为一种奇妙的思路。</p> <p>现在退回到一种十分朴素的实现方法：从点 <tex>$u$</tex> 开始，搜索 <tex>$T_u$</tex>，如果 <tex>$v$</tex> 在 <tex>$T_u$</tex> 中，则最近公共祖先为 <tex>$u$</tex>。否则令 <tex>$u = f(u)$</tex>，继续执行以上过程。当然，如果某些点已经被遍历过了，则不需要再次访问。或者可以换一个角度：将树上的每条无向边拆为两条有向边。对于属于同一条无向边的两条有向边，我们优先走向下走的边。每进入一个点的时候，就记录一下，最后会构成一个序列。这实际上就是 DFS 序。</p> <p><img alt=euler-1  src="https://git.oschina.net/riteme/blogimg/raw/master/lca-2/euler-1.svg" /></p> <p><center>（<strong>Fig. 6.</strong> 这棵树的 DFS 序是 <code>1 2 4 2 5 6 5 2 1 3 1</code>）</center></p> <p>假设 <tex>$u$</tex> 的 DFS 入栈时间早于 <tex>$v$</tex> ，那么之前的朴素方法相当于从 <tex>$u$</tex> 开始沿着这些边来搜索，直到到达 <tex>$v$</tex>。搜索过程中访问到的深度最小的点就是 <tex>$u$</tex> 和 <tex>$v$</tex> 的最近公共祖先。</p> <p><img alt=euler-2  src="https://git.oschina.net/riteme/blogimg/raw/master/lca-2/euler-2.svg" /></p> <p><center>（<strong>Fig. 7.</strong> 几个小例子，分别为查询 <tex>$\mathrm{lca}(4,\;6)$</tex>、<tex>$\mathrm{lca}(4,\;3)$</tex> 和 <tex>$\mathrm{lca}(1,\;4)$</tex>）</center></p> <p>现在情况就十分清楚了，由于这个 DFS 序是固定的，而且因为每条无向边都被拆成了两条有向边，加上进入根节点的一次记录，所以序列的长度为 <tex>$2n - 1$</tex>。现在我们将 DFS 序上每个位置的点 <tex>$u$</tex> 换为 <tex>$u$</tex> 的深度，称之为<strong>深度序列</strong>。这样相当于在一个长为 <tex>$2n - 1$</tex> 的序列上，查询一个区间内的最小值。也就是静态区间最值问题（Range Minimum / Maximum Query，RMQ）。使用平衡树和线段树均可以做到 <tex>$\Theta(n)$</tex>-<tex>$O(\log n)$</tex> 的复杂度，但这里不会讨论它们。接下来将会转为讨论专门用于解决静态 RMQ 问题的稀疏表算法（Sparse Table，又称 ST 表）。</p> <h3 id=_7 >稀疏表</h3> <p>首先注意到区间 <tex>$[l,\;r]$</tex> 的最值可以由多个区间 <tex>$[l_1,\;r_1],\;[l_2,\;r_2],\;...,\;[l_k,\;r_k]$</tex> 的最值得来，只要满足这些区间的并集是 <tex>$[l,\;r]$</tex>。基于这种思想，我们可以先预处理一些区间的最值，然后对于每一个询问，只要确保能找出一些已经处理过的区间并起来满足询问的要求，就可以回答询问。一个简单的想法就是拆成两个区间，一个是前缀一个是后缀：</p> <p><img alt=st-1  src="https://git.oschina.net/riteme/blogimg/raw/master/lca-2/st-1.svg" /></p> <p><center>（<strong>Fig. 8.</strong> 一个区间被拆为两个子区间）</center></p> <p>嗯，分成两个区间，不难想到 <tex>$2^k + 2^k = 2^{k + 1}$</tex>。也就是说只用计算所有长度为 <tex>$2^k$</tex> 的区间的最值，就可以在 <tex>$\Theta(1)$</tex> 的时间内计算任意区间的最值。记 <tex>$f(i,\;j)$</tex> 表示以 <tex>$i$</tex> 为左端点，长度为 <tex>$2^j$</tex> 的区间最值，然后令 <tex>$\mathrm{highbit}(n) = \lfloor \log n \rfloor$</tex>，即最大的 <tex>$k$</tex> 满足 <tex>$2^k \leqslant n$</tex>。这个东西可以简单的在 <tex>$\Theta(n)$</tex> 的时间内预处理出来。之后，每次查询就是这样的：</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre>1
 2
 3
 4
 5
 6
-7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>highbit[1] = 0
+7</pre></div><td class=code ><div class=codehilite ><pre><span></span>highbit[1] = 0
 for i = 2 to n:
     highbit[i] = highbit[i &gt;&gt; 1] + 1
 
 function QUERY(l, r):
     k = highbit[r - l + 1]
     return min(f(l, k), f(r - (1 &lt;&lt; k) + 1, k))  // 或者 max
-</pre></div>
-</td></tr></table>
-
-<p>现在就只需要考虑如何计算 <tex>$f(i,\;j)$</tex> 了。计算一个序列中所有长度为 <tex>$l$</tex> 的区间的最值，可以使用一种叫做单调队列的方法。使用一个双端队列，来维护当前区间内从左至右的一个单调递减（或递增）序列，相当于是一个最值的候选队列。每次从后面加入一个元素时，就会导致队列里面不单调，所以需要不断地从尾部弹出元素，使得新的元素加入后，依然满足单调性。这样，队首的元素始终是最大（或最小）值。如果收缩左边界，导致队首元素被弹出，新的队首依然是最大（或最小）值。上述方法中每个元素只会入栈一次，出栈一次，所以单次复杂度为 <tex>$\Theta(n)$</tex>。由于我们需要计算的长度 <tex>$l$</tex> 都是 <tex>$2$</tex> 的幂，总共只有 <tex>$\Theta(\log n)$</tex> 个，所以总的复杂度为 <tex>$\Theta(n \log n)$</tex>-<tex>$\Theta(1)$</tex>。</p>
-<p>当然，我们有更简单的方法。因为每个长度为 <tex>$2^k$</tex> 的区间可以拆成两个长度为 <tex>$2^{k-1}$</tex> 的区间，因而可以递推计算，也就是 <tex>$f(i,\;j)$</tex> 满足下面的关系（以最大值为例，<tex>$a_i$</tex> 是目标序列）：</p>
-<p><tex>$$ \begin{aligned} f(i,\;0) &amp; = a_i \\ f(i,\;j) &amp; = \max\{f(i,\;j-1),\;f(i+2^{j-1},\;j-1)\} \;\;\;\; \forall j &gt; 0 \end{aligned}$$</tex></p>
-<p>同样，它的复杂度也为 <tex>$\Theta(n \log n)$</tex>-<tex>$\Theta(1)$</tex>。如果将这个算法运用到最近公共祖先问题上面，我们就首次获得了单次询问时间为常数的算法。这是一个相当大的突破。</p>
-<p>然而一切都还没有结束，我们不禁会想，能否继续优化，从而达到 <tex>$\Theta(n)$</tex>-<tex>$\Theta(1)$</tex> 的理论下界呢（因为这是输入输出的复杂度）？答案是肯定的。就目前来看，我们只需要降低稀疏表的空间消耗，同时保证它的时间复杂度即可。</p>
-<p>如何降低空间复杂度呢？一个奇葩的想法就是，如果只有 <tex>$n / \log n$</tex> 个元素，那空间复杂度不就自然变成 <tex>$\Theta(n)$</tex> 了吗？但如何实现这个看起来很不科学的想法呢？这时分块的技巧就可用上了。首先设定一个块大小 <tex>$S$</tex>，然后从前往后每 <tex>$S$</tex> 个元素划为一块，注意最后一块可能没有 <tex>$S$</tex> 个元素。这样整个序列就划为了 <tex>$\Theta(n / S)$</tex> 块。考虑一下每一次询问可能出现的情况：</p>
-<p><img alt="st-2" src="https://git.oschina.net/riteme/blogimg/raw/master/lca-2/st-2.svg" /></p>
-<p><center>（<strong>Fig. 9.</strong> 上面的序列划为了 <tex>$6$</tex> 块）</center></p>
-<p>就上图列举的三种情况而言，实际上只有两种：</p>
-<ol>
-<li>询问跨越的块与块之间的分界线。</li>
-<li>询问没有跨越这个分界线。</li>
-</ol>
-<p>此时不难发现，对于第一种情况，询问区间是由一些连续的块（可能没有）和首尾两个块的一个后缀和一个前缀构成。连续的块我们可以使用稀疏表解决，即用每个块内的最值表示这个块，构成一个序列，然后建立一个大小为 <tex>$\Theta(n/S)$</tex> 的稀疏表；前缀和后缀部分，由于每个块的前缀最值和后缀最值总共只有 <tex>$\Theta(n)$</tex> 个，也可以提前处理。这一部分的复杂度做到了 <tex>$\Theta(n)$</tex>-<tex>$\Theta(1)$</tex>。</p>
-<p>对于第二种情况，似乎就没有那么方便了。现在我们对付的是一个大小为 <tex>$O(S)$</tex> 的 RMQ 问题，如果直接尝试对每个块建立小的稀疏表，计算可知我们现在的空间复杂度是：</p>
-<p><tex>$$\Theta((n/S) \cdot S \log  S+ (n / S) \cdot \log (n/S)) = \Theta(n \log S + (n \log n)/S)$$</tex></p>
-<p>通过对 <tex>$S$</tex> 求导可知大约选取 <tex>$S = \log n$</tex> 时达到最优复杂度，此时的空间复杂度为 <tex>$\Theta(n \log \log n)$</tex>。</p>
-<p>What a pity！我们费尽心思，却仍然不能达到线性复杂度。注意到我们的空间几乎都用在处理一堆大小为 <tex>$O(S)$</tex> 的子问题上了。由于每个位置上可以是任意数值，所以块与块之间几乎不可能相同，这导致利用现有的算法难以将空间复杂度降下来。</p>
-<p>现在回到最开始要解决的问题，也就是求最近公共祖先。DFS 序总有一些非常好的性质，就例如之前的深度序列，不难发现这个序列上相邻两个数之差总是 <tex>$\pm 1$</tex>。这是因为 DFS 这个过程的每一步要么往下走，要么往上走。换句话说，深度序列的差分序列<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>上只有 <tex>$\pm 1$</tex>。如果原序列长度为 <tex>$S$</tex>，那么它的差分序列就只有 <tex>$2^{S-1}$</tex> 种，这远远小于原始序列可能的种数。</p>
-<p>现在你也许可以猜到接下来要做什么了。由于差分序列种类不多，所以我们可以将差分序列做一遍前缀和处理，得到一个新的序列，第 <tex>$i$</tex> 个位置上的值是差分序列上前 <tex>$i$</tex> 个数的和，并且处理这个序列上的每个区间的最值。然后如果知道原始序列的第一项 <tex>$a$</tex>，那么原始序列就相当于是前缀和序列前添加一个 <tex>$0$</tex>，并且每个数都加上 <tex>$a$</tex>，所以可以轻松知道原始序列的最值。</p>
-<p>这样一来，我们就可以使得大小为 <tex>$O(S)$</tex> 的 RMQ 问题减小总空间代价了。选定 <tex>$S = \frac12\log n$</tex>，一方面，这样使得差分序列的种类只有 <tex>$2^{1/2\log n - 1} = \Theta(\sqrt{n})$</tex> 种，因此我们可以简单粗暴的使用 <tex>$\Theta(S^2)$</tex> 的空间为每一种差分序列计算区间最值，当然，你也可以使用稀疏表；另一方面，跨越多个块的询问同样可以使用之前的分块算法，并且空间复杂度依然是 <tex>$\Theta(n)$</tex>。综上，最近公共祖先问题可以在 <tex>$\Theta(n)$</tex>-<tex>$\Theta(1)$</tex> 的复杂度解决了。</p>
-<p>在具体实现上，由于 <tex>$\log n$</tex> 不大，所以差分序列通常用二进制来表示（如二进制位 <tex>$1$</tex> 表示差分序列上的 <tex>$+1$</tex>，对应的 <tex>$0$</tex> 则表示 <tex>$-1$</tex>）。这样就只需要访问数组下标就可以知道特定差分序列的信息了。</p>
-<h3 id="_8">笛卡尔树</h3>
-<p>虽然最近公共祖先的理论复杂度下界已经实现了，本文似乎也就没有必要继续下去了。但是之前我肯定的回答了 RMQ 能否达到理论下界，同时也为了揭示最近公共祖先和 RMQ 问题之间的一些联系，这里还是有必要说一下如何改进稀疏表的空间复杂度。</p>
-<p>为了方便，接下来都只考虑最大值。我们知道，最大值一定是序列上的一个值，那么对于序列上的每个值，有哪些区间的最大值是它自己呢？首先来找出一个最大的区间满足这个区间的最大值就是自己，假设序列是 <tex>$a_i$</tex>，现在我们要确定的是 <tex>$a_x$</tex> 的最大区间 <tex>$[l,\;r]$</tex>，那么可以从 <tex>$[x,\;x]$</tex> 开始，检查 <tex>$a_{l-1}$</tex> 是否不超过 <tex>$a_x$</tex>，如果是，则 <tex>$l$</tex> 可以减 <tex>$1$</tex>；同理，如果满足 <tex>$a_{r+1} \leqslant a_x$</tex>，那么 <tex>$r$</tex> 也可以加 <tex>$1$</tex>。当然我们需要满足 <tex>$l \geqslant 1$</tex> 以及 <tex>$r \leqslant L$</tex>，其中 <tex>$L$</tex> 是序列长度。这样做的正确性是显然的，因为这个区间不能跨过任何一个比 <tex>$a_x$</tex> 大的位置。此外，我们容易得到所有满足最大值为 <tex>$a_x$</tex> 的区间 <tex>$[l',\;r']$</tex> 满足 <tex>$l \leqslant l' \leqslant x \leqslant r' \leqslant r$</tex>。</p>
-<p>设 <tex>$l(x)$</tex> 和 <tex>$r(x)$</tex> 表示之前对于特定的 <tex>$x$</tex> 所说的 <tex>$l$</tex> 和 <tex>$r$</tex>，并且 <tex>$M(x) = [l(x),\;r(x)]$</tex>。求出所有的 <tex>$l(x)$</tex> 和 <tex>$r(x)$</tex> 固然可以使用贪心算法，但是它效率不高。其实这里可以使用之前提到过的单调队列。因为向左找出 <tex>$l(x)$</tex> 的过程就相当于不停地从队列末尾弹出元素，直到找到第一个大于 <tex>$a_x$</tex> 的元素。而求出 <tex>$r(x)$</tex> 就是要知道 <tex>$a_x$</tex> 是当谁加入队列后被弹出的，如果加入 <tex>$a_y$</tex> 导致 <tex>$a_x$</tex> 被弹出，那么说明 <tex>$a_y$</tex> 是 <tex>$a_x$</tex> 向右走的第一个大于 <tex>$a_x$</tex> 的位置。此外还需要注意，最后队列里面肯定还会剩余一些元素没有被弹出来，这则说明这些元素的 <tex>$r(x)$</tex> 都是 <tex>$L$</tex>。这样做的话就只用 <tex>$\Theta(n)$</tex> 的时间复杂度了。具体的实现如下：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+</pre></div> </table> <p>现在就只需要考虑如何计算 <tex>$f(i,\;j)$</tex> 了。计算一个序列中所有长度为 <tex>$l$</tex> 的区间的最值，可以使用一种叫做单调队列的方法。使用一个双端队列，来维护当前区间内从左至右的一个单调递减（或递增）序列，相当于是一个最值的候选队列。每次从后面加入一个元素时，就会导致队列里面不单调，所以需要不断地从尾部弹出元素，使得新的元素加入后，依然满足单调性。这样，队首的元素始终是最大（或最小）值。如果收缩左边界，导致队首元素被弹出，新的队首依然是最大（或最小）值。上述方法中每个元素只会入栈一次，出栈一次，所以单次复杂度为 <tex>$\Theta(n)$</tex>。由于我们需要计算的长度 <tex>$l$</tex> 都是 <tex>$2$</tex> 的幂，总共只有 <tex>$\Theta(\log n)$</tex> 个，所以总的复杂度为 <tex>$\Theta(n \log n)$</tex>-<tex>$\Theta(1)$</tex>。</p> <p>当然，我们有更简单的方法。因为每个长度为 <tex>$2^k$</tex> 的区间可以拆成两个长度为 <tex>$2^{k-1}$</tex> 的区间，因而可以递推计算，也就是 <tex>$f(i,\;j)$</tex> 满足下面的关系（以最大值为例，<tex>$a_i$</tex> 是目标序列）：</p> <p><tex>$$ \begin{aligned} f(i,\;0) &amp; = a_i \\ f(i,\;j) &amp; = \max\{f(i,\;j-1),\;f(i+2^{j-1},\;j-1)\} \;\;\;\; \forall j &gt; 0 \end{aligned}$$</tex></p> <p>同样，它的复杂度也为 <tex>$\Theta(n \log n)$</tex>-<tex>$\Theta(1)$</tex>。如果将这个算法运用到最近公共祖先问题上面，我们就首次获得了单次询问时间为常数的算法。这是一个相当大的突破。</p> <p>然而一切都还没有结束，我们不禁会想，能否继续优化，从而达到 <tex>$\Theta(n)$</tex>-<tex>$\Theta(1)$</tex> 的理论下界呢（因为这是输入输出的复杂度）？答案是肯定的。就目前来看，我们只需要降低稀疏表的空间消耗，同时保证它的时间复杂度即可。</p> <p>如何降低空间复杂度呢？一个奇葩的想法就是，如果只有 <tex>$n / \log n$</tex> 个元素，那空间复杂度不就自然变成 <tex>$\Theta(n)$</tex> 了吗？但如何实现这个看起来很不科学的想法呢？这时分块的技巧就可用上了。首先设定一个块大小 <tex>$S$</tex>，然后从前往后每 <tex>$S$</tex> 个元素划为一块，注意最后一块可能没有 <tex>$S$</tex> 个元素。这样整个序列就划为了 <tex>$\Theta(n / S)$</tex> 块。考虑一下每一次询问可能出现的情况：</p> <p><img alt=st-2  src="https://git.oschina.net/riteme/blogimg/raw/master/lca-2/st-2.svg" /></p> <p><center>（<strong>Fig. 9.</strong> 上面的序列划为了 <tex>$6$</tex> 块）</center></p> <p>就上图列举的三种情况而言，实际上只有两种：</p> <ol> <li>询问跨越的块与块之间的分界线。 <li>询问没有跨越这个分界线。 </ol> <p>此时不难发现，对于第一种情况，询问区间是由一些连续的块（可能没有）和首尾两个块的一个后缀和一个前缀构成。连续的块我们可以使用稀疏表解决，即用每个块内的最值表示这个块，构成一个序列，然后建立一个大小为 <tex>$\Theta(n/S)$</tex> 的稀疏表；前缀和后缀部分，由于每个块的前缀最值和后缀最值总共只有 <tex>$\Theta(n)$</tex> 个，也可以提前处理。这一部分的复杂度做到了 <tex>$\Theta(n)$</tex>-<tex>$\Theta(1)$</tex>。</p> <p>对于第二种情况，似乎就没有那么方便了。现在我们对付的是一个大小为 <tex>$O(S)$</tex> 的 RMQ 问题，如果直接尝试对每个块建立小的稀疏表，计算可知我们现在的空间复杂度是：</p> <p><tex>$$\Theta((n/S) \cdot S \log S+ (n / S) \cdot \log (n/S)) = \Theta(n \log S + (n \log n)/S)$$</tex></p> <p>通过对 <tex>$S$</tex> 求导可知大约选取 <tex>$S = \log n$</tex> 时达到最优复杂度，此时的空间复杂度为 <tex>$\Theta(n \log \log n)$</tex>。</p> <p>What a pity！我们费尽心思，却仍然不能达到线性复杂度。注意到我们的空间几乎都用在处理一堆大小为 <tex>$O(S)$</tex> 的子问题上了。由于每个位置上可以是任意数值，所以块与块之间几乎不可能相同，这导致利用现有的算法难以将空间复杂度降下来。</p> <p>现在回到最开始要解决的问题，也就是求最近公共祖先。DFS 序总有一些非常好的性质，就例如之前的深度序列，不难发现这个序列上相邻两个数之差总是 <tex>$\pm 1$</tex>。这是因为 DFS 这个过程的每一步要么往下走，要么往上走。换句话说，深度序列的差分序列<sup id="fnref:1"><a class=footnote-ref  href="#fn:1" rel=footnote >1</a></sup>上只有 <tex>$\pm 1$</tex>。如果原序列长度为 <tex>$S$</tex>，那么它的差分序列就只有 <tex>$2^{S-1}$</tex> 种，这远远小于原始序列可能的种数。</p> <p>现在你也许可以猜到接下来要做什么了。由于差分序列种类不多，所以我们可以将差分序列做一遍前缀和处理，得到一个新的序列，第 <tex>$i$</tex> 个位置上的值是差分序列上前 <tex>$i$</tex> 个数的和，并且处理这个序列上的每个区间的最值。然后如果知道原始序列的第一项 <tex>$a$</tex>，那么原始序列就相当于是前缀和序列前添加一个 <tex>$0$</tex>，并且每个数都加上 <tex>$a$</tex>，所以可以轻松知道原始序列的最值。</p> <p>这样一来，我们就可以使得大小为 <tex>$O(S)$</tex> 的 RMQ 问题减小总空间代价了。选定 <tex>$S = \frac12\log n$</tex>，一方面，这样使得差分序列的种类只有 <tex>$2^{1/2\log n - 1} = \Theta(\sqrt{n})$</tex> 种，因此我们可以简单粗暴的使用 <tex>$\Theta(S^2)$</tex> 的空间为每一种差分序列计算区间最值，当然，你也可以使用稀疏表；另一方面，跨越多个块的询问同样可以使用之前的分块算法，并且空间复杂度依然是 <tex>$\Theta(n)$</tex>。综上，最近公共祖先问题可以在 <tex>$\Theta(n)$</tex>-<tex>$\Theta(1)$</tex> 的复杂度解决了。</p> <p>在具体实现上，由于 <tex>$\log n$</tex> 不大，所以差分序列通常用二进制来表示（如二进制位 <tex>$1$</tex> 表示差分序列上的 <tex>$+1$</tex>，对应的 <tex>$0$</tex> 则表示 <tex>$-1$</tex>）。这样就只需要访问数组下标就可以知道特定差分序列的信息了。</p> <h3 id=_8 >笛卡尔树</h3> <p>虽然最近公共祖先的理论复杂度下界已经实现了，本文似乎也就没有必要继续下去了。但是之前我肯定的回答了 RMQ 能否达到理论下界，同时也为了揭示最近公共祖先和 RMQ 问题之间的一些联系，这里还是有必要说一下如何改进稀疏表的空间复杂度。</p> <p>为了方便，接下来都只考虑最大值。我们知道，最大值一定是序列上的一个值，那么对于序列上的每个值，有哪些区间的最大值是它自己呢？首先来找出一个最大的区间满足这个区间的最大值就是自己，假设序列是 <tex>$a_i$</tex>，现在我们要确定的是 <tex>$a_x$</tex> 的最大区间 <tex>$[l,\;r]$</tex>，那么可以从 <tex>$[x,\;x]$</tex> 开始，检查 <tex>$a_{l-1}$</tex> 是否不超过 <tex>$a_x$</tex>，如果是，则 <tex>$l$</tex> 可以减 <tex>$1$</tex>；同理，如果满足 <tex>$a_{r+1} \leqslant a_x$</tex>，那么 <tex>$r$</tex> 也可以加 <tex>$1$</tex>。当然我们需要满足 <tex>$l \geqslant 1$</tex> 以及 <tex>$r \leqslant L$</tex>，其中 <tex>$L$</tex> 是序列长度。这样做的正确性是显然的，因为这个区间不能跨过任何一个比 <tex>$a_x$</tex> 大的位置。此外，我们容易得到所有满足最大值为 <tex>$a_x$</tex> 的区间 <tex>$[l',\;r']$</tex> 满足 <tex>$l \leqslant l' \leqslant x \leqslant r' \leqslant r$</tex>。</p> <p>设 <tex>$l(x)$</tex> 和 <tex>$r(x)$</tex> 表示之前对于特定的 <tex>$x$</tex> 所说的 <tex>$l$</tex> 和 <tex>$r$</tex>，并且 <tex>$M(x) = [l(x),\;r(x)]$</tex>。求出所有的 <tex>$l(x)$</tex> 和 <tex>$r(x)$</tex> 固然可以使用贪心算法，但是它效率不高。其实这里可以使用之前提到过的单调队列。因为向左找出 <tex>$l(x)$</tex> 的过程就相当于不停地从队列末尾弹出元素，直到找到第一个大于 <tex>$a_x$</tex> 的元素。而求出 <tex>$r(x)$</tex> 就是要知道 <tex>$a_x$</tex> 是当谁加入队列后被弹出的，如果加入 <tex>$a_y$</tex> 导致 <tex>$a_x$</tex> 被弹出，那么说明 <tex>$a_y$</tex> 是 <tex>$a_x$</tex> 向右走的第一个大于 <tex>$a_x$</tex> 的位置。此外还需要注意，最后队列里面肯定还会剩余一些元素没有被弹出来，这则说明这些元素的 <tex>$r(x)$</tex> 都是 <tex>$L$</tex>。这样做的话就只用 <tex>$\Theta(n)$</tex> 的时间复杂度了。具体的实现如下：</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre> 1
  2
  3
  4
@@ -307,7 +135,7 @@ function QUERY(l, r):
 13
 14
 15
-16</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>// a: 长度为 L 的整型数组，表示序列
+16</pre></div><td class=code ><div class=codehilite ><pre><span></span>// a: 长度为 L 的整型数组，表示序列
 Q = []  // 单调队列
 for i = 1 to L:
     while Q is not empty and a[Q.last()] &lt;= a[i]:
@@ -323,22 +151,7 @@ for i = 1 to L:
 
 foreach i in Q:
     r(i) = L
-</pre></div>
-</td></tr></table>
-
-<p>现在我们来观察一个简单的例子：</p>
-<p><img alt="cartesian-1" src="https://git.oschina.net/riteme/blogimg/raw/master/lca-2/cartesian-1.svg" /></p>
-<p><center>（<strong>Fig. 10.</strong> 在序列 <code>2 3 1 6 4 5 7</code> 的例子）</center></p>
-<p>此时你就会发现所有的这些区间两两之间只有包含和分离的关系。利用这种包含关系，我们实际上就可以构造一棵树：</p>
-<p><img alt="cartesian-2" src="https://git.oschina.net/riteme/blogimg/raw/master/lca-2/cartesian-2.svg" /></p>
-<p><center>（<strong>Fig. 11.</strong> 如果 <tex>$M(x) \subseteq M(y)$</tex>，那么 <tex>$y$</tex> 是树上 <tex>$x$</tex> 的祖先）</center></p>
-<p>这棵二叉树被称为<strong>笛卡尔树</strong>（Cartesian Tree）。对于知道 Treap 的人来说这个名词一定不陌生，这棵树相当于给每个位置 <tex>$x$</tex> 的权值是 <tex>$a_x$</tex> 后建立的 Treap。如果序列中没有重复的元素，那么这棵树是唯一的。回忆起所有满足最大值为 <tex>$a_x$</tex> 的区间 <tex>$[l',\;r']$</tex> 满足 <tex>$l(x) \leqslant l' \leqslant x \leqslant r' \leqslant r(x)$</tex>，那么说明这个最大值 <tex>$x$</tex> 在树上一定是 <tex>$l'$</tex> 和 <tex>$r'$</tex> 的公共祖先。此外，还要满足 <tex>$l' \leqslant x \leqslant r'$</tex>，这恰好说明 <tex>$x$</tex> 需要是 <tex>$\mathrm{lca}(l',\;r')$</tex>。因为如果不是最近公共祖先就不会将 <tex>$l'$</tex> 和 <tex>$r'$</tex> 隔开，就比如上图中的 <tex>$[3,\;5]$</tex>，这个区间的最大值是 <tex>$a_4$</tex>，而不是 <tex>$a_7$</tex>。</p>
-<p>如果我们能够快速的构建出笛卡尔树，就可以使用上一节讨论的 <tex>$\Theta(n)$</tex>-<tex>$\Theta(1)$</tex> 的最近公共祖先算法以同样的复杂度解决静态 RMQ 问题了。幸运的是，我们只用稍微修改一下之前的单调队列算法，就可以构造出笛卡尔树。</p>
-<p>假设我们现在已经有了一棵笛卡尔树，考虑在后面加入一个新的元素 <tex>$a_x$</tex> 时，笛卡尔树该如何变化。首先，我们还是要找出 <tex>$a_x$</tex> 往左走的第一个比它大的元素 <tex>$a_y$</tex>，此时我们就知道 <tex>$y$</tex> 是 <tex>$x$</tex> 的父亲了。另外，不要忘记那些被弹出队列的点，这些的点的 <tex>$r$</tex> 函数的值已经全部被修改为 <tex>$x - 1$</tex> 了，所以会改变它们的父亲：</p>
-<p><img alt="cartesian-3" src="https://git.oschina.net/riteme/blogimg/raw/master/lca-2/cartesian-3.svg" /></p>
-<p><center>（<strong>Fig. 12.</strong> 新加入一个元素，其权值为 <tex>$7$</tex>，以 <tex>$6$</tex> 为根的子树变成了新点的左儿子）</center></p>
-<p>经修改后的算法实现应该是这样的：</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+</pre></div> </table> <p>现在我们来观察一个简单的例子：</p> <p><img alt=cartesian-1  src="https://git.oschina.net/riteme/blogimg/raw/master/lca-2/cartesian-1.svg" /></p> <p><center>（<strong>Fig. 10.</strong> 在序列 <code>2 3 1 6 4 5 7</code> 的例子）</center></p> <p>此时你就会发现所有的这些区间两两之间只有包含和分离的关系。利用这种包含关系，我们实际上就可以构造一棵树：</p> <p><img alt=cartesian-2  src="https://git.oschina.net/riteme/blogimg/raw/master/lca-2/cartesian-2.svg" /></p> <p><center>（<strong>Fig. 11.</strong> 如果 <tex>$M(x) \subseteq M(y)$</tex>，那么 <tex>$y$</tex> 是树上 <tex>$x$</tex> 的祖先）</center></p> <p>这棵二叉树被称为<strong>笛卡尔树</strong>（Cartesian Tree）。对于知道 Treap 的人来说这个名词一定不陌生，这棵树相当于给每个位置 <tex>$x$</tex> 的权值是 <tex>$a_x$</tex> 后建立的 Treap。如果序列中没有重复的元素，那么这棵树是唯一的。回忆起所有满足最大值为 <tex>$a_x$</tex> 的区间 <tex>$[l',\;r']$</tex> 满足 <tex>$l(x) \leqslant l' \leqslant x \leqslant r' \leqslant r(x)$</tex>，那么说明这个最大值 <tex>$x$</tex> 在树上一定是 <tex>$l'$</tex> 和 <tex>$r'$</tex> 的公共祖先。此外，还要满足 <tex>$l' \leqslant x \leqslant r'$</tex>，这恰好说明 <tex>$x$</tex> 需要是 <tex>$\mathrm{lca}(l',\;r')$</tex>。因为如果不是最近公共祖先就不会将 <tex>$l'$</tex> 和 <tex>$r'$</tex> 隔开，就比如上图中的 <tex>$[3,\;5]$</tex>，这个区间的最大值是 <tex>$a_4$</tex>，而不是 <tex>$a_7$</tex>。</p> <p>如果我们能够快速的构建出笛卡尔树，就可以使用上一节讨论的 <tex>$\Theta(n)$</tex>-<tex>$\Theta(1)$</tex> 的最近公共祖先算法以同样的复杂度解决静态 RMQ 问题了。幸运的是，我们只用稍微修改一下之前的单调队列算法，就可以构造出笛卡尔树。</p> <p>假设我们现在已经有了一棵笛卡尔树，考虑在后面加入一个新的元素 <tex>$a_x$</tex> 时，笛卡尔树该如何变化。首先，我们还是要找出 <tex>$a_x$</tex> 往左走的第一个比它大的元素 <tex>$a_y$</tex>，此时我们就知道 <tex>$y$</tex> 是 <tex>$x$</tex> 的父亲了。另外，不要忘记那些被弹出队列的点，这些的点的 <tex>$r$</tex> 函数的值已经全部被修改为 <tex>$x - 1$</tex> 了，所以会改变它们的父亲：</p> <p><img alt=cartesian-3  src="https://git.oschina.net/riteme/blogimg/raw/master/lca-2/cartesian-3.svg" /></p> <p><center>（<strong>Fig. 12.</strong> 新加入一个元素，其权值为 <tex>$7$</tex>，以 <tex>$6$</tex> 为根的子树变成了新点的左儿子）</center></p> <p>经修改后的算法实现应该是这样的：</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre> 1
  2
  3
  4
@@ -356,7 +169,7 @@ foreach i in Q:
 16
 17
 18
-19</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>// 现在每个元素 a[i] 有三个属性 value、left 和 right，
+19</pre></div><td class=code ><div class=codehilite ><pre><span></span>// 现在每个元素 a[i] 有三个属性 value、left 和 right，
 // 分别表示权值、二叉树上的左儿子和右儿子，如果没有儿子则为 null
 function BUILD-CARTESIAN-TREE(a):
     Q = []
@@ -375,156 +188,4 @@ function BUILD-CARTESIAN-TREE(a):
         Q.last().right = v
 
     return Q.first()  // 返回笛卡尔树的树根
-</pre></div>
-</td></tr></table>
-
-<p>至此，最近公共祖先问题和区间最值问题同时都得到了优秀的解决方案。现在我们来整理一下这两者之间的联系：</p>
-<ol>
-<li>利用 DFS 序可以将最近公共祖先问题转为区间最值问题。</li>
-<li>利用笛卡尔树可以将区间最值问题转为最近公共祖先问题。</li>
-</ol>
-<h2 id="_9">注记</h2>
-<p>上文中实际上只介绍了在线算法，而没有介绍离线算法，一是因为离线算法应用场景比较少，二是因为我所知道的离线算法（分治法和 Tarjan 算法）的复杂度并没有达到理论下界（Tarjan 算法是一个复杂度接近常数的 <tex>$\Theta(n + q)$</tex>-<tex>$O(\alpha(n))$</tex> 算法）。所以只在这里简单提及一下。分治算法使用了一种通常称作 “整体二分” 的思想：定义过程 <tex>$\mathrm{solve}(l,\;r)$</tex> 会解决最近公共祖先的深度在 <tex>$[l,\;r]$</tex> 的所有询问，这个过程大致执行步骤如下：</p>
-<ol>
-<li>令 <tex>$m = (l + r) / 2$</tex>，表示我们二分的答案。</li>
-<li>将所有深度为 <tex>$m$</tex> 的点 <tex>$u$</tex> 的子树 <tex>$T_u$</tex> 内深度不大于 <tex>$r$</tex> 的点的标号设为 <tex>$u$</tex>。</li>
-<li>对于每一个询问 <tex>$u$</tex>、<tex>$v$</tex>，如果 <tex>$u$</tex> 和 <tex>$v$</tex> 都有标号且标号相同，则说明 <tex>$d(\mathrm{lca}(u,\;v)) \geqslant m$</tex>，将这个询问交给 <tex>$\mathrm{solve}(m,\;r)$</tex>。否则将 <tex>$u$</tex> 和 <tex>$v$</tex> 都变为自己标号的父亲（如果没有标号则不变），并交给 <tex>$\mathrm{solve}(l,\;m-1)$</tex>。</li>
-<li>清除所有标号并且递归处理 <tex>$\mathrm{solve}(m,\;r)$</tex> 和 <tex>$\mathrm{solve}(l,\;m-1)$</tex>。</li>
-</ol>
-<p>分治算法本质上是实现了一个集体倍增的方法，其复杂度为 <tex>$\Theta(n + q)$</tex>-<tex>$O(\log h)$</tex>。Tarjan 算法则是对 DFS 序的处理，在回溯的时候将父亲与儿子利用并查集连接起来，并且在并查集上存储附加信息使得可以查询答案，实现起来比较方便。</p>
-<p>在前文中留下了一个简单的思考题，就是利用长链剖分实现 <tex>$O(n \log h)$</tex>-<tex>$\Theta(1)$</tex> 的祖先查询，这个算法可以在 <a href="https://riteme.github.io/blog/2017-2-6/long-chain.html">https://riteme.github.io/blog/2017-2-6/long-chain.html</a> 处找到答案。</p>
-<p>RMQ 问题的实现方面，其实还有许多可以仔细思考的地方。虽然我们在理论上达到了最优，但是它付出了较大的空间代价，并且在一般情况下这种算法实际表现情况并不如想象中那么优秀。相关的讨论可以在 Wikipedia 的笛卡尔树（<a href="https://en.wikipedia.org/wiki/Cartesian_tree">https://en.wikipedia.org/wiki/Cartesian_tree</a>）的引用中找到。</p>
-<p>最后，前面所提及的算法我基本上亲自使用 C++ 实现并测试过，这些代码可以在这里找到：<a href="https://github.com/riteme/test/tree/master/oi/Code/algs/Graph/LCA">https://github.com/riteme/test/tree/master/oi/Code/algs/Graph/LCA</a></p>
-<div class="footnote">
-<hr />
-<ol>
-<li id="fn:1">
-<p>长度为 <tex>$n$</tex> 的序列 <tex>$a_i$</tex> 经过差分可以得到一个长度为 <tex>$n - 1$</tex> 的序列 <tex>$d_i$</tex>，其中 <tex>$d_i = a_{i + 1} - a_i$</tex>，即记录相邻两个数之差。如果知道 <tex>$a_1$</tex>，那么也可以通过 <tex>$d_i$</tex> 推出 <tex>$a_i$</tex>。&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-</ol>
-</div>
-            <hr/>
-            <div id="comments"></div>
-            <script type="text/javascript">
-              window.addEventListener('load',()=>{quicklink();})
-              const gitment = new Gitment({id: '8a0f56cf8a29581bb19a1feda4021626', owner: 'riteme', repo: 'riteme.github.io',
-                oauth: {
-                  client_id: 'd4fcffa25858a7a58e1a',
-                  client_secret: 'e0c8e08beb95497871f8355416c69390634cec76',
-                },
-                perPage: 10,
-              })
-              gitment.render('comments')
-            </script>
-          </div>
-        </div>
-        <div class="mdl-cell mdl-cell--4-col mdl-cell--hide-tablet mdl-cell--hide-phone sidebar">
-          <div class="article">
-            <div class="mdl-card mdl-shadow--3dp sidebar-card">
-              <div class="mdl-card__actions sidebar-title">页面信息</div>
-              <div class="mdl-card__supporting-text">
-                标签: <a href="/search.html?q=最近公共祖先"><span class="label">最近公共祖先</span></a> <a href="/search.html?q=区间最值问题"><span class="label">区间最值问题</span></a> <a href="/search.html?q=数据结构"><span class="label">数据结构</span></a><br/>
-                创建时间: 2017.09.03<br/>
-                上次修改: 2017.09.03<br/>
-                字数统计: 16471 字 / 约 1 小时 5 分钟
-              </div>
-            </div>
-            <br/>
-            
-<div class="mdl-card mdl-shadow--3dp sidebar-card">
-  <div class="mdl-card__actions sidebar-title">目录</div>
-  <div class="mdl-card__supporting-text">
-    <div class="toc">
-<ul>
-<li><a href="#_1">静态树上的最近公共祖先问题</a><ul>
-<li><a href="#_2">基本概念</a></li>
-<li><a href="#_3">解决方案</a><ul>
-<li><a href="#_4">朴素算法</a></li>
-<li><a href="#_5">倍增算法</a></li>
-<li><a href="#_6">链剖分</a></li>
-<li><a href="#rmq">转化为 RMQ</a></li>
-<li><a href="#_7">稀疏表</a></li>
-<li><a href="#_8">笛卡尔树</a></li>
-</ul>
-</li>
-<li><a href="#_9">注记</a></li>
-</ul>
-</li>
-</ul>
-</div>
-  </div>
-</div>
-<br/>
-
-            <div class="mdl-card mdl-shadow--3dp sidebar-card">
-              <div class="mdl-card__actions sidebar-title">数学公式渲染</div>
-              <div class="mdl-card__supporting-text">
-                <form name="mathopt">
-                  <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
-                    <input type="radio" id="option-1" class="mdl-radio__button" name="sel" value="mathjax">
-                    <span class="mdl-radio__label">MathJax (推荐)</span>
-                  </label><br/>
-                  <div id="tip-1">
-                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
-                      <input type="radio" id="option-2" class="mdl-radio__button" name="sel" value="katex">
-                      <span class="mdl-radio__label">KaTeX</span>
-                    </label>
-                  </div>
-                  <div id="tip-2">
-                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
-                      <input type="radio" id="option-3" class="mdl-radio__button" name="sel" value="katex&mathjax">
-                      <span class="mdl-radio__label">Mixed</span>
-                    </label>
-                  </div>
-                </form>
-              </div>
-            </div>
-            <div class="mdl-tooltip" data-mdl-for="tip-1">KaTeX 渲染效率很高，但是目前 KaTeX 容错性不强，因此使用 KaTeX 时可能会存在一些数学公式无法渲染的情况</div>
-            <div class="mdl-tooltip" data-mdl-for="tip-2">先使用 KaTeX 渲染，再使用 MathJax 渲染</div>
-            <br/>
-            <div class="nano mdl-card mdl-shadow--3dp sidebar-card">
-              <a class="nano-ref" target="_new" href="http://nichijou.wikia.com/wiki/Nano_Shinonome"></a>
-              <div class="mdl-card__actions">
-                <div class="nano-shell"><span class="shell-start">$</span> nano <a href="https://github.com/riteme/riteme.github.io/blob/master/blog/2017-9-3/lca.md" id="nano-link">lca.md</a></div>
-              </div>
-            </div>
-            <div class="mdl-tooltip" data-mdl-for="nano-link">查看原始 Markdown 文档</div>
-          </div>
-        </div>
-      </div>
-      <footer class="mdl-mega-footer">
-        <div class="mdl-mega-footer__middle-section">
-          <div class="mdl-mega-footer__drop-down-section">
-            <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-            <h1 class="mdl-mega-footer__heading">RITEME.SITE</h1>一个从不乱说话的博客...
-          </div>
-          <div class="mdl-mega-footer__drop-down-section">
-            <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-            <h1 class="mdl-mega-footer__heading">POWERED BY</h1>
-            <ul class="mdl-mega-footer__link-list">
-              <li><a href="http://pythonhosted.org/Markdown/">Python Markdown</a></li>
-              <li><a href="http://getmdl.io/">Material Design Lite</a></li>
-              <li><a href="http://www.tipue.com/search/">Tipuesearch</a></li>
-              <li><a href="http://www.mathjax.org/">MathJax</a> & <a href="http://khan.github.io/KaTeX/">KaTeX</a></li>
-              <li><a href="https://github.com/imsun/gitment">Gitment</a></li>
-            </ul>
-          </div>
-          <div class="mdl-mega-footer__drop-down-section">
-            <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-            <h1 class="mdl-mega-footer__heading">友情链接</h1>
-            <ul class="mdl-mega-footer__link-list">
-              <li><a href="http://ruanx.pw/">ruanxingzhi</a></li>
-              <li><a href="https://blog.xehoth.cc/">xehoth</a></li>
-              <li><a href="http://hjwjbsr.is-programmer.com/">HJWJBSR</a></li>
-              <li><a href="http://www.micdz.cn/">MicDZ</a></li>
-              <li><a href="http://blog.linyxus.xyz/">Linyxus</a></li>
-              <li><a href="http://memset0.cf/">memset0</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="mdl-mega-footer__bottom-section">Theme based on <a href="https://getmdl.io/">MDL</a> | Copyright © 2015-2019 riteme. All rights reserved.</div>
-      </footer>
-    </main>
-  </div>
-</body>
-</html>
+</pre></div> </table> <p>至此，最近公共祖先问题和区间最值问题同时都得到了优秀的解决方案。现在我们来整理一下这两者之间的联系：</p> <ol> <li>利用 DFS 序可以将最近公共祖先问题转为区间最值问题。 <li>利用笛卡尔树可以将区间最值问题转为最近公共祖先问题。 </ol> <h2 id=_9 >注记</h2> <p>上文中实际上只介绍了在线算法，而没有介绍离线算法，一是因为离线算法应用场景比较少，二是因为我所知道的离线算法（分治法和 Tarjan 算法）的复杂度并没有达到理论下界（Tarjan 算法是一个复杂度接近常数的 <tex>$\Theta(n + q)$</tex>-<tex>$O(\alpha(n))$</tex> 算法）。所以只在这里简单提及一下。分治算法使用了一种通常称作 “整体二分” 的思想：定义过程 <tex>$\mathrm{solve}(l,\;r)$</tex> 会解决最近公共祖先的深度在 <tex>$[l,\;r]$</tex> 的所有询问，这个过程大致执行步骤如下：</p> <ol> <li>令 <tex>$m = (l + r) / 2$</tex>，表示我们二分的答案。 <li>将所有深度为 <tex>$m$</tex> 的点 <tex>$u$</tex> 的子树 <tex>$T_u$</tex> 内深度不大于 <tex>$r$</tex> 的点的标号设为 <tex>$u$</tex>。 <li>对于每一个询问 <tex>$u$</tex>、<tex>$v$</tex>，如果 <tex>$u$</tex> 和 <tex>$v$</tex> 都有标号且标号相同，则说明 <tex>$d(\mathrm{lca}(u,\;v)) \geqslant m$</tex>，将这个询问交给 <tex>$\mathrm{solve}(m,\;r)$</tex>。否则将 <tex>$u$</tex> 和 <tex>$v$</tex> 都变为自己标号的父亲（如果没有标号则不变），并交给 <tex>$\mathrm{solve}(l,\;m-1)$</tex>。 <li>清除所有标号并且递归处理 <tex>$\mathrm{solve}(m,\;r)$</tex> 和 <tex>$\mathrm{solve}(l,\;m-1)$</tex>。 </ol> <p>分治算法本质上是实现了一个集体倍增的方法，其复杂度为 <tex>$\Theta(n + q)$</tex>-<tex>$O(\log h)$</tex>。Tarjan 算法则是对 DFS 序的处理，在回溯的时候将父亲与儿子利用并查集连接起来，并且在并查集上存储附加信息使得可以查询答案，实现起来比较方便。</p> <p>在前文中留下了一个简单的思考题，就是利用长链剖分实现 <tex>$O(n \log h)$</tex>-<tex>$\Theta(1)$</tex> 的祖先查询，这个算法可以在 <a href="https://riteme.github.io/blog/2017-2-6/long-chain.html">https://riteme.github.io/blog/2017-2-6/long-chain.html</a> 处找到答案。</p> <p>RMQ 问题的实现方面，其实还有许多可以仔细思考的地方。虽然我们在理论上达到了最优，但是它付出了较大的空间代价，并且在一般情况下这种算法实际表现情况并不如想象中那么优秀。相关的讨论可以在 Wikipedia 的笛卡尔树（<a href="https://en.wikipedia.org/wiki/Cartesian_tree">https://en.wikipedia.org/wiki/Cartesian_tree</a>）的引用中找到。</p> <p>最后，前面所提及的算法我基本上亲自使用 C++ 实现并测试过，这些代码可以在这里找到：<a href="https://github.com/riteme/test/tree/master/oi/Code/algs/Graph/LCA">https://github.com/riteme/test/tree/master/oi/Code/algs/Graph/LCA</a></p> <div class=footnote > <hr /> <ol> <li id="fn:1"> <p>长度为 <tex>$n$</tex> 的序列 <tex>$a_i$</tex> 经过差分可以得到一个长度为 <tex>$n - 1$</tex> 的序列 <tex>$d_i$</tex>，其中 <tex>$d_i = a_{i + 1} - a_i$</tex>，即记录相邻两个数之差。如果知道 <tex>$a_1$</tex>，那么也可以通过 <tex>$d_i$</tex> 推出 <tex>$a_i$</tex>。&#160;<a class=footnote-backref  href="#fnref:1" rev=footnote  title="Jump back to footnote 1 in the text">&#8617;</a></p> </ol> </div> <hr/> <div id=comments ></div> <script> window.addEventListener('load', () => { quicklink(); }); const gitment = new Gitment({id: '8a0f56cf8a29581bb19a1feda4021626', owner: 'riteme', repo: 'riteme.github.io', oauth: { client_id: 'd4fcffa25858a7a58e1a', client_secret: 'e0c8e08beb95497871f8355416c69390634cec76', }, perPage: 10, }); gitment.render('comments'); </script> </div> </div> <div class="mdl-cell sidebar"> <div class=article > <div class="mdl-card mdl-shadow--3dp sidebar-card"> <div class="mdl-card__actions sidebar-title">页面信息</div> <div class=mdl-card__supporting-text > 标签: <a href="/search.html?q=最近公共祖先"><span class=label >最近公共祖先</span></a> <a href="/search.html?q=区间最值问题"><span class=label >区间最值问题</span></a> <a href="/search.html?q=数据结构"><span class=label >数据结构</span></a><br/> 创建时间: 2017.09.03<br/> 上次修改: 2017.09.03<br/> 字数统计: 16471 字 / 约 1 小时 5 分钟 </div> </div> <br/> <div class="mdl-card mdl-shadow--3dp sidebar-card"> <div class="mdl-card__actions sidebar-title">目录</div> <div class=mdl-card__supporting-text > <div class=toc > <ul> <li><a href="#_1">静态树上的最近公共祖先问题</a><ul> <li><a href="#_2">基本概念</a> <li><a href="#_3">解决方案</a><ul> <li><a href="#_4">朴素算法</a> <li><a href="#_5">倍增算法</a> <li><a href="#_6">链剖分</a> <li><a href="#rmq">转化为 RMQ</a> <li><a href="#_7">稀疏表</a> <li><a href="#_8">笛卡尔树</a> </ul> <li><a href="#_9">注记</a> </ul> </ul> </div> </div> </div> <br/> <div class="mdl-card mdl-shadow--3dp sidebar-card"> <div class="mdl-card__actions sidebar-title">数学公式渲染</div> <div class=mdl-card__supporting-text > <form name=mathopt > <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for=option-1 > <input type=radio  id=option-1  class=mdl-radio__button  name=sel  value=mathjax > <span class=mdl-radio__label >MathJax (推荐)</span> </label><br/> <div id=tip-1 > <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for=option-2 > <input type=radio  id=option-2  class=mdl-radio__button  name=sel  value=katex > <span class=mdl-radio__label >KaTeX</span> </label> </div> <div id=tip-2 > <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for=option-3 > <input type=radio  id=option-3  class=mdl-radio__button  name=sel  value="katex&mathjax"> <span class=mdl-radio__label >Mixed</span> </label> </div> </form> </div> </div> <div class=mdl-tooltip  data-mdl-for=tip-1 >KaTeX 渲染效率很高，但是目前 KaTeX 容错性不强，因此使用 KaTeX 时可能会存在一些数学公式无法渲染的情况</div> <div class=mdl-tooltip  data-mdl-for=tip-2 >先使用 KaTeX 渲染，再使用 MathJax 渲染</div> <br/> <div class="nano mdl-card mdl-shadow--3dp sidebar-card"> <a class=nano-ref  target=_new  href="http://nichijou.wikia.com/wiki/Nano_Shinonome"></a> <div class=mdl-card__actions > <div class=nano-shell ><span class=shell-start >$</span> nano <a href="https://github.com/riteme/riteme.github.io/blob/master/blog/2017-9-3/lca.md" id=nano-link >lca.md</a></div> </div> </div> <div class=mdl-tooltip  data-mdl-for=nano-link >查看原始 Markdown 文档</div> </div> </div> </div> <footer class=mdl-mega-footer > <div class=mdl-mega-footer__middle-section > <div class=mdl-mega-footer__drop-down-section > <input class=mdl-mega-footer__heading-checkbox  type=checkbox  checked> <h1 class=mdl-mega-footer__heading >RITEME.SITE</h1>一个从不乱说话的博客... </div> <div class=mdl-mega-footer__drop-down-section > <input class=mdl-mega-footer__heading-checkbox  type=checkbox  checked> <h1 class=mdl-mega-footer__heading >POWERED BY</h1> <ul class=mdl-mega-footer__link-list > <li><a href="http://pythonhosted.org/Markdown/">Python Markdown</a> <li><a href="http://getmdl.io/">Material Design Lite</a> <li><a href="http://www.tipue.com/search/">Tipuesearch</a> <li><a href="http://www.mathjax.org/">MathJax</a> & <a href="http://khan.github.io/KaTeX/">KaTeX</a> <li><a href="https://github.com/imsun/gitment">Gitment</a> </ul> </div> <div class=mdl-mega-footer__drop-down-section > <input class=mdl-mega-footer__heading-checkbox  type=checkbox  checked> <h1 class=mdl-mega-footer__heading >友情链接</h1> <ul class=mdl-mega-footer__link-list > <li><a href="http://ruanx.pw/">ruanxingzhi</a> <li><a href="https://blog.xehoth.cc/">xehoth</a> <li><a href="http://hjwjbsr.is-programmer.com/">HJWJBSR</a> <li><a href="http://www.micdz.cn/">MicDZ</a> <li><a href="http://blog.linyxus.xyz/">Linyxus</a> <li><a href="http://memset0.cf/">memset0</a> </ul> </div> </div> <div class=mdl-mega-footer__bottom-section >Theme based on <a href="https://getmdl.io/">MDL</a> | Copyright © 2015-2019 riteme. All rights reserved.</div> </footer> </main> </div>

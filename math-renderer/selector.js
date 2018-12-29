@@ -68,32 +68,31 @@ if (Cookies.get('math-renderer') == null) {
     Cookies.set('math-renderer', 'katex', { expires: 65536 });
 }
 
-renderer = Cookies.get('math-renderer');
-if (renderer == 'mathjax') {
-    loadJS("/math-renderer/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML", function() {
-        MathJax.Hub.Config( { tex2jax: { inlineMath: [['$','$']] }, "HTML-CSS": { scale: 95, fonts: ["TeX"] }, CommonHTML: { scale: 95, fonts: ["TeX"] }, SVG: { scale: 95, fonts: ["TeX"] } } );
-        MathJax.Hub.Configured();
-    });
-} else if (renderer == 'katex') {
-    loadJS("/math-renderer/katex/katex.min.js", function() {
-        loadJS("/math-renderer/katex/auto-render.min.js", function() {
-            renderWithKaTeX(document.body);
-        });
-    });
-} else if (renderer == "katex&mathjax") {
-    loadJS("/math-renderer/katex/katex.min.js", function() {
-        loadJS("/math-renderer/katex/auto-render.min.js", function() {
-            renderWithKaTeX(document.body);
-            loadJS("/math-renderer/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML", function() {
-                MathJax.Hub.Config( { tex2jax: { inlineMath: [['$','$']] }, "HTML-CSS": { scale: 95 } } );
-                MathJax.Hub.Configured();
-            });
-        });
-    });
-}
-
 startup = function() {
     renderer = Cookies.get('math-renderer');
+    if (renderer == 'mathjax') {
+        loadJS("/math-renderer/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML", function() {
+            MathJax.Hub.Config( { tex2jax: { inlineMath: [['$','$']] }, "HTML-CSS": { scale: 95, fonts: ["TeX"] }, CommonHTML: { scale: 95, fonts: ["TeX"] }, SVG: { scale: 95, fonts: ["TeX"] } } );
+            MathJax.Hub.Configured();
+        });
+    } else if (renderer == 'katex') {
+        loadJS("/math-renderer/katex/katex.min.js", function() {
+            loadJS("/math-renderer/katex/auto-render.min.js", function() {
+                renderWithKaTeX(document.body);
+            });
+        });
+    } else if (renderer == "katex&mathjax") {
+        loadJS("/math-renderer/katex/katex.min.js", function() {
+            loadJS("/math-renderer/katex/auto-render.min.js", function() {
+                renderWithKaTeX(document.body);
+                loadJS("/math-renderer/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML", function() {
+                    MathJax.Hub.Config( { tex2jax: { inlineMath: [['$','$']] }, "HTML-CSS": { scale: 95 } } );
+                    MathJax.Hub.Configured();
+                });
+            });
+        });
+    }
+
     if (renderer == 'mathjax') {
         document.mathopt.sel[0].checked = true;
     } else if (renderer == 'katex') {
