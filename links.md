@@ -1,7 +1,7 @@
 ---
 title: 友链
 create: 2017.1.10
-modified: 2016.1.10
+modified: 2019.1.3
 tags: Friend Links
 ---
 
@@ -17,7 +17,8 @@ tags: Friend Links
 | Linyxus | [blog.linyxus.xyz](http://blog.linyxus.xyz/) |
 | memset0 | [memset0.cf](http://memset0.cf/) |
 | MicDZ | [www.micdz.cn](http://www.micdz.cn/) |
-| xehoth | [blog.xehoth.cc](https://blog.xehoth.cc/)
+| xehoth | [blog.xehoth.cc](https://blog.xehoth.cc/) |
+| CMXRYNP | [cmxrynp.github.io](https://cmxrynp.github.io/) |
 
 另外这里是几个本校神犇：
 
