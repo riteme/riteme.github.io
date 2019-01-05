@@ -6,9 +6,10 @@ tags: About
 ---
 
 ## 关于
-riteme 来自 HNSDFZ / FDU。
+*riteme* 来自 <span style="color:gray">CJP</span>→<span style="color:gray">GY</span>→<span style="color:gray">HNSDFZ</span>→FDU。
 
 ### `sitegen.py`
+
 使用 `Python 3` 编写的不清真站点生成器。
 参见左侧栏 ["GitHub 项目"](https://github.com/riteme/riteme.github.io)。
 
