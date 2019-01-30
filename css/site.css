@@ -204,6 +204,8 @@ a:hover {
 .article th {
     background-color: #f6f6f6;
     border: 1px solid #CCCCCC;
+    position: sticky;
+    top: 64px;
 }
 
 .article td.code {
@@ -459,6 +461,10 @@ h3.panel-title {
 @media screen and (max-width: 1024px) {
     .main-cell {
         margin-top: 56px;
+    }
+
+    .article th {
+        top: 56px;
     }
 
     .sidebar .article {
