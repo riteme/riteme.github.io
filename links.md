@@ -15,7 +15,7 @@ tags: Friend Links
 | **HJWJBSR** | [hjwjbsr.is-programmer.com](http://hjwjbsr.is-programmer.com/) |
 | Mr.Rabbit | [www.ianime.co](http://www.ianime.co/) |
 | Linyxus | [blog.linyxus.xyz](http://blog.linyxus.xyz/) |
-| memset0 | [memset0.cf](http://memset0.cf/) |
+| memset0 | [memset0.cn](http://memset0.cn/) |
 | MicDZ | [www.micdz.cn](http://www.micdz.cn/) |
 | xehoth | [blog.xehoth.cc](https://blog.xehoth.cc/) |
 | CMXRYNP | [cmxrynp.github.io](https://cmxrynp.github.io/) |
