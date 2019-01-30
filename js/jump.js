@@ -1,5 +1,15 @@
+SCROLL_OFFSET = 80
+
+function getPositionTop(x) {
+    cur = 0
+    do {
+        cur += x.offsetTop
+    } while (x = x.offsetParent)
+    return cur
+}
+
 function jump(target) {
-    if (target) window.scrollTo({top: target.offsetTop - 80, behavior: "smooth"})
+    if (target) window.scrollTo({top: getPositionTop(target) - SCROLL_OFFSET, behavior: "smooth"})
 }
 
 function jumper(id) {
