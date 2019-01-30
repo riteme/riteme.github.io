@@ -86,6 +86,7 @@ a:hover {
 }
 
 .article {
+    counter-reset: fig;
     margin: 40px 20px;
 }
 
@@ -134,8 +135,7 @@ a:hover {
     font-size: 1.1em;
 }
 
-.article p {
-    margin: 0.15em 0 0.15em 0;
+.article p, .article center {
     text-align: justify;
     text-justify: newspaper;
     text-justify: auto;
@@ -146,6 +146,10 @@ a:hover {
     word-wrap: break-word;
     overflow-wrap: break-word;
     hanging-punctuation: allow-end;
+}
+
+.article p {
+    margin: 0.15em 0 0.15em 0;
 }
 
 .article ol {
@@ -239,12 +243,14 @@ a:hover {
     background-color: #3ea9f3;
     color: white;
     font-size: 80%;
+    font-weight: bold;
     margin: 0.1em 0 0.1em 0;
     padding: 2px 4px;
     display: inline-block;
 }
 
 .article center {
+    width: fit-content;
     max-width: 90%;
     margin: auto;
     font-size: 15px;
@@ -253,6 +259,12 @@ a:hover {
 
 .article center:hover {
     color: rgba(0, 0, 0, 0.87);
+}
+
+.article .figcaption:before {
+    counter-increment: fig;
+    content: "Fig." counter(fig) ". ";
+    font-weight: bold;
 }
 
 pre, code {
