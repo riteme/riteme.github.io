@@ -73,8 +73,16 @@ a:hover {
     text-decoration: underline;
 }
 
+.mdl-navigation__link {
+    transition: background 0.25s;
+}
+
 .mdl-navigation__link:hover {
     text-decoration: none;
+}
+
+.main-article p, .main-article li, .main-article li, .main-article h1, .main-article h2, .main-article h3, .main-article h4, .main-article h5, .main-article h6 {
+    transition: background 0.25s;
 }
 
 .main-article p:hover, .main-article li:hover, .main-article li:hover, .main-article h1:hover, .main-article h2:hover, .main-article h3:hover, .main-article h4:hover, .main-article h5:hover, .main-article h6:hover {
@@ -160,6 +168,8 @@ a:hover {
     display: block;
     margin: 0 auto;
     max-width: 100%;
+    transition: outline 0.25s;
+    outline-color: white;
 }
 
 .article img:hover {
@@ -183,6 +193,7 @@ a:hover {
 
 .article tr {
     line-height: 30px;
+    transition: background 0.25s;
 }
 
 .article tr:hover {
@@ -221,6 +232,7 @@ a:hover {
     padding: 0.1em 1em 0.1em 1em;
     font-style: normal;
     font-family: inherit;
+    transition: border-left 0.25s;
 }
 
 .article blockquote::before {
@@ -257,6 +269,7 @@ a:hover {
     margin: auto;
     font-size: 15px;
     color: #9a9a9a;
+    transition: color 0.25s;
 }
 
 .article center:hover {
@@ -351,6 +364,10 @@ header .mdl-textfield {
     border-radius: 4px;
     -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.panel h3 {
+    transition: none;
 }
 
 .panel h3:hover {

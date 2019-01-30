@@ -20,10 +20,6 @@
   text-decoration: none;
 }
 
-.gitment-container a:hover {
-  text-decoration: underline;
-}
-
 .gitment-container .gitment-hidden {
   display: none;
 }
@@ -89,10 +85,6 @@ a.gitment-header-issue-link,
 a.gitment-header-issue-link:visited {
   float: right;
   line-height: 30px;
-  color: #666;
-}
-
-a.gitment-header-issue-link:hover {
   color: #666;
 }
 
@@ -1143,4 +1135,12 @@ a.gitment-editor-footer-tip:hover {
 
 .gitment-markdown hr {
   border-bottom-color: #eee;
+}
+
+.gitment-header-like-btn svg {
+  transition: fill 0.25s;
+}
+
+.gitment-header-like-btn svg:hover {
+  fill: red;
 }
