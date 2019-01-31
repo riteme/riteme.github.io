@@ -34,10 +34,12 @@ import re
 # from markdown.preprocessors import Preprocessor
 from markdown.postprocessors import Postprocessor
 
+# --- Preferences ---
 WORDS_PER_MINUTE = 250
 BEAUTIFUL_SOUP_PARSER = "lxml"
 GITHUB_LOCATION = "https://github.com/riteme/riteme.github.io/blob/master"
-SITE_DOMAIN = "https://riteme.github.io/"
+SITE_DOMAIN = "https://riteme.site/"
+DEFAULT_TEMPLATE = "template"
 
 # LaTeX Extension
 class LaTeXPattern(markdown.inlinepatterns.Pattern):
@@ -291,7 +293,7 @@ def generate(filepath):
 
     # 写入文件
 
-    template_file = "templates/template.html"
+    template_file = "templates/%s.html" % DEFAULT_TEMPLATE
     if "template" in mdinfo:
         template_file = "templates/%s.html" % mdinfo["template"][0]
     with open(template_file) as ftemplate:

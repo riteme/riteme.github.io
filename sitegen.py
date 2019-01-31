@@ -17,7 +17,7 @@ if __name__ != "__main__":
 
 UPDATE_MAP_FILE = "./map.json"
 TEMPLATES = "templates/"
-DOMAIN = "https://riteme.site/"
+SITE_DOMAIN = "https://riteme.site/"
 SITEMAP_LOCATION = "sitemap.txt"
 ALL_PATHS = []
 
@@ -69,7 +69,7 @@ def generate(root, name):
     global pool
 
     path = os.path.join(root, name)
-    ALL_PATHS.append(DOMAIN + (os.path.relpath(path, start="."))[:-2] + "html")
+    ALL_PATHS.append(SITE_DOMAIN + (os.path.relpath(path, start="."))[:-2] + "html")
 
     path_token = hash(path)
     time_token = hash(int(os.path.getmtime(path)))
@@ -116,4 +116,4 @@ if __name__ == "__main__":
 
     print("(info) Writing to %s..." % SITEMAP_LOCATION)
     with open(SITEMAP_LOCATION, "w") as writer:
-        writer.write("\n".join((str(x) for x in ALL_PATHS)))
+        writer.write("\n".join((str(x) for x in sorted(ALL_PATHS))))
