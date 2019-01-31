@@ -1,14 +1,14 @@
 ---
 title: Home Page
 create: 2016.1.31
-modified: 2018.12.27
+modified: 2019.1.31
 tags: Home
 index: false
 template: template
 ---
 
-### 欢迎来到 riteme's site！
-这是 riteme 的个人主页。
+### 欢迎来到 riteme.site！
+这是 riteme 的个人主页。最近换上 `riteme.site` 这个域名了。
 全部换成 Material Design 啦，虽然还是不清真...
 博客更新比较缓慢，可能会长期不更......
 博客里大多关于编程与 OI，大家随意翻阅~~
