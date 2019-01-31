@@ -13,13 +13,16 @@ tags: 时空复杂度
 ## 背景
 
 杜教筛是 OI 界中一种常用的计算积性函数前缀和的技巧：对于积性函数 $f(n)$，设其前缀和为 $F(n) = \sum_{k = 1}^n f(k)$。选定辅助函数 $g(n)$，尝试计算 $f \times g$ 的前缀和：
+
 $$
 \begin{aligned}
 \sum_{k = 1}^n (f \times g)(k) &= \sum_{k = 1}^n \sum_{d \mid k} f\left({k \over d}\right)g(d) \\
 &= \sum_{d = 1}^n g(d) \sum_{k = 1}^{\lfloor n / d \rfloor} f(k) = \sum_{k = 1}^n g(k)F\left(\left\lfloor{n \over k}\right\rfloor\right)
 \end{aligned}
 $$
+
 将 $g(1)F(n)$ 移出来，得到：
+
 $$
 F(n) = \frac1{g(1)}\left(\sum_{k = 1}^n(f \times g)(k) - \sum_{k = 2}^ng(k)F\left(\left\lfloor{n \over k}\right\rfloor\right)\right)
 $$
@@ -34,9 +37,11 @@ $$
 ## 具体分析
 
 考虑一个具体的例子：计算欧拉函数 $\varphi(n)$ 的前缀和。因为 $\sum_{d \mid n} \varphi(d) = n$，所以选取 $g(n) = 1$ 作为辅助函数。那么可以得到 $\varphi(n)$ 的前缀和 $\Phi(n) = \sum_{k = 1}^n \varphi(k)$ 为：
+
 $$
 \Phi(n) = {n(n + 1) \over 2} - \sum_{k = 2}^n \Phi\left(\left\lfloor {n \over k} \right\rfloor\right)
 $$
+
 定义 $R(n) = \{\lfloor n / k \rfloor: 2 \leqslant k \leqslant n,\,k \in \mathbf N\}$，即对于 $x \in R(n)$，$\Phi(x)$ 是需要递归计算的前缀和。
 
 **引理 1**　$\forall n,\,m \in \mathbf N \geqslant 1$，若 $m \leqslant \sqrt n$，则 $\lfloor n / \lfloor n / m \rfloor \rfloor = m$。
@@ -44,9 +49,11 @@ $$
 **证明**　令 $k = \lfloor n / m \rfloor$，则 $mk \leqslant n < m(k + 1)$，那么 $m \leqslant n / k < m(k + 1) / k$，若要 $\lfloor n / k \rfloor = m$，则需要 $m(k + 1) / k \leqslant m + 1$，因此 $m + m / k \leqslant m + 1$ 即 $m \leqslant \lfloor n / m \rfloor$，这等价于 $m^2 \leqslant n$，即 $m \leqslant \sqrt n$。<span style="float: right">$\blacksquare$</span>
 
 **引理 2**　对于任意**连续单增**函数 $f(x)$，并且满足：
+
 $$
 f(x) \in \mathbf Z \Longrightarrow x \in \mathbf Z
 $$
+
 则 $\lfloor f(x) \rfloor = \lfloor f(\lfloor x \rfloor) \rfloor$，以及 $\lceil f(x) \rceil$ = $\lceil f(\lceil x \rceil) \rceil$。
 
 这个引理来自 *Concrete Mathematics* [[1]](#ref-1) 的 (3.10)，这里就不再证明。
@@ -68,15 +75,19 @@ $$
 **证明**　因为 $m \in R(n)$，所以可设 $m = \lfloor n / a \rfloor$。对于 $z \in R(m)$，有 $z = \lfloor m / b \rfloor$，根据引理 3，可知 $z = \lfloor  n / ab \rfloor$。因为 $a,\,b > 1$，且 $a \leqslant n$，$b \leqslant n / a$，所以 $1 < ab \leqslant n$，所以 $z \in R(n)$。<span style="float: right">$\blacksquare$</span>
 
 定理 2 揭示了这个技巧的巧妙所在：只需要对每个 $m \in R(n)$ 和 $m = n$ 计算 $\Phi(m)$ 即可。此外，计算 $\Phi(n)$ 时单独还需要 $\Theta(\sqrt n)$ 的枚举，因此总的枚举次数为：
+
 $$
 \begin{aligned}
 \sum_{k = 1}^{\lfloor \sqrt n \rfloor} \sqrt k + \sum_{k = 1}^{\lfloor \sqrt n \rfloor} \sqrt{n \over k} = \Theta\left( \int_1^{\sqrt n} \left(\sqrt x + \sqrt{n \over x}\right) \mathrm dx \right) = \Theta(n^{3/4})
 \end{aligned}
 $$
+
 当然空间复杂度是 $\Theta(\sqrt n)​$。一般都还会采取预处理的方法来继续优化这个算法：利用线性筛算出前 $S > \sqrt n​$ 个前缀和，那么时间复杂度变为：
+
 $$
 S + \sum_{k = 1}^{\lfloor n / S\rfloor} \sqrt{n \over k} = \Theta\left( S + \int_1^{n/S} \sqrt{n \over x} \mathrm{d}x \right) = \Theta\left(S + {n \over \sqrt S}\right)
 $$
+
 取 $S = n^{2/3}$ 可以得到最优时间复杂度 $\Theta(n^{2/3})$。注意此时空复杂度相同。
 
 ## 后记

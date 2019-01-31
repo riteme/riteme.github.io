@@ -114,6 +114,6 @@ if __name__ == "__main__":
         "tipuesearch/content.json"
     )
 
-    print("(info) Writing to %s" % SITEMAP_LOCATION)
+    print("(info) Writing to %s..." % SITEMAP_LOCATION)
     with open(SITEMAP_LOCATION, "w") as writer:
         writer.write("\n".join((str(x) for x in ALL_PATHS)))
