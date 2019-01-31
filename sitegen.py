@@ -17,6 +17,9 @@ if __name__ != "__main__":
 
 UPDATE_MAP_FILE = "./map.json"
 TEMPLATES = "templates/"
+DOMAIN = "https://riteme.site/"
+SITEMAP_LOCATION = "sitemap.txt"
+ALL_PATHS = []
 
 update_map = {}
 update_all = False
@@ -61,10 +64,12 @@ def real_generate(filepath):
 def generate(root, name):
     global update_map
     global update_all
+    global ALL_PATHS
 
     global pool
 
     path = os.path.join(root, name)
+    ALL_PATHS.append(DOMAIN + (os.path.relpath(path, start="."))[:-2] + "html")
 
     path_token = hash(path)
     time_token = hash(int(os.path.getmtime(path)))
@@ -103,7 +108,12 @@ if __name__ == "__main__":
     with open(UPDATE_MAP_FILE, "w") as fp:
         json.dump(update_map, fp, indent=4, sort_keys=True)
 
+    print("(info) Writing to search database...")
     tipuesearch.save_index(
         "tipuesearch/tipuesearch_content.js",
         "tipuesearch/content.json"
     )
+
+    print("(info) Writing to %s" % SITEMAP_LOCATION)
+    with open(SITEMAP_LOCATION, "w") as writer:
+        writer.write("\n".join((str(x) for x in ALL_PATHS)))
