@@ -3346,7 +3346,6 @@ var Gitment = function () {
     get: function get() {
       var oauthUri = 'https://github.com/login/oauth/authorize';
       var redirect_uri = this.oauth.redirect_uri || window.location.href;
-      console.log(redirect_uri)
 
       var oauthParams = Object.assign({
         scope: scope,
@@ -3386,7 +3385,7 @@ var Gitment = function () {
       var userInfo = localStorage.getItem(_constants.LS_USER_KEY);
       if (this.accessToken && userInfo) {
         Object.assign(user, JSON.parse(userInfo), {
-          fromCache: trueredirect
+          fromCache: true
         });
       }
     } catch (e) {
@@ -3406,7 +3405,7 @@ var Gitment = function () {
     var query = _utils.Query.parse();
     if (query.code) {
       var _oauth = this.oauth,
-          client_id = _oauth.client_id,redirect
+          client_id = _oauth.client_id,
           client_secret = _oauth.client_secret;
 
       var code = query.code;
@@ -3421,7 +3420,7 @@ var Gitment = function () {
       }, options);
 
       this.state.user.isLoggingIn = true;
-      _utils.http.post('https://bak.smalbox.club', {
+      _utils.http.post('https://gh-oauth.riteme.site', {
         code: code,
         client_id: client_id,
         client_secret: client_secret
