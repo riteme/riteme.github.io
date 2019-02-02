@@ -1137,10 +1137,10 @@ a.gitment-editor-footer-tip:hover {
   border-bottom-color: #eee;
 }
 
-.gitment-header-like-btn svg {
+.gitment-heart-icon {
   transition: fill 0.25s;
 }
 
-.gitment-header-like-btn svg:hover {
+.gitment-heart-icon:hover {
   fill: red;
 }
