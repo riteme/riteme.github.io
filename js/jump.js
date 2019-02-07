@@ -20,11 +20,17 @@ function jumper(id) {
     }
 }
 
-window.addEventListener("load", function () {
+process_jumpers = function () {
     li = document.querySelectorAll("a[href^='#']")
     for (i = 0; i < li.length; i++) {
         a = li[i]
         a.onclick = jumper(a.getAttribute("href").slice(1))
     }
     jump(document.querySelector(":target"))
-})
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", process_jumpers);
+} else {
+    process_jumpers();
+}
