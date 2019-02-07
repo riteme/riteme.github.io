@@ -9,7 +9,7 @@ tags: Posts
 ## 所有文章
 ### 2019
 #### 2019-1
-* [二端串并联图相关](blog/2019-1-30/series-parallel.html): 实际上是 ZJOI2016 Day2 T3 的题解
+* [二端串并联图相关](blog/2019-1-30/series-parallel.html): 实际上是 ZJOI2016 Day2 T3 电阻网络的题解 -.-
 
 ### 2018
 #### 2018-11
