@@ -19,7 +19,9 @@ UPDATE_MAP_FILE = "./map.json"
 TEMPLATES = "templates/"
 SITE_DOMAIN = "https://riteme.site/"
 SITEMAP_LOCATION = "sitemap.txt"
-ALL_PATHS = []
+
+with open(SITEMAP_LOCATION, "r") as reader:
+    ALL_PATHS = set([x.strip() for x in reader.readlines()])
 
 update_map = {}
 update_all = False
@@ -66,11 +68,7 @@ def generate(root, name):
     global update_all
     global ALL_PATHS
 
-    global pool
-
     path = os.path.join(root, name)
-    ALL_PATHS.append(SITE_DOMAIN + (os.path.relpath(path, start="."))[:-2] + "html")
-
     path_token = hash(path)
     time_token = hash(int(os.path.getmtime(path)))
 
@@ -85,10 +83,13 @@ def generate(root, name):
     update_map[path_token] = time_token
 
     if data:
+        index_path = SITE_DOMAIN + (os.path.relpath(path, start="."))[:-2] + "html"
         if type(data) == str:
             tipuesearch.del_index_info(data)
+            ALL_PATHS.remove(index_path)
         else:
             tipuesearch.add_index_info(*data)
+            ALL_PATHS.add(index_path)
 
 
 if __name__ == "__main__":

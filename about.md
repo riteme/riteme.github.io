@@ -1,12 +1,14 @@
 ---
 title: 关于
 create: 2016.12.13
-modified: 2018.11.17
+modified: 2019.2.19
 tags: About
 ---
 
+[TOC]
+
 ## 关于
-*riteme* 来自 <span style="color:gray">CJP</span>→<span style="color:gray">GY</span>→<span style="color:gray">HNSDFZ</span>→FDU。
+*riteme* 来自 <span style="color:gray">CJP</span>→<span style="color:gray">GY</span>→<span style="color:gray">HNSDFZ</span>→**FDU**。
 
 ### `sitegen.py`
 
@@ -18,6 +20,7 @@ tags: About
 * Python 3 (>= 3.4)
 * Python Markdown
 * Pygments (用于提供代码高亮)
+* css-html-js-minify (压缩 HTML 源码)
 * Beautiful Soup 4
 
 独立模块功能：
@@ -57,6 +60,8 @@ Tipuesearch 有个缺点就是需要浏览器将搜索数据下载下来。而�
 使用 [Gitment](https://github.com/imsun/gitment)。
 
 自行魔改了下 JS 文件给汉化了。不知道现在 Gitment 自己有没有提供多语言支持。
+
+评论系统的 GitHub OAuth 服务器换到了我自己的服务器上：<https://gh-oauth.riteme.site>，以防作者的服务器抽风 qwq
 
 ### 友链
 欢迎互换友链 ~ ~ ~
