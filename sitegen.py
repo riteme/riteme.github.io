@@ -86,7 +86,7 @@ def generate(root, name):
         index_path = SITE_DOMAIN + (os.path.relpath(path, start="."))[:-2] + "html"
         if type(data) == str:
             tipuesearch.del_index_info(data)
-            ALL_PATHS.remove(index_path)
+            if index_path in ALL_PATHS: ALL_PATHS.remove(index_path)
         else:
             tipuesearch.add_index_info(*data)
             ALL_PATHS.add(index_path)
