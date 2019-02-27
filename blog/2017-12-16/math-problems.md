@@ -1,7 +1,7 @@
 ---
 title: 数学问题杂记
 create: 2017.12.16
-modified: 2018.12.27
+modified: 2019.2.27
 tags: 数学
 ---
 
@@ -9,6 +9,8 @@ tags: 数学
 # 数学问题杂记
 
 这里放些我见到过的比较有意思的数学题吧。本文会不定期更新。所有问题的标题都是记录到博客上的时间。
+
+这里的题解都是我自己写的，部分参考了标准答案，因此不一定都是完全正确的。如有问题欢迎指出。
 
 ![markdown:include](blog/2017-12-16/20170614-ruler.md)
 
@@ -29,3 +31,5 @@ tags: 数学
 ![markdown:include](blog/2017-12-16/20180610-spec2.md)
 
 ![markdown:include](blog/2017-12-16/20181117-limit-of-cos-prod.md)
+
+![markdown:include](blog/2017-12-16/20190227-gcd-an-bn-am-bm.md)
