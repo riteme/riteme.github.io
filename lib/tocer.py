@@ -1,7 +1,7 @@
 TOC_BEGIN = "<div class=\"toc\">"
 TOC_END = "</div>"
 TOC_TEMPLATE = """
-<div class="mdl-card mdl-shadow--3dp sidebar-card">
+<div class="mdl-card mdl-shadow--2dp sidebar-card">
   <div class="mdl-card__actions sidebar-title">目录</div>
   <div class="mdl-card__supporting-text">
     {toc}
