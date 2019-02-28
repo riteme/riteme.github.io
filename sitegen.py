@@ -4,36 +4,22 @@
 import os
 import sys
 import json
-import hashlib
+import argparse
 import traceback
 
 import lib.tipuesearch as tipuesearch
+import lib.logging as logging
+from lib.logging import debug, info, warn, error
+from lib.utility import *
+from preferences import *
 import pagegen
 
 
-if __name__ != "__main__":
-    exit(0)
-
-
-UPDATE_MAP_FILE = "./map.json"
-TEMPLATES = "templates/"
-SITE_DOMAIN = "https://riteme.site/"
-SITEMAP_LOCATION = "sitemap.txt"
-
-with open(SITEMAP_LOCATION, "r") as reader:
-    ALL_PATHS = set([x.strip() for x in reader.readlines()])
-
+ALL_PATHS = None
 update_map = {}
 update_all = False
+update_count = 0
 
-
-if "--force" in sys.argv:
-    update_all = True
-    print("(info) Force to update all pages.")
-
-if os.path.exists(UPDATE_MAP_FILE):
-    with open(UPDATE_MAP_FILE) as fp:
-        update_map = json.load(fp)
 
 def check_template_update(token, current_time):
     global update_map
@@ -42,30 +28,21 @@ def check_template_update(token, current_time):
     if token not in update_map or update_map[token] != current_time:
         update_map[token] = current_time
         update_all = True
-        print("(info) Template (%s) changed." % token[:8])
-
-def hash(obj):
-    obj = str(obj).encode("ascii")
-    return hashlib.md5(obj).hexdigest()
-
-for root, dirs, files in os.walk(TEMPLATES):
-    for file in files:
-        path = os.path.join(root, file)
-        check_template_update(hash(path), hash(int(os.path.getmtime(path))))
-
+        info("Template (%s) changed." % token[:8])
 
 def real_generate(filepath):
     try:
-        print("(info) Generating {}...".format(filepath))
+        info("Generating %s..." % filepath)
         return pagegen.generate(filepath)
     except Exception as e:
-        print("(error) Failed to generate {}.\n{}".format(filepath, str(e)))
-        print('Python traceback:\n' + ''.join(traceback.format_tb(e.__traceback__)))
-
+        error("Failed to generate %s." % filepath)
+        error("%s" % str(e))
+        debug("Python traceback:\n" + "".join(traceback.format_tb(e.__traceback__)))
 
 def generate(root, name):
     global update_map
     global update_all
+    global update_count
     global ALL_PATHS
 
     path = os.path.join(root, name)
@@ -80,6 +57,7 @@ def generate(root, name):
             update_map[path_token] = time_token
 
     data = real_generate(path)
+    update_count += 1
     update_map[path_token] = time_token
 
     if data:
@@ -93,15 +71,41 @@ def generate(root, name):
 
 
 if __name__ == "__main__":
+    argpr = argparse.ArgumentParser(description="Convert specific Markdown file to HTML page")
+    log_group = argpr.add_mutually_exclusive_group()
+    log_group.add_argument("-v", "--verbose", action="count", help="show more messages", default=0)
+    log_group.add_argument("-q", "--quiet", action="count", help="show less messages", default=0)
+    argpr.add_argument("-r", "--regenerate", action="store_true", help="force to regenerate the entire site")
+
+    args = argpr.parse_args()
+    if args.verbose:
+        logging.LOGGING_LEVEL = logging.LoggingLevel.DEBUG
+    else:
+        levels = [logging.LoggingLevel.INFO, logging.LoggingLevel.WARN,
+            logging.LoggingLevel.ERROR, logging.LoggingLevel.FATAL, logging.LoggingLevel.NONE]
+        logging.LOGGING_LEVEL = levels[min(args.quiet, len(levels) - 1)]
+    if args.regenerate:
+        update_all = True
+        warn("Force to update all pages.")
+
+    with open(SITEMAP_LOCATION, "r") as reader:
+        ALL_PATHS = set([x.strip() for x in reader.readlines()])
+    if os.path.exists(UPDATE_MAP_FILE):
+        with open(UPDATE_MAP_FILE) as fp:
+            update_map = json.load(fp)
+    for root, dirs, files in os.walk(TEMPLATES):
+        for file in files:
+            path = os.path.join(root, file)
+            check_template_update(hash(path), hash(int(os.path.getmtime(path))))
     tipuesearch.load_index("tipuesearch/content.json")
 
     generate(os.path.abspath("."), "index.md")
     generate(os.path.abspath("."), "posts.md")
     generate(os.path.abspath("."), "about.md")
     generate(os.path.abspath("."), "links.md")
-    # generate(os.path.abspath("."), "search.md")
+    #generate(os.path.abspath("."), "search.md")
 
-    for root, dirs, files in os.walk(os.path.abspath("./blog/")):
+    for root, dirs, files in os.walk(os.path.abspath(BLOG)):
         for name in files:
             if name.endswith(".md") or name.endswith(".markdown"):
                 generate(root, name)
@@ -109,12 +113,16 @@ if __name__ == "__main__":
     with open(UPDATE_MAP_FILE, "w") as fp:
         json.dump(update_map, fp, indent=4, sort_keys=True)
 
-    print("(info) Writing to search database...")
-    tipuesearch.save_index(
-        "tipuesearch/tipuesearch_content.js",
-        "tipuesearch/content.json"
-    )
+    if update_count:
+        info("Updated %s page(s)." % update_count)
+        info("Writing to search database...")
+        tipuesearch.save_index(
+            "tipuesearch/tipuesearch_content.js",
+            "tipuesearch/content.json"
+        )
 
-    print("(info) Writing to %s..." % SITEMAP_LOCATION)
-    with open(SITEMAP_LOCATION, "w") as writer:
-        writer.write("\n".join((str(x) for x in sorted(ALL_PATHS))))
+        info("Writing to %s..." % SITEMAP_LOCATION)
+        with open(SITEMAP_LOCATION, "w") as writer:
+            writer.write("\n".join((str(x) for x in sorted(ALL_PATHS))))
+    else:
+        warn("Nothing to update.")
