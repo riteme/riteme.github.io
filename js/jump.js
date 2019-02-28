@@ -1,4 +1,4 @@
-SCROLL_OFFSET = 80
+SCROLL_OFFSET = 30
 
 function getPositionTop(x) {
     cur = 0
@@ -26,7 +26,6 @@ process_jumpers = function () {
         a = li[i]
         a.onclick = jumper(a.getAttribute("href").slice(1))
     }
-    jump(document.querySelector(":target"))
 }
 
 if (document.readyState === "loading") {
@@ -34,3 +33,8 @@ if (document.readyState === "loading") {
 } else {
     process_jumpers();
 }
+
+window.addEventListener("load", function () {
+    if (document.location.hash.length)
+        jump(document.getElementById(document.location.hash.slice(1)))
+})

@@ -41,7 +41,7 @@ tags: About
 ### Material Design
 使用的是功能比较简单的 [Material Design Lite](http://getmdl.io/)，而且版本已经比较老了QAQ。
 
-主题风格都是我自己 xjb 调的。
+主题风格都是我自己 xjb 调的，本着能不用 JavaScript 就不用的态度，所以除了目录跳转，其余动画都是 `transition` qwq
 目前页面上还是有一些已知的小问题，有些是老版本 MDL 的锅，实在是没精力换框架了 TAT。
 
 ### 数学公式
