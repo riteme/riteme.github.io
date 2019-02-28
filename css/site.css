@@ -641,6 +641,19 @@ mathjax + br {
     text-align: right;
 }
 
+@keyframes highlight {
+    0% {
+        background: #ffd000;
+    }
+    100% {
+        background: none;
+    }
+}
+
+.highlight {
+   animation: highlight 3s .5s;
+}
+
 .codehilite .hll { background-color: #ffffcc }
 .codehilite .c { color: #008000 }
 .codehilite .err { border: 1px solid #FF0000 }

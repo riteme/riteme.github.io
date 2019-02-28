@@ -9,7 +9,13 @@ function getPositionTop(x) {
 }
 
 function jump(target) {
-    if (target) window.scrollTo({top: getPositionTop(target) - SCROLL_OFFSET, behavior: "smooth"})
+    if (target) {
+        window.scrollTo({top: getPositionTop(target) - SCROLL_OFFSET, behavior: "smooth"})
+        target.classList.add("highlight")
+        setTimeout(function () {
+            target.classList.remove("highlight")
+        }, 3500)
+    }
 }
 
 function jumper(id) {
