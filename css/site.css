@@ -30,6 +30,18 @@
     font-style: italic;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
+[id] {
+    scroll-margin-top: 30px;
+}
+
+sup[id], span[id] {
+    display: inline-block;
+}
+
 main {
     overflow: visible !important;
 }
@@ -651,7 +663,7 @@ mathjax + br {
 }
 
 .highlight {
-   animation: highlight 3s .5s;
+   animation: highlight 3s;
 }
 
 .codehilite .hll { background-color: #ffffcc }

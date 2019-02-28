@@ -1,7 +1,7 @@
 ---
 title: 浅谈扩展 Thomae 函数的可微性
 create: 2018.11.24
-modified: 2018.12.02
+modified: 2019.2.28
 tags: 数学
       数学分析
       Thomae 函数
@@ -178,6 +178,6 @@ $$
 [^general-function]: 实际上这里的讨论只用到了 $f_k(x)$ 在有理点取正数这个性质，因此所有满足有理点取正数，无理点为 $0$ 的函数 $f(x)$ 都有这个性质。这也是 [[BRS09]](#BRS09) 的“命题 3.1”。
 
 ## 参考资料
-<span id="DAP">[DAP].<span> "[*Dirichlet’s Approximation Theorem*](http://faculty.wwu.edu/woll/DirichletApproximations.pdf)"
+<span id="DAP">[DAP].</span> "[*Dirichlet’s Approximation Theorem*](http://faculty.wwu.edu/woll/DirichletApproximations.pdf)"
 <span id="BRS09">[BRS09].</span> Kevin Beanland, James W. Roberts, Craig Stevenson, "[*Modifications of Thomae’s Function and Differentiability*](https://pdfs.semanticscholar.org/dfc0/0d08695f62a1685d72c9a2024cbc8b8e0b5b.pdf)" (2009), The Mathematical Association of America Monthly 116
 <span id="AoPS">[AoPS].</span> "[*Rational approximation*](https://artofproblemsolving.com/wiki/index.php/Rational_approximation)", Art of Problem Solving Wiki

@@ -124,3 +124,32 @@ if (document.readyState === "loading") {
 } else {
     startup();
 }
+
+// Target Highlighting
+function isScrolledIntoHalfView(x) {
+    var rect = x.getBoundingClientRect();
+    return (rect.top >= 0) && (rect.bottom <= window.innerHeight / 3);
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms))
+}
+
+async function highlight(target) {
+    if (target) {
+        while (!isScrolledIntoHalfView(target)) 
+            await sleep(200)
+        target.classList.add("highlight")
+        setTimeout(function () {
+            target.classList.remove("highlight")
+        }, 3000)
+    }
+}
+
+function highlight_target() {
+    if (document.location.hash.length)
+        highlight(document.getElementById(document.location.hash.slice(1)))
+}
+
+window.addEventListener("load", highlight_target)
+window.addEventListener("hashchange", highlight_target)
