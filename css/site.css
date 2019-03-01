@@ -458,8 +458,8 @@ h3.panel-title {
 
 .sidebar .article {
     margin: 0;
-    padding: 60px 20px 40px 15px;  /* 104 = 64 + 40 */
-    height: calc(100vh - 116px);
+    padding: 48px 20px 40px 15px;  /* 104 = 64 + 40 */
+    height: calc(100vh - 104px);
     overflow: auto;
 }
 
@@ -525,22 +525,29 @@ h3.panel-title {
     opacity: 0.7;
     position: -webkit-sticky;
     position: sticky;
-    top: -60px;
+    top: -49px;
     z-index: 3;
 }
 
 .nano.mdl-card {
     height: 200px;
+    background-position: center;
+    background-size: cover;
+    background-image: url('/assets/fakenano.png');
 }
 
 .nano.mdl-card:hover {
-    background: url('/assets/nano.jpg') center / cover;
+    background-image: url('/assets/nano.jpg');
+    background-color: silver;
 }
 
 .nano > .mdl-card__actions {
     min-height: 3em;
     padding: 1em;
     background: rgba(0, 0, 0, .45);
+    position: sticky;
+    position: -webkit-sticky;
+    bottom: -40px;
 }
 
 .nano .nano-ref {
