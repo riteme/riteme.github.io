@@ -482,6 +482,7 @@ h3.panel-title {
     padding: 1em;
     width: calc(100% - 2em);
     background: white;
+    border-radius: inherit;
 }
 
 .sidebar .article::-webkit-scrollbar { 
@@ -513,12 +514,12 @@ h3.panel-title {
     }
 }
 
-.sidebar-card {
+.sidebar .sidebar-card {
     width: 100%;
     overflow: visible;
 }
 
-.sidebar-title {
+.sidebar .sidebar-title {
     padding: .5em 1em;
     font-size: 1.2em;
     background-color: inherit;
@@ -527,6 +528,7 @@ h3.panel-title {
     position: sticky;
     top: -49px;
     z-index: 3;
+    border-radius: inherit;
 }
 
 .nano.mdl-card {
