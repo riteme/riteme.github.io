@@ -83,14 +83,12 @@
                 <form name="mathopt">
                   <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
                     <input type="radio" id="option-1" class="mdl-radio__button" name="sel" value="mathjax">
-                    <span class="mdl-radio__label">MathJax (推荐)</span>
+                    <span class="mdl-radio__label">MathJax</span>
                   </label><br/>
-                  <div id="tip-1">
-                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
-                      <input type="radio" id="option-2" class="mdl-radio__button" name="sel" value="katex">
-                      <span class="mdl-radio__label">KaTeX</span>
-                    </label>
-                  </div>
+                  <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+                    <input type="radio" id="option-2" class="mdl-radio__button" name="sel" value="katex">
+                    <span class="mdl-radio__label">KaTeX</span>
+                  </label>
                   <div id="tip-2">
                     <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
                       <input type="radio" id="option-3" class="mdl-radio__button" name="sel" value="katex&mathjax">
@@ -100,7 +98,6 @@
                 </form>
               </div>
             </div>
-            <div class="mdl-tooltip" data-mdl-for="tip-1">KaTeX 渲染效率很高，但是目前 KaTeX 容错性不强，因此使用 KaTeX 时可能会存在一些数学公式无法渲染的情况</div>
             <div class="mdl-tooltip" data-mdl-for="tip-2">先使用 KaTeX 渲染，再使用 MathJax 渲染</div>
             <br/>
             <div class="nano mdl-card mdl-shadow--2dp sidebar-card">

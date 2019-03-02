@@ -587,34 +587,25 @@ h3.panel-title {
     color: #2196f3;
 }
 
-mathjax:before {
-    content: " ";
-}
-
-mathjax:after {
-    content: " ";
-}
-
-mathjax + br {
+tex + br {
     display: none;
 }
-
-/*.katex {
-    font-size: 110%;
-}*/
 
 .katex-display, .MathJax_SVG_Display, .MathJax_Display {
     display: block;
     overflow-x: auto;
     overflow-y: hidden;
-    margin: 0 !important;
 }
 
-/*.katex .tag {
-    position: initial !important;
-    right: initial !important;
-    float: right;
-}*/
+.katex-display {
+    font-size: 1.15em;
+    padding: 1px 0;
+}
+
+.katex-display > .katex {
+    padding-left: 4em;
+    text-align: left;
+}
 
 .codehilitetable {
     border-collapse: collapse;

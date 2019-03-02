@@ -45,7 +45,24 @@ renderWithKaTeX = function(e) {
     );
 }
 
-renderMath = function(e) {
+function registerToggler(e) {
+    tex = e.querySelectorAll("tex .katex-display")
+    if (!tex) return
+    for (i = 0; i < tex.length; i++)
+        tex[i].onclick = function() {
+            target = this.getElementsByClassName("katex")[0]
+            if (target.style["text-align"] == "left") {
+                target.style["text-align"] = "center"
+                target.style["padding-left"] = `0`
+            } else {
+                target.style["text-align"] = "left"
+                target.style["padding-left"] = "4em"
+            }
+            target.state = !target.state
+        }
+}
+
+function renderMath(e) {
     if (e == null) {
         e = $("#comments")[0];
     }
@@ -64,9 +81,8 @@ renderMath = function(e) {
     } catch {}
 }
 
-if (Cookies.get('math-renderer') == null) {
-    Cookies.set('math-renderer', 'katex', { expires: 65536 });
-}
+if (Cookies.get('math-renderer') == null)
+    Cookies.set('math-renderer', 'katex', { expires: 65536 })
 
 function startup() {
     renderer = Cookies.get('math-renderer');
@@ -96,8 +112,11 @@ function startup() {
     // Math Formula Rendering
     var observer = new MutationObserver(function(muts) {
         muts.forEach(function(mut) {
-            for (i = 0; i < mut.addedNodes.length; i++)
-                renderMath(mut.addedNodes[i])
+            for (i = 0; i < mut.addedNodes.length; i++) {
+                var x = mut.addedNodes[i]
+                if (x.nodeName != "#text")
+                    renderMath(x)
+            }
         })
     })
     containers = document.getElementsByClassName("article")
@@ -164,5 +183,8 @@ function highlight_target() {
         highlight(document.getElementById(document.location.hash.slice(1)))
 }
 
-window.addEventListener("load", highlight_target)
+window.addEventListener("load", function() {
+    highlight_target()
+    registerToggler(document.body)
+})
 window.addEventListener("hashchange", highlight_target)
