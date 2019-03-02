@@ -482,7 +482,8 @@ h3.panel-title {
     padding: 1em;
     width: calc(100% - 2em);
     background: white;
-    border-radius: inherit;
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
 }
 
 .sidebar .article::-webkit-scrollbar { 
@@ -528,7 +529,8 @@ h3.panel-title {
     position: sticky;
     top: -49px;
     z-index: 3;
-    border-radius: inherit;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
 }
 
 .nano.mdl-card {
@@ -550,6 +552,8 @@ h3.panel-title {
     position: sticky;
     position: -webkit-sticky;
     bottom: -40px;
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
 }
 
 .nano .nano-ref {
