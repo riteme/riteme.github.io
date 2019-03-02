@@ -1,9 +1,11 @@
 # For sitegen.py
-UPDATE_MAP_FILE = "./map.json"
+UPDATE_MAP_FILE = "map.json"
+DATABASE_LOCATION = "content.json"
+TIPUESEARCH_DATABASE_LOCATION = "scripts/tipuesearch_content.js"
+SITEMAP_LOCATION = "sitemap.txt"
 TEMPLATES = "templates/"
 BLOG = "blog/"
 SITE_DOMAIN = "https://riteme.site/"
-SITEMAP_LOCATION = "sitemap.txt"
 
 # For pagegen.py
 WORDS_PER_MINUTE = 250

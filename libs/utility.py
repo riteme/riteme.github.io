@@ -10,6 +10,19 @@ from markdown.inlinepatterns import \
 from markdown.postprocessors import Postprocessor
 
 
+TOC_BEGIN = "<div class=\"toc\">"
+TOC_END = "</div>"
+TOC_TEMPLATE = """
+<div class="mdl-card mdl-shadow--2dp sidebar-card">
+  <div class="mdl-card__actions sidebar-title">目录</div>
+  <div class="mdl-card__supporting-text">
+    {toc}
+  </div>
+</div>
+<br/>
+"""
+
+
 # LaTeX Extension
 class LaTeXPattern(markdown.inlinepatterns.Pattern):
     def __init__(self):
@@ -129,7 +142,7 @@ def escape_string(s):
     S = []
     for c in s:
         if c in "\n\r":
-            S.append("<br/>")
+            S.append("\\n")
         elif c == "\t":
             S.append("\\t")
         elif c == "\"":
@@ -151,3 +164,42 @@ def convert_time(m):
     if h:
         return '%s 小时 %s 分钟' % (h, m)
     return '%s 分钟' % m
+
+def generate_time(year, month, day):
+    return "{}.{:0>2}.{:0>2}".format(year, month, day)
+
+class Tag(object):
+    """表示一个标签"""
+
+    def __init__(self, text):
+        super(Tag, self).__init__()
+        self.text = text
+        self._style = "<a href=\"/search.html?q={tag}\"><span class=\"label\">{tag}</span></a>"
+
+    def __str__(self):
+        return self._style.format(tag=self.text)
+
+class TagGroup(object):
+    """表示一个标签组"""
+
+    def __init__(self):
+        super(TagGroup, self).__init__()
+        self.tags = []
+
+    def __str__(self):
+        code = [str(tag) for tag in self.tags]
+
+        return " ".join(code)
+
+    def append(self, text):
+        if text.strip() == "":
+            return
+
+        self.tags.append(Tag(text))
+
+def cut_toc(content):
+    if content.startswith(TOC_BEGIN):
+        toc, remain = content.split(TOC_END, maxsplit=1)
+        return (TOC_TEMPLATE.format(toc = toc + TOC_END), remain)
+    else:
+        return ("", content)

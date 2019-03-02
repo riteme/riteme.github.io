@@ -6,14 +6,11 @@ import hashlib
 import argparse
 import datetime
 
-import lib.info as info
-import lib.tag as tag
-import lib.tocer as tocer
-import lib.parser as parser
-import lib.navigater as navigater
-import lib.logging as logging
-from lib.logging import warn
-from lib.utility import *
+import libs.parser as parser
+import libs.navigater as navigater
+import libs.logging as logging
+from libs.logging import debug, warn
+from libs.utility import *
 from preferences import *
 
 import bs4
@@ -37,50 +34,43 @@ preproc.load_syntax(parser.IncludeSyntax)
 def generate(filepath):
     if not os.path.exists(filepath):
         raise ValueError("File not found")
+    with open(filepath) as reader:
+        return process_document(filepath, reader.read())
 
+def process_document(filepath, source):
     parser = markdown.Markdown(
         extensions=MARKDOWN_EXTENSIONS,
         extension_configs=MARKDOWN_CONFIG
     )
-    with open(filepath) as md:
-        content, temp = preproc.process(md.read())
-        if temp:
-            warn("This is a temporary post. Skipped.")
-            return
-        content = content.replace(chr(8203), '')
-        content = parser.convert(content)
+    content, temp = preproc.process(source)
+    if temp:
+        warn("This is a temporary post. Skipped.")
+        return
+    content = parser.convert(content.replace(chr(8203), ''))  # Remove non-width spaces
 
-    metalost = False
     try:
         mdinfo = parser.Meta
+        if len(mdinfo) == 0:
+            raise AttributeError
     except AttributeError:
-        metalost = True
-
-    if metalost or len(mdinfo) == 0:
         warn("No metadata. Skipped.")
         return
 
-    toc, content = tocer.cut(content)
-    title = info.generate_title(mdinfo["title"][0])
-    create_time = info.generate_time(
-        *mdinfo["create"][0].split(".")
-    )
-    modified_time = info.generate_time(
-        *mdinfo["modified"][0].split(".")
-    )
+    toc, content = cut_toc(content)
+    title = mdinfo["title"][0]
+    create_time = generate_time(*mdinfo["create"][0].split("."))
+    modified_time = generate_time(*mdinfo["modified"][0].split("."))
 
-    tags = tag.TagGroup()
+    tags = TagGroup()
     for x in mdinfo["tags"]:
         tags.append(x)
 
     # 生成索引信息
-    index_title = escape_string(title)
-    index_text = escape_string(bs4.BeautifulSoup(content, BEAUTIFUL_SOUP_PARSER).text)
-    index_tags = mdinfo["tags"]
     navigater.handle("myself", filepath)
     navigater.home_folder = os.path.abspath(".")
-    index_url = navigater.get_path("myself")
-    index_url = index_url.rsplit(".", 1)[0] + ".html"
+    index_title = escape_string(title)
+    index_text = escape_string(bs4.BeautifulSoup(content, BEAUTIFUL_SOUP_PARSER).text)
+    index_url = navigater.get_path("myself").rsplit(".", 1)[0] + ".html"
     filename = os.path.basename(filepath)
     words = len(index_text)
 
@@ -121,7 +111,7 @@ def generate(filepath):
 
     # 返回索引信息
     if "index" not in mdinfo or mdinfo["index"][0] in ['true', 'True', '1']:
-        return (index_title, index_text, index_tags, index_url)
+        return (index_title, index_url, index_text, mdinfo)
     return index_title
 
 

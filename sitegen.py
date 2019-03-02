@@ -7,15 +7,14 @@ import json
 import argparse
 import traceback
 
-import lib.tipuesearch as tipuesearch
-import lib.logging as logging
-from lib.logging import debug, info, warn, error
-from lib.utility import *
-from preferences import *
 import pagegen
+import libs.database as database
+import libs.logging as logging
+from libs.logging import debug, info, warn, error
+from libs.utility import *
+from preferences import *
 
 
-ALL_PATHS = None
 update_map = {}
 update_all = False
 update_count = 0
@@ -32,7 +31,7 @@ def check_template_update(token, current_time):
 
 def real_generate(filepath):
     try:
-        info("Generating %s..." % filepath)
+        info("Generating '%s'..." % filepath)
         return pagegen.generate(filepath)
     except Exception as e:
         error("Failed to generate %s." % filepath)
@@ -49,25 +48,19 @@ def generate(root, name):
     path_token = hash(path)
     time_token = hash(int(os.path.getmtime(path)))
 
-    if not update_all:
-        if path_token in update_map:
-            if update_map[path_token] == time_token:
-                return
-        else:
-            update_map[path_token] = time_token
+    if path_token not in update_map:
+        update_map[path_token] = None
+    if update_map[path_token] == time_token and not update_all:
+        return
 
     data = real_generate(path)
     update_count += 1
     update_map[path_token] = time_token
 
-    if data:
-        index_path = SITE_DOMAIN + (os.path.relpath(path, start="."))[:-2] + "html"
-        if type(data) == str:
-            tipuesearch.del_index_info(data)
-            if index_path in ALL_PATHS: ALL_PATHS.remove(index_path)
-        else:
-            tipuesearch.add_index_info(*data)
-            ALL_PATHS.add(index_path)
+    if type(data) == str:
+        database.del_index(data)
+    elif data:
+        database.add_index(*data)
 
 
 if __name__ == "__main__":
@@ -88,8 +81,8 @@ if __name__ == "__main__":
         update_all = True
         warn("Force to update all pages.")
 
-    with open(SITEMAP_LOCATION, "r") as reader:
-        ALL_PATHS = set([x.strip() for x in reader.readlines()])
+    if not update_all:
+        database.load_index(DATABASE_LOCATION)
     if os.path.exists(UPDATE_MAP_FILE):
         with open(UPDATE_MAP_FILE) as fp:
             update_map = json.load(fp)
@@ -97,7 +90,6 @@ if __name__ == "__main__":
         for file in files:
             path = os.path.join(root, file)
             check_template_update(hash(path), hash(int(os.path.getmtime(path))))
-    tipuesearch.load_index("tipuesearch/content.json")
 
     generate(os.path.abspath("."), "index.md")
     generate(os.path.abspath("."), "posts.md")
@@ -115,14 +107,11 @@ if __name__ == "__main__":
 
     if update_count:
         info("Updated %s page(s)." % update_count)
-        info("Writing to search database...")
-        tipuesearch.save_index(
-            "tipuesearch/tipuesearch_content.js",
-            "tipuesearch/content.json"
-        )
-
-        info("Writing to %s..." % SITEMAP_LOCATION)
-        with open(SITEMAP_LOCATION, "w") as writer:
-            writer.write("\n".join((str(x) for x in sorted(ALL_PATHS))))
+        info("Writing to JSON database '%s'..." % DATABASE_LOCATION)
+        database.save_json_index(DATABASE_LOCATION)
+        info("Writing to Tipuesearch database '%s'..." % TIPUESEARCH_DATABASE_LOCATION)
+        database.save_tipuesearch_index(TIPUESEARCH_DATABASE_LOCATION)
+        info("Writing to sitemap '%s'..." % SITEMAP_LOCATION)
+        database.save_text_sitemap(SITEMAP_LOCATION)
     else:
         warn("Nothing to update.")

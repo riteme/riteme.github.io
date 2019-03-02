@@ -537,7 +537,7 @@ h3.panel-title {
     height: 200px;
     background-position: center;
     background-size: cover;
-    background-image: url('/assets/fakenano.png');
+    background-image: url('/assets/nano-edge.png');
 }
 
 .nano.mdl-card:hover {
@@ -675,8 +675,20 @@ mathjax + br {
     }
 }
 
-.highlight {
+.jump-highlight {
    animation: highlight 3s;
+}
+
+.tipue_search_content_title {
+    font-size: 1.2em;
+}
+
+.tipue_search_content_url {
+    font-size: 0.8em;
+}
+
+#tipue_search_foot {
+    text-align: center;
 }
 
 .codehilite .hll { background-color: #ffffcc }

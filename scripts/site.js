@@ -58,8 +58,8 @@ renderMath = function(e) {
         } else if (renderer == 'katex') {
             renderWithKaTeX(e);
         } else if (renderer == "katex&mathjax") {
-            renderWithMathJax(e);
             renderWithKaTeX(e);
+            renderWithMathJax(e);
         }
     } catch {}
 }
@@ -68,7 +68,7 @@ if (Cookies.get('math-renderer') == null) {
     Cookies.set('math-renderer', 'katex', { expires: 65536 });
 }
 
-startup = function() {
+function startup() {
     renderer = Cookies.get('math-renderer');
     if (renderer == 'mathjax') {
         loadJS("/math-renderer/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML", function() {
@@ -92,30 +92,43 @@ startup = function() {
             });
         });
     }
+    
+    // Math Formula Rendering
+    var observer = new MutationObserver(function(muts) {
+        muts.forEach(function(mut) {
+            for (i = 0; i < mut.addedNodes.length; i++)
+                renderMath(mut.addedNodes[i])
+        })
+    })
+    containers = document.getElementsByClassName("article")
+    for (i = 0; i < containers.length; i++)
+        observer.observe(containers[i], {childList: true, subtree: true})
 
-    if (renderer == 'mathjax') {
-        document.mathopt.sel[0].checked = true;
-    } else if (renderer == 'katex') {
-        document.mathopt.sel[1].checked = true;
-    } else if (renderer == "katex&mathjax") {
-        document.mathopt.sel[2].checked = true;
-    } else {
-        console.log('No math formula renderer selected!');
-    }
+    if (document.mathopt) {
+        if (renderer == 'mathjax') {
+            document.mathopt.sel[0].checked = true;
+        } else if (renderer == 'katex') {
+            document.mathopt.sel[1].checked = true;
+        } else if (renderer == "katex&mathjax") {
+            document.mathopt.sel[2].checked = true;
+        } else {
+            console.log('No math formula renderer selected!');
+        }
 
-    document.mathopt.sel[0].onclick = function() {
-        Cookies.set('math-renderer', 'mathjax', { expires: 65536 });
-        location.reload();
-    }
+        document.mathopt.sel[0].onclick = function() {
+            Cookies.set('math-renderer', 'mathjax', { expires: 65536 });
+            location.reload();
+        }
 
-    document.mathopt.sel[1].onclick = function() {
-        Cookies.set('math-renderer', 'katex', { expires: 65536 });
-        location.reload();
-    }
+        document.mathopt.sel[1].onclick = function() {
+            Cookies.set('math-renderer', 'katex', { expires: 65536 });
+            location.reload();
+        }
 
-    document.mathopt.sel[2].onclick = function() {
-        Cookies.set('math-renderer', 'katex&mathjax', { expires: 65536 });
-        location.reload();
+        document.mathopt.sel[2].onclick = function() {
+            Cookies.set('math-renderer', 'katex&mathjax', { expires: 65536 });
+            location.reload();
+        }
     }
 }
 
@@ -139,9 +152,9 @@ async function highlight(target) {
     if (target) {
         while (!isScrolledIntoHalfView(target)) 
             await sleep(200)
-        target.classList.add("highlight")
+        target.classList.add("jump-highlight")
         setTimeout(function () {
-            target.classList.remove("highlight")
+            target.classList.remove("jump-highlight")
         }, 3000)
     }
 }

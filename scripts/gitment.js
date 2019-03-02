@@ -3026,7 +3026,6 @@ function renderComments(_ref2, instance) {
     }
   }
 
-  renderMath(container);
   return container;
 }
 
@@ -3092,7 +3091,6 @@ function renderEditor(_ref3, instance) {
     instance.markdown(content).then(function (html) {
       preview.innerHTML = html;
 
-      renderMath(preview);
       return preview.innerHTML
     });
 
@@ -3108,7 +3106,6 @@ function renderEditor(_ref3, instance) {
       submitButton.removeAttribute('disabled');
       submitButton.innerText = '评论';
 
-      renderMath(null);
     }).catch(function (e) {
       alert(e);
       submitButton.removeAttribute('disabled');
