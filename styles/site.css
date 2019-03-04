@@ -334,6 +334,12 @@ pre, code {
     line-height: 1.1em;
 }
 
+.article qed:after {
+    font-family: KaTeX_AMS;
+    content: "■";
+    float: right;
+}
+
 div.toc ul {
     padding-left: 1.35em;
     margin: 0;
@@ -605,6 +611,11 @@ tex + br {
 .katex-display > .katex {
     padding-left: 4em;
     text-align: left;
+}
+
+.katex .tag {
+    position: relative !important;
+    float: right;
 }
 
 .codehilitetable {

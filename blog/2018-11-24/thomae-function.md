@@ -16,8 +16,8 @@ tags: 数学
 
 $$
 f(x) = \begin{cases}
-1/p & x \in \mathbf Q,\ x = q/p,\ p \in \mathbf N^+,\ q \in \mathbf Z,\ p \bot q \\
-0 & x \in \mathbf R \backslash \mathbf Q
+1/p & x \in \mathbb Q,\ x = q/p,\ p \in \mathbb N^+,\ q \in \mathbb Z,\ p \bot q \\
+0 & x \in \mathbb R \backslash \mathbb Q
 \end{cases}
 $$
 
@@ -25,8 +25,8 @@ $$
 
 $$
 f_k(x) = \begin{cases}
-1/p^k & x \in \mathbf Q,\ x = q/p,\ p \in \mathbf N^+,\ q \in \mathbf Z,\ p \bot q \\
-0 & x \in \mathbf R \backslash \mathbf Q
+1/p^k & x \in \mathbb Q,\ x = q/p,\ p \in \mathbb N^+,\ q \in \mathbb Z,\ p \bot q \\
+0 & x \in \mathbb R \backslash \mathbb Q
 \end{cases}
 $$
 
@@ -70,7 +70,7 @@ $$
 
 [^not-equality]: 因为我们没有要求 $p$ 与 $q$ 互质，所以不能直接说等于。
 
-如果 $0 < q/p - a \leqslant 1/p$，那么若其有极限，则极限至少不小于 $1$，我们的目的就达成了。我们总能找到这样的 $p$，满足 $1/p < \varepsilon$，这样一来 $y_n - a \leqslant 1/p < \varepsilon$。同时，$q$ 只需要满足 $ap < q \leqslant ap + 1$。令 $q = \lceil ap \rceil$ 就 OK 了。于是我们就构造出了预期的有理数列。所以 $f_1(x)$ 处处不可导，同时也处处不可微。<span style="float: right">$\blacksquare$</span>
+如果 $0 < q/p - a \leqslant 1/p$，那么若其有极限，则极限至少不小于 $1$，我们的目的就达成了。我们总能找到这样的 $p$，满足 $1/p < \varepsilon$，这样一来 $y_n - a \leqslant 1/p < \varepsilon$。同时，$q$ 只需要满足 $ap < q \leqslant ap + 1$。令 $q = \lceil ap \rceil$ 就 OK 了。于是我们就构造出了预期的有理数列。所以 $f_1(x)$ 处处不可导，同时也处处不可微。<qed />
 
 ## $f_2(x)$ 的可微性
 ### 初步尝试
@@ -121,16 +121,16 @@ $$
 |\{j\alpha\} - \{i\alpha\}| < 1/n \tag{2}
 $$
 
-这时把整数部分补上就可以完成证明：令 $p = j - i \in [1,\ n]$，$q = \lfloor j\alpha \rfloor - \lfloor i\alpha \rfloor \in \mathbf Z$，那么 $|p\alpha - q|$ 就变成了 $(2)$ 中的式子，定理证明完毕。<span style="float: right">$\blacksquare$</span>
+这时把整数部分补上就可以完成证明：令 $p = j - i \in [1,\ n]$，$q = \lfloor j\alpha \rfloor - \lfloor i\alpha \rfloor \in \mathbb Z$，那么 $|p\alpha - q|$ 就变成了 $(2)$ 中的式子，定理证明完毕。<qed />
 
-当 $p > 1$ 时，$1/p^2$ 显然小于 $1/p$，而相邻两个 $q/p$ 的差却为 $1/p$，所以对于特定的 $p$，满足条件的 $q$ 是唯一的。当然特殊情况 $p = 1$ 时，也只有 $\alpha = 1/2 + k \:\: (k \in \mathbf Z)$ 时才能有两个 $q$，不过可惜 $\alpha$ 为无理数，所以无论哪种情况都可以视作唯一的。从这一点可以得到 Dirichlet 近似定理的一个推论：
+当 $p > 1$ 时，$1/p^2$ 显然小于 $1/p$，而相邻两个 $q/p$ 的差却为 $1/p$，所以对于特定的 $p$，满足条件的 $q$ 是唯一的。当然特殊情况 $p = 1$ 时，也只有 $\alpha = 1/2 + k \:\: (k \in \mathbb Z)$ 时才能有两个 $q$，不过可惜 $\alpha$ 为无理数，所以无论哪种情况都可以视作唯一的。从这一点可以得到 Dirichlet 近似定理的一个推论：
 
 > **推论 1**　设 $\alpha$ 为无理数[^infinity-for-irrationals]，存在**无穷多**的 $q$ 和 $p$（$q$ 是整数，$p$ 是正整数）满足：
 > $$
 > \left|\alpha - \frac{q}p\right| < \frac1{p^2}
 > $$
 
-**证明**　假设这种近似数量有限，设为 $q_1/p_1,\ q_2/p_2,\ ...,\ q_m/p_m$，那么取足够大的 $n$ 使得 $1/n < \min|\alpha - p_k/q_k| \:\: (1 \leqslant k \leqslant m)$。由于 $\alpha$ 为无理数，所以不等式右边肯定不是 $0$。于是根据 Dirichlet 定理，必定能再得到 $q_{m + 1}/p_{m + 1}$ 满足 $|\alpha - q_{m + 1}/p_{m + 1}| < 1/np_{m + 1} \leqslant 1/n$，这表明新的近似比之前的近似都更加优秀，不可能在前 $m$ 个中出现过，与假设相矛盾。<span style="float: right">$\blacksquare$</span>
+**证明**　假设这种近似数量有限，设为 $q_1/p_1,\ q_2/p_2,\ ...,\ q_m/p_m$，那么取足够大的 $n$ 使得 $1/n < \min|\alpha - p_k/q_k| \:\: (1 \leqslant k \leqslant m)$。由于 $\alpha$ 为无理数，所以不等式右边肯定不是 $0$。于是根据 Dirichlet 定理，必定能再得到 $q_{m + 1}/p_{m + 1}$ 满足 $|\alpha - q_{m + 1}/p_{m + 1}| < 1/np_{m + 1} \leqslant 1/n$，这表明新的近似比之前的近似都更加优秀，不可能在前 $m$ 个中出现过，与假设相矛盾。<qed />
 
 考虑到 $q$ 的唯一性，上述定理还可以写做：
 
@@ -162,18 +162,18 @@ $$
 ap - \frac1p \leqslant q < ap
 $$
 
-所以 $q$ 只能为 $\lfloor ap \rfloor$。由于 $ap - q = ap - \lfloor ap \rfloor = \{ap\}$，所以得到 $p$ 只需要满足 $\{ap\} \leqslant 1/p$。换言之，在不等式 $(3)$ 中，我们先可以取足够大的 $p$，使得 $\varepsilon > 1/p$ 以满足函数极限逼近的要求，然后考虑 $\min$ 的取值。若是取到左边，则存在 $q = \lfloor ap \rfloor$ 使得 $f_2(x) / (x_n - a) \leqslant -1$。反之 $q = \lceil ap \rceil$ 使得这个东西不小于 $1$。这样无论如何，极限要么不存在，要么就不等于 $0$。所以 $f_2(x)$ 在 $a$ 处不可微。<span style="float: right">$\blacksquare$</span>
+所以 $q$ 只能为 $\lfloor ap \rfloor$。由于 $ap - q = ap - \lfloor ap \rfloor = \{ap\}$，所以得到 $p$ 只需要满足 $\{ap\} \leqslant 1/p$。换言之，在不等式 $(3)$ 中，我们先可以取足够大的 $p$，使得 $\varepsilon > 1/p$ 以满足函数极限逼近的要求，然后考虑 $\min$ 的取值。若是取到左边，则存在 $q = \lfloor ap \rfloor$ 使得 $f_2(x) / (x_n - a) \leqslant -1$。反之 $q = \lceil ap \rceil$ 使得这个东西不小于 $1$。这样无论如何，极限要么不存在，要么就不等于 $0$。所以 $f_2(x)$ 在 $a$ 处不可微。<qed />
 
 综上 $f_1(x)$ 和 $f_2(x)$ 都是处处不可微的。
 
 ## $f_3(x)$ 的可微性
 对于 $f_3(x)$，Dirichlet 近似定理的结论已经不够用了，继续下去可能需要动用无理测度的理论，如参考资料 [[BRS09]](#BRS09) 所用的方法。我太菜了不懂这套理论，只能就此打住了。实际上，在这个参考资料里已经证明了：$f_3(x)$ **有可微点**。
 
-但是，无论 $f_k(x)$ 的 $k$ 有多大，这个函数总是有许多不可微的无理点。为了得到这一点，我们可以利用一个闭区间套 $\{[l_i,\ r_i]\}$ 来辅助构造一个极限为无理数的有理数列 $x_i \in [l_i,\ r_i]$。这个构造的关键在于**有理数集是可数的**，所以可以用一个数列 $a_i$ 来映射所有有理数。初始时，随意取一个闭区间 $[l_1,\ r_1]$，然后尝试将有理数 $a_1$ 从这个区间中切掉：如果 $a_1 \notin [l_1,\ r_1]$，无需做任何操作；否则取一个足够小的 $\varepsilon$，然后选取 $[l_1,\ a_1 - \varepsilon]$ 或 $[a_1 + \varepsilon,\ r_1]$ 为闭区间套的下一个区间。之后的操作与之类似。此外，通过适当缩短区间使得闭区间的长度收敛于 $0$（具体而言，可以在构造过程中让 $[l_i,\ r_i]$ 交上 $[l_i,\ l_i + 1/i]$ 来作为第 $i$ 个闭区间）。这样 $x_i$ 就会收敛于某个数 $a$。如果 $a \in \mathbf Q$，那么存在 $i \in \mathbf N^+$，有 $a_i = a$。而 $a_i \notin [l_i,\ r_i]$，$\lim x_i \in [l_i,\ r_i]$，这就产生了矛盾。所以 $a$ 必须为无理数[^a-irrational]。
+但是，无论 $f_k(x)$ 的 $k$ 有多大，这个函数总是有许多不可微的无理点。为了得到这一点，我们可以利用一个闭区间套 $\{[l_i,\ r_i]\}$ 来辅助构造一个极限为无理数的有理数列 $x_i \in [l_i,\ r_i]$。这个构造的关键在于**有理数集是可数的**，所以可以用一个数列 $a_i$ 来映射所有有理数。初始时，随意取一个闭区间 $[l_1,\ r_1]$，然后尝试将有理数 $a_1$ 从这个区间中切掉：如果 $a_1 \notin [l_1,\ r_1]$，无需做任何操作；否则取一个足够小的 $\varepsilon$，然后选取 $[l_1,\ a_1 - \varepsilon]$ 或 $[a_1 + \varepsilon,\ r_1]$ 为闭区间套的下一个区间。之后的操作与之类似。此外，通过适当缩短区间使得闭区间的长度收敛于 $0$（具体而言，可以在构造过程中让 $[l_i,\ r_i]$ 交上 $[l_i,\ l_i + 1/i]$ 来作为第 $i$ 个闭区间）。这样 $x_i$ 就会收敛于某个数 $a$。如果 $a \in \mathbb Q$，那么存在 $i \in \mathbb N^+$，有 $a_i = a$。而 $a_i \notin [l_i,\ r_i]$，$\lim x_i \in [l_i,\ r_i]$，这就产生了矛盾。所以 $a$ 必须为无理数[^a-irrational]。
 
 [^a-irrational]: 头一回听上去挺奇怪的，毕竟每个闭区间里面都有无数的有理数 -.-
 
-我们可以在构造过程中加入更多的限制，例如，对于可微性相当致命的条件莫过于 $|f_k(x) / (x - a)| \geqslant 1$ 了（之前一直都是在配合它来证明的处处不可微）。所以构造步骤中再加上 $[l_i,\ r_i]$ 与 $[x_i - f_k(x_i),\ x_i + f_k(x_i)]$ 求交，这样 $\lim f(x_i) / (x_i - a)$ 就无法收敛于 $0$ 了。同理，设 $f_k(x)$ 的不可微无理点构成集合 $A$，如果 $A$ 是可列集，那么可以像对待有理数集 $\mathbf Q$ 一样，在构造中将其依次挖去，最后得到集合 $A$ 之外的一个不可微无理点，这就产生了矛盾，从而证明 $A$ 甚至是不可数的！总而言之，Thomae 函数想让每个无理点都可微是根本就不可能的啦 0.0[^general-function]
+我们可以在构造过程中加入更多的限制，例如，对于可微性相当致命的条件莫过于 $|f_k(x) / (x - a)| \geqslant 1$ 了（之前一直都是在配合它来证明的处处不可微）。所以构造步骤中再加上 $[l_i,\ r_i]$ 与 $[x_i - f_k(x_i),\ x_i + f_k(x_i)]$ 求交，这样 $\lim f(x_i) / (x_i - a)$ 就无法收敛于 $0$ 了。同理，设 $f_k(x)$ 的不可微无理点构成集合 $A$，如果 $A$ 是可列集，那么可以像对待有理数集 $\mathbb Q$ 一样，在构造中将其依次挖去，最后得到集合 $A$ 之外的一个不可微无理点，这就产生了矛盾，从而证明 $A$ 甚至是不可数的！总而言之，Thomae 函数想让每个无理点都可微是根本就不可能的啦 0.0[^general-function]
 
 [^general-function]: 实际上这里的讨论只用到了 $f_k(x)$ 在有理点取正数这个性质，因此所有满足有理点取正数，无理点为 $0$ 的函数 $f(x)$ 都有这个性质。这也是 [[BRS09]](#BRS09) 的“命题 3.1”。
 

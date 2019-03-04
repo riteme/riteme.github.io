@@ -42,16 +42,16 @@ $$
 \Phi(n) = {n(n + 1) \over 2} - \sum_{k = 2}^n \Phi\left(\left\lfloor {n \over k} \right\rfloor\right)
 $$
 
-定义 $R(n) = \{\lfloor n / k \rfloor: 2 \leqslant k \leqslant n,\,k \in \mathbf N\}$，即对于 $x \in R(n)$，$\Phi(x)$ 是需要递归计算的前缀和。
+定义 $R(n) = \{\lfloor n / k \rfloor: 2 \leqslant k \leqslant n,\,k \in \mathbb N\}$，即对于 $x \in R(n)$，$\Phi(x)$ 是需要递归计算的前缀和。
 
-**引理 1**　$\forall n,\,m \in \mathbf N \geqslant 1$，若 $m \leqslant \sqrt n$，则 $\lfloor n / \lfloor n / m \rfloor \rfloor = m$。
+**引理 1**　$\forall n,\,m \in \mathbb N \geqslant 1$，若 $m \leqslant \sqrt n$，则 $\lfloor n / \lfloor n / m \rfloor \rfloor = m$。
 
-**证明**　令 $k = \lfloor n / m \rfloor$，则 $mk \leqslant n < m(k + 1)$，那么 $m \leqslant n / k < m(k + 1) / k$，若要 $\lfloor n / k \rfloor = m$，则需要 $m(k + 1) / k \leqslant m + 1$，因此 $m + m / k \leqslant m + 1$ 即 $m \leqslant \lfloor n / m \rfloor$，这等价于 $m^2 \leqslant n$，即 $m \leqslant \sqrt n$。<span style="float: right">$\blacksquare$</span>
+**证明**　令 $k = \lfloor n / m \rfloor$，则 $mk \leqslant n < m(k + 1)$，那么 $m \leqslant n / k < m(k + 1) / k$，若要 $\lfloor n / k \rfloor = m$，则需要 $m(k + 1) / k \leqslant m + 1$，因此 $m + m / k \leqslant m + 1$ 即 $m \leqslant \lfloor n / m \rfloor$，这等价于 $m^2 \leqslant n$，即 $m \leqslant \sqrt n$。<qed />
 
 **引理 2**　对于任意**连续单增**函数 $f(x)$，并且满足：
 
 $$
-f(x) \in \mathbf Z \Longrightarrow x \in \mathbf Z
+f(x) \in \mathbb Z \Longrightarrow x \in \mathbb Z
 $$
 
 则 $\lfloor f(x) \rfloor = \lfloor f(\lfloor x \rfloor) \rfloor$，以及 $\lceil f(x) \rceil$ = $\lceil f(\lceil x \rceil) \rceil$。
@@ -60,21 +60,21 @@ $$
 
 **引理 3**　令正整数 $a,\,b$ 为常数，则对于正整数 $x$，有 $\lfloor\lfloor x / a \rfloor / b \rfloor = \lfloor x / ab \rfloor$。
 
-**证明**　令 $f(x) = \lfloor x / b \rfloor$，运用引理 2 即可。<span style="float: right">$\blacksquare$</span>
+**证明**　令 $f(x) = x / b$，运用引理 2 即可。<qed />
 
-**定理 1**　$\forall n \in \mathbf N \geqslant 1$，记 $s = \lfloor \sqrt n \rfloor$，$A = \{1,\,2,\,3,\,...,\,s\}$，$B = \{\lfloor n / 2 \rfloor,\,...,\,\lfloor n / s \rfloor\}$，则 $R(n) = A \cup B$ 并且 $|R(n)| = 2\sqrt n + \Theta(1)$。
+**定理 1**　$\forall n \in \mathbb N \geqslant 1$，记 $s = \lfloor \sqrt n \rfloor$，$A = \{1,\,2,\,3,\,...,\,s\}$，$B = \{\lfloor n / 2 \rfloor,\,...,\,\lfloor n / s \rfloor\}$，则 $R(n) = A \cup B$ 并且 $|R(n)| = 2\sqrt n + \Theta(1)$。
 
-**证明**　对于 $x \in A$，根据引理 1，$\lfloor n / \lfloor n / x \rfloor \rfloor = x$，所以 $x \in R(n)$。
+**证明**　对于 $x \in A$，根据引理 1，$\lfloor n / \lfloor n / x \rfloor \rfloor = x$，所以 $x \in R(n)$，即 $A \subseteq R(n)$。
 
-对于 $x \in R(n)$ 并且 $x > s$，$n / x \leqslant s$，意思是在 $R(n)$ 的定义中能够得到 $x$ 的 $k \in [2,\,s]$，所以 $S \ \backslash\ A \subseteq B$。根据 $B$ 的定义，$B \subseteq S$，由此可得出 $S = A \cup B$。
+对于 $x \in R(n)$ 并且 $x > s$，$n / x \leqslant s$，意思是在 $R(n)$ 的定义中能够得到 $x$ 的 $k \in [2,\,s]$，所以 $R(n) \ \backslash\ A \subseteq B$。根据 $B$ 的定义，$B \subseteq R(n)$，由此可得出 $R(n) = A \cup B$。
 
-对于 $1 \leqslant x < y \leqslant s$，$n / x - n / y \geqslant n/(y - 1) - n / y > 1$，所以 $\lfloor n / x \rfloor \neq \lfloor n / y \rfloor$，所以 $|R(n)| = 2\sqrt n + \Theta(1)$。<span style="float: right">$\blacksquare$</span>
+对于 $1 \leqslant x < y \leqslant s$，$n / x - n / y \geqslant n/(y - 1) - n / y > 1$，所以 $\lfloor n / x \rfloor \neq \lfloor n / y \rfloor$，所以 $|R(n)| = 2\sqrt n + \Theta(1)$。<qed />
 
 **定理 2**　对于任意正整数 $n$，$\forall m \in R(n)$，有 $R(m) \subseteq R(n)$。
 
-**证明**　因为 $m \in R(n)$，所以可设 $m = \lfloor n / a \rfloor$。对于 $z \in R(m)$，有 $z = \lfloor m / b \rfloor$，根据引理 3，可知 $z = \lfloor  n / ab \rfloor$。因为 $a,\,b > 1$，且 $a \leqslant n$，$b \leqslant n / a$，所以 $1 < ab \leqslant n$，所以 $z \in R(n)$。<span style="float: right">$\blacksquare$</span>
+**证明**　因为 $m \in R(n)$，所以可设 $m = \lfloor n / a \rfloor$。对于 $z \in R(m)$，有 $z = \lfloor m / b \rfloor$，根据引理 3，可知 $z = \lfloor  n / ab \rfloor$。因为 $a,\,b > 1$，且 $a \leqslant n$，$b \leqslant n / a$，所以 $1 < ab \leqslant n$，所以 $z \in R(n)$。<qed />
 
-定理 2 揭示了这个技巧的巧妙所在：只需要对每个 $m \in R(n)$ 和 $m = n$ 计算 $\Phi(m)$ 即可。此外，计算 $\Phi(n)$ 时单独还需要 $\Theta(\sqrt n)$ 的枚举，因此总的枚举次数为：
+定理 2 揭示了这个技巧的巧妙所在：为了计算 $\Phi(n)$，只需要对每个 $m \in R(n)$ 计算 $\Phi(m)$ 即可。此外，计算 $\Phi(n)$ 时单独还需要 $\Theta(\sqrt n)$ 的枚举，因此总的枚举次数约为：
 
 $$
 \begin{aligned}
