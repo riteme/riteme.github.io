@@ -496,7 +496,7 @@ h3.panel-title {
     display: none; 
 }
 
-@media screen and (min-width: 840px) {
+@media screen and (min-width: 1100px) {
     .main-cell {
         flex-grow: 1;
         width: 0;
@@ -511,7 +511,7 @@ h3.panel-title {
     }
 }
 
-@media screen and (max-width: 839px) {
+@media screen and (max-width: 1099px) {
     .sidebar {
         display: none !important;
     }
