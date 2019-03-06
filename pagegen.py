@@ -60,6 +60,9 @@ def process_document(filepath, source):
     title = mdinfo["title"][0]
     create_time = generate_time(*mdinfo["create"][0].split("."))
     modified_time = generate_time(*mdinfo["modified"][0].split("."))
+    date = datetime.datetime.now()
+    if modified_time != generate_time(date.year, date.month, date.day):
+        warn("Modified time is not updated to today. (%s)" % filepath)
 
     tags = TagGroup()
     for x in mdinfo["tags"]:

@@ -1,7 +1,7 @@
 ---
 title: 数学问题杂记
 create: 2017.12.16
-modified: 2019.2.27
+modified: 2019.3.6
 tags: 数学
 ---
 
@@ -33,3 +33,7 @@ tags: 数学
 ![markdown:include](blog/2017-12-16/20181117-limit-of-cos-prod.md)
 
 ![markdown:include](blog/2017-12-16/20190227-gcd-an-bn-am-bm.md)
+
+![markdown:include](blog/2017-12-16/20190306-bijection-between-integers-and-composites.md)
+
+![markdown:include](blog/2017-12-16/20190306-distance-between-sets.md)
