@@ -115,3 +115,5 @@ if __name__ == "__main__":
         database.save_text_sitemap(SITEMAP_LOCATION)
     else:
         warn("Nothing to update.")
+    if logging.ERROR_CNT or logging.WARN_CNT:
+        info("%s error(s), %s warning(s) generated." % (logging.ERROR_CNT, logging.WARN_CNT))

@@ -97,12 +97,14 @@ a:hover {
     text-decoration: none;
 }
 
-.main-article p, .main-article li, .main-article li, .main-article h1, .main-article h2, .main-article h3, .main-article h4, .main-article h5, .main-article h6 {
-    transition: background .25s;
+.article .footnote li {
+    opacity: 0.6;
+    font-size: 90%;
+    transition: opacity .25s;
 }
 
-.main-article p:hover, .main-article li:hover, .main-article li:hover, .main-article h1:hover, .main-article h2:hover, .main-article h3:hover, .main-article h4:hover, .main-article h5:hover, .main-article h6:hover {
-    background: #f5f5f5;
+.article .footnote li:hover {
+    opacity: 1;
 }
 
 #comments p:hover, #comments li:hover, #comments li:hover, #comments h1:hover, #comments h2:hover, #comments h3:hover, #comments h4:hover, #comments h5:hover, #comments h6:hover {
@@ -192,8 +194,8 @@ a:hover {
     display: block;
     margin: 0 auto;
     max-width: 100%;
-    transition: outline .25s;
-    outline-color: white;
+    transition: outline-color .25s .2s;
+    outline: white 1px dashed;
 }
 
 .article img:hover {
@@ -258,7 +260,7 @@ a:hover {
     padding: .1em 1em .1em 1em;
     font-style: normal;
     font-family: inherit;
-    transition: border-left .25s;
+    transition: border-left .25s .2s;
 }
 
 .article blockquote::before {
@@ -294,12 +296,12 @@ a:hover {
     max-width: 90%;
     margin: auto;
     font-size: 15px;
-    color: #9a9a9a;
-    transition: color .25s;
+    opacity: 0.6;
+    transition: opacity .25s;
 }
 
 .article center:hover {
-    color: rgba(0, 0, 0, .87);
+    opacity: 1;
 }
 
 .article .figcaption:before {
@@ -326,12 +328,6 @@ pre, code {
 
 .article .footnote-ref:after {
     content: ']';
-}
-
-.article .footnote li > p {
-    margin: 0 auto;
-    color: #666;
-    font-size: 90%;
 }
 
 .article .mdl-tooltip {
@@ -412,14 +408,6 @@ header .mdl-textfield {
     box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
 }
 
-.panel h3 {
-    transition: none;
-}
-
-.panel h3:hover {
-    background: none;
-}
-
 .panel-info {
     border-color: #dddddd;
 }
@@ -477,7 +465,7 @@ h3.panel-title {
     min-width: 16vw;
     max-width: 20em;
     margin: 0 auto;
-    opacity: .4;
+    opacity: .2;
     background: silver;
     transition: all .25s;
 }
@@ -612,7 +600,7 @@ tex + br {
     padding: 1px 0;
 }
 
-.katex-display > .katex {
+tex .katex-display > .katex {
     padding-left: 4em;
     text-align: left;
 }

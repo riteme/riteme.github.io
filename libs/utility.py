@@ -12,6 +12,7 @@ from markdown.postprocessors import Postprocessor
 
 TOC_BEGIN = "<div class=\"toc\">"
 TOC_END = "</div>"
+TOC_TAIL = '<ul><li><a href="#comments">评论区</a></li></ul>'
 TOC_TEMPLATE = """
 <div class="mdl-card mdl-shadow--2dp sidebar-card">
   <div class="mdl-card__actions sidebar-title">目录</div>
@@ -200,6 +201,6 @@ class TagGroup(object):
 def cut_toc(content):
     if content.startswith(TOC_BEGIN):
         toc, remain = content.split(TOC_END, maxsplit=1)
-        return (TOC_TEMPLATE.format(toc = toc + TOC_END), remain)
+        return (TOC_TEMPLATE.format(toc = toc + TOC_TAIL + TOC_END), remain)
     else:
         return ("", content)
