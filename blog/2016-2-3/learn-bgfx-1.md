@@ -50,13 +50,13 @@ make linux-release64
 
 [[[提示]]]
 使用<code>make</code>还可以生成其他版本的，其格式是：
-```shell
+<pre>
 make [平台]-[release/debug][32/64]
-```
+</pre>
 例如，如果要生成32位的bgfx，使用以下命令：
-```shell
+<pre>
 make linux-release32
-```
+</pre>
 [[[#]]]
 
 如果编译过程中没有报错，那么在`.build/`文件夹下会有对应的编译后的文件。
