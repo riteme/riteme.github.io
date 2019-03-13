@@ -610,9 +610,10 @@ tex .katex-display > .katex {
     float: right;
 }
 
-.codehilitetable {
-    border-collapse: collapse;
-    border-spacing: 0;
+.codehilitetable td {
+    padding: 0;
+    line-height: 1.15em;
+    border: none;
 }
 
 .codehilitetable, .codehilitetable tbody, .codehilitetable tr {
@@ -623,17 +624,21 @@ tex .katex-display > .katex {
 .code {
     display: block;
     overflow-x: auto;
-    border-left: none;
 }
 
-.codehilitetable td {
-    padding: 0;
-    text-align: left;
-    line-height: 18px;
+.code pre {
+    margin: 0 0 0 .5em;
 }
 
 .linenos {
-    border-right: solid 1px black !important;
+    min-width: 2rem;
+    text-align: right !important;
+    border-right: solid 1px silver !important;
+}
+
+.linenos pre {
+    margin: 0 .25em 0 0;
+    color: silver;
 }
 
 .mathopt-head {
