@@ -31,8 +31,8 @@ def check_template_update(token, current_time):
 
 def real_generate(filepath):
     try:
-        info("Generating '%s'..." % filepath)
-        return pagegen.generate(filepath)
+        info("Parsing '%s'..." % filepath)
+        return pagegen.generate(filepath, not update_all)
     except Exception as e:
         error("Failed to generate %s." % filepath)
         error("%s" % str(e))
@@ -54,12 +54,14 @@ def generate(root, name):
         return
 
     data = real_generate(path)
-    update_count += 1
-    update_map[path_token] = time_token
+    if data:
+        update_map[path_token] = time_token
+    if type(data) != bool:
+        update_count += 1
 
     if type(data) == str:
         database.del_index(data)
-    elif data:
+    elif type(data) != bool:
         database.add_index(*data)
 
 
@@ -86,18 +88,12 @@ if __name__ == "__main__":
     if os.path.exists(UPDATE_MAP_FILE):
         with open(UPDATE_MAP_FILE) as fp:
             update_map = json.load(fp)
-    for root, dirs, files in os.walk(TEMPLATES):
+    for root, dirs, files in os.walk(TEMPLATES_FOLDER):
         for file in files:
             path = os.path.join(root, file)
             check_template_update(hash(path), hash(int(os.path.getmtime(path))))
 
-    generate(os.path.abspath("."), "index.md")
-    generate(os.path.abspath("."), "posts.md")
-    generate(os.path.abspath("."), "about.md")
-    generate(os.path.abspath("."), "links.md")
-    #generate(os.path.abspath("."), "search.md")
-
-    for root, dirs, files in os.walk(os.path.abspath(BLOG)):
+    for root, dirs, files in os.walk(os.path.abspath(BLOG_FOLDER)):
         for name in files:
             if name.endswith(".md") or name.endswith(".markdown"):
                 generate(root, name)
@@ -106,7 +102,7 @@ if __name__ == "__main__":
         json.dump(update_map, fp, indent=4, sort_keys=True)
 
     if update_count:
-        info("Updated %s page(s)." % update_count)
+        info("Successfully updated %s page(s)." % update_count)
         info("Writing to JSON database '%s'..." % DATABASE_LOCATION)
         database.save_json_index(DATABASE_LOCATION)
         info("Writing to Tipuesearch database '%s'..." % TIPUESEARCH_DATABASE_LOCATION)
@@ -114,6 +110,6 @@ if __name__ == "__main__":
         info("Writing to sitemap '%s'..." % SITEMAP_LOCATION)
         database.save_text_sitemap(SITEMAP_LOCATION)
     else:
-        warn("Nothing to update.")
+        warn("Nothing updated.")
     if logging.ERROR_CNT or logging.WARN_CNT:
         info("%s error(s), %s warning(s) generated." % (logging.ERROR_CNT, logging.WARN_CNT))

@@ -15,6 +15,7 @@ TIPUESEARCH_TEMPLATE = 'var tipuesearch={"pages":[%s]}'
 
 def load_index(filepath):
     """载入索引数据
+
     filepath (str): 索引位置，JSON 文件
     """
 
@@ -27,7 +28,9 @@ def load_index(filepath):
 
 def save_index(js_file, json_file):
     """保存索引数据
+
     js_file (str): tipuesearch使用的数据位置
+
     json_file (str): 索引数据的位置
     """
 
@@ -38,9 +41,13 @@ def save_index(js_file, json_file):
 
 def add_index(title, url, text, meta):
     """添加索引数据
+
     title (str): 标题
+
     url (str): 链接（相对链接）
+
     text (str): 用于显示在搜索结果的文本
+
     meta (dict): Markdown 的元数据
     """
 
@@ -55,7 +62,9 @@ def add_index(title, url, text, meta):
 
 def del_index(title):
     """删除索引数据
+
     title (str): 标题
+
     remark: 如果原本就没有索引数据，则无操作
     """
 
@@ -66,10 +75,12 @@ def del_index(title):
 
 def query_index(title):
     """查询索引数据
+
     title (str): 文章标题
+
     remark: 如果不存在则返回 None
     """
-    
+
     global indices
 
     if title in indices:
@@ -78,6 +89,7 @@ def query_index(title):
 
 def save_json_index(filepath):
     """保存至 JSON 索引数据库
+
     filepath (str): JSON 文件的位置
     """
 
@@ -99,6 +111,7 @@ def _generate_tipuesearch_data():
 
 def save_tipuesearch_index(filepath):
     """保存至 Tipuesearch 搜索数据库
+
     filepath (str): 搜索数据库的位置（JavaScript 文件）
     """
 
@@ -107,6 +120,7 @@ def save_tipuesearch_index(filepath):
 
 def save_text_sitemap(filepath):
     """保存至 TXT 格式的站点地图
+
     remark: 仅保存链接信息
     """
 
@@ -119,6 +133,7 @@ def save_text_sitemap(filepath):
 
 def save_xml_sitemap(filepath):
     """保存至 XML 格式的站点信息
+
     remark: 未实现
     """
     raise NotImplementedError

@@ -1,9 +1,11 @@
+[temporary]
 ---
 title: 搜索结果
 create: 2016.12.13
 modified: 2018.2.27
 tags: 站内搜索
 index: false
+location: ..
 ---
 
 ## 搜索结果

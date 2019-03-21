@@ -1,8 +1,9 @@
 ---
 title: 关于
 create: 2016.12.13
-modified: 2019.2.19
+modified: 2019.3.21
 tags: About
+location: ..
 ---
 
 [TOC]
@@ -17,31 +18,31 @@ tags: About
 
 需要的依赖：
 
-* Python 3 (>= 3.4)
+* Python 3 (>= 3.7)
 * Python Markdown
 * Pygments (用于提供代码高亮)
 * css-html-js-minify (压缩 HTML 源码)
 * Beautiful Soup 4
 
-独立模块功能：
+`sitegen.py` 基本结构
 
-* `info`: 提取文档基本信息 (右上角)。
+* `utility`: 基础辅助设施
 * `navigater`: 辅助文件夹导航。
 * `parser`: Markdown 阶段预处理特殊语法。
-* `tag`: 标签生成。
-* `tipuesearch`: 生成 Tipuesearch 的搜索数据。
-* `tocer`: 提取并生成目录。
+* `database`: 处理站点文章数据
+* `logging`: 日志输出
 
 可执行工具：
 
 * `pagegen.py`: 用于生成单个页面。
 * `sitegen.py`: 用于生成整个网站。
-* `setup.py`: 简单网站架设工具。
+
+工具的配置参见 `preferences.py`
 
 ### Material Design
 使用的是功能比较简单的 [Material Design Lite](http://getmdl.io/)，而且版本已经比较老了QAQ。
 
-主题风格都是我自己 xjb 调的，本着能不用 JavaScript 就不用的态度，所以除了目录跳转，其余动画都是 `transition` qwq
+主题风格都是我自己 xjb 调的，本着能不用 JavaScript 就不用的态度，所以除了目录跳转，其余动画都是直接 `transition` qwq
 目前页面上还是有一些已知的小问题，有些是老版本 MDL 的锅，实在是没精力换框架了 TAT。
 
 ### 数学公式

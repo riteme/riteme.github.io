@@ -3,6 +3,7 @@ title: 友链
 create: 2017.1.10
 modified: 2019.1.31
 tags: Friend Links
+location: ..
 ---
 
 ## 友情链接
