@@ -720,3 +720,10 @@ tex .katex-display > .katex {
     font-weight: bold;
 }
 .codehilite .kt { color: black; font-weight: bold; font-style: italic }
+
+.cc {
+    border-width:0;
+    filter: brightness(70%);
+    height: 1.21em;
+    vertical-align: sub;
+}
