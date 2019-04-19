@@ -726,4 +726,5 @@ tex .katex-display > .katex {
     filter: brightness(70%);
     height: 1.21em;
     vertical-align: sub;
+    image-rendering: pixelated;
 }
