@@ -1,7 +1,7 @@
 ---
 title: 数学问题杂记
 create: 2017.12.16
-modified: 2019.3.6
+modified: 2019.4.19
 tags: 数学
 ---
 
@@ -37,3 +37,5 @@ tags: 数学
 ![markdown:include](blog/2017-12-16/20190306-bijection-between-integers-and-composites.md)
 
 ![markdown:include](blog/2017-12-16/20190306-distance-between-sets.md)
+
+![markdown:include](blog/2017-12-16/20190419-sufficient-for-primes.md)
