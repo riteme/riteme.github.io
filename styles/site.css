@@ -42,6 +42,10 @@ sup[id], span[id] {
     display: inline-block;
 }
 
+sup {
+    line-height: .8em;
+}
+
 main {
     overflow: visible !important;
 }
@@ -344,6 +348,16 @@ pre, code {
 
 .article hr {
     border-top: 1px dashed #ccc;
+}
+
+.article .op {
+    font-variant-caps: petite-caps;
+    font-family: "CMU Concrete", monospace;
+    font-size: 1.2em;
+}
+
+.article .url {
+    word-break: break-all;
 }
 
 div.toc ul {

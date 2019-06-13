@@ -23,7 +23,7 @@ TOC_TEMPLATE = """
 </div>
 <br/>
 """
-META_NONE_WARNING_TEXT = "# 文章标题必填"
+META_NONE_WARNING_TEXT = "# 必填"
 
 
 # LaTeX Extension
@@ -217,9 +217,9 @@ def today():
 def meta_to_string(meta):
     buf = ["---"]
     for key, val in meta.items():
-        if type(val) == type(list):
-            data = "\t".join(val)
-        elif type(val) == type(bool):
+        if isinstance(val, list):
+            data = "\n\t".join(val)
+        elif isinstance(val, bool):
             data = "true" if val else "false"
         elif val is None:
             data = META_NONE_WARNING_TEXT

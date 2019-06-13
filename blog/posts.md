@@ -1,7 +1,7 @@
 ---
 title: 所有文章
 create: 2016.1.31
-modified: 2019.2.7
+modified: 2019.6.13
 tags: Posts
 location: ..
 ---
@@ -9,6 +9,9 @@ location: ..
 [TOC]
 ## 所有文章
 ### 2019
+#### 2019-6
+* [Dynamic Trees with Alternative Search Trees](blog/2019-6-13/dynamic-trees-eap.html): 学术英语课期末口胡的课程论文 qwq
+
 #### 2019-1
 * [二端串并联图相关](blog/2019-1-30/series-parallel.html): 实际上是 ZJOI2016 Day2 T3 电阻网络的题解 -.-
 
