@@ -18,7 +18,7 @@ template: template
 
 > 这篇文章实际上是这学期学术英语课的期末课程论文。写了点关于 LCT 的东西，试着将 Sleator 和 Tarjan 的用 biased tree 实现均摊 LCT 的证明改动了一下，希望能够证明 treap 也能做到一个 $\log$ 的均摊复杂度。可能不是很严谨，但我觉得大致方向上没有问题。如果有问题欢迎提出来 QAQ
 >
-> 文中实现的三种 LCT （biased tree, splay, treap）的代码：<http://github.com/riteme/toys/tree/master/dynmaic-trees>
+> 文中实现的三种 LCT （biased tree, splay, treap）的代码：<http://github.com/riteme/toys/tree/master/dynamic-trees>
 >
 > 原文 PDF：[eap19-v3.pdf](eap19-v3.pdf)
 
