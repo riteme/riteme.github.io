@@ -3,3 +3,6 @@ __pycache__/
 map.json
 .vscode/
 content.json
+node_modules
+package-lock.json
+postcss.config.js

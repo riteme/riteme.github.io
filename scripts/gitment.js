@@ -1,3755 +1,463 @@
-var Gitment =
-/******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
-/******/
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId])
-/******/ 			return installedModules[moduleId].exports;
-/******/
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
-/******/ 			exports: {}
-/******/ 		};
-/******/
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
-/******/
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/
-/******/
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-/******/
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-/******/
-/******/ 	// identity function for calling harmony imports with the correct context
-/******/ 	__webpack_require__.i = function(value) { return value; };
-/******/
-/******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, {
-/******/ 				configurable: false,
-/******/ 				enumerable: true,
-/******/ 				get: getter
-/******/ 			});
-/******/ 		}
-/******/ 	};
-/******/
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
-/******/
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-/******/
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
-/******/
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
-/******/ })
-/************************************************************************/
-/******/ ([
-/* 0 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var LS_ACCESS_TOKEN_KEY = exports.LS_ACCESS_TOKEN_KEY = 'gitment-comments-token';
-var LS_USER_KEY = exports.LS_USER_KEY = 'gitment-user-info';
-
-var NOT_INITIALIZED_ERROR = exports.NOT_INITIALIZED_ERROR = new Error('评论未初始化');
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(global) {
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-var __extends = undefined && undefined.__extends || function () {
-    var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
-        d.__proto__ = b;
-    } || function (d, b) {
-        for (var p in b) {
-            if (b.hasOwnProperty(p)) d[p] = b[p];
-        }
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() {
-            this.constructor = d;
-        }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-}();
-Object.defineProperty(exports, "__esModule", { value: true });
-registerGlobals();
-exports.extras = {
-    allowStateChanges: allowStateChanges,
-    deepEqual: deepEqual,
-    getAtom: getAtom,
-    getDebugName: getDebugName,
-    getDependencyTree: getDependencyTree,
-    getAdministration: getAdministration,
-    getGlobalState: getGlobalState,
-    getObserverTree: getObserverTree,
-    isComputingDerivation: isComputingDerivation,
-    isSpyEnabled: isSpyEnabled,
-    onReactionError: onReactionError,
-    resetGlobalState: resetGlobalState,
-    shareGlobalState: shareGlobalState,
-    spyReport: spyReport,
-    spyReportEnd: spyReportEnd,
-    spyReportStart: spyReportStart,
-    setReactionScheduler: setReactionScheduler
-};
-if ((typeof __MOBX_DEVTOOLS_GLOBAL_HOOK__ === "undefined" ? "undefined" : _typeof(__MOBX_DEVTOOLS_GLOBAL_HOOK__)) === "object") {
-    __MOBX_DEVTOOLS_GLOBAL_HOOK__.injectMobx(module.exports);
-}
-module.exports.default = module.exports;
-var actionFieldDecorator = createClassPropertyDecorator(function (target, key, value, args, originalDescriptor) {
-    var actionName = args && args.length === 1 ? args[0] : value.name || key || "<unnamed action>";
-    var wrappedAction = action(actionName, value);
-    addHiddenProp(target, key, wrappedAction);
-}, function (key) {
-    return this[key];
-}, function () {
-    invariant(false, getMessage("m001"));
-}, false, true);
-var boundActionDecorator = createClassPropertyDecorator(function (target, key, value) {
-    defineBoundAction(target, key, value);
-}, function (key) {
-    return this[key];
-}, function () {
-    invariant(false, getMessage("m001"));
-}, false, false);
-var action = function action(arg1, arg2, arg3, arg4) {
-    if (arguments.length === 1 && typeof arg1 === "function") return createAction(arg1.name || "<unnamed action>", arg1);
-    if (arguments.length === 2 && typeof arg2 === "function") return createAction(arg1, arg2);
-    if (arguments.length === 1 && typeof arg1 === "string") return namedActionDecorator(arg1);
-    return namedActionDecorator(arg2).apply(null, arguments);
-};
-exports.action = action;
-action.bound = function boundAction(arg1, arg2, arg3) {
-    if (typeof arg1 === "function") {
-        var action_1 = createAction("<not yet bound action>", arg1);
-        action_1.autoBind = true;
-        return action_1;
-    }
-    return boundActionDecorator.apply(null, arguments);
-};
-function namedActionDecorator(name) {
-    return function (target, prop, descriptor) {
-        if (descriptor && typeof descriptor.value === "function") {
-            descriptor.value = createAction(name, descriptor.value);
-            descriptor.enumerable = false;
-            descriptor.configurable = true;
-            return descriptor;
-        }
-        return actionFieldDecorator(name).apply(this, arguments);
-    };
-}
-function runInAction(arg1, arg2, arg3) {
-    var actionName = typeof arg1 === "string" ? arg1 : arg1.name || "<unnamed action>";
-    var fn = typeof arg1 === "function" ? arg1 : arg2;
-    var scope = typeof arg1 === "function" ? arg2 : arg3;
-    invariant(typeof fn === "function", getMessage("m002"));
-    invariant(fn.length === 0, getMessage("m003"));
-    invariant(typeof actionName === "string" && actionName.length > 0, "actions should have valid names, got: '" + actionName + "'");
-    return executeAction(actionName, fn, scope, undefined);
-}
-exports.runInAction = runInAction;
-function isAction(thing) {
-    return typeof thing === "function" && thing.isMobxAction === true;
-}
-exports.isAction = isAction;
-function defineBoundAction(target, propertyName, fn) {
-    var res = function res() {
-        return executeAction(propertyName, fn, target, arguments);
-    };
-    res.isMobxAction = true;
-    addHiddenProp(target, propertyName, res);
-}
-function autorun(arg1, arg2, arg3) {
-    var name, view, scope;
-    if (typeof arg1 === "string") {
-        name = arg1;
-        view = arg2;
-        scope = arg3;
-    } else {
-        name = arg1.name || "Autorun@" + getNextId();
-        view = arg1;
-        scope = arg2;
-    }
-    invariant(typeof view === "function", getMessage("m004"));
-    invariant(isAction(view) === false, getMessage("m005"));
-    if (scope) view = view.bind(scope);
-    var reaction = new Reaction(name, function () {
-        this.track(reactionRunner);
-    });
-    function reactionRunner() {
-        view(reaction);
-    }
-    reaction.schedule();
-    return reaction.getDisposer();
-}
-exports.autorun = autorun;
-function when(arg1, arg2, arg3, arg4) {
-    var name, predicate, effect, scope;
-    if (typeof arg1 === "string") {
-        name = arg1;
-        predicate = arg2;
-        effect = arg3;
-        scope = arg4;
-    } else {
-        name = "When@" + getNextId();
-        predicate = arg1;
-        effect = arg2;
-        scope = arg3;
-    }
-    var disposer = autorun(name, function (r) {
-        if (predicate.call(scope)) {
-            r.dispose();
-            var prevUntracked = untrackedStart();
-            effect.call(scope);
-            untrackedEnd(prevUntracked);
-        }
-    });
-    return disposer;
-}
-exports.when = when;
-function autorunAsync(arg1, arg2, arg3, arg4) {
-    var name, func, delay, scope;
-    if (typeof arg1 === "string") {
-        name = arg1;
-        func = arg2;
-        delay = arg3;
-        scope = arg4;
-    } else {
-        name = arg1.name || "AutorunAsync@" + getNextId();
-        func = arg1;
-        delay = arg2;
-        scope = arg3;
-    }
-    invariant(isAction(func) === false, getMessage("m006"));
-    if (delay === void 0) delay = 1;
-    if (scope) func = func.bind(scope);
-    var isScheduled = false;
-    var r = new Reaction(name, function () {
-        if (!isScheduled) {
-            isScheduled = true;
-            setTimeout(function () {
-                isScheduled = false;
-                if (!r.isDisposed) r.track(reactionRunner);
-            }, delay);
-        }
-    });
-    function reactionRunner() {
-        func(r);
-    }
-    r.schedule();
-    return r.getDisposer();
-}
-exports.autorunAsync = autorunAsync;
-function reaction(expression, effect, arg3) {
-    if (arguments.length > 3) {
-        fail(getMessage("m007"));
-    }
-    if (isModifierDescriptor(expression)) {
-        fail(getMessage("m008"));
-    }
-    var opts;
-    if ((typeof arg3 === "undefined" ? "undefined" : _typeof(arg3)) === "object") {
-        opts = arg3;
-    } else {
-        opts = {};
-    }
-    opts.name = opts.name || expression.name || effect.name || "Reaction@" + getNextId();
-    opts.fireImmediately = arg3 === true || opts.fireImmediately === true;
-    opts.delay = opts.delay || 0;
-    opts.compareStructural = opts.compareStructural || opts.struct || false;
-    effect = action(opts.name, opts.context ? effect.bind(opts.context) : effect);
-    if (opts.context) {
-        expression = expression.bind(opts.context);
-    }
-    var firstTime = true;
-    var isScheduled = false;
-    var nextValue;
-    var r = new Reaction(opts.name, function () {
-        if (firstTime || opts.delay < 1) {
-            reactionRunner();
-        } else if (!isScheduled) {
-            isScheduled = true;
-            setTimeout(function () {
-                isScheduled = false;
-                reactionRunner();
-            }, opts.delay);
-        }
-    });
-    function reactionRunner() {
-        if (r.isDisposed) return;
-        var changed = false;
-        r.track(function () {
-            var v = expression(r);
-            changed = valueDidChange(opts.compareStructural, nextValue, v);
-            nextValue = v;
-        });
-        if (firstTime && opts.fireImmediately) effect(nextValue, r);
-        if (!firstTime && changed === true) effect(nextValue, r);
-        if (firstTime) firstTime = false;
-    }
-    r.schedule();
-    return r.getDisposer();
-}
-exports.reaction = reaction;
-function createComputedDecorator(compareStructural) {
-    return createClassPropertyDecorator(function (target, name, _, __, originalDescriptor) {
-        invariant(typeof originalDescriptor !== "undefined", getMessage("m009"));
-        invariant(typeof originalDescriptor.get === "function", getMessage("m010"));
-        var adm = asObservableObject(target, "");
-        defineComputedProperty(adm, name, originalDescriptor.get, originalDescriptor.set, compareStructural, false);
-    }, function (name) {
-        var observable = this.$mobx.values[name];
-        if (observable === undefined) return undefined;
-        return observable.get();
-    }, function (name, value) {
-        this.$mobx.values[name].set(value);
-    }, false, false);
-}
-var computedDecorator = createComputedDecorator(false);
-var computedStructDecorator = createComputedDecorator(true);
-var computed = function computed(arg1, arg2, arg3) {
-    if (typeof arg2 === "string") {
-        return computedDecorator.apply(null, arguments);
-    }
-    invariant(typeof arg1 === "function", getMessage("m011"));
-    invariant(arguments.length < 3, getMessage("m012"));
-    var opts = (typeof arg2 === "undefined" ? "undefined" : _typeof(arg2)) === "object" ? arg2 : {};
-    opts.setter = typeof arg2 === "function" ? arg2 : opts.setter;
-    return new ComputedValue(arg1, opts.context, opts.compareStructural || opts.struct || false, opts.name || arg1.name || "", opts.setter);
-};
-exports.computed = computed;
-computed.struct = computedStructDecorator;
-function createTransformer(transformer, onCleanup) {
-    invariant(typeof transformer === "function" && transformer.length < 2, "createTransformer expects a function that accepts one argument");
-    var objectCache = {};
-    var resetId = globalState.resetId;
-    var Transformer = function (_super) {
-        __extends(Transformer, _super);
-        function Transformer(sourceIdentifier, sourceObject) {
-            var _this = _super.call(this, function () {
-                return transformer(sourceObject);
-            }, undefined, false, "Transformer-" + transformer.name + "-" + sourceIdentifier, undefined) || this;
-            _this.sourceIdentifier = sourceIdentifier;
-            _this.sourceObject = sourceObject;
-            return _this;
-        }
-        Transformer.prototype.onBecomeUnobserved = function () {
-            var lastValue = this.value;
-            _super.prototype.onBecomeUnobserved.call(this);
-            delete objectCache[this.sourceIdentifier];
-            if (onCleanup) onCleanup(lastValue, this.sourceObject);
-        };
-        return Transformer;
-    }(ComputedValue);
-    return function (object) {
-        if (resetId !== globalState.resetId) {
-            objectCache = {};
-            resetId = globalState.resetId;
-        }
-        var identifier = getMemoizationId(object);
-        var reactiveTransformer = objectCache[identifier];
-        if (reactiveTransformer) return reactiveTransformer.get();
-        reactiveTransformer = objectCache[identifier] = new Transformer(identifier, object);
-        return reactiveTransformer.get();
-    };
-}
-exports.createTransformer = createTransformer;
-function getMemoizationId(object) {
-    if (object === null || (typeof object === "undefined" ? "undefined" : _typeof(object)) !== "object") throw new Error("[mobx] transform expected some kind of object, got: " + object);
-    var tid = object.$transformId;
-    if (tid === undefined) {
-        tid = getNextId();
-        addHiddenProp(object, "$transformId", tid);
-    }
-    return tid;
-}
-function expr(expr, scope) {
-    if (!isComputingDerivation()) console.warn(getMessage("m013"));
-    return computed(expr, { context: scope }).get();
-}
-exports.expr = expr;
-function extendObservable(target) {
-    var properties = [];
-    for (var _i = 1; _i < arguments.length; _i++) {
-        properties[_i - 1] = arguments[_i];
-    }
-    return extendObservableHelper(target, deepEnhancer, properties);
-}
-exports.extendObservable = extendObservable;
-function extendShallowObservable(target) {
-    var properties = [];
-    for (var _i = 1; _i < arguments.length; _i++) {
-        properties[_i - 1] = arguments[_i];
-    }
-    return extendObservableHelper(target, referenceEnhancer, properties);
-}
-exports.extendShallowObservable = extendShallowObservable;
-function extendObservableHelper(target, defaultEnhancer, properties) {
-    invariant(arguments.length >= 2, getMessage("m014"));
-    invariant((typeof target === "undefined" ? "undefined" : _typeof(target)) === "object", getMessage("m015"));
-    invariant(!isObservableMap(target), getMessage("m016"));
-    properties.forEach(function (propSet) {
-        invariant((typeof propSet === "undefined" ? "undefined" : _typeof(propSet)) === "object", getMessage("m017"));
-        invariant(!isObservable(propSet), getMessage("m018"));
-    });
-    var adm = asObservableObject(target);
-    var definedProps = {};
-    for (var i = properties.length - 1; i >= 0; i--) {
-        var propSet = properties[i];
-        for (var key in propSet) {
-            if (definedProps[key] !== true && hasOwnProperty(propSet, key)) {
-                definedProps[key] = true;
-                if (target === propSet && !isPropertyConfigurable(target, key)) continue;
-                var descriptor = Object.getOwnPropertyDescriptor(propSet, key);
-                defineObservablePropertyFromDescriptor(adm, key, descriptor, defaultEnhancer);
-            }
-        }
-    }
-    return target;
-}
-function getDependencyTree(thing, property) {
-    return nodeToDependencyTree(getAtom(thing, property));
-}
-function nodeToDependencyTree(node) {
-    var result = {
-        name: node.name
-    };
-    if (node.observing && node.observing.length > 0) result.dependencies = unique(node.observing).map(nodeToDependencyTree);
-    return result;
-}
-function getObserverTree(thing, property) {
-    return nodeToObserverTree(getAtom(thing, property));
-}
-function nodeToObserverTree(node) {
-    var result = {
-        name: node.name
-    };
-    if (hasObservers(node)) result.observers = getObservers(node).map(nodeToObserverTree);
-    return result;
-}
-function intercept(thing, propOrHandler, handler) {
-    if (typeof handler === "function") return interceptProperty(thing, propOrHandler, handler);else return interceptInterceptable(thing, propOrHandler);
-}
-exports.intercept = intercept;
-function interceptInterceptable(thing, handler) {
-    return getAdministration(thing).intercept(handler);
-}
-function interceptProperty(thing, property, handler) {
-    return getAdministration(thing, property).intercept(handler);
-}
-function isComputed(value, property) {
-    if (value === null || value === undefined) return false;
-    if (property !== undefined) {
-        if (isObservableObject(value) === false) return false;
-        var atom = getAtom(value, property);
-        return isComputedValue(atom);
-    }
-    return isComputedValue(value);
-}
-exports.isComputed = isComputed;
-function isObservable(value, property) {
-    if (value === null || value === undefined) return false;
-    if (property !== undefined) {
-        if (isObservableArray(value) || isObservableMap(value)) throw new Error(getMessage("m019"));else if (isObservableObject(value)) {
-            var o = value.$mobx;
-            return o.values && !!o.values[property];
-        }
-        return false;
-    }
-    return isObservableObject(value) || !!value.$mobx || isAtom(value) || isReaction(value) || isComputedValue(value);
-}
-exports.isObservable = isObservable;
-var deepDecorator = createDecoratorForEnhancer(deepEnhancer);
-var shallowDecorator = createDecoratorForEnhancer(shallowEnhancer);
-var refDecorator = createDecoratorForEnhancer(referenceEnhancer);
-var deepStructDecorator = createDecoratorForEnhancer(deepStructEnhancer);
-var refStructDecorator = createDecoratorForEnhancer(refStructEnhancer);
-function createObservable(v) {
-    if (v === void 0) {
-        v = undefined;
-    }
-    if (typeof arguments[1] === "string") return deepDecorator.apply(null, arguments);
-    invariant(arguments.length <= 1, getMessage("m021"));
-    invariant(!isModifierDescriptor(v), getMessage("m020"));
-    if (isObservable(v)) return v;
-    var res = deepEnhancer(v, undefined, undefined);
-    if (res !== v) return res;
-    return observable.box(v);
-}
-var IObservableFactories = function () {
-    function IObservableFactories() {}
-    IObservableFactories.prototype.box = function (value, name) {
-        if (arguments.length > 2) incorrectlyUsedAsDecorator("box");
-        return new ObservableValue(value, deepEnhancer, name);
-    };
-    IObservableFactories.prototype.shallowBox = function (value, name) {
-        if (arguments.length > 2) incorrectlyUsedAsDecorator("shallowBox");
-        return new ObservableValue(value, referenceEnhancer, name);
-    };
-    IObservableFactories.prototype.array = function (initialValues, name) {
-        if (arguments.length > 2) incorrectlyUsedAsDecorator("array");
-        return new ObservableArray(initialValues, deepEnhancer, name);
-    };
-    IObservableFactories.prototype.shallowArray = function (initialValues, name) {
-        if (arguments.length > 2) incorrectlyUsedAsDecorator("shallowArray");
-        return new ObservableArray(initialValues, referenceEnhancer, name);
-    };
-    IObservableFactories.prototype.map = function (initialValues, name) {
-        if (arguments.length > 2) incorrectlyUsedAsDecorator("map");
-        return new ObservableMap(initialValues, deepEnhancer, name);
-    };
-    IObservableFactories.prototype.shallowMap = function (initialValues, name) {
-        if (arguments.length > 2) incorrectlyUsedAsDecorator("shallowMap");
-        return new ObservableMap(initialValues, referenceEnhancer, name);
-    };
-    IObservableFactories.prototype.object = function (props, name) {
-        if (arguments.length > 2) incorrectlyUsedAsDecorator("object");
-        var res = {};
-        asObservableObject(res, name);
-        extendObservable(res, props);
-        return res;
-    };
-    IObservableFactories.prototype.shallowObject = function (props, name) {
-        if (arguments.length > 2) incorrectlyUsedAsDecorator("shallowObject");
-        var res = {};
-        asObservableObject(res, name);
-        extendShallowObservable(res, props);
-        return res;
-    };
-    IObservableFactories.prototype.ref = function () {
-        if (arguments.length < 2) {
-            return createModifierDescriptor(referenceEnhancer, arguments[0]);
-        } else {
-            return refDecorator.apply(null, arguments);
-        }
-    };
-    IObservableFactories.prototype.shallow = function () {
-        if (arguments.length < 2) {
-            return createModifierDescriptor(shallowEnhancer, arguments[0]);
-        } else {
-            return shallowDecorator.apply(null, arguments);
-        }
-    };
-    IObservableFactories.prototype.deep = function () {
-        if (arguments.length < 2) {
-            return createModifierDescriptor(deepEnhancer, arguments[0]);
-        } else {
-            return deepDecorator.apply(null, arguments);
-        }
-    };
-    IObservableFactories.prototype.struct = function () {
-        if (arguments.length < 2) {
-            return createModifierDescriptor(deepStructEnhancer, arguments[0]);
-        } else {
-            return deepStructDecorator.apply(null, arguments);
-        }
-    };
-    return IObservableFactories;
-}();
-exports.IObservableFactories = IObservableFactories;
-var observable = createObservable;
-exports.observable = observable;
-Object.keys(IObservableFactories.prototype).forEach(function (key) {
-    return observable[key] = IObservableFactories.prototype[key];
-});
-observable.deep.struct = observable.struct;
-observable.ref.struct = function () {
-    if (arguments.length < 2) {
-        return createModifierDescriptor(refStructEnhancer, arguments[0]);
-    } else {
-        return refStructDecorator.apply(null, arguments);
-    }
-};
-function incorrectlyUsedAsDecorator(methodName) {
-    fail("Expected one or two arguments to observable." + methodName + ". Did you accidentally try to use observable." + methodName + " as decorator?");
-}
-function createDecoratorForEnhancer(enhancer) {
-    invariant(!!enhancer, ":(");
-    return createClassPropertyDecorator(function (target, name, baseValue, _, baseDescriptor) {
-        assertPropertyConfigurable(target, name);
-        invariant(!baseDescriptor || !baseDescriptor.get, getMessage("m022"));
-        var adm = asObservableObject(target, undefined);
-        defineObservableProperty(adm, name, baseValue, enhancer);
-    }, function (name) {
-        var observable = this.$mobx.values[name];
-        if (observable === undefined) return undefined;
-        return observable.get();
-    }, function (name, value) {
-        setPropertyValue(this, name, value);
-    }, true, false);
-}
-function observe(thing, propOrCb, cbOrFire, fireImmediately) {
-    if (typeof cbOrFire === "function") return observeObservableProperty(thing, propOrCb, cbOrFire, fireImmediately);else return observeObservable(thing, propOrCb, cbOrFire);
-}
-exports.observe = observe;
-function observeObservable(thing, listener, fireImmediately) {
-    return getAdministration(thing).observe(listener, fireImmediately);
-}
-function observeObservableProperty(thing, property, listener, fireImmediately) {
-    return getAdministration(thing, property).observe(listener, fireImmediately);
-}
-function toJS(source, detectCycles, __alreadySeen) {
-    if (detectCycles === void 0) {
-        detectCycles = true;
-    }
-    if (__alreadySeen === void 0) {
-        __alreadySeen = [];
-    }
-    function cache(value) {
-        if (detectCycles) __alreadySeen.push([source, value]);
-        return value;
-    }
-    if (isObservable(source)) {
-        if (detectCycles && __alreadySeen === null) __alreadySeen = [];
-        if (detectCycles && source !== null && (typeof source === "undefined" ? "undefined" : _typeof(source)) === "object") {
-            for (var i = 0, l = __alreadySeen.length; i < l; i++) {
-                if (__alreadySeen[i][0] === source) return __alreadySeen[i][1];
-            }
-        }
-        if (isObservableArray(source)) {
-            var res = cache([]);
-            var toAdd = source.map(function (value) {
-                return toJS(value, detectCycles, __alreadySeen);
-            });
-            res.length = toAdd.length;
-            for (var i = 0, l = toAdd.length; i < l; i++) {
-                res[i] = toAdd[i];
-            }return res;
-        }
-        if (isObservableObject(source)) {
-            var res = cache({});
-            for (var key in source) {
-                res[key] = toJS(source[key], detectCycles, __alreadySeen);
-            }return res;
-        }
-        if (isObservableMap(source)) {
-            var res_1 = cache({});
-            source.forEach(function (value, key) {
-                return res_1[key] = toJS(value, detectCycles, __alreadySeen);
-            });
-            return res_1;
-        }
-        if (isObservableValue(source)) return toJS(source.get(), detectCycles, __alreadySeen);
-    }
-    return source;
-}
-exports.toJS = toJS;
-function transaction(action, thisArg) {
-    if (thisArg === void 0) {
-        thisArg = undefined;
-    }
-    deprecated(getMessage("m023"));
-    return runInTransaction.apply(undefined, arguments);
-}
-exports.transaction = transaction;
-function runInTransaction(action, thisArg) {
-    if (thisArg === void 0) {
-        thisArg = undefined;
-    }
-    return executeAction("", action);
-}
-function log(msg) {
-    console.log(msg);
-    return msg;
-}
-function whyRun(thing, prop) {
-    switch (arguments.length) {
-        case 0:
-            thing = globalState.trackingDerivation;
-            if (!thing) return log(getMessage("m024"));
-            break;
-        case 2:
-            thing = getAtom(thing, prop);
-            break;
-    }
-    thing = getAtom(thing);
-    if (isComputedValue(thing)) return log(thing.whyRun());else if (isReaction(thing)) return log(thing.whyRun());
-    return fail(getMessage("m025"));
-}
-exports.whyRun = whyRun;
-function createAction(actionName, fn) {
-    invariant(typeof fn === "function", getMessage("m026"));
-    invariant(typeof actionName === "string" && actionName.length > 0, "actions should have valid names, got: '" + actionName + "'");
-    var res = function res() {
-        return executeAction(actionName, fn, this, arguments);
-    };
-    res.originalFn = fn;
-    res.isMobxAction = true;
-    return res;
-}
-function executeAction(actionName, fn, scope, args) {
-    var runInfo = startAction(actionName, fn, scope, args);
-    try {
-        return fn.apply(scope, args);
-    } finally {
-        endAction(runInfo);
-    }
-}
-function startAction(actionName, fn, scope, args) {
-    var notifySpy = isSpyEnabled() && !!actionName;
-    var startTime = 0;
-    if (notifySpy) {
-        startTime = Date.now();
-        var l = args && args.length || 0;
-        var flattendArgs = new Array(l);
-        if (l > 0) for (var i = 0; i < l; i++) {
-            flattendArgs[i] = args[i];
-        }spyReportStart({
-            type: "action",
-            name: actionName,
-            fn: fn,
-            object: scope,
-            arguments: flattendArgs
-        });
-    }
-    var prevDerivation = untrackedStart();
-    startBatch();
-    var prevAllowStateChanges = allowStateChangesStart(true);
-    return {
-        prevDerivation: prevDerivation,
-        prevAllowStateChanges: prevAllowStateChanges,
-        notifySpy: notifySpy,
-        startTime: startTime
-    };
-}
-function endAction(runInfo) {
-    allowStateChangesEnd(runInfo.prevAllowStateChanges);
-    endBatch();
-    untrackedEnd(runInfo.prevDerivation);
-    if (runInfo.notifySpy) spyReportEnd({ time: Date.now() - runInfo.startTime });
-}
-function useStrict(strict) {
-    invariant(globalState.trackingDerivation === null, getMessage("m028"));
-    globalState.strictMode = strict;
-    globalState.allowStateChanges = !strict;
-}
-exports.useStrict = useStrict;
-function isStrictModeEnabled() {
-    return globalState.strictMode;
-}
-exports.isStrictModeEnabled = isStrictModeEnabled;
-function allowStateChanges(allowStateChanges, func) {
-    var prev = allowStateChangesStart(allowStateChanges);
-    var res;
-    try {
-        res = func();
-    } finally {
-        allowStateChangesEnd(prev);
-    }
-    return res;
-}
-function allowStateChangesStart(allowStateChanges) {
-    var prev = globalState.allowStateChanges;
-    globalState.allowStateChanges = allowStateChanges;
-    return prev;
-}
-function allowStateChangesEnd(prev) {
-    globalState.allowStateChanges = prev;
-}
-var BaseAtom = function () {
-    function BaseAtom(name) {
-        if (name === void 0) {
-            name = "Atom@" + getNextId();
-        }
-        this.name = name;
-        this.isPendingUnobservation = true;
-        this.observers = [];
-        this.observersIndexes = {};
-        this.diffValue = 0;
-        this.lastAccessedBy = 0;
-        this.lowestObserverState = IDerivationState.NOT_TRACKING;
-    }
-    BaseAtom.prototype.onBecomeUnobserved = function () {};
-    BaseAtom.prototype.reportObserved = function () {
-        reportObserved(this);
-    };
-    BaseAtom.prototype.reportChanged = function () {
-        startBatch();
-        propagateChanged(this);
-        endBatch();
-    };
-    BaseAtom.prototype.toString = function () {
-        return this.name;
-    };
-    return BaseAtom;
-}();
-exports.BaseAtom = BaseAtom;
-var Atom = function (_super) {
-    __extends(Atom, _super);
-    function Atom(name, onBecomeObservedHandler, onBecomeUnobservedHandler) {
-        if (name === void 0) {
-            name = "Atom@" + getNextId();
-        }
-        if (onBecomeObservedHandler === void 0) {
-            onBecomeObservedHandler = noop;
-        }
-        if (onBecomeUnobservedHandler === void 0) {
-            onBecomeUnobservedHandler = noop;
-        }
-        var _this = _super.call(this, name) || this;
-        _this.name = name;
-        _this.onBecomeObservedHandler = onBecomeObservedHandler;
-        _this.onBecomeUnobservedHandler = onBecomeUnobservedHandler;
-        _this.isPendingUnobservation = false;
-        _this.isBeingTracked = false;
-        return _this;
-    }
-    Atom.prototype.reportObserved = function () {
-        startBatch();
-        _super.prototype.reportObserved.call(this);
-        if (!this.isBeingTracked) {
-            this.isBeingTracked = true;
-            this.onBecomeObservedHandler();
-        }
-        endBatch();
-        return !!globalState.trackingDerivation;
-    };
-    Atom.prototype.onBecomeUnobserved = function () {
-        this.isBeingTracked = false;
-        this.onBecomeUnobservedHandler();
-    };
-    return Atom;
-}(BaseAtom);
-exports.Atom = Atom;
-var isAtom = createInstanceofPredicate("Atom", BaseAtom);
-var ComputedValue = function () {
-    function ComputedValue(derivation, scope, compareStructural, name, setter) {
-        this.derivation = derivation;
-        this.scope = scope;
-        this.compareStructural = compareStructural;
-        this.dependenciesState = IDerivationState.NOT_TRACKING;
-        this.observing = [];
-        this.newObserving = null;
-        this.isPendingUnobservation = false;
-        this.observers = [];
-        this.observersIndexes = {};
-        this.diffValue = 0;
-        this.runId = 0;
-        this.lastAccessedBy = 0;
-        this.lowestObserverState = IDerivationState.UP_TO_DATE;
-        this.unboundDepsCount = 0;
-        this.__mapid = "#" + getNextId();
-        this.value = undefined;
-        this.isComputing = false;
-        this.isRunningSetter = false;
-        this.name = name || "ComputedValue@" + getNextId();
-        if (setter) this.setter = createAction(name + "-setter", setter);
-    }
-    ComputedValue.prototype.onBecomeStale = function () {
-        propagateMaybeChanged(this);
-    };
-    ComputedValue.prototype.onBecomeUnobserved = function () {
-        invariant(this.dependenciesState !== IDerivationState.NOT_TRACKING, getMessage("m029"));
-        clearObserving(this);
-        this.value = undefined;
-    };
-    ComputedValue.prototype.get = function () {
-        invariant(!this.isComputing, "Cycle detected in computation " + this.name, this.derivation);
-        if (globalState.inBatch === 0) {
-            startBatch();
-            if (shouldCompute(this)) this.value = this.computeValue(false);
-            endBatch();
-        } else {
-            reportObserved(this);
-            if (shouldCompute(this)) if (this.trackAndCompute()) propagateChangeConfirmed(this);
-        }
-        var result = this.value;
-        if (isCaughtException(result)) throw result.cause;
-        return result;
-    };
-    ComputedValue.prototype.peek = function () {
-        var res = this.computeValue(false);
-        if (isCaughtException(res)) throw res.cause;
-        return res;
-    };
-    ComputedValue.prototype.set = function (value) {
-        if (this.setter) {
-            invariant(!this.isRunningSetter, "The setter of computed value '" + this.name + "' is trying to update itself. Did you intend to update an _observable_ value, instead of the computed property?");
-            this.isRunningSetter = true;
-            try {
-                this.setter.call(this.scope, value);
-            } finally {
-                this.isRunningSetter = false;
-            }
-        } else invariant(false, "[ComputedValue '" + this.name + "'] It is not possible to assign a new value to a computed value.");
-    };
-    ComputedValue.prototype.trackAndCompute = function () {
-        if (isSpyEnabled()) {
-            spyReport({
-                object: this.scope,
-                type: "compute",
-                fn: this.derivation
-            });
-        }
-        var oldValue = this.value;
-        var newValue = this.value = this.computeValue(true);
-        return isCaughtException(newValue) || valueDidChange(this.compareStructural, newValue, oldValue);
-    };
-    ComputedValue.prototype.computeValue = function (track) {
-        this.isComputing = true;
-        globalState.computationDepth++;
-        var res;
-        if (track) {
-            res = trackDerivedFunction(this, this.derivation, this.scope);
-        } else {
-            try {
-                res = this.derivation.call(this.scope);
-            } catch (e) {
-                res = new CaughtException(e);
-            }
-        }
-        globalState.computationDepth--;
-        this.isComputing = false;
-        return res;
-    };
-    ;
-    ComputedValue.prototype.observe = function (listener, fireImmediately) {
-        var _this = this;
-        var firstTime = true;
-        var prevValue = undefined;
-        return autorun(function () {
-            var newValue = _this.get();
-            if (!firstTime || fireImmediately) {
-                var prevU = untrackedStart();
-                listener({
-                    type: "update",
-                    object: _this,
-                    newValue: newValue,
-                    oldValue: prevValue
-                });
-                untrackedEnd(prevU);
-            }
-            firstTime = false;
-            prevValue = newValue;
-        });
-    };
-    ComputedValue.prototype.toJSON = function () {
-        return this.get();
-    };
-    ComputedValue.prototype.toString = function () {
-        return this.name + "[" + this.derivation.toString() + "]";
-    };
-    ComputedValue.prototype.valueOf = function () {
-        return toPrimitive(this.get());
-    };
-    ;
-    ComputedValue.prototype.whyRun = function () {
-        var isTracking = Boolean(globalState.trackingDerivation);
-        var observing = unique(this.isComputing ? this.newObserving : this.observing).map(function (dep) {
-            return dep.name;
-        });
-        var observers = unique(getObservers(this).map(function (dep) {
-            return dep.name;
-        }));
-        return "\nWhyRun? computation '" + this.name + "':\n * Running because: " + (isTracking ? "[active] the value of this computation is needed by a reaction" : this.isComputing ? "[get] The value of this computed was requested outside a reaction" : "[idle] not running at the moment") + "\n" + (this.dependenciesState === IDerivationState.NOT_TRACKING ? getMessage("m032") : " * This computation will re-run if any of the following observables changes:\n    " + joinStrings(observing) + "\n    " + (this.isComputing && isTracking ? " (... or any observable accessed during the remainder of the current run)" : "") + "\n\t" + getMessage("m038") + "\n\n  * If the outcome of this computation changes, the following observers will be re-run:\n    " + joinStrings(observers) + "\n");
-    };
-    return ComputedValue;
-}();
-ComputedValue.prototype[primitiveSymbol()] = ComputedValue.prototype.valueOf;
-var isComputedValue = createInstanceofPredicate("ComputedValue", ComputedValue);
-var IDerivationState;
-(function (IDerivationState) {
-    IDerivationState[IDerivationState["NOT_TRACKING"] = -1] = "NOT_TRACKING";
-    IDerivationState[IDerivationState["UP_TO_DATE"] = 0] = "UP_TO_DATE";
-    IDerivationState[IDerivationState["POSSIBLY_STALE"] = 1] = "POSSIBLY_STALE";
-    IDerivationState[IDerivationState["STALE"] = 2] = "STALE";
-})(IDerivationState || (IDerivationState = {}));
-exports.IDerivationState = IDerivationState;
-var CaughtException = function () {
-    function CaughtException(cause) {
-        this.cause = cause;
-    }
-    return CaughtException;
-}();
-function isCaughtException(e) {
-    return e instanceof CaughtException;
-}
-function shouldCompute(derivation) {
-    switch (derivation.dependenciesState) {
-        case IDerivationState.UP_TO_DATE:
-            return false;
-        case IDerivationState.NOT_TRACKING:
-        case IDerivationState.STALE:
-            return true;
-        case IDerivationState.POSSIBLY_STALE:
-            {
-                var prevUntracked = untrackedStart();
-                var obs = derivation.observing,
-                    l = obs.length;
-                for (var i = 0; i < l; i++) {
-                    var obj = obs[i];
-                    if (isComputedValue(obj)) {
-                        try {
-                            obj.get();
-                        } catch (e) {
-                            untrackedEnd(prevUntracked);
-                            return true;
-                        }
-                        if (derivation.dependenciesState === IDerivationState.STALE) {
-                            untrackedEnd(prevUntracked);
-                            return true;
-                        }
-                    }
-                }
-                changeDependenciesStateTo0(derivation);
-                untrackedEnd(prevUntracked);
-                return false;
-            }
-    }
-}
-function isComputingDerivation() {
-    return globalState.trackingDerivation !== null;
-}
-function checkIfStateModificationsAreAllowed(atom) {
-    var hasObservers = atom.observers.length > 0;
-    if (globalState.computationDepth > 0 && hasObservers) fail(getMessage("m031") + atom.name);
-    if (!globalState.allowStateChanges && hasObservers) fail(getMessage(globalState.strictMode ? "m030a" : "m030b") + atom.name);
-}
-function trackDerivedFunction(derivation, f, context) {
-    changeDependenciesStateTo0(derivation);
-    derivation.newObserving = new Array(derivation.observing.length + 100);
-    derivation.unboundDepsCount = 0;
-    derivation.runId = ++globalState.runId;
-    var prevTracking = globalState.trackingDerivation;
-    globalState.trackingDerivation = derivation;
-    var result;
-    try {
-        result = f.call(context);
-    } catch (e) {
-        result = new CaughtException(e);
-    }
-    globalState.trackingDerivation = prevTracking;
-    bindDependencies(derivation);
-    return result;
-}
-function bindDependencies(derivation) {
-    var prevObserving = derivation.observing;
-    var observing = derivation.observing = derivation.newObserving;
-    derivation.newObserving = null;
-    var i0 = 0,
-        l = derivation.unboundDepsCount;
-    for (var i = 0; i < l; i++) {
-        var dep = observing[i];
-        if (dep.diffValue === 0) {
-            dep.diffValue = 1;
-            if (i0 !== i) observing[i0] = dep;
-            i0++;
-        }
-    }
-    observing.length = i0;
-    l = prevObserving.length;
-    while (l--) {
-        var dep = prevObserving[l];
-        if (dep.diffValue === 0) {
-            removeObserver(dep, derivation);
-        }
-        dep.diffValue = 0;
-    }
-    while (i0--) {
-        var dep = observing[i0];
-        if (dep.diffValue === 1) {
-            dep.diffValue = 0;
-            addObserver(dep, derivation);
-        }
-    }
-}
-function clearObserving(derivation) {
-    var obs = derivation.observing;
-    var i = obs.length;
-    while (i--) {
-        removeObserver(obs[i], derivation);
-    }derivation.dependenciesState = IDerivationState.NOT_TRACKING;
-    obs.length = 0;
-}
-function untracked(action) {
-    var prev = untrackedStart();
-    var res = action();
-    untrackedEnd(prev);
-    return res;
-}
-exports.untracked = untracked;
-function untrackedStart() {
-    var prev = globalState.trackingDerivation;
-    globalState.trackingDerivation = null;
-    return prev;
-}
-function untrackedEnd(prev) {
-    globalState.trackingDerivation = prev;
-}
-function changeDependenciesStateTo0(derivation) {
-    if (derivation.dependenciesState === IDerivationState.UP_TO_DATE) return;
-    derivation.dependenciesState = IDerivationState.UP_TO_DATE;
-    var obs = derivation.observing;
-    var i = obs.length;
-    while (i--) {
-        obs[i].lowestObserverState = IDerivationState.UP_TO_DATE;
-    }
-}
-var persistentKeys = ["mobxGuid", "resetId", "spyListeners", "strictMode", "runId"];
-var MobXGlobals = function () {
-    function MobXGlobals() {
-        this.version = 5;
-        this.trackingDerivation = null;
-        this.computationDepth = 0;
-        this.runId = 0;
-        this.mobxGuid = 0;
-        this.inBatch = 0;
-        this.pendingUnobservations = [];
-        this.pendingReactions = [];
-        this.isRunningReactions = false;
-        this.allowStateChanges = true;
-        this.strictMode = false;
-        this.resetId = 0;
-        this.spyListeners = [];
-        this.globalReactionErrorHandlers = [];
-    }
-    return MobXGlobals;
-}();
-var globalState = new MobXGlobals();
-function shareGlobalState() {
-    var global = getGlobal();
-    var ownState = globalState;
-    if (global.__mobservableTrackingStack || global.__mobservableViewStack) throw new Error("[mobx] An incompatible version of mobservable is already loaded.");
-    if (global.__mobxGlobal && global.__mobxGlobal.version !== ownState.version) throw new Error("[mobx] An incompatible version of mobx is already loaded.");
-    if (global.__mobxGlobal) globalState = global.__mobxGlobal;else global.__mobxGlobal = ownState;
-}
-function getGlobalState() {
-    return globalState;
-}
-function registerGlobals() {}
-function resetGlobalState() {
-    globalState.resetId++;
-    var defaultGlobals = new MobXGlobals();
-    for (var key in defaultGlobals) {
-        if (persistentKeys.indexOf(key) === -1) globalState[key] = defaultGlobals[key];
-    }globalState.allowStateChanges = !globalState.strictMode;
-}
-function hasObservers(observable) {
-    return observable.observers && observable.observers.length > 0;
-}
-function getObservers(observable) {
-    return observable.observers;
-}
-function invariantObservers(observable) {
-    var list = observable.observers;
-    var map = observable.observersIndexes;
-    var l = list.length;
-    for (var i = 0; i < l; i++) {
-        var id = list[i].__mapid;
-        if (i) {
-            invariant(map[id] === i, "INTERNAL ERROR maps derivation.__mapid to index in list");
-        } else {
-            invariant(!(id in map), "INTERNAL ERROR observer on index 0 shouldnt be held in map.");
-        }
-    }
-    invariant(list.length === 0 || Object.keys(map).length === list.length - 1, "INTERNAL ERROR there is no junk in map");
-}
-function addObserver(observable, node) {
-    var l = observable.observers.length;
-    if (l) {
-        observable.observersIndexes[node.__mapid] = l;
-    }
-    observable.observers[l] = node;
-    if (observable.lowestObserverState > node.dependenciesState) observable.lowestObserverState = node.dependenciesState;
-}
-function removeObserver(observable, node) {
-    if (observable.observers.length === 1) {
-        observable.observers.length = 0;
-        queueForUnobservation(observable);
-    } else {
-        var list = observable.observers;
-        var map_1 = observable.observersIndexes;
-        var filler = list.pop();
-        if (filler !== node) {
-            var index = map_1[node.__mapid] || 0;
-            if (index) {
-                map_1[filler.__mapid] = index;
-            } else {
-                delete map_1[filler.__mapid];
-            }
-            list[index] = filler;
-        }
-        delete map_1[node.__mapid];
-    }
-}
-function queueForUnobservation(observable) {
-    if (!observable.isPendingUnobservation) {
-        observable.isPendingUnobservation = true;
-        globalState.pendingUnobservations.push(observable);
-    }
-}
-function startBatch() {
-    globalState.inBatch++;
-}
-function endBatch() {
-    if (--globalState.inBatch === 0) {
-        runReactions();
-        var list = globalState.pendingUnobservations;
-        for (var i = 0; i < list.length; i++) {
-            var observable_1 = list[i];
-            observable_1.isPendingUnobservation = false;
-            if (observable_1.observers.length === 0) {
-                observable_1.onBecomeUnobserved();
-            }
-        }
-        globalState.pendingUnobservations = [];
-    }
-}
-function reportObserved(observable) {
-    var derivation = globalState.trackingDerivation;
-    if (derivation !== null) {
-        if (derivation.runId !== observable.lastAccessedBy) {
-            observable.lastAccessedBy = derivation.runId;
-            derivation.newObserving[derivation.unboundDepsCount++] = observable;
-        }
-    } else if (observable.observers.length === 0) {
-        queueForUnobservation(observable);
-    }
-}
-function invariantLOS(observable, msg) {
-    var min = getObservers(observable).reduce(function (a, b) {
-        return Math.min(a, b.dependenciesState);
-    }, 2);
-    if (min >= observable.lowestObserverState) return;
-    throw new Error("lowestObserverState is wrong for " + msg + " because " + min + " < " + observable.lowestObserverState);
-}
-function propagateChanged(observable) {
-    if (observable.lowestObserverState === IDerivationState.STALE) return;
-    observable.lowestObserverState = IDerivationState.STALE;
-    var observers = observable.observers;
-    var i = observers.length;
-    while (i--) {
-        var d = observers[i];
-        if (d.dependenciesState === IDerivationState.UP_TO_DATE) d.onBecomeStale();
-        d.dependenciesState = IDerivationState.STALE;
-    }
-}
-function propagateChangeConfirmed(observable) {
-    if (observable.lowestObserverState === IDerivationState.STALE) return;
-    observable.lowestObserverState = IDerivationState.STALE;
-    var observers = observable.observers;
-    var i = observers.length;
-    while (i--) {
-        var d = observers[i];
-        if (d.dependenciesState === IDerivationState.POSSIBLY_STALE) d.dependenciesState = IDerivationState.STALE;else if (d.dependenciesState === IDerivationState.UP_TO_DATE) observable.lowestObserverState = IDerivationState.UP_TO_DATE;
-    }
-}
-function propagateMaybeChanged(observable) {
-    if (observable.lowestObserverState !== IDerivationState.UP_TO_DATE) return;
-    observable.lowestObserverState = IDerivationState.POSSIBLY_STALE;
-    var observers = observable.observers;
-    var i = observers.length;
-    while (i--) {
-        var d = observers[i];
-        if (d.dependenciesState === IDerivationState.UP_TO_DATE) {
-            d.dependenciesState = IDerivationState.POSSIBLY_STALE;
-            d.onBecomeStale();
-        }
-    }
-}
-var Reaction = function () {
-    function Reaction(name, onInvalidate) {
-        if (name === void 0) {
-            name = "Reaction@" + getNextId();
-        }
-        this.name = name;
-        this.onInvalidate = onInvalidate;
-        this.observing = [];
-        this.newObserving = [];
-        this.dependenciesState = IDerivationState.NOT_TRACKING;
-        this.diffValue = 0;
-        this.runId = 0;
-        this.unboundDepsCount = 0;
-        this.__mapid = "#" + getNextId();
-        this.isDisposed = false;
-        this._isScheduled = false;
-        this._isTrackPending = false;
-        this._isRunning = false;
-    }
-    Reaction.prototype.onBecomeStale = function () {
-        this.schedule();
-    };
-    Reaction.prototype.schedule = function () {
-        if (!this._isScheduled) {
-            this._isScheduled = true;
-            globalState.pendingReactions.push(this);
-            runReactions();
-        }
-    };
-    Reaction.prototype.isScheduled = function () {
-        return this._isScheduled;
-    };
-    Reaction.prototype.runReaction = function () {
-        if (!this.isDisposed) {
-            startBatch();
-            this._isScheduled = false;
-            if (shouldCompute(this)) {
-                this._isTrackPending = true;
-                this.onInvalidate();
-                if (this._isTrackPending && isSpyEnabled()) {
-                    spyReport({
-                        object: this,
-                        type: "scheduled-reaction"
-                    });
-                }
-            }
-            endBatch();
-        }
-    };
-    Reaction.prototype.track = function (fn) {
-        startBatch();
-        var notify = isSpyEnabled();
-        var startTime;
-        if (notify) {
-            startTime = Date.now();
-            spyReportStart({
-                object: this,
-                type: "reaction",
-                fn: fn
-            });
-        }
-        this._isRunning = true;
-        var result = trackDerivedFunction(this, fn, undefined);
-        this._isRunning = false;
-        this._isTrackPending = false;
-        if (this.isDisposed) {
-            clearObserving(this);
-        }
-        if (isCaughtException(result)) this.reportExceptionInDerivation(result.cause);
-        if (notify) {
-            spyReportEnd({
-                time: Date.now() - startTime
-            });
-        }
-        endBatch();
-    };
-    Reaction.prototype.reportExceptionInDerivation = function (error) {
-        var _this = this;
-        if (this.errorHandler) {
-            this.errorHandler(error, this);
-            return;
-        }
-        var message = "[mobx] Encountered an uncaught exception that was thrown by a reaction or observer component, in: '" + this;
-        var messageToUser = getMessage("m037");
-        console.error(message || messageToUser, error);
-        if (isSpyEnabled()) {
-            spyReport({
-                type: "error",
-                message: message,
-                error: error,
-                object: this
-            });
-        }
-        globalState.globalReactionErrorHandlers.forEach(function (f) {
-            return f(error, _this);
-        });
-    };
-    Reaction.prototype.dispose = function () {
-        if (!this.isDisposed) {
-            this.isDisposed = true;
-            if (!this._isRunning) {
-                startBatch();
-                clearObserving(this);
-                endBatch();
-            }
-        }
-    };
-    Reaction.prototype.getDisposer = function () {
-        var r = this.dispose.bind(this);
-        r.$mobx = this;
-        r.onError = registerErrorHandler;
-        return r;
-    };
-    Reaction.prototype.toString = function () {
-        return "Reaction[" + this.name + "]";
-    };
-    Reaction.prototype.whyRun = function () {
-        var observing = unique(this._isRunning ? this.newObserving : this.observing).map(function (dep) {
-            return dep.name;
-        });
-        return "\nWhyRun? reaction '" + this.name + "':\n * Status: [" + (this.isDisposed ? "stopped" : this._isRunning ? "running" : this.isScheduled() ? "scheduled" : "idle") + "]\n * This reaction will re-run if any of the following observables changes:\n    " + joinStrings(observing) + "\n    " + (this._isRunning ? " (... or any observable accessed during the remainder of the current run)" : "") + "\n\t" + getMessage("m038") + "\n";
-    };
-    return Reaction;
-}();
-exports.Reaction = Reaction;
-function registerErrorHandler(handler) {
-    invariant(this && this.$mobx && isReaction(this.$mobx), "Invalid `this`");
-    invariant(!this.$mobx.errorHandler, "Only one onErrorHandler can be registered");
-    this.$mobx.errorHandler = handler;
-}
-function onReactionError(handler) {
-    globalState.globalReactionErrorHandlers.push(handler);
-    return function () {
-        var idx = globalState.globalReactionErrorHandlers.indexOf(handler);
-        if (idx >= 0) globalState.globalReactionErrorHandlers.splice(idx, 1);
-    };
-}
-var MAX_REACTION_ITERATIONS = 100;
-var reactionScheduler = function reactionScheduler(f) {
-    return f();
-};
-function runReactions() {
-    if (globalState.inBatch > 0 || globalState.isRunningReactions) return;
-    reactionScheduler(runReactionsHelper);
-}
-function runReactionsHelper() {
-    globalState.isRunningReactions = true;
-    var allReactions = globalState.pendingReactions;
-    var iterations = 0;
-    while (allReactions.length > 0) {
-        if (++iterations === MAX_REACTION_ITERATIONS) {
-            console.error("Reaction doesn't converge to a stable state after " + MAX_REACTION_ITERATIONS + " iterations." + (" Probably there is a cycle in the reactive function: " + allReactions[0]));
-            allReactions.splice(0);
-        }
-        var remainingReactions = allReactions.splice(0);
-        for (var i = 0, l = remainingReactions.length; i < l; i++) {
-            remainingReactions[i].runReaction();
-        }
-    }
-    globalState.isRunningReactions = false;
-}
-var isReaction = createInstanceofPredicate("Reaction", Reaction);
-function setReactionScheduler(fn) {
-    var baseScheduler = reactionScheduler;
-    reactionScheduler = function reactionScheduler(f) {
-        return fn(function () {
-            return baseScheduler(f);
-        });
-    };
-}
-function isSpyEnabled() {
-    return !!globalState.spyListeners.length;
-}
-function spyReport(event) {
-    if (!globalState.spyListeners.length) return;
-    var listeners = globalState.spyListeners;
-    for (var i = 0, l = listeners.length; i < l; i++) {
-        listeners[i](event);
-    }
-}
-function spyReportStart(event) {
-    var change = objectAssign({}, event, { spyReportStart: true });
-    spyReport(change);
-}
-var END_EVENT = { spyReportEnd: true };
-function spyReportEnd(change) {
-    if (change) spyReport(objectAssign({}, change, END_EVENT));else spyReport(END_EVENT);
-}
-function spy(listener) {
-    globalState.spyListeners.push(listener);
-    return once(function () {
-        var idx = globalState.spyListeners.indexOf(listener);
-        if (idx !== -1) globalState.spyListeners.splice(idx, 1);
-    });
-}
-exports.spy = spy;
-function hasInterceptors(interceptable) {
-    return interceptable.interceptors && interceptable.interceptors.length > 0;
-}
-function registerInterceptor(interceptable, handler) {
-    var interceptors = interceptable.interceptors || (interceptable.interceptors = []);
-    interceptors.push(handler);
-    return once(function () {
-        var idx = interceptors.indexOf(handler);
-        if (idx !== -1) interceptors.splice(idx, 1);
-    });
-}
-function interceptChange(interceptable, change) {
-    var prevU = untrackedStart();
-    try {
-        var interceptors = interceptable.interceptors;
-        if (interceptors) for (var i = 0, l = interceptors.length; i < l; i++) {
-            change = interceptors[i](change);
-            invariant(!change || change.type, "Intercept handlers should return nothing or a change object");
-            if (!change) break;
-        }
-        return change;
-    } finally {
-        untrackedEnd(prevU);
-    }
-}
-function hasListeners(listenable) {
-    return listenable.changeListeners && listenable.changeListeners.length > 0;
-}
-function registerListener(listenable, handler) {
-    var listeners = listenable.changeListeners || (listenable.changeListeners = []);
-    listeners.push(handler);
-    return once(function () {
-        var idx = listeners.indexOf(handler);
-        if (idx !== -1) listeners.splice(idx, 1);
-    });
-}
-function notifyListeners(listenable, change) {
-    var prevU = untrackedStart();
-    var listeners = listenable.changeListeners;
-    if (!listeners) return;
-    listeners = listeners.slice();
-    for (var i = 0, l = listeners.length; i < l; i++) {
-        listeners[i](change);
-    }
-    untrackedEnd(prevU);
-}
-function asReference(value) {
-    deprecated("asReference is deprecated, use observable.ref instead");
-    return observable.ref(value);
-}
-exports.asReference = asReference;
-function asStructure(value) {
-    deprecated("asStructure is deprecated. Use observable.struct, computed.struct or reaction options instead.");
-    return observable.struct(value);
-}
-exports.asStructure = asStructure;
-function asFlat(value) {
-    deprecated("asFlat is deprecated, use observable.shallow instead");
-    return observable.shallow(value);
-}
-exports.asFlat = asFlat;
-function asMap(data) {
-    deprecated("asMap is deprecated, use observable.map or observable.shallowMap instead");
-    return observable.map(data || {});
-}
-exports.asMap = asMap;
-function isModifierDescriptor(thing) {
-    return (typeof thing === "undefined" ? "undefined" : _typeof(thing)) === "object" && thing !== null && thing.isMobxModifierDescriptor === true;
-}
-exports.isModifierDescriptor = isModifierDescriptor;
-function createModifierDescriptor(enhancer, initialValue) {
-    invariant(!isModifierDescriptor(initialValue), "Modifiers cannot be nested");
-    return {
-        isMobxModifierDescriptor: true,
-        initialValue: initialValue,
-        enhancer: enhancer
-    };
-}
-function deepEnhancer(v, _, name) {
-    if (isModifierDescriptor(v)) fail("You tried to assign a modifier wrapped value to a collection, please define modifiers when creating the collection, not when modifying it");
-    if (isObservable(v)) return v;
-    if (Array.isArray(v)) return observable.array(v, name);
-    if (isPlainObject(v)) return observable.object(v, name);
-    if (isES6Map(v)) return observable.map(v, name);
-    return v;
-}
-function shallowEnhancer(v, _, name) {
-    if (isModifierDescriptor(v)) fail("You tried to assign a modifier wrapped value to a collection, please define modifiers when creating the collection, not when modifying it");
-    if (v === undefined || v === null) return v;
-    if (isObservableObject(v) || isObservableArray(v) || isObservableMap(v)) return v;
-    if (Array.isArray(v)) return observable.shallowArray(v, name);
-    if (isPlainObject(v)) return observable.shallowObject(v, name);
-    if (isES6Map(v)) return observable.shallowMap(v, name);
-    return fail("The shallow modifier / decorator can only used in combination with arrays, objects and maps");
-}
-function referenceEnhancer(newValue) {
-    return newValue;
-}
-function deepStructEnhancer(v, oldValue, name) {
-    if (deepEqual(v, oldValue)) return oldValue;
-    if (isObservable(v)) return v;
-    if (Array.isArray(v)) return new ObservableArray(v, deepStructEnhancer, name);
-    if (isES6Map(v)) return new ObservableMap(v, deepStructEnhancer, name);
-    if (isPlainObject(v)) {
-        var res = {};
-        asObservableObject(res, name);
-        extendObservableHelper(res, deepStructEnhancer, [v]);
-        return res;
-    }
-    return v;
-}
-function refStructEnhancer(v, oldValue, name) {
-    if (deepEqual(v, oldValue)) return oldValue;
-    return v;
-}
-var MAX_SPLICE_SIZE = 10000;
-var safariPrototypeSetterInheritanceBug = function () {
-    var v = false;
-    var p = {};
-    Object.defineProperty(p, "0", { set: function set() {
-            v = true;
-        } });
-    Object.create(p)["0"] = 1;
-    return v === false;
-}();
-var OBSERVABLE_ARRAY_BUFFER_SIZE = 0;
-var StubArray = function () {
-    function StubArray() {}
-    return StubArray;
-}();
-StubArray.prototype = [];
-var ObservableArrayAdministration = function () {
-    function ObservableArrayAdministration(name, enhancer, array, owned) {
-        this.array = array;
-        this.owned = owned;
-        this.lastKnownLength = 0;
-        this.interceptors = null;
-        this.changeListeners = null;
-        this.atom = new BaseAtom(name || "ObservableArray@" + getNextId());
-        this.enhancer = function (newV, oldV) {
-            return enhancer(newV, oldV, name + "[..]");
-        };
-    }
-    ObservableArrayAdministration.prototype.intercept = function (handler) {
-        return registerInterceptor(this, handler);
-    };
-    ObservableArrayAdministration.prototype.observe = function (listener, fireImmediately) {
-        if (fireImmediately === void 0) {
-            fireImmediately = false;
-        }
-        if (fireImmediately) {
-            listener({
-                object: this.array,
-                type: "splice",
-                index: 0,
-                added: this.values.slice(),
-                addedCount: this.values.length,
-                removed: [],
-                removedCount: 0
-            });
-        }
-        return registerListener(this, listener);
-    };
-    ObservableArrayAdministration.prototype.getArrayLength = function () {
-        this.atom.reportObserved();
-        return this.values.length;
-    };
-    ObservableArrayAdministration.prototype.setArrayLength = function (newLength) {
-        if (typeof newLength !== "number" || newLength < 0) throw new Error("[mobx.array] Out of range: " + newLength);
-        var currentLength = this.values.length;
-        if (newLength === currentLength) return;else if (newLength > currentLength) {
-            var newItems = new Array(newLength - currentLength);
-            for (var i = 0; i < newLength - currentLength; i++) {
-                newItems[i] = undefined;
-            }this.spliceWithArray(currentLength, 0, newItems);
-        } else this.spliceWithArray(newLength, currentLength - newLength);
-    };
-    ObservableArrayAdministration.prototype.updateArrayLength = function (oldLength, delta) {
-        if (oldLength !== this.lastKnownLength) throw new Error("[mobx] Modification exception: the internal structure of an observable array was changed. Did you use peek() to change it?");
-        this.lastKnownLength += delta;
-        if (delta > 0 && oldLength + delta + 1 > OBSERVABLE_ARRAY_BUFFER_SIZE) reserveArrayBuffer(oldLength + delta + 1);
-    };
-    ObservableArrayAdministration.prototype.spliceWithArray = function (index, deleteCount, newItems) {
-        var _this = this;
-        checkIfStateModificationsAreAllowed(this.atom);
-        var length = this.values.length;
-        if (index === undefined) index = 0;else if (index > length) index = length;else if (index < 0) index = Math.max(0, length + index);
-        if (arguments.length === 1) deleteCount = length - index;else if (deleteCount === undefined || deleteCount === null) deleteCount = 0;else deleteCount = Math.max(0, Math.min(deleteCount, length - index));
-        if (newItems === undefined) newItems = [];
-        if (hasInterceptors(this)) {
-            var change = interceptChange(this, {
-                object: this.array,
-                type: "splice",
-                index: index,
-                removedCount: deleteCount,
-                added: newItems
-            });
-            if (!change) return EMPTY_ARRAY;
-            deleteCount = change.removedCount;
-            newItems = change.added;
-        }
-        newItems = newItems.map(function (v) {
-            return _this.enhancer(v, undefined);
-        });
-        var lengthDelta = newItems.length - deleteCount;
-        this.updateArrayLength(length, lengthDelta);
-        var res = this.spliceItemsIntoValues(index, deleteCount, newItems);
-        if (deleteCount !== 0 || newItems.length !== 0) this.notifyArraySplice(index, newItems, res);
-        return res;
-    };
-    ObservableArrayAdministration.prototype.spliceItemsIntoValues = function (index, deleteCount, newItems) {
-        if (newItems.length < MAX_SPLICE_SIZE) {
-            return (_a = this.values).splice.apply(_a, [index, deleteCount].concat(newItems));
-        } else {
-            var res = this.values.slice(index, index + deleteCount);
-            this.values = this.values.slice(0, index).concat(newItems, this.values.slice(index + deleteCount));
-            return res;
-        }
-        var _a;
-    };
-    ObservableArrayAdministration.prototype.notifyArrayChildUpdate = function (index, newValue, oldValue) {
-        var notifySpy = !this.owned && isSpyEnabled();
-        var notify = hasListeners(this);
-        var change = notify || notifySpy ? {
-            object: this.array,
-            type: "update",
-            index: index, newValue: newValue, oldValue: oldValue
-        } : null;
-        if (notifySpy) spyReportStart(change);
-        this.atom.reportChanged();
-        if (notify) notifyListeners(this, change);
-        if (notifySpy) spyReportEnd();
-    };
-    ObservableArrayAdministration.prototype.notifyArraySplice = function (index, added, removed) {
-        var notifySpy = !this.owned && isSpyEnabled();
-        var notify = hasListeners(this);
-        var change = notify || notifySpy ? {
-            object: this.array,
-            type: "splice",
-            index: index, removed: removed, added: added,
-            removedCount: removed.length,
-            addedCount: added.length
-        } : null;
-        if (notifySpy) spyReportStart(change);
-        this.atom.reportChanged();
-        if (notify) notifyListeners(this, change);
-        if (notifySpy) spyReportEnd();
-    };
-    return ObservableArrayAdministration;
-}();
-var ObservableArray = function (_super) {
-    __extends(ObservableArray, _super);
-    function ObservableArray(initialValues, enhancer, name, owned) {
-        if (name === void 0) {
-            name = "ObservableArray@" + getNextId();
-        }
-        if (owned === void 0) {
-            owned = false;
-        }
-        var _this = _super.call(this) || this;
-        var adm = new ObservableArrayAdministration(name, enhancer, _this, owned);
-        addHiddenFinalProp(_this, "$mobx", adm);
-        if (initialValues && initialValues.length) {
-            adm.updateArrayLength(0, initialValues.length);
-            adm.values = initialValues.map(function (v) {
-                return enhancer(v, undefined, name + "[..]");
-            });
-            adm.notifyArraySplice(0, adm.values.slice(), EMPTY_ARRAY);
-        } else {
-            adm.values = [];
-        }
-        if (safariPrototypeSetterInheritanceBug) {
-            Object.defineProperty(adm.array, "0", ENTRY_0);
-        }
-        return _this;
-    }
-    ObservableArray.prototype.intercept = function (handler) {
-        return this.$mobx.intercept(handler);
-    };
-    ObservableArray.prototype.observe = function (listener, fireImmediately) {
-        if (fireImmediately === void 0) {
-            fireImmediately = false;
-        }
-        return this.$mobx.observe(listener, fireImmediately);
-    };
-    ObservableArray.prototype.clear = function () {
-        return this.splice(0);
-    };
-    ObservableArray.prototype.concat = function () {
-        var arrays = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-            arrays[_i] = arguments[_i];
-        }
-        this.$mobx.atom.reportObserved();
-        return Array.prototype.concat.apply(this.peek(), arrays.map(function (a) {
-            return isObservableArray(a) ? a.peek() : a;
-        }));
-    };
-    ObservableArray.prototype.replace = function (newItems) {
-        return this.$mobx.spliceWithArray(0, this.$mobx.values.length, newItems);
-    };
-    ObservableArray.prototype.toJS = function () {
-        return this.slice();
-    };
-    ObservableArray.prototype.toJSON = function () {
-        return this.toJS();
-    };
-    ObservableArray.prototype.peek = function () {
-        return this.$mobx.values;
-    };
-    ObservableArray.prototype.find = function (predicate, thisArg, fromIndex) {
-        if (fromIndex === void 0) {
-            fromIndex = 0;
-        }
-        this.$mobx.atom.reportObserved();
-        var items = this.$mobx.values,
-            l = items.length;
-        for (var i = fromIndex; i < l; i++) {
-            if (predicate.call(thisArg, items[i], i, this)) return items[i];
-        }return undefined;
-    };
-    ObservableArray.prototype.splice = function (index, deleteCount) {
-        var newItems = [];
-        for (var _i = 2; _i < arguments.length; _i++) {
-            newItems[_i - 2] = arguments[_i];
-        }
-        switch (arguments.length) {
-            case 0:
-                return [];
-            case 1:
-                return this.$mobx.spliceWithArray(index);
-            case 2:
-                return this.$mobx.spliceWithArray(index, deleteCount);
-        }
-        return this.$mobx.spliceWithArray(index, deleteCount, newItems);
-    };
-    ObservableArray.prototype.spliceWithArray = function (index, deleteCount, newItems) {
-        return this.$mobx.spliceWithArray(index, deleteCount, newItems);
-    };
-    ObservableArray.prototype.push = function () {
-        var items = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-            items[_i] = arguments[_i];
-        }
-        var adm = this.$mobx;
-        adm.spliceWithArray(adm.values.length, 0, items);
-        return adm.values.length;
-    };
-    ObservableArray.prototype.pop = function () {
-        return this.splice(Math.max(this.$mobx.values.length - 1, 0), 1)[0];
-    };
-    ObservableArray.prototype.shift = function () {
-        return this.splice(0, 1)[0];
-    };
-    ObservableArray.prototype.unshift = function () {
-        var items = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-            items[_i] = arguments[_i];
-        }
-        var adm = this.$mobx;
-        adm.spliceWithArray(0, 0, items);
-        return adm.values.length;
-    };
-    ObservableArray.prototype.reverse = function () {
-        this.$mobx.atom.reportObserved();
-        var clone = this.slice();
-        return clone.reverse.apply(clone, arguments);
-    };
-    ObservableArray.prototype.sort = function (compareFn) {
-        this.$mobx.atom.reportObserved();
-        var clone = this.slice();
-        return clone.sort.apply(clone, arguments);
-    };
-    ObservableArray.prototype.remove = function (value) {
-        var idx = this.$mobx.values.indexOf(value);
-        if (idx > -1) {
-            this.splice(idx, 1);
-            return true;
-        }
-        return false;
-    };
-    ObservableArray.prototype.move = function (fromIndex, toIndex) {
-        function checkIndex(index) {
-            if (index < 0) {
-                throw new Error("[mobx.array] Index out of bounds: " + index + " is negative");
-            }
-            var length = this.$mobx.values.length;
-            if (index >= length) {
-                throw new Error("[mobx.array] Index out of bounds: " + index + " is not smaller than " + length);
-            }
-        }
-        checkIndex.call(this, fromIndex);
-        checkIndex.call(this, toIndex);
-        if (fromIndex === toIndex) {
-            return;
-        }
-        var oldItems = this.$mobx.values;
-        var newItems;
-        if (fromIndex < toIndex) {
-            newItems = oldItems.slice(0, fromIndex).concat(oldItems.slice(fromIndex + 1, toIndex + 1), [oldItems[fromIndex]], oldItems.slice(toIndex + 1));
-        } else {
-            newItems = oldItems.slice(0, toIndex).concat([oldItems[fromIndex]], oldItems.slice(toIndex, fromIndex), oldItems.slice(fromIndex + 1));
-        }
-        this.replace(newItems);
-    };
-    ObservableArray.prototype.toString = function () {
-        this.$mobx.atom.reportObserved();
-        return Array.prototype.toString.apply(this.$mobx.values, arguments);
-    };
-    ObservableArray.prototype.toLocaleString = function () {
-        this.$mobx.atom.reportObserved();
-        return Array.prototype.toLocaleString.apply(this.$mobx.values, arguments);
-    };
-    return ObservableArray;
-}(StubArray);
-declareIterator(ObservableArray.prototype, function () {
-    return arrayAsIterator(this.slice());
-});
-makeNonEnumerable(ObservableArray.prototype, ["constructor", "intercept", "observe", "clear", "concat", "replace", "toJS", "toJSON", "peek", "find", "splice", "spliceWithArray", "push", "pop", "shift", "unshift", "reverse", "sort", "remove", "move", "toString", "toLocaleString"]);
-Object.defineProperty(ObservableArray.prototype, "length", {
-    enumerable: false,
-    configurable: true,
-    get: function get() {
-        return this.$mobx.getArrayLength();
-    },
-    set: function set(newLength) {
-        this.$mobx.setArrayLength(newLength);
-    }
-});
-["every", "filter", "forEach", "indexOf", "join", "lastIndexOf", "map", "reduce", "reduceRight", "slice", "some"].forEach(function (funcName) {
-    var baseFunc = Array.prototype[funcName];
-    invariant(typeof baseFunc === "function", "Base function not defined on Array prototype: '" + funcName + "'");
-    addHiddenProp(ObservableArray.prototype, funcName, function () {
-        this.$mobx.atom.reportObserved();
-        return baseFunc.apply(this.$mobx.values, arguments);
-    });
-});
-var ENTRY_0 = {
-    configurable: true,
-    enumerable: false,
-    set: createArraySetter(0),
-    get: createArrayGetter(0)
-};
-function createArrayBufferItem(index) {
-    var set = createArraySetter(index);
-    var get = createArrayGetter(index);
-    Object.defineProperty(ObservableArray.prototype, "" + index, {
-        enumerable: false,
-        configurable: true,
-        set: set, get: get
-    });
-}
-function createArraySetter(index) {
-    return function (newValue) {
-        var adm = this.$mobx;
-        var values = adm.values;
-        if (index < values.length) {
-            checkIfStateModificationsAreAllowed(adm.atom);
-            var oldValue = values[index];
-            if (hasInterceptors(adm)) {
-                var change = interceptChange(adm, {
-                    type: "update",
-                    object: adm.array,
-                    index: index, newValue: newValue
-                });
-                if (!change) return;
-                newValue = change.newValue;
-            }
-            newValue = adm.enhancer(newValue, oldValue);
-            var changed = newValue !== oldValue;
-            if (changed) {
-                values[index] = newValue;
-                adm.notifyArrayChildUpdate(index, newValue, oldValue);
-            }
-        } else if (index === values.length) {
-            adm.spliceWithArray(index, 0, [newValue]);
-        } else throw new Error("[mobx.array] Index out of bounds, " + index + " is larger than " + values.length);
-    };
-}
-function createArrayGetter(index) {
-    return function () {
-        var impl = this.$mobx;
-        if (impl) {
-            if (index < impl.values.length) {
-                impl.atom.reportObserved();
-                return impl.values[index];
-            }
-            console.warn("[mobx.array] Attempt to read an array index (" + index + ") that is out of bounds (" + impl.values.length + "). Please check length first. Out of bound indices will not be tracked by MobX");
-        }
-        return undefined;
-    };
-}
-function reserveArrayBuffer(max) {
-    for (var index = OBSERVABLE_ARRAY_BUFFER_SIZE; index < max; index++) {
-        createArrayBufferItem(index);
-    }OBSERVABLE_ARRAY_BUFFER_SIZE = max;
-}
-reserveArrayBuffer(1000);
-var isObservableArrayAdministration = createInstanceofPredicate("ObservableArrayAdministration", ObservableArrayAdministration);
-function isObservableArray(thing) {
-    return isObject(thing) && isObservableArrayAdministration(thing.$mobx);
-}
-exports.isObservableArray = isObservableArray;
-var ObservableMapMarker = {};
-var ObservableMap = function () {
-    function ObservableMap(initialData, enhancer, name) {
-        if (enhancer === void 0) {
-            enhancer = deepEnhancer;
-        }
-        if (name === void 0) {
-            name = "ObservableMap@" + getNextId();
-        }
-        this.enhancer = enhancer;
-        this.name = name;
-        this.$mobx = ObservableMapMarker;
-        this._data = {};
-        this._hasMap = {};
-        this._keys = new ObservableArray(undefined, referenceEnhancer, this.name + ".keys()", true);
-        this.interceptors = null;
-        this.changeListeners = null;
-        this.merge(initialData);
-    }
-    ObservableMap.prototype._has = function (key) {
-        return typeof this._data[key] !== "undefined";
-    };
-    ObservableMap.prototype.has = function (key) {
-        if (!this.isValidKey(key)) return false;
-        key = "" + key;
-        if (this._hasMap[key]) return this._hasMap[key].get();
-        return this._updateHasMapEntry(key, false).get();
-    };
-    ObservableMap.prototype.set = function (key, value) {
-        this.assertValidKey(key);
-        key = "" + key;
-        var hasKey = this._has(key);
-        if (hasInterceptors(this)) {
-            var change = interceptChange(this, {
-                type: hasKey ? "update" : "add",
-                object: this,
-                newValue: value,
-                name: key
-            });
-            if (!change) return this;
-            value = change.newValue;
-        }
-        if (hasKey) {
-            this._updateValue(key, value);
-        } else {
-            this._addValue(key, value);
-        }
-        return this;
-    };
-    ObservableMap.prototype.delete = function (key) {
-        var _this = this;
-        this.assertValidKey(key);
-        key = "" + key;
-        if (hasInterceptors(this)) {
-            var change = interceptChange(this, {
-                type: "delete",
-                object: this,
-                name: key
-            });
-            if (!change) return false;
-        }
-        if (this._has(key)) {
-            var notifySpy = isSpyEnabled();
-            var notify = hasListeners(this);
-            var change = notify || notifySpy ? {
-                type: "delete",
-                object: this,
-                oldValue: this._data[key].value,
-                name: key
-            } : null;
-            if (notifySpy) spyReportStart(change);
-            runInTransaction(function () {
-                _this._keys.remove(key);
-                _this._updateHasMapEntry(key, false);
-                var observable = _this._data[key];
-                observable.setNewValue(undefined);
-                _this._data[key] = undefined;
-            });
-            if (notify) notifyListeners(this, change);
-            if (notifySpy) spyReportEnd();
-            return true;
-        }
-        return false;
-    };
-    ObservableMap.prototype._updateHasMapEntry = function (key, value) {
-        var entry = this._hasMap[key];
-        if (entry) {
-            entry.setNewValue(value);
-        } else {
-            entry = this._hasMap[key] = new ObservableValue(value, referenceEnhancer, this.name + "." + key + "?", false);
-        }
-        return entry;
-    };
-    ObservableMap.prototype._updateValue = function (name, newValue) {
-        var observable = this._data[name];
-        newValue = observable.prepareNewValue(newValue);
-        if (newValue !== UNCHANGED) {
-            var notifySpy = isSpyEnabled();
-            var notify = hasListeners(this);
-            var change = notify || notifySpy ? {
-                type: "update",
-                object: this,
-                oldValue: observable.value,
-                name: name, newValue: newValue
-            } : null;
-            if (notifySpy) spyReportStart(change);
-            observable.setNewValue(newValue);
-            if (notify) notifyListeners(this, change);
-            if (notifySpy) spyReportEnd();
-        }
-    };
-    ObservableMap.prototype._addValue = function (name, newValue) {
-        var _this = this;
-        runInTransaction(function () {
-            var observable = _this._data[name] = new ObservableValue(newValue, _this.enhancer, _this.name + "." + name, false);
-            newValue = observable.value;
-            _this._updateHasMapEntry(name, true);
-            _this._keys.push(name);
-        });
-        var notifySpy = isSpyEnabled();
-        var notify = hasListeners(this);
-        var change = notify || notifySpy ? {
-            type: "add",
-            object: this,
-            name: name, newValue: newValue
-        } : null;
-        if (notifySpy) spyReportStart(change);
-        if (notify) notifyListeners(this, change);
-        if (notifySpy) spyReportEnd();
-    };
-    ObservableMap.prototype.get = function (key) {
-        key = "" + key;
-        if (this.has(key)) return this._data[key].get();
-        return undefined;
-    };
-    ObservableMap.prototype.keys = function () {
-        return arrayAsIterator(this._keys.slice());
-    };
-    ObservableMap.prototype.values = function () {
-        return arrayAsIterator(this._keys.map(this.get, this));
-    };
-    ObservableMap.prototype.entries = function () {
-        var _this = this;
-        return arrayAsIterator(this._keys.map(function (key) {
-            return [key, _this.get(key)];
-        }));
-    };
-    ObservableMap.prototype.forEach = function (callback, thisArg) {
-        var _this = this;
-        this.keys().forEach(function (key) {
-            return callback.call(thisArg, _this.get(key), key, _this);
-        });
-    };
-    ObservableMap.prototype.merge = function (other) {
-        var _this = this;
-        if (isObservableMap(other)) {
-            other = other.toJS();
-        }
-        runInTransaction(function () {
-            if (isPlainObject(other)) Object.keys(other).forEach(function (key) {
-                return _this.set(key, other[key]);
-            });else if (Array.isArray(other)) other.forEach(function (_a) {
-                var key = _a[0],
-                    value = _a[1];
-                return _this.set(key, value);
-            });else if (isES6Map(other)) other.forEach(function (value, key) {
-                return _this.set(key, value);
-            });else if (other !== null && other !== undefined) fail("Cannot initialize map from " + other);
-        });
-        return this;
-    };
-    ObservableMap.prototype.clear = function () {
-        var _this = this;
-        runInTransaction(function () {
-            untracked(function () {
-                _this.keys().forEach(_this.delete, _this);
-            });
-        });
-    };
-    ObservableMap.prototype.replace = function (values) {
-        var _this = this;
-        runInTransaction(function () {
-            _this.clear();
-            _this.merge(values);
-        });
-        return this;
-    };
-    Object.defineProperty(ObservableMap.prototype, "size", {
-        get: function get() {
-            return this._keys.length;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    ObservableMap.prototype.toJS = function () {
-        var _this = this;
-        var res = {};
-        this.keys().forEach(function (key) {
-            return res[key] = _this.get(key);
-        });
-        return res;
-    };
-    ObservableMap.prototype.toJSON = function () {
-        return this.toJS();
-    };
-    ObservableMap.prototype.isValidKey = function (key) {
-        if (key === null || key === undefined) return false;
-        if (typeof key === "string" || typeof key === "number" || typeof key === "boolean") return true;
-        return false;
-    };
-    ObservableMap.prototype.assertValidKey = function (key) {
-        if (!this.isValidKey(key)) throw new Error("[mobx.map] Invalid key: '" + key + "', only strings, numbers and booleans are accepted as key in observable maps.");
-    };
-    ObservableMap.prototype.toString = function () {
-        var _this = this;
-        return this.name + "[{ " + this.keys().map(function (key) {
-            return key + ": " + ("" + _this.get(key));
-        }).join(", ") + " }]";
-    };
-    ObservableMap.prototype.observe = function (listener, fireImmediately) {
-        invariant(fireImmediately !== true, getMessage("m033"));
-        return registerListener(this, listener);
-    };
-    ObservableMap.prototype.intercept = function (handler) {
-        return registerInterceptor(this, handler);
-    };
-    return ObservableMap;
-}();
-exports.ObservableMap = ObservableMap;
-declareIterator(ObservableMap.prototype, function () {
-    return this.entries();
-});
-function map(initialValues) {
-    deprecated("`mobx.map` is deprecated, use `new ObservableMap` or `mobx.observable.map` instead");
-    return observable.map(initialValues);
-}
-exports.map = map;
-var isObservableMap = createInstanceofPredicate("ObservableMap", ObservableMap);
-exports.isObservableMap = isObservableMap;
-var ObservableObjectAdministration = function () {
-    function ObservableObjectAdministration(target, name) {
-        this.target = target;
-        this.name = name;
-        this.values = {};
-        this.changeListeners = null;
-        this.interceptors = null;
-    }
-    ObservableObjectAdministration.prototype.observe = function (callback, fireImmediately) {
-        invariant(fireImmediately !== true, "`observe` doesn't support the fire immediately property for observable objects.");
-        return registerListener(this, callback);
-    };
-    ObservableObjectAdministration.prototype.intercept = function (handler) {
-        return registerInterceptor(this, handler);
-    };
-    return ObservableObjectAdministration;
-}();
-function asObservableObject(target, name) {
-    if (isObservableObject(target)) return target.$mobx;
-    invariant(Object.isExtensible(target), getMessage("m035"));
-    if (!isPlainObject(target)) name = (target.constructor.name || "ObservableObject") + "@" + getNextId();
-    if (!name) name = "ObservableObject@" + getNextId();
-    var adm = new ObservableObjectAdministration(target, name);
-    addHiddenFinalProp(target, "$mobx", adm);
-    return adm;
-}
-function defineObservablePropertyFromDescriptor(adm, propName, descriptor, defaultEnhancer) {
-    if (adm.values[propName]) {
-        invariant("value" in descriptor, "The property " + propName + " in " + adm.name + " is already observable, cannot redefine it as computed property");
-        adm.target[propName] = descriptor.value;
-        return;
-    }
-    if ("value" in descriptor) {
-        if (isModifierDescriptor(descriptor.value)) {
-            var modifierDescriptor = descriptor.value;
-            defineObservableProperty(adm, propName, modifierDescriptor.initialValue, modifierDescriptor.enhancer);
-        } else if (isAction(descriptor.value) && descriptor.value.autoBind === true) {
-            defineBoundAction(adm.target, propName, descriptor.value.originalFn);
-        } else if (isComputedValue(descriptor.value)) {
-            defineComputedPropertyFromComputedValue(adm, propName, descriptor.value);
-        } else {
-            defineObservableProperty(adm, propName, descriptor.value, defaultEnhancer);
-        }
-    } else {
-        defineComputedProperty(adm, propName, descriptor.get, descriptor.set, false, true);
-    }
-}
-function defineObservableProperty(adm, propName, newValue, enhancer) {
-    assertPropertyConfigurable(adm.target, propName);
-    if (hasInterceptors(adm)) {
-        var change = interceptChange(adm, {
-            object: adm.target,
-            name: propName,
-            type: "add",
-            newValue: newValue
-        });
-        if (!change) return;
-        newValue = change.newValue;
-    }
-    var observable = adm.values[propName] = new ObservableValue(newValue, enhancer, adm.name + "." + propName, false);
-    newValue = observable.value;
-    Object.defineProperty(adm.target, propName, generateObservablePropConfig(propName));
-    notifyPropertyAddition(adm, adm.target, propName, newValue);
-}
-function defineComputedProperty(adm, propName, getter, setter, compareStructural, asInstanceProperty) {
-    if (asInstanceProperty) assertPropertyConfigurable(adm.target, propName);
-    adm.values[propName] = new ComputedValue(getter, adm.target, compareStructural, adm.name + "." + propName, setter);
-    if (asInstanceProperty) {
-        Object.defineProperty(adm.target, propName, generateComputedPropConfig(propName));
-    }
-}
-function defineComputedPropertyFromComputedValue(adm, propName, computedValue) {
-    var name = adm.name + "." + propName;
-    computedValue.name = name;
-    if (!computedValue.scope) computedValue.scope = adm.target;
-    adm.values[propName] = computedValue;
-    Object.defineProperty(adm.target, propName, generateComputedPropConfig(propName));
-}
-var observablePropertyConfigs = {};
-var computedPropertyConfigs = {};
-function generateObservablePropConfig(propName) {
-    return observablePropertyConfigs[propName] || (observablePropertyConfigs[propName] = {
-        configurable: true,
-        enumerable: true,
-        get: function get() {
-            return this.$mobx.values[propName].get();
-        },
-        set: function set(v) {
-            setPropertyValue(this, propName, v);
-        }
-    });
-}
-function generateComputedPropConfig(propName) {
-    return computedPropertyConfigs[propName] || (computedPropertyConfigs[propName] = {
-        configurable: true,
-        enumerable: false,
-        get: function get() {
-            return this.$mobx.values[propName].get();
-        },
-        set: function set(v) {
-            return this.$mobx.values[propName].set(v);
-        }
-    });
-}
-function setPropertyValue(instance, name, newValue) {
-    var adm = instance.$mobx;
-    var observable = adm.values[name];
-    if (hasInterceptors(adm)) {
-        var change = interceptChange(adm, {
-            type: "update",
-            object: instance,
-            name: name, newValue: newValue
-        });
-        if (!change) return;
-        newValue = change.newValue;
-    }
-    newValue = observable.prepareNewValue(newValue);
-    if (newValue !== UNCHANGED) {
-        var notify = hasListeners(adm);
-        var notifySpy = isSpyEnabled();
-        var change = notify || notifySpy ? {
-            type: "update",
-            object: instance,
-            oldValue: observable.value,
-            name: name, newValue: newValue
-        } : null;
-        if (notifySpy) spyReportStart(change);
-        observable.setNewValue(newValue);
-        if (notify) notifyListeners(adm, change);
-        if (notifySpy) spyReportEnd();
-    }
-}
-function notifyPropertyAddition(adm, object, name, newValue) {
-    var notify = hasListeners(adm);
-    var notifySpy = isSpyEnabled();
-    var change = notify || notifySpy ? {
-        type: "add",
-        object: object, name: name, newValue: newValue
-    } : null;
-    if (notifySpy) spyReportStart(change);
-    if (notify) notifyListeners(adm, change);
-    if (notifySpy) spyReportEnd();
-}
-var isObservableObjectAdministration = createInstanceofPredicate("ObservableObjectAdministration", ObservableObjectAdministration);
-function isObservableObject(thing) {
-    if (isObject(thing)) {
-        runLazyInitializers(thing);
-        return isObservableObjectAdministration(thing.$mobx);
-    }
-    return false;
-}
-exports.isObservableObject = isObservableObject;
-var UNCHANGED = {};
-var ObservableValue = function (_super) {
-    __extends(ObservableValue, _super);
-    function ObservableValue(value, enhancer, name, notifySpy) {
-        if (name === void 0) {
-            name = "ObservableValue@" + getNextId();
-        }
-        if (notifySpy === void 0) {
-            notifySpy = true;
-        }
-        var _this = _super.call(this, name) || this;
-        _this.enhancer = enhancer;
-        _this.hasUnreportedChange = false;
-        _this.value = enhancer(value, undefined, name);
-        if (notifySpy && isSpyEnabled()) {
-            spyReport({ type: "create", object: _this, newValue: _this.value });
-        }
-        return _this;
-    }
-    ObservableValue.prototype.set = function (newValue) {
-        var oldValue = this.value;
-        newValue = this.prepareNewValue(newValue);
-        if (newValue !== UNCHANGED) {
-            var notifySpy = isSpyEnabled();
-            if (notifySpy) {
-                spyReportStart({
-                    type: "update",
-                    object: this,
-                    newValue: newValue, oldValue: oldValue
-                });
-            }
-            this.setNewValue(newValue);
-            if (notifySpy) spyReportEnd();
-        }
-    };
-    ObservableValue.prototype.prepareNewValue = function (newValue) {
-        checkIfStateModificationsAreAllowed(this);
-        if (hasInterceptors(this)) {
-            var change = interceptChange(this, { object: this, type: "update", newValue: newValue });
-            if (!change) return UNCHANGED;
-            newValue = change.newValue;
-        }
-        newValue = this.enhancer(newValue, this.value, this.name);
-        return this.value !== newValue ? newValue : UNCHANGED;
-    };
-    ObservableValue.prototype.setNewValue = function (newValue) {
-        var oldValue = this.value;
-        this.value = newValue;
-        this.reportChanged();
-        if (hasListeners(this)) {
-            notifyListeners(this, {
-                type: "update",
-                object: this,
-                newValue: newValue,
-                oldValue: oldValue
-            });
-        }
-    };
-    ObservableValue.prototype.get = function () {
-        this.reportObserved();
-        return this.value;
-    };
-    ObservableValue.prototype.intercept = function (handler) {
-        return registerInterceptor(this, handler);
-    };
-    ObservableValue.prototype.observe = function (listener, fireImmediately) {
-        if (fireImmediately) listener({
-            object: this,
-            type: "update",
-            newValue: this.value,
-            oldValue: undefined
-        });
-        return registerListener(this, listener);
-    };
-    ObservableValue.prototype.toJSON = function () {
-        return this.get();
-    };
-    ObservableValue.prototype.toString = function () {
-        return this.name + "[" + this.value + "]";
-    };
-    ObservableValue.prototype.valueOf = function () {
-        return toPrimitive(this.get());
-    };
-    return ObservableValue;
-}(BaseAtom);
-ObservableValue.prototype[primitiveSymbol()] = ObservableValue.prototype.valueOf;
-var isObservableValue = createInstanceofPredicate("ObservableValue", ObservableValue);
-exports.isBoxedObservable = isObservableValue;
-function getAtom(thing, property) {
-    if ((typeof thing === "undefined" ? "undefined" : _typeof(thing)) === "object" && thing !== null) {
-        if (isObservableArray(thing)) {
-            invariant(property === undefined, getMessage("m036"));
-            return thing.$mobx.atom;
-        }
-        if (isObservableMap(thing)) {
-            var anyThing = thing;
-            if (property === undefined) return getAtom(anyThing._keys);
-            var observable_2 = anyThing._data[property] || anyThing._hasMap[property];
-            invariant(!!observable_2, "the entry '" + property + "' does not exist in the observable map '" + getDebugName(thing) + "'");
-            return observable_2;
-        }
-        runLazyInitializers(thing);
-        if (isObservableObject(thing)) {
-            if (!property) return fail("please specify a property");
-            var observable_3 = thing.$mobx.values[property];
-            invariant(!!observable_3, "no observable property '" + property + "' found on the observable object '" + getDebugName(thing) + "'");
-            return observable_3;
-        }
-        if (isAtom(thing) || isComputedValue(thing) || isReaction(thing)) {
-            return thing;
-        }
-    } else if (typeof thing === "function") {
-        if (isReaction(thing.$mobx)) {
-            return thing.$mobx;
-        }
-    }
-    return fail("Cannot obtain atom from " + thing);
-}
-function getAdministration(thing, property) {
-    invariant(thing, "Expecting some object");
-    if (property !== undefined) return getAdministration(getAtom(thing, property));
-    if (isAtom(thing) || isComputedValue(thing) || isReaction(thing)) return thing;
-    if (isObservableMap(thing)) return thing;
-    runLazyInitializers(thing);
-    if (thing.$mobx) return thing.$mobx;
-    invariant(false, "Cannot obtain administration from " + thing);
-}
-function getDebugName(thing, property) {
-    var named;
-    if (property !== undefined) named = getAtom(thing, property);else if (isObservableObject(thing) || isObservableMap(thing)) named = getAdministration(thing);else named = getAtom(thing);
-    return named.name;
-}
-function createClassPropertyDecorator(onInitialize, _get, _set, enumerable, allowCustomArguments) {
-    function classPropertyDecorator(target, key, descriptor, customArgs, argLen) {
-        if (argLen === void 0) {
-            argLen = 0;
-        }
-        invariant(allowCustomArguments || quacksLikeADecorator(arguments), "This function is a decorator, but it wasn't invoked like a decorator");
-        if (!descriptor) {
-            var newDescriptor = {
-                enumerable: enumerable,
-                configurable: true,
-                get: function get() {
-                    if (!this.__mobxInitializedProps || this.__mobxInitializedProps[key] !== true) typescriptInitializeProperty(this, key, undefined, onInitialize, customArgs, descriptor);
-                    return _get.call(this, key);
-                },
-                set: function set(v) {
-                    if (!this.__mobxInitializedProps || this.__mobxInitializedProps[key] !== true) {
-                        typescriptInitializeProperty(this, key, v, onInitialize, customArgs, descriptor);
-                    } else {
-                        _set.call(this, key, v);
-                    }
-                }
-            };
-            if (arguments.length < 3 || arguments.length === 5 && argLen < 3) {
-                Object.defineProperty(target, key, newDescriptor);
-            }
-            return newDescriptor;
-        } else {
-            if (!hasOwnProperty(target, "__mobxLazyInitializers")) {
-                addHiddenProp(target, "__mobxLazyInitializers", target.__mobxLazyInitializers && target.__mobxLazyInitializers.slice() || []);
-            }
-            var value_1 = descriptor.value,
-                initializer_1 = descriptor.initializer;
-            target.__mobxLazyInitializers.push(function (instance) {
-                onInitialize(instance, key, initializer_1 ? initializer_1.call(instance) : value_1, customArgs, descriptor);
-            });
-            return {
-                enumerable: enumerable, configurable: true,
-                get: function get() {
-                    if (this.__mobxDidRunLazyInitializers !== true) runLazyInitializers(this);
-                    return _get.call(this, key);
-                },
-                set: function set(v) {
-                    if (this.__mobxDidRunLazyInitializers !== true) runLazyInitializers(this);
-                    _set.call(this, key, v);
-                }
-            };
-        }
-    }
-    if (allowCustomArguments) {
-        return function () {
-            if (quacksLikeADecorator(arguments)) return classPropertyDecorator.apply(null, arguments);
-            var outerArgs = arguments;
-            var argLen = arguments.length;
-            return function (target, key, descriptor) {
-                return classPropertyDecorator(target, key, descriptor, outerArgs, argLen);
-            };
-        };
-    }
-    return classPropertyDecorator;
-}
-function typescriptInitializeProperty(instance, key, v, onInitialize, customArgs, baseDescriptor) {
-    if (!hasOwnProperty(instance, "__mobxInitializedProps")) addHiddenProp(instance, "__mobxInitializedProps", {});
-    instance.__mobxInitializedProps[key] = true;
-    onInitialize(instance, key, v, customArgs, baseDescriptor);
-}
-function runLazyInitializers(instance) {
-    if (instance.__mobxDidRunLazyInitializers === true) return;
-    if (instance.__mobxLazyInitializers) {
-        addHiddenProp(instance, "__mobxDidRunLazyInitializers", true);
-        instance.__mobxDidRunLazyInitializers && instance.__mobxLazyInitializers.forEach(function (initializer) {
-            return initializer(instance);
-        });
-    }
-}
-function quacksLikeADecorator(args) {
-    return (args.length === 2 || args.length === 3) && typeof args[1] === "string";
-}
-function iteratorSymbol() {
-    return typeof Symbol === "function" && Symbol.iterator || "@@iterator";
-}
-var IS_ITERATING_MARKER = "__$$iterating";
-function arrayAsIterator(array) {
-    invariant(array[IS_ITERATING_MARKER] !== true, "Illegal state: cannot recycle array as iterator");
-    addHiddenFinalProp(array, IS_ITERATING_MARKER, true);
-    var idx = -1;
-    addHiddenFinalProp(array, "next", function next() {
-        idx++;
-        return {
-            done: idx >= this.length,
-            value: idx < this.length ? this[idx] : undefined
-        };
-    });
-    return array;
-}
-function declareIterator(prototType, iteratorFactory) {
-    addHiddenFinalProp(prototType, iteratorSymbol(), iteratorFactory);
-}
-var messages = {
-    "m001": "It is not allowed to assign new values to @action fields",
-    "m002": "`runInAction` expects a function",
-    "m003": "`runInAction` expects a function without arguments",
-    "m004": "autorun expects a function",
-    "m005": "Warning: attempted to pass an action to autorun. Actions are untracked and will not trigger on state changes. Use `reaction` or wrap only your state modification code in an action.",
-    "m006": "Warning: attempted to pass an action to autorunAsync. Actions are untracked and will not trigger on state changes. Use `reaction` or wrap only your state modification code in an action.",
-    "m007": "reaction only accepts 2 or 3 arguments. If migrating from MobX 2, please provide an options object",
-    "m008": "wrapping reaction expression in `asReference` is no longer supported, use options object instead",
-    "m009": "@computed can only be used on getter functions, like: '@computed get myProps() { return ...; }'. It looks like it was used on a property.",
-    "m010": "@computed can only be used on getter functions, like: '@computed get myProps() { return ...; }'",
-    "m011": "First argument to `computed` should be an expression. If using computed as decorator, don't pass it arguments",
-    "m012": "computed takes one or two arguments if used as function",
-    "m013": "[mobx.expr] 'expr' should only be used inside other reactive functions.",
-    "m014": "extendObservable expected 2 or more arguments",
-    "m015": "extendObservable expects an object as first argument",
-    "m016": "extendObservable should not be used on maps, use map.merge instead",
-    "m017": "all arguments of extendObservable should be objects",
-    "m018": "extending an object with another observable (object) is not supported. Please construct an explicit propertymap, using `toJS` if need. See issue #540",
-    "m019": "[mobx.isObservable] isObservable(object, propertyName) is not supported for arrays and maps. Use map.has or array.length instead.",
-    "m020": "modifiers can only be used for individual object properties",
-    "m021": "observable expects zero or one arguments",
-    "m022": "@observable can not be used on getters, use @computed instead",
-    "m023": "Using `transaction` is deprecated, use `runInAction` or `(@)action` instead.",
-    "m024": "whyRun() can only be used if a derivation is active, or by passing an computed value / reaction explicitly. If you invoked whyRun from inside a computation; the computation is currently suspended but re-evaluating because somebody requested its value.",
-    "m025": "whyRun can only be used on reactions and computed values",
-    "m026": "`action` can only be invoked on functions",
-    "m028": "It is not allowed to set `useStrict` when a derivation is running",
-    "m029": "INTERNAL ERROR only onBecomeUnobserved shouldn't be called twice in a row",
-    "m030a": "Since strict-mode is enabled, changing observed observable values outside actions is not allowed. Please wrap the code in an `action` if this change is intended. Tried to modify: ",
-    "m030b": "Side effects like changing state are not allowed at this point. Are you trying to modify state from, for example, the render function of a React component? Tried to modify: ",
-    "m031": "Computed values are not allowed to not cause side effects by changing observables that are already being observed. Tried to modify: ",
-    "m032": "* This computation is suspended (not in use by any reaction) and won't run automatically.\n	Didn't expect this computation to be suspended at this point?\n	  1. Make sure this computation is used by a reaction (reaction, autorun, observer).\n	  2. Check whether you are using this computation synchronously (in the same stack as they reaction that needs it).",
-    "m033": "`observe` doesn't support the fire immediately property for observable maps.",
-    "m034": "`mobx.map` is deprecated, use `new ObservableMap` or `mobx.observable.map` instead",
-    "m035": "Cannot make the designated object observable; it is not extensible",
-    "m036": "It is not possible to get index atoms from arrays",
-    "m037": "Hi there! I'm sorry you have just run into an exception.\nIf your debugger ends up here, know that some reaction (like the render() of an observer component, autorun or reaction)\nthrew an exception and that mobx caught it, to avoid that it brings the rest of your application down.\nThe original cause of the exception (the code that caused this reaction to run (again)), is still in the stack.\n\nHowever, more interesting is the actual stack trace of the error itself.\nHopefully the error is an instanceof Error, because in that case you can inspect the original stack of the error from where it was thrown.\nSee `error.stack` property, or press the very subtle \"(...)\" link you see near the console.error message that probably brought you here.\nThat stack is more interesting than the stack of this console.error itself.\n\nIf the exception you see is an exception you created yourself, make sure to use `throw new Error(\"Oops\")` instead of `throw \"Oops\"`,\nbecause the javascript environment will only preserve the original stack trace in the first form.\n\nYou can also make sure the debugger pauses the next time this very same exception is thrown by enabling \"Pause on caught exception\".\n(Note that it might pause on many other, unrelated exception as well).\n\nIf that all doesn't help you out, feel free to open an issue https://github.com/mobxjs/mobx/issues!\n",
-    "m038": "Missing items in this list?\n    1. Check whether all used values are properly marked as observable (use isObservable to verify)\n    2. Make sure you didn't dereference values too early. MobX observes props, not primitives. E.g: use 'person.name' instead of 'name' in your computation.\n"
-};
-function getMessage(id) {
-    return messages[id];
-}
-var EMPTY_ARRAY = [];
-Object.freeze(EMPTY_ARRAY);
-function getGlobal() {
-    return global;
-}
-function getNextId() {
-    return ++globalState.mobxGuid;
-}
-function fail(message, thing) {
-    invariant(false, message, thing);
-    throw "X";
-}
-function invariant(check, message, thing) {
-    if (!check) throw new Error("[mobx] Invariant failed: " + message + (thing ? " in '" + thing + "'" : ""));
-}
-var deprecatedMessages = [];
-function deprecated(msg) {
-    if (deprecatedMessages.indexOf(msg) !== -1) return false;
-    deprecatedMessages.push(msg);
-    console.error("[mobx] Deprecated: " + msg);
-    return true;
-}
-function once(func) {
-    var invoked = false;
-    return function () {
-        if (invoked) return;
-        invoked = true;
-        return func.apply(this, arguments);
-    };
-}
-var noop = function noop() {};
-function unique(list) {
-    var res = [];
-    list.forEach(function (item) {
-        if (res.indexOf(item) === -1) res.push(item);
-    });
-    return res;
-}
-function joinStrings(things, limit, separator) {
-    if (limit === void 0) {
-        limit = 100;
-    }
-    if (separator === void 0) {
-        separator = " - ";
-    }
-    if (!things) return "";
-    var sliced = things.slice(0, limit);
-    return "" + sliced.join(separator) + (things.length > limit ? " (... and " + (things.length - limit) + "more)" : "");
-}
-function isObject(value) {
-    return value !== null && (typeof value === "undefined" ? "undefined" : _typeof(value)) === "object";
-}
-function isPlainObject(value) {
-    if (value === null || (typeof value === "undefined" ? "undefined" : _typeof(value)) !== "object") return false;
-    var proto = Object.getPrototypeOf(value);
-    return proto === Object.prototype || proto === null;
-}
-function objectAssign() {
-    var res = arguments[0];
-    for (var i = 1, l = arguments.length; i < l; i++) {
-        var source = arguments[i];
-        for (var key in source) {
-            if (hasOwnProperty(source, key)) {
-                res[key] = source[key];
-            }
-        }
-    }
-    return res;
-}
-function valueDidChange(compareStructural, oldValue, newValue) {
-    if (typeof oldValue === 'number' && isNaN(oldValue)) {
-        return typeof newValue !== 'number' || !isNaN(newValue);
-    }
-    return compareStructural ? !deepEqual(oldValue, newValue) : oldValue !== newValue;
-}
-var prototypeHasOwnProperty = Object.prototype.hasOwnProperty;
-function hasOwnProperty(object, propName) {
-    return prototypeHasOwnProperty.call(object, propName);
-}
-function makeNonEnumerable(object, propNames) {
-    for (var i = 0; i < propNames.length; i++) {
-        addHiddenProp(object, propNames[i], object[propNames[i]]);
-    }
-}
-function addHiddenProp(object, propName, value) {
-    Object.defineProperty(object, propName, {
-        enumerable: false,
-        writable: true,
-        configurable: true,
-        value: value
-    });
-}
-function addHiddenFinalProp(object, propName, value) {
-    Object.defineProperty(object, propName, {
-        enumerable: false,
-        writable: false,
-        configurable: true,
-        value: value
-    });
-}
-function isPropertyConfigurable(object, prop) {
-    var descriptor = Object.getOwnPropertyDescriptor(object, prop);
-    return !descriptor || descriptor.configurable !== false && descriptor.writable !== false;
-}
-function assertPropertyConfigurable(object, prop) {
-    invariant(isPropertyConfigurable(object, prop), "Cannot make property '" + prop + "' observable, it is not configurable and writable in the target object");
-}
-function getEnumerableKeys(obj) {
-    var res = [];
-    for (var key in obj) {
-        res.push(key);
-    }return res;
-}
-function deepEqual(a, b) {
-    if (a === null && b === null) return true;
-    if (a === undefined && b === undefined) return true;
-    if ((typeof a === "undefined" ? "undefined" : _typeof(a)) !== "object") return a === b;
-    var aIsArray = isArrayLike(a);
-    var aIsMap = isMapLike(a);
-    if (aIsArray !== isArrayLike(b)) {
-        return false;
-    } else if (aIsMap !== isMapLike(b)) {
-        return false;
-    } else if (aIsArray) {
-        if (a.length !== b.length) return false;
-        for (var i = a.length - 1; i >= 0; i--) {
-            if (!deepEqual(a[i], b[i])) return false;
-        }return true;
-    } else if (aIsMap) {
-        if (a.size !== b.size) return false;
-        var equals_1 = true;
-        a.forEach(function (value, key) {
-            equals_1 = equals_1 && deepEqual(b.get(key), value);
-        });
-        return equals_1;
-    } else if ((typeof a === "undefined" ? "undefined" : _typeof(a)) === "object" && (typeof b === "undefined" ? "undefined" : _typeof(b)) === "object") {
-        if (a === null || b === null) return false;
-        if (isMapLike(a) && isMapLike(b)) {
-            if (a.size !== b.size) return false;
-            return deepEqual(observable.shallowMap(a).entries(), observable.shallowMap(b).entries());
-        }
-        if (getEnumerableKeys(a).length !== getEnumerableKeys(b).length) return false;
-        for (var prop in a) {
-            if (!(prop in b)) return false;
-            if (!deepEqual(a[prop], b[prop])) return false;
-        }
-        return true;
-    }
-    return false;
-}
-function createInstanceofPredicate(name, clazz) {
-    var propName = "isMobX" + name;
-    clazz.prototype[propName] = true;
-    return function (x) {
-        return isObject(x) && x[propName] === true;
-    };
-}
-function isArrayLike(x) {
-    return Array.isArray(x) || isObservableArray(x);
-}
-exports.isArrayLike = isArrayLike;
-function isMapLike(x) {
-    return isES6Map(x) || isObservableMap(x);
-}
-function isES6Map(thing) {
-    if (getGlobal().Map !== undefined && thing instanceof getGlobal().Map) return true;
-    return false;
-}
-function primitiveSymbol() {
-    return typeof Symbol === "function" && Symbol.toPrimitive || "@@toPrimitive";
-}
-function toPrimitive(value) {
-    return value === null ? null : (typeof value === "undefined" ? "undefined" : _typeof(value)) === "object" ? "" + value : value;
-}
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
-var _icons = __webpack_require__(6);
-
-var _constants = __webpack_require__(0);
-
-function renderHeader(_ref, instance) {
-  var meta = _ref.meta,
-      user = _ref.user,
-      reactions = _ref.reactions;
-
-  var container = document.createElement('div');
-  container.lang = "en-US";
-  container.className = 'gitment-container gitment-header-container';
-
-  var likeButton = document.createElement('span');
-  var likedReaction = reactions.find(function (reaction) {
-    return reaction.content === 'heart' && reaction.user.login === user.login;
-  });
-  likeButton.className = 'gitment-header-like-btn';
-  likeButton.innerHTML = '\n    ' + _icons.heart + '\n    ' + (likedReaction ? '取消赞' : '赞') + '\n    ' + (meta.reactions && meta.reactions.heart ? ' \u2022 <strong>' + meta.reactions.heart + '</strong> 人点赞' : '') + '\n  ';
-
-  if (likedReaction) {
-    likeButton.classList.add('liked');
-    likeButton.onclick = function () {
-      return instance.unlike();
-    };
-  } else {
-    likeButton.classList.remove('liked');
-    likeButton.onclick = function () {
-      return instance.like();
-    };
-  }
-  container.appendChild(likeButton);
-
-  var commentsCount = document.createElement('span');
-  commentsCount.innerHTML = '\n    ' + (meta.comments ? ' \u2022 <strong>' + meta.comments + '</strong> 条评论' : '') + '\n  ';
-  container.appendChild(commentsCount);
-
-  var issueLink = document.createElement('a');
-  issueLink.className = 'gitment-header-issue-link';
-  issueLink.href = meta.html_url;
-  issueLink.target = '_blank';
-  issueLink.innerText = 'Issue 页面';
-  container.appendChild(issueLink);
-
-  return container;
-}
-
-function renderComments(_ref2, instance) {
-  var meta = _ref2.meta,
-      comments = _ref2.comments,
-      commentReactions = _ref2.commentReactions,
-      currentPage = _ref2.currentPage,
-      user = _ref2.user,
-      error = _ref2.error;
-
-  var container = document.createElement('div');
-  container.lang = "en-US";
-  container.className = 'gitment-container gitment-comments-container';
-
-  if (error) {
-    var errorBlock = document.createElement('div');
-    errorBlock.className = 'gitment-comments-error';
-
-    if (error === _constants.NOT_INITIALIZED_ERROR && user.login && user.login.toLowerCase() === instance.owner.toLowerCase()) {
-      var initHint = document.createElement('div');
-      var initButton = document.createElement('button');
-      initButton.className = 'gitment-comments-init-btn';
-      initButton.onclick = function () {
-        initButton.setAttribute('disabled', true);
-        instance.init().catch(function (e) {
-          initButton.removeAttribute('disabled');
-          alert(e);
-        });
-      };
-      initButton.innerText = '初始化评论';
-      initHint.appendChild(initButton);
-      errorBlock.appendChild(initHint);
-    } else {
-      errorBlock.innerText = error;
-    }
-    container.appendChild(errorBlock);
-    return container;
-  } else if (comments === undefined) {
-    var loading = document.createElement('div');
-    loading.innerText = '加载中......';
-    loading.className = 'gitment-comments-loading';
-    container.appendChild(loading);
-    return container;
-  } else if (!comments.length) {
-    var emptyBlock = document.createElement('div');
-    emptyBlock.className = 'gitment-comments-empty';
-    emptyBlock.innerText = '# NULL #';
-    container.appendChild(emptyBlock);
-    return container;
-  }
-
-  var commentsList = document.createElement('ul');
-  commentsList.className = 'gitment-comments-list';
-
-  comments.forEach(function (comment) {
-    var createDate = new Date(comment.created_at);
-    var updateDate = new Date(comment.updated_at);
-    var commentItem = document.createElement('li');
-    commentItem.className = 'gitment-comment';
-    commentItem.innerHTML = '\n      <a class="gitment-comment-avatar" href="' + comment.user.html_url + '" target="_blank">\n        <img class="gitment-comment-avatar-img" src="' + comment.user.avatar_url + '"/>\n      </a>\n      <div class="gitment-comment-main">\n        <div class="gitment-comment-header">\n          <a class="gitment-comment-name" href="' + comment.user.html_url + '" target="_blank">\n            ' + comment.user.login + '\n          </a>\n          发表于\n          <span title="' + createDate + '">' + createDate.toDateString() + '</span>\n          ' + (createDate.toString() !== updateDate.toString() ? ' \u2022 <span title="最后修改 ' + updateDate + '">有修改</span>' : '') + '\n          <div class="gitment-comment-like-btn">' + _icons.heart + ' ' + (comment.reactions.heart || '') + '</div>\n        </div>\n        <div class="gitment-comment-body gitment-markdown">' + comment.body_html + '</div>\n      </div>\n    ';
-    var likeButton = commentItem.querySelector('.gitment-comment-like-btn');
-    var likedReaction = commentReactions[comment.id] && commentReactions[comment.id].find(function (reaction) {
-      return reaction.content === 'heart' && reaction.user.login === user.login;
-    });
-    if (likedReaction) {
-      likeButton.classList.add('liked');
-      likeButton.onclick = function () {
-        return instance.unlikeAComment(comment.id);
-      };
-    } else {
-      likeButton.classList.remove('liked');
-      likeButton.onclick = function () {
-        return instance.likeAComment(comment.id);
-      };
-    }
-
-    // dirty
-    // use a blank image to trigger height calculating when element rendered
-    var imgTrigger = document.createElement('img');
-    var markdownBody = commentItem.querySelector('.gitment-comment-body');
-    imgTrigger.className = 'gitment-hidden';
-    imgTrigger.src = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";
-    imgTrigger.onload = function () {
-      if (markdownBody.clientHeight > instance.maxCommentHeight) {
-        markdownBody.classList.add('gitment-comment-body-folded');
-        markdownBody.style.maxHeight = instance.maxCommentHeight + 'px';
-        markdownBody.title = '点击展开';
-        markdownBody.onclick = function () {
-          markdownBody.classList.remove('gitment-comment-body-folded');
-          markdownBody.style.maxHeight = '';
-          markdownBody.title = '';
-          markdownBody.onclick = null;
-        };
-      }
-    };
-    commentItem.appendChild(imgTrigger);
-
-    commentsList.appendChild(commentItem);
-  });
-
-  container.appendChild(commentsList);
-
-  if (meta) {
-    var pageCount = Math.ceil(meta.comments / instance.perPage);
-    if (pageCount > 1) {
-      var pagination = document.createElement('ul');
-      pagination.className = 'gitment-comments-pagination';
-
-      if (currentPage > 1) {
-        var previousButton = document.createElement('li');
-        previousButton.className = 'gitment-comments-page-item';
-        previousButton.innerText = '上页';
-        previousButton.onclick = function () {
-          return instance.goto(currentPage - 1);
-        };
-        pagination.appendChild(previousButton);
-      }
-
-      var _loop = function _loop(i) {
-        var pageItem = document.createElement('li');
-        pageItem.className = 'gitment-comments-page-item';
-        pageItem.innerText = i;
-        pageItem.onclick = function () {
-          return instance.goto(i);
-        };
-        if (currentPage === i) pageItem.classList.add('gitment-selected');
-        pagination.appendChild(pageItem);
-      };
-
-      for (var i = 1; i <= pageCount; i++) {
-        _loop(i);
-      }
-
-      if (currentPage < pageCount) {
-        var nextButton = document.createElement('li');
-        nextButton.className = 'gitment-comments-page-item';
-        nextButton.innerText = '下页';
-        nextButton.onclick = function () {
-          return instance.goto(currentPage + 1);
-        };
-        pagination.appendChild(nextButton);
-      }
-
-      container.appendChild(pagination);
-    }
-  }
-
-  return container;
-}
-
-function renderEditor(_ref3, instance) {
-  var user = _ref3.user,
-      error = _ref3.error;
-
-  var container = document.createElement('div');
-  container.lang = "en-US";
-  container.className = 'gitment-container gitment-editor-container';
-
-  var shouldDisable = user.login && !error ? '' : 'disabled';
-  var disabledTip = user.login ? '' : '登录后评论';
-  container.innerHTML = '\n      ' + (user.login ? '<a class="gitment-editor-avatar" href="' + user.html_url + '" target="_blank">\n            <img class="gitment-editor-avatar-img" src="' + user.avatar_url + '"/>\n          </a>' : user.isLoggingIn ? '<div class="gitment-editor-avatar">' + _icons.spinner + '</div>' : '<a class="gitment-editor-avatar" href="' + instance.loginLink + '" title="login with GitHub">\n              ' + _icons.github + '\n            </a>') + '\n    </a>\n    <div class="gitment-editor-main">\n      <div class="gitment-editor-header">\n        <nav class="gitment-editor-tabs">\n          <button class="gitment-editor-tab gitment-selected">编辑</button>\n          <button class="gitment-editor-tab">预览</button>\n        </nav>\n        <div class="gitment-editor-login">\n          ' + (user.login ? '<a class="gitment-editor-logout-link">登出</a>' : user.isLoggingIn ? '正在登录......' : '<a class="gitment-editor-login-link" href="' + instance.loginLink + '">GitHub 登录</a>') + '\n        </div>\n      </div>\n      <div class="gitment-editor-body">\n        <div class="gitment-editor-write-field">\n          <textarea placeholder="可以D人了......" title="' + disabledTip + '" ' + shouldDisable + '></textarea>\n        </div>\n        <div class="gitment-editor-preview-field gitment-hidden">\n          <div class="gitment-editor-preview gitment-markdown"></div>\n        </div>\n      </div>\n    </div>\n    <div class="gitment-editor-footer">\n      <a class="gitment-editor-footer-tip" href="https://guides.github.com/features/mastering-markdown/" target="_blank">\n        可以使用 Markdown 编辑\n      </a>\n      <button class="gitment-editor-submit" title="' + disabledTip + '" ' + shouldDisable + '>评论</button>\n    </div>\n  ';
-  if (user.login) {
-    container.querySelector('.gitment-editor-logout-link').onclick = function () {
-      return instance.logout();
-    };
-  }
-
-  var writeField = container.querySelector('.gitment-editor-write-field');
-  var previewField = container.querySelector('.gitment-editor-preview-field');
-
-  var textarea = writeField.querySelector('textarea');
-  textarea.oninput = function () {
-    textarea.style.height = 'auto';
-    var style = window.getComputedStyle(textarea, null);
-    var height = parseInt(style.height, 10);
-    var clientHeight = textarea.clientHeight;
-    var scrollHeight = textarea.scrollHeight;
-    if (clientHeight < scrollHeight) {
-      textarea.style.height = height + scrollHeight - clientHeight + 'px';
-    }
-  };
-
-  var _container$querySelec = container.querySelectorAll('.gitment-editor-tab'),
-      _container$querySelec2 = _slicedToArray(_container$querySelec, 2),
-      writeTab = _container$querySelec2[0],
-      previewTab = _container$querySelec2[1];
-
-  writeTab.onclick = function () {
-    writeTab.classList.add('gitment-selected');
-    previewTab.classList.remove('gitment-selected');
-    writeField.classList.remove('gitment-hidden');
-    previewField.classList.add('gitment-hidden');
-
-    textarea.focus();
-  };
-  previewTab.onclick = function () {
-    previewTab.classList.add('gitment-selected');
-    writeTab.classList.remove('gitment-selected');
-    previewField.classList.remove('gitment-hidden');
-    writeField.classList.add('gitment-hidden');
-
-    var preview = previewField.querySelector('.gitment-editor-preview');
-    var content = textarea.value.trim();
-    if (!content) {
-      preview.innerText = '无可奉告';
-      return;
-    }
-
-    preview.innerText = '预览加载中......';
-    instance.markdown(content).then(function (html) {
-      preview.innerHTML = html;
-
-      return preview.innerHTML
-    });
-
-  };
-
-  var submitButton = container.querySelector('.gitment-editor-submit');
-  submitButton.onclick = function () {
-    submitButton.innerText = '提交中......';
-    submitButton.setAttribute('disabled', true);
-    instance.post(textarea.value.trim()).then(function (data) {
-      textarea.value = '';
-      textarea.style.height = 'auto';
-      submitButton.removeAttribute('disabled');
-      submitButton.innerText = '评论';
-
-    }).catch(function (e) {
-      alert(e);
-      submitButton.removeAttribute('disabled');
-      submitButton.innerText = '评论';
-    });
-  };
-
-  return container;
-}
-
-function renderFooter() {
-  var container = document.createElement('div');
-  container.lang = "en-US";
-  container.className = 'gitment-container gitment-footer-container';
-  container.innerHTML = '\n    Powered by\n    <a class="gitment-footer-project-link" href="https://github.com/imsun/gitment" target="_blank">\n      Gitment\n    </a>\n  ';
-  return container;
-}
-
-function render(state, instance) {
-  var container = document.createElement('div');
-  container.lang = "en-US";
-  container.className = 'gitment-container gitment-root-container';
-  container.appendChild(instance.renderHeader(state, instance));
-  container.appendChild(instance.renderComments(state, instance));
-  container.appendChild(instance.renderEditor(state, instance));
-  container.appendChild(instance.renderFooter(state, instance));
-  return container;
-}
-
-exports.default = { render: render, renderHeader: renderHeader, renderComments: renderComments, renderEditor: renderEditor, renderFooter: renderFooter };
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.http = exports.Query = exports.isString = undefined;
-
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
-exports.getTargetContainer = getTargetContainer;
-
-var _constants = __webpack_require__(0);
-
-var isString = exports.isString = function isString(s) {
-  return toString.call(s) === '[object String]';
-};
-
-function getTargetContainer(container) {
-  var targetContainer = void 0;
-  if (container instanceof Element) {
-    targetContainer = container;
-  } else if (isString(container)) {
-    targetContainer = document.getElementById(container);
-  } else {
-    targetContainer = document.createElement('div');
-  }
-
-  return targetContainer;
-}
-
-var Query = exports.Query = {
-  parse: function parse() {
-    var search = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : window.location.search;
-
-    if (!search) return {};
-    var queryString = search[0] === '?' ? search.substring(1) : search;
-    var query = {};
-    queryString.split('&').forEach(function (queryStr) {
-      var _queryStr$split = queryStr.split('='),
-          _queryStr$split2 = _slicedToArray(_queryStr$split, 2),
-          key = _queryStr$split2[0],
-          value = _queryStr$split2[1];
-
-      if (key) query[key] = value;
-    });
-
-    return query;
-  },
-  stringify: function stringify(query) {
-    var prefix = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '?';
-
-    var queryString = Object.keys(query).map(function (key) {
-      return key + '=' + encodeURIComponent(query[key] || '');
-    }).join('&');
-    return queryString ? prefix + queryString : '';
-  }
-};
-
-function ajaxFactory(method) {
-  return function (apiPath) {
-    var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-    var base = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'https://api.github.com';
-
-    var req = new XMLHttpRequest();
-    var token = localStorage.getItem(_constants.LS_ACCESS_TOKEN_KEY);
-
-    var url = '' + base + apiPath;
-    var body = null;
-    if (method === 'GET' || method === 'DELETE') {
-      url += Query.stringify(data);
-    }
-
-    var p = new Promise(function (resolve, reject) {
-      req.addEventListener('load', function () {
-        var contentType = req.getResponseHeader('content-type');
-        var res = req.responseText;
-        if (!/json/.test(contentType)) {
-          resolve(res);
-          return;
-        }
-        var data = req.responseText ? JSON.parse(res) : {};
-        if (data.message) {
-          reject(new Error(data.message));
-        } else {
-          resolve(data);
-        }
-      });
-      req.addEventListener('error', function (error) {
-        return reject(error);
-      });
-    });
-    req.open(method, url, true);
-
-    req.setRequestHeader('Accept', 'application/vnd.github.squirrel-girl-preview, application/vnd.github.html+json');
-    if (token) {
-      req.setRequestHeader('Authorization', 'token ' + token);
-    }
-    if (method !== 'GET' && method !== 'DELETE') {
-      body = JSON.stringify(data);
-      req.setRequestHeader('Content-Type', 'application/json');
-    }
-
-    req.send(body);
-    return p;
-  };
-}
-
-var http = exports.http = {
-  get: ajaxFactory('GET'),
-  post: ajaxFactory('POST'),
-  delete: ajaxFactory('DELETE'),
-  put: ajaxFactory('PUT')
-};
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-var g;
-
-// This works in non-strict mode
-g = function () {
-	return this;
-}();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1, eval)("this");
-} catch (e) {
-	// This works if the window reference is available
-	if ((typeof window === "undefined" ? "undefined" : _typeof(window)) === "object") g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _mobx = __webpack_require__(1);
-
-var _constants = __webpack_require__(0);
-
-var _utils = __webpack_require__(3);
-
-var _default = __webpack_require__(2);
-
-var _default2 = _interopRequireDefault(_default);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var scope = 'public_repo';
-
-function extendRenderer(instance, renderer) {
-  instance[renderer] = function (container) {
-    var targetContainer = (0, _utils.getTargetContainer)(container);
-    var render = instance.theme[renderer] || instance.defaultTheme[renderer];
-
-    (0, _mobx.autorun)(function () {
-      var e = render(instance.state, instance);
-      if (targetContainer.firstChild) {
-        targetContainer.replaceChild(e, targetContainer.firstChild);
-      } else {
-        targetContainer.appendChild(e);
-      }
-    });
-
-    return targetContainer;
-  };
-}
-
-var Gitment = function () {
-  _createClass(Gitment, [{
-    key: 'accessToken',
-    get: function get() {
-      return localStorage.getItem(_constants.LS_ACCESS_TOKEN_KEY);
-    },
-    set: function set(token) {
-      localStorage.setItem(_constants.LS_ACCESS_TOKEN_KEY, token);
-    }
-  }, {
-    key: 'loginLink',
-    get: function get() {
-      var oauthUri = 'https://github.com/login/oauth/authorize';
-      var redirect_uri = this.oauth.redirect_uri || window.location.href;
-
-      var oauthParams = Object.assign({
-        scope: scope,
-        redirect_uri: redirect_uri
-      }, this.oauth);
-
-      return '' + oauthUri + _utils.Query.stringify(oauthParams);
-    }
-  }]);
-
-  function Gitment() {
-    var _this = this;
-
-    var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-    _classCallCheck(this, Gitment);
-
-    this.defaultTheme = _default2.default;
-    this.useTheme(_default2.default);
-
-    Object.assign(this, {
-      id: window.location.href,
-      title: window.document.title,
-      link: window.location.href,
-      desc: '',
-      labels: [],
-      theme: _default2.default,
-      oauth: {},
-      perPage: 20,
-      maxCommentHeight: 250
-    }, options);
-
-    this.useTheme(this.theme);
-
-    var user = {};
-    try {
-      var userInfo = localStorage.getItem(_constants.LS_USER_KEY);
-      if (this.accessToken && userInfo) {
-        Object.assign(user, JSON.parse(userInfo), {
-          fromCache: true
-        });
-      }
-    } catch (e) {
-      localStorage.removeItem(_constants.LS_USER_KEY);
-    }
-
-    this.state = (0, _mobx.observable)({
-      user: user,
-      error: null,
-      meta: {},
-      comments: undefined,
-      reactions: [],
-      commentReactions: {},
-      currentPage: 1
-    });
-
-    var query = _utils.Query.parse();
-    if (query.code) {
-      var _oauth = this.oauth,
-          client_id = _oauth.client_id,
-          client_secret = _oauth.client_secret;
-
-      var code = query.code;
-      delete query.code;
-      var search = _utils.Query.stringify(query);
-      var replacedUrl = '' + window.location.origin + window.location.pathname + search + window.location.hash;
-      history.replaceState({}, '', replacedUrl);
-
-      Object.assign(this, {
-        id: replacedUrl,
-        link: replacedUrl
-      }, options);
-
-      this.state.user.isLoggingIn = true;
-      _utils.http.post('https://gh-oauth.riteme.site', {
-        code: code,
-        client_id: client_id,
-        client_secret: client_secret
-      }, '').then(function (data) {
-        _this.accessToken = data.access_token;
-        _this.update();
-      }).catch(function (e) {
-        _this.state.user.isLoggingIn = false;
-        alert(e);
-      });
-    } else {
-      this.update();
-    }
-  }
-
-  _createClass(Gitment, [{
-    key: 'init',
-    value: function init() {
-      var _this2 = this;
-
-      return this.createIssue().then(function () {
-        return _this2.loadComments();
-      }).then(function (comments) {
-        _this2.state.error = null;
-        return comments;
-      });
-    }
-  }, {
-    key: 'useTheme',
-    value: function useTheme() {
-      var _this3 = this;
-
-      var theme = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-      this.theme = theme;
-
-      var renderers = Object.keys(this.theme);
-      renderers.forEach(function (renderer) {
-        return extendRenderer(_this3, renderer);
-      });
-    }
-  }, {
-    key: 'update',
-    value: function update() {
-      var _this4 = this;
-
-      return Promise.all([this.loadMeta(), this.loadUserInfo()]).then(function () {
-        return Promise.all([_this4.loadComments().then(function () {
-          return _this4.loadCommentReactions();
-        }), _this4.loadReactions()]);
-      }).catch(function (e) {
-        return _this4.state.error = e;
-      });
-    }
-  }, {
-    key: 'markdown',
-    value: function markdown(text) {
-      return _utils.http.post('/markdown', {
-        text: text,
-        mode: 'gfm'
-      });
-    }
-  }, {
-    key: 'createIssue',
-    value: function createIssue() {
-      var _this5 = this;
-
-      var id = this.id,
-          owner = this.owner,
-          repo = this.repo,
-          title = this.title,
-          link = this.link,
-          desc = this.desc,
-          labels = this.labels;
-
-
-      return _utils.http.post('/repos/' + owner + '/' + repo + '/issues', {
-        title: title,
-        labels: labels.concat(['gitment', id]),
-        body: link + '\n\n' + desc
-      }).then(function (meta) {
-        _this5.state.meta = meta;
-        return meta;
-      });
-    }
-  }, {
-    key: 'getIssue',
-    value: function getIssue() {
-      if (this.state.meta.id) return Promise.resolve(this.state.meta);
-
-      return this.loadMeta();
-    }
-  }, {
-    key: 'post',
-    value: function post(body) {
-      var _this6 = this;
-
-      return this.getIssue().then(function (issue) {
-        return _utils.http.post(issue.comments_url, { body: body }, '');
-      }).then(function (data) {
-        _this6.state.meta.comments++;
-        var pageCount = Math.ceil(_this6.state.meta.comments / _this6.perPage);
-        if (_this6.state.currentPage === pageCount) {
-          _this6.state.comments.push(data);
-        }
-        return data;
-      });
-    }
-  }, {
-    key: 'loadMeta',
-    value: function loadMeta() {
-      var _this7 = this;
-
-      var id = this.id,
-          owner = this.owner,
-          repo = this.repo;
-
-      return _utils.http.get('/repos/' + owner + '/' + repo + '/issues', {
-        creator: owner,
-        labels: id
-      }).then(function (issues) {
-        if (!issues.length) return Promise.reject(_constants.NOT_INITIALIZED_ERROR);
-        _this7.state.meta = issues[0];
-        return issues[0];
-      });
-    }
-  }, {
-    key: 'loadComments',
-    value: function loadComments() {
-      var _this8 = this;
-
-      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.state.currentPage;
-
-      return this.getIssue().then(function (issue) {
-        return _utils.http.get(issue.comments_url, { page: page, per_page: _this8.perPage }, '');
-      }).then(function (comments) {
-        _this8.state.comments = comments;
-        return comments;
-      });
-    }
-  }, {
-    key: 'loadUserInfo',
-    value: function loadUserInfo() {
-      var _this9 = this;
-
-      if (!this.accessToken) {
-        this.logout();
-        return Promise.resolve({});
-      }
-
-      return _utils.http.get('/user').then(function (user) {
-        _this9.state.user = user;
-        localStorage.setItem(_constants.LS_USER_KEY, JSON.stringify(user));
-        return user;
-      });
-    }
-  }, {
-    key: 'loadReactions',
-    value: function loadReactions() {
-      var _this10 = this;
-
-      if (!this.accessToken) {
-        this.state.reactions = [];
-        return Promise.resolve([]);
-      }
-
-      return this.getIssue().then(function (issue) {
-        if (!issue.reactions.total_count) return [];
-        return _utils.http.get(issue.reactions.url, {}, '');
-      }).then(function (reactions) {
-        _this10.state.reactions = reactions;
-        return reactions;
-      });
-    }
-  }, {
-    key: 'loadCommentReactions',
-    value: function loadCommentReactions() {
-      var _this11 = this;
-
-      if (!this.accessToken) {
-        this.state.commentReactions = {};
-        return Promise.resolve([]);
-      }
-
-      var comments = this.state.comments;
-      var comentReactions = {};
-
-      return Promise.all(comments.map(function (comment) {
-        if (!comment.reactions.total_count) return [];
-
-        var owner = _this11.owner,
-            repo = _this11.repo;
-
-        return _utils.http.get('/repos/' + owner + '/' + repo + '/issues/comments/' + comment.id + '/reactions', {});
-      })).then(function (reactionsArray) {
-        comments.forEach(function (comment, index) {
-          comentReactions[comment.id] = reactionsArray[index];
-        });
-        _this11.state.commentReactions = comentReactions;
-
-        return comentReactions;
-      });
-    }
-  }, {
-    key: 'login',
-    value: function login() {
-      window.location.href = this.loginLink;
-    }
-  }, {
-    key: 'logout',
-    value: function logout() {
-      localStorage.removeItem(_constants.LS_ACCESS_TOKEN_KEY);
-      localStorage.removeItem(_constants.LS_USER_KEY);
-      this.state.user = {};
-    }
-  }, {
-    key: 'goto',
-    value: function goto(page) {
-      this.state.currentPage = page;
-      this.state.comments = undefined;
-      return this.loadComments(page);
-    }
-  }, {
-    key: 'like',
-    value: function like() {
-      var _this12 = this;
-
-      if (!this.accessToken) {
-        alert('请先登录');
-        return Promise.reject();
-      }
-
-      var owner = this.owner,
-          repo = this.repo;
-
-
-      return _utils.http.post('/repos/' + owner + '/' + repo + '/issues/' + this.state.meta.number + '/reactions', {
-        content: 'heart'
-      }).then(function (reaction) {
-        _this12.state.reactions.push(reaction);
-        _this12.state.meta.reactions.heart++;
-      });
-    }
-  }, {
-    key: 'unlike',
-    value: function unlike() {
-      var _this13 = this;
-
-      if (!this.accessToken) return Promise.reject();
-
-      var _state = this.state,
-          user = _state.user,
-          reactions = _state.reactions;
-
-      var index = reactions.findIndex(function (reaction) {
-        return reaction.user.login === user.login;
-      });
-      return _utils.http.delete('/reactions/' + reactions[index].id).then(function () {
-        reactions.splice(index, 1);
-        _this13.state.meta.reactions.heart--;
-      });
-    }
-  }, {
-    key: 'likeAComment',
-    value: function likeAComment(commentId) {
-      var _this14 = this;
-
-      if (!this.accessToken) {
-        alert('请先登录');
-        return Promise.reject();
-      }
-
-      var owner = this.owner,
-          repo = this.repo;
-
-      var comment = this.state.comments.find(function (comment) {
-        return comment.id === commentId;
-      });
-
-      return _utils.http.post('/repos/' + owner + '/' + repo + '/issues/comments/' + commentId + '/reactions', {
-        content: 'heart'
-      }).then(function (reaction) {
-        _this14.state.commentReactions[commentId].push(reaction);
-        comment.reactions.heart++;
-      });
-    }
-  }, {
-    key: 'unlikeAComment',
-    value: function unlikeAComment(commentId) {
-      if (!this.accessToken) return Promise.reject();
-
-      var reactions = this.state.commentReactions[commentId];
-      var comment = this.state.comments.find(function (comment) {
-        return comment.id === commentId;
-      });
-      var user = this.state.user;
-
-      var index = reactions.findIndex(function (reaction) {
-        return reaction.user.login === user.login;
-      });
-
-      return _utils.http.delete('/reactions/' + reactions[index].id).then(function () {
-        reactions.splice(index, 1);
-        comment.reactions.heart--;
-      });
-    }
-  }]);
-
-  return Gitment;
-}();
-
-module.exports = Gitment;
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-/**
- * Modified from https://github.com/evil-icons/evil-icons
- */
-
-var close = exports.close = '<svg class="gitment-close-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><path d="M37.304 11.282l1.414 1.414-26.022 26.02-1.414-1.413z"/><path d="M12.696 11.282l26.022 26.02-1.414 1.415-26.022-26.02z"/></svg>';
-var github = exports.github = '<svg class="gitment-github-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><path d="M25 10c-8.3 0-15 6.7-15 15 0 6.6 4.3 12.2 10.3 14.2.8.1 1-.3 1-.7v-2.6c-4.2.9-5.1-2-5.1-2-.7-1.7-1.7-2.2-1.7-2.2-1.4-.9.1-.9.1-.9 1.5.1 2.3 1.5 2.3 1.5 1.3 2.3 3.5 1.6 4.4 1.2.1-1 .5-1.6 1-2-3.3-.4-6.8-1.7-6.8-7.4 0-1.6.6-3 1.5-4-.2-.4-.7-1.9.1-4 0 0 1.3-.4 4.1 1.5 1.2-.3 2.5-.5 3.8-.5 1.3 0 2.6.2 3.8.5 2.9-1.9 4.1-1.5 4.1-1.5.8 2.1.3 3.6.1 4 1 1 1.5 2.4 1.5 4 0 5.8-3.5 7-6.8 7.4.5.5 1 1.4 1 2.8v4.1c0 .4.3.9 1 .7 6-2 10.2-7.6 10.2-14.2C40 16.7 33.3 10 25 10z"/></svg>';
-var heart = exports.heart = '<svg class="gitment-heart-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><path d="M25 39.7l-.6-.5C11.5 28.7 8 25 8 19c0-5 4-9 9-9 4.1 0 6.4 2.3 8 4.1 1.6-1.8 3.9-4.1 8-4.1 5 0 9 4 9 9 0 6-3.5 9.7-16.4 20.2l-.6.5zM17 12c-3.9 0-7 3.1-7 7 0 5.1 3.2 8.5 15 18.1 11.8-9.6 15-13 15-18.1 0-3.9-3.1-7-7-7-3.5 0-5.4 2.1-6.9 3.8L25 17.1l-1.1-1.3C22.4 14.1 20.5 12 17 12z"/></svg>';
-var spinner = exports.spinner = '<svg class="gitment-spinner-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><path d="M25 18c-.6 0-1-.4-1-1V9c0-.6.4-1 1-1s1 .4 1 1v8c0 .6-.4 1-1 1z"/><path opacity=".3" d="M25 42c-.6 0-1-.4-1-1v-8c0-.6.4-1 1-1s1 .4 1 1v8c0 .6-.4 1-1 1z"/><path opacity=".3" d="M29 19c-.2 0-.3 0-.5-.1-.4-.3-.6-.8-.3-1.3l4-6.9c.3-.4.8-.6 1.3-.3.4.3.6.8.3 1.3l-4 6.9c-.2.2-.5.4-.8.4z"/><path opacity=".3" d="M17 39.8c-.2 0-.3 0-.5-.1-.4-.3-.6-.8-.3-1.3l4-6.9c.3-.4.8-.6 1.3-.3.4.3.6.8.3 1.3l-4 6.9c-.2.2-.5.4-.8.4z"/><path opacity=".93" d="M21 19c-.3 0-.6-.2-.8-.5l-4-6.9c-.3-.4-.1-1 .3-1.3.4-.3 1-.1 1.3.3l4 6.9c.3.4.1 1-.3 1.3-.2.2-.3.2-.5.2z"/><path opacity=".3" d="M33 39.8c-.3 0-.6-.2-.8-.5l-4-6.9c-.3-.4-.1-1 .3-1.3.4-.3 1-.1 1.3.3l4 6.9c.3.4.1 1-.3 1.3-.2.1-.3.2-.5.2z"/><path opacity=".65" d="M17 26H9c-.6 0-1-.4-1-1s.4-1 1-1h8c.6 0 1 .4 1 1s-.4 1-1 1z"/><path opacity=".3" d="M41 26h-8c-.6 0-1-.4-1-1s.4-1 1-1h8c.6 0 1 .4 1 1s-.4 1-1 1z"/><path opacity=".86" d="M18.1 21.9c-.2 0-.3 0-.5-.1l-6.9-4c-.4-.3-.6-.8-.3-1.3.3-.4.8-.6 1.3-.3l6.9 4c.4.3.6.8.3 1.3-.2.3-.5.4-.8.4z"/><path opacity=".3" d="M38.9 33.9c-.2 0-.3 0-.5-.1l-6.9-4c-.4-.3-.6-.8-.3-1.3.3-.4.8-.6 1.3-.3l6.9 4c.4.3.6.8.3 1.3-.2.3-.5.4-.8.4z"/><path opacity=".44" d="M11.1 33.9c-.3 0-.6-.2-.8-.5-.3-.4-.1-1 .3-1.3l6.9-4c.4-.3 1-.1 1.3.3.3.4.1 1-.3 1.3l-6.9 4c-.1.2-.3.2-.5.2z"/><path opacity=".3" d="M31.9 21.9c-.3 0-.6-.2-.8-.5-.3-.4-.1-1 .3-1.3l6.9-4c.4-.3 1-.1 1.3.3.3.4.1 1-.3 1.3l-6.9 4c-.2.2-.3.2-.5.2z"/></svg>';
-
-/***/ })
-/******/ ]);
-//# sourceMappingURL=gitment.browser.js.map
+var Gitment=function(e){function t(r){if(n[r])return n[r].exports
+    var i=n[r]={i:r,l:!1,exports:{}}
+    return e[r].call(i.exports,i,i.exports,t),i.l=!0,i.exports}var n={}
+    return t.m=e,t.c=n,t.i=function(e){return e},t.d=function(e,n,r){t.o(e,n)||Object.defineProperty(e,n,{configurable:!1,enumerable:!0,get:r})},t.n=function(e){var n=e&&e.__esModule?function(){return e["default"]}:function(){return e}
+    return t.d(n,"a",n),n},t.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},t.p="",t(t.s=5)}([function(e,t,n){"use strict"
+    Object.defineProperty(t,"__esModule",{value:!0})
+    t.LS_ACCESS_TOKEN_KEY="gitment-comments-token",t.LS_USER_KEY="gitment-user-info",t.NOT_INITIALIZED_ERROR=Error("评论未初始化")},function(e,t,n){"use strict";(function(n){function r(e){return function(t,n,r){return r&&"function"==typeof r.value?(r.value=V(e,r.value),r.enumerable=!1,r.configurable=!0,r):Wt(e).apply(this,arguments)}}function i(e,t,n){var r="string"==typeof e?e:e.name||"<unnamed action>",i="function"==typeof e?e:t,o="function"==typeof e?t:n
+    return xt("function"==typeof i,bt("m002")),xt(0===i.length,bt("m003")),xt("string"==typeof r&&r.length>0,"actions should have valid names, got: '"+r+"'"),$(r,i,o,void 0)}function o(e){return"function"==typeof e&&e.isMobxAction===!0}function a(e,t,n){var r=function(){return $(t,n,e,arguments)}
+    r.isMobxAction=!0,Rt(e,t,r)}function s(e,t,n){function r(){a(u)}var i,a,s
+    "string"==typeof e?(i=e,a=t,s=n):(i=e.name||"Autorun@"+wt(),a=e,s=t),xt("function"==typeof a,bt("m004")),xt(o(a)===!1,bt("m005")),s&&(a=a.bind(s))
+    var u=new gn(i,function(){this.track(r)})
+    return u.schedule(),u.getDisposer()}function u(e,t,n,r){var i,o,a,u
+    "string"==typeof e?(i=e,o=t,a=n,u=r):(i="When@"+wt(),o=e,a=t,u=n)
+    var c=s(i,function(e){if(o.call(u)){e.dispose()
+    var t=te()
+    a.call(u),ne(t)}})
+    return c}function c(e,t,n,r){function i(){s(h)}var a,s,u,c
+    "string"==typeof e?(a=e,s=t,u=n,c=r):(a=e.name||"AutorunAsync@"+wt(),s=e,u=t,c=n),xt(o(s)===!1,bt("m006")),void 0===u&&(u=1),c&&(s=s.bind(c))
+    var l=!1,h=new gn(a,function(){l||(l=!0,setTimeout(function(){l=!1,h.isDisposed||h.track(i)},u))})
+    return h.schedule(),h.getDisposer()}function l(e,t,n){function r(){if(!u.isDisposed){var n=!1
+    u.track(function(){var t=e(u)
+    n=Lt(i.compareStructural,o,t),o=t}),a&&i.fireImmediately&&t(o,u),a||n!==!0||t(o,u),a&&(a=!1)}}arguments.length>3&&_t(bt("m007")),$e(e)&&_t(bt("m008"))
+    var i
+    i="object"===(void 0===n?"undefined":Gt(n))?n:{},i.name=i.name||e.name||t.name||"Reaction@"+wt(),i.fireImmediately=n===!0||i.fireImmediately===!0,i.delay=i.delay||0,i.compareStructural=i.compareStructural||i.struct||!1,t=Jt(i.name,i.context?t.bind(i.context):t),i.context&&(e=e.bind(i.context))
+    var o,a=!0,s=!1,u=new gn(i.name,function(){a||i.delay<1?r():s||(s=!0,setTimeout(function(){s=!1,r()},i.delay))})
+    return u.schedule(),u.getDisposer()}function h(e){return ht(function(t,n,r,i,o){xt(void 0!==o,bt("m009")),xt("function"==typeof o.get,bt("m010"))
+    var a=Qe(t,"")
+    tt(a,n,o.get,o.set,e,!1)},function(e){var t=this.$mobx.values[e]
+    if(void 0!==t)return t.get()},function(e,t){this.$mobx.values[e].set(t)},!1,!1)}function d(e,t){xt("function"==typeof e&&e.length<2,"createTransformer expects a function that accepts one argument")
+    var n={},r=vn.resetId,i=function(r){function i(t,n){var i=r.call(this,function(){return e(n)},void 0,!1,"Transformer-"+e.name+"-"+t,void 0)||this
+    return i.sourceIdentifier=t,i.sourceObject=n,i}return Yt(i,r),i.prototype.onBecomeUnobserved=function(){var e=this.value
+    r.prototype.onBecomeUnobserved.call(this),delete n[this.sourceIdentifier],t&&t(e,this.sourceObject)},i}(ln)
+    return function(e){r!==vn.resetId&&(n={},r=vn.resetId)
+    var t=p(e),o=n[t]
+    return o?o.get():(o=n[t]=new i(t,e),o.get())}}function p(e){if(null===e||"object"!==(void 0===e?"undefined":Gt(e)))throw Error("[mobx] transform expected some kind of object, got: "+e)
+    var t=e.$transformId
+    return void 0===t&&(t=wt(),Rt(e,"$transformId",t)),t}function f(e,t){return J()||console.warn(bt("m013")),Qt(e,{context:t}).get()}function m(e){for(var t=[],n=1;n<arguments.length;n++)t[n-1]=arguments[n]
+    return g(e,Be,t)}function v(e){for(var t=[],n=1;n<arguments.length;n++)t[n-1]=arguments[n]
+    return g(e,He,t)}function g(e,t,n){xt(arguments.length>=2,bt("m014")),xt("object"===(void 0===e?"undefined":Gt(e)),bt("m015")),xt(!Cn(e),bt("m016")),n.forEach(function(e){xt("object"===(void 0===e?"undefined":Gt(e)),bt("m017")),xt(!A(e),bt("m018"))})
+    for(var r=Qe(e),i={},o=n.length-1;o>=0;o--){var a=n[o]
+    for(var s in a)if(i[s]!==!0&&jt(a,s)){if(i[s]=!0,e===a&&!Pt(e,s))continue
+    var u=Object.getOwnPropertyDescriptor(a,s)
+    Ze(r,s,u,t)}}return e}function b(e,t){return y(ut(e,t))}function y(e){var t={name:e.name}
+    return e.observing&&e.observing.length>0&&(t.dependencies=kt(e.observing).map(y)),t}function w(e,t){return _(ut(e,t))}function _(e){var t={name:e.name}
+    return ue(e)&&(t.observers=ce(e).map(_)),t}function x(e,t,n){return"function"==typeof n?O(e,t,n):S(e,t)}function S(e,t){return ct(e).intercept(t)}function O(e,t,n){return ct(e,t).intercept(n)}function k(e,t){if(null===e||void 0===e)return!1
+    if(void 0!==t){if(st(e)===!1)return!1
+    var n=ut(e,t)
+    return dn(n)}return dn(e)}function A(e,t){if(null===e||void 0===e)return!1
+    if(void 0!==t){if(Fe(e)||Cn(e))throw Error(bt("m019"))
+    if(st(e)){var n=e.$mobx
+    return n.values&&!!n.values[t]}return!1}return st(e)||!!e.$mobx||cn(e)||wn(e)||dn(e)}function E(e){if(void 0===e&&(e=void 0),"string"==typeof arguments[1])return Zt.apply(null,arguments)
+    if(xt(arguments.length<=1,bt("m021")),xt(!$e(e),bt("m020")),A(e))return e
+    var t=Be(e,void 0,void 0)
+    return t!==e?t:an.box(e)}function T(e){_t("Expected one or two arguments to observable."+e+". Did you accidentally try to use observable."+e+" as decorator?")}function I(e){return xt(!!e,":("),ht(function(t,n,r,i,o){Dt(t,n),xt(!o||!o.get,bt("m022"))
+    var a=Qe(t,void 0)
+    et(a,n,r,e)},function(e){var t=this.$mobx.values[e]
+    if(void 0!==t)return t.get()},function(e,t){ot(this,e,t)},!0,!1)}function L(e,t,n,r){return"function"==typeof n?C(e,t,n,r):j(e,t,n)}function j(e,t,n){return ct(e).observe(t,n)}function C(e,t,n,r){return ct(e,t).observe(n,r)}function R(e,t,n){function r(r){return t&&n.push([e,r]),r}if(void 0===t&&(t=!0),void 0===n&&(n=[]),A(e)){if(t&&null===n&&(n=[]),t&&null!==e&&"object"===(void 0===e?"undefined":Gt(e)))for(var i=0,o=n.length;o>i;i++)if(n[i][0]===e)return n[i][1]
+    if(Fe(e)){var a=r([]),s=e.map(function(e){return R(e,t,n)})
+    a.length=s.length
+    for(var i=0,o=s.length;o>i;i++)a[i]=s[i]
+    return a}if(st(e)){var a=r({})
+    for(var u in e)a[u]=R(e[u],t,n)
+    return a}if(Cn(e)){var c=r({})
+    return e.forEach(function(e,r){return c[r]=R(e,t,n)}),c}if($n(e))return R(e.get(),t,n)}return e}function M(e,t){return void 0===t&&(t=void 0),St(bt("m023")),P.apply(void 0,arguments)}function P(e,t){return void 0===t&&(t=void 0),$("",e)}function D(e){return console.log(e),e}function N(e,t){switch(arguments.length){case 0:if(e=vn.trackingDerivation,!e)return D(bt("m024"))
+    break
+    case 2:e=ut(e,t)}return e=ut(e),dn(e)?D(e.whyRun()):wn(e)?D(e.whyRun()):_t(bt("m025"))}function V(e,t){xt("function"==typeof t,bt("m026")),xt("string"==typeof e&&e.length>0,"actions should have valid names, got: '"+e+"'")
+    var n=function(){return $(e,t,this,arguments)}
+    return n.originalFn=t,n.isMobxAction=!0,n}function $(e,t,n,r){var i=z(e,t,n,r)
+    try{return t.apply(n,r)}finally{B(i)}}function z(e,t,n,r){var i=Oe()&&!!e,o=0
+    if(i){o=Date.now()
+    var a=r&&r.length||0,s=Array(a)
+    if(a>0)for(var u=0;a>u;u++)s[u]=r[u]
+    Ae({type:"action",name:e,fn:t,object:n,arguments:s})}var c=te()
+    pe()
+    var l=G(!0)
+    return{prevDerivation:c,prevAllowStateChanges:l,notifySpy:i,startTime:o}}function B(e){Y(e.prevAllowStateChanges),fe(),ne(e.prevDerivation),e.notifySpy&&Ee({time:Date.now()-e.startTime})}function U(e){xt(null===vn.trackingDerivation,bt("m028")),vn.strictMode=e,vn.allowStateChanges=!e}function H(){return vn.strictMode}function K(e,t){var n,r=G(e)
+    try{n=t()}finally{Y(r)}return n}function G(e){var t=vn.allowStateChanges
+    return vn.allowStateChanges=e,t}function Y(e){vn.allowStateChanges=e}function W(e){return e instanceof pn}function q(e){switch(e.dependenciesState){case hn.UP_TO_DATE:return!1
+    case hn.NOT_TRACKING:case hn.STALE:return!0
+    case hn.POSSIBLY_STALE:for(var t=te(),n=e.observing,r=n.length,i=0;r>i;i++){var o=n[i]
+    if(dn(o)){try{o.get()}catch(a){return ne(t),!0}if(e.dependenciesState===hn.STALE)return ne(t),!0}}return re(e),ne(t),!1}}function J(){return null!==vn.trackingDerivation}function F(e){var t=e.observers.length>0
+    vn.computationDepth>0&&t&&_t(bt("m031")+e.name),!vn.allowStateChanges&&t&&_t(bt(vn.strictMode?"m030a":"m030b")+e.name)}function X(e,t,n){re(e),e.newObserving=Array(e.observing.length+100),e.unboundDepsCount=0,e.runId=++vn.runId
+    var r=vn.trackingDerivation
+    vn.trackingDerivation=e
+    var i
+    try{i=t.call(n)}catch(o){i=new pn(o)}return vn.trackingDerivation=r,Q(e),i}function Q(e){var t=e.observing,n=e.observing=e.newObserving
+    e.newObserving=null
+    for(var r=0,i=e.unboundDepsCount,o=0;i>o;o++){var a=n[o]
+    0===a.diffValue&&(a.diffValue=1,r!==o&&(n[r]=a),r++)}for(n.length=r,i=t.length;i--;){var a=t[i]
+    0===a.diffValue&&he(a,e),a.diffValue=0}for(;r--;){var a=n[r]
+    1===a.diffValue&&(a.diffValue=0,le(a,e))}}function Z(e){for(var t=e.observing,n=t.length;n--;)he(t[n],e)
+    e.dependenciesState=hn.NOT_TRACKING,t.length=0}function ee(e){var t=te(),n=e()
+    return ne(t),n}function te(){var e=vn.trackingDerivation
+    return vn.trackingDerivation=null,e}function ne(e){vn.trackingDerivation=e}function re(e){if(e.dependenciesState!==hn.UP_TO_DATE){e.dependenciesState=hn.UP_TO_DATE
+    for(var t=e.observing,n=t.length;n--;)t[n].lowestObserverState=hn.UP_TO_DATE}}function ie(){var e=yt(),t=vn
+    if(e.__mobservableTrackingStack||e.__mobservableViewStack)throw Error("[mobx] An incompatible version of mobservable is already loaded.")
+    if(e.__mobxGlobal&&e.__mobxGlobal.version!==t.version)throw Error("[mobx] An incompatible version of mobx is already loaded.")
+    e.__mobxGlobal?vn=e.__mobxGlobal:e.__mobxGlobal=t}function oe(){return vn}function ae(){}function se(){vn.resetId++
+    var e=new mn
+    for(var t in e)-1===fn.indexOf(t)&&(vn[t]=e[t])
+    vn.allowStateChanges=!vn.strictMode}function ue(e){return e.observers&&e.observers.length>0}function ce(e){return e.observers}function le(e,t){var n=e.observers.length
+    n&&(e.observersIndexes[t.__mapid]=n),e.observers[n]=t,e.lowestObserverState>t.dependenciesState&&(e.lowestObserverState=t.dependenciesState)}function he(e,t){if(1===e.observers.length)e.observers.length=0,de(e)
+    else{var n=e.observers,r=e.observersIndexes,i=n.pop()
+    if(i!==t){var o=r[t.__mapid]||0
+    o?r[i.__mapid]=o:delete r[i.__mapid],n[o]=i}delete r[t.__mapid]}}function de(e){e.isPendingUnobservation||(e.isPendingUnobservation=!0,vn.pendingUnobservations.push(e))}function pe(){vn.inBatch++}function fe(){if(0===--vn.inBatch){_e()
+    for(var e=vn.pendingUnobservations,t=0;t<e.length;t++){var n=e[t]
+    n.isPendingUnobservation=!1,0===n.observers.length&&n.onBecomeUnobserved()}vn.pendingUnobservations=[]}}function me(e){var t=vn.trackingDerivation
+    null!==t?t.runId!==e.lastAccessedBy&&(e.lastAccessedBy=t.runId,t.newObserving[t.unboundDepsCount++]=e):0===e.observers.length&&de(e)}function ve(e){if(e.lowestObserverState!==hn.STALE){e.lowestObserverState=hn.STALE
+    for(var t=e.observers,n=t.length;n--;){var r=t[n]
+    r.dependenciesState===hn.UP_TO_DATE&&r.onBecomeStale(),r.dependenciesState=hn.STALE}}}function ge(e){if(e.lowestObserverState!==hn.STALE){e.lowestObserverState=hn.STALE
+    for(var t=e.observers,n=t.length;n--;){var r=t[n]
+    r.dependenciesState===hn.POSSIBLY_STALE?r.dependenciesState=hn.STALE:r.dependenciesState===hn.UP_TO_DATE&&(e.lowestObserverState=hn.UP_TO_DATE)}}}function be(e){if(e.lowestObserverState===hn.UP_TO_DATE){e.lowestObserverState=hn.POSSIBLY_STALE
+    for(var t=e.observers,n=t.length;n--;){var r=t[n]
+    r.dependenciesState===hn.UP_TO_DATE&&(r.dependenciesState=hn.POSSIBLY_STALE,r.onBecomeStale())}}}function ye(e){xt(this&&this.$mobx&&wn(this.$mobx),"Invalid `this`"),xt(!this.$mobx.errorHandler,"Only one onErrorHandler can be registered"),this.$mobx.errorHandler=e}function we(e){return vn.globalReactionErrorHandlers.push(e),function(){var t=vn.globalReactionErrorHandlers.indexOf(e)
+    t>=0&&vn.globalReactionErrorHandlers.splice(t,1)}}function _e(){vn.inBatch>0||vn.isRunningReactions||yn(xe)}function xe(){vn.isRunningReactions=!0
+    for(var e=vn.pendingReactions,t=0;e.length>0;){++t===bn&&(console.error("Reaction doesn't converge to a stable state after "+bn+" iterations. Probably there is a cycle in the reactive function: "+e[0]),e.splice(0))
+    for(var n=e.splice(0),r=0,i=n.length;i>r;r++)n[r].runReaction()}vn.isRunningReactions=!1}function Se(e){var t=yn
+    yn=function(n){return e(function(){return t(n)})}}function Oe(){return!!vn.spyListeners.length}function ke(e){if(vn.spyListeners.length)for(var t=vn.spyListeners,n=0,r=t.length;r>n;n++)t[n](e)}function Ae(e){var t=It({},e,{spyReportStart:!0})
+    ke(t)}function Ee(e){ke(e?It({},e,_n):_n)}function Te(e){return vn.spyListeners.push(e),Ot(function(){var t=vn.spyListeners.indexOf(e);-1!==t&&vn.spyListeners.splice(t,1)})}function Ie(e){return e.interceptors&&e.interceptors.length>0}function Le(e,t){var n=e.interceptors||(e.interceptors=[])
+    return n.push(t),Ot(function(){var e=n.indexOf(t);-1!==e&&n.splice(e,1)})}function je(e,t){var n=te()
+    try{var r=e.interceptors
+    if(r)for(var i=0,o=r.length;o>i&&(t=r[i](t),xt(!t||t.type,"Intercept handlers should return nothing or a change object"),t);i++);return t}finally{ne(n)}}function Ce(e){return e.changeListeners&&e.changeListeners.length>0}function Re(e,t){var n=e.changeListeners||(e.changeListeners=[])
+    return n.push(t),Ot(function(){var e=n.indexOf(t);-1!==e&&n.splice(e,1)})}function Me(e,t){var n=te(),r=e.changeListeners
+    if(r){r=r.slice()
+    for(var i=0,o=r.length;o>i;i++)r[i](t)
+    ne(n)}}function Pe(e){return St("asReference is deprecated, use observable.ref instead"),an.ref(e)}function De(e){return St("asStructure is deprecated. Use observable.struct, computed.struct or reaction options instead."),an.struct(e)}function Ne(e){return St("asFlat is deprecated, use observable.shallow instead"),an.shallow(e)}function Ve(e){return St("asMap is deprecated, use observable.map or observable.shallowMap instead"),an.map(e||{})}function $e(e){return"object"===(void 0===e?"undefined":Gt(e))&&null!==e&&e.isMobxModifierDescriptor===!0}function ze(e,t){return xt(!$e(t),"Modifiers cannot be nested"),{isMobxModifierDescriptor:!0,initialValue:t,enhancer:e}}function Be(e,t,n){return $e(e)&&_t("You tried to assign a modifier wrapped value to a collection, please define modifiers when creating the collection, not when modifying it"),A(e)?e:Array.isArray(e)?an.array(e,n):Tt(e)?an.object(e,n):Ut(e)?an.map(e,n):e}function Ue(e,t,n){return $e(e)&&_t("You tried to assign a modifier wrapped value to a collection, please define modifiers when creating the collection, not when modifying it"),void 0===e||null===e?e:st(e)||Fe(e)||Cn(e)?e:Array.isArray(e)?an.shallowArray(e,n):Tt(e)?an.shallowObject(e,n):Ut(e)?an.shallowMap(e,n):_t("The shallow modifier / decorator can only used in combination with arrays, objects and maps")}function He(e){return e}function Ke(e,t,n){if(Vt(e,t))return t
+    if(A(e))return e
+    if(Array.isArray(e))return new En(e,Ke,n)
+    if(Ut(e))return new jn(e,Ke,n)
+    if(Tt(e)){var r={}
+    return Qe(r,n),g(r,Ke,[e]),r}return e}function Ge(e,t,n){return Vt(e,t)?t:e}function Ye(e){var t=We(e),n=qe(e)
+    Object.defineProperty(En.prototype,""+e,{enumerable:!1,configurable:!0,set:t,get:n})}function We(e){return function(t){var n=this.$mobx,r=n.values
+    if(e<r.length){F(n.atom)
+    var i=r[e]
+    if(Ie(n)){var o=je(n,{type:"update",object:n.array,index:e,newValue:t})
+    if(!o)return
+    t=o.newValue}t=n.enhancer(t,i)
+    var a=t!==i
+    a&&(r[e]=t,n.notifyArrayChildUpdate(e,t,i))}else{if(e!==r.length)throw Error("[mobx.array] Index out of bounds, "+e+" is larger than "+r.length)
+    n.spliceWithArray(e,0,[t])}}}function qe(e){return function(){var t=this.$mobx
+    if(t){if(e<t.values.length)return t.atom.reportObserved(),t.values[e]
+    console.warn("[mobx.array] Attempt to read an array index ("+e+") that is out of bounds ("+t.values.length+"). Please check length first. Out of bound indices will not be tracked by MobX")}}}function Je(e){for(var t=On;e>t;t++)Ye(t)
+    On=e}function Fe(e){return Et(e)&&In(e.$mobx)}function Xe(e){return St("`mobx.map` is deprecated, use `new ObservableMap` or `mobx.observable.map` instead"),an.map(e)}function Qe(e,t){if(st(e))return e.$mobx
+    xt(Object.isExtensible(e),bt("m035")),Tt(e)||(t=(e.constructor.name||"ObservableObject")+"@"+wt()),t||(t="ObservableObject@"+wt())
+    var n=new Rn(e,t)
+    return Mt(e,"$mobx",n),n}function Ze(e,t,n,r){if(e.values[t])return xt("value"in n,"The property "+t+" in "+e.name+" is already observable, cannot redefine it as computed property"),void(e.target[t]=n.value)
+    if("value"in n)if($e(n.value)){var i=n.value
+    et(e,t,i.initialValue,i.enhancer)}else o(n.value)&&n.value.autoBind===!0?a(e.target,t,n.value.originalFn):dn(n.value)?nt(e,t,n.value):et(e,t,n.value,r)
+    else tt(e,t,n.get,n.set,!1,!0)}function et(e,t,n,r){if(Dt(e.target,t),Ie(e)){var i=je(e,{object:e.target,name:t,type:"add",newValue:n})
+    if(!i)return
+    n=i.newValue}var o=e.values[t]=new Vn(n,r,e.name+"."+t,!1)
+    n=o.value,Object.defineProperty(e.target,t,rt(t)),at(e,e.target,t,n)}function tt(e,t,n,r,i,o){o&&Dt(e.target,t),e.values[t]=new ln(n,e.target,i,e.name+"."+t,r),o&&Object.defineProperty(e.target,t,it(t))}function nt(e,t,n){var r=e.name+"."+t
+    n.name=r,n.scope||(n.scope=e.target),e.values[t]=n,Object.defineProperty(e.target,t,it(t))}function rt(e){return Mn[e]||(Mn[e]={configurable:!0,enumerable:!0,get:function(){return this.$mobx.values[e].get()},set:function(t){ot(this,e,t)}})}function it(e){return Pn[e]||(Pn[e]={configurable:!0,enumerable:!1,get:function(){return this.$mobx.values[e].get()},set:function(t){return this.$mobx.values[e].set(t)}})}function ot(e,t,n){var r=e.$mobx,i=r.values[t]
+    if(Ie(r)){var o=je(r,{type:"update",object:e,name:t,newValue:n})
+    if(!o)return
+    n=o.newValue}if(n=i.prepareNewValue(n),n!==Nn){var a=Ce(r),s=Oe(),o=a||s?{type:"update",object:e,oldValue:i.value,name:t,newValue:n}:null
+    s&&Ae(o),i.setNewValue(n),a&&Me(r,o),s&&Ee()}}function at(e,t,n,r){var i=Ce(e),o=Oe(),a=i||o?{type:"add",object:t,name:n,newValue:r}:null
+    o&&Ae(a),i&&Me(e,a),o&&Ee()}function st(e){return Et(e)?(pt(e),Dn(e.$mobx)):!1}function ut(e,t){if("object"===(void 0===e?"undefined":Gt(e))&&null!==e){if(Fe(e))return xt(void 0===t,bt("m036")),e.$mobx.atom
+    if(Cn(e)){var n=e
+    if(void 0===t)return ut(n._keys)
+    var r=n._data[t]||n._hasMap[t]
+    return xt(!!r,"the entry '"+t+"' does not exist in the observable map '"+lt(e)+"'"),r}if(pt(e),st(e)){if(!t)return _t("please specify a property")
+    var i=e.$mobx.values[t]
+    return xt(!!i,"no observable property '"+t+"' found on the observable object '"+lt(e)+"'"),i}if(cn(e)||dn(e)||wn(e))return e}else if("function"==typeof e&&wn(e.$mobx))return e.$mobx
+    return _t("Cannot obtain atom from "+e)}function ct(e,t){return xt(e,"Expecting some object"),void 0!==t?ct(ut(e,t)):cn(e)||dn(e)||wn(e)?e:Cn(e)?e:(pt(e),e.$mobx?e.$mobx:void xt(!1,"Cannot obtain administration from "+e))}function lt(e,t){var n
+    return n=void 0!==t?ut(e,t):st(e)||Cn(e)?ct(e):ut(e),n.name}function ht(e,t,n,r,i){function o(o,a,s,u,c){if(void 0===c&&(c=0),xt(i||ft(arguments),"This function is a decorator, but it wasn't invoked like a decorator"),s){jt(o,"__mobxLazyInitializers")||Rt(o,"__mobxLazyInitializers",o.__mobxLazyInitializers&&o.__mobxLazyInitializers.slice()||[])
+    var l=s.value,h=s.initializer
+    return o.__mobxLazyInitializers.push(function(t){e(t,a,h?h.call(t):l,u,s)}),{enumerable:r,configurable:!0,get:function(){return this.__mobxDidRunLazyInitializers!==!0&&pt(this),t.call(this,a)},set:function(e){this.__mobxDidRunLazyInitializers!==!0&&pt(this),n.call(this,a,e)}}}var d={enumerable:r,configurable:!0,get:function(){return this.__mobxInitializedProps&&this.__mobxInitializedProps[a]===!0||dt(this,a,void 0,e,u,s),t.call(this,a)},set:function(t){this.__mobxInitializedProps&&this.__mobxInitializedProps[a]===!0?n.call(this,a,t):dt(this,a,t,e,u,s)}}
+    return(arguments.length<3||5===arguments.length&&3>c)&&Object.defineProperty(o,a,d),d}return i?function(){if(ft(arguments))return o.apply(null,arguments)
+    var e=arguments,t=arguments.length
+    return function(n,r,i){return o(n,r,i,e,t)}}:o}function dt(e,t,n,r,i,o){jt(e,"__mobxInitializedProps")||Rt(e,"__mobxInitializedProps",{}),e.__mobxInitializedProps[t]=!0,r(e,t,n,i,o)}function pt(e){e.__mobxDidRunLazyInitializers!==!0&&e.__mobxLazyInitializers&&(Rt(e,"__mobxDidRunLazyInitializers",!0),e.__mobxDidRunLazyInitializers&&e.__mobxLazyInitializers.forEach(function(t){return t(e)}))}function ft(e){return(2===e.length||3===e.length)&&"string"==typeof e[1]}function mt(){return"function"==typeof Symbol&&Symbol.iterator||"@@iterator"}function vt(e){xt(e[zn]!==!0,"Illegal state: cannot recycle array as iterator"),Mt(e,zn,!0)
+    var t=-1
+    return Mt(e,"next",function(){return t++,{done:t>=this.length,value:t<this.length?this[t]:void 0}}),e}function gt(e,t){Mt(e,mt(),t)}function bt(e){return Bn[e]}function yt(){return n}function wt(){return++vn.mobxGuid}function _t(e,t){throw xt(!1,e,t),"X"}function xt(e,t,n){if(!e)throw Error("[mobx] Invariant failed: "+t+(n?" in '"+n+"'":""))}function St(e){return-1!==Hn.indexOf(e)?!1:(Hn.push(e),console.error("[mobx] Deprecated: "+e),!0)}function Ot(e){var t=!1
+    return function(){return t?void 0:(t=!0,e.apply(this,arguments))}}function kt(e){var t=[]
+    return e.forEach(function(e){-1===t.indexOf(e)&&t.push(e)}),t}function At(e,t,n){if(void 0===t&&(t=100),void 0===n&&(n=" - "),!e)return""
+    var r=e.slice(0,t)
+    return""+r.join(n)+(e.length>t?" (... and "+(e.length-t)+"more)":"")}function Et(e){return null!==e&&"object"===(void 0===e?"undefined":Gt(e))}function Tt(e){if(null===e||"object"!==(void 0===e?"undefined":Gt(e)))return!1
+    var t=Object.getPrototypeOf(e)
+    return t===Object.prototype||null===t}function It(){for(var e=arguments[0],t=1,n=arguments.length;n>t;t++){var r=arguments[t]
+    for(var i in r)jt(r,i)&&(e[i]=r[i])}return e}function Lt(e,t,n){return"number"==typeof t&&isNaN(t)?"number"!=typeof n||!isNaN(n):e?!Vt(t,n):t!==n}function jt(e,t){return Gn.call(e,t)}function Ct(e,t){for(var n=0;n<t.length;n++)Rt(e,t[n],e[t[n]])}function Rt(e,t,n){Object.defineProperty(e,t,{enumerable:!1,writable:!0,configurable:!0,value:n})}function Mt(e,t,n){Object.defineProperty(e,t,{enumerable:!1,writable:!1,configurable:!0,value:n})}function Pt(e,t){var n=Object.getOwnPropertyDescriptor(e,t)
+    return!n||n.configurable!==!1&&n.writable!==!1}function Dt(e,t){xt(Pt(e,t),"Cannot make property '"+t+"' observable, it is not configurable and writable in the target object")}function Nt(e){var t=[]
+    for(var n in e)t.push(n)
+    return t}function Vt(e,t){if(null===e&&null===t)return!0
+    if(void 0===e&&void 0===t)return!0
+    if("object"!==(void 0===e?"undefined":Gt(e)))return e===t
+    var n=zt(e),r=Bt(e)
+    if(n!==zt(t))return!1
+    if(r!==Bt(t))return!1
+    if(n){if(e.length!==t.length)return!1
+    for(var i=e.length-1;i>=0;i--)if(!Vt(e[i],t[i]))return!1
+    return!0}if(r){if(e.size!==t.size)return!1
+    var o=!0
+    return e.forEach(function(e,n){o=o&&Vt(t.get(n),e)}),o}if("object"===(void 0===e?"undefined":Gt(e))&&"object"===(void 0===t?"undefined":Gt(t))){if(null===e||null===t)return!1
+    if(Bt(e)&&Bt(t))return e.size!==t.size?!1:Vt(an.shallowMap(e).entries(),an.shallowMap(t).entries())
+    if(Nt(e).length!==Nt(t).length)return!1
+    for(var a in e){if(!(a in t))return!1
+    if(!Vt(e[a],t[a]))return!1}return!0}return!1}function $t(e,t){var n="isMobX"+e
+    return t.prototype[n]=!0,function(e){return Et(e)&&e[n]===!0}}function zt(e){return Array.isArray(e)||Fe(e)}function Bt(e){return Ut(e)||Cn(e)}function Ut(e){return void 0!==yt().Map&&e instanceof yt().Map?!0:!1}function Ht(){return"function"==typeof Symbol&&Symbol.toPrimitive||"@@toPrimitive"}function Kt(e){return null===e?null:"object"===(void 0===e?"undefined":Gt(e))?""+e:e}var Gt="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},Yt=function(){var e=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(e,t){e.__proto__=t}||function(e,t){for(var n in t)t.hasOwnProperty(n)&&(e[n]=t[n])}
+    return function(t,n){function r(){this.constructor=t}e(t,n),t.prototype=null===n?Object.create(n):(r.prototype=n.prototype,new r)}}()
+    Object.defineProperty(t,"__esModule",{value:!0}),ae(),t.extras={allowStateChanges:K,deepEqual:Vt,getAtom:ut,getDebugName:lt,getDependencyTree:b,getAdministration:ct,getGlobalState:oe,getObserverTree:w,isComputingDerivation:J,isSpyEnabled:Oe,onReactionError:we,resetGlobalState:se,shareGlobalState:ie,spyReport:ke,spyReportEnd:Ee,spyReportStart:Ae,setReactionScheduler:Se},"object"===("undefined"==typeof __MOBX_DEVTOOLS_GLOBAL_HOOK__?"undefined":Gt(__MOBX_DEVTOOLS_GLOBAL_HOOK__))&&__MOBX_DEVTOOLS_GLOBAL_HOOK__.injectMobx(e.exports),e.exports["default"]=e.exports
+    var Wt=ht(function(e,t,n,r,i){var o=r&&1===r.length?r[0]:n.name||t||"<unnamed action>",a=Jt(o,n)
+    Rt(e,t,a)},function(e){return this[e]},function(){xt(!1,bt("m001"))},!1,!0),qt=ht(function(e,t,n){a(e,t,n)},function(e){return this[e]},function(){xt(!1,bt("m001"))},!1,!1),Jt=function(e,t,n,i){return 1===arguments.length&&"function"==typeof e?V(e.name||"<unnamed action>",e):2===arguments.length&&"function"==typeof t?V(e,t):1===arguments.length&&"string"==typeof e?r(e):r(t).apply(null,arguments)}
+    t.action=Jt,Jt.bound=function(e,t,n){if("function"==typeof e){var r=V("<not yet bound action>",e)
+    return r.autoBind=!0,r}return qt.apply(null,arguments)},t.runInAction=i,t.isAction=o,t.autorun=s,t.when=u,t.autorunAsync=c,t.reaction=l
+    var Ft=h(!1),Xt=h(!0),Qt=function(e,t,n){if("string"==typeof t)return Ft.apply(null,arguments)
+    xt("function"==typeof e,bt("m011")),xt(arguments.length<3,bt("m012"))
+    var r="object"===(void 0===t?"undefined":Gt(t))?t:{}
+    return r.setter="function"==typeof t?t:r.setter,new ln(e,r.context,r.compareStructural||r.struct||!1,r.name||e.name||"",r.setter)}
+    t.computed=Qt,Qt.struct=Xt,t.createTransformer=d,t.expr=f,t.extendObservable=m,t.extendShallowObservable=v,t.intercept=x,t.isComputed=k,t.isObservable=A
+    var Zt=I(Be),en=I(Ue),tn=I(He),nn=I(Ke),rn=I(Ge),on=function(){function e(){}return e.prototype.box=function(e,t){return arguments.length>2&&T("box"),new Vn(e,Be,t)},e.prototype.shallowBox=function(e,t){return arguments.length>2&&T("shallowBox"),new Vn(e,He,t)},e.prototype.array=function(e,t){return arguments.length>2&&T("array"),new En(e,Be,t)},e.prototype.shallowArray=function(e,t){return arguments.length>2&&T("shallowArray"),new En(e,He,t)},e.prototype.map=function(e,t){return arguments.length>2&&T("map"),new jn(e,Be,t)},e.prototype.shallowMap=function(e,t){return arguments.length>2&&T("shallowMap"),new jn(e,He,t)},e.prototype.object=function(e,t){arguments.length>2&&T("object")
+    var n={}
+    return Qe(n,t),m(n,e),n},e.prototype.shallowObject=function(e,t){arguments.length>2&&T("shallowObject")
+    var n={}
+    return Qe(n,t),v(n,e),n},e.prototype.ref=function(){return arguments.length<2?ze(He,arguments[0]):tn.apply(null,arguments)},e.prototype.shallow=function(){return arguments.length<2?ze(Ue,arguments[0]):en.apply(null,arguments)},e.prototype.deep=function(){return arguments.length<2?ze(Be,arguments[0]):Zt.apply(null,arguments)},e.prototype.struct=function(){return arguments.length<2?ze(Ke,arguments[0]):nn.apply(null,arguments)},e}()
+    t.IObservableFactories=on
+    var an=E
+    t.observable=an,Object.keys(on.prototype).forEach(function(e){return an[e]=on.prototype[e]}),an.deep.struct=an.struct,an.ref.struct=function(){return arguments.length<2?ze(Ge,arguments[0]):rn.apply(null,arguments)},t.observe=L,t.toJS=R,t.transaction=M,t.whyRun=N,t.useStrict=U,t.isStrictModeEnabled=H
+    var sn=function(){function e(e){void 0===e&&(e="Atom@"+wt()),this.name=e,this.isPendingUnobservation=!0,this.observers=[],this.observersIndexes={},this.diffValue=0,this.lastAccessedBy=0,this.lowestObserverState=hn.NOT_TRACKING}return e.prototype.onBecomeUnobserved=function(){},e.prototype.reportObserved=function(){me(this)},e.prototype.reportChanged=function(){pe(),ve(this),fe()},e.prototype.toString=function(){return this.name},e}()
+    t.BaseAtom=sn
+    var un=function(e){function t(t,n,r){void 0===t&&(t="Atom@"+wt()),void 0===n&&(n=Kn),void 0===r&&(r=Kn)
+    var i=e.call(this,t)||this
+    return i.name=t,i.onBecomeObservedHandler=n,i.onBecomeUnobservedHandler=r,i.isPendingUnobservation=!1,i.isBeingTracked=!1,i}return Yt(t,e),t.prototype.reportObserved=function(){return pe(),e.prototype.reportObserved.call(this),this.isBeingTracked||(this.isBeingTracked=!0,this.onBecomeObservedHandler()),fe(),!!vn.trackingDerivation},t.prototype.onBecomeUnobserved=function(){this.isBeingTracked=!1,this.onBecomeUnobservedHandler()},t}(sn)
+    t.Atom=un
+    var cn=$t("Atom",sn),ln=function(){function e(e,t,n,r,i){this.derivation=e,this.scope=t,this.compareStructural=n,this.dependenciesState=hn.NOT_TRACKING,this.observing=[],this.newObserving=null,this.isPendingUnobservation=!1,this.observers=[],this.observersIndexes={},this.diffValue=0,this.runId=0,this.lastAccessedBy=0,this.lowestObserverState=hn.UP_TO_DATE,this.unboundDepsCount=0,this.__mapid="#"+wt(),this.value=void 0,this.isComputing=!1,this.isRunningSetter=!1,this.name=r||"ComputedValue@"+wt(),i&&(this.setter=V(r+"-setter",i))}return e.prototype.onBecomeStale=function(){be(this)},e.prototype.onBecomeUnobserved=function(){xt(this.dependenciesState!==hn.NOT_TRACKING,bt("m029")),Z(this),this.value=void 0},e.prototype.get=function(){xt(!this.isComputing,"Cycle detected in computation "+this.name,this.derivation),0===vn.inBatch?(pe(),q(this)&&(this.value=this.computeValue(!1)),fe()):(me(this),q(this)&&this.trackAndCompute()&&ge(this))
+    var e=this.value
+    if(W(e))throw e.cause
+    return e},e.prototype.peek=function(){var e=this.computeValue(!1)
+    if(W(e))throw e.cause
+    return e},e.prototype.set=function(e){if(this.setter){xt(!this.isRunningSetter,"The setter of computed value '"+this.name+"' is trying to update itself. Did you intend to update an _observable_ value, instead of the computed property?"),this.isRunningSetter=!0
+    try{this.setter.call(this.scope,e)}finally{this.isRunningSetter=!1}}else xt(!1,"[ComputedValue '"+this.name+"'] It is not possible to assign a new value to a computed value.")},e.prototype.trackAndCompute=function(){Oe()&&ke({object:this.scope,type:"compute",fn:this.derivation})
+    var e=this.value,t=this.value=this.computeValue(!0)
+    return W(t)||Lt(this.compareStructural,t,e)},e.prototype.computeValue=function(e){this.isComputing=!0,vn.computationDepth++
+    var t
+    if(e)t=X(this,this.derivation,this.scope)
+    else try{t=this.derivation.call(this.scope)}catch(n){t=new pn(n)}return vn.computationDepth--,this.isComputing=!1,t},e.prototype.observe=function(e,t){var n=this,r=!0,i=void 0
+    return s(function(){var o=n.get()
+    if(!r||t){var a=te()
+    e({type:"update",object:n,newValue:o,oldValue:i}),ne(a)}r=!1,i=o})},e.prototype.toJSON=function(){return this.get()},e.prototype.toString=function(){return this.name+"["+this.derivation+"]"},e.prototype.valueOf=function(){return Kt(this.get())},e.prototype.whyRun=function(){var e=!!vn.trackingDerivation,t=kt(this.isComputing?this.newObserving:this.observing).map(function(e){return e.name}),n=kt(ce(this).map(function(e){return e.name}))
+    return"\nWhyRun? computation '"+this.name+"':\n * Running because: "+(e?"[active] the value of this computation is needed by a reaction":this.isComputing?"[get] The value of this computed was requested outside a reaction":"[idle] not running at the moment")+"\n"+(this.dependenciesState===hn.NOT_TRACKING?bt("m032"):" * This computation will re-run if any of the following observables changes:\n    "+At(t)+"\n    "+(this.isComputing&&e?" (... or any observable accessed during the remainder of the current run)":"")+"\n	"+bt("m038")+"\n\n  * If the outcome of this computation changes, the following observers will be re-run:\n    "+At(n)+"\n")},e}()
+    ln.prototype[Ht()]=ln.prototype.valueOf
+    var hn,dn=$t("ComputedValue",ln)
+    !function(e){e[e.NOT_TRACKING=-1]="NOT_TRACKING",e[e.UP_TO_DATE=0]="UP_TO_DATE",e[e.POSSIBLY_STALE=1]="POSSIBLY_STALE",e[e.STALE=2]="STALE"}(hn||(hn={})),t.IDerivationState=hn
+    var pn=function(){function e(e){this.cause=e}return e}()
+    t.untracked=ee
+    var fn=["mobxGuid","resetId","spyListeners","strictMode","runId"],mn=function(){function e(){this.version=5,this.trackingDerivation=null,this.computationDepth=0,this.runId=0,this.mobxGuid=0,this.inBatch=0,this.pendingUnobservations=[],this.pendingReactions=[],this.isRunningReactions=!1,this.allowStateChanges=!0,this.strictMode=!1,this.resetId=0,this.spyListeners=[],this.globalReactionErrorHandlers=[]}return e}(),vn=new mn,gn=function(){function e(e,t){void 0===e&&(e="Reaction@"+wt()),this.name=e,this.onInvalidate=t,this.observing=[],this.newObserving=[],this.dependenciesState=hn.NOT_TRACKING,this.diffValue=0,this.runId=0,this.unboundDepsCount=0,this.__mapid="#"+wt(),this.isDisposed=!1,this._isScheduled=!1,this._isTrackPending=!1,this._isRunning=!1}return e.prototype.onBecomeStale=function(){this.schedule()},e.prototype.schedule=function(){this._isScheduled||(this._isScheduled=!0,vn.pendingReactions.push(this),_e())},e.prototype.isScheduled=function(){return this._isScheduled},e.prototype.runReaction=function(){this.isDisposed||(pe(),this._isScheduled=!1,q(this)&&(this._isTrackPending=!0,this.onInvalidate(),this._isTrackPending&&Oe()&&ke({object:this,type:"scheduled-reaction"})),fe())},e.prototype.track=function(e){pe()
+    var t,n=Oe()
+    n&&(t=Date.now(),Ae({object:this,type:"reaction",fn:e})),this._isRunning=!0
+    var r=X(this,e,void 0)
+    this._isRunning=!1,this._isTrackPending=!1,this.isDisposed&&Z(this),W(r)&&this.reportExceptionInDerivation(r.cause),n&&Ee({time:Date.now()-t}),fe()},e.prototype.reportExceptionInDerivation=function(e){var t=this
+    if(this.errorHandler)return void this.errorHandler(e,this)
+    var n="[mobx] Encountered an uncaught exception that was thrown by a reaction or observer component, in: '"+this,r=bt("m037")
+    console.error(n||r,e),Oe()&&ke({type:"error",message:n,error:e,object:this}),vn.globalReactionErrorHandlers.forEach(function(n){return n(e,t)})},e.prototype.dispose=function(){this.isDisposed||(this.isDisposed=!0,this._isRunning||(pe(),Z(this),fe()))},e.prototype.getDisposer=function(){var e=this.dispose.bind(this)
+    return e.$mobx=this,e.onError=ye,e},e.prototype.toString=function(){return"Reaction["+this.name+"]"},e.prototype.whyRun=function(){var e=kt(this._isRunning?this.newObserving:this.observing).map(function(e){return e.name})
+    return"\nWhyRun? reaction '"+this.name+"':\n * Status: ["+(this.isDisposed?"stopped":this._isRunning?"running":this.isScheduled()?"scheduled":"idle")+"]\n * This reaction will re-run if any of the following observables changes:\n    "+At(e)+"\n    "+(this._isRunning?" (... or any observable accessed during the remainder of the current run)":"")+"\n	"+bt("m038")+"\n"},e}()
+    t.Reaction=gn
+    var bn=100,yn=function(e){return e()},wn=$t("Reaction",gn),_n={spyReportEnd:!0}
+    t.spy=Te,t.asReference=Pe,t.asStructure=De,t.asFlat=Ne,t.asMap=Ve,t.isModifierDescriptor=$e
+    var xn=1e4,Sn=function(){var e=!1,t={}
+    return Object.defineProperty(t,"0",{set:function(){e=!0}}),Object.create(t)[0]=1,e===!1}(),On=0,kn=function(){function e(){}return e}()
+    kn.prototype=[]
+    var An=function(){function e(e,t,n,r){this.array=n,this.owned=r,this.lastKnownLength=0,this.interceptors=null,this.changeListeners=null,this.atom=new sn(e||"ObservableArray@"+wt()),this.enhancer=function(n,r){return t(n,r,e+"[..]")}}return e.prototype.intercept=function(e){return Le(this,e)},e.prototype.observe=function(e,t){return void 0===t&&(t=!1),t&&e({object:this.array,type:"splice",index:0,added:this.values.slice(),addedCount:this.values.length,removed:[],removedCount:0}),Re(this,e)},e.prototype.getArrayLength=function(){return this.atom.reportObserved(),this.values.length},e.prototype.setArrayLength=function(e){if("number"!=typeof e||0>e)throw Error("[mobx.array] Out of range: "+e)
+    var t=this.values.length
+    if(e!==t)if(e>t){for(var n=Array(e-t),r=0;e-t>r;r++)n[r]=void 0
+    this.spliceWithArray(t,0,n)}else this.spliceWithArray(e,t-e)},e.prototype.updateArrayLength=function(e,t){if(e!==this.lastKnownLength)throw Error("[mobx] Modification exception: the internal structure of an observable array was changed. Did you use peek() to change it?")
+    this.lastKnownLength+=t,t>0&&e+t+1>On&&Je(e+t+1)},e.prototype.spliceWithArray=function(e,t,n){var r=this
+    F(this.atom)
+    var i=this.values.length
+    if(void 0===e?e=0:e>i?e=i:0>e&&(e=Math.max(0,i+e)),t=1===arguments.length?i-e:void 0===t||null===t?0:Math.max(0,Math.min(t,i-e)),void 0===n&&(n=[]),Ie(this)){var o=je(this,{object:this.array,type:"splice",index:e,removedCount:t,added:n})
+    if(!o)return Un
+    t=o.removedCount,n=o.added}n=n.map(function(e){return r.enhancer(e,void 0)})
+    var a=n.length-t
+    this.updateArrayLength(i,a)
+    var s=this.spliceItemsIntoValues(e,t,n)
+    return(0!==t||0!==n.length)&&this.notifyArraySplice(e,n,s),s},e.prototype.spliceItemsIntoValues=function(e,t,n){if(n.length<xn)return(i=this.values).splice.apply(i,[e,t].concat(n))
+    var r=this.values.slice(e,e+t)
+    return this.values=this.values.slice(0,e).concat(n,this.values.slice(e+t)),r
+    var i},e.prototype.notifyArrayChildUpdate=function(e,t,n){var r=!this.owned&&Oe(),i=Ce(this),o=i||r?{object:this.array,type:"update",index:e,newValue:t,oldValue:n}:null
+    r&&Ae(o),this.atom.reportChanged(),i&&Me(this,o),r&&Ee()},e.prototype.notifyArraySplice=function(e,t,n){var r=!this.owned&&Oe(),i=Ce(this),o=i||r?{object:this.array,type:"splice",index:e,removed:n,added:t,removedCount:n.length,addedCount:t.length}:null
+    r&&Ae(o),this.atom.reportChanged(),i&&Me(this,o),r&&Ee()},e}(),En=function(e){function t(t,n,r,i){void 0===r&&(r="ObservableArray@"+wt()),void 0===i&&(i=!1)
+    var o=e.call(this)||this,a=new An(r,n,o,i)
+    return Mt(o,"$mobx",a),t&&t.length?(a.updateArrayLength(0,t.length),a.values=t.map(function(e){return n(e,void 0,r+"[..]")}),a.notifyArraySplice(0,a.values.slice(),Un)):a.values=[],Sn&&Object.defineProperty(a.array,"0",Tn),o}return Yt(t,e),t.prototype.intercept=function(e){return this.$mobx.intercept(e)},t.prototype.observe=function(e,t){return void 0===t&&(t=!1),this.$mobx.observe(e,t)},t.prototype.clear=function(){return this.splice(0)},t.prototype.concat=function(){for(var e=[],t=0;t<arguments.length;t++)e[t]=arguments[t]
+    return this.$mobx.atom.reportObserved(),Array.prototype.concat.apply(this.peek(),e.map(function(e){return Fe(e)?e.peek():e}))},t.prototype.replace=function(e){return this.$mobx.spliceWithArray(0,this.$mobx.values.length,e)},t.prototype.toJS=function(){return this.slice()},t.prototype.toJSON=function(){return this.toJS()},t.prototype.peek=function(){return this.$mobx.values},t.prototype.find=function(e,t,n){void 0===n&&(n=0),this.$mobx.atom.reportObserved()
+    for(var r=this.$mobx.values,i=r.length,o=n;i>o;o++)if(e.call(t,r[o],o,this))return r[o]},t.prototype.splice=function(e,t){for(var n=[],r=2;r<arguments.length;r++)n[r-2]=arguments[r]
+    switch(arguments.length){case 0:return[]
+    case 1:return this.$mobx.spliceWithArray(e)
+    case 2:return this.$mobx.spliceWithArray(e,t)}return this.$mobx.spliceWithArray(e,t,n)},t.prototype.spliceWithArray=function(e,t,n){return this.$mobx.spliceWithArray(e,t,n)},t.prototype.push=function(){for(var e=[],t=0;t<arguments.length;t++)e[t]=arguments[t]
+    var n=this.$mobx
+    return n.spliceWithArray(n.values.length,0,e),n.values.length},t.prototype.pop=function(){return this.splice(Math.max(this.$mobx.values.length-1,0),1)[0]},t.prototype.shift=function(){return this.splice(0,1)[0]},t.prototype.unshift=function(){for(var e=[],t=0;t<arguments.length;t++)e[t]=arguments[t]
+    var n=this.$mobx
+    return n.spliceWithArray(0,0,e),n.values.length},t.prototype.reverse=function(){this.$mobx.atom.reportObserved()
+    var e=this.slice()
+    return e.reverse.apply(e,arguments)},t.prototype.sort=function(e){this.$mobx.atom.reportObserved()
+    var t=this.slice()
+    return t.sort.apply(t,arguments)},t.prototype.remove=function(e){var t=this.$mobx.values.indexOf(e)
+    return t>-1?(this.splice(t,1),!0):!1},t.prototype.move=function(e,t){function n(e){if(0>e)throw Error("[mobx.array] Index out of bounds: "+e+" is negative")
+    var t=this.$mobx.values.length
+    if(e>=t)throw Error("[mobx.array] Index out of bounds: "+e+" is not smaller than "+t)}if(n.call(this,e),n.call(this,t),e!==t){var r,i=this.$mobx.values
+    r=t>e?i.slice(0,e).concat(i.slice(e+1,t+1),[i[e]],i.slice(t+1)):i.slice(0,t).concat([i[e]],i.slice(t,e),i.slice(e+1)),this.replace(r)}},t.prototype.toString=function(){return this.$mobx.atom.reportObserved(),Array.prototype.toString.apply(this.$mobx.values,arguments)},t.prototype.toLocaleString=function(){return this.$mobx.atom.reportObserved(),Array.prototype.toLocaleString.apply(this.$mobx.values,arguments)},t}(kn)
+    gt(En.prototype,function(){return vt(this.slice())}),Ct(En.prototype,["constructor","intercept","observe","clear","concat","replace","toJS","toJSON","peek","find","splice","spliceWithArray","push","pop","shift","unshift","reverse","sort","remove","move","toString","toLocaleString"]),Object.defineProperty(En.prototype,"length",{enumerable:!1,configurable:!0,get:function(){return this.$mobx.getArrayLength()},set:function(e){this.$mobx.setArrayLength(e)}}),["every","filter","forEach","indexOf","join","lastIndexOf","map","reduce","reduceRight","slice","some"].forEach(function(e){var t=Array.prototype[e]
+    xt("function"==typeof t,"Base function not defined on Array prototype: '"+e+"'"),Rt(En.prototype,e,function(){return this.$mobx.atom.reportObserved(),t.apply(this.$mobx.values,arguments)})})
+    var Tn={configurable:!0,enumerable:!1,set:We(0),get:qe(0)}
+    Je(1e3)
+    var In=$t("ObservableArrayAdministration",An)
+    t.isObservableArray=Fe
+    var Ln={},jn=function(){function e(e,t,n){void 0===t&&(t=Be),void 0===n&&(n="ObservableMap@"+wt()),this.enhancer=t,this.name=n,this.$mobx=Ln,this._data={},this._hasMap={},this._keys=new En(void 0,He,this.name+".keys()",!0),this.interceptors=null,this.changeListeners=null,this.merge(e)}return e.prototype._has=function(e){return void 0!==this._data[e]},e.prototype.has=function(e){return this.isValidKey(e)?(e=""+e,this._hasMap[e]?this._hasMap[e].get():this._updateHasMapEntry(e,!1).get()):!1},e.prototype.set=function(e,t){this.assertValidKey(e),e=""+e
+    var n=this._has(e)
+    if(Ie(this)){var r=je(this,{type:n?"update":"add",object:this,newValue:t,name:e})
+    if(!r)return this
+    t=r.newValue}return n?this._updateValue(e,t):this._addValue(e,t),this},e.prototype["delete"]=function(e){var t=this
+    if(this.assertValidKey(e),e=""+e,Ie(this)){var n=je(this,{type:"delete",object:this,name:e})
+    if(!n)return!1}if(this._has(e)){var r=Oe(),i=Ce(this),n=i||r?{type:"delete",object:this,oldValue:this._data[e].value,name:e}:null
+    return r&&Ae(n),P(function(){t._keys.remove(e),t._updateHasMapEntry(e,!1)
+    var n=t._data[e]
+    n.setNewValue(void 0),t._data[e]=void 0}),i&&Me(this,n),r&&Ee(),!0}return!1},e.prototype._updateHasMapEntry=function(e,t){var n=this._hasMap[e]
+    return n?n.setNewValue(t):n=this._hasMap[e]=new Vn(t,He,this.name+"."+e+"?",!1),n},e.prototype._updateValue=function(e,t){var n=this._data[e]
+    if(t=n.prepareNewValue(t),t!==Nn){var r=Oe(),i=Ce(this),o=i||r?{type:"update",object:this,oldValue:n.value,name:e,newValue:t}:null
+    r&&Ae(o),n.setNewValue(t),i&&Me(this,o),r&&Ee()}},e.prototype._addValue=function(e,t){var n=this
+    P(function(){var r=n._data[e]=new Vn(t,n.enhancer,n.name+"."+e,!1)
+    t=r.value,n._updateHasMapEntry(e,!0),n._keys.push(e)})
+    var r=Oe(),i=Ce(this),o=i||r?{type:"add",object:this,name:e,newValue:t}:null
+    r&&Ae(o),i&&Me(this,o),r&&Ee()},e.prototype.get=function(e){return e=""+e,this.has(e)?this._data[e].get():void 0},e.prototype.keys=function(){return vt(this._keys.slice())},e.prototype.values=function(){return vt(this._keys.map(this.get,this))},e.prototype.entries=function(){var e=this
+    return vt(this._keys.map(function(t){return[t,e.get(t)]}))},e.prototype.forEach=function(e,t){var n=this
+    this.keys().forEach(function(r){return e.call(t,n.get(r),r,n)})},e.prototype.merge=function(e){var t=this
+    return Cn(e)&&(e=e.toJS()),P(function(){Tt(e)?Object.keys(e).forEach(function(n){return t.set(n,e[n])}):Array.isArray(e)?e.forEach(function(e){var n=e[0],r=e[1]
+    return t.set(n,r)}):Ut(e)?e.forEach(function(e,n){return t.set(n,e)}):null!==e&&void 0!==e&&_t("Cannot initialize map from "+e)}),this},e.prototype.clear=function(){var e=this
+    P(function(){ee(function(){e.keys().forEach(e["delete"],e)})})},e.prototype.replace=function(e){var t=this
+    return P(function(){t.clear(),t.merge(e)}),this},Object.defineProperty(e.prototype,"size",{get:function(){return this._keys.length},enumerable:!0,configurable:!0}),e.prototype.toJS=function(){var e=this,t={}
+    return this.keys().forEach(function(n){return t[n]=e.get(n)}),t},e.prototype.toJSON=function(){return this.toJS()},e.prototype.isValidKey=function(e){return null===e||void 0===e?!1:"string"==typeof e||"number"==typeof e||"boolean"==typeof e?!0:!1},e.prototype.assertValidKey=function(e){if(!this.isValidKey(e))throw Error("[mobx.map] Invalid key: '"+e+"', only strings, numbers and booleans are accepted as key in observable maps.")},e.prototype.toString=function(){var e=this
+    return this.name+"[{ "+this.keys().map(function(t){return t+": "+e.get(t)}).join(", ")+" }]"},e.prototype.observe=function(e,t){return xt(t!==!0,bt("m033")),Re(this,e)},e.prototype.intercept=function(e){return Le(this,e)},e}()
+    t.ObservableMap=jn,gt(jn.prototype,function(){return this.entries()}),t.map=Xe
+    var Cn=$t("ObservableMap",jn)
+    t.isObservableMap=Cn
+    var Rn=function(){function e(e,t){this.target=e,this.name=t,this.values={},this.changeListeners=null,this.interceptors=null}return e.prototype.observe=function(e,t){return xt(t!==!0,"`observe` doesn't support the fire immediately property for observable objects."),Re(this,e)},e.prototype.intercept=function(e){return Le(this,e)},e}(),Mn={},Pn={},Dn=$t("ObservableObjectAdministration",Rn)
+    t.isObservableObject=st
+    var Nn={},Vn=function(e){function t(t,n,r,i){void 0===r&&(r="ObservableValue@"+wt()),void 0===i&&(i=!0)
+    var o=e.call(this,r)||this
+    return o.enhancer=n,o.hasUnreportedChange=!1,o.value=n(t,void 0,r),i&&Oe()&&ke({type:"create",object:o,newValue:o.value}),o}return Yt(t,e),t.prototype.set=function(e){var t=this.value
+    if(e=this.prepareNewValue(e),e!==Nn){var n=Oe()
+    n&&Ae({type:"update",object:this,newValue:e,oldValue:t}),this.setNewValue(e),n&&Ee()}},t.prototype.prepareNewValue=function(e){if(F(this),Ie(this)){var t=je(this,{object:this,type:"update",newValue:e})
+    if(!t)return Nn
+    e=t.newValue}return e=this.enhancer(e,this.value,this.name),this.value!==e?e:Nn},t.prototype.setNewValue=function(e){var t=this.value
+    this.value=e,this.reportChanged(),Ce(this)&&Me(this,{type:"update",object:this,newValue:e,oldValue:t})},t.prototype.get=function(){return this.reportObserved(),this.value},t.prototype.intercept=function(e){return Le(this,e)},t.prototype.observe=function(e,t){return t&&e({object:this,type:"update",newValue:this.value,oldValue:void 0}),Re(this,e)},t.prototype.toJSON=function(){return this.get()},t.prototype.toString=function(){return this.name+"["+this.value+"]"},t.prototype.valueOf=function(){return Kt(this.get())},t}(sn)
+    Vn.prototype[Ht()]=Vn.prototype.valueOf
+    var $n=$t("ObservableValue",Vn)
+    t.isBoxedObservable=$n
+    var zn="__$$iterating",Bn={m001:"It is not allowed to assign new values to @action fields",m002:"`runInAction` expects a function",m003:"`runInAction` expects a function without arguments",m004:"autorun expects a function",m005:"Warning: attempted to pass an action to autorun. Actions are untracked and will not trigger on state changes. Use `reaction` or wrap only your state modification code in an action.",m006:"Warning: attempted to pass an action to autorunAsync. Actions are untracked and will not trigger on state changes. Use `reaction` or wrap only your state modification code in an action.",m007:"reaction only accepts 2 or 3 arguments. If migrating from MobX 2, please provide an options object",m008:"wrapping reaction expression in `asReference` is no longer supported, use options object instead",m009:"@computed can only be used on getter functions, like: '@computed get myProps() { return ...; }'. It looks like it was used on a property.",m010:"@computed can only be used on getter functions, like: '@computed get myProps() { return ...; }'",m011:"First argument to `computed` should be an expression. If using computed as decorator, don't pass it arguments",m012:"computed takes one or two arguments if used as function",m013:"[mobx.expr] 'expr' should only be used inside other reactive functions.",m014:"extendObservable expected 2 or more arguments",m015:"extendObservable expects an object as first argument",m016:"extendObservable should not be used on maps, use map.merge instead",m017:"all arguments of extendObservable should be objects",m018:"extending an object with another observable (object) is not supported. Please construct an explicit propertymap, using `toJS` if need. See issue #540",m019:"[mobx.isObservable] isObservable(object, propertyName) is not supported for arrays and maps. Use map.has or array.length instead.",m020:"modifiers can only be used for individual object properties",m021:"observable expects zero or one arguments",m022:"@observable can not be used on getters, use @computed instead",m023:"Using `transaction` is deprecated, use `runInAction` or `(@)action` instead.",m024:"whyRun() can only be used if a derivation is active, or by passing an computed value / reaction explicitly. If you invoked whyRun from inside a computation; the computation is currently suspended but re-evaluating because somebody requested its value.",m025:"whyRun can only be used on reactions and computed values",m026:"`action` can only be invoked on functions",m028:"It is not allowed to set `useStrict` when a derivation is running",m029:"INTERNAL ERROR only onBecomeUnobserved shouldn't be called twice in a row",m030a:"Since strict-mode is enabled, changing observed observable values outside actions is not allowed. Please wrap the code in an `action` if this change is intended. Tried to modify: ",m030b:"Side effects like changing state are not allowed at this point. Are you trying to modify state from, for example, the render function of a React component? Tried to modify: ",m031:"Computed values are not allowed to not cause side effects by changing observables that are already being observed. Tried to modify: ",m032:"* This computation is suspended (not in use by any reaction) and won't run automatically.\n	Didn't expect this computation to be suspended at this point?\n	  1. Make sure this computation is used by a reaction (reaction, autorun, observer).\n	  2. Check whether you are using this computation synchronously (in the same stack as they reaction that needs it).",m033:"`observe` doesn't support the fire immediately property for observable maps.",m034:"`mobx.map` is deprecated, use `new ObservableMap` or `mobx.observable.map` instead",m035:"Cannot make the designated object observable; it is not extensible",m036:"It is not possible to get index atoms from arrays",m037:'Hi there! I\'m sorry you have just run into an exception.\nIf your debugger ends up here, know that some reaction (like the render() of an observer component, autorun or reaction)\nthrew an exception and that mobx caught it, to avoid that it brings the rest of your application down.\nThe original cause of the exception (the code that caused this reaction to run (again)), is still in the stack.\n\nHowever, more interesting is the actual stack trace of the error itself.\nHopefully the error is an instanceof Error, because in that case you can inspect the original stack of the error from where it was thrown.\nSee `error.stack` property, or press the very subtle "(...)" link you see near the console.error message that probably brought you here.\nThat stack is more interesting than the stack of this console.error itself.\n\nIf the exception you see is an exception you created yourself, make sure to use `throw new Error("Oops")` instead of `throw "Oops"`,\nbecause the javascript environment will only preserve the original stack trace in the first form.\n\nYou can also make sure the debugger pauses the next time this very same exception is thrown by enabling "Pause on caught exception".\n(Note that it might pause on many other, unrelated exception as well).\n\nIf that all doesn\'t help you out, feel free to open an issue https://github.com/mobxjs/mobx/issues!\n',m038:"Missing items in this list?\n    1. Check whether all used values are properly marked as observable (use isObservable to verify)\n    2. Make sure you didn't dereference values too early. MobX observes props, not primitives. E.g: use 'person.name' instead of 'name' in your computation.\n"},Un=[]
+    Object.freeze(Un)
+    var Hn=[],Kn=function(){},Gn=Object.prototype.hasOwnProperty
+    t.isArrayLike=zt}).call(t,n(4))},function(e,t,n){"use strict"
+    function r(e,t){var n=e.meta,r=e.user,i=e.reactions,o=document.createElement("div")
+    o.lang="en-US",o.className="gitment-container gitment-header-container"
+    var a=document.createElement("span"),s=i.find(function(e){return"heart"===e.content&&e.user.login===r.login})
+    a.className="gitment-header-like-btn",a.innerHTML="\n    "+c.heart+"\n    "+(s?"取消赞":"赞")+"\n    "+(n.reactions&&n.reactions.heart?" • <strong>"+n.reactions.heart+"</strong> 人点赞":"")+"\n  ",s?(a.classList.add("liked"),a.onclick=function(){return t.unlike()}):(a.classList.remove("liked"),a.onclick=function(){return t.like()}),o.appendChild(a)
+    var u=document.createElement("span")
+    u.innerHTML="\n    "+(n.comments?" • <strong>"+n.comments+"</strong> 条评论":"")+"\n  ",o.appendChild(u)
+    var l=document.createElement("a")
+    return l.className="gitment-header-issue-link",l.href=n.html_url,l.target="_blank",l.innerText="Issue 页面",o.appendChild(l),o}function i(e,t){var n=e.meta,r=e.comments,i=e.commentReactions,o=e.currentPage,a=e.user,s=e.error,u=document.createElement("div")
+    if(u.lang="en-US",u.className="gitment-container gitment-comments-container",s){var h=document.createElement("div")
+    if(h.className="gitment-comments-error",s===l.NOT_INITIALIZED_ERROR&&a.login&&a.login.toLowerCase()===t.owner.toLowerCase()){var d=document.createElement("div"),p=document.createElement("button")
+    p.className="gitment-comments-init-btn",p.onclick=function(){p.setAttribute("disabled",!0),t.init()["catch"](function(e){p.removeAttribute("disabled"),alert(e)})},p.innerText="初始化评论",d.appendChild(p),h.appendChild(d)}else h.innerText=s
+    return u.appendChild(h),u}if(void 0===r){var f=document.createElement("div")
+    return f.innerText="加载中......",f.className="gitment-comments-loading",u.appendChild(f),u}if(!r.length){var m=document.createElement("div")
+    return m.className="gitment-comments-empty",m.innerText="# NULL #",u.appendChild(m),u}var v=document.createElement("ul")
+    if(v.className="gitment-comments-list",r.forEach(function(e){var n=new Date(e.created_at),r=new Date(e.updated_at),o=document.createElement("li")
+    o.className="gitment-comment",o.innerHTML='\n      <a class="gitment-comment-avatar" href="'+e.user.html_url+'" target="_blank">\n        <img class="gitment-comment-avatar-img" src="'+e.user.avatar_url+'"/>\n      </a>\n      <div class="gitment-comment-main">\n        <div class="gitment-comment-header">\n          <a class="gitment-comment-name" href="'+e.user.html_url+'" target="_blank">\n            '+e.user.login+'\n          </a>\n          发表于\n          <span title="'+n+'">'+n.toDateString()+"</span>\n          "+(""+n!=""+r?' • <span title="最后修改 '+r+'">有修改</span>':"")+'\n          <div class="gitment-comment-like-btn">'+c.heart+" "+(e.reactions.heart||"")+'</div>\n        </div>\n        <div class="gitment-comment-body gitment-markdown">'+e.body_html+"</div>\n      </div>\n    "
+    var s=o.querySelector(".gitment-comment-like-btn"),u=i[e.id]&&i[e.id].find(function(e){return"heart"===e.content&&e.user.login===a.login})
+    u?(s.classList.add("liked"),s.onclick=function(){return t.unlikeAComment(e.id)}):(s.classList.remove("liked"),s.onclick=function(){return t.likeAComment(e.id)})
+    var l=document.createElement("img"),h=o.querySelector(".gitment-comment-body")
+    l.className="gitment-hidden",l.src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",l.onload=function(){h.clientHeight>t.maxCommentHeight&&(h.classList.add("gitment-comment-body-folded"),h.style.maxHeight=t.maxCommentHeight+"px",h.title="点击展开",h.onclick=function(){h.classList.remove("gitment-comment-body-folded"),h.style.maxHeight="",h.title="",h.onclick=null})},o.appendChild(l),v.appendChild(o)}),u.appendChild(v),n){var g=Math.ceil(n.comments/t.perPage)
+    if(g>1){var b=document.createElement("ul")
+    if(b.className="gitment-comments-pagination",o>1){var y=document.createElement("li")
+    y.className="gitment-comments-page-item",y.innerText="上页",y.onclick=function(){return t["goto"](o-1)},b.appendChild(y)}for(var w=function(e){var n=document.createElement("li")
+    n.className="gitment-comments-page-item",n.innerText=e,n.onclick=function(){return t["goto"](e)},o===e&&n.classList.add("gitment-selected"),b.appendChild(n)},_=1;g>=_;_++)w(_)
+    if(g>o){var x=document.createElement("li")
+    x.className="gitment-comments-page-item",x.innerText="下页",x.onclick=function(){return t["goto"](o+1)},b.appendChild(x)}u.appendChild(b)}}return u}function o(e,t){var n=e.user,r=e.error,i=document.createElement("div")
+    i.lang="en-US",i.className="gitment-container gitment-editor-container"
+    var o=n.login&&!r?"":"disabled",a=n.login?"":"登录后评论"
+    i.innerHTML="\n      "+(n.login?'<a class="gitment-editor-avatar" href="'+n.html_url+'" target="_blank">\n            <img class="gitment-editor-avatar-img" src="'+n.avatar_url+'"/>\n          </a>':n.isLoggingIn?'<div class="gitment-editor-avatar">'+c.spinner+"</div>":'<a class="gitment-editor-avatar" href="'+t.loginLink+'" title="login with GitHub">\n              '+c.github+"\n            </a>")+'\n    </a>\n    <div class="gitment-editor-main">\n      <div class="gitment-editor-header">\n        <nav class="gitment-editor-tabs">\n          <button class="gitment-editor-tab gitment-selected">编辑</button>\n          <button class="gitment-editor-tab">预览</button>\n        </nav>\n        <div class="gitment-editor-login">\n          '+(n.login?'<a class="gitment-editor-logout-link">登出</a>':n.isLoggingIn?"正在登录......":'<a class="gitment-editor-login-link" href="'+t.loginLink+'">GitHub 登录</a>')+'\n        </div>\n      </div>\n      <div class="gitment-editor-body">\n        <div class="gitment-editor-write-field">\n          <textarea placeholder="可以D人了......" title="'+a+'" '+o+'></textarea>\n        </div>\n        <div class="gitment-editor-preview-field gitment-hidden">\n          <div class="gitment-editor-preview gitment-markdown"></div>\n        </div>\n      </div>\n    </div>\n    <div class="gitment-editor-footer">\n      <a class="gitment-editor-footer-tip" href="https://guides.github.com/features/mastering-markdown/" target="_blank">\n        可以使用 Markdown 编辑\n      </a>\n      <button class="gitment-editor-submit" title="'+a+'" '+o+">评论</button>\n    </div>\n  ",n.login&&(i.querySelector(".gitment-editor-logout-link").onclick=function(){return t.logout()})
+    var s=i.querySelector(".gitment-editor-write-field"),l=i.querySelector(".gitment-editor-preview-field"),h=s.querySelector("textarea")
+    h.oninput=function(){h.style.height="auto"
+    var e=window.getComputedStyle(h,null),t=parseInt(e.height,10),n=h.clientHeight,r=h.scrollHeight
+    r>n&&(h.style.height=t+r-n+"px")}
+    var d=i.querySelectorAll(".gitment-editor-tab"),p=u(d,2),f=p[0],m=p[1]
+    f.onclick=function(){f.classList.add("gitment-selected"),m.classList.remove("gitment-selected"),s.classList.remove("gitment-hidden"),l.classList.add("gitment-hidden"),h.focus()},m.onclick=function(){m.classList.add("gitment-selected"),f.classList.remove("gitment-selected"),l.classList.remove("gitment-hidden"),s.classList.add("gitment-hidden")
+    var e=l.querySelector(".gitment-editor-preview"),n=h.value.trim()
+    return n?(e.innerText="预览加载中......",void t.markdown(n).then(function(t){return e.innerHTML=t,e.innerHTML})):void(e.innerText="无可奉告")}
+    var v=i.querySelector(".gitment-editor-submit")
+    return v.onclick=function(){v.innerText="提交中......",v.setAttribute("disabled",!0),t.post(h.value.trim()).then(function(e){h.value="",h.style.height="auto",v.removeAttribute("disabled"),v.innerText="评论"})["catch"](function(e){alert(e),v.removeAttribute("disabled"),v.innerText="评论"})},i}function a(){var e=document.createElement("div")
+    return e.lang="en-US",e.className="gitment-container gitment-footer-container",e.innerHTML='\n    Powered by\n    <a class="gitment-footer-project-link" href="https://github.com/imsun/gitment" target="_blank">\n      Gitment\n    </a>\n  ',e}function s(e,t){var n=document.createElement("div")
+    return n.lang="en-US",n.className="gitment-container gitment-root-container",n.appendChild(t.renderHeader(e,t)),n.appendChild(t.renderComments(e,t)),n.appendChild(t.renderEditor(e,t)),n.appendChild(t.renderFooter(e,t)),n}Object.defineProperty(t,"__esModule",{value:!0})
+    var u=function(){function e(e,t){var n=[],r=!0,i=!1,o=void 0
+    try{for(var a,s=e[Symbol.iterator]();!(r=(a=s.next()).done)&&(n.push(a.value),!t||n.length!==t);r=!0);}catch(u){i=!0,o=u}finally{try{!r&&s["return"]&&s["return"]()}finally{if(i)throw o}}return n}return function(t,n){if(Array.isArray(t))return t
+    if(Symbol.iterator in Object(t))return e(t,n)
+    throw new TypeError("Invalid attempt to destructure non-iterable instance")}}(),c=n(6),l=n(0)
+    t["default"]={render:s,renderHeader:r,renderComments:i,renderEditor:o,renderFooter:a}},function(e,t,n){"use strict"
+    function r(e){var t=void 0
+    return t=e instanceof Element?e:s(e)?document.getElementById(e):document.createElement("div")}function i(e){return function(t){var n=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=arguments.length>2&&void 0!==arguments[2]?arguments[2]:"https://api.github.com",i=new XMLHttpRequest,o=localStorage.getItem(a.LS_ACCESS_TOKEN_KEY),s=""+r+t,c=null;("GET"===e||"DELETE"===e)&&(s+=u.stringify(n))
+    var l=new Promise(function(e,t){i.addEventListener("load",function(){var n=i.getResponseHeader("content-type"),r=i.responseText
+    if(!/json/.test(n))return void e(r)
+    var o=i.responseText?JSON.parse(r):{}
+    o.message?t(Error(o.message)):e(o)}),i.addEventListener("error",function(e){return t(e)})})
+    return i.open(e,s,!0),i.setRequestHeader("Accept","application/vnd.github.squirrel-girl-preview, application/vnd.github.html+json"),o&&i.setRequestHeader("Authorization","token "+o),"GET"!==e&&"DELETE"!==e&&(c=JSON.stringify(n),i.setRequestHeader("Content-Type","application/json")),i.send(c),l}}Object.defineProperty(t,"__esModule",{value:!0}),t.http=t.Query=t.isString=void 0
+    var o=function(){function e(e,t){var n=[],r=!0,i=!1,o=void 0
+    try{for(var a,s=e[Symbol.iterator]();!(r=(a=s.next()).done)&&(n.push(a.value),!t||n.length!==t);r=!0);}catch(u){i=!0,o=u}finally{try{!r&&s["return"]&&s["return"]()}finally{if(i)throw o}}return n}return function(t,n){if(Array.isArray(t))return t
+    if(Symbol.iterator in Object(t))return e(t,n)
+    throw new TypeError("Invalid attempt to destructure non-iterable instance")}}()
+    t.getTargetContainer=r
+    var a=n(0),s=t.isString=function(e){return"[object String]"===toString.call(e)},u=t.Query={parse:function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:window.location.search
+    if(!e)return{}
+    var t="?"===e[0]?e.substring(1):e,n={}
+    return t.split("&").forEach(function(e){var t=e.split("="),r=o(t,2),i=r[0],a=r[1]
+    i&&(n[i]=a)}),n},stringify:function(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"?",n=Object.keys(e).map(function(t){return t+"="+encodeURIComponent(e[t]||"")}).join("&")
+    return n?t+n:""}}
+    t.http={get:i("GET"),post:i("POST"),"delete":i("DELETE"),put:i("PUT")}},function(e,t,n){"use strict"
+    var r,i="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e}
+    r=function(){return this}()
+    try{r=r||Function("return this")()||(1,eval)("this")}catch(o){"object"===("undefined"==typeof window?"undefined":i(window))&&(r=window)}e.exports=r},function(e,t,n){"use strict"
+    function r(e){return e&&e.__esModule?e:{"default":e}}function i(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function o(e,t){e[t]=function(n){var r=(0,c.getTargetContainer)(n),i=e.theme[t]||e.defaultTheme[t]
+    return(0,s.autorun)(function(){var t=i(e.state,e)
+    r.firstChild?r.replaceChild(t,r.firstChild):r.appendChild(t)}),r}}var a=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n]
+    r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}(),s=n(1),u=n(0),c=n(3),l=n(2),h=r(l),d="public_repo",p=function(){function e(){var t=this,n=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{}
+    i(this,e),this.defaultTheme=h["default"],this.useTheme(h["default"]),Object.assign(this,{id:window.location.href,title:window.document.title,link:window.location.href,desc:"",labels:[],theme:h["default"],oauth:{},perPage:20,maxCommentHeight:250},n),this.useTheme(this.theme)
+    var r={}
+    try{var o=localStorage.getItem(u.LS_USER_KEY)
+    this.accessToken&&o&&Object.assign(r,JSON.parse(o),{fromCache:!0})}catch(a){localStorage.removeItem(u.LS_USER_KEY)}this.state=(0,s.observable)({user:r,error:null,meta:{},comments:void 0,reactions:[],commentReactions:{},currentPage:1})
+    var l=c.Query.parse()
+    if(l.code){var d=this.oauth,p=d.client_id,f=d.client_secret,m=l.code
+    delete l.code
+    var v=c.Query.stringify(l),g=""+window.location.origin+window.location.pathname+v+window.location.hash
+    history.replaceState({},"",g),Object.assign(this,{id:g,link:g},n),this.state.user.isLoggingIn=!0,c.http.post("https://gh-oauth.riteme.site",{code:m,client_id:p,client_secret:f},"").then(function(e){t.accessToken=e.access_token,t.update()})["catch"](function(e){t.state.user.isLoggingIn=!1,alert(e)})}else this.update()}return a(e,[{key:"accessToken",get:function(){return localStorage.getItem(u.LS_ACCESS_TOKEN_KEY)},set:function(e){localStorage.setItem(u.LS_ACCESS_TOKEN_KEY,e)}},{key:"loginLink",get:function(){var e="https://github.com/login/oauth/authorize",t=this.oauth.redirect_uri||window.location.href,n=Object.assign({scope:d,redirect_uri:t},this.oauth)
+    return""+e+c.Query.stringify(n)}}]),a(e,[{key:"init",value:function(){var e=this
+    return this.createIssue().then(function(){return e.loadComments()}).then(function(t){return e.state.error=null,t})}},{key:"useTheme",value:function(){var e=this,t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{}
+    this.theme=t
+    var n=Object.keys(this.theme)
+    n.forEach(function(t){return o(e,t)})}},{key:"update",value:function(){var e=this
+    return Promise.all([this.loadMeta(),this.loadUserInfo()]).then(function(){return Promise.all([e.loadComments().then(function(){return e.loadCommentReactions()}),e.loadReactions()])})["catch"](function(t){return e.state.error=t})}},{key:"markdown",value:function(e){return c.http.post("/markdown",{text:e,mode:"gfm"})}},{key:"createIssue",value:function(){var e=this,t=this.id,n=this.owner,r=this.repo,i=this.title,o=this.link,a=this.desc,s=this.labels
+    return c.http.post("/repos/"+n+"/"+r+"/issues",{title:i,labels:s.concat(["gitment",t]),body:o+"\n\n"+a}).then(function(t){return e.state.meta=t,t})}},{key:"getIssue",value:function(){return this.state.meta.id?Promise.resolve(this.state.meta):this.loadMeta()}},{key:"post",value:function(e){var t=this
+    return this.getIssue().then(function(t){return c.http.post(t.comments_url,{body:e},"")}).then(function(e){t.state.meta.comments++
+    var n=Math.ceil(t.state.meta.comments/t.perPage)
+    return t.state.currentPage===n&&t.state.comments.push(e),e})}},{key:"loadMeta",value:function(){var e=this,t=this.id,n=this.owner,r=this.repo
+    return c.http.get("/repos/"+n+"/"+r+"/issues",{creator:n,labels:t}).then(function(t){return t.length?(e.state.meta=t[0],t[0]):Promise.reject(u.NOT_INITIALIZED_ERROR)})}},{key:"loadComments",value:function(){var e=this,t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:this.state.currentPage
+    return this.getIssue().then(function(n){return c.http.get(n.comments_url,{page:t,per_page:e.perPage},"")}).then(function(t){return e.state.comments=t,t})}},{key:"loadUserInfo",value:function(){var e=this
+    return this.accessToken?c.http.get("/user").then(function(t){return e.state.user=t,localStorage.setItem(u.LS_USER_KEY,JSON.stringify(t)),t}):(this.logout(),Promise.resolve({}))}},{key:"loadReactions",value:function(){var e=this
+    return this.accessToken?this.getIssue().then(function(e){return e.reactions.total_count?c.http.get(e.reactions.url,{},""):[]}).then(function(t){return e.state.reactions=t,t}):(this.state.reactions=[],Promise.resolve([]))}},{key:"loadCommentReactions",value:function(){var e=this
+    if(!this.accessToken)return this.state.commentReactions={},Promise.resolve([])
+    var t=this.state.comments,n={}
+    return Promise.all(t.map(function(t){if(!t.reactions.total_count)return[]
+    var n=e.owner,r=e.repo
+    return c.http.get("/repos/"+n+"/"+r+"/issues/comments/"+t.id+"/reactions",{})})).then(function(r){return t.forEach(function(e,t){n[e.id]=r[t]}),e.state.commentReactions=n,n})}},{key:"login",value:function(){window.location.href=this.loginLink}},{key:"logout",value:function(){localStorage.removeItem(u.LS_ACCESS_TOKEN_KEY),localStorage.removeItem(u.LS_USER_KEY),this.state.user={}}},{key:"goto",value:function(e){return this.state.currentPage=e,this.state.comments=void 0,this.loadComments(e)}},{key:"like",value:function(){var e=this
+    if(!this.accessToken)return alert("请先登录"),Promise.reject()
+    var t=this.owner,n=this.repo
+    return c.http.post("/repos/"+t+"/"+n+"/issues/"+this.state.meta.number+"/reactions",{content:"heart"}).then(function(t){e.state.reactions.push(t),e.state.meta.reactions.heart++})}},{key:"unlike",value:function(){var e=this
+    if(!this.accessToken)return Promise.reject()
+    var t=this.state,n=t.user,r=t.reactions,i=r.findIndex(function(e){return e.user.login===n.login})
+    return c.http["delete"]("/reactions/"+r[i].id).then(function(){r.splice(i,1),e.state.meta.reactions.heart--})}},{key:"likeAComment",value:function(e){var t=this
+    if(!this.accessToken)return alert("请先登录"),Promise.reject()
+    var n=this.owner,r=this.repo,i=this.state.comments.find(function(t){return t.id===e})
+    return c.http.post("/repos/"+n+"/"+r+"/issues/comments/"+e+"/reactions",{content:"heart"}).then(function(n){t.state.commentReactions[e].push(n),i.reactions.heart++})}},{key:"unlikeAComment",value:function(e){if(!this.accessToken)return Promise.reject()
+    var t=this.state.commentReactions[e],n=this.state.comments.find(function(t){return t.id===e}),r=this.state.user,i=t.findIndex(function(e){return e.user.login===r.login})
+    return c.http["delete"]("/reactions/"+t[i].id).then(function(){t.splice(i,1),n.reactions.heart--})}}]),e}()
+    e.exports=p},function(e,t,n){"use strict"
+    Object.defineProperty(t,"__esModule",{value:!0})
+    t.close='<svg class="gitment-close-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><path d="M37.304 11.282l1.414 1.414-26.022 26.02-1.414-1.413z"/><path d="M12.696 11.282l26.022 26.02-1.414 1.415-26.022-26.02z"/></svg>',t.github='<svg class="gitment-github-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><path d="M25 10c-8.3 0-15 6.7-15 15 0 6.6 4.3 12.2 10.3 14.2.8.1 1-.3 1-.7v-2.6c-4.2.9-5.1-2-5.1-2-.7-1.7-1.7-2.2-1.7-2.2-1.4-.9.1-.9.1-.9 1.5.1 2.3 1.5 2.3 1.5 1.3 2.3 3.5 1.6 4.4 1.2.1-1 .5-1.6 1-2-3.3-.4-6.8-1.7-6.8-7.4 0-1.6.6-3 1.5-4-.2-.4-.7-1.9.1-4 0 0 1.3-.4 4.1 1.5 1.2-.3 2.5-.5 3.8-.5 1.3 0 2.6.2 3.8.5 2.9-1.9 4.1-1.5 4.1-1.5.8 2.1.3 3.6.1 4 1 1 1.5 2.4 1.5 4 0 5.8-3.5 7-6.8 7.4.5.5 1 1.4 1 2.8v4.1c0 .4.3.9 1 .7 6-2 10.2-7.6 10.2-14.2C40 16.7 33.3 10 25 10z"/></svg>',t.heart='<svg class="gitment-heart-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><path d="M25 39.7l-.6-.5C11.5 28.7 8 25 8 19c0-5 4-9 9-9 4.1 0 6.4 2.3 8 4.1 1.6-1.8 3.9-4.1 8-4.1 5 0 9 4 9 9 0 6-3.5 9.7-16.4 20.2l-.6.5zM17 12c-3.9 0-7 3.1-7 7 0 5.1 3.2 8.5 15 18.1 11.8-9.6 15-13 15-18.1 0-3.9-3.1-7-7-7-3.5 0-5.4 2.1-6.9 3.8L25 17.1l-1.1-1.3C22.4 14.1 20.5 12 17 12z"/></svg>',t.spinner='<svg class="gitment-spinner-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><path d="M25 18c-.6 0-1-.4-1-1V9c0-.6.4-1 1-1s1 .4 1 1v8c0 .6-.4 1-1 1z"/><path opacity=".3" d="M25 42c-.6 0-1-.4-1-1v-8c0-.6.4-1 1-1s1 .4 1 1v8c0 .6-.4 1-1 1z"/><path opacity=".3" d="M29 19c-.2 0-.3 0-.5-.1-.4-.3-.6-.8-.3-1.3l4-6.9c.3-.4.8-.6 1.3-.3.4.3.6.8.3 1.3l-4 6.9c-.2.2-.5.4-.8.4z"/><path opacity=".3" d="M17 39.8c-.2 0-.3 0-.5-.1-.4-.3-.6-.8-.3-1.3l4-6.9c.3-.4.8-.6 1.3-.3.4.3.6.8.3 1.3l-4 6.9c-.2.2-.5.4-.8.4z"/><path opacity=".93" d="M21 19c-.3 0-.6-.2-.8-.5l-4-6.9c-.3-.4-.1-1 .3-1.3.4-.3 1-.1 1.3.3l4 6.9c.3.4.1 1-.3 1.3-.2.2-.3.2-.5.2z"/><path opacity=".3" d="M33 39.8c-.3 0-.6-.2-.8-.5l-4-6.9c-.3-.4-.1-1 .3-1.3.4-.3 1-.1 1.3.3l4 6.9c.3.4.1 1-.3 1.3-.2.1-.3.2-.5.2z"/><path opacity=".65" d="M17 26H9c-.6 0-1-.4-1-1s.4-1 1-1h8c.6 0 1 .4 1 1s-.4 1-1 1z"/><path opacity=".3" d="M41 26h-8c-.6 0-1-.4-1-1s.4-1 1-1h8c.6 0 1 .4 1 1s-.4 1-1 1z"/><path opacity=".86" d="M18.1 21.9c-.2 0-.3 0-.5-.1l-6.9-4c-.4-.3-.6-.8-.3-1.3.3-.4.8-.6 1.3-.3l6.9 4c.4.3.6.8.3 1.3-.2.3-.5.4-.8.4z"/><path opacity=".3" d="M38.9 33.9c-.2 0-.3 0-.5-.1l-6.9-4c-.4-.3-.6-.8-.3-1.3.3-.4.8-.6 1.3-.3l6.9 4c.4.3.6.8.3 1.3-.2.3-.5.4-.8.4z"/><path opacity=".44" d="M11.1 33.9c-.3 0-.6-.2-.8-.5-.3-.4-.1-1 .3-1.3l6.9-4c.4-.3 1-.1 1.3.3.3.4.1 1-.3 1.3l-6.9 4c-.1.2-.3.2-.5.2z"/><path opacity=".3" d="M31.9 21.9c-.3 0-.6-.2-.8-.5-.3-.4-.1-1 .3-1.3l6.9-4c.4-.3 1-.1 1.3.3.3.4.1 1-.3 1.3l-6.9 4c-.2.2-.3.2-.5.2z"/></svg>'}])
