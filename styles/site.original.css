@@ -556,7 +556,7 @@ h3.panel-title {
 }
 
 .nano.mdl-card {
-    height: 200px;
+    padding-top: 0;
     background-position: center;
     background-size: cover;
     background-image: url('/assets/nano-edge.png');
@@ -565,6 +565,7 @@ h3.panel-title {
 .nano.mdl-card:hover {
     background-image: url('/assets/nano.jpg');
     background-color: silver;
+    padding-top: calc(60% - 3em);
 }
 
 .nano > .mdl-card__actions {
