@@ -1,7 +1,7 @@
 ---
 title: 友链
 create: 2017.1.10
-modified: 2019.1.31
+modified: 2019.9.10
 tags: Friend Links
 location: ..
 ---
@@ -28,3 +28,4 @@ location: ..
 | remoon | [CSDN/remoon](http://www.cnblogs.com/reverymoon/) |
 | Creeper_LKF | [CSDN/Creeper_LKF](http://www.cnblogs.com/CreeperLKF/) |
 | Twilight_ | [CSDN/Twilight_Sx](https://www.cnblogs.com/twilight-sx/) |
+| Eqvpkbz | [eqvpkbz.github.io](https://eqvpkbz.github.io/) |
