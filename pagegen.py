@@ -65,11 +65,16 @@ def process_document(filepath, source, do_modtime_check=True):
         if key not in meta:
             mdinfo[key] = val
         elif type(val) == bool:
-            mdinfo[key] = True if meta[key] == "true" else False
+            mdinfo[key] = meta[key][0] in ["true", "True", True]
         elif type(val) == list:
             mdinfo[key] = meta[key]
         else:
             mdinfo[key] = meta[key][0]
+
+        # if key in meta:
+        #     debug(f'{key}: [{repr(type(meta[key]))}]{repr(meta[key])} → [{repr(type(mdinfo[key]))}]{repr(mdinfo[key])}')
+        # else:
+        #     debug(f'{key}: [{repr(type(val))}]{repr(val)} → [{repr(type(mdinfo[key]))}]{repr(mdinfo[key])}')
 
     # 准备页面模板参数
     toc, content = cut_toc(content)
