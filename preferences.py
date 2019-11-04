@@ -11,7 +11,7 @@ SITE_DOMAIN = "https://riteme.site/"
 
 # For pagegen.py
 WORDS_PER_MINUTE = 250
-BEAUTIFUL_SOUP_PARSER = "lxml"
+BEAUTIFUL_SOUP_PARSER = "lxml"  # 如果你希望使用 Python3 自带的 HTML5 Parser，请将此处改为 "html5lib"
 GITHUB_LOCATION = "https://github.com/riteme/riteme.github.io/blob/master"
 SITE_DOMAIN = "https://riteme.site/"
 DEFAULT_TEMPLATE = "template"
