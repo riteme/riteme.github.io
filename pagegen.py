@@ -89,6 +89,7 @@ def process_document(filepath, source, do_modtime_check=True):
     folder = os.path.abspath(os.path.join(os.path.dirname(filepath), mdinfo["location"]))
     new_file = os.path.join(folder, os.path.splitext(os.path.basename(filepath))[0] + ".html")
     navigater.handle("myself", new_file)
+    navigater.handle("md_url", filepath)
     navigater.home_folder = os.path.abspath(".")
     index_title = escape_string(title)
     index_text = escape_string(bs4.BeautifulSoup(content, BEAUTIFUL_SOUP_PARSER).text)
@@ -119,7 +120,7 @@ def process_document(filepath, source, do_modtime_check=True):
             page_title=pagetitle,
             page_url=pageurl,
             mdname=filename,
-            github_location=os.path.join(GITHUB_LOCATION, os.path.dirname(index_url), filename)
+            github_location=os.path.join(GITHUB_LOCATION, navigater.get_path("md_url"))
         )
         if html_minify:
             writer.write(html_minify(html_dom))
