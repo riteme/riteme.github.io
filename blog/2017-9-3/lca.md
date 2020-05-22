@@ -1,7 +1,7 @@
 ---
 title: 静态树上的最近公共祖先问题
 create: 2017.9.3
-modified: 2017.9.3
+modified: 2020.5.23
 tags: 最近公共祖先
       区间最值问题
       数据结构
@@ -341,7 +341,7 @@ function BUILD-CARTESIAN-TREE(a):
         v = Q.last()
         Q.pop_back()
         Q.last().right = v
-    
+
     return Q.first()  // 返回笛卡尔树的树根
 ```
 
@@ -365,4 +365,4 @@ function BUILD-CARTESIAN-TREE(a):
 
 RMQ 问题的实现方面，其实还有许多可以仔细思考的地方。虽然我们在理论上达到了最优，但是它付出了较大的空间代价，并且在一般情况下这种算法实际表现情况并不如想象中那么优秀。相关的讨论可以在 Wikipedia 的笛卡尔树（<https://en.wikipedia.org/wiki/Cartesian_tree>）的引用中找到。
 
-最后，前面所提及的算法我基本上亲自使用 C++ 实现并测试过，这些代码可以在这里找到：<https://github.com/riteme/test/tree/master/oi/Code/algs/Graph/LCA>
+最后，前面所提及的算法我基本上亲自使用 C++ 实现并测试过，这些代码可以在这里找到：<https://github.com/riteme/test/tree/master/oi/algs/Graph/LCA>

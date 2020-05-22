@@ -1,13 +1,17 @@
 ---
 title: 所有文章
 create: 2016.1.31
-modified: 2019.6.13
+modified: 2020.5.23
 tags: Posts
 location: ..
 ---
 
 [TOC]
 ## 所有文章
+### 2020
+#### 2020-5
+* [两个简单调度算法的最优性](blog/2020-5-22/srtf.html)
+
 ### 2019
 #### 2019-6
 * [Dynamic Trees with Alternative Search Trees](blog/2019-6-13/dynamic-trees-eap.html): 学术英语课期末口胡的课程论文 qwq
