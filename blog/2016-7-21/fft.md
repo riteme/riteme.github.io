@@ -1,7 +1,7 @@
 ---
 title: 有关多项式的算法
 create: 2016.7.21
-modified: 2018.1.28
+modified: 2020.6.16
 tags: 多项式
       FFT
 ---
@@ -17,7 +17,7 @@ $$ A(x) = 3x^3 + 2x + 1 $$
 
 通常有两种表示多项式的方法：**系数表达**和**点值表达**。
 系数表达即按照从低次项到高次项[^ordering]的顺序将每个项的系数放入一个向量中。如上面的多项式 $A(x)$ 还可以表示成这样：
-$$ \hat A(x) = (1,\;0,\;2,\;3) $$
+$$ \hat A(x) = (1,\;2,\;0,\;3) $$
 
 [^ordering]: 当然也可以从高次到低次，视情况选择方便的表示方法。
 
@@ -241,11 +241,11 @@ $$
 function RECURSIVE-FFT(x, reverse = false):
     if x.length == 1:  # 如果长度为1
         return x
-    
+
     将序列分为a[0]和a[1]
     a'[0] = RECURSIVE-FFT(a[0])
     a'[1] = RECURSIVE-FFT(a[1])
-    
+
     X = [0..x.length - 1]
     if reverse:  # 如果是逆变换
         w_n = exp(0 + (-2 * pi / n)i)
@@ -257,7 +257,7 @@ function RECURSIVE-FFT(x, reverse = false):
         X[k] = a'[0] + t
         X[x.length / 2 + k] = a'[0] - t
         w *= w_n
-    
+
     return X
 ```
 
@@ -273,7 +273,7 @@ function RECURSIVE-FFT(x, reverse = false):
 ```
 function RADER(x):
     n = x.length
-    
+
     X = [0..n - 1]
     k = 0
     for i in [0..n - 1]:
@@ -283,7 +283,7 @@ function RADER(x):
     		k ^= y
     		y >>= 1
     	k |= y
-    
+
     return X
 ```
 
@@ -292,7 +292,7 @@ function RADER(x):
 ```
 function ITERATIVE-FFT(x, reverse = false):
     x = RADER(x)
-    
+
     n = x.length
     s = 2
     while s <= n:
@@ -311,7 +311,7 @@ function ITERATIVE-FFT(x, reverse = false):
                 x[left + k] = x[left + k] + t
                 w *= w_n
         s *= 2
-    
+
     return x
 ```
 
