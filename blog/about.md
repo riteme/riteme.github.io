@@ -1,7 +1,7 @@
 ---
 title: 关于
 create: 2016.12.13
-modified: 2019.3.21
+modified: 2021.1.9
 tags: About
 location: ..
 ---
@@ -10,6 +10,14 @@ location: ..
 
 ## 关于
 *riteme* 来自 <span style="color:gray">CJP</span>→<span style="color:gray">GY</span>→<span style="color:gray">HNSDFZ</span>→**FDU**。
+
+### Past 2020
+
+<img src="/assets/nscscc.png" alt="NSCSCC 2020" /><center>NSCSCC 2020: team <a href="https://github.com/NSCSCC-2020-Fudan/FDU1.1-NSCSCC">FDU 1.1</a></center>
+
+<br><img src="/assets/cbox2-720p-10k-8.png" alt="Cornell Box" /><center><i>Cornell Box</i>. Powered by <a href="https://github.com/CMU-Graphics/Scotty3D">Scotty3D</a>.</center>
+
+<br><picture><source srcset="/assets/generals.apng" type="image/apng" /><img src="https://gitee.com/riteme/blogimg/raw/master/generals.gif" /></picture><center><a href="http://generals.io/replays/Btj7sy8CD">http://generals.io/replays/Btj7sy8CD</a></center>
 
 ### `sitegen.py`
 
