@@ -84,7 +84,7 @@ location: ..
 * [收到一封奇怪的邮件](blog/2016-10-30/strange-email.html)
 
 #### 2016-9
-* [Hall 定理](blog/2016-9-19/hall-theorem.html): 一个用于判定二分图是否具有最大匹配的定理
+* [Hall 定理](blog/2016-9-19/hall-theorem.html): 一个用于判定二分图是否具有完美匹配的定理
 
 #### 2016-8
 * [HNSDFZ2016 #5](blog/2016-8-28/hnsdfz-5.html): HNSDFZ2016 第五次欢乐互测
