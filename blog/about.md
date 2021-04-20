@@ -1,7 +1,7 @@
 ---
 title: 关于
 create: 2016.12.13
-modified: 2021.1.9
+modified: 2021.4.20
 tags: About
 location: ..
 ---
@@ -31,6 +31,7 @@ location: ..
 * Pygments (用于提供代码高亮)
 * css-html-js-minify (压缩 HTML 源码)
 * Beautiful Soup 4
+* lxml
 
 `sitegen.py` 基本结构
 
