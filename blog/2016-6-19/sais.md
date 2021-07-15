@@ -1,7 +1,7 @@
 ---
 title: 诱导排序与SA-IS算法
 create: 2016.6.19
-modified: 2021.4.20
+modified: 2021.7.15
 tags: 数据结构
       字符串
       后缀数组
