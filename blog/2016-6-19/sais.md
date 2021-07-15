@@ -393,14 +393,15 @@ static int *SAIS(int *S, int length, int SIGMA) {
     int *position = new int[n + 1];  // 记录LMS子串的起始位置
     int *name = new int[n + 1];  // 记录每个LMS子串的新名称
     int *SA = new int[n + 1];  // SA数组
-    int *bucket = new int[SIGMA];  // 每个字符的桶
-    int *lbucket = new int[SIGMA];  // 每个字符的L型桶的起始位置
-    int *sbucket = new int[SIGMA];  // 每个字符的S型桶的起始位置
+    int *bucket = new int[SIGMA + 1];  // 每个字符的桶
+    int *lbucket = new int[SIGMA + 1];  // 每个字符的L型桶的起始位置
+    int *sbucket = new int[SIGMA + 1];  // 每个字符的S型桶的起始位置
 
     // 初始化每个桶
     memset(bucket, 0, sizeof(int) * (SIGMA + 1));
     for (int i = 0; i <= n; i++)
         bucket[S[i]]++;
+    lbucket[0] = sbucket[0] = 0;
     for (int i = 1; i <= SIGMA; i++) {
         bucket[i] += bucket[i - 1];
         lbucket[i] = bucket[i - 1];
