@@ -6,3 +6,4 @@ content.json
 node_modules
 package-lock.json
 postcss.config.js
+.venv/

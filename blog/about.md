@@ -1,7 +1,7 @@
 ---
 title: 关于
 create: 2016.12.13
-modified: 2021.4.20
+modified: 2022.2.12
 tags: About
 location: ..
 ---
@@ -27,11 +27,15 @@ location: ..
 需要的依赖：
 
 * Python 3 (>= 3.7)
-* Python Markdown
+* Python Markdown (== 2.6.11)
 * Pygments (用于提供代码高亮)
 * css-html-js-minify (压缩 HTML 源码)
 * Beautiful Soup 4
 * lxml
+
+```python
+pip install markdown==2.6.11 pygments css-html-js-minify bs4 lxml
+```
 
 `sitegen.py` 基本结构
 
