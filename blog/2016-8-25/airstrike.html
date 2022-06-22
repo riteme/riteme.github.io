@@ -1,24 +1,24 @@
-<!DOCTYPE html> <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1.0"> <title>空袭 - riteme.site</title> <link rel="shortcut icon" href="/favicon.png" type="image/png"> <link rel=stylesheet  href="/styles/material-icons.css"> <link rel=stylesheet  href="/styles/material.min.css" > <link rel=stylesheet  href="/math-renderer/katex/katex.min.css"> <link rel=stylesheet  href="/styles/site.css"> <script src="/scripts/jquery.min.js"></script> <script src="/scripts/js-cookie.js"></script> <script src="/scripts/quicklink.umd.js"></script> <script defer src="/scripts/material.min.js"></script> <script src="/scripts/site.js"></script> <div class="mdl-layout mdl-js-layout"> <div class=mdl-layout__drawer > <span class="mdl-layout-title drawer-title"> <a href="/index.html" style="color: inherit; font-weight: inherit;text-decoration: none;"><img src="/favicon.png" width=32 height=32> riteme.site</a> </span> <nav class=mdl-navigation > <a class=mdl-navigation__link  href="/index.html"><i class="material-icons drawer-icon">home</i> 首页</a> <a class=mdl-navigation__link  href="/posts.html"><i class="material-icons drawer-icon">library_books</i> 所有文章</a> <a class=mdl-navigation__link  href="/about.html"><i class="material-icons drawer-icon">info</i> 关于</a> <a class=mdl-navigation__link  href="/links.html"><i class="material-icons drawer-icon">link</i> 友链</a> <a class=mdl-navigation__link  href="/search.html"><i class="material-icons drawer-icon">search</i> 搜索</a> <a class=mdl-navigation__link  href="https://github.com/riteme/riteme.github.io"><i class="material-icons drawer-icon">class</i> GitHub 项目</a> </nav> </div> <main class=mdl-layout__content > <div class=mdl-grid > <div class="mdl-cell mdl-cell--12-col"> <div class="article main-article main-article-simple" lang=en-US > <h1 id=airstrikeccpp >空袭 (airstrike.c/cpp)</h1> <p>时间限制：N/A / 内存限制：1024 MB / 打开<code>-O2</code>优化 / 支持C11\C++11</p> <h2 id=_1 >题目描述</h2> <p><strong>这是一道交互题</strong>。<br /> 注意本交互库<strong>不提供Pascal支持</strong>。只支持C\C++。</p> <p>统计学家Lunk所居住的城市遭到的软斯兰国的空袭，弄得Lunk心神不定。<br /> 然而伟大的统计学家怎么会就因为空袭而四处避难呢？Lunk决定弄出个大新闻。<br /> 由于各种原因，Lunk所居住的城市的市区的形状十分奇怪。Lunk将其大致的轮廓画在地图上，形成了一个<strong>多边形的形状</strong>。软斯兰国的飞机每丢下一枚炸弹，Lunk就会马上观测到炸弹的位置，并将其画在地图上。但是，他所想要统计的只是智障的软斯兰国<strong>有多少枚炸弹攻击到了市区</strong>。<br /> 于是Lunk放弃了在地图上画下每一个炸弹的位置，而是转而在地下室里直接统计。</p> <p>现在它所需要的就是一个能帮他统计的程序。他希望能在你们写的程序中选出一个<strong>精确度高</strong>并且<strong>跑得比香港记者还快</strong>的程序来帮助它完成这个任务。</p> <h2 id=_2 >我该如何编写这个程序</h2> <p>选手目录下将会下发<code>interface.h</code>这个文件。<br /> 你需要实现<code>interface.h</code>中的接口。<br /> 你需要在同一目录下新建一个文件<code>airstrike.cpp</code>，其中包含以下内容：</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre>1
-2
-3</pre></div><td class=code ><div class=codehilite ><pre><span></span><span class=cp >#include</span> <span class=cpf >&quot;interface.h&quot;</span><span class=cp ></span>
+<!DOCTYPE html> <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1.0"> <meta name=referrer  content=no-referrer  /> <title>空袭 - riteme.site</title> <link rel="shortcut icon" href="/favicon.png" type="image/png"> <link rel=stylesheet  href="/styles/material-icons.css"> <link rel=stylesheet  href="/styles/material.min.css" > <link rel=stylesheet  href="/math-renderer/katex/katex.min.css"> <link rel=stylesheet  href="/styles/site.css"> <script src="/scripts/jquery.min.js"></script> <script src="/scripts/js-cookie.js"></script> <script src="/scripts/quicklink.umd.js"></script> <script defer src="/scripts/material.min.js"></script> <script src="/scripts/site.js"></script> <div class="mdl-layout mdl-js-layout"> <div class=mdl-layout__drawer > <span class="mdl-layout-title drawer-title"> <a href="/index.html" style="color: inherit; font-weight: inherit;text-decoration: none;"><img src="/favicon.png" width=32 height=32> riteme.site</a> </span> <nav class=mdl-navigation > <a class=mdl-navigation__link  href="/index.html"><i class="material-icons drawer-icon">home</i> 首页</a> <a class=mdl-navigation__link  href="/posts.html"><i class="material-icons drawer-icon">library_books</i> 所有文章</a> <a class=mdl-navigation__link  href="/about.html"><i class="material-icons drawer-icon">info</i> 关于</a> <a class=mdl-navigation__link  href="/links.html"><i class="material-icons drawer-icon">link</i> 友链</a> <a class=mdl-navigation__link  href="/search.html"><i class="material-icons drawer-icon">search</i> 搜索</a> <a class=mdl-navigation__link  href="https://github.com/riteme/riteme.github.io"><i class="material-icons drawer-icon">class</i> GitHub 项目</a> </nav> </div> <main class=mdl-layout__content > <div class=mdl-grid > <div class="mdl-cell mdl-cell--12-col"> <div class="article main-article main-article-simple" lang=en-US > <h1 id=airstrikeccpp >空袭 (airstrike.c/cpp)</h1> <p>时间限制：N/A / 内存限制：1024 MB / 打开<code>-O2</code>优化 / 支持C11\C++11</p> <h2 id=_1 >题目描述</h2> <p><strong>这是一道交互题</strong>。<br /> 注意本交互库<strong>不提供Pascal支持</strong>。只支持C\C++。</p> <p>统计学家Lunk所居住的城市遭到的软斯兰国的空袭，弄得Lunk心神不定。<br /> 然而伟大的统计学家怎么会就因为空袭而四处避难呢？Lunk决定弄出个大新闻。<br /> 由于各种原因，Lunk所居住的城市的市区的形状十分奇怪。Lunk将其大致的轮廓画在地图上，形成了一个<strong>多边形的形状</strong>。软斯兰国的飞机每丢下一枚炸弹，Lunk就会马上观测到炸弹的位置，并将其画在地图上。但是，他所想要统计的只是智障的软斯兰国<strong>有多少枚炸弹攻击到了市区</strong>。<br /> 于是Lunk放弃了在地图上画下每一个炸弹的位置，而是转而在地下室里直接统计。</p> <p>现在它所需要的就是一个能帮他统计的程序。他希望能在你们写的程序中选出一个<strong>精确度高</strong>并且<strong>跑得比香港记者还快</strong>的程序来帮助它完成这个任务。</p> <h2 id=_2 >我该如何编写这个程序</h2> <p>选手目录下将会下发<code>interface.h</code>这个文件。<br /> 你需要实现<code>interface.h</code>中的接口。<br /> 你需要在同一目录下新建一个文件<code>airstrike.cpp</code>，其中包含以下内容：</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre><span class=normal >1</span>
+<span class=normal >2</span>
+<span class=normal >3</span></pre></div><td class=code ><div class=codehilite ><pre><span></span><span class=cp >#include</span><span class=w > </span><span class=cpf >&quot;interface.h&quot;</span><span class=cp ></span>
 
 <span class=c1 >// 实现部分</span>
-</pre></div> </table> <p>你需要实现的接口在头文件中有简要说明。这里做详细说明。</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre>1</pre></div><td class=code ><div class=codehilite ><pre><span></span><span class=kt >void</span> <span class=nf >initialize</span><span class=p >(</span><span class=k >const</span> <span class=kt >double</span> <span class=o >*</span><span class=n >x</span><span class=p >,</span> <span class=k >const</span> <span class=kt >double</span> <span class=o >*</span><span class=n >y</span><span class=p >,</span> <span class=k >const</span> <span class=kt >size_t</span> <span class=n >n</span><span class=p >,</span> <span class=k >const</span> <span class=kt >int</span> <span class=n >id</span><span class=p >);</span>
-</pre></div> </table> <p>是载入程序的入口。在进行查询之前，会调用这个函数。<br /> 载入所用的时间不会计入你的程序用时。但是载入时间不能超过<tex>$3\text{s}$</tex>。<br /> <code>x</code>和<code>y</code>是两个数组，给出的是市区的轮廓，即Lunk绘制的多边形的顶点，按照<strong>逆时针顺序</strong>给出。<br /> <code>n</code>是多边形的顶点数量。<br /> <code>id</code>是当前数据点的标号，在下文会有解释。</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre>1</pre></div><td class=code ><div class=codehilite ><pre><span></span><span class=kt >bool</span> <span class=nf >query</span><span class=p >(</span><span class=k >const</span> <span class=kt >double</span> <span class=n >dx</span><span class=p >,</span> <span class=k >const</span> <span class=kt >double</span> <span class=n >dy</span><span class=p >);</span>
-</pre></div> </table> <p>是Lunk的操作，每次调用即查询炸弹是否炸在市区内。如果炸在市区内则返回<code>true</code>，否则返回<code>false</code>。<br /> <code>dx</code>和<code>dy</code>是炸弹炸到的坐标。<br /> 该函数的用时会被计入程序用时。</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre>1</pre></div><td class=code ><div class=codehilite ><pre><span></span><span class=kt >void</span> <span class=nf >finalize</span><span class=p >();</span>
-</pre></div> </table> <p>是结束程序。这个函数将在所有查询任务完成后调用。<br /> 用于释放你的程序所用的资源。<br /> 该函数的用时不会计入程序用时，但是其运行时间不能超过<tex>$3\text{s}$</tex>。<br /> 注意，请不要使用<code>delete[]</code>删除掉之前<code>initialize</code>参数中给你的顶点数组，否则后果自负。</p> <h2 id=_3 >我该如何测试这个程序</h2> <p>选手目录下将会下发<code>main.cpp</code>这个文件。<br /> 首先你需要有输入的数据，其格式将在下文给出。<br /> 假设你的程序文件是<code>airstrike.cpp</code>，那么使用以下命令来编译：</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre>1</pre></div><td class=code ><div class=codehilite ><pre><span></span>g++ main.cpp airstrike.cpp -std<span class=o >=</span>c++11 -o main
-</pre></div> </table> <p>或者你需要调试：</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre>1</pre></div><td class=code ><div class=codehilite ><pre><span></span>g++ main.cpp airstrike.cpp -std<span class=o >=</span>c++11 -o main -g
-</pre></div> </table> <p>打开<code>-O2</code>优化：</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre>1</pre></div><td class=code ><div class=codehilite ><pre><span></span>g++ main.cpp airstrike.cpp -std<span class=o >=</span>c++11 -o main -O2
-</pre></div> </table> <p>对于C语言，将<code>main.cpp</code>改名为<code>main.c</code>，使用<code>gcc</code>，并且将<code>-std=c++11</code>改为<code>-std=c11</code>即可。<br /> 然后使用：</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre>1</pre></div><td class=code ><div class=codehilite ><pre><span></span>./main
-</pre></div> </table> <p>来运行程序。<br /> 如果需要使用文件输入输出，你可以使用管道，也可以修改<code>main.cpp</code>，将其中的两行带有注释的<code>freopen</code>取消注释，然后重新编译即可。<br /> 注意，该程序<strong>不会测试你的用时并给你评分</strong>。并且与最终评测时的运行程序不同。</p> <h2 id=_4 >输入格式</h2> <p>此处的输入格式是根据上面的测试程序所说的。</p> <p>第一行输入两个整数<tex>$n$</tex>和<tex>$d$</tex>，表示顶点数量和数据编号。<br /> 下面<tex>$n$</tex>行描述市区，每一行给出一个<strong>整点</strong><tex>$(x,\;y)$</tex>，表示一个顶点。<br /> 之后给出若干行，<strong>一直到文件尾</strong>，每行给出一个<strong>整点</strong><tex>$(x_q,\;y_q)$</tex>，表示炸弹的位置。</p> <h2 id=_5 >输出格式</h2> <p>对于每一个Lunk的询问，输出对应的信息 (<code>YES</code>或<code>NO</code>)。</p> <h2 id=1 >样例输入1</h2> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre>1
-2
-3
-4
-5
-6
-7
-8
-9</pre></div><td class=code ><div class=codehilite ><pre><span></span>3 1
+</pre></div> </table> <p>你需要实现的接口在头文件中有简要说明。这里做详细说明。</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre><span class=normal >1</span></pre></div><td class=code ><div class=codehilite ><pre><span></span><span class=kt >void</span><span class=w > </span><span class=nf >initialize</span><span class=p >(</span><span class=k >const</span><span class=w > </span><span class=kt >double</span><span class=w > </span><span class=o >*</span><span class=n >x</span><span class=p >,</span><span class=w > </span><span class=k >const</span><span class=w > </span><span class=kt >double</span><span class=w > </span><span class=o >*</span><span class=n >y</span><span class=p >,</span><span class=w > </span><span class=k >const</span><span class=w > </span><span class=kt >size_t</span><span class=w > </span><span class=n >n</span><span class=p >,</span><span class=w > </span><span class=k >const</span><span class=w > </span><span class=kt >int</span><span class=w > </span><span class=n >id</span><span class=p >);</span><span class=w ></span>
+</pre></div> </table> <p>是载入程序的入口。在进行查询之前，会调用这个函数。<br /> 载入所用的时间不会计入你的程序用时。但是载入时间不能超过<tex>$3\text{s}$</tex>。<br /> <code>x</code>和<code>y</code>是两个数组，给出的是市区的轮廓，即Lunk绘制的多边形的顶点，按照<strong>逆时针顺序</strong>给出。<br /> <code>n</code>是多边形的顶点数量。<br /> <code>id</code>是当前数据点的标号，在下文会有解释。</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre><span class=normal >1</span></pre></div><td class=code ><div class=codehilite ><pre><span></span><span class=kt >bool</span><span class=w > </span><span class=nf >query</span><span class=p >(</span><span class=k >const</span><span class=w > </span><span class=kt >double</span><span class=w > </span><span class=n >dx</span><span class=p >,</span><span class=w > </span><span class=k >const</span><span class=w > </span><span class=kt >double</span><span class=w > </span><span class=n >dy</span><span class=p >);</span><span class=w ></span>
+</pre></div> </table> <p>是Lunk的操作，每次调用即查询炸弹是否炸在市区内。如果炸在市区内则返回<code>true</code>，否则返回<code>false</code>。<br /> <code>dx</code>和<code>dy</code>是炸弹炸到的坐标。<br /> 该函数的用时会被计入程序用时。</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre><span class=normal >1</span></pre></div><td class=code ><div class=codehilite ><pre><span></span><span class=kt >void</span><span class=w > </span><span class=nf >finalize</span><span class=p >();</span><span class=w ></span>
+</pre></div> </table> <p>是结束程序。这个函数将在所有查询任务完成后调用。<br /> 用于释放你的程序所用的资源。<br /> 该函数的用时不会计入程序用时，但是其运行时间不能超过<tex>$3\text{s}$</tex>。<br /> 注意，请不要使用<code>delete[]</code>删除掉之前<code>initialize</code>参数中给你的顶点数组，否则后果自负。</p> <h2 id=_3 >我该如何测试这个程序</h2> <p>选手目录下将会下发<code>main.cpp</code>这个文件。<br /> 首先你需要有输入的数据，其格式将在下文给出。<br /> 假设你的程序文件是<code>airstrike.cpp</code>，那么使用以下命令来编译：</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre><span class=normal >1</span></pre></div><td class=code ><div class=codehilite ><pre><span></span>g++ main.cpp airstrike.cpp -std<span class=o >=</span>c++11 -o main
+</pre></div> </table> <p>或者你需要调试：</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre><span class=normal >1</span></pre></div><td class=code ><div class=codehilite ><pre><span></span>g++ main.cpp airstrike.cpp -std<span class=o >=</span>c++11 -o main -g
+</pre></div> </table> <p>打开<code>-O2</code>优化：</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre><span class=normal >1</span></pre></div><td class=code ><div class=codehilite ><pre><span></span>g++ main.cpp airstrike.cpp -std<span class=o >=</span>c++11 -o main -O2
+</pre></div> </table> <p>对于C语言，将<code>main.cpp</code>改名为<code>main.c</code>，使用<code>gcc</code>，并且将<code>-std=c++11</code>改为<code>-std=c11</code>即可。<br /> 然后使用：</p> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre><span class=normal >1</span></pre></div><td class=code ><div class=codehilite ><pre><span></span>./main
+</pre></div> </table> <p>来运行程序。<br /> 如果需要使用文件输入输出，你可以使用管道，也可以修改<code>main.cpp</code>，将其中的两行带有注释的<code>freopen</code>取消注释，然后重新编译即可。<br /> 注意，该程序<strong>不会测试你的用时并给你评分</strong>。并且与最终评测时的运行程序不同。</p> <h2 id=_4 >输入格式</h2> <p>此处的输入格式是根据上面的测试程序所说的。</p> <p>第一行输入两个整数<tex>$n$</tex>和<tex>$d$</tex>，表示顶点数量和数据编号。<br /> 下面<tex>$n$</tex>行描述市区，每一行给出一个<strong>整点</strong><tex>$(x,\;y)$</tex>，表示一个顶点。<br /> 之后给出若干行，<strong>一直到文件尾</strong>，每行给出一个<strong>整点</strong><tex>$(x_q,\;y_q)$</tex>，表示炸弹的位置。</p> <h2 id=_5 >输出格式</h2> <p>对于每一个Lunk的询问，输出对应的信息 (<code>YES</code>或<code>NO</code>)。</p> <h2 id=1 >样例输入1</h2> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre><span class=normal >1</span>
+<span class=normal >2</span>
+<span class=normal >3</span>
+<span class=normal >4</span>
+<span class=normal >5</span>
+<span class=normal >6</span>
+<span class=normal >7</span>
+<span class=normal >8</span>
+<span class=normal >9</span></pre></div><td class=code ><div class=codehilite ><pre><span></span>3 1
 0 0
 6 1
 8 7
@@ -27,28 +27,28 @@
 2 7
 8 1
 3 1
-</pre></div> </table> <h2 id=1_1 >样例输出1</h2> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre>1
-2
-3
-4</pre></div><td class=code ><div class=codehilite ><pre><span></span>YES
+</pre></div> </table> <h2 id=1_1 >样例输出1</h2> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre><span class=normal >1</span>
+<span class=normal >2</span>
+<span class=normal >3</span>
+<span class=normal >4</span></pre></div><td class=code ><div class=codehilite ><pre><span></span>YES
 NO
 NO
 YES
-</pre></div> </table> <h2 id=1_2 >样例解释1</h2> <p>样例输入1如下图所示：</p> <p><img alt="样例解释1" src="https://git.oschina.net/riteme/blogimg/raw/master/airstrike/airstrike1.svg" /></p> <h2 id=2 >样例输入2</h2> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15</pre></div><td class=code ><div class=codehilite ><pre><span></span>7 1
+</pre></div> </table> <h2 id=1_2 >样例解释1</h2> <p>样例输入1如下图所示：</p> <p><img alt="样例解释1" src="https://git.oschina.net/riteme/blogimg/raw/master/airstrike/airstrike1.svg" /></p> <h2 id=2 >样例输入2</h2> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre><span class=normal > 1</span>
+<span class=normal > 2</span>
+<span class=normal > 3</span>
+<span class=normal > 4</span>
+<span class=normal > 5</span>
+<span class=normal > 6</span>
+<span class=normal > 7</span>
+<span class=normal > 8</span>
+<span class=normal > 9</span>
+<span class=normal >10</span>
+<span class=normal >11</span>
+<span class=normal >12</span>
+<span class=normal >13</span>
+<span class=normal >14</span>
+<span class=normal >15</span></pre></div><td class=code ><div class=codehilite ><pre><span></span>7 1
 1 1
 7 1
 4 2
@@ -63,12 +63,12 @@ YES
 5 3
 5 5
 3 1
-</pre></div> </table> <h2 id=2_1 >样例输出2</h2> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre>1
-2
-3
-4
-5
-6</pre></div><td class=code ><div class=codehilite ><pre><span></span>NO
+</pre></div> </table> <h2 id=2_1 >样例输出2</h2> <table class=codehilitetable ><tr><td class=linenos ><div class=linenodiv ><pre><span class=normal >1</span>
+<span class=normal >2</span>
+<span class=normal >3</span>
+<span class=normal >4</span>
+<span class=normal >5</span>
+<span class=normal >6</span></pre></div><td class=code ><div class=codehilite ><pre><span></span>NO
 YES
 NO
 NO
