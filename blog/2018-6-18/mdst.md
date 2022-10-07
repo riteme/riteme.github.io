@@ -21,7 +21,7 @@ tags: 图论
 
 类比最小生成树，最小树形图就是带权有向图 $G = (V,\ E,\ w)$ 中边权总和最小的 DST，简称 MDST（**M**inimum DST）。虽然定义类似，但算法却不尽相同。因为**在有向图中，给定 DST 的根 $r$，有一些边可能不能成为任何一个 DST 的树边**。例如，在下面的左图中，以绿色节点为根，红色边是无法存在于任何一棵 DST 中的。当然，如果再加入其它边，它还是有机会进入某棵 DST 的，如右图所示。
 
-![invalid-edges](https://gitee.com/riteme/blogimg/raw/master/mdst/invalid-edges.svg)
+![invalid-edges](https://riteme.site/blogimg/mdst/invalid-edges.svg)
 
 <center>**Fig.1.** 无效边的示意图。蓝色边是树边。</center>
 
@@ -35,7 +35,7 @@ tags: 图论
 
 当然现实没有那么美好，很大概率下，这样选择会出现环。现在来考虑其中的一个简单环 $C$，这个环上至少有一条边是不能选的。但可能还有更多的边在真正的 MDST 中也不能选？然而事实却非常巧，注意到环 $C$ 不是一般的环，它是由边权最小的入边组成的环。我们可以证明，存在一棵 MDST，其中环 $C$ 只有一条边被替换了。
 
-![cycle-example](https://gitee.com/riteme/blogimg/raw/master/mdst/cycle.svg)
+![cycle-example](https://riteme.site/blogimg/mdst/cycle.svg)
 
 <center>**Fig.2.** 含有 $7$ 个点的环 $C$ 示意图。其中虚线边是不在 MDST 中的边，红色是其在 MDST 中被替换为的边。上图中，从根节点 $r$ 出发，到达 $v_2$，发现 $v_2 \rightarrow v_3$ 不在树中，之后将进行边的替换。</center>
 
@@ -54,7 +54,7 @@ tags: 图论
 
 我们知道，无向图中最小生成树的时间复杂度取决与排序的复杂度，即 $\mathrm O(E \log E)$ 或比这更好的 $\mathrm O(E + V \log V)$。相比之下，之前的算法实在是太慢了。于是伟大的 Tarjan 老爷子 [[3]](#references-3) 就出现了。Tarjan 在 1977 年提出了一个时间复杂度为 $\mathrm O(E \log V)$ 的实现，他将上述算法进行了调整，改成了一个迭代式的过程。算法开始时，选取图中任意一个点 $x_0$。想象一下这棵树从 $x_0$ 开始不断生长，每次从最末端 $x_{i-1}$ 找到一条还未使用过的 $x_{i-1}$ 的入边 $e:\ x_i → x_{i - 1}$，要求 $w(e)$ 是 $x_{i-1}$ 剩下入边的边权最小者。如果 $x_i$ 已经出现在之前的迭代中，那么意味着此时出现了一个环。按照之前算法的理论，我们可以将这个环缩起来。因此我们新建一个节点表示这个环，于是这个节点会将环上的所有点的入边都收集起来（注意每个点剩下的入边的边权要减去环上入边的边权），这里可以使用可并堆实现。之后将新建的节点放入末尾继续操作。如果原图是强连通的，那么最后只会剩下一个点，否则的话我们可以强行将所有点连成一个环，环上的边权为 $+\infin$，这样图就强连通了。上述算法实际上生成了一棵 contraction 树，树上的叶子是图的原始节点，此外每个非叶子节点都表示一个环，如下图所示：
 
-![tree-example](https://gitee.com/riteme/blogimg/raw/master/mdst/tree.svg)
+![tree-example](https://riteme.site/blogimg/mdst/tree.svg)
 
 <center>**Fig.3.** 左边是一个 $4$ 个点的强连通图，右边是算法完成后所给出的树结构。首先将环 $1 \rightarrow 2 \rightarrow 3 \rightarrow 1$ 缩为了点 $5$，然后将环 $5 \rightarrow 4 \rightarrow 5$ 缩为了点 $6$。这棵树展示了环与环之间嵌套的关系。</center>
 

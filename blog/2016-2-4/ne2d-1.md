@@ -7,7 +7,7 @@ tags: C/C++
       图形
 ---
 # 正式开始编写ne2d
-![ne2d v0.2.2](https://git.oschina.net/riteme/blogimg/raw/master/ne2d/ne2d-start-1.png)
+![ne2d v0.2.2](https://riteme.site/blogimg/ne2d/ne2d-start-1.png)
 
 一直想找个好点的2D渲染引擎，但看了很多似乎都不合胃口，也许有点挑剔。之前看到的bgfx似乎也有点操蛋，毕竟操作上还是麻烦了点。
 因此，**趁着时间还多，多造点轮子，学点东西**。索性开始自己做个适合的2D渲染引擎。
@@ -20,9 +20,9 @@ tags: C/C++
 
 这里记录下目前的想法和进度：
 
-基本功能：  
+基本功能：
 
-* [x] OpenGL 3.3 core profile  
+* [x] OpenGL 3.3 core profile
 * [x] Alpha支持
 * [x] Layer抽象，支持图层深度
 * [x] RenderObject，所有渲染对象实例化
@@ -30,7 +30,7 @@ tags: C/C++
 * [ ] 矩阵变换（使用[glm](https://github.com/g-truc/glm)）
 * [ ] TrueType字体（SDL_ttf or raw Freetype?）
 
-计划中的功能：  
+计划中的功能：
 
 * [ ] 动画
 * [ ] `*.layout`文件载入图层（JSON or XML?）
@@ -42,8 +42,8 @@ tags: C/C++
 
 最后把GitHub repo放一下吧：
 
-* [ne2d](https://github.com/riteme/ne2d): **理论上**是稳定版  
-* [ne2d/develop](https://github.com/riteme/ne2d/tree/develop): **理论上**是最新版  
+* [ne2d](https://github.com/riteme/ne2d): **理论上**是稳定版
+* [ne2d/develop](https://github.com/riteme/ne2d/tree/develop): **理论上**是最新版
 * [ne2d/unstable](https://github.com/riteme/ne2d/tree/unstable): ***激进***版
 
 另外，欢迎有兴趣的同志**一起开发**！

@@ -33,7 +33,7 @@ $$
 
 直接用紧集的定义给人一种强行证明的感觉。实际上，我们还可以从连续函数的角度出发，那就是考虑 $A \mapsto \mathbb R$ 的多元函数 $f(x) = \lambda(x,\ B)$。我们知道紧集上的连续函数必能取到最值，假如 $\xi \in A$ 是最小值点，则 $f(x) \geqslant f(\xi) = \lambda(\xi,\ B) > 0$，直接就完成了证明。连续意味着当两个点无限接近时，函数值也会无限逼近。因此，考虑 $A$ 中的两个点 $x_1$、$x_2$：
 
-![](https://gitee.com/riteme/blogimg/raw/master/math-problems/20190306-1.svg)
+![](https://riteme.site/blogimg/math-problems/20190306-1.svg)
 
 <center class="figcaption">在 $\mathbb R^2$ 中的距离示意图</center>
 

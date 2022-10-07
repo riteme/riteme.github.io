@@ -15,10 +15,10 @@ tags: C/C++
 编译过程十分简单。本文就介绍**Linux下**的编译过程。
 
 ## 编译
-这里我只写了Linux的编译过程，其他平台我还没试过，具体参见[bgfx's document](https://bkaradzic.github.io/bgfx/build.html)。  
+这里我只写了Linux的编译过程，其他平台我还没试过，具体参见[bgfx's document](https://bkaradzic.github.io/bgfx/build.html)。
 首先需要编译器支持，确保你的编译器满足下列要求：
 
-* Clang 3.3及以上  
+* Clang 3.3及以上
 * GCC 4.6及以上
 
 同时准备依赖库：
@@ -134,10 +134,10 @@ cd my-first-bgfx
 cp [bgfx的目录]/.build/linux64_gcc/bin/*.a .
 ```
 
-这时目录下会多出两个`.a`文件： `libbgfxRelease.a`和`libexample-commonRelease.a`  
+这时目录下会多出两个`.a`文件： `libbgfxRelease.a`和`libexample-commonRelease.a`
 [[[静态库 vs 动态库]]]
-我们在这里选用了静态库，而不是动态库，是考虑了用户的原因。  
-因为bgfx没有什么很方便的安装方法，使用静态库就可以避免安装的过程，尽可能少的对用户的系统进行修改。  
+我们在这里选用了静态库，而不是动态库，是考虑了用户的原因。
+因为bgfx没有什么很方便的安装方法，使用静态库就可以避免安装的过程，尽可能少的对用户的系统进行修改。
 当然，使用静态库会增大程序体积。静态链接后，我们的bgfx程序会有3MB多...
 [[[#]]]
 
@@ -249,7 +249,7 @@ bgfx::shutdown();
 g++ -std=c++11 main.cpp -o exec -L. -lbgfxRelease -lexample-commonRelease -lpthread -lGL -lX11
 ```
 
-注意编译器要打开C\+\+11支持，如果你的编译器不支持C\+\+11，那我很好奇你是怎么把bgfx编译成功的。  
+注意编译器要打开C\+\+11支持，如果你的编译器不支持C\+\+11，那我很好奇你是怎么把bgfx编译成功的。
 `-lpthread`、`-lGL`和`-lX11`是bgfx依赖的库，分别是POSIX线程库、OpenGL库和X11库。
 
 如果没有错误报出，运行`exec`就能看到以下窗口：
@@ -258,7 +258,7 @@ g++ -std=c++11 main.cpp -o exec -L. -lbgfxRelease -lexample-commonRelease -lpthr
 ./exec
 ```
 
-![helloworld](https://git.oschina.net/riteme/blogimg/raw/master/learn-bgfx/learn-bgfx-1.png)
+![helloworld](https://riteme.site/blogimg/learn-bgfx/learn-bgfx-1.png)
 
 如果你出现了什么意外，下面贴出了完整的程序用于对照：
 

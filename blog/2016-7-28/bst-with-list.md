@@ -30,13 +30,13 @@ tags: 数据结构
 
 这时有两种情况，一种是插入到左儿子：
 
-![left-node](https://git.oschina.net/riteme/blogimg/raw/master/bst-with-list/insert-1.png)
+![left-node](https://riteme.site/blogimg/bst-with-list/insert-1.png)
 
 那么新插入的节点必定是其父亲的前趋。这个过程可以看作是往链表中插入一个元素。
 
 同样，对于插入到右儿子，情况也是类似的：
 
-![right-node](https://git.oschina.net/riteme/blogimg/raw/master/bst-with-list/insert-2.png)
+![right-node](https://riteme.site/blogimg/bst-with-list/insert-2.png)
 
 因此，对于每个新插入的节点，只需要花费$\Theta(1)$的时间来记录前趋后继。
 

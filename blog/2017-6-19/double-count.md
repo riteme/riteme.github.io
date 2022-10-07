@@ -38,7 +38,7 @@ Burnside 定理的证明本身就是一个巧妙的双计数，具体的证明�
 ### 无标号的有根树计数
 无标号的有根树表示我们所计数的树是有一个固定的根节点，但是同构的树只能算一个。为了方便，我们令 $n$ 个无标号节点的有根树的数量为 $t(n)$。例如，下面的三棵树中：
 
-![tree-sample](https://git.oschina.net/riteme/blogimg/raw/master/double-count/tree-sample.svg)
+![tree-sample](https://riteme.site/blogimg/double-count/tree-sample.svg)
 
 蓝色的节点是根节点，第一棵树和第二棵树虽然本质上一模一样，但是由于树根的不同，所以算作不同的树。而第三棵树和第一棵数仅仅只是子树顺序的调动，由于节点没有编号，所以认为与第一棵树是同构的。
 

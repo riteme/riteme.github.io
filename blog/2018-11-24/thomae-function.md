@@ -32,11 +32,11 @@ $$
 
 显然 $f_1$ 就是原来的函数。随着次数的增大，整个函数的图像也会越来越贴近 $x$ 轴：
 
-![f_1(assets/f1.png)](https://gitee.com/riteme/blogimg/raw/master/thomae/f1.png)
+![f_1(assets/f1.png)](https://riteme.site/blogimg/thomae/f1.png)
 
 <center>(**Fig.1.** $f_1(x)$ 在 $(-1,\ 1)$ 上的图像)</center>
 
-![f_2(x)](https://gitee.com/riteme/blogimg/raw/master/thomae/f2.png)
+![f_2(x)](https://riteme.site/blogimg/thomae/f2.png)
 
 <center>(**Fig.2.** $f_2(x)$ 在 $(-1,\ 1)$ 上的图像)</center>
 
@@ -109,7 +109,7 @@ $$
 > $$
 > |p\alpha - q| < \frac1n
 > $$
-> 
+>
 > 也就是：
 > $$
 > \left|\alpha - \frac{q}p\right| < \frac1{np} \leqslant \frac1{p^2}

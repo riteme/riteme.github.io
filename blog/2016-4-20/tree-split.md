@@ -30,7 +30,7 @@ tags: 数据结构
 * $x.\text{size}$: 以$x$为根的这一棵子树的大小。
 * $x.\text{depth}$: $x$在树中的深度，即$x$到树根的距离$+1$。
 
-![tree-normal](https://git.oschina.net/riteme/blogimg/raw/master/tree-split/tree-normal.svg)
+![tree-normal](https://riteme.site/blogimg/tree-split/tree-normal.svg)
 这是一棵以$1$为根的树。为了解释更加清楚，这里举几个例子：
 
 * $10.\text{father} = 5,\; 1.\text{father} = nil$
@@ -50,31 +50,31 @@ function MAKE-ROOT(G, u):  // 以u为树根
     u.visited = true  // u已经访问过了
     u.father = nil // u没有父亲
     u.depth = 1
-    
+
     REAL-MAKE-ROOT(G, u)
 
 function REAL-MAKE-ROOT(G, u):  // DFS过程
     u.size = 1
     u.next = nil
-    
+
     foreach v in G[u].neighbors:
         if not v.visited:  // 如果还未访问
             v.visited = true
             u.children += v  // 添加儿子节点
             v.father = u
             v.depth = u.depth + 1
-            
+
             REAL-MAKE-ROOT(G, v)  // 递归向下
-            
+
             u.size += v.size  // 更新子树大小
-            
+
             if u.next = nil || v.size > u.next.size:  // 更新重儿子
                 u.next = v
 ```
 
 ## 剖分
 在介绍树链剖分的算法之前，我们先来看看剖分后的树是个什么样子：
-![tree-splited](https://git.oschina.net/riteme/blogimg/raw/master/tree-split/tree-splited.png)
+![tree-splited](https://riteme.site/blogimg/tree-split/tree-splited.png)
 剖分后的树信息量一下子大了很多。我将会逐条解释上面都画了些什么。
 
 * **树链(重链)**: 所有红色的边所连成的一条链都是剖分后的结果。某些树链没有边，就只有一个节点，这个节点是红色的。在上面，`1-6-8-11-13-17`是剖分出来的最长的树链，而`3`独自一个节点形成了树链。
@@ -113,7 +113,7 @@ count = 0  // 已编号的数量
 function TREE-SPLIT(x):  // 剖分子树u
     x.id = 0  // 根节点没有父亲
     x.top = x  // 根节点是第一条链
-    
+
     REAL-TREE-SPLIT(x)
 
 function REAL-TREE-SPLIT(x):  // DFS过程
@@ -121,15 +121,15 @@ function REAL-TREE-SPLIT(x):  // DFS过程
         count += 1
         x.next.id = count
         x.next.top = x.top
-        
+
         REAL-TREE-SPLIT(x.next)  // 优先重儿子
-    
+
     foreach v in x.children:  // 对于轻儿子则新创一条链
         if v != x.next:  // 检查是不是重儿子
             count += 1
             v.id = count
             v.top = v
-            
+
             REAL-TREE-SPLIT(v)
 ```
 
@@ -168,26 +168,26 @@ function REAL-TREE-SPLIT(x):  // DFS过程
 ```
 function QUERY-SUM(u, v):
     sum = 0
-    
+
     // 如果不在同一条树链
     while u.top != v.top:
         if u.top.depth < v.top.depth:
             SWAP(u, v)  // 交换u和v
-        
+
         sum += QUERY(u.top.id, u.id)  // 利用线段树等数据结构来求和
         u = u.top.father  // 走轻边进入上面的树链
-    
+
     if u == v:  // 如果处在相同位置
         return sum
-    
+
     if u.depth > v.depth:  // 使u成为深度较小的节点
         SWAP(u, v)
-        
+
     return QUERY(u.next.id, v.id) + sum
 ```
 
 如果不能理解，这里给出一个示例：
-![tree-splited](https://git.oschina.net/riteme/blogimg/raw/master/tree-split/tree-splited.png)
+![tree-splited](https://riteme.site/blogimg/tree-split/tree-splited.png)
 假设我们查询$16$到$17$：
 首先会发现它们不在同一条链上，由于$16$所处的链的深度较大，为$5$，因此将$16$进行上移，上移至$14$，并统计$[13, 13]$的和。
 然后$14$和$17$依然不在同一条链中，由于$14$所处的链的深度为$2$，因此将$14$上移。上移至$1$，并统计$[9, 11]$的和。
@@ -204,7 +204,7 @@ function QUERY-SUM(u, v):
 
 ~~为什么会只有$O(\log n)$条呢？~~
 ~~我们来考虑树链剖分时最坏的情况：~~
-![tree-worst](https://git.oschina.net/riteme/blogimg/raw/master/tree-split/tree-worst.png)
+![tree-worst](https://riteme.site/blogimg/tree-split/tree-worst.png)
 ~~想象这是树剖是最坏的情况(因为实际上并不会这样)。因为树剖总是尝试将最长的剖分出来，因此树链都是向右的。如果最左链再加一个节点，树链就会向左剖分了。~~
 ~~为了达到这样的效果，这棵有根树是接近**平衡**的，即树高为$\Theta(\log n)$。~~
 ~~因此最坏的情况下，当查询最左边的节点时，只需要使用$O(\log n)$次跳转就可完成。~~

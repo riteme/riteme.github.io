@@ -16,13 +16,13 @@ tags: 图论
 
 常见的电阻网络一般都会画成这种样子：
 
-![](https://gitee.com/riteme/blogimg/raw/master/resist/network-1.svg)
+![](https://riteme.site/blogimg/resist/network-1.svg)
 
 <center class="figcaption">某个电阻网络</center>
 
 为了方便描述，在图论中，通常用边表示电阻，点表示接线柱，如下图所示：
 
-![](https://gitee.com/riteme/blogimg/raw/master/resist/network-2.svg)
+![](https://riteme.site/blogimg/resist/network-2.svg)
 
 <center class="figcaption">对应的图</center>
 
@@ -40,13 +40,13 @@ tags: 图论
 
 “给定一张无向图，判断这张图是否是可由串联和并联操作得到。”这是一个经典问题。首先，这个问题有一个很模糊的地方，就是它并没告诉你源点和汇点是什么。简单起见，我们先规定一对有效的源汇点，尝试按照定义来拆解原图。首先，如果原图中有割点，那么显然割点都是依靠串联操作拼接而来的，
 
-![](https://gitee.com/riteme/blogimg/raw/master/circuit/series-1.svg)
+![](https://riteme.site/blogimg/circuit/series-1.svg)
 
 <center class="figcaption">拆解串联的示意图。紫色节点为端点（源汇点），蓝色节点为割点。每个虚线圈内均为一个判定子问题</center>
 
 此时需要保证图中所有的点双连通分量需呈链状分布，否则原图不可能是**二端**串并联图。所以此时将图按照割点位置切开，从而划为多个子问题。去除割点后，接下来则需要按照并联的方式进行拆分了。不过这个拆分有点小麻烦，毕竟不可能总是下面左图那种简单的情形，只需要将端点发出的边拆开即可，
 
-![](https://gitee.com/riteme/blogimg/raw/master/circuit/parallel-1.svg)
+![](https://riteme.site/blogimg/circuit/parallel-1.svg)
 
 <center class="figcaption">拆解并联的示意图。除紫色外，同种颜色的节点属于同一个子问题。紫色的端点在每个子问题中都会出现</center>
 
@@ -59,7 +59,7 @@ tags: 图论
 > 1. （串联）选择一条边 $u - v$，增加一个新点 $x$，将原来的边 $u - v$ 替换为 $u - x - v$。
 > 2. （并联）选择一条边 $u - v$，增加一条重边 $u - v$。
 
-![](https://gitee.com/riteme/blogimg/raw/master/circuit/alternative-definition.svg)
+![](https://riteme.site/blogimg/circuit/alternative-definition.svg)
 
 <center class="figcaption">串联与并联</center>
 
@@ -69,7 +69,7 @@ tags: 图论
 
 从现实角度来讲，上面的定义不太科学。主要在于，图中的点双连通分量需在同一条链上。现实中，当端点接入电源时，电阻网络有些部分实际上并无电流，如下图所示。
 
-![](https://gitee.com/riteme/blogimg/raw/master/circuit/bctree-1.svg)
+![](https://riteme.site/blogimg/circuit/bctree-1.svg)
 
 <center class="figcaption">为了方便展示，将原图转为了对应的圆方树（Block-Cut Tree）。紫色节点为端点，灰色部分是没有电流流过的部分</center>
 
@@ -79,7 +79,7 @@ tags: 图论
 
 用图来表示电阻网络相当直观，但是实际用起来并不方便，因为我们并不能直接从图中得知整个电阻网络是如何构建起来的。二端串并联图的结构树（Parse Tree[^parse-tree]）是将原图拆解的递归过程保存下来的树结构。树中一共有三种节点，分别为**串联节点**、**并联节点**和**边节点**，其中边节点仅代表原图中的一条边。
 
-![](https://gitee.com/riteme/blogimg/raw/master/circuit/parse-1.svg)
+![](https://riteme.site/blogimg/circuit/parse-1.svg)
 
 <center class="figcaption">二端串并联图的结构树示意图。左图为原图，其中紫色节点（$1$ 和 $5$）为端点；右图为对应的结构树，红色节点表示并联节点，蓝色节点表示串联节点，灰色节点表示边节点。树上每个节点均对应一条边，但只有边节点才对应原图中的边，其余节点对应虚边。结构树上每个子树均对应原图中一个串并联子图</center>
 
@@ -89,7 +89,7 @@ tags: 图论
 
 为了更直观地表示图的结构，串联节点和并联节点绘制时通常会对应一个 “框架”（Skeleton）。串联节点对应一条链，称其为串联路径（为了方便，边节点可以视为特殊的串联节点，故单独的一条边也可以称为串联路径）；并联节点对应由几条重边构成的图。框架内的每条边代表该节点的一个儿子。
 
-![](https://gitee.com/riteme/blogimg/raw/master/circuit/parse-2.svg)
+![](https://riteme.site/blogimg/circuit/parse-2.svg)
 
 <center class="figcaption">先前的例子中的结构树的另外一种画法</center>
 
@@ -103,7 +103,7 @@ tags: 图论
 
 既然是要求扩展的定义，那么免不了求点双连通分量。首先，对于特定的端点，在点双树上，这两个端点间会经过几个点双连通分量。若这对端点合法，则经过的每个点双连通分量内，端点（或者割点）到割点之间必须是二端串并联子图。这样就把问题分解到点双连通分量里了。
 
-![](https://gitee.com/riteme/blogimg/raw/master/circuit/valid-1.svg)
+![](https://riteme.site/blogimg/circuit/valid-1.svg)
 
 <center class="figcaption">一个合法方案的示意图</center>
 
@@ -117,7 +117,7 @@ tags: 图论
 
 具体的验证过程在下面这张图中的 (b)、(c)、(d) 给出。
 
-![](https://gitee.com/riteme/blogimg/raw/master/circuit/proof-1.svg)
+![](https://riteme.site/blogimg/circuit/proof-1.svg)
 
 <center class="figcaption">$a$ 与 $b$ 在树中的几种情况。　**(a)** $a$ 与 $b$ 在同一条串联路径上，此时执行缩点算法得到一个环。　**(b)** $a$ 与 $b$ 在不同的串联路径上，其中一个串联节点是另外一个节点的祖先。注意 $p$ 中走向另一个端点的边的顶点不是端点，否则 1) 若两个串联节点之间只有一个并联节点，则实际上退化为第一种情况；2) 若两个串联节点间有多个节点，则顶部的端点可以下移，直到变成第一种情况或者是第二种情况。蓝色边为子树 $p$ 之外的部分缩成的边，黄色边为 $p$ 到下端子树之间的部分缩成的边，红色边为下端子树缩成的边，绿色边为 $p$ 中除了下端子树之外的子树缩成的边　**(c)** $a$ 与 $b$ 在不同的串联路径上，最近公共祖先 $p$ 为并联节点。　**(d)** $a$ 与 $b$ 在不同的串联路径上，最近公共祖先 $p$ 为串联节点。</center>
 

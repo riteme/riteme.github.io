@@ -24,7 +24,7 @@ $$
 
 例如，在下图中：
 
-![graph-example](https://git.oschina.net/riteme/blogimg/raw/master/mincut/graph-example.svg)
+![graph-example](https://riteme.site/blogimg/mincut/graph-example.svg)
 
 $(\{2\}, \{1,3,4,5,6\})$和$(\{4\}, \{1,2,3,5,6\})$均是最小割，其权值为$3$。而$(\{1,2,3\}, \{4,5,6\})$是一个$1$-$6$最小割，其权值为$51$。
 
@@ -87,12 +87,12 @@ function ST-MINCUT(G):
         for u in B:
             if W(A, {u}) > W(A, {p}):  // Assume that W(A, 0) = 0
                 p = u
-        
+
         A = A ∪ p
         B = B - {p}
         s = t
         t = p
-    
+
     return (s, t)
 ```
 

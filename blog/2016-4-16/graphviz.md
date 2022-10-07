@@ -14,8 +14,8 @@ tags: Graphviz
 现在祭出利器：Graphviz
 
 ## 简介
-> Graphviz is open source graph visualization software. Graph visualization is a way of representing structural information as diagrams of abstract graphs and networks. It has important applications in networking, bioinformatics,  software engineering, database and web design, machine learning, and in visual interfaces for other technical domains. 
-> ![gv](https://git.oschina.net/riteme/blogimg/raw/master/gv/graphviz.png)
+> Graphviz is open source graph visualization software. Graph visualization is a way of representing structural information as diagrams of abstract graphs and networks. It has important applications in networking, bioinformatics,  software engineering, database and web design, machine learning, and in visual interfaces for other technical domains.
+> ![gv](https://riteme.site/blogimg/gv/graphviz.png)
 
 翻译：
 > Graphviz是一个开源的图形可视化软件。图形可视化是表示诸如图表的结构化的抽象图形或网络。在网络技术、生物信息学、软件工程、数据库、网页设计、机器学习和可视化界面及其他可以领域大有用处。
@@ -67,7 +67,7 @@ eog hello-world.svg
 ```
 
 如果一路上不出意外，你可以看到下面的结果：
-![Hello, world!](https://git.oschina.net/riteme/blogimg/raw/master/gv/hello-1.svg)
+![Hello, world!](https://riteme.site/blogimg/gv/hello-1.svg)
 
 恭喜你成功创建了一张有向图。
 
@@ -83,7 +83,7 @@ graph {  // <-- Here
 ```
 
 此时的图是这样的：
-![Hello, world!](https://git.oschina.net/riteme/blogimg/raw/master/gv/graph-type-1.svg)
+![Hello, world!](https://riteme.site/blogimg/gv/graph-type-1.svg)
 
 当然我们可以添加坑爹的平行边和自环：
 ```dot
@@ -97,7 +97,7 @@ graph {
 ```
 
 于是乎图长这样：
-![Hello, world!](https://git.oschina.net/riteme/blogimg/raw/master/gv/graph-type-2.svg)
+![Hello, world!](https://riteme.site/blogimg/gv/graph-type-2.svg)
 
 当然，如果你不想要它们出现，你可以利用`strict`将这张图变为严格的图：
 ```dot
@@ -111,7 +111,7 @@ strict graph {  // <-- strict HERE
 ```
 
 此时平行边已经不见了，毕竟它们的含义是一样的。但是自环还是会留下来的：
-![Hello, world!](https://git.oschina.net/riteme/blogimg/raw/master/gv/graph-type-3.svg)
+![Hello, world!](https://riteme.site/blogimg/gv/graph-type-3.svg)
 
 ### 顶点
 个人感觉椭圆实在太难看，用来调试完全体现不出B格。
@@ -129,7 +129,7 @@ graph {
 ```
 
 就变成这样：
-![Hello, world!](https://git.oschina.net/riteme/blogimg/raw/master/gv/node-1.svg)
+![Hello, world!](https://riteme.site/blogimg/gv/node-1.svg)
 
 > 啊！我想让`c`变成正方形！
 
@@ -138,7 +138,7 @@ graph {
 graph {
     node [shape = circle];  // 所有顶点全部变成圆形
     c [shape = square];  // 指定c变为正方形
-    
+
     a -- b;
     b -- c;
     a -- c;
@@ -147,7 +147,7 @@ graph {
 }
 ```
 
-![Hello, world!](https://git.oschina.net/riteme/blogimg/raw/master/gv/node-2.svg)
+![Hello, world!](https://riteme.site/blogimg/gv/node-2.svg)
 
 > 不行我要三角形！
 
@@ -164,7 +164,7 @@ graph {
 }
 ```
 
-![Hello, world!](https://git.oschina.net/riteme/blogimg/raw/master/gv/node-3.svg)
+![Hello, world!](https://riteme.site/blogimg/gv/node-3.svg)
 
 好吧如果你还要其它的图形，可以参见<http://www.graphviz.org/content/node-shapes>。
 
@@ -175,7 +175,7 @@ graph {
     a [color = blue];  // 变蓝色
     b [color = red];　// 变红色
     c [fontcolor = green];  // 字体颜色变绿
-    
+
     a -- b;
     b -- c;
     a -- c;
@@ -184,7 +184,7 @@ graph {
 }
 ```
 
-![Hello, world!](https://git.oschina.net/riteme/blogimg/raw/master/gv/node-4.svg)
+![Hello, world!](https://riteme.site/blogimg/gv/node-4.svg)
 
 更详细的颜色名称表在此：<http://www.graphviz.org/content/color-names>
 
@@ -206,7 +206,7 @@ digraph {
 ```
 
 得到的结果是这样的：
-![Hello, world!](https://git.oschina.net/riteme/blogimg/raw/master/gv/edge-1.svg)
+![Hello, world!](https://riteme.site/blogimg/gv/edge-1.svg)
 
 似乎并不尽人意，难以分辨左儿子和右儿子。
 
@@ -215,7 +215,7 @@ digraph {
 ```dot
 digraph {
     node [shape = circle];
-    
+
     x :e -> e;
     x :ne -> ne;
     x :n-> n;
@@ -227,7 +227,7 @@ digraph {
 }
 ```
 下面的图片展示了顶点的八个方向[^direction](这张图是用`circo`生成的，命令行参数一样)：
-![Hello, world!](https://git.oschina.net/riteme/blogimg/raw/master/gv/edge-2.svg)
+![Hello, world!](https://riteme.site/blogimg/gv/edge-2.svg)
 
 [^direction]: 事实上，Graphviz中可以定义更加更加精确的方向。但大多数情况下，这几个方向足矣。
 
@@ -238,7 +238,7 @@ digraph {
 ```dot
 digraph {
     node [shape = circle];
-    
+
     3:sw -> 2;
     3:se -> 8;
     2:sw -> 1;
@@ -250,14 +250,14 @@ digraph {
 }
 ```
 
-![Hello, world!](https://git.oschina.net/riteme/blogimg/raw/master/gv/edge-3.svg)
+![Hello, world!](https://riteme.site/blogimg/gv/edge-3.svg)
 虽然不是那么规整，但是足以分辨出左右儿子了。
 
 对于有些树，我们会记录父亲节点，因此我们加一条指向父亲的边：
 ```dot
 digraph {
     node [shape = circle];
-    
+
     3:sw -> 2;
     2 -> 3;
     3:se -> 8;
@@ -277,7 +277,7 @@ digraph {
 }
 ```
 得到的效果是这样的：
-![Hello, world!](https://git.oschina.net/riteme/blogimg/raw/master/gv/edge-4.svg)
+![Hello, world!](https://riteme.site/blogimg/gv/edge-4.svg)
 
 > 话说我分不清哪个是指向父亲的链接了！！！
 
@@ -285,7 +285,7 @@ digraph {
 ```dot
 digraph {
     node [shape = circle];
-    
+
     3:sw -> 2 [style = bold];
     2 -> 3;
     3:se -> 8 [style = bold];
@@ -304,7 +304,7 @@ digraph {
     6 -> 7;
 }
 ```
-![Hello, world!](https://git.oschina.net/riteme/blogimg/raw/master/gv/edge-5.svg)
+![Hello, world!](https://riteme.site/blogimg/gv/edge-5.svg)
 上面是对边进行设置，将边加粗。
 
 > 指向区别能更明显些吗？
@@ -313,7 +313,7 @@ digraph {
 ```dot
 digraph {
     node [shape = circle];
-    
+
     3:sw -> 2 [style = bold];
     2 -> 3 [style = dotted];
     3:se -> 8 [style = bold];
@@ -332,17 +332,17 @@ digraph {
     6 -> 7 [style = dotted];
 }
 ```
-![Hello, world!](https://git.oschina.net/riteme/blogimg/raw/master/gv/edge-6.svg)
+![Hello, world!](https://riteme.site/blogimg/gv/edge-6.svg)
 
 像某些数据结构，可能会有Lazy标记之类的，我们可能需要对节点作特殊标记来标明。
 这当然也是可以实现的，只需提前声明好即可：
 ```dot
 digraph {
     node [shape = circle];
-    
+
     3 [color = red];
     5 [color = red];
-    
+
     3:sw -> 2 [style = bold];
     2 -> 3 [style = dotted];
     3:se -> 8 [style = bold];
@@ -361,7 +361,7 @@ digraph {
     6 -> 7 [style = dotted];
 }
 ```
-![Hello, world!](https://git.oschina.net/riteme/blogimg/raw/master/gv/edge-7.svg)
+![Hello, world!](https://riteme.site/blogimg/gv/edge-7.svg)
 
 ## 用于调试
 经过上面的简单介绍，Graphviz已经可以用于调试了。
@@ -370,9 +370,9 @@ dot脚本非常的便于程序生成，因此我们可以在程序运行中途�
 ```
 function SHOW(x):
     buffer = "graph {"
-    
+
     // 读取数据并生成dot脚本
-    
+
     buffer += "}"
     write buffer to a dot file
     SYSTEM "dot a.dot -Tsvg > a.svg && eog a.svg"

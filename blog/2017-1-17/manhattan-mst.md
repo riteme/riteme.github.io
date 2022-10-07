@@ -19,7 +19,7 @@ tags: 最小生成树
 
 事实上确实如此，如果我们随意选择一个点作为中心$O$，用四条直线将平面划为八个对称的区域，如下图所示：
 
-![r8](https://git.oschina.net/riteme/blogimg/raw/master/manhattan-mst/r8.svg)
+![r8](https://riteme.site/blogimg/manhattan-mst/r8.svg)
 
 上图中$R_1$到$R_8$就是被八等分出来的区域。
 
@@ -33,7 +33,7 @@ tags: 最小生成树
 
 **情况2：**$x_1 \leqslant x_2, \;y_1 \leqslant y_2$
 
-![situation-1](https://git.oschina.net/riteme/blogimg/raw/master/manhattan-mst/s1.svg)
+![situation-1](https://riteme.site/blogimg/manhattan-mst/s1.svg)
 
 此时有：
 $$
@@ -42,7 +42,7 @@ $$
 
 **情况2：**$x_2 \leqslant x_1, \;y_1 \leqslant y_2$
 
-![situation-2](https://git.oschina.net/riteme/blogimg/raw/master/manhattan-mst/s2.svg)
+![situation-2](https://riteme.site/blogimg/manhattan-mst/s2.svg)
 
 此时有：
 $$
@@ -61,7 +61,7 @@ $$
 
 **情况3：**$x_1 \leqslant x_2, \;y_2 \leqslant y_1$
 
-![situation-3](https://git.oschina.net/riteme/blogimg/raw/master/manhattan-mst/s3.svg)
+![situation-3](https://riteme.site/blogimg/manhattan-mst/s3.svg)
 
 此时有：
 $$
@@ -80,7 +80,7 @@ $$
 所以$|OB| \geqslant |AB|$。
 
 **情况4：**$x_2 \leqslant x_1, \;y_2 \leqslant y_1$
-![situation-4](https://git.oschina.net/riteme/blogimg/raw/master/manhattan-mst/s4.svg)
+![situation-4](https://riteme.site/blogimg/manhattan-mst/s4.svg)
 
 这种情况违反了$|OA| \leqslant |OB|$这个条件，故不考虑。
 

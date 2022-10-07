@@ -12,7 +12,7 @@ tags: 四叉树
 # 点分四叉树 (Point Quadtree)
 点分四叉树是一种二维平面上的划分树，可以用于快速统计平面上的点的信息。
 下图展现了一棵四叉树。其中箭头表示树中的边，矩形表示一个点所管辖的范围。
-![quadtree](https://git.oschina.net/riteme/blogimg/raw/master/quadtree/quadtree.png)
+![quadtree](https://riteme.site/blogimg/quadtree/quadtree.png)
 
 ## 原理
 考虑下面的问题：
@@ -86,7 +86,7 @@ function BUILD-QUADTREE(P):  // P是点集
 如果有所有点都一样的情况，会导致树的退化。解决办法就是剔除重复点，从而保证树高。
 
 经过对随机分布的点的测试，四叉树的树高保持在$O(\log n)$：
-![quadtree-height](https://git.oschina.net/riteme/blogimg/raw/master/quadtree/quadtree-average-height.png)
+![quadtree-height](https://riteme.site/blogimg/quadtree/quadtree-average-height.png)
 
 同时可以得知四叉树的空间复杂度为$\Theta(n)$，因为每个点都会被用一次。
 

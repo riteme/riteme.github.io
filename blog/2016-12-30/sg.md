@@ -52,7 +52,7 @@ tags: 公平组合游戏
 ## 图的表示
 如果将每个位置用点表示，而位置之间的转移用有向边表示，那么$0$到$3$之间的关系可以由下图表示：
 
-![nim](https://git.oschina.net/riteme/blogimg/raw/master/sg/nim.svg)
+![nim](https://riteme.site/blogimg/sg/nim.svg)
 
 由于游戏是有限步数的，所以这张图必须是**拓扑图**。在这图上，我们可以将所有没有出边的点标记为$\mathrm{P}$点，然后根据上面的规则就可以辨识所有的位置是$\mathrm{N}$点还是$\mathrm{P}$点。由此也可以看出，一个公平组合游戏必定能分出胜负。
 
@@ -74,7 +74,7 @@ $$
 
 因此，对于没有出边的点，其$g$值为$0$。另一方面，这些点都是$\mathrm{P}$点。如果我们计算之前出现的图中的$g$值：
 
-![sg-values](https://git.oschina.net/riteme/blogimg/raw/master/sg/sg-1.svg)
+![sg-values](https://riteme.site/blogimg/sg/sg-1.svg)
 
 上图中$0$和$3$都是$0$，$1$和$2$都不是$0$。十分巧合的是，$0$和$3$是$\mathrm{P}$点，$1$和$2$是$\mathrm{N}$点。
 

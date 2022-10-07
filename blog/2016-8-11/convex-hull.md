@@ -14,19 +14,19 @@ tags: 凸包
 ## 定义
 通常说的凸包是指一个点集的凸包，并且是指在二维平面上[^high-d-convex-hull]。这种凸包本身是一个凸多边形，由点集中的点构成，并且要求凸包上的点**尽可能少**。下面是一个凸包的示例：
 
-![convex-hull-example-1](https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/convex-hull-example-1.svg)
+![convex-hull-example-1](https://riteme.site/blogimg/convex-hull/convex-hull-example-1.svg)
 
 [^high-d-convex-hull]: 凸包的定义可以扩展至高维。
 
 对于其它的图形，也可以有凸包，如线段的凸包：
 
-![convex-hull-example-2](https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/convex-hull-example-2.svg)
+![convex-hull-example-2](https://riteme.site/blogimg/convex-hull/convex-hull-example-2.svg)
 
 实际上线段的凸包就是**所有线段的端点的凸包**。更一般的，多边形的凸包就是所有多边形的顶点的凸包。
 
 而曲线图形的凸包则没有这么简单，从圆的凸包就可见一窥：
 
-![convex-hull-example-3](https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/convex-hull-example-3.svg)
+![convex-hull-example-3](https://riteme.site/blogimg/convex-hull/convex-hull-example-3.svg)
 
 下面的文章将不讨论与曲线相关的凸包。
 
@@ -45,22 +45,22 @@ Jarvis步进法可以看作是给点集包上包装纸，最后算出凸包的�
 
 以下面的点集为例：
 
-![jarvis-1](https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/jarvis-1.svg)
+![jarvis-1](https://riteme.site/blogimg/convex-hull/jarvis-1.svg)
 
 首先找到左下和右上两个点：
 
-![jarvis-2](https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/jarvis-2.svg)
+![jarvis-2](https://riteme.site/blogimg/convex-hull/jarvis-2.svg)
 
 构建右凸包：
 
-![jarvis-3](https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/jarvis-3.svg)
-![jarvis-4](https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/jarvis-4.svg)
+![jarvis-3](https://riteme.site/blogimg/convex-hull/jarvis-3.svg)
+![jarvis-4](https://riteme.site/blogimg/convex-hull/jarvis-4.svg)
 
 构建左凸包：
 
-![jarvis-5](https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/jarvis-5.svg)
-![jarvis-6](https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/jarvis-6.svg)
-![jarvis-7](https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/jarvis-7.svg)
+![jarvis-5](https://riteme.site/blogimg/convex-hull/jarvis-5.svg)
+![jarvis-6](https://riteme.site/blogimg/convex-hull/jarvis-6.svg)
+![jarvis-7](https://riteme.site/blogimg/convex-hull/jarvis-7.svg)
 
 至此，凸包构建完毕。
 
@@ -131,25 +131,25 @@ function JARVIS(Q):  # Q是点集
 
 下面展示了一个水平扫描线的示例：
 
-![scanline-1](https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-1.svg)
-![scanline-2](https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-2.svg)
-![scanline-3](https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-3.svg)
-![scanline-4](https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-4.svg)
-![scanline-5](https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-5.svg)
-![scanline-6](https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-6.svg)
-![scanline-7](https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-7.svg)
-![scanline-8](https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-8.svg)
-![scanline-9](https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-9.svg)
-![scanline-10](https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-10.svg)
-![scanline-11](https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-11.svg)
-![scanline-12](https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-12.svg)
+![scanline-1](https://riteme.site/blogimg/convex-hull/scanline-1.svg)
+![scanline-2](https://riteme.site/blogimg/convex-hull/scanline-2.svg)
+![scanline-3](https://riteme.site/blogimg/convex-hull/scanline-3.svg)
+![scanline-4](https://riteme.site/blogimg/convex-hull/scanline-4.svg)
+![scanline-5](https://riteme.site/blogimg/convex-hull/scanline-5.svg)
+![scanline-6](https://riteme.site/blogimg/convex-hull/scanline-6.svg)
+![scanline-7](https://riteme.site/blogimg/convex-hull/scanline-7.svg)
+![scanline-8](https://riteme.site/blogimg/convex-hull/scanline-8.svg)
+![scanline-9](https://riteme.site/blogimg/convex-hull/scanline-9.svg)
+![scanline-10](https://riteme.site/blogimg/convex-hull/scanline-10.svg)
+![scanline-11](https://riteme.site/blogimg/convex-hull/scanline-11.svg)
+![scanline-12](https://riteme.site/blogimg/convex-hull/scanline-12.svg)
 开始从上凸包中删除点：
 
-![scanline-13](https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-13.svg)
-![scanline-14](https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-14.svg)
-![scanline-15](https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-15.svg)
-![scanline-16](https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-16.svg)
-![scanline-17](https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/scanline-17.svg)
+![scanline-13](https://riteme.site/blogimg/convex-hull/scanline-13.svg)
+![scanline-14](https://riteme.site/blogimg/convex-hull/scanline-14.svg)
+![scanline-15](https://riteme.site/blogimg/convex-hull/scanline-15.svg)
+![scanline-16](https://riteme.site/blogimg/convex-hull/scanline-16.svg)
+![scanline-17](https://riteme.site/blogimg/convex-hull/scanline-17.svg)
 
 由于每个点只会被访问1次，点在栈中只会被弹出一次，所以扫描线的部分是$\Theta(n)$的。但排序需要$O(n\log n)$的时间，所以总复杂度是$O(n\log n)$的。是一个非常不错的算法。
 
@@ -181,7 +181,7 @@ function SCANLINE(Q):
             while |CH2| > 1 and cross(CH2[-1] - CH2[-1], p - CH2[-2]) <= 0:
                 CH2.pop()
             CH2.append(p)
-    
+
     merge CH1, CH2 into CH
     return CH
 ```
@@ -199,17 +199,17 @@ Graham算法有一个好处，就是最终得到的凸包还是按照极角序�
 
 下面给出了一个示例：
 
-![graham-1](https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/graham-1.svg)
-![graham-2](https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/graham-2.svg)
-![graham-3](https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/graham-3.svg)
-![graham-4](https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/graham-4.svg)
-![graham-5](https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/graham-5.svg)
-![graham-6](https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/graham-6.svg)
-![graham-7](https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/graham-7.svg)
-![graham-8](https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/graham-8.svg)
-![graham-9](https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/graham-9.svg)
-![graham-10](https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/graham-10.svg)
-![graham-11](https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/graham-11.svg)
+![graham-1](https://riteme.site/blogimg/convex-hull/graham-1.svg)
+![graham-2](https://riteme.site/blogimg/convex-hull/graham-2.svg)
+![graham-3](https://riteme.site/blogimg/convex-hull/graham-3.svg)
+![graham-4](https://riteme.site/blogimg/convex-hull/graham-4.svg)
+![graham-5](https://riteme.site/blogimg/convex-hull/graham-5.svg)
+![graham-6](https://riteme.site/blogimg/convex-hull/graham-6.svg)
+![graham-7](https://riteme.site/blogimg/convex-hull/graham-7.svg)
+![graham-8](https://riteme.site/blogimg/convex-hull/graham-8.svg)
+![graham-9](https://riteme.site/blogimg/convex-hull/graham-9.svg)
+![graham-10](https://riteme.site/blogimg/convex-hull/graham-10.svg)
+![graham-11](https://riteme.site/blogimg/convex-hull/graham-11.svg)
 
 图上依次连接的线表示栈中的元素。
 
@@ -294,13 +294,13 @@ function GRAHAM-SCAN(Q):
 这样我们就只用考虑凸包上的点了。对于凸包上的一个点，很直观的想法就是找到凸包**另一边**最远的点。
 这是就要用到旋转卡壳，我们用一对平行线"夹紧"这个凸包，这样被两条直线所压住的点之间就可能有最远点对。
 
-![ruler-1](https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/ruler-1.svg)
+![ruler-1](https://riteme.site/blogimg/convex-hull/ruler-1.svg)
 
 由于当前所卡中的不一定就是最远点对，所以还需要继续寻找。
 而对每一条凸包上的边而言，都只有最远的点对其有效。
 所以可以想象其中一条直线不断的沿着凸包上的边进行旋转，而另一条直线则不断更新与之最远的点。
 
-![ruler-2](https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/ruler-2.svg)
+![ruler-2](https://riteme.site/blogimg/convex-hull/ruler-2.svg)
 
 第一条直线的事情好办，关键在于第二条。由于凸包上的点到第一条直线的距离具有单调性，所以第二条直线可以沿着一个方向移动，从而到达合适的位置。
 当然需要注意一种边界情况：如果有两条平行的边，那么第二条直线**可能卡中两个点**[^two-points]，这样就需要多枚举一些情况。
@@ -336,7 +336,7 @@ $$ {f(j) - f(k) \over f(j-1) - f(k-1)} \lt -{B[x] \over A[x]} \tag{2} $$
 回想一下直线斜率的计算公式，不难发现$(2)$式左边是一个计算斜率的形式，而右边是一个常量（对特定的$x$而言）。
 因此$(2)$式左边可以视为是两个点$(f(j-1),\;f(j))$和$(f(k-1),\;f(k))$的直线的斜率与$-B[x] / A[x]$的关系。
 
-![slope-opt-1](https://git.oschina.net/riteme/blogimg/raw/master/convex-hull/slope-opt-1.png)
+![slope-opt-1](https://riteme.site/blogimg/convex-hull/slope-opt-1.png)
 
 如上图所示，这个时候：
 $$ {f(j) - f(k) \over f(j-1) - f(k-1)} \gt -{B[x] \over A[x]} $$

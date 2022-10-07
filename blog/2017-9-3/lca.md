@@ -25,7 +25,7 @@ tags: 最近公共祖先
 
 既然是要求公共祖先，那么我们一个直接的想法就是现将一个点 $u$ 的祖先全部标记出来，然后 $v$ 在从最深的祖先开始（也就是 $v$ 自己），一个一个检查是不是已经被标记过。如果找到了一个被标记的点，那么这个点就是最近公共祖先。
 
-![brute-1](https://git.oschina.net/riteme/blogimg/raw/master/lca-2/brute-1.svg)
+![brute-1](https://riteme.site/blogimg/lca-2/brute-1.svg)
 
 <center>（**Fig. 1.** 蓝色代表 $u$ 的祖先，橙色代表 $v$ 检查过的祖先，红色是最近公共祖先）</center>
 
@@ -126,7 +126,7 @@ if u == v:  // 需要特判 v 是 u 的祖先的情况
 
 现在我们要对付的树并不能如我们所愿的是链状，但是可不可以把 $u$ 和 $v$ 上跳，从而调到 $u$ 是 $v$ 的祖先呢？不妨尝试将树划分成许多长链，更形式化的说，就是用两两不相交的简单路径覆盖整棵树，从而使得每个点都在唯一的一条路径上：
 
-![long-chain-1](https://git.oschina.net/riteme/blogimg/raw/master/lca-2/long-chain-1.svg)
+![long-chain-1](https://riteme.site/blogimg/lca-2/long-chain-1.svg)
 
 <center>（**Fig. 2.** 上图表示了一种划分方案，注意蓝色的路径只有一个点）</center>
 
@@ -151,7 +151,7 @@ function LCA(u, v):
 
 现在的目标就是找出一种链剖分的方案，使得这种 “走轻边” 的情况尽量少。由于我们链剖分的方法所决定的，每个点沿着链向下走最多能走到一个儿子处，姑且称这个儿子为**重儿子**。当我们为每个点选取好重儿子后，链剖分的方案也就出来了。当然，随便选取重儿子是不可取的，就像在下面这棵树中：
 
-![long-chain-2](https://git.oschina.net/riteme/blogimg/raw/master/lca-2/long-chain-2.svg)
+![long-chain-2](https://riteme.site/blogimg/lca-2/long-chain-2.svg)
 
 <center>（**Fig. 3.** 一条长链的每个点都多挂了一个点）</center>
 
@@ -159,7 +159,7 @@ function LCA(u, v):
 
 所以需要换一种思路，我们希望树上划分出的链尽量少，一种思路就是每次挑出最长的一条链。显然对于一个点 $u$，它的重儿子 $v \in \mathrm{ch}(u)$ 应当满足 $T_v$ 的树高最高。如果按照此标准选取重儿子，最多又会走多少条轻边呢？
 
-![long-chain-3](https://git.oschina.net/riteme/blogimg/raw/master/lca-2/long-chain-3.svg)
+![long-chain-3](https://riteme.site/blogimg/lca-2/long-chain-3.svg)
 
 <center>（**Fig. 4.** 这只是一种可能的情况）</center>
 
@@ -181,7 +181,7 @@ $$ n \geqslant \sum_{k = 1}^{x + 1} k = {(x + 1)(x + 2) \over 2} \geqslant x^2 $
 
 看到上面啰哩吧嗦一大堆，有的人可能一开始想法就不一样。可能会想尝试将重儿子 $v$ 选取为 $T_v$ 的大小最大的那一个。按照这个标准，之前长链剖分的最坏情况的那棵树，应该被划分成这样：
 
-![hld-1](https://git.oschina.net/riteme/blogimg/raw/master/lca-2/hld-1.svg)
+![hld-1](https://riteme.site/blogimg/lca-2/hld-1.svg)
 
 <center>（**Fig. 5.** 实际上，除了最左下角，其它部分一定会被划分成这样）</center>
 
@@ -199,13 +199,13 @@ Aha！EXCITED！我们发现这样无论什么询问，最多走一次轻边了�
 
 现在退回到一种十分朴素的实现方法：从点 $u$ 开始，搜索 $T_u$，如果 $v$ 在 $T_u$ 中，则最近公共祖先为 $u$。否则令 $u = f(u)$，继续执行以上过程。当然，如果某些点已经被遍历过了，则不需要再次访问。或者可以换一个角度：将树上的每条无向边拆为两条有向边。对于属于同一条无向边的两条有向边，我们优先走向下走的边。每进入一个点的时候，就记录一下，最后会构成一个序列。这实际上就是 DFS 序。
 
-![euler-1](https://git.oschina.net/riteme/blogimg/raw/master/lca-2/euler-1.svg)
+![euler-1](https://riteme.site/blogimg/lca-2/euler-1.svg)
 
 <center>（**Fig. 6.** 这棵树的 DFS 序是 `1 2 4 2 5 6 5 2 1 3 1`）</center>
 
 假设 $u$ 的 DFS 入栈时间早于 $v$ ，那么之前的朴素方法相当于从 $u$ 开始沿着这些边来搜索，直到到达 $v$。搜索过程中访问到的深度最小的点就是 $u$ 和 $v$ 的最近公共祖先。
 
-![euler-2](https://git.oschina.net/riteme/blogimg/raw/master/lca-2/euler-2.svg)
+![euler-2](https://riteme.site/blogimg/lca-2/euler-2.svg)
 
 <center>（**Fig. 7.** 几个小例子，分别为查询 $\mathrm{lca}(4,\;6)$、$\mathrm{lca}(4,\;3)$ 和 $\mathrm{lca}(1,\;4)$）</center>
 
@@ -215,7 +215,7 @@ Aha！EXCITED！我们发现这样无论什么询问，最多走一次轻边了�
 
 首先注意到区间 $[l,\;r]$ 的最值可以由多个区间 $[l_1,\;r_1],\;[l_2,\;r_2],\;...,\;[l_k,\;r_k]$ 的最值得来，只要满足这些区间的并集是 $[l,\;r]$。基于这种思想，我们可以先预处理一些区间的最值，然后对于每一个询问，只要确保能找出一些已经处理过的区间并起来满足询问的要求，就可以回答询问。一个简单的想法就是拆成两个区间，一个是前缀一个是后缀：
 
-![st-1](https://git.oschina.net/riteme/blogimg/raw/master/lca-2/st-1.svg)
+![st-1](https://riteme.site/blogimg/lca-2/st-1.svg)
 
 <center>（**Fig. 8.** 一个区间被拆为两个子区间）</center>
 
@@ -243,7 +243,7 @@ $$ \begin{aligned} f(i,\;0) & = a_i \\ f(i,\;j) & = \max\{f(i,\;j-1),\;f(i+2^{j-
 
 如何降低空间复杂度呢？一个奇葩的想法就是，如果只有 $n / \log n$ 个元素，那空间复杂度不就自然变成 $\Theta(n)$ 了吗？但如何实现这个看起来很不科学的想法呢？这时分块的技巧就可用上了。首先设定一个块大小 $S$，然后从前往后每 $S$ 个元素划为一块，注意最后一块可能没有 $S$ 个元素。这样整个序列就划为了 $\Theta(n / S)$ 块。考虑一下每一次询问可能出现的情况：
 
-![st-2](https://git.oschina.net/riteme/blogimg/raw/master/lca-2/st-2.svg)
+![st-2](https://riteme.site/blogimg/lca-2/st-2.svg)
 
 <center>（**Fig. 9.** 上面的序列划为了 $6$ 块）</center>
 
@@ -301,13 +301,13 @@ foreach i in Q:
 
 现在我们来观察一个简单的例子：
 
-![cartesian-1](https://git.oschina.net/riteme/blogimg/raw/master/lca-2/cartesian-1.svg)
+![cartesian-1](https://riteme.site/blogimg/lca-2/cartesian-1.svg)
 
 <center>（**Fig. 10.** 在序列 `2 3 1 6 4 5 7` 的例子）</center>
 
 此时你就会发现所有的这些区间两两之间只有包含和分离的关系。利用这种包含关系，我们实际上就可以构造一棵树：
 
-![cartesian-2](https://git.oschina.net/riteme/blogimg/raw/master/lca-2/cartesian-2.svg)
+![cartesian-2](https://riteme.site/blogimg/lca-2/cartesian-2.svg)
 
 <center>（**Fig. 11.** 如果 $M(x) \subseteq M(y)$，那么 $y$ 是树上 $x$ 的祖先）</center>
 
@@ -317,7 +317,7 @@ foreach i in Q:
 
 假设我们现在已经有了一棵笛卡尔树，考虑在后面加入一个新的元素 $a_x$ 时，笛卡尔树该如何变化。首先，我们还是要找出 $a_x$ 往左走的第一个比它大的元素 $a_y$，此时我们就知道 $y$ 是 $x$ 的父亲了。另外，不要忘记那些被弹出队列的点，这些的点的 $r$ 函数的值已经全部被修改为 $x - 1$ 了，所以会改变它们的父亲：
 
-![cartesian-3](https://git.oschina.net/riteme/blogimg/raw/master/lca-2/cartesian-3.svg)
+![cartesian-3](https://riteme.site/blogimg/lca-2/cartesian-3.svg)
 
 <center>（**Fig. 12.** 新加入一个元素，其权值为 $7$，以 $6$ 为根的子树变成了新点的左儿子）</center>
 

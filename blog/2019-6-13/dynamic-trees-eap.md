@@ -49,7 +49,7 @@ In addition to operations that may alter tree structures, data can be associated
 **Path Decomposition.**{: .subsection} In this paper, we focus on *link-cut trees*, or LCT as the abbreviation, which was introduced by Sleator and Tarjan[^S81] and uses a technique called *path decomposition*. In path decomposition, each edge is marked as either solid or dashed and we guarantee that no more than one solid edge entering any node (solid edge invariant). Consecutive solid edges form a solid path. It is trivial to see that any solid path is within an access path. Intuitively, solid paths do not bend in the tree that the depths of nodes along the path are monotone. In this way, a tree is decomposed into a set of solid paths connected by dashed edges. In the remainder of this paper, we use the notion $c(x)$ to represent the chain containing $x$.
 
 <div class="float-fig">
-<p><img src="https://gitee.com/riteme/blogimg/raw/master/eap19/lct-1.svg"></p>
+<p><img src="https://riteme.site/blogimg/eap19/lct-1.svg"></p>
 <center class="figcaption">(a) An example of LCT. (b) LCT after <code class="op">Expose</code>$(x)$.</center>
 </div>
 
@@ -100,7 +100,7 @@ The magic `Splay`{: .op} actually predicts the weight of each node based on prev
 
 Applying weighted treaps to LCT is feasible, as we will show in the remainder of this section. In our analysis, any node can represent the treap containing it, and $s(x)$ is the overall weight in the treap $x$, even if $x$ is not the tree root. Let $r(x) = \log s(x)$ and $m$ be the number of dynamic tree operations. We distinguish *special splices* from *normal splices* that a special splice at $x$ marks a new solid edge $(x,\ p(x))$ when $p(x)$ is the tail of $c(p(x))$, rather than switching solid edges in normal splices.
 
-![](https://gitee.com/riteme/blogimg/raw/master/eap19/splice-1.svg)
+![](https://riteme.site/blogimg/eap19/splice-1.svg)
 <center class="figcaption">Special splice (left) and normal splice (right). Both splice at $x$ and the edge $(x,\ p(x))$ will be solid.</center>
 
 Since every special splice induces a new solid edge, it is suggested that there seem to be few special splices. Sleator et al.[^S81] showed that there are at most $m$ special splices, i.e. one `Splice`{: .op} per `Expose`{: .op} on average. It indicates that special splices are not the major overheads in `Expose`{: .op}. To carry out the amortized analysis, we store $\Theta(r(x) - r(y))$ *credits* on each node $y$ where $x$ is the parent of $y$ in treap. Meanwhile, the root of a treap may also have credits. We say treap $u$ is *cast to* $c \geqslant r(u)$ iff. $\Theta(c - r(u))$ credits have been allocated on $u$. We often refer to these two properties as *credit invariants*. We will devise two key properties pertaining to `Join`{: .op} and `Split`{: .op}. Proofs for the next two lemmas are deferred to Appendix B and Appendix C.
@@ -119,7 +119,7 @@ Finally we investigate credit changes in `Expose`{: .op}.
 
 (2) Split Phase: Traverse from $u_0$ to the tree root and label the head nodes of visited chains with $u_1,\ u_2,\ ...,\ u_p$ ($u_p$ is the tree root). Parents of them are $v_1,\ v_2,\ ...,\ v_{p - 1}$ and $\varnothing$. In step $i$, we `Split`{: .op} at $v_i$ and thus $c(v_i)$ is divided into at most three parts represented by $u_{i + 1}$ (possibly empty), $v_i$ and $q_i$ (for normal splices). Let $k$ be the number of special splices in `Expose`{: .op}$(u_0)$ and $r'(u_{i+1})$, $r'(v_i)$, $r'(q_i)$ be the ranks of $u_{i+1}$, $v_i$, $q_i$ respectively after `Split`{: .op}. Note that $k = \mathrm O(1)$ in amortized sense and $r'(v_i) \geqslant r(u_i)$. Treap $u_{i + 1}$ prior to `Split`{: .op} is obviously cast to $r(u_{i + 1})$. Split Lemma implies that it takes only $\mathrm O(r(u_{i + 1}) - r'(v_i)) = \mathrm O(r(u_{i  +1}) - r(u_i))$ amortized time for both special and normal splices. If the splice is normal, it leaves $\Theta(r(u_{i + 1}) - r'(q_i))$ credits on $q_i$.
 
-![](https://gitee.com/riteme/blogimg/raw/master/eap19/expose-1.svg)
+![](https://riteme.site/blogimg/eap19/expose-1.svg)
 <center class="figcaption">(a) Prior to Split Phase. (b) After Split Phase. (c) An example of normal splice during step $i$.</center>
 
 (3) Re-weight: $w(v_i)$ is changed to $s(v_i) - s(u_i)$. Let $r''(v_i)$ be the new rank of $v_i$. It takes constant time.
@@ -143,7 +143,7 @@ In LCT-based solutions, $m$ edges are added into an initially empty graph one by
 Three solutions based on LCT used the same interface exported to the main program to guarantee uniformity. Treaps utilized Xorshift algorithm[^M03] for extremely fast pseudo-random generations. Biased trees required extra memory for internal nodes and we implemented a stack-based memory pool for biased trees. All solutions were implemented in non-recursive fashion.
 
 <div class="float-fig">
-<p><img src="https://gitee.com/riteme/blogimg/raw/master/eap19/result.svg"></p>
+<p><img src="https://riteme.site/blogimg/eap19/result.svg"></p>
 <center class="figcaption">Experimental results. (a) Figure for randomized test data. (b) Figure for cache tests. Horizontal axes are scaled by binary logarithm and time is measured in microseconds averaged on all edges.</center>
 </div>
 
@@ -164,7 +164,7 @@ In this paper, we reviewed and briefly analyzed three schemes to implement link-
 **C. Proof for Split Lemma.** `Split`{: .op} is the inverse of `Join`{: .op} (figure omitted). Let $r'(y) = \log w(y)$. The time to access $y$ is $\mathrm O(\log s(x) / w(y)) = \mathrm O(r(x) - r'(y)) = \mathrm O(c - r'(y))$. Suppose $y$ has two children $u_0$ and $v_0$ (possibly empty). $\Theta(c - r(u_0))$ credits aggregated over $x$ to $u_0$ are distributed on all nodes from $u$ to $u_0$ to guarantee that treap $u$ is cast to $c$. $\Theta(c - r(y)) = \mathrm O(c - r'(y))$ new credits are supplied to treap $v$. Along with the original $\Theta(r(y) - r(v_0))$ credits on $v_0$, the final $\Theta(c - r(v_0))$ credits are sufficient to ensure treap $v$ is also cast to $c$.<qed>
 
 <div class="float-fig">
-<p><img src="https://gitee.com/riteme/blogimg/raw/master/eap19/join-1.svg"></p>
+<p><img src="https://riteme.site/blogimg/eap19/join-1.svg"></p>
 <center class="figcaption">An example of <code class="op">Join</code>. (a) Left spine and right spine. (b) Treap $z$ after <code class="op">Join</code>. Dashed edges are removed during <code class="op">Join</code>.</center>
 </div>
 

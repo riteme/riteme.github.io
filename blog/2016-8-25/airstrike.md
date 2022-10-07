@@ -127,7 +127,7 @@ YES
 ## 样例解释1
 样例输入1如下图所示：
 
-![样例解释1](https://git.oschina.net/riteme/blogimg/raw/master/airstrike/airstrike1.svg)
+![样例解释1](https://riteme.site/blogimg/airstrike/airstrike1.svg)
 
 ## 样例输入2
 ```
@@ -161,7 +161,7 @@ YES
 ## 样例解释2
 样例输入2如下图所示：
 
-![样例解释2](https://git.oschina.net/riteme/blogimg/raw/master/airstrike/airstrike2.svg)
+![样例解释2](https://riteme.site/blogimg/airstrike/airstrike2.svg)
 
 ## 数据限制
 共$7$个数据测试点，限制如下：

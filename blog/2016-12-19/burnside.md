@@ -61,11 +61,11 @@ $$
 
 现在做出一点限制，如果一个染过色的正方形通过旋转或者轴对称后与另外一个染过色的正方形相同，就说这两种染色是本质相同的。那么问你有多少种本质不同的染色方案。通过枚举，我们也可以知道答案是$6$。这$6$中方案如下 (本质相同的只画了一种)：
 
-![rect-6](https://git.oschina.net/riteme/blogimg/raw/master/polya/rect-6.svg)
+![rect-6](https://riteme.site/blogimg/polya/rect-6.svg)
 
 对我们而言，难以考虑的是同构的问题。假如我们给顶点标号，分别为$1$、$2$、$3$和$4$：
 
-![labeled](https://git.oschina.net/riteme/blogimg/raw/master/polya/labeled-rect-2.svg)
+![labeled](https://riteme.site/blogimg/polya/labeled-rect-2.svg)
 
 那么上面这个图的染色为：
 $$
@@ -212,13 +212,13 @@ $$
 
 首先观察一下在同一个置换环内的情况：
 
-![one-circle](https://git.oschina.net/riteme/blogimg/raw/master/polya/one-circle.svg)
+![one-circle](https://riteme.site/blogimg/polya/one-circle.svg)
 
 黄色的边是置换环上的边，而红色的就是边置换中的边。由于将整条边随着置换环旋转，会得到许多一样的边，所以我们将一个点固定，来考虑另外一个点。可以发现实线的边是不同的，而虚线的边则是和实线的边是同构的。所以，对于长度为$L$的置换环，在边的置换中对应了$\lfloor L / 2 \rfloor$个置换环。
 
 然后考虑不在同一个置换环的情况：
 
-![two-circle](https://git.oschina.net/riteme/blogimg/raw/master/polya/two-circle.svg)
+![two-circle](https://riteme.site/blogimg/polya/two-circle.svg)
 
 设两个置换环的长度分别为$A$和$B$，可以发现，每一条连接两个置换环的边，都会有$\mathrm{lcm}(A, B)$条边与它同构。而总边数为$AB$，所以这个点置换的置换环就对应了边置换中的$\gcd(A, B)$个置换环。
 

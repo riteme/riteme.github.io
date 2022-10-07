@@ -59,7 +59,7 @@ $$
 
 接下来的目标是让时间复杂度变得与序列长度 $n$ 无关。考虑求区间和的一种离线算法：扫描线算法。
 
-![scanline-example](https://gitee.com/riteme/blogimg/raw/master/interval-polynomial/scanline-example.svg)
+![scanline-example](https://riteme.site/blogimg/interval-polynomial/scanline-example.svg)
 
 <center>(**Fig.1.** 扫描线算法的一个示例。$6$ 个方格代表序列 $X[1..6]$。上面的操作是将区间 $[2, 4]$ 都加上 $3$；下面的是扫描线的过程，首先将原序列视为差分序列，在位置 $2$ 加上 $3$，位置 $4$ 减去 $3$，模拟一根扫描线从 $1$ 一直扫描到 $6$，其中遇到正数就给 $A$ 加上，遇到负数则相应地减去，这样扫描线扫到哪里，$A$ 的值就是那个位置的值)</center>
 

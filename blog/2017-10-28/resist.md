@@ -14,13 +14,13 @@ tags: 电阻网络
 
 ## 基本概念
 
-![network-1](https://gitee.com/riteme/blogimg/raw/master/resist/network-1.svg)
+![network-1](https://riteme.site/blogimg/resist/network-1.svg)
 
 上图是电阻网络的一个示意图。其中矩形表示纯电阻，上面可能会标注它的阻值。粗线表示导线，导线的交点通常会是接线柱之类的东西，称之为节点，可以连入外部电路。我们的目标是，给出这个网络的结构、每个电阻的阻值以及接入外电路的两个节点（一个是电流流入的位置，另一个是电流流出的位置，如上图中的左边和右边两个不闭合的导线），计算出它的等效电阻，即电流经过电阻网络时的电压 $U$ 与流入电流 $I$ 之比。例如，上图表示的电阻网络的等效电阻为 $159/71\;\Omega \approx 2.239\;\Omega$。
 
 为了方便表示，这里将电阻网络转为图论的模型。图中一共有 $n$ 个节点和 $m$ 个电阻，每个节点对应图中的点，每个电阻对应图中的一条边，用边权表示电阻的阻值。例如，上面展示的电阻网络可以表示为下面的形式：
 
-![network-2](https://gitee.com/riteme/blogimg/raw/master/resist/network-2.svg)
+![network-2](https://riteme.site/blogimg/resist/network-2.svg)
 
 接入电路后，每个电阻上都会通有电流，记为 $I$。电流有方向之分，如果某条边 $(u,\;v)$ 上的的电流是从 $u$ 流向 $v$ 的，那么 $I_{uv} = -I_{vu} \geqslant 0$。设这条边的电阻为 $R_{uv} = R_{vu}$，那么它的电压为 $U_{uv} = -U_{vu} = I_{uv}R_{uv}$。
 
@@ -36,7 +36,7 @@ tags: 电阻网络
 
 根据这两点，如何求出等效电阻呢？首先可以假定流入的电流为 $1\;\mathrm{A}$，然后就只需求出源点到汇点的电压即可。根据电压定律，我们可以知道从源点到汇点的任意一条路径的电压是定值。原因非常简单，对于两条不同的路径：
 
-![network-3](https://gitee.com/riteme/blogimg/raw/master/resist/network-3.svg)
+![network-3](https://riteme.site/blogimg/resist/network-3.svg)
 
 如果存在不重合的部分，我们对这个部分进行调整，在电压不变的情况下，将一条路径变为另外一条路径。如上图，设左边的分岔点为 $A$，右边的分岔点为 $B$，由于回路电压为 $0$，所以下面那一条从 $A$ 到 $B$ 的路径的电压 $U_1$ 与从 $B$ 到 $A$ 的电压 $U_2$ 的代数和为 $0$，即 $U_1 + U_2 = 0$，而靠上面的从 $A$ 到 $B$ 的电压 $U_3 = -U_2$，因此 $U_1 = U_3$，从而发现上述规律。由于假定流入的电流是 $1\;\mathrm{A}$，所以等效电阻等于电压的绝对值。
 

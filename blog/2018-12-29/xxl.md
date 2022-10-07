@@ -14,7 +14,7 @@ $$ \lim_{n \rightarrow \infty} \prod_{k = 0}^n {a + k \over b + k} $$
 
 **解 1：**（来自 xxl）
 
-![xxl's solution](https://gitee.com/riteme/blogimg/raw/master/other/xxl-solution.jpeg)
+![xxl's solution](https://riteme.site/blogimg/other/xxl-solution.jpeg)
 
 **解 2：** $\prod_{k = 0}^n (a + k) = \Gamma(n + a + 1) / \Gamma(a)$，再利用 Stirling 近似~~暴力分析~~。
 

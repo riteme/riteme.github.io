@@ -17,7 +17,7 @@ location: ..
 
 <br><img src="/assets/cbox2-720p-10k-8.png" alt="Cornell Box" /><center><i>Cornell Box</i>. Powered by <a href="https://github.com/CMU-Graphics/Scotty3D">Scotty3D</a>.</center>
 
-<br><picture><source srcset="/assets/generals.apng" type="image/apng" /><img src="https://gitee.com/riteme/blogimg/raw/master/generals.gif" /></picture><center><a href="http://generals.io/replays/Btj7sy8CD">http://generals.io/replays/Btj7sy8CD</a></center>
+<br><picture><source srcset="/assets/generals.apng" type="image/apng" /><img src="https://riteme.site/blogimg/generals.gif" /></picture><center><a href="http://generals.io/replays/Btj7sy8CD">http://generals.io/replays/Btj7sy8CD</a></center>
 
 ### `sitegen.py`
 
