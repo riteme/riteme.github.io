@@ -1,7 +1,7 @@
 ---
 title: 最近公共祖先(LCA)
 create: 2016.2.1
-modified: 2019.9.10
+modified: 2023.1.11
 tags: 算法
       LCA
 ---
@@ -132,7 +132,7 @@ def Tarjan_LCA(u):
     # query数组表示查询操作，保存的是(x, y)，表示要计算LCA(x, y)
     for (x, y) in query:
         if y == u and marked[x] == True:
-            LCA(x, y) = LCA(y, x) = ancestor[x]
+            LCA(x, y) = LCA(y, x) = ancestor[find(x)]
 ```
 
 这个算法的进行类似于DFS，是个递归调用的过程。
